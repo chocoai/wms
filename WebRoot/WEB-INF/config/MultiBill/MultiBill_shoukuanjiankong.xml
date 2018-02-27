@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BillFormMeta Key="shoukuanjiankong" Version="1.0.0" BillType="MultiBill" Caption="收款监控">
+    <BillBody>
+        <BillBodyMeta UserAgent="web">
+            <BillUIPanel Layout="flex" FlexDirection="column" Width="100%" Key="mainContainer" Caption="" S="">
+            	<BillUIPanel Layout="flex" Key="bills_tools" Caption="查询面板"
+                     S="panel panel-default publicPanel">
+                    <BillUIGridPanel Device="sm" key="boxtool">
+	                    <BillUIRowPanel>
+	                        <BillUIColPanel Width="3">
+	                            <BillUIWidget Key="kaishiriqi" ParameterKey="kaishiriqi" DataTableKey="shoukuanjiankong" Caption="开始日期"
+	                                         EnabledWhen="True" DateFormat="yyyy-mm-dd hh:ii:ss"
+											  Icon="glyphicon glyphicon-send" WidgetType="BillUIDateTime">
+	                            </BillUIWidget>
+	                        </BillUIColPanel>
+	                        <BillUIColPanel Width="3">
+	                            <BillUIWidget Key="jieshuriqi" ParameterKey="jieshuriqi" DataTableKey="shoukuanjiankong" Caption="结束日期"
+	                                         EnabledWhen="True" DateFormat="yyyy-mm-dd hh:ii:ss"
+											  Icon="glyphicon glyphicon-send" WidgetType="BillUIDateTime">
+	                            </BillUIWidget>
+	                        </BillUIColPanel>
+	                        <BillUIColPanel Width="3">
+	                            <BillUIWidget Caption="取消" Key="cancel"
+	                                          EnabledWhen="True"
+	                                          Icon="glyphicon glyphicon-send" WidgetType="BillUIButton">
+	                                <Triggers>
+	                                    <Trigger Type="javascript/angular" Runat="client">
+	                                        <![CDATA[
+	                                     @riqi.setValue("");
+	                                     @$this.__load();
+		                            ]]>
+	                                    </Trigger>
+	                                </Triggers>
+	                            </BillUIWidget>
+	                            <BillUIWidget Caption="查询" Key="search"
+	                                           EnabledWhen="True"
+	                                          Icon="glyphicon glyphicon-send" WidgetType="BillUIButton">
+	                                <Triggers>
+	                                    <Trigger Type="javascript/angular" Runat="client">
+	                                        <![CDATA[
+	                                    @$this.__load("shoukuanjiankong");
+		                            ]]>
+	                                    </Trigger>
+	                                </Triggers>
+	                            </BillUIWidget>
+	                        </BillUIColPanel>
+	                    </BillUIRowPanel>
+                    </BillUIGridPanel>
+                </BillUIPanel>
+                <BillUIPanel Layout="tab" Key="mainContainer_tab" Caption="收款监控"
+                             S="panel  panel-primary  publicPanel">
+                    <BillUIPanel Layout="flex" Key="mainContainer_details1" Caption="收款监控"
+                                 ColWidth="1fr">
+                        <BillUIGrid Key="grid0" OptMode="View" DataTableKey="shoukuanjiankong">
+                            <GridHeads>
+                                <GridHead Col="shouyinyuan" Caption="收银员" enableEdit="True"
+                                          Width="150px">
+                                    <BillUIWidget Key="shouyinyuan" WidgetType="BillUIString"/>
+                                </GridHead>
+                                <GridHead Col="yingshoujine" Caption="应收金额" enableEdit="True"
+                                          Width="150px">
+                                    <BillUIWidget Key="yingshoujine" WidgetType="BillUIString"/>
+                                </GridHead>
+                                <GridHead Col="shishoujine" Caption="实收金额" enableEdit="True"
+                                          Width="150px">
+                                    <BillUIWidget Key="shishoujine" WidgetType="BillUIString"/>
+                                </GridHead>
+								<GridHead Col="shishouxianjin" Caption="实收现金" enableEdit="True"
+										  Width="150px">
+									<BillUIWidget Key="shishouxianjin" WidgetType="BillUIString"/>
+								</GridHead>
+								<GridHead Col="yibaojine" Caption="医保金额" enableEdit="True"
+										  Width="150px">
+									<BillUIWidget Key="yibaojine" WidgetType="BillUIString"/>
+								</GridHead>
+                                <GridHead Col="youhui" Caption="优惠" enableEdit="True" Width="150px">
+                                    <BillUIWidget Key="youhui" WidgetType="BillUIString"/>
+                                </GridHead>
+                            </GridHeads>
+                        </BillUIGrid>
+                    </BillUIPanel>
+                </BillUIPanel>
+            	<BillUIPanel>
+            		<BillUIChart Title="收银员收款金额情况统计与分析"  ChartType="GenerialChart" Width="600px" Height="400px"
+			             Tooltip="true" Float="wipe" DataSetType="model"  DataTableKey="shoukuanjiankong" DataSetkey="shoukuanjiankong"
+			             Toolbox="dataZoom,restore,saveAsImage"   Legend="true">
+		                    <Category Axis="x" GroupType="field" GroudBy="shouyinyuan">
+		                        <Series Chart="bar"  GroupRule="field"  Group=""
+		                                GatherFieldKey="yingshoujine"
+		                                GatherType="sum"
+		                        />
+		                        <Series Chart="bar"  GroupRule="field"  Group=""
+		                                GatherFieldKey="shishoujine"
+		                                GatherType="sum"
+		                        />
+		                    </Category>
+		                </BillUIChart>
+            	</BillUIPanel>
+            </BillUIPanel>
+        </BillBodyMeta>
+    </BillBody>
+    <BillHeadMeta>
+    </BillHeadMeta>
+</BillFormMeta>

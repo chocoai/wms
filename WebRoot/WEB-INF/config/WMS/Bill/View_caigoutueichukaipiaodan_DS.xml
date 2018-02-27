@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+	<DataTable Key="caigoutueichukaipiaodan_view" Caption="采购退出开票单"
+		DefaultFilter="" PermissionType="PrivateType" Pagging="10"
+		TableName="SQLQuery::select * | from xyy_wms_bill_caigoutuichukaipiaodan  where 1 = 1  @kaishiriqi @jiezhiriqi @gysmc @danjubianhao"
+		DataSource="" Head="false">
+		<Parameters>
+			<Parameter Key="danjubianhao" Type="String">
+				<Where>
+                <![CDATA[
+					m.if(danjubianhao==null | danjubianhao=="" ,""," and danjubianhao like '%"+danjubianhao+"%'")
+	            ]]>
+				</Where>
+			</Parameter>
+			<Parameter Key="gysmc" Type="String">
+				<Where>
+                <![CDATA[
+					m.if(gysmc==null | gysmc=="" ,""," and gysmc like '%"+gysmc+"%'")
+                ]]>
+				</Where>
+			</Parameter>
+			<Parameter Key="kaishiriqi" Type="String">
+				<Where>
+                <![CDATA[
+                	m.if(kaishiriqi==null,""," and DATE_FORMAT(kaipiaoriqi,'%Y-%m-%d') >= DATE_FORMAT('"+kaishiriqi+"','%Y-%m-%d')")
+				]]>
+				</Where>
+			</Parameter>
+			<Parameter Key="jiezhiriqi" Type="String">
+				<Where>
+                <![CDATA[
+                	m.if(jiezhiriqi==null,""," and DATE_FORMAT(kaipiaoriqi,'%Y-%m-%d') <= DATE_FORMAT('"+jiezhiriqi+"','%Y-%m-%d')")
+				]]>
+				</Where>
+			</Parameter>
+		</Parameters>
+	</DataTable>
+
+	<DataTable Key="caigoutueichukaipiaodan_details1" Caption="采购退出开票单"
+		DefaultFilter="" PermissionType="PrivateType" Pagging="100"
+		TableName="SQLQuery:: 
+        SELECT *
+               |
+				FROM
+					xyy_wms_bill_caigoutuichukaipiaodan_details
+				where  BillID is null
+              ORDER BY createTime DESC"
+
+		DataSource="" Head="false" Singleton="" OrderBy="">
+		<Parameters>
+			<Parameter Key="danjubianhao" Type="String">
+				<Where>
+                    <![CDATA[
+					m.if( BillID is null)
+	            ]]>
+				</Where>
+			</Parameter>
+
+		</Parameters>
+	</DataTable>
+</DataSet>

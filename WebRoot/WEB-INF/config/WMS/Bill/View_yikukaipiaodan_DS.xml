@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+	<DataTable Key="yikukaipiaodan" Caption="移库开票单"
+		DefaultFilter="" Pagging="10"
+		TableName="SQLQuery::select * | from xyy_wms_bill_yikukaipiaodan where 1=1 @zhidanren ORDER BY createTime DESC"
+		DataSource="" Head="false">
+		<Parameters>
+			<Parameter Key="zhidanren" Type="String">
+				<Where>
+                <![CDATA[
+					m.if(zhidanren==null | zhidanren=="" ," "," and zhidanren like '%"+zhidanren+"%'")
+	            ]]>
+				</Where>
+			</Parameter>
+		</Parameters>
+	</DataTable>
+</DataSet>

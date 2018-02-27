@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="ljqmc_view" Caption="仓库资料叙事薄" DefaultFilter="" Pagging="10"
+               TableName="SQLQuery::select * | from xyy_wms_dic_ljqzlwh where 1=1 and status != -1  @ljqmc  ORDER BY createTime DESC " PermissionType="CommType" DataSource="" Head="false">
+        <Parameters> 
+            <Parameter Key="ljqmc" Type="String">
+                <Where>
+                <![CDATA[
+					m.if(ljqmc==null | ljqmc=="" ," "," and ljqmc like '%"+ljqmc+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

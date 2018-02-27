@@ -1,0 +1,86 @@
+
+<table class="table table-bordered table-striped table-hover">
+ 
+ 
+    <tr>
+        <td width="160"> <span style="color: red">*</span>活动名称：</td>
+         <td><input type="text" name="name" ng-model="po.activitydefinition.name" maxlength="100">&nbsp;&nbsp;&nbsp;&nbsp;
+	       <span ng-show="activitysForm.name.$error.required  && !activitysForm.name.$pristine" class="text-danger" >请输入活动名称</span>
+          </td>
+    </tr>
+    <tr>
+        <td><span style="color: red">*</span>活动标签名称：</td>
+         <td><input type="text" name="labelName" ng-model="po.activitydefinition.labelName" maxlength="100">&nbsp;&nbsp;&nbsp;&nbsp;
+	       <span ng-show="activitysForm.labelName.$error.required  && !activitysForm.labelName.$pristine" class="text-danger" >请输入活动标签名称</span>
+          </td>
+    </tr>
+    <tr ng-if="type=='meeting'">
+        <td>活动多重数字：</td>
+         <td><input type="text" name="muliplycity" ng-model="po.activitydefinition.muliplycity" maxlength="100">&nbsp;&nbsp;&nbsp;&nbsp;
+	       <span ng-show="activitysForm.muliplycity.$error.required  && !activitysForm.muliplycity.$pristine" class="text-danger" >请输入活动多重数字</span>
+          </td>
+    </tr>
+    <tr>
+        <td>前置处理器类型：</td>
+        <td>
+            <select ng-model="po.activitydefinition.beforeHandlerType">
+                <option value="1">Java类处理器</option>
+                <option value="2">Js处理器</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td>前置处理器：</td>
+        <td>
+        	<textarea row="3" jsdecoder ng-if="po.activitydefinition.beforeHandlerType == 2" ng-model="po.activitydefinition.beforeHandlerJS" style='width:100%; resize: vertical'></textarea>
+        	<textarea row="3" cols="35" ng-if="po.activitydefinition.beforeHandlerType == 1 || po.activitydefinition.beforeHandlerType == null" ng-model="po.activitydefinition.beforeHandler" maxlength="200"></textarea>
+       	</td>
+    </tr> 
+    <tr>
+        <td>活动处理器类型：</td>
+        <td>
+            <select ng-model="po.activitydefinition.handlerType">
+                <option value="1">Java类处理器</option>
+                <option value="2">Js处理器</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td>活动处理器：</td>
+        <td>
+        	<textarea row="3" jsdecoder ng-if="po.activitydefinition.handlerType == 2" ng-model="po.activitydefinition.handlerJS" style='width:100%; resize: vertical'></textarea>
+        	<textarea row="3" cols="35" ng-if="po.activitydefinition.handlerType == 1|| po.activitydefinition.handlerType == null" ng-model="po.activitydefinition.handler" maxlength="200"></textarea>
+       	</td>
+    </tr> 
+    <tr>
+        <td>后置处理器类型：</td>
+        <td>
+            <select ng-model="po.activitydefinition.postHandlerType">
+                <option value="1">Java类处理器</option>
+                <option value="2">Js处理器</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td>后置处理器：</td>
+        <td>
+        	<textarea row="3" jsdecoder ng-if="po.activitydefinition.postHandlerType == 2" ng-model="po.activitydefinition.postHandlerJS" style='width:100%; resize: vertical'></textarea>
+        	<textarea row="3" cols="35" ng-if="po.activitydefinition.postHandlerType == 1 || po.activitydefinition.postHandlerType == null" ng-model="po.activitydefinition.postHandler" maxlength="200"></textarea>
+       	</td>
+    </tr> 
+    <tr ng-if="type=='decision'">
+        <td>决策处理器</td>
+        <td><input type="text" name="decisionHandler" ng-model="po.activitydefinition.decisionHandler" maxlength="200" ></td>
+    </tr>
+     <tr ng-if="type=='subprocess' || type=='dockprocess' || type=='associationprocess'">
+        <td ng-if="type=='subprocess'">子流程</td>
+        <td ng-if="type=='dockprocess'">挂靠流程</td>
+        <td ng-if="type=='associationprocess'">关联流程</td>
+        <td> 
+        	 <select name="subPdId" ng-model="po.activitydefinition.subPdId" ng-options="processde.id as processde.name for processde in currentRow.processlist" required></select>&nbsp;&nbsp;&nbsp;&nbsp;
+	         <span ng-show="po.activitydefinition.subPdId.$error.required  && !po.activitydefinition.subPdId.$pristine" class="text-danger" >请选择流程引用</span>
+		               
+        </td>
+    </tr>
+    
+</table>

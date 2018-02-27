@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BillFormMeta Key="multiBill" Version="1.0.0" BillType="MultiBill" Caption="多样式表单">
+    <BillBody>
+        <BillBodyMeta UserAgent="web">
+            <BillUIPanel Layout="flex" FlexDirection="column" Width="100%" Key="mainContainer" Caption="多样式表单" S="panel panel-success publicPanel">
+                <BillUIPanel Layout="grid" Key="tools" Caption="查询面板" RowGap="3" ColGap="10"
+                             ColWidth="300px 300px 300px 1fr" S="panel panel-default publicPanel">
+                    <BillUIWidget Key="orderNo" ParameterKey="orderNo"  DataTableKey="multiBill"  Caption="订单编号"
+                                  Left="1" Top="1" Width="1" Height="1" EnabledWhen="True"
+                                  Icon="glyphicon glyphicon-send" WidgetType="BillUIString">
+                    </BillUIWidget>
+                    <BillUIWidget Key="mobile" ParameterKey="mobile" DataTableKey="multiBill" Caption="手机号"
+                                  Left="2" Top="1" Width="1" Height="1" EnabledWhen="True"
+                                  Icon="glyphicon glyphicon-send" WidgetType="BillUIString">
+                    </BillUIWidget>
+                    <BillUIWidget Key="payType" ParameterKey="payType" DataTableKey="multiBill" Caption="支付类型"
+                                  Left="3" Top="1" Width="1" Height="1" EnabledWhen="True"
+                                  Icon="glyphicon glyphicon-send" WidgetType="BillUISelect">
+                        <Properties>
+                            <Property Name="datasource" Type="internal">[{name:"在线支付",value:1},{name:"货到付款",value:2}]
+                            </Property>
+                        </Properties>
+                    </BillUIWidget>
+                    <BillUIWidget Caption="取消" Key="cancel"
+                                  Left="5" Top="2" Width="1" Height="1" EnabledWhen="True"
+                                  Icon="glyphicon glyphicon-send" WidgetType="BillUIButton">
+                        <Triggers>
+                            <Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+                                     @orderNo.setValue("");
+                                     @mobile.setValue("");
+                                     @payType.setValue("");
+                                     @$this.__load();
+	                            ]]>
+                            </Trigger>
+                        </Triggers>
+                    </BillUIWidget>
+                    <BillUIWidget Caption="查询" Key="search"
+                                  Left="6" Top="2" Width="1" Height="1" EnabledWhen="True"
+                                  Icon="glyphicon glyphicon-send" WidgetType="BillUIButton">
+                        <Triggers>
+                            <Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+                                    @$this.__load("multiBill");
+	                            ]]>
+                            </Trigger>
+                        </Triggers>
+                    </BillUIWidget>
+                </BillUIPanel>
+
+                <BillUIPanel Layout="grid" Key="mainContainer_list" Caption="多样式表单列表" RowGap="1" ColGap="1" ColWidth="1fr">
+                    <BillUIGrid Key="grid0" Left="1" Top="1" Width="1" Height="1" OptMode="View" DataTableKey="multiBill">
+                        <GridHeads>
+                            <GridHead Col="orderNo" Caption="订单编号" enableEdit="True" Width="120px">
+                                <BillUIWidget Key="orderNo" WidgetType="BillUIString"/>
+                            </GridHead>
+                            <GridHead Col="totalAmount" Caption="订单总金额" enableEdit="True" Width="50px">
+                                <BillUIWidget Key="totalAmount" WidgetType="BillUIDecimal"/>
+                            </GridHead>
+                            <GridHead Col="payAmount" Caption="实付金额" enableEdit="True" Width="80px">
+                                <BillUIWidget Key="payAmount" WidgetType="BillUIDecimal"/>
+                            </GridHead>
+                            <GridHead Col="discount" Caption="优惠金额" enableEdit="True" Width="80px">
+                                <BillUIWidget Key="discount" WidgetType="BillUIDecimal"/>
+                            </GridHead>
+                            <GridHead Col="contactor" Caption="收货人" enableEdit="True" Width="100px">
+                                <BillUIWidget Key="contactor" WidgetType="BillUIString"/>
+                            </GridHead>
+                            <GridHead Col="mobile" Caption="手机号" enableEdit="True" Width="100px">
+                                <BillUIWidget Key="mobile" WidgetType="BillUIString"/>
+                            </GridHead>
+                            <GridHead Col="address" Caption="收货地址" enableEdit="True" Width="100px">
+                                <BillUIWidget Key="address" WidgetType="BillUIString"/>
+                            </GridHead>
+                            <GridHead Col="payType" Caption="支付类型" enableEdit="True" Width="100px">
+                                <BillUIWidget Key="payType" WidgetType="BillUIString">
+                                    <Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+									         if(this.getValue()==1){
+									         	this.setValue('在线支付');
+									         }else if(this.getValue() == 2){
+									         	this.setValue('货到付款');
+									         }
+							            ]]>
+                                    </Init>
+                                </BillUIWidget>
+                            </GridHead>
+                            <GridHead Col="createTime" Caption="创建时间" enableEdit="True" Width="150px">
+                                <BillUIWidget Key="createTime" WidgetType="BillUIDateTime"/>
+                            </GridHead>
+                        </GridHeads>
+                    </BillUIGrid>
+                </BillUIPanel>
+            </BillUIPanel>
+        </BillBodyMeta>
+    </BillBody>
+    <BillHeadMeta>
+    	
+    </BillHeadMeta>
+</BillFormMeta>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="xiaoshouchukudan" Caption="销售出库单" DefaultFilter="" Pagging="5" BillType="MultiBill"
+               TableName="SQLQuery::select * | from xyy_erp_bill_xiaoshouchukudan_details  where 1 = 1 @ktsl @sjdjbh @kehubianhao  @shangpinbianhao @shangpinmingcheng @shengchanchangjia" DataSource="" Head="false">
+        <Parameters>
+			<Parameter Key="sjdjbh" Type="String">
+                <Where>
+                <![CDATA[
+					m.if(sjdjbh==null | sjdjbh=="" ,""," and sjdjbh like '%"+sjdjbh+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="ktsl" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(ktsl==null | ktsl=="" ,""," and ykpsl < shuliang")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="kehubianhao" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(kehubianhao==null | kehubianhao=="" ,""," and kehubianhao like '%"+kehubianhao+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="shangpinbianhao" Type="String" >
+                <Where>
+                <![CDATA[
+					m.if(shangpinbianhao==null | shangpinbianhao=="" ,""," and shangpinbianhao like '%"+shangpinbianhao+"%'")
+                ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="shangpinmingcheng" Type="String" >
+                <Where>
+                <![CDATA[
+					m.if(shangpinmingcheng==null | shangpinmingcheng=="" ,""," and shangpinmingcheng like '%"+shangpinmingcheng+"%'")
+                ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="shengchanchangjia" Type="String" >
+                <Where>
+                <![CDATA[
+					m.if(shengchanchangjia==null | shengchanchangjia=="" ,""," and shengchanchangjia like '%"+shengchanchangjia+"%'")
+                ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

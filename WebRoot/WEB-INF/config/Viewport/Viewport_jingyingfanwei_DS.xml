@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="jingyingfanwei_view" Caption="经营范围名称" DefaultFilter="" Pagging="30"
+        TableName="SQLQuery::select * | from tb_sys_select where 1=1 @type @value"  DataSource="" Head="false" Singleton="" OrderBy="">
+        <Parameters> 
+            <Parameter Key="value" Type="String">
+                <DefaultValue></DefaultValue>
+                <Where>
+             <![CDATA[
+					m.if(value==null | value=="" ,""," and value like '%"+value+"%'")
+	            ]]> 
+                </Where>
+            </Parameter>
+            <Parameter Key="type" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(type==null | type=="" ,""," and type = '"+type+"'")
+	            ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

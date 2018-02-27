@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+		SrcDataObjectKey:源数据对象key
+		TgtDataObjectKey:目标数据对象key
+		BillStatus:单据状态条件
+ -->
+<DataMigration Key="jixiangfapiao" 
+    Caption="采购入库单数据迁移" Description="采购入库单数据迁移"
+     SrcDataObjectKey="caigoudingdan" 
+     TgtDataObjectKey="jinxiangfapiao"
+     BillStatus="21"
+     >
+     <!-- 
+     	数据条件，满足条件的数据行才能进行转换
+      -->
+	 <Condition>
+	 	<![CDATA[
+	 		2>1
+	 	]]>
+	 </Condition>
+	 <!-- 
+	 	触发器
+	  -->
+	 <TriggerCollection>
+	 	
+	 
+	 </TriggerCollection>
+	 
+	 <!-- 
+	 	数据迁移规则
+	  -->
+	 <SourceTableCollection>
+	    <!-- 
+	    	Key必须全局唯一，否则会合并一次事物转换
+	     -->
+		<SourceTable Key="" TableKey="caigoudingdan_details" IsPrimary="true" TargetTableKey="test1" >
+			<SourceField Type="Field" Definition="=_.danjubianhao" OpSign="Assign" IsNegtive="false" GroupingPolicy="Discrete"
+				TargetFieldKey="danjubianhao"/>
+				<SourceField Type="Field" Definition="=_.gysbh" OpSign="Assign" IsNegtive="false" GroupingPolicy="Discrete"
+				TargetFieldKey="gysbh"/>
+				<SourceField Type="Field" Definition="=_.gysmc" OpSign="Assign" IsNegtive="false" GroupingPolicy="Discrete"
+				TargetFieldKey="gysmc"/>
+				<SourceField Type="Field" Definition="hanshuijine" OpSign="AddValue" IsNegtive="False"
+				TargetFieldKey="hanshuijine"/>
+		</SourceTable>
+		
+		<SourceTable TableKey="caigoudingdan_details" IsPrimary="false" TargetTableKey="test1_details">
+			<SourceField Type="Formula" Definition="=_.danjubianhao" OpSign="Assign" IsNegtive="false" GroupingPolicy="Discrete"
+				TargetFieldKey="danjubianhao"/>
+				<SourceField Type="Field" Definition="shangpinbianhao" OpSign="Assign" IsNegtive="false" GroupingPolicy="Discrete"
+				TargetFieldKey="shangpinbianhao"/>
+				<SourceField Type="Field" Definition="shangpinmingcheng" OpSign="Assign" IsNegtive="false" GroupingPolicy="Discrete"
+				TargetFieldKey="shangpinmingcheng"/>
+		</SourceTable>
+	</SourceTableCollection>
+</DataMigration>

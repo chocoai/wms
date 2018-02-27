@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="spccxdwh" BillType="Dictionary" Caption="商品存储限定维护叙事薄" DefaultFilter="" TableName="Table::xyy_wms_dic_spccxdwh" DataSource="" Head="true">
+    		<!-- <Field FieldKey="xuhao" FieldName="序号" FieldType="Int" Comment="序号"/> -->
+    		<Field FieldKey="huozhubianhao" FieldName="货主编号" FieldType="Varchar" Comment="商品编号"/>
+    		<Field FieldKey="huozhumingcheng" FieldName="货主名称" FieldType="Varchar" Comment="商品编号"/>
+    		<Field FieldKey="shangpinbianhao" FieldName="商品编号" FieldType="Varchar" Comment="商品编号"/>
+     		<Field FieldKey="cangkubianhao" FieldName="仓库编号" FieldType="Varchar" Comment="仓库编号"/>
+     		<Field FieldKey="cangkuID" FieldName="仓库ID" FieldType="Varchar" Comment="仓库ID"/>
+     		 <Field FieldKey="beizhu" FieldName="备注" FieldType="Varchar"  Comment="备注"/>
+     		 
+     		 
+    </DataTable>
+    
+    <DataTable Key="spccxdwh_list" BillType="Dictionary"  Caption="逻辑—货位" DefaultFilter="ID" TableName="Table::xyy_wms_dic_spccxdwh_list" DataSource="" Head="false">
+        <!-- <Field FieldKey="xuhao" FieldName="序号" FieldType="Int" Comment="序号"/> -->
+        <Field FieldKey="lluojiquyu" FieldName="逻辑区域" FieldType="Varchar" Comment="逻辑区域"/>
+        <Field FieldKey="kuquleibie" FieldName="库区类别" FieldType="Int" Comment="库区类别"/>
+        <Field FieldKey="kucunshangxian" FieldName="库存上线" FieldType="Decimal" Bound="14,2" Comment="库存上线"/>
+     	<Field FieldKey="kucunxiaxian" FieldName="库存下限" FieldType="Decimal" Bound="14,2" Comment="库存下限"/>
+        <Field FieldKey="ljqmc" FieldName="逻辑区域名称" FieldType="Varchar" Comment="逻辑区域名称"/>
+        <Field FieldKey="beizhu" FieldName="备注" FieldType="Varchar" Comment="是否默认地址"/>		
+    </DataTable> 
+    
+</DataSet>

@@ -1,0 +1,46 @@
+<div class="panel panel-default" ng-controller="myApp.OperationManagement.processEdit">
+    <div class="panel-heading clearfix" >
+        <div ng-if="flag == 0">
+            <h4 class="panel-title pull-left">详细信息</h4>
+            <div class="panel-title pull-right">
+                <button onclick="javascript:history.back(-1);" class="btn btn-warning btn-sm">返回</button>
+            </div>
+        </div>
+        <div ng-if="flag == 1">
+            <h4 class="panel-title pull-left">新增</h4>
+            <div class="panel-title pull-right">
+                <button onclick="javascript:history.back(-1);" class="btn btn-warning btn-sm">返回</button>
+                <button type="button" class="btn btn-primary btn-sm" ng-disabled="processAddForm.$invalid"  ng-click="saveProcess()" >保存</button>
+            </div>
+
+        </div>
+        <div ng-if="flag == 2">
+            <h4 class="panel-title pull-left">编辑</h4>
+            <div class="panel-title pull-right">
+                <button onclick="javascript:history.back(-1);" class="btn btn-warning btn-sm">返回</button>
+                <button type="button" class="btn btn-secondary btn-sm" ng-disabled="processAddForm.$invalid"  ng-click="updateProcess()" >保存</button>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="panel-body">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+                <li role="presentation" class="active">
+                    <a href="/#home" role="tab" data-toggle="tab">流程定义</a></li>
+                <li role="presentation">
+                    <a href="/#profile"  role="tab" data-toggle="tab">流程表单</a></li>
+            </ul>
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="home">
+                <form name="processAddForm" id="processAddForm">
+                    <div ng-include="'/Views/_processdefinition.html'"></div>
+                </form>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="profile">
+                <div ng-include="'/Views/_processform.html'"></div>
+            </div>
+        </div>
+        </div>
+    <div ng-include="'/Views/_processControlerPopup.html'"></div>
+</div>

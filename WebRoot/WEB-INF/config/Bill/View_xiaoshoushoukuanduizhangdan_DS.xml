@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="xiaoshoushoukuanduizhangdan" Caption="销售对账单" DefaultFilter="" Pagging="20"
+               TableName="SQLQuery::select * | from xyy_erp_bill_xiaoshoushoukuanduizhangdan where status != -1  @kaipiaoyuan @createTime order by createTime desc" DataSource="" Head="false">
+        <Parameters>
+            <Parameter Key="kaipiaoyuan" Type="String" >
+                <Where>
+                <![CDATA[
+					m.if(kaipiaoyuan==null | kaipiaoyuan=="" ,""," and kaipiaoyuan like '%"+kaipiaoyuan+"%'")
+                ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="createTime" Type="String" >
+                <Where>
+                <![CDATA[
+                	m.if(createTime==null,""," and DATE_FORMAT(createTime,'%Y-%m-%d') = DATE_FORMAT('"+createTime+"','%Y-%m-%d')")
+				]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

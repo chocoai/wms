@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BillViewMeta Key="buhegepinxiaohui" Caption="不合格品销毁单" Version="">
+	<BillBody UserAgent="web">
+		<BillBodyMeta>
+			<BillUIPanel Layout="flex" Key="dictionary_tools"
+				Caption="不合格品销毁单" S="">
+				<BillUIGridPanel Key="buhegepinxiaohui_grid">
+					<BillUIRowPanel>
+
+						<BillUIColPanel Width="3">
+							<BillUIWidget Caption="订单编号" Key="cancel"
+								EnabledWhen="True" ParameterKey="dingdanbianhao" DataTableKey="buhegepinxiaohui_view"
+								WidgetType="BillUIString">
+							</BillUIWidget>
+						</BillUIColPanel>
+						<BillUIColPanel Width="1">
+							<BillUIWidget Caption="查询" Key="search" EnabledWhen="True"
+								Icon="glyphicon glyphicon-send" WidgetType="BillUIButton">
+								<Triggers>
+									<Trigger Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                        	this.search("buhegepinxiaohui_view");
+                                 			]]>
+									</Trigger>
+								</Triggers>
+							</BillUIWidget>
+						</BillUIColPanel>
+					</BillUIRowPanel>
+					<BillUIRowPanel>
+						<BillUIColPanel Width="12">
+							<BillUIPanel Layout="flex" Key="dictionary_tools">
+								<BillUIGrid Key="grid0" OptMode="View" SelectMode="Single"
+									DataTableKey="buhegepinxiaohui_view">
+									<OnClickHandlers>
+										<OnClickHandler>
+											 <![CDATA[
+											 	var cos=this.row;
+												var list = callRemoteMethod('/spe/route/query-buhegedetails', {BillID:cos.BillID,table:'xyy_wms_bill_rukushangjia_details'}, true, 'POST');
+												for (var i = 0; i < list.length; i++) {
+											        @buhegepinxiaohui_details1.select(list[i]);
+											        var jihuahuowei = list[i].jihuahuowei;
+											        var shijihuowei = list[i].shijihuowei;
+											        if(jihuahuowei==null||jihuahuowei==''||jihuahuowei==undefined) {
+											        	list[i].jihuahuowei='';
+											        }
+											        if(shijihuowei==null||shijihuowei==''||shijihuowei==undefined) {
+											        	list[i].shijihuowei='';
+											        }
+											    }
+											    insertRows("buhegepinxiaohui_details1", list, true);
+											]]>
+										</OnClickHandler>
+									</OnClickHandlers>
+									<GridHeads>
+										<GridHead Col="dingdanriqi" Caption="订单日期"
+											enableEdit="True" Width="140px">
+											<BillUIWidget Key="dingdanriqi" WidgetType="BillUIString">
+											</BillUIWidget>
+										</GridHead>
+										<GridHead Col="dingdanbianhao" Caption="订单编号"
+											enableEdit="True" Width="140px">
+											<BillUIWidget Key="dingdanbianhao" WidgetType="BillUIString">
+											</BillUIWidget>
+										</GridHead>
+										<GridHead Col="dingdanleixing" Caption="订单类型"
+											enableEdit="True" Width="110px">
+											<BillUIWidget Key="dingdanleixing" WidgetType="BillUIInteger">
+												<Formatters>
+													<Formatter>
+									        <![CDATA[
+									            [{'url':'/bill/selectSrc','type':'rukudingdanleixing'}]
+									        ]]>
+													</Formatter>
+												</Formatters>
+											</BillUIWidget>
+										</GridHead>
+										<GridHead Col="danweibianhao" Caption="单位编号"
+											enableEdit="True" Width="110px">
+											<BillUIWidget Key="danweibianhao" WidgetType="BillUIString">
+											</BillUIWidget>
+										</GridHead>
+										<GridHead Col="danweimingcheng" Caption="单位名称"
+											enableEdit="True" Width="180px">
+											<BillUIWidget Key="danweimingcheng" WidgetType="BillUIString">
+											</BillUIWidget>
+										</GridHead>
+										<GridHead Col="yanshouyuan" Caption="验收员" enableEdit="True"
+											Width="100px">
+											<BillUIWidget Key="yanshouyuan" WidgetType="BillUIString">
+											</BillUIWidget>
+										</GridHead>
+										
+										<GridHead Col="sunyizhuangtai" Caption="损益状态"
+											enableEdit="True" Width="140px">
+											<BillUIWidget Key="sunyizhuangtai" WidgetType="BillUIInteger">
+												<Formatters>
+													<Formatter>
+									        <![CDATA[
+									            [{'url':'/bill/selectSrc','type':'sunyizhuangtai'}]
+									        ]]>
+													</Formatter>
+												</Formatters>
+											</BillUIWidget>
+										</GridHead>
+										<GridHead Col="xiaohuizhuangtai" Caption="销毁状态"
+											enableEdit="True" Width="140px">
+											<BillUIWidget Key="xiaohuizhuangtai" WidgetType="BillUIInteger">
+												<Formatters>
+													<Formatter>
+									        <![CDATA[
+									            [{'url':'/bill/selectSrc','type':'xiaohuizhuangtai'}]
+									        ]]>
+													</Formatter>
+												</Formatters>
+											</BillUIWidget>
+										</GridHead>
+										<GridHead Col="beizhu" Caption="备注" enableEdit="True"
+											Width="140px">
+											<BillUIWidget Key="beizhu" WidgetType="BillUIString">
+											</BillUIWidget>
+										</GridHead>
+									</GridHeads>
+								</BillUIGrid>
+							</BillUIPanel>
+						</BillUIColPanel>
+					</BillUIRowPanel>
+
+					<BillUIRowPanel>
+						<BillUIColPanel Width="12">
+							<BillUIPanel Layout="flex" Key="dictionary_tools">
+								<BillUIGrid Key="buhegepinxiaohui_details1" OptMode="View" SelectMode="Multi"
+									DataTableKey="buhegepinxiaohui_details1">
+									<GridHeads>
+										<GridHead Col="shangpinbianhao" Caption="商品编号"
+											enableEdit="True" Width="140px">
+											<BillUIWidget Key="shangpinbianhao" WidgetType="BillUIString">
+											</BillUIWidget>
+										</GridHead>
+										<GridHead Col="shangpinmingcheng" Caption="商品名称"
+											enableEdit="True" Width="140px">
+											<BillUIWidget Key="shangpinmingcheng"
+												WidgetType="BillUIString">
+											</BillUIWidget>
+										</GridHead>
+										<GridHead Col="baozhuangdanwei" Caption="单位"
+											enableEdit="True" Width="140px">
+											<BillUIWidget Key="baozhuangdanwei" WidgetType="BillUIInteger">
+												<Formatters>
+													<Formatter>
+									        <![CDATA[
+									            [{'url':'/bill/selectSrc','type':'baozhuangdanwei'}]
+									        ]]>
+													</Formatter>
+												</Formatters>
+											</BillUIWidget>
+										</GridHead>
+										<GridHead Col="shuliang" Caption="收货数量" enableEdit="True"
+											Width="140px">
+											<BillUIWidget Key="shuliang" WidgetType="BillUIDecimal">
+											</BillUIWidget>
+										</GridHead>
+										<GridHead Col="shengchanchangjia" Caption="生产厂家"
+											enableEdit="True" Width="140px">
+											<BillUIWidget Key="shengchanchangjia"
+												WidgetType="BillUIString">
+											</BillUIWidget>
+										</GridHead>
+										<!-- <GridHead Col="hanshuijia" Caption="含税价" enableEdit="True"
+											Width="140px">
+											<BillUIWidget Key="hanshuijia" WidgetType="BillUIDecimal">
+											</BillUIWidget>
+										</GridHead> -->
+										<!-- <GridHead Col="beizhu" Caption="备注" enableEdit="True"
+											Width="140px">
+											<BillUIWidget Key="beizhu" WidgetType="BillUIString">
+											</BillUIWidget>
+										</GridHead> -->
+									</GridHeads>
+								</BillUIGrid>
+							</BillUIPanel>
+						</BillUIColPanel>
+					</BillUIRowPanel>
+				</BillUIGridPanel>
+			</BillUIPanel>
+		</BillBodyMeta>
+	</BillBody>
+
+</BillViewMeta>

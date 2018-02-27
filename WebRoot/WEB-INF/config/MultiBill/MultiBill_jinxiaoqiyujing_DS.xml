@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="jinxiaoqiyujing" Caption="近效期预警" DefaultFilter="" Pagging="15" BillType="MultiBill" PermissionType="CommType"
+               TableName="SQLQuery::select
+* |
+ from (SELECT
+	a.shangpinbianhao,
+	a.shangpinmingcheng,
+	a.guige,
+	a.danwei,
+	a.shengchanchangjia,
+	a.pizhunwenhao,
+	a.chandi,
+	b.pihao,
+	b.shengchanriqi,
+	b.youxiaoqizhi,c.rowID,
+	datediff(b.youxiaoqizhi, now()) AS tianshu,
+	 CASE a.xiaoqidanwei
+WHEN   1
+THEN a.youxiaoqi
+WHEN  2
+THEN a.youxiaoqi /30
+WHEN  3
+THEN a.youxiaoqi * 12
+END
+as yue
+FROM
+	xyy_erp_dic_shangpinjibenxinxi a,
+	xyy_erp_bill_shangpinpihaokucun c,
+	xyy_erp_dic_shangpinpihao b
+WHERE
+	a.goodsid = c.shangpinID
+AND c.pihaoID = b.pihaoid   @orgID order by c.createTime desc) tab
+where 1=1 @jinxiaotianshu AND
+IF( tab.yue &gt;48 ,tab.tianshu&lt;720,
+IF( tab.yue &gt;36  AND tab.yue &lt;=48 ,tab.tianshu&lt;540,
+IF( tab.yue &gt;24  AND tab.yue &lt;=36 ,tab.tianshu&lt;360,
+IF( tab.yue &gt;18  AND tab.yue &lt;=24 ,tab.tianshu&lt;270,
+IF( tab.yue &lt;=18 ,tab.tianshu&lt; (tab.yue/2)*30,tab.tianshu&gt;0)
+)
+)
+)
+)
+" DataSource="" Head="false">
+        <Parameters>
+            <Parameter Key="jinxiaotianshu" Type="Integer">
+                <Where>
+                    <![CDATA[
+                        m.if(jinxiaotianshu==null ,""," and tab.tianshu<= "+jinxiaotianshu+"")
+                    ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="orgID" Type="String">
+                <Where>
+                    <![CDATA[
+                        m.if(orgID==null  | orgID=="" ,""," and c.orgId = '"+orgID+"'")
+                    ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

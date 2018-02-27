@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="quehuodengjidan_view" Caption="缺货登记单明细" DefaultFilter="" PermissionType="PrivateType"  Pagging="100"
+        TableName="SQLQuery::
+        SELECT *
+               |
+				FROM
+					xyy_erp_bill_quehuodengjidan_details
+				WHERE
+					1 = 1
+				AND isPull = 1
+				AND shifoutiqu = 0
+              @shangpin 
+              ORDER BY createTime DESC"  
+        
+        DataSource="" Head="false" Singleton="" OrderBy="">
+        <Parameters>
+            <!-- <Parameter Key="gysid" Type="String" >
+            	<DefaultValue></DefaultValue>
+                <Where>
+	                <![CDATA[
+	                	m.if(gysid==null | gysid=="" ," "," and ID = '"+gysid+"'")
+					]]>
+                </Where>
+            </Parameter> -->
+           <Parameter Key="shangpin" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(shangpin==null | shangpin=="",""," and mixCondition like '%"+shangpin+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <!-- <Parameter Key="shangpinmingcheng" Type="String" >
+            	<DefaultValue></DefaultValue>
+                <Where>
+	                <![CDATA[
+	                	m.if(shangpinmingcheng==null | shangpinmingcheng=="" ," "," and shangpinmingcheng like '%"+shangpinmingcheng+"%'")
+					]]>
+                </Where>
+            </Parameter> -->
+        </Parameters>
+    </DataTable>
+</DataSet>

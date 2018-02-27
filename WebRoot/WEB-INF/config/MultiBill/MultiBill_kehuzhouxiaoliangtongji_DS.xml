@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="kehuzhouxiaoliangtongji" Caption="多样式表单" DefaultFilter="" Pagging="10"
+               TableName="SQLQuery::SELECT
+               b.lianxidizhi as lianxidizhi,
+               b.lianxiren as lianxiren,
+                b.name as yaodianmingchen,
+                a.num as xiaoshouzongjia,
+                a.xiaoshoujiage as xiaoshoujiage,
+                a.xiaoshoushijian as xiaoshoushijian
+          | FROM (SELECT
+                                yaodianId,
+                                shangpinId,
+                                xiaoshoujiage,
+                                xiaoshoushijian,
+                                sum(xiaoshouzongjia) AS num
+
+                        FROM
+                                xyy_erp_kehuxiaoliangtongji
+                        WHERE
+                                xiaoshoushijian  &gt;= @xiaoshoushijian - INTERVAL 7 day
+                                AND xiaoshoushijian  &lt;= @xiaoshoushijian
+                        GROUP BY
+                                yaodianId
+                ) a
+                LEFT JOIN xyy_erp_dic_kehujibenxinxi b on b.ID = a.yaodianId
+        WHERE
+                a.yaodianId = b.ID
+                @yaodianmingchen  " DataSource="" Head="false">
+        <Parameters>
+            <Parameter Key="yaodianmingchen" Type="String">
+                <Where>
+                    <![CDATA[
+                        m.if(yaodianmingchen==null | yaodianmingchen=="" ,""," and b.name like '%"+yaodianmingchen+"%'")
+                    ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="xiaoshoushijian" Type="String" >
+                <Where>
+                    <![CDATA[
+                        m.if(xiaoshoushijian==null  | xiaoshoushijian=="" ,"SYSDATE()","'"+xiaoshoushijian+"'")
+                    ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

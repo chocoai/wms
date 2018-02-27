@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Map Key="bhgp2sykp" Caption="不合格品上引"
+     SrcDataObjectKey="buhegepin"
+     SrcDataType="Bill"
+     TgtDataObjectKey="sunyikaipiao"
+     TgtDataType="Bill"
+     MaxPushValue="100"
+     MinPushValue="0">
+    <TargetTableCollection>
+
+        <TargetTable Key="sunyikaipiao_details" SrcTableKey="buhegepin_details">
+
+            <Field FieldKey="shangpinbianhao">
+                <![CDATA[
+                     =shangpinbianhao
+              ]]>
+            </Field>
+            <Field FieldKey="shangpinmingcheng">
+                <![CDATA[
+                     =shangpinmingcheng
+              ]]>
+            </Field>
+            <Field FieldKey="guige">
+                <![CDATA[
+                     =shangpinguige
+              ]]>
+            </Field>
+            <Field FieldKey="danwei">
+                <![CDATA[
+                     =baozhuangdanwei
+              	]]>
+            </Field>
+            <Field FieldKey="shengchanchangjia">
+                <![CDATA[
+                     =shengchanchangjia
+              ]]>
+            </Field>
+
+            <Field FieldKey="pihao">
+                <![CDATA[
+                     =pihao
+              ]]>
+            </Field>
+            <Field FieldKey="shengchanriqi">
+                <![CDATA[
+                     =shengchanriqi
+              ]]>
+            </Field>
+            <Field FieldKey="youxiaoqizhi">
+                <![CDATA[
+                     =youxiaoqizhi
+              ]]>
+            </Field>
+            <Field FieldKey="beizhu">
+                <![CDATA[
+                     =beizhu
+              ]]>
+            </Field>
+            <Field FieldKey="kuqu">
+                <![CDATA[
+                     =kuqu
+              ]]>
+            </Field>
+            <Field FieldKey="huowei">
+                <![CDATA[
+                     =shijihuowei
+              ]]>
+            </Field>
+            <Field FieldKey="dbzsl">
+                <![CDATA[
+                     =baozhuangshuliang
+              ]]>
+            </Field>
+            <Field FieldKey="sunyishuliang">
+                <![CDATA[
+                     =shuliang
+              ]]>
+            </Field>
+            <Field FieldKey="syzjs">
+                <![CDATA[
+                     =zhengjianshu
+              ]]>
+            </Field>
+            <Field FieldKey="sylss">
+                <![CDATA[
+                     =lingsanshu
+              ]]>
+            </Field>
+            <Field FieldKey="sunyiyuanyin">
+                <![CDATA[
+                     =pingdingyuanyin
+              ]]>
+            </Field>
+
+            <Field FieldKey="pizhunwenhao">
+                <![CDATA[
+                     =pizhunwenhao
+              ]]>
+            </Field>
+        </TargetTable>
+    </TargetTableCollection>
+    <FeedBackCollection>
+        <FeedbackObject TableKey="sunyikaipiao" BillStatus="20">
+            <FeedbackTableCollection>
+                <FeedbackTable Key="tempbuhegepin" TableKey="xyy_wms_bill_buhegepin_details">
+                    <FeedbackField FieldKey="sunyi" FeedFieldKey="" OpSign="Assign">
+                        <![CDATA[
+	                		=1
+	                	]]>
+                    </FeedbackField>
+                </FeedbackTable>
+            </FeedbackTableCollection>
+        </FeedbackObject>
+
+    </FeedBackCollection>
+</Map>
+
+
+
+

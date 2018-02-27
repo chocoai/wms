@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="cn" ng-app="xyyerp">
+<head>
+    <base href="/"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>商品基本信息</title>
+    <link rel='stylesheet' href='../lib/css/bootstrap.css'>
+    <link rel='stylesheet' href='../lib/css/css.css'>
+    <script src="//cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//cdn.bootcss.com/angular.js/1.5.10/angular.min.js"></script>
+    <!--入口模块构建js-->
+    <script src="/lib/js/xyyErpApp.js"></script>
+    <script src="/lib/js/util.js"></script>
+    <script src="//cdn.bootcss.com/angular-ui-bootstrap/2.4.0/ui-bootstrap-tpls.min.js"></script>
+    <script src="/Shared/myDirective.js"></script>
+    <script src="/Shared/SharedService.js"></script>
+    <script src="/lib/js/dictionary.js"></script>
+    <style></style>
+
+</head>
+<body>
+<div billuitemplate></div>
+<div zhujimatemplate></div>
+<div ng-controller="xyyerp.mainCtl5dc78830aa484ddea61cd4bb4baca7ab" Version="1.0.0" BillType="Dics" Caption="商品基本信息"
+     Key="shangpinjibenxinxi" id="shangpinjibenxinxi">
+    <div user-agent="web">
+        <div Caption="商品基本信息" style="flex-direction:column;display:flex;">
+            <div Caption="工具栏" id="dictionary_tools" style="flex-direction:column;display:flex;flex-basis:1;">
+                <div billuiview src="tooldicsitembox" renderId="a9ada25b45e54af89306c60b34635125" key="box"
+                     style="flex-basis:1;"></div>
+            </div>
+            <div class="container" id="h2" style="flex-basis:1;">
+                <div class="row">
+                    <div class="col-sm-12 ">
+                        <div Caption="商品基本信息" class="panel publicPanel panel-info"
+                             style="flex-direction:column;display:flex;">
+                            <div class="container" id="h3" style="flex-basis:1;">
+                                <div class="row">
+                                    <div class="col-sm-3 ">
+                                        <div class="input-group"><span class="input-group-addon">助记码：</span><input
+                                                ng-model="shangpinjibenxinxi.zhujima" billuistring
+                                                renderId="a9ada25b45e54af89306c60b34635125" key="zhujima" title="助记码："
+                                                null type="text" class="form-control"></div>
+                                    </div>
+                                    <div class="col-sm-3 ">
+                                        <div class="input-group"><span class="input-group-addon">代码：</span><input
+                                                ng-model="shangpinjibenxinxi.code" billuistring
+                                                renderId="a9ada25b45e54af89306c60b34635125" key="code" title="代码：" null
+                                                type="text" class="form-control"></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3 ">
+                                        <div class="input-group"><span class="input-group-addon">节点状态：</span><select
+                                                ng-model="shangpinjibenxinxi.status"
+                                                init="dGhpcy5sb2FkRGF0YVNvdXJjZSgpOw==" billuiselect
+                                                renderId="a9ada25b45e54af89306c60b34635125" key="status" v k
+                                                source-src="bill/selectSrc?type=nodeStatus"
+                                                class="form-control"></select></div>
+                                    </div>
+                                    <div class="col-sm-3 ">
+                                        <div class="input-group"><span class="input-group-addon">商品编号：</span><input
+                                                ng-model="shangpinjibenxinxi.shangpinbianhao" billuistring
+                                                renderId="a9ada25b45e54af89306c60b34635125" key="shangpinbianhao"
+                                                title="商品编号：" null type="text" class="form-control"></div>
+                                    </div>
+                                    <div class="col-sm-3 ">
+                                        <div class="input-group"><span class="input-group-addon">商品名称：</span><input
+                                                ng-model="shangpinjibenxinxi.shangpinmingcheng" billuistring
+                                                renderId="a9ada25b45e54af89306c60b34635125" key="shangpinmingcheng"
+                                                title="商品名称：" null type="text" class="form-control"></div>
+                                    </div>
+                                    <div class="col-sm-3 ">
+                                        <div class="input-group"><span class="input-group-addon">商品规格：</span><input
+                                                ng-model="shangpinjibenxinxi.shangpinguige" billuistring
+                                                renderId="a9ada25b45e54af89306c60b34635125" key="shangpinguige"
+                                                title="商品规格：" null type="text" class="form-control"></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3 ">
+                                        <div class="input-group"><span class="input-group-addon">生产厂家：</span><input
+                                                ng-model="shangpinjibenxinxi.shengchanchangjia" billuistring
+                                                renderId="a9ada25b45e54af89306c60b34635125" key="shengchanchangjia"
+                                                title="生产厂家：" null type="text" class="form-control"></div>
+                                    </div>
+                                    <div class="col-sm-3 ">
+                                        <div class="input-group"><span class="input-group-addon">包装单位：</span><input
+                                                ng-model="shangpinjibenxinxi.baozhuangdanwei" billuistring
+                                                renderId="a9ada25b45e54af89306c60b34635125" key="baozhuangdanwei"
+                                                title="包装单位：" null type="text" class="form-control"></div>
+                                    </div>
+                                    <div class="col-sm-3 ">
+                                        <div class="input-group"><span class="input-group-addon">商品产地：</span><input
+                                                ng-model="shangpinjibenxinxi.shangpinchandi" billuistring
+                                                renderId="a9ada25b45e54af89306c60b34635125" key="shangpinchandi"
+                                                title="商品产地：" null type="text" class="form-control"></div>
+                                    </div>
+                                    <div class="col-sm-3 ">
+                                        <div class="input-group"><span class="input-group-addon">商品条码：</span><input
+                                                ng-model="shangpinjibenxinxi.shangpintiaoma" billuistring
+                                                renderId="a9ada25b45e54af89306c60b34635125" key="shangpintiaoma"
+                                                title="商品条码：" null type="text" class="form-control"></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3 ">
+                                        <div class="input-group"><span class="input-group-addon">件包装数：</span><input
+                                                ng-model="shangpinjibenxinxi.jianbaozhuangshu" billuiinteger
+                                                renderId="a9ada25b45e54af89306c60b34635125" key="jianbaozhuangshu"
+                                                title="件包装数：" type="number" class="form-control"></div>
+                                    </div>
+                                    <div class="col-sm-3 ">
+                                        <div class="input-group"><span class="input-group-addon">中包装数：</span><input
+                                                ng-model="shangpinjibenxinxi.zhongbaozhuangshu" billuiinteger
+                                                renderId="a9ada25b45e54af89306c60b34635125" key="zhongbaozhuangshu"
+                                                title="中包装数：" type="number" class="form-control"></div>
+                                    </div>
+                                    <div class="col-sm-3 ">
+                                        <div class="input-group"><span class="input-group-addon">小包装数：</span><input
+                                                ng-model="shangpinjibenxinxi.xiaobaozhuangshu" billuiinteger
+                                                renderId="a9ada25b45e54af89306c60b34635125" key="xiaobaozhuangshu"
+                                                title="小包装数：" type="number" class="form-control"></div>
+                                    </div>
+                                    <div class="col-sm-3 ">
+                                        <div class="input-group"><span class="input-group-addon">商品大类：</span><select
+                                                ng-model="shangpinjibenxinxi.shangpindalei"
+                                                init="dGhpcy5sb2FkRGF0YVNvdXJjZSgpOw==" billuiselect
+                                                renderId="a9ada25b45e54af89306c60b34635125" key="shangpindalei" v k
+                                                source-src="bill/selectSrc?type=shangpindalei"
+                                                class="form-control"></select></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3 ">
+                                        <div class="input-group"><span class="input-group-addon">存储分类：</span><select
+                                                ng-model="shangpinjibenxinxi.cunchufenlei"
+                                                init="dGhpcy5sb2FkRGF0YVNvdXJjZSgpOw==" billuiselect
+                                                renderId="a9ada25b45e54af89306c60b34635125" key="cunchufenlei" v k
+                                                source-src="bill/selectSrc?type=cunchufenlei"
+                                                class="form-control"></select></div>
+                                    </div>
+                                    <div class="col-sm-3 ">
+                                        <div table-key="shangpinjibenxinxi" class="input-group"><span
+                                                class="input-group-addon">拆包装：</span>
+
+                                            <div ng-model="shangpinjibenxinxi.chaibaozhuang"
+                                                 init="dGhpcy5sb2FkRGF0YVNvdXJjZSgpOw==" billuicheckbox
+                                                 renderId="a9ada25b45e54af89306c60b34635125" key="chaibaozhuang" v k
+                                                 source-src="bill/selectSrc?type=chaibaozhuang"
+                                                 class="form-control"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 ">
+                                        <div class="input-group"><span class="input-group-addon">商品类别：</span><select
+                                                ng-model="shangpinjibenxinxi.shangpinleibie"
+                                                init="dGhpcy5sb2FkRGF0YVNvdXJjZSgpOw==" billuiselect
+                                                renderId="a9ada25b45e54af89306c60b34635125" key="shangpinleibie" v k
+                                                source-src="bill/selectSrc?type=shangpinleibie"
+                                                class="form-control"></select></div>
+                                    </div>
+                                    <div class="col-sm-3 ">
+                                        <div class="input-group"><span class="input-group-addon">效期单位：</span><select
+                                                ng-model="shangpinjibenxinxi.xiaoqidanwei"
+                                                init="dGhpcy5sb2FkRGF0YVNvdXJjZSgpOw==" billuiselect
+                                                renderId="a9ada25b45e54af89306c60b34635125" key="xiaoqidanwei" v k
+                                                source-src="bill/selectSrc?type=xiaoqidanwei"
+                                                class="form-control"></select></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3 ">
+                                        <div class="input-group"><span class="input-group-addon">有效期：</span><input
+                                                ng-model="shangpinjibenxinxi.youxiaoqi" billuiinteger
+                                                renderId="a9ada25b45e54af89306c60b34635125" key="youxiaoqi" title="有效期："
+                                                type="number" class="form-control"></div>
+                                    </div>
+                                    <div class="col-sm-3 ">
+                                        <div class="input-group"><span class="input-group-addon">销售性质：</span><select
+                                                ng-model="shangpinjibenxinxi.xiaoshouxingzhi"
+                                                init="dGhpcy5sb2FkRGF0YVNvdXJjZSgpOw==" billuiselect
+                                                renderId="a9ada25b45e54af89306c60b34635125" key="xiaoshouxingzhi" v k
+                                                source-src="bill/selectSrc?type=xiaoshouxingzhi"
+                                                class="form-control"></select></div>
+                                    </div>
+                                    <div class="col-sm-3 ">
+                                        <div class="input-group"><span class="input-group-addon">保质期方式：</span><select
+                                                ng-model="shangpinjibenxinxi.bbzqfs"
+                                                init="dGhpcy5sb2FkRGF0YVNvdXJjZSgpOw==" billuiselect
+                                                renderId="a9ada25b45e54af89306c60b34635125" key="bbzqfs" v k
+                                                source-src="bill/selectSrc?type=bbzqfs" class="form-control"></select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 ">
+                                        <div class="input-group"><span class="input-group-addon">供应商信息：</span><input
+                                                ng-model="shangpinjibenxinxi.gysxx"
+                                                triggers="WyJ2YXIgaHVvc2hhbmc9dGhpcy5yb3dzWzBdOyB0aGlzLnNldFZhbHVlKGh1b3NoYW5nLmd5c21jKTsiXQ=="
+                                                billuipopupwindow src="huoshang"
+                                                renderId="a9ada25b45e54af89306c60b34635125" key="gysxx" title="供应商信息："
+                                                type="text" viewsize class="form-control"></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3 ">
+                                        <div class="input-group"><span class="input-group-addon">物价批文：</span><input
+                                                ng-model="shangpinjibenxinxi.wujiapiwen" billuistring
+                                                renderId="a9ada25b45e54af89306c60b34635125" key="wujiapiwen"
+                                                title="物价批文：" null type="text" class="form-control"></div>
+                                    </div>
+                                    <div class="col-sm-3 ">
+                                        <div class="input-group"><span class="input-group-addon">注册批件：</span><input
+                                                ng-model="shangpinjibenxinxi.zhucepijian" billuistring
+                                                renderId="a9ada25b45e54af89306c60b34635125" key="zhucepijian"
+                                                title="注册批件：" null type="text" class="form-control"></div>
+                                    </div>
+                                    <div class="col-sm-3 ">
+                                        <div class="input-group"><span class="input-group-addon">补充申请批件：</span><input
+                                                ng-model="shangpinjibenxinxi.bcsqpj" billuistring
+                                                renderId="a9ada25b45e54af89306c60b34635125" key="bcsqpj" title="补充申请批件："
+                                                null type="text" class="form-control"></div>
+                                    </div>
+                                    <div class="col-sm-3 ">
+                                        <div class="input-group"><span class="input-group-addon">再注册批件：</span><input
+                                                ng-model="shangpinjibenxinxi.zzcpj" billuistring
+                                                renderId="a9ada25b45e54af89306c60b34635125" key="zzcpj" title="再注册批件："
+                                                null type="text" class="form-control"></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3 ">
+                                        <div class="input-group"><span class="input-group-addon">GMP号：</span><input
+                                                ng-model="shangpinjibenxinxi.GMPhao" billuistring
+                                                renderId="a9ada25b45e54af89306c60b34635125" key="GMPhao" title="GMP号："
+                                                null type="text" class="form-control"></div>
+                                    </div>
+                                    <div class="col-sm-3 ">
+                                        <div class="input-group"><span class="input-group-addon">认证日期：</span><input
+                                                ng-model="shangpinjibenxinxi.renzhengriqi" billuidatetime
+                                                data-date-format="yyyy-mm-dd hh:ii:ss"
+                                                renderId="a9ada25b45e54af89306c60b34635125" key="renzhengriqi"
+                                                type="text" class="form-control"></div>
+                                    </div>
+                                    <div class="col-sm-3 ">
+                                        <div class="input-group"><span class="input-group-addon">标准进价：</span><input
+                                                ng-model="shangpinjibenxinxi.biaozhunjinjia" billuidecimal
+                                                renderId="a9ada25b45e54af89306c60b34635125" key="biaozhunjinjia"
+                                                title="标准进价：" type="number" class="form-control"></div>
+                                    </div>
+                                    <div class="col-sm-3 ">
+                                        <div class="input-group"><span class="input-group-addon">进项税率：</span><input
+                                                ng-model="shangpinjibenxinxi.jinxiangshuilv" billuidecimal
+                                                renderId="a9ada25b45e54af89306c60b34635125" key="jinxiangshuilv"
+                                                title="进项税率：" type="number" class="form-control"></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3 ">
+                                        <div class="input-group"><span class="input-group-addon">含税进价：</span><input
+                                                ng-model="shangpinjibenxinxi.hanshuijinjia" billuidecimal
+                                                renderId="a9ada25b45e54af89306c60b34635125" key="hanshuijinjia"
+                                                title="含税进价：" type="number" class="form-control"></div>
+                                    </div>
+                                    <div class="col-sm-3 ">
+                                        <div class="input-group"><span class="input-group-addon">标准售价：</span><input
+                                                ng-model="shangpinjibenxinxi.biaozhunshoujia" billuidecimal
+                                                renderId="a9ada25b45e54af89306c60b34635125" key="biaozhunshoujia"
+                                                title="标准售价：" type="number" class="form-control"></div>
+                                    </div>
+                                    <div class="col-sm-3 ">
+                                        <div class="input-group"><span class="input-group-addon">销项税率：</span><input
+                                                ng-model="shangpinjibenxinxi.xiaoxiangshuilv" billuidecimal
+                                                renderId="a9ada25b45e54af89306c60b34635125" key="xiaoxiangshuilv"
+                                                title="销项税率：" type="number" class="form-control"></div>
+                                    </div>
+                                    <div class="col-sm-3 ">
+                                        <div class="input-group"><span class="input-group-addon">含税售价：</span><input
+                                                ng-model="shangpinjibenxinxi.hanshuishoujia" billuidecimal
+                                                renderId="a9ada25b45e54af89306c60b34635125" key="hanshuishoujia"
+                                                title="含税售价：" type="number" class="form-control"></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3 ">
+                                        <div class="input-group"><span class="input-group-addon">招标价：</span><input
+                                                ng-model="shangpinjibenxinxi.zhaobiaojia" billuidecimal
+                                                renderId="a9ada25b45e54af89306c60b34635125" key="zhaobiaojia"
+                                                title="招标价：" type="number" class="form-control"></div>
+                                    </div>
+                                    <div class="col-sm-3 ">
+                                        <div class="input-group"><span class="input-group-addon">零售价：</span><input
+                                                ng-model="shangpinjibenxinxi.lingshoujia" billuidecimal
+                                                renderId="a9ada25b45e54af89306c60b34635125" key="lingshoujia"
+                                                title="零售价：" type="number" class="form-control"></div>
+                                    </div>
+                                    <div class="col-sm-3 ">
+                                        <div class="input-group"><span class="input-group-addon">审批状态：</span><select
+                                                ng-model="shangpinjibenxinxi.shenpizhuangtai"
+                                                init="dGhpcy5sb2FkRGF0YVNvdXJjZSgpOw==" billuiselect
+                                                renderId="a9ada25b45e54af89306c60b34635125" key="shenpizhuangtai" v k
+                                                source-src="bill/selectSrc?type=shenpizhuangtai"
+                                                class="form-control"></select></div>
+                                    </div>
+                                    <div class="col-sm-3 ">
+                                        <div table-key="shangpinjibenxinxi" class="input-group"><span
+                                                class="input-group-addon">操作：</span>
+
+                                            <div ng-model="shangpinjibenxinxi.caozuo"
+                                                 init="dGhpcy5sb2FkRGF0YVNvdXJjZSgpOw==" billuicheckbox
+                                                 renderId="a9ada25b45e54af89306c60b34635125" key="caozuo" v k
+                                                 source-src="bill/selectSrc?type=caozuo" class="form-control"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3 ">
+                                        <div class="input-group"><span class="input-group-addon">批准文号：</span><input
+                                                ng-model="shangpinjibenxinxi.pizhunwenhao" billuistring
+                                                renderId="a9ada25b45e54af89306c60b34635125" key="pizhunwenhao"
+                                                title="批准文号：" null type="text" class="form-control"></div>
+                                    </div>
+                                    <div class="col-sm-3 ">
+                                        <div class="input-group"><span class="input-group-addon">发证日期：</span><input
+                                                ng-model="shangpinjibenxinxi.fazhengriqi" billuidatetime
+                                                data-date-format="yyyy-mm-dd hh:ii:ss"
+                                                renderId="a9ada25b45e54af89306c60b34635125" key="fazhengriqi"
+                                                type="text" class="form-control"></div>
+                                    </div>
+                                    <div class="col-sm-3 ">
+                                        <div class="input-group"><span class="input-group-addon">有效期至：</span><input
+                                                ng-model="shangpinjibenxinxi.youxiaoqizhi" billuidatetime
+                                                data-date-format="yyyy-mm-dd hh:ii:ss"
+                                                renderId="a9ada25b45e54af89306c60b34635125" key="youxiaoqizhi"
+                                                type="text" class="form-control"></div>
+                                    </div>
+                                    <div class="col-sm-3 ">
+                                        <div class="input-group"><span class="input-group-addon">存储条件：</span><select
+                                                ng-model="shangpinjibenxinxi.cunchutiaojian"
+                                                init="dGhpcy5sb2FkRGF0YVNvdXJjZSgpOw==" billuiselect
+                                                renderId="a9ada25b45e54af89306c60b34635125" key="cunchutiaojian" v k
+                                                source-src="bill/selectSrc?type=kufangtiaojian"
+                                                class="form-control"></select></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3 ">
+                                        <div class="input-group"><span class="input-group-addon">商品剂型：</span><select
+                                                ng-model="shangpinjibenxinxi.shangpinjixing"
+                                                init="dGhpcy5sb2FkRGF0YVNvdXJjZSgpOw==" billuiselect
+                                                renderId="a9ada25b45e54af89306c60b34635125" key="shangpinjixing" v k
+                                                source-src="bill/selectSrc?type=shangpinjixing"
+                                                class="form-control"></select></div>
+                                    </div>
+                                    <div class="col-sm-3 ">
+                                        <div class="input-group"><span class="input-group-addon">养护周期(天)：</span><input
+                                                ng-model="shangpinjibenxinxi.yanghuzhouqi" billuiinteger
+                                                renderId="a9ada25b45e54af89306c60b34635125" key="yanghuzhouqi"
+                                                title="养护周期(天)：" type="number" class="form-control"></div>
+                                    </div>
+                                    <div class="col-sm-3 ">
+                                        <div class="input-group"><span class="input-group-addon">质量标准：</span><input
+                                                ng-model="shangpinjibenxinxi.zhiliangbiaozhun" billuistring
+                                                renderId="a9ada25b45e54af89306c60b34635125" key="zhiliangbiaozhun"
+                                                title="质量标准：" null type="text" class="form-control"></div>
+                                    </div>
+                                    <div class="col-sm-3 ">
+                                        <div class="input-group"><span class="input-group-addon">处方分类：</span><select
+                                                ng-model="shangpinjibenxinxi.chufangfenlei"
+                                                init="dGhpcy5sb2FkRGF0YVNvdXJjZSgpOw==" billuiselect
+                                                renderId="a9ada25b45e54af89306c60b34635125" key="chufangfenlei" v k
+                                                source-src="bill/selectSrc?type=chufangfenlei"
+                                                class="form-control"></select></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3 ">
+                                        <div class="input-group"><span class="input-group-addon">质量分类：</span><select
+                                                ng-model="shangpinjibenxinxi.zhiliangfenlei"
+                                                init="dGhpcy5sb2FkRGF0YVNvdXJjZSgpOw==" billuiselect
+                                                renderId="a9ada25b45e54af89306c60b34635125" key="zhiliangfenlei" v k
+                                                source-src="bill/selectSrc?type=zhiliangfenlei"
+                                                class="form-control"></select></div>
+                                    </div>
+                                    <div class="col-sm-4 ">
+                                        <div table-key="shangpinjibenxinxi" class="input-group"><span
+                                                class="input-group-addon">存储问题：</span>
+
+                                            <div ng-model="shangpinjibenxinxi.cunchuwenti"
+                                                 init="dGhpcy5sb2FkRGF0YVNvdXJjZSgpOw==" billuicheckbox
+                                                 renderId="a9ada25b45e54af89306c60b34635125" key="cunchuwenti" v k
+                                                 source-src="bill/selectSrc?type=cunchuwenti"
+                                                 class="form-control"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 ">
+                                        <div class="input-group"><span class="input-group-addon">税务分类编码：</span><input
+                                                ng-model="shangpinjibenxinxi.swflbm" billuistring
+                                                renderId="a9ada25b45e54af89306c60b34635125" key="swflbm" title="税务分类编码："
+                                                null type="text" class="form-control"></div>
+                                    </div>
+                                    <div class="col-sm-2 ">
+                                        <div class="input-group"><span class="input-group-addon">是否税务优惠：</span><select
+                                                ng-model="shangpinjibenxinxi.sfswyh"
+                                                init="dGhpcy5sb2FkRGF0YVNvdXJjZSgpOw==" billuiselect
+                                                renderId="a9ada25b45e54af89306c60b34635125" key="sfswyh" v k
+                                                source-src="bill/selectSrc?type=bool" class="form-control"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12 ">
+                                        <div table-key="shangpinjibenxinxi" class="input-group"><span
+                                                class="input-group-addon">核心属性：</span>
+
+                                            <div ng-model="shangpinjibenxinxi.hexinshuxing"
+                                                 init="dGhpcy5sb2FkRGF0YVNvdXJjZSgpOw==" billuicheckbox
+                                                 renderId="a9ada25b45e54af89306c60b34635125" key="hexinshuxing" v k
+                                                 source-src="bill/selectSrc?type=hexinshuxing"
+                                                 class="checkboxWrap"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            main.controller('xyyerp.mainCtl5dc78830aa484ddea61cd4bb4baca7ab', function ($scope, $http, $interval, $rootScope, $compile, $q) {
+                $scope._model = new $Model($rootScope._model);
+                $scope._env = new $Model($rootScope._env);
+                clone({"id": "G1UA91XDNYP", "billkey": "shangpinjibenxinxi", "ua": "WEB"}, $scope._env);
+                clone({billtype: 'Dics'}, $scope._env);
+                $scope.renderId = 'a9ada25b45e54af89306c60b34635125';
+                $scope.$http = $http;
+                $scope.$q = $q;
+                $scope.$interval = $interval;
+                $scope._$$controller$$ = '_$$controller$$';
+                $scope.$compile = $compile;
+                $scope.checkRuleLists = [];
+                mixer(ERPDic, $scope);
+                $scope.pageInit();
+            });
+        </script>
+    </div>
+</div>
+</body>
+</html>

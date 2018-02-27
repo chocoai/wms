@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+	<DataTable Key="xiaotuishangjiadancx_view" Caption="销退上架单"
+		DefaultFilter="" PermissionType="PrivateType" Pagging="10"
+		TableName="SQLQuery::select distinct a.* | from xyy_wms_bill_rukushangjiadan a,xyy_wms_bill_rukushangjiadan_details b where 1 = 1 and a.billID = b.billID @kaishiriqi @jiezhiriqi @kufang @shangpinmingcheng @danweimingcheng @dingdanbianhao @dingdanleixing @dingdanriqi @zhijianyuan"
+		DataSource="" Head="false">
+		<Parameters>
+			<Parameter Key="dingdanbianhao" Type="String">
+				<Where>
+                <![CDATA[
+					m.if(dingdanbianhao==null | dingdanbianhao=="" ,""," and a.dingdanbianhao like '%"+dingdanbianhao+"%'")
+	            ]]>
+				</Where>
+			</Parameter>
+			<Parameter Key="dingdanleixing" Type="String">
+				<Where>
+                <![CDATA[
+					m.if(dingdanleixing==null | dingdanleixing=="" ,""," and dingdanleixing like '%"+dingdanleixing+"%'")
+                ]]>
+				</Where>
+			</Parameter>
+			<Parameter Key="shangpinmingcheng" Type="String">
+				<Where>
+                <![CDATA[
+					m.if(shangpinmingcheng==null | shangpinmingcheng=="" ,""," and shangpinmingcheng like '%"+shangpinmingcheng+"%'")
+                ]]>
+				</Where>
+			</Parameter>
+			<Parameter Key="danweimingcheng" Type="String">
+				<Where>
+                <![CDATA[
+					m.if(danweimingcheng==null | danweimingcheng=="" ,""," and danweimingcheng like '%"+danweimingcheng+"%'")
+                ]]>
+				</Where>
+			</Parameter>
+			<Parameter Key="kufang" Type="String">
+				<Where>
+                <![CDATA[
+					m.if(kufang==null | kufang=="" ,""," and kufang like '%"+kufang+"%'")
+                ]]>
+				</Where>
+			</Parameter>
+			<Parameter Key="dingdanriqi" Type="String">
+				<Where>
+                <![CDATA[
+					m.if(dingdanriqi==null | dingdanriqi=="" ,""," and dingdanriqi like '%"+dingdanriqi+"%'")
+                ]]>
+				</Where>
+			</Parameter>
+			<Parameter Key="kaishiriqi" Type="String">
+				<Where>
+                <![CDATA[
+                	m.if(kaishiriqi==null,""," and DATE_FORMAT(dingdanriqi,'%Y-%m-%d') >= DATE_FORMAT('"+kaishiriqi+"','%Y-%m-%d')")
+				]]>
+				</Where>
+			</Parameter>
+			<Parameter Key="jiezhiriqi" Type="String">
+				<Where>
+                <![CDATA[
+                	m.if(jiezhiriqi==null,""," and DATE_FORMAT(dingdanriqi,'%Y-%m-%d') <= DATE_FORMAT('"+jiezhiriqi+"','%Y-%m-%d')")
+				]]>
+				</Where>
+			</Parameter>
+		</Parameters>
+	</DataTable>
+
+	<DataTable Key="xiaotuishangjiadancx_details1" Caption="销退上架单"
+		DefaultFilter="" PermissionType="PrivateType" Pagging="100"
+		TableName="SQLQuery:: 
+        SELECT *
+               |
+				FROM
+					xyy_wms_bill_rukushangjiadan_details
+				where  BillID is null
+              ORDER BY createTime DESC"
+
+		DataSource="" Head="false" Singleton="" OrderBy="">
+		<Parameters>
+			<Parameter Key="danjubianhao" Type="String">
+				<Where>
+                    <![CDATA[
+					m.if( BillID is null)
+	            ]]>
+				</Where>
+			</Parameter>
+
+		</Parameters>
+	</DataTable>
+</DataSet>

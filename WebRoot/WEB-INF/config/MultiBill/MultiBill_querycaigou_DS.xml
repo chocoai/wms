@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0"> 
+    <DataTable Key="querycaigou" Caption="" DefaultFilter="" Pagging="5" PermissionType="CommType"
+        TableName="WebService::com.xyy.bill.inf.QueryCaiGouService"
+               DataSource="" Head="false">
+               <Parameters>
+		            <Parameter Key="caigouleixing" Type="String">
+		                <Where>
+		                    <![CDATA[
+							m.if(caigouleixing==null | caigouleixing=="" ," "," and caigouleixing like '%"+caigouleixing+"%'")
+			            ]]>
+		                </Where>
+		            </Parameter>
+		            <Parameter Key="danjubianhao" Type="String">
+		                <Where>
+		                    <![CDATA[
+							m.if(danjubianhao==null | danjubianhao=="" ," "," and danjubianhao like '%"+danjubianhao+"%'")
+			            ]]>
+		                </Where>
+		            </Parameter>
+		            <Parameter Key="caigouyuan" Type="String">
+		                <Where>
+		                    <![CDATA[
+							m.if(caigouyuan==null | caigouyuan=="" ," "," and caigouyuan like '%"+caigouyuan+"%'")
+			            ]]>
+		                </Where>
+		            </Parameter>
+		            <Parameter Key="kaipiaoyuan" Type="String">
+		                <Where>
+		                    <![CDATA[
+							m.if(kaipiaoyuan==null | kaipiaoyuan=="" ," "," and kaipiaoyuan like '%"+kaipiaoyuan+"%'")
+			            ]]>
+		                </Where>
+		            </Parameter>
+		            <Parameter Key="gys" Type="String">
+		                <Where>
+			                <![CDATA[
+								m.if(gys==null | gys=="",""," and mixCondition like '%"+gys+"%'")
+				            ]]>
+                		</Where>
+		            </Parameter>
+		            <Parameter Key="startTime" Type="String" >
+		                <Where>
+		                <![CDATA[
+							m.if(startTime==null | startTime=="" ,"and date_add(curdate(), interval - day(curdate()) + 1 day) <= DATE_FORMAT(kaipiaoriqi, '%Y-%m-%d')"," and DATE_FORMAT("+startTime+",'%Y-%m-%d') >= DATE_FORMAT(kaipiaoriqi,'%Y-%m-%d')")
+		                ]]>
+		                </Where>
+		            </Parameter>
+		            <Parameter Key="endTime" Type="String" >
+		                <Where>
+		                <![CDATA[
+							m.if(endTime==null | endTime=="" ,"and date_add(SYSDATE(), INTERVAL + 1 DAY) > DATE_FORMAT(kaipiaoriqi, '%Y-%m-%d')"," and DATE_FORMAT(kaipiaoriqi,'%Y-%m-%d') <= DATE_FORMAT("+endTime+",'%Y-%m-%d')")
+		                ]]>
+		                </Where>
+		            </Parameter>
+		            
+		        </Parameters>
+    </DataTable>
+    <DataTable Key="querycaigou_details" Caption="采购 退补价执行单明细视图" DefaultFilter="" PermissionType="CommType"  Pagging="10"
+               TableName="SQLQuery::select * | from xyy_erp_bill_migratejinxiangkaipiao_details where 1!=1"  DataSource="" Head="false" Singleton="" OrderBy="">
+    </DataTable>
+</DataSet>

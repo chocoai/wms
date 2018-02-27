@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <!-- 打印服务 -->
+	<entry key="printService">com.xyy.http.services.PrintService</entry>
+	<entry key="reportFileMonitorService">com.xyy.http.services.ReportFileMonitorService</entry>
+	<entry key="dataForReportService">com.xyy.http.services.DataForReportService</entry>
+	<entry key="templateDownloadService">com.xyy.http.services.TemplateDownloadService</entry>
+</properties>

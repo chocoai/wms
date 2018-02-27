@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="chukuwaifuhe" BillType="Bill" Caption="出库外复核" DefaultFilter=""
+               TableName="Table::xyy_wms_bill_chukuwaifuhe" DataSource="" Head="true">
+        <Field FieldKey="dingdanbianhao" FieldName="订单编号" FieldType="Varchar" Comment="订单编号"/>
+        <Field FieldKey="huozumingcheng" FieldName="货主名称" FieldType="Varchar" Comment="货主名称"/>
+        <Field FieldKey="kehumingcheng" FieldName="客户名称" FieldType="Varchar" Comment="客户名称"/>
+        <Field FieldKey="zancunqu" FieldName="暂存区" FieldType="Varchar" Comment="暂存区"/>
+        <Field FieldKey="zongjianshu" FieldName="总件数" FieldType="Decimal" Comment="总件数"/>
+        <Field FieldKey="zhengjianshu" FieldName="整件数" FieldType="Decimal" Comment="整件数"/>
+        <Field FieldKey="lingshanshu" FieldName="零散数" FieldType="Int" Comment="零散数"/>
+        <Field FieldKey="pinxiangshu" FieldName="拼箱数" FieldType="Int" Comment="拼箱数"/>
+        <Field FieldKey="xianlumingcheng" FieldName="线路名称" FieldType="Varchar" Comment="线路名称"/>
+        <Field FieldKey="kehubeizhu" FieldName="客户备注" FieldType="Varchar" Comment="客户备注"/>
+        <Field FieldKey="caozuoren" FieldName="操作人" FieldType="Varchar" Comment="操作人"/>
+        <Field FieldKey="shifouhuixie" FieldName="是否回写" FieldType="Int" DefaultValue="0" Comment="是否回写:1是、0否"/>
+        <Field FieldKey="caozuoren" FieldName="操作人(內复核员)" FieldType="Varchar" Comment="操作人(內复核员)"/>
+        <Field FieldKey="czrmc" FieldName="拣货员" FieldType="Varchar" Comment="拣货员" />
+    </DataTable>
+
+
+    <DataTable Key="chukuwaifuhe_details" BillType="Bill" Caption="出库外复核" DefaultFilter="BillID" Pagging="100"
+               TableName="Table::xyy_wms_bill_chukuwaifuhe_details" DataSource="" Head="false">
+        <Field FieldKey="shangpinbianhao" FieldName="商品编号" FieldType="Varchar" Comment="商品编号"/>
+        <Field FieldKey="shangpinmingcheng" FieldName="商品名称" FieldType="Varchar" Comment="商品名称"/>
+        <Field FieldKey="guige" FieldName="规格" FieldType="Varchar" Comment="规格"/>
+        <Field FieldKey="danwei" FieldName="单位" FieldType="Varchar" Comment="单位"/>
+        <Field FieldKey="shengchanchangjia" FieldName="生产厂家" FieldType="Varchar" Comment="生产厂家"/>
+        <Field FieldKey="pinxianghao" FieldName="拼箱号" FieldType="Varchar" Comment="拼箱号"/>
+        <Field FieldKey="shangpingpihao" FieldName="商品批号" FieldType="Varchar" Comment="商品批号ID"/>
+        <Field FieldKey="shangpingpihaosn" FieldName="商品批号" FieldType="Varchar" Comment="商品批号"/>
+        <Field FieldKey="shuliang" FieldName="数量" FieldType="Decimal" Comment="数量"/>
+        <Field FieldKey="zhengjianshu" FieldName="整件数" FieldType="Decimal" Comment="整件数"/>
+        <Field FieldKey="lingjianshu" FieldName="零件数" FieldType="Decimal" Comment="零件数"/>
+        <Field FieldKey="chonghongshuliang" FieldName="冲红数量" FieldType="Decimal" DefaultValue="0" Comment="冲红数量"/>
+        <Field FieldKey="dingdanbianhao" FieldName="订单编号" FieldType="Varchar" Comment="订单编号"/>
+        <Field FieldKey="shengchanriqi" FieldName="生产日期" FieldType="Date" Comment="生产日期"/>
+        <Field FieldKey="youxiaoqizhi" FieldName="有效期至" FieldType="Date" Comment="有效期至"/>
+        <Field FieldKey="fuheyuan" FieldName="复核员" FieldType="Varchar" Comment="复核员"/>
+        <Field FieldKey="fhymc" FieldName="复核员名称" FieldType="Varchar" Comment="复核员名称"/>
+        <Field FieldKey="caozuoren" FieldName="操作人" FieldType="Varchar" Comment="操作人"/>
+        <Field FieldKey="goodsid" FieldName="商品ID" FieldType="Varchar" Comment="商品ID"/>
+        <Field FieldKey="xiajiahuoweibianhao" FieldName="货位ID编号" FieldType="Varchar" Comment="货位ID编号"/>
+        <Field FieldKey="huoweiID" FieldName="货位ID" FieldType="Varchar" Comment="货位ID"/>
+    </DataTable>
+</DataSet>

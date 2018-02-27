@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BillFormMeta Key="xiaoshoudingdanM" Version="1.0.0" BillType="MultiBill" Caption="销售订单明细">
+    <BillBody>
+        <BillBodyMeta UserAgent="web">
+            <BillUIPanel Layout="flex" FlexDirection="column" Width="100%" Key="mainContainer" Caption="" S="">
+
+                <BillUIPanel Layout="tab" Key="mainContainer_tab" Caption="销售订单明细"
+                             S="panel  panel-primary  publicPanel">
+                    <BillUIPanel Layout="flex" Key="mainContainer_details1" Caption="销售订单明细"
+                                 ColWidth="1fr">
+                        <BillUIGrid Key="xiaoshoudingdanM"  SelectMode="Multi"  OptMode="View"
+                                    DataTableKey="xiaoshoudingdanM">
+                            <GridHeads>
+                                <GridHead Col="shangpinbianhao" Caption="商品编号" enableEdit="True" Width="140px">
+                                    <BillUIWidget Key="shangpinbianhao" WidgetType="BillUIPopupWindow" Disable="true" Src="shangpin" >
+                                    </BillUIWidget>
+                                </GridHead>
+                                <GridHead Col="shangpinmingcheng" Caption="商品名称" enableEdit="True" Width="140px">
+                                    <BillUIWidget Key="shangpinmingcheng" WidgetType="BillUIString">
+                                    </BillUIWidget>
+                                </GridHead>
+                                <GridHead Col="guige" Caption="规格" enableEdit="True" Width="120px">
+                                    <BillUIWidget Key="guige" WidgetType="BillUIString"/>
+                                </GridHead>
+
+                                <GridHead Col="shangpindanjia" Caption="商品单价" enableEdit="True" Width="120px">
+                                    <BillUIWidget Key="shangpindanjia" WidgetType="BillUIDecimal"/>
+                                </GridHead>
+                                <GridHead Col="shangpinshuliang" Caption="商品数量" enableEdit="True" Width="140px">
+                                    <BillUIWidget Key="shangpinshuliang" WidgetType="BillUIDecimal"/>
+                                </GridHead>
+
+                                <GridHead Col="jine" Caption="金额" enableEdit="True" Width="140px">
+                                    <BillUIWidget Key="jine" WidgetType="BillUIDecimal"/>
+                                </GridHead>
+
+                                <GridHead Col="shangpinleibie" Caption="商品类别" enableEdit="True" Width="160px">
+                                    <BillUIWidget Key="shangpinleibie" WidgetType="BillUISelect" Src="bill/selectSrc?type=">
+                                        <Init Type="javascript/angular" Runat="client">
+                                            <![CDATA[
+                                                 this.loadDataSource();
+                                            ]]>
+                                        </Init>
+                                    </BillUIWidget>
+                                </GridHead>
+                                <GridHead Col="shengchanchangjia" Caption="生产厂家" enableEdit="True" Width="160px">
+                                    <BillUIWidget Key="shengchanchangjia" WidgetType="BillUIString"/>
+                                </GridHead>
+
+                                <GridHead Col="qsspzl" Caption="缺少商品资料" enableEdit="True" Width="160px">
+                                    <BillUIWidget Key="qsspzl" WidgetType="BillUIString"/>
+                                </GridHead>
+
+                                <GridHead Col="kucunbuzu" Caption="库存不足" enableEdit="True" Width="70px">
+                                    <BillUIWidget Key="kucunbuzu" WidgetType="BillUISelect" Src="bill/selectSrc?type=bool">
+                                        <Init Type="javascript/angular" Runat="client">
+                                            <![CDATA[
+                                                 this.loadDataSource();
+                                            ]]>
+                                        </Init>
+                                    </BillUIWidget>
+                                </GridHead>
+                                <GridHead Col="cjyff" Caption="超经营范围" enableEdit="True" Width="140px">
+                                    <BillUIWidget Key="cjyff"  WidgetType="BillUISelect" Src="bill/selectSrc?type=bool">
+                                        <Init Type="javascript/angular" Runat="client">
+                                            <![CDATA[
+                                                 this.loadDataSource();
+                                            ]]>
+                                        </Init>
+                                    </BillUIWidget>
+                                </GridHead>
+
+                                <GridHead Col="kkkksl" Caption="可开库存数量" enableEdit="True" Width="140px">
+                                    <BillUIWidget Key="kkkksl" WidgetType="BillUIInteger"/>
+                                </GridHead>
+
+                            </GridHeads>
+                        </BillUIGrid>
+                    </BillUIPanel>
+                </BillUIPanel>
+            </BillUIPanel>
+        </BillBodyMeta>
+    </BillBody>
+    <BillHeadMeta>
+        <RuleKeys>
+            <RuleKey Type="PULL" PullType="MULTI">
+                xiaoshoudingdan_xiaoshoutuihuidan_xsth003
+            </RuleKey>
+        </RuleKeys>
+    </BillHeadMeta>
+</BillFormMeta>

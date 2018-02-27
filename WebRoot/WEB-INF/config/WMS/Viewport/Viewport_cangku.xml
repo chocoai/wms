@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BillViewMeta Key="cangku" Caption="工具栏" Version="">
+	
+	<BillBody UserAgent="web">
+		<BillBodyMeta>
+			<BillUIPanel Layout="flex" Key="cangku_tools" Caption="工具栏" RowGap="7" ColGap="10"
+                             ColWidth="repeat(8,auto) 1fr" S="">
+			     <BillUIGridPanel Key="cangku_grid">
+                    <BillUIRowPanel>
+                        <BillUIColPanel Width="4">
+                            <BillUIWidget Caption="仓库编号" Key="cancel"
+                                EnabledWhen="True"   ParameterKey="cangkubianhao"
+                                DataTableKey="cangkuziliao_view"
+                                WidgetType="BillUIString">
+                            </BillUIWidget>
+                        </BillUIColPanel>
+						<!--<BillUIColPanel Width="4">-->
+							<!--<BillUIWidget Caption="部门" Key="cancel"-->
+										  <!--EnabledWhen="True"   ParameterKey="deptName"-->
+										  <!--DataTableKey="cangkuziliao"-->
+										  <!--WidgetType="BillUIString">-->
+							<!--</BillUIWidget>-->
+						<!--</BillUIColPanel>-->
+                        <BillUIColPanel Width="2">
+                            <BillUIWidget Caption="查询" Key="search"
+                                EnabledWhen="True"
+                                Icon="glyphicon glyphicon-send" WidgetType="BillUIButton">
+                                <Triggers>
+                                    <Trigger Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                        	this.search("cangkuziliao_view");
+                                 			]]>
+                                    </Trigger>
+                                </Triggers>
+                            </BillUIWidget>
+			
+                        </BillUIColPanel>
+                    </BillUIRowPanel>
+			         <BillUIRowPanel>
+						 <BillUIColPanel Width="12">
+							 <BillUIPanel Layout="flex" Key="dictionary_tools">
+								 <!--
+								 	操作模式：
+								 		View|Edit
+								 		View==>多选：checkbox
+								 		      单选:单击行方式
+								 		 RowId===>行标识，通过行行标识来
+
+								 -->
+								 <BillUIGrid Key="grid0" OptMode="View"   RowId="" DataTableKey="cangkuziliao_view">
+								 <GridHeads >
+									 <GridHead Col="cangkubianhao" Caption="仓库编号" enableEdit="True"
+											   Width="150px">
+										 <BillUIWidget Key="cangkubianhao" WidgetType="BillUIString"/>
+									 </GridHead>
+									 <GridHead Col="cangkumingchen" Caption="仓库名称" enableEdit="True"
+											   Width="120px">
+										 <BillUIWidget Key="cangkumingchen" WidgetType="BillUIString"/>
+									 </GridHead>
+									 <GridHead Col="xiangxidizhi" Caption="仓库地址" enableEdit="True"
+											   Width="120px">
+										 <BillUIWidget Key="xiangxidizhi" WidgetType="BillUIString"/>
+									 </GridHead>
+									 <GridHead Col="ID" Caption="仓库资料id" enableEdit="True"
+											   Width="120px" Show="false">
+										 <BillUIWidget Key="ID" WidgetType="BillUIString"/>
+									 </GridHead>
+								 </GridHeads>
+							 </BillUIGrid>
+							 </BillUIPanel>
+
+						 </BillUIColPanel>
+			         </BillUIRowPanel>
+			         
+			     </BillUIGridPanel>
+             </BillUIPanel>
+		</BillBodyMeta>
+	</BillBody>
+	
+</BillViewMeta>

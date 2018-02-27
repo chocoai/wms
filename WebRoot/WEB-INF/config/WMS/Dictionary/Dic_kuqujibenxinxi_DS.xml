@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="kuqujibenxinxi" BillType="Dictionary"  Caption="复核区基本信息" DefaultFilter=""  TableName="Table::xyy_wms_dic_kuqujibenxinxi" DataSource="" Head="true">
+        <Field FieldKey="cangkumingcheng" FieldName="仓库名称" FieldType="Varchar"  Comment="仓库名称"/> 
+		<Field FieldKey="kuqubianhao" FieldName="库区编号" FieldType="Varchar"  Comment="库区编号"/>
+        <Field FieldKey="kuqumingcheng" FieldName="库区名称" FieldType="Varchar" Comment="库区名称"/>
+        <Field FieldKey="kqlbbh" FieldName="库区类别编号" FieldType="Int" Comment="库区类别编号" />
+        <Field FieldKey="kqlbmc" FieldName="库区类别名称" FieldType="Varchar" Comment="库区类别名称"/>
+        <Field FieldKey="cctjbm" FieldName="储存条件编码" FieldType="Int" Comment="储存条件编码"/> 
+        <Field FieldKey="cctjmc" FieldName="储存条件名称" FieldType="Varchar" Comment="储存条件名称"/>
+        <Field FieldKey="kuqumiaoshu" FieldName="库区描述" FieldType="Varchar" Comment="库区描述"/>
+        <Field FieldKey="qiyong" FieldName="启用" FieldType="Int" Comment="启用" DefaultValue="1"/>
+        <Field FieldKey="zhuangtai" FieldName="状态" FieldType="Int" Comment="状态(36库区可使用  37 库区正在使用中)"/>
+        <Field FieldKey="cangkuID" FieldName="仓库ID" FieldType="Varchar" Comment="仓库id"/>
+        <Field FieldKey="chailingfenzu" FieldName="拆零分组" FieldType="Int" Comment="拆零分组"/>
+    </DataTable>
+</DataSet>

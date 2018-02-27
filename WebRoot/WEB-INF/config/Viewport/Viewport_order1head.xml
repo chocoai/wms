@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BillUIPanel Layout="grid"  Key="mainContainer_head" Caption="线上订单"  S="panel panel-primary publicPanel"  RowGap="5" ColGap="10"  ColWidth="300px 300px 300px  300px 1fr 1fr"  >
+    
+    <BillUIWidget Key="orderno" Caption="订单编号："  DataTableKey="order" DataTableColumn="orderno" 
+        Left="1" Top="1" Width="1" Height="1" EnabledWhen="True" WidgetType="BillUIString">
+    </BillUIWidget>
+    <BillUIWidget Key="totalAmount" Caption="订单总金额："  DataTableKey="order" DataTableColumn="totalAmount" 
+        Left="2" Top="1" Width="1" Height="1" EnabledWhen="True" WidgetType="BillUIDecimal">
+    </BillUIWidget>
+    <BillUIWidget Key="payAmount" Caption="实付金额："  DataTableKey="order" DataTableColumn="payAmount" 
+        Left="3" Top="1" Width="1" Height="1" EnabledWhen="True" WidgetType="BillUIDecimal">
+    </BillUIWidget>
+    
+    <BillUIWidget Key="youhuijine" Caption="优惠金额："  DataTableKey="order" DataTableColumn="youhuijine" 
+        Left="4" Top="1" Width="1" Height="1" EnabledWhen="True" WidgetType="BillUIDecimal">
+    </BillUIWidget>
+    <BillUIWidget Key="shouhuoren" Caption="收货人："  DataTableKey="order" DataTableColumn="shouhuoren" 
+        Left="1" Top="2" Width="1" Height="1" EnabledWhen="True" WidgetType="BillUIString">
+        <Triggers>
+            <Trigger Type="javascript/angular" Runat="client">
+                <![CDATA[
+									   var 	val=this.getValue();
+									   if(val.indexOf("张")==0){
+									          @tel.setValue("13888888888"); 
+									          @address.setValue("aaaaaaaa");
+									          @payType.loadDataSource();
+									          @payType.setValue("2");
+									          
+									   }else{
+									          @tel.setValue("13844444444"); 
+									          @address.setValue("bbbbbbbb");
+									           @payType.loadDataSource();
+									          @payType.setValue("3");
+									          
+									   }
+								]]>
+            </Trigger>
+        </Triggers>
+        <Init Type="javascript/angular" Runat="client">
+            <![CDATA[
+                    @$.@payType.loadDataSource();
+									
+							]]>
+        </Init>
+    </BillUIWidget>
+    
+    <BillUIWidget Key="tel" Caption="手机号："  DataTableKey="order" DataTableColumn="tel" 
+        Left="2" Top="2" Width="1" Height="1" EnabledWhen="True" WidgetType="BillUIString">
+    </BillUIWidget>
+    <BillUIWidget Key="address" Caption="收货地址："  DataTableKey="order" DataTableColumn="address" 
+        Left="3" Top="2" Width="1" Height="1" EnabledWhen="True" WidgetType="BillUIString">
+    </BillUIWidget>
+    
+    <BillUIWidget Key="fapiao" Caption="发票信息："  DataTableKey="order" DataTableColumn="fapiao" 
+        Left="4" Top="2" Width="1" Height="1" EnabledWhen="True" WidgetType="BillUIString">
+    </BillUIWidget>
+    <BillUIWidget Key="payType" Caption="支付类型："  DataTableKey="order" DataTableColumn="payType" 
+        Left="1" Top="3" Width="1" Height="1" EnabledWhen="True" WidgetType="BillUISelect">
+        <Init Type="javascript/angular" Runat="client">
+            <![CDATA[
+            
+							]]>
+        </Init>
+        <Properties>
+            <Property Name="datasource" Type="internal">[{name:"一般",value:1},{name:"暂缓",value:2},{name:"加急",value:3},{name:"特急",value:4}]</Property>
+        </Properties>
+    </BillUIWidget>
+    <BillUIWidget Key="liuyan" Caption="留言："  DataTableKey="order" DataTableColumn="liuyan" 
+        Left="2" Top="3" Width="1" Height="1" EnabledWhen="True" WidgetType="BillUIString">
+    </BillUIWidget>
+    
+    <BillUIWidget Key="createTime" Caption="创建时间："  DataTableKey="order" DataTableColumn="createTime" 
+        Left="4" Top="3" Width="1" Height="1" EnabledWhen="True" WidgetType="BillUIDateTime">
+        
+        <Init Type="javascript/angular" Runat="client">
+            <![CDATA[
+									  this.setValue(new Date());
+									
+							]]>
+        </Init>
+    </BillUIWidget>
+    <BillUIWidget Key="updateTime" Caption="更新时间："  DataTableKey="order" DataTableColumn="updateTime" 
+        Left="3" Top="3" Width="1" Height="1" EnabledWhen="True" WidgetType="BillUIDateTime">
+    </BillUIWidget>
+    
+    <BillUIWidget Key="remark" Caption="备注："  DataTableKey="order" DataTableColumn="remark" 
+        Left="1" Top="4" Width="4" Height="1" EnabledWhen="True" WidgetType="BillUIString">
+    </BillUIWidget>
+    
+  
+    
+</BillUIPanel>

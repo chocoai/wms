@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BillFormMeta Key="kqzyqxwh" Version="1.0.0" BillType="Dics"
+	Caption="库区作业权限维护">
+	<BillBody>
+		<BillBodyMeta UserAgent="web">
+			<BillUIPanel Layout="flex" FlexDirection="column" Width="100%"
+				Key="mainContainer" Caption="库区作业权限维护" S="">
+				<BillUIPanel Layout="flex" Key="toolbox" Caption="工具栏">
+					<BillUIWidget Key="add" Caption="新增" Left="1" Top="1"
+						Width="1" Height="1" EnabledWhen="True" Icon="glyphicon glyphicon-plus-sign"
+						WidgetType="BillUIButton">
+						<Triggers>
+							<Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+										@$this.$add();
+						        ]]>
+							</Trigger>
+						</Triggers>
+					</BillUIWidget>
+					<BillUIWidget Key="edit" Caption="编辑" Left="2" Top="1"
+						Width="1" Height="1" EnabledWhen="True" Icon="glyphicon glyphicon-edit"
+						WidgetType="BillUIButton">
+						<Triggers>
+							<Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+                                    @$this.$edit();
+	                            ]]>
+							</Trigger>
+						</Triggers>
+					</BillUIWidget>
+					
+					<BillUIWidget Key="downloadExcel" Caption="导出"
+						EnabledWhen="True" Icon="glyphicon glyphicon-floppy-saved"
+						WidgetType="BillUIButton" FileName="库区作业权限维护">
+						
+						<!-- 导出的功能,主要用ExportSheets标签 -->
+						<ExportSheets>
+							<ExportSheet SheetName="库区作业权限维护" TitleName=""
+								DataTableKey="kqzyqxwh">
+								<ExportColumns>
+									<ExportColumn Caption="职员名称" DataTableColumn="zhiyuanmingcheng"
+										Width="150" />
+									<ExportColumn Caption="仓库" DataTableColumn="cangkumingcheng"
+										Width="100" />
+									<ExportColumn Caption="库区名称" DataTableColumn="kuqumingcheng"
+										Width="100" />
+									<ExportColumn Caption="作业顺序" DataTableColumn="zuoyeshunxu"
+										Width="100" />
+									<ExportColumn Caption="上架" DataTableColumn="shangjia"
+										Width="100" Type="Dic">
+										
+									        <![CDATA[
+									        	{'url':'select','type':'shangjia'}
+									        ]]>
+									
+									</ExportColumn>	
+									<ExportColumn Caption="拣货" DataTableColumn="jianhuo"
+										Width="100" Type="Dic">
+									        <![CDATA[
+									        	{'url':'select','type':'jianhuo'}
+									        ]]>
+									
+								
+									</ExportColumn>		
+									<ExportColumn Caption="补货" DataTableColumn="buhuo"
+										Width="100" Type="Dic">
+										
+									        <![CDATA[
+									        	{'url':'select','type':'buhuo'}
+									        ]]>
+									
+									</ExportColumn>		
+									<ExportColumn Caption="盘点" DataTableColumn="pandian"
+										Width="100" Type="Dic">	
+										
+									        <![CDATA[
+									        	{'url':'select','type':'pandian'}
+									        ]]>
+									
+									</ExportColumn>			
+								</ExportColumns>
+							</ExportSheet>
+						</ExportSheets>
+						<Triggers>
+							<Trigger Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                         @$this.downloadExcel('kqzyqxwh');
+	                                  ]]>
+							</Trigger>
+						</Triggers>
+					</BillUIWidget>
+
+					
+				</BillUIPanel>
+				<BillUIPanel Layout="flex" Key="bills_tools" Caption="查询面板" S="panel panel-default publicPanel">
+                	<BillUIGridPanel Device="sm" key="boxtool">
+						<BillUIRowPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="cangkumingcheng" ParameterKey="cangkumingcheng"
+									DataTableKey="kqzyqxwh" Caption="仓库" EnabledWhen="True"
+									Icon="glyphicon glyphicon-send" WidgetType="BillUIPopupWindow" ViewSize="lg"
+                                                  Disable="true" Src="cangku">
+                                                  <Triggers>
+                                            <Trigger>
+                                                <![CDATA[
+                                                    var changku=this.rows[0];     
+                                                    this.setValue(changku.cangkumingchen);
+                                                    
+                                                ]]>
+                                            </Trigger>
+                                        </Triggers>
+								</BillUIWidget>
+							</BillUIColPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="zhiyuanmingcheng" ParameterKey="zhiyuanmingcheng"
+									DataTableKey="kqzyqxwh" Caption="职员名称" EnabledWhen="True"
+									Icon="glyphicon glyphicon-send" WidgetType="BillUIPopupWindow" ViewSize="lg"
+                                                  Disable="true" Src="zhiyuan">
+                                        <Init Type="javascript/angular" Runat="client">
+                                            <![CDATA[
+                                            	var orgId=this.getOrgId();
+                                                this.setEnvModel({deptName:'储运部'},{orgId:orgId});
+	                                        ]]>
+                                        </Init>
+                                        <Triggers>
+                                            <Trigger>
+                                                <![CDATA[
+                                                    var zhiyuan=this.rows[0];     
+                                                    this.setValue(zhiyuan.realName);
+                                                    @gonghao.setValue(zhiyuan.userId);
+                                                ]]>
+                                            </Trigger>
+                                        </Triggers>
+                                    </BillUIWidget>
+							</BillUIColPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="gonghao" ParameterKey="gonghao"
+									DataTableKey="kqzyqxwh" Caption="工号" EnabledWhen="True"
+									Icon="glyphicon glyphicon-send" WidgetType="BillUIPopupWindow" ViewSize="lg"
+                                                  Disable="true" Src="zhiyuan">
+                                        <Init Type="javascript/angular" Runat="client">
+                                            <![CDATA[
+                                            	var orgId=this.getOrgId();
+                                                this.setEnvModel({deptName:'储运部'},{orgId:orgId});
+	                                        ]]>
+                                        </Init>
+                                        <Triggers>
+                                            <Trigger>
+                                                <![CDATA[
+                                                    var zhiyuan=this.rows[0];     
+                                                    this.setValue(zhiyuan.userId);
+                                                    @zhiyuanmingcheng.setValue(zhiyuan.realName);
+                                                ]]>
+                                            </Trigger>
+                                        </Triggers>
+                                    </BillUIWidget>
+							</BillUIColPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Caption="查询" Key="search"
+									EnabledWhen="True" Icon="glyphicon glyphicon-send" WidgetType="BillUIButton">
+									<Triggers>
+										<Trigger Type="javascript/angular" Runat="client">
+                                            <![CDATA[
+                                    @$this.__loadDics("kqzyqxwh");
+	                            ]]>
+										</Trigger>
+									</Triggers>
+								</BillUIWidget>
+
+								<BillUIWidget Caption="重置" Key="cancel"
+									EnabledWhen="True" Icon="glyphicon glyphicon-send" WidgetType="BillUIButton">
+									<Triggers>
+										<Trigger Type="javascript/angular" Runat="client">
+                                            <![CDATA[
+			                                      
+			                                      @$this.__loadDics();
+			 	                            ]]>
+										</Trigger>
+									</Triggers>
+								</BillUIWidget>
+							</BillUIColPanel>
+						</BillUIRowPanel>
+					</BillUIGridPanel>
+				</BillUIPanel>
+
+				<BillUIPanel Layout="tab" Key="bills_tabs" Caption="查询展示列" S="panel  panel-primary  publicPanel">
+					<BillUIGrid Key="grid0" SelectMode="Multi" OptMode="View"
+						DataTableKey="kqzyqxwh">
+						<DoubleClickHandlers>
+							<DoubleClickHandler>
+                                <![CDATA[
+                                    var shangpin=this.row;
+                                    window.location.href='/bill/view/dics-item?billKey=kqzyqxwh&ID='+shangpin.ID+'&allDisabled=true';
+                                ]]>
+							</DoubleClickHandler>
+						</DoubleClickHandlers>
+
+						<GridHeads>
+							<GridHead Col="zhiyuanmingcheng" Caption="职员名称" enableEdit="True"
+								Width="180px">
+								<BillUIWidget Key="zhiyuanmingcheng" WidgetType="BillUIString" />
+							</GridHead>
+							<GridHead Col="cangkumingcheng" Caption="仓库"
+								enableEdit="True" Width="150px">
+								<BillUIWidget Key="cangkumingcheng" WidgetType="BillUIString" />
+							</GridHead>
+							<GridHead Col="kuqumingcheng" Caption="库区名称" enableEdit="True"
+								Width="180px">
+								<BillUIWidget Key="kuqumingcheng" WidgetType="BillUIString" />
+							</GridHead>
+							<GridHead Col="kuqubianhao" Show="false" Caption="库区编号" enableEdit="True"
+								Width="180px">
+								<BillUIWidget Key="kuqubianhao" WidgetType="BillUIString" />
+							</GridHead>
+							<GridHead Col="zuoyeshunxu" Caption="作业顺序" enableEdit="True"
+								Width="120px">
+								<BillUIWidget Key="zuoyeshunxu" WidgetType="BillUIInteger" />
+							</GridHead>
+							
+							<GridHead Col="shangjia" Caption="上架" enableEdit="True"
+								Width="150px">
+								<BillUIWidget Key="shangjia" WidgetType="BillUIInteger" >
+								<Formatters>
+									<Formatter>
+									        <![CDATA[
+									        	[{'url':'/bill/selectSrc','type':'shangjia'}]
+									        ]]>
+									</Formatter>
+								</Formatters>
+								</BillUIWidget>
+							</GridHead>
+							<GridHead Col="jianhuo" Caption="拣货" enableEdit="True"
+								Width="150px">
+								<BillUIWidget Key="jianhuo" WidgetType="BillUIInteger">
+								<Formatters>
+									<Formatter>
+									        <![CDATA[
+									              [{'url':'/bill/selectSrc','type':'jianhuo'}]
+									        ]]>
+									</Formatter>
+								</Formatters>
+								</BillUIWidget>
+							</GridHead>
+							<GridHead Col="buhuo" Caption="补货" enableEdit="True"
+								Width="160px">
+								<BillUIWidget Key="buhuo" WidgetType="BillUIInteger">
+								<Formatters>
+									<Formatter>
+									        <![CDATA[
+									            [{'url':'/bill/selectSrc','type':'buhuo'}]
+									        ]]>
+									</Formatter>
+								</Formatters>
+								</BillUIWidget>
+							</GridHead>
+							<GridHead Col="pandian" Caption="盘点" enableEdit="True"
+								Width="160px">
+								<BillUIWidget Key="pandian" WidgetType="BillUIInteger">
+								<Formatters>
+									<Formatter>
+									        <![CDATA[
+									            [{'url':'/bill/selectSrc','type':'pandian'}]
+									        ]]>
+									</Formatter>
+								</Formatters>
+								</BillUIWidget>
+							</GridHead>
+						</GridHeads>
+					</BillUIGrid>
+				</BillUIPanel>
+			</BillUIPanel>
+		</BillBodyMeta>
+	</BillBody>
+	<BillHeadMeta>
+		<RuleKeys>
+			<RuleKey Type="PUSH">
+
+			</RuleKey>
+		</RuleKeys>
+	</BillHeadMeta>
+</BillFormMeta>
+

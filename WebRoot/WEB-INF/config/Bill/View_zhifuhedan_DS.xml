@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="zhifuhedan" Caption="支付核单叙事薄" DefaultFilter="" Pagging="20"
+               TableName="SQLQuery::select * | from xyy_erp_bill_zhifuhedan where 1 = 1 @danjubianhao  @kehumingcheng @yxsddbh @shifouzhifu  ORDER BY createTime DESC" DataSource="" Head="false">
+        <Parameters>
+            <Parameter Key="danjubianhao" Type="String">
+                <Where>
+                <![CDATA[
+					m.if(danjubianhao==null | danjubianhao=="" ,""," and danjubianhao like '%"+danjubianhao+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="kehumingcheng" Type="String" >
+                <Where>
+                <![CDATA[
+					m.if(kehumingcheng==null | kehumingcheng=="" ,""," and kehumingcheng like '%"+kehumingcheng+"%'")
+                ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="yxsddbh" Type="String" >
+                <Where>
+                    <![CDATA[
+					m.if(yxsddbh==null | yxsddbh=="" ,""," and yxsddbh like '%"+yxsddbh+"%'")
+                ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="shifouzhifu" Type="Integer" >
+                <Where>
+                <![CDATA[
+                	m.if(shifouzhifu==null,""," and shifouzhifu="+shifouzhifu+"")
+				]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

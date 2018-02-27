@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BillFormMeta Key="spphxqtz" Version="1.0.0" BillType="Bill"
+              Caption="商品批号效期调整">
+    <BillBody>
+        <BillBodyMeta UserAgent="web">
+            <BillUIPanel Layout="flex" FlexDirection="column" Width="100%"
+                         Key="mainContainer" Caption="商品批号效期调整" S="">
+                <BillUIPanel Layout="flex" Key="toolbox" Caption="工具栏">
+                    <!--属性 colPush 向右推 colPull 向左拉 colOffset 左边距 -->
+                    <BillUIWidget Key="save" Caption="保存" EnabledWhen="True"
+                                  Icon="glyphicon glyphicon-floppy-disk" WidgetType="BillUIButton">
+                        <Triggers>
+                            <Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+                                         @$this.save('bills',{
+                                        before:{
+                                           setStatus:[20]
+                                        }
+                                    });
+	                            ]]>
+                            </Trigger>
+                        </Triggers>
+                        <Init Type="javascript/angular" Runat="client">
+                            <![CDATA[
+                                        		if(getStatus()>=20){
+                                        			this.setHide();
+                                        		}else{
+                                        			this.setShow();
+                                        		}
+									]]>
+                        </Init>
+                    </BillUIWidget>
+                    <BillUIWidget Key="goback" Caption="返回" EnabledWhen="True"
+                                  Icon="glyphicon glyphicon-align-left" WidgetType="BillUIButton" S="btn btn-danger">
+                        <Triggers>
+                            <Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+                                   @$this.return();
+	                            ]]>
+                            </Trigger>
+                        </Triggers>
+                    </BillUIWidget>
+                </BillUIPanel>
+                <BillUIPanel Layout="flex" Key="mainContainer_head"
+                             Caption="商品批号效期调整" S="panel panel-success publicPanel">
+                    <BillUIGridPanel Key="spphxqtz">
+
+                        <BillUIRowPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="zhidanriqi" Caption="制单日期"
+                                              Required="required" DataTableKey="spphxqtz"
+                                              DataTableColumn="zhidanriqi
+                                              " EnabledWhen="True" WidgetType="BillUIDateTime">
+                                    <Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                        		var value = this.getValue();
+                                        		if(value != null && value != 'undefined'){
+                                        			var t=this.formatDate(new Date());
+                                                	this.setValue(t);
+                                        		}
+										]]>
+                                    </Init>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="kufang" Caption="仓库"
+                                              DataTableKey="spphxqtz" DataTableColumn="kufang"
+                                              Required="required" EnabledWhen="True" WidgetType="BillUIPopupWindow"
+                                              ViewSize="normal" Disable="true" Src="cangku">
+                                    <Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                            var orgId=this.getOrgId();
+                                        ]]>
+                                    </Init>
+
+                                    <Triggers>
+                                        <Trigger>
+                                            <![CDATA[
+                                                var kufang = this.rows[0];
+                                                this.setValue(kufang.cangkumingchen);
+                                                @cangkubianhao.setValue(kufang.cangkubianhao);
+                                            ]]>
+                                        </Trigger>
+                                    </Triggers>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="cangkubianhao" Caption="仓库编号" Disable="true"
+                                              DataTableKey="sunyiqueren" DataTableColumn="cangkubianhao"
+                                              EnabledWhen="True" WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="huzhu" Caption="货主"
+                                              DataTableKey="c" DataTableColumn="kufang"
+                                              Required="required" EnabledWhen="True" WidgetType="BillUIString"
+                                              ViewSize="normal" Disable="true">
+                                    <Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                           this.setValue("小药药");
+                                         ]]>
+                                    </Init>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="zhidanren" Caption="调整人" Disable="true"
+                                              Required="required" DataTableKey="spphxqtz" DataTableColumn="zhidanren"
+                                              EnabledWhen="True" WidgetType="BillUIPopupWindow" Src="zhiyuan">
+                                    <Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+			                   				var t=this.getRealName();
+			                               @zhidanren.setValue(t);
+										]]>
+                                    </Init>
+                                    <Triggers>
+                                        <Trigger>
+                                            <![CDATA[
+                                                    var zhidanren=this.rows[0];
+                                                    this.setValue(zhidanren.realName);
+                                                ]]>
+                                        </Trigger>
+                                    </Triggers>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                        </BillUIRowPanel>
+                    </BillUIGridPanel>
+                </BillUIPanel>
+
+                <BillUIPanel Layout="tab" Key="mainContainer_tab" Caption="商品批号效期调整明细"
+                             S="panel  panel-primary  publicPanel">
+                    <BillUIGrid Key="spphxqtz_details" SelectMode="Single" OptMode="Edit"
+                                DataTableKey="spphxqtz_details">
+                        <GridHeads>
+                            <GridHead Col="shangpinbianhao" Caption="商品编号" enableEdit="True" Width="110px">
+                                <BillUIWidget Key="shangpinbianhao" Disable="true" WidgetType="BillUIString"/>
+                            </GridHead>
+                            <GridHead Col="shangpinmingcheng" Caption="商品名称" enableEdit="True" Width="150px">
+                                <BillUIWidget Key="shangpinmingcheng" WidgetType="BillUIPopupWindow"
+                                              Disable="true" Src="shangpinbianhao">
+                                    <Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                                var t=@shangpinmingcheng.getValue();
+                                                t.then(function(data){
+                                                     @shangpinmingcheng.setEnvModel({shangpinmingcheng:data});
+                                                })
+
+	                                        ]]>
+                                    </Init>
+                                    <Triggers>
+                                        <Trigger>
+                                            <![CDATA[
+                                                var shangpinObj=this.rows[0];
+                                                console.log("shangpinObj",shangpinObj);
+                                               	this.setValue(shangpinObj.shangpinmingcheng);
+                                                @shangpinbianhao.setValue(shangpinObj.shangpinbianhao);
+                                                @danwei.setValue(shangpinObj.danwei);
+                                                @shengchanchangjia.setValue(shangpinObj.shengchanchangjia);
+                                                @guige.setValue(shangpinObj.guige);
+                                                @pizhunwenhao.setValue(shangpinObj.pizhunwenhao);
+                                                @dbzsl.setValue(shangpinObj.dbzsl);
+                                                setCoColValue("spphxqtz_details", "goodsid",shangpinObj.goodsid);
+                                                @yshengchanriqi.setValue("");
+                                               	@yyouxiaoqizhi.setValue("");
+                                               	@ypihao.setValue("");
+                                               	@newpihao.setValue("");
+                                               	@newshengchanriqi.setValue("");
+                                               	@newyouxiaoqizhi.setValue("");
+                                                ]]>
+                                        </Trigger>
+                                    </Triggers>
+
+                                </BillUIWidget>
+                            </GridHead>
+                            <GridHead Col="goodsid" Caption="商品Id" enableEdit="True" Width="10px" Show="false">
+                                <BillUIWidget Key="goodsid" WidgetType="BillUIString"/>
+                            </GridHead>
+                            <GridHead Col="guige" Caption="规格" enableEdit="True" Width="120px">
+                                <BillUIWidget Key="guige" Disable="true" WidgetType="BillUIString"/>
+                            </GridHead>
+
+                            <GridHead Col="danwei" Caption="单位" enableEdit="True" Width="80px">
+                                <BillUIWidget Key="danwei" Disable="true" WidgetType="BillUISelect"
+                                              Src="Bill/selectSrc?type=baozhuangdanwei">
+                                    <Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+			                                this.loadDataSource();
+										]]>
+                                    </Init>
+
+                                    <Formatters>
+                                        <Formatter>
+                                            <![CDATA[
+                                                [{'type':'baozhuangdanwei'}]
+                                            ]]>
+                                        </Formatter>
+                                    </Formatters>
+                                </BillUIWidget>
+                            </GridHead>
+                            <GridHead Col="dbzsl" Caption="包装数量" enableEdit="True" Width="80px">
+                                <BillUIWidget Key="dbzsl" Disable="true" WidgetType="BillUIDecimal"/>
+                            </GridHead>
+                            <GridHead Col="pizhunwenhao" Caption="批准文号" enableEdit="True" Width="150px">
+                                <BillUIWidget Key="pizhunwenhao" Disable="true" WidgetType="BillUIString"/>
+                            </GridHead>
+                            <GridHead Col="shengchanchangjia" Caption="生产厂家" enableEdit="True" Width="150px">
+                                <BillUIWidget Key="shengchanchangjia" Disable="true" WidgetType="BillUIString"/>
+                            </GridHead>
+
+                            <GridHead Col="ypihao" Caption="原批号" enableEdit="True" Width="80px">
+                                <BillUIWidget Key="ypihao" Disable="true" Src="pihao" WidgetType="BillUIPopupWindow">
+                                    <OnClickHandlers>
+                                        <OnClickHandler>
+                                            <![CDATA[
+														var shangpinId = getDataset("spphxqtz_details").co.goodsid;
+														setEnv({goodsid:shangpinId});
+				                                ]]>
+                                        </OnClickHandler>
+                                    </OnClickHandlers>
+                                    <Triggers>
+                                        <Trigger>
+                                            <![CDATA[
+                                              var pihaoObj=this.rows[0];
+                                              console.log("pihao",pihaoObj);
+                                               	this.setValue(pihaoObj.pihao);
+                                               	@yshengchanriqi.setValue(pihaoObj.shengchanriqi);
+                                               	@yyouxiaoqizhi.setValue(pihaoObj.youxiaoqizhi);
+                                               	setCoColValue("spphxqtz_details", "pihaoId", pihaoObj.pihaoId);
+                                            ]]>
+                                        </Trigger>
+                                    </Triggers>
+                                </BillUIWidget>
+                            </GridHead>
+                            <GridHead Col="pihaoId" Caption="批号ID" enableEdit="True"
+                                      Show="false" Width="150px">
+                                <BillUIWidget Key="pihaoId" WidgetType="BillUIString"/>
+                            </GridHead>
+                            <GridHead Col="yshengchanriqi" Caption="原生产日期" enableEdit="True" Width="120px">
+                                <BillUIWidget Key="yshengchanriqi" Disable="true" WidgetType="BillUIDateTime"/>
+                            </GridHead>
+                            <GridHead Col="yyouxiaoqizhi" Caption="原有效期至" enableEdit="True" Width="120px">
+                                <BillUIWidget Key="yyouxiaoqizhi" Disable="true" WidgetType="BillUIDateTime"/>
+                            </GridHead>
+                            <GridHead Col="newpihao" Caption="新批号" enableEdit="True" Width="80px">
+                                <BillUIWidget Key="newpihao" Src="pihao" WidgetType="BillUIString"/>
+                            </GridHead>
+                            <GridHead Col="newshengchanriqi" Caption="新生产日期" enableEdit="True" Width="120px">
+                                <BillUIWidget Key="newshengchanriqi" WidgetType="BillUIDateTime"/>
+                            </GridHead>
+                            <GridHead Col="newyouxiaoqizhi" Caption="新有效期至" enableEdit="True" Width="120px">
+                                <BillUIWidget Key="newyouxiaoqizhi" WidgetType="BillUIDateTime"/>
+                            </GridHead>
+                        </GridHeads>
+                    </BillUIGrid>
+                </BillUIPanel>
+            </BillUIPanel>
+        </BillBodyMeta>
+    </BillBody>
+
+    <BillHeadMeta>
+        <BillStatusCollection>
+            <Status Default="true" Code="1">录入</Status>
+            <Status Code="20">正式</Status>
+            <Status Code="40">审核通过</Status>
+        </BillStatusCollection>
+        <BillEventCollection>
+            <Event Type="PreSave" Processor="com.xyy.wms.handler.biz.BillSpphxqtzPreHandler"/>
+            <Event Type="PostSave"
+                   Processor="com.xyy.wms.handler.biz.BillSpphxqtzPostHandler"/>
+        </BillEventCollection>
+    </BillHeadMeta>
+</BillFormMeta>
+

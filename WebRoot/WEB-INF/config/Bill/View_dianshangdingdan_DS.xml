@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="dianshangdingdan" Caption="电商订单叙事薄" DefaultFilter="" Pagging="20"
+               TableName="SQLQuery::select * | from xyy_erp_bill_dianshangdingdan where status > 0  @danjubianhao  @kehumingcheng @kehubianhao @status @startTime @endTime order by kaipiaoriqi desc" DataSource="" Head="false">
+        <Parameters>
+            <Parameter Key="danjubianhao" Type="String">
+                <Where>
+                <![CDATA[
+					m.if(danjubianhao==null | danjubianhao=="" ,""," and danjubianhao like '%"+danjubianhao+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="startTime" Type="String" >
+                <Where>
+                <![CDATA[
+					m.if(startTime==null | startTime=="" ,""," and DATE_FORMAT(kaipiaoriqi,'%Y-%m-%d') >= DATE_FORMAT('"+startTime+"','%Y-%m-%d')")
+                ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="endTime" Type="String" >
+                <Where>
+                <![CDATA[
+					m.if(endTime==null | endTime=="" ,""," and DATE_FORMAT(kaipiaoriqi,'%Y-%m-%d') <= DATE_FORMAT('"+endTime+"','%Y-%m-%d')")
+                ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="kehumingcheng" Type="String" >
+                <Where>
+                <![CDATA[
+					m.if(kehumingcheng==null | kehumingcheng=="" ,""," and kehumingcheng like '%"+kehumingcheng+"%'")
+                ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="kehubianhao" Type="String" >
+                <Where>
+                <![CDATA[
+					m.if(kehubianhao==null | kehubianhao=="" ,""," and kehubianhao like '%"+kehubianhao+"%'")
+                ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="status" Type="Integer" >
+                <Where>
+                <![CDATA[
+                	m.if(status==null,""," and status="+status+"")
+				]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

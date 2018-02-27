@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<BillViewMeta Key="migratejinxiangkaipiao" Caption="缺货登记单明细" Version="">
+	<BillBody UserAgent="web">
+		<BillBodyMeta>
+			<BillUIPanel Layout="flex" Key="dictionary_tools" Caption="缺货登记单明细"  S="">
+			     <BillUIGridPanel Key="migratejinxiangkaipiao_grid">
+                    <BillUIRowPanel>
+                    	<BillUIColPanel Width="3">
+                            <BillUIWidget Caption="开始日期" Key="cancel"
+                                EnabledWhen="True"   ParameterKey="kaishishijian"
+                                DataTableKey="migratejinxiangkaipiao_view"
+                                WidgetType="BillUIDateTime">
+                            </BillUIWidget>
+                        </BillUIColPanel>
+                        <BillUIColPanel Width="3">
+                            <BillUIWidget Caption="结束日期" Key="cancel"
+                                EnabledWhen="True"   ParameterKey="jiesushijian"
+                                DataTableKey="migratejinxiangkaipiao_view"
+                                WidgetType="BillUIDateTime">
+                            </BillUIWidget>
+                        </BillUIColPanel>
+                        <BillUIColPanel Width="3">
+                            <BillUIWidget Caption="供应商编号" Key="cancel"
+                                EnabledWhen="True" Disable="true"   ParameterKey="gysbh"
+                                DataTableKey="migratejinxiangkaipiao_view"
+                                WidgetType="BillUIString">
+                            </BillUIWidget>
+                        </BillUIColPanel>
+						<BillUIColPanel Width="3">
+							<BillUIWidget Caption="供应商名称" Key="cancel"
+										  EnabledWhen="True" Disable="true"  ParameterKey="gysmc"
+										  DataTableKey="migratejinxiangkaipiao_view"
+										  WidgetType="BillUIString">
+							</BillUIWidget>
+						</BillUIColPanel>
+						<BillUIColPanel Width="3">
+							<BillUIWidget Caption="单据编号" Key="cancel"
+										  EnabledWhen="True"   ParameterKey="danjubianhao"
+										  DataTableKey="migratejinxiangkaipiao_view"
+										  WidgetType="BillUIString">
+							</BillUIWidget>
+						</BillUIColPanel>
+                        <BillUIColPanel Width="1">
+                            <BillUIWidget Caption="查询" Key="search"
+                                EnabledWhen="True"
+                                Icon="glyphicon glyphicon-send" WidgetType="BillUIButton">
+                                <Triggers>
+                                    <Trigger Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                        	this.search("migratejinxiangkaipiao_view");
+                                 			]]>
+                                    </Trigger>
+                                </Triggers>
+                            </BillUIWidget>
+                        </BillUIColPanel>
+                    </BillUIRowPanel>
+			         <BillUIRowPanel>
+						 <BillUIColPanel Width="12">
+							 <BillUIPanel Layout="flex" Key="dictionary_tools">
+								 <BillUIGrid Key="grid0" OptMode="View" SelectMode="Single" DataTableKey="migratejinxiangkaipiao_view">
+								 	<GridHeads>
+									 <GridHead Col="danjubianhao" Caption="单据编号" Width="150px">
+										 <BillUIWidget Key="danjubianhao" WidgetType="BillUIString"/>
+									 </GridHead>
+									 <GridHead Col="kaipiaoyuan" Caption="开票员"  Width="100px">
+										 <BillUIWidget Key="kaipiaoyuan" WidgetType="BillUIString"/>
+									 </GridHead>
+									 <GridHead Col="kaipiaoriqi" Caption="制单日期" Width="100px">
+										 <BillUIWidget Key="kaipiaoriqi" WidgetType="BillUIString"/>
+									 </GridHead>
+									 <GridHead Col="gysbh" Caption="供应商编号"  Width="120px">
+										 <BillUIWidget Key="gysbh" WidgetType="BillUIString"/>
+									 </GridHead>
+									 <GridHead Col="gysmc" Caption="供应商名称"  Width="120px">
+										 <BillUIWidget Key="gysmc" WidgetType="BillUIString"/>
+									 </GridHead>
+									 <GridHead Col="caigouyuan" Caption="业务员"  Width="100px">
+										 <BillUIWidget Key="caigouyuan" WidgetType="BillUIString"/>
+									 </GridHead>
+									 <GridHead Col="ydzje" Caption="含税金额"  Width="80px">
+										 <BillUIWidget Key="ydzje" WidgetType="BillUIDecimal"/>
+									 </GridHead>
+									 <GridHead Col="ykpje" Caption="已开票金额"  Width="80px">
+										 <BillUIWidget Key="ykpje" WidgetType="BillUIDecimal"/>
+									 </GridHead>
+									 <GridHead Col="wkpje" Caption="未开票金额"  Width="80px">
+									 	<BillUIWidget Key="wkpje" WidgetType="BillUIDecimal"/>
+									 </GridHead>
+									 <GridHead Col="zhaiyao" Caption="摘要"  Width="100px">
+										 <BillUIWidget Key="zhaiyao" WidgetType="BillUIString"/>
+									 </GridHead>
+								 </GridHeads>
+							 	</BillUIGrid>
+							 </BillUIPanel>
+
+						 </BillUIColPanel>
+			         </BillUIRowPanel>
+			         
+			     </BillUIGridPanel>
+             </BillUIPanel>
+		</BillBodyMeta>
+	</BillBody>
+	
+</BillViewMeta>

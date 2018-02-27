@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="jihuowei" BillType="Dictionary" Caption="集货位" DefaultFilter="" TableName="Table::xyy_wms_dic_jihuowei" DataSource="" Head="true">
+
+        <Field FieldKey="jihuoweibianhao" FieldName="集货位编号" FieldType="Varchar" Comment="集货位编号"/>
+        <Field FieldKey="jihuoweiID" FieldName="集货位ID" FieldType="Varchar" Comment="集货位ID（ID）"/>
+        <Field FieldKey="zhuangtai" FieldName="状态" FieldType="Varchar" Comment="状态（36可使用， 37正在使用中）"/>
+        
+        <Field FieldKey="qiyong" FieldName="启用" FieldType="Int" DefaultValue="1" Comment="是否启用：  0.否  1.是"/>
+        <Field FieldKey="jihuoweimiaoshu" FieldName="集货位描述" FieldType="Varchar" Comment="集货位描述"/>
+        <Field FieldKey="xiangdao" FieldName="巷道" FieldType="Varchar" Comment="巷道"/>
+        <Field FieldKey="pai" FieldName="排" FieldType="Varchar" Comment="排"/>
+        <Field FieldKey="ceng" FieldName="层" FieldType="Varchar" Comment="层"/>
+        <Field FieldKey="lie" FieldName="列" FieldType="Varchar" Comment="列"/> 
+        <Field FieldKey="chang" FieldName="长" FieldType="Decimal" DefaultValue="0.0" Comment="长" Bound="14,2"/>
+        <Field FieldKey="kuan" FieldName="宽" FieldType="Decimal" DefaultValue="0.0" Comment="宽" Bound="14,2"/>  
+        <Field FieldKey="gao" FieldName="高" FieldType="Decimal" DefaultValue="0.0" Comment="高" Bound="14,2"/>
+        <Field FieldKey="tiji" FieldName="体积" FieldType="Decimal" DefaultValue="0.0"  Comment="体积" Bound="14,2"/>
+        <Field FieldKey="X" FieldName="X坐标" FieldType="Varchar" Comment="X"/>
+        <Field FieldKey="Y" FieldName="Y坐标" FieldType="Varchar" Comment="Y"/>
+        <Field FieldKey="Z" FieldName="Z坐标" FieldType="Varchar" Comment="Z"/>     
+        <Field FieldKey="jihuoweileixing" FieldName="集货位类型" FieldType="Int" Comment="集货位类型 1.中客户 2.大客户 3.普通客户 4.小客户"/>
+        <Field FieldKey="yewuleixing" FieldName="业务类型" FieldType="Int" Tramsfor="false" Comment="业务类型 1.购进购出 2自提 3直通  4销售出库 "/>
+        <Field FieldKey="tihuofangshi" FieldName="提货方式" FieldType="Int" Tramsfor="false" Comment="提货方式 1.自提 2.托运 3.市内配送，4购退 "/>
+        <Field FieldKey="chengzairongqi" FieldName="承载容器" FieldType="Int" Tramsfor="false" Comment="承载容器 （3-周转箱，2-无，4-托盘） "/>
+        <Field FieldKey="chengyunshang" FieldName="承运商" FieldType="Varchar" Comment="承运商"/>
+        <Field FieldKey="cangkuID" FieldName="仓库ID" FieldType="Varchar" Comment="仓库ID" />
+        <Field FieldKey="luxianid" FieldName="配送线路ID" FieldType="Varchar" Comment="配送线路ID"/>
+        
+        <Field FieldKey="shunxuhao" FieldName="顺序号" FieldType="Int" Comment="顺序号" />
+        <Field FieldKey="paixu" FieldName="排序" FieldType="Int" Comment="排序"/>
+        <Field FieldKey="shifousuoding" FieldName="是否被锁定" FieldType="Int" Comment="是否被锁定 1是 0否"/>
+          
+    </DataTable>
+
+
+</DataSet>

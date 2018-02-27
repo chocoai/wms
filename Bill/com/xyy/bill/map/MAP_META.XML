@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+     TgtSave:是否转换
+     AllowMultiCreate:是否可以多次生成
+     hooks:
+         [1].开始转换前：用于map规则执行前
+         [2].记录转换前：转换每条记录前执行
+         [3].记录转换后：转换每条记录后执行
+         [4].转换完成后：用于map规则执行后 
+-->
+<Map Key="a2b" Caption="测试map" 
+    SrcDataObjectKey="caigoudingdan" 
+    SrcDataType="Bill"  
+    TgtDataObjectKey="caigourukudan" 
+    TgtDataType="Bill"  
+    MaxPushValue="100"
+    MinPushValue="0"
+    TgtSave="true|false"
+    AllowMultiCreate="AllowMulti|Forbid"
+    >
+    <!-- 
+        转换规则执行是的条件
+    -->
+    <Condition>                
+    </Condition>
+    <!-- 
+        转换触发器
+    -->
+    <TriggerConnection>
+        <!-- 前置触发器 -->
+        <Trigger Scope="Preposition" Class=""/>
+        <!-- 
+            后置触发器
+        -->
+        <Trigger Scope="Postposition" Class=""/>
+    </TriggerConnection>
+    
+    
+    <!--  目标数据对象列表 -->
+    <TargetTableCollection>
+      
+        <!-- 
+            目标表：
+            Key：目标表key
+            SrcTableKey:源表key
+        -->
+        <TargetTable Key="caigourukudan" SrcTableKey="caigoudingdan">
+            <!-- 
+                表记录转化条件
+            -->
+            <Condition>                
+            </Condition>
+            
+            <!-- 
+                转换触发器
+            -->
+            <TriggerConnection>
+                <!-- 前置触发器 -->
+                <Trigger Scope="Preposition" Class=""/>
+                <!-- 
+                    后置触发器
+                -->
+                <Trigger Scope="Postposition" Class=""/>
+            </TriggerConnection>
+            <!-- 
+                目标字段
+                FieldKey：目标字段key
+                [说明]
+                    "="开后后面为公式；
+                    非"="开头的为常量内容
+            -->
+            <Field FieldKey="danjubianhao">
+                <![CDATA[
+                     =danjubianhao
+              ]]>
+            </Field>
+            <Field FieldKey="status">
+                <![CDATA[
+                     =status
+              ]]>
+            </Field>
+            <Field FieldKey="gysbh">
+                <![CDATA[
+                     =gysbh
+              ]]>
+            </Field>
+            <Field FieldKey="gysmc">
+                <![CDATA[
+                     =gysmc
+              ]]>
+            </Field>
+			<Field FieldKey="sjdjbh">
+                <![CDATA[
+                     =_.danjubianhao
+              ]]>
+			</Field>
+			  <Field FieldKey="sfyfk">
+                <![CDATA[
+                     =sfyfk
+              ]]>
+			  </Field>
+			  <Field FieldKey="jiesuanfangshi">
+                <![CDATA[
+                     =jiesuanfangshi
+              ]]>
+            </Field>
+        </TargetTable>
+        
+        <!-- 
+            目标汇总表定义,用于对转换的目标表进行汇总计算
+            Key:目标表
+            RefTableKey:引用需要汇总的目标表
+        -->
+        <TargetTable Key="caigourukudan_sum"  RefTableKey="caigourukudan_details" >
+            <!-- 
+                定义目标表字段
+                FieldKey：字段key
+                RefFieldKey:引用字段
+                CalOpt：计算方式：Group:对引用字段进行分组；Gather：对引用字段进行汇聚计算
+                Gather：汇聚计算方式：sum:和，avg:求平均值；min:最小值；max：最大值
+            -->
+            <Field FieldKey="danjubianhao"  RefFieldKey=""  CalOpt="Group|Gather" Gather="Sum|Avg|Min|Max"/>
+            <Field  />
+        </TargetTable>   
+    </TargetTableCollection>
+    
+    
+    <!-- 
+       反填属性定义
+    -->
+    <FeedBackCollection>
+        <!-- 
+                回写对象定义：
+                TableKey:目标表key,当目标表满足反填条件时，执行反填，可以定义多个反填对象，每个反填对象
+                         跟踪一个目标表的变化，并反填原表  
+                 BillStatus:单据状态条件                
+        -->
+        <FeedbackObject TableKey="" BillStatus=""> 
+                       
+            <!-- 
+			                反填条件：
+			                    单据状态条件：目标单据满足状态时的回写条件
+			                    单据数据条件：目标单据满足数据是的回写条件 ,condition主要是数据条件                
+            -->
+            <Condition>               
+            </Condition>
+            <FeedbackTableCollection>
+            <!-- 
+                                                  反填目标表：TableKey：需要反填的目标表(表名)
+                      	  Key:反填标识，在一个MAP文件中必须唯一（标识一次处理单元）       
+            -->
+            <FeedbackTable Key="" TableKey="TableNameKey" >
+                <!-- 
+                    翻填目标表的字段：
+                    FieldKey：反填目标表的字段
+                    FeedFieldKey:目标中的字段key,可以为空，为空时，将表达式中的值回写到原表标表中；
+                    即将目标表中的FeedFieldKey子段中的值反填到源FieldKey中；
+                    OpSign:反填方式：加变化量：AddDelta
+                                     赋直接值：Assign
+                                     加值：    AddValue;
+                -->
+                <FeedbackField FieldKey="abc"  FeedFieldKey=""  OpSign="AddDelta|Assign">
+                    <![CDATA[
+                        =price*count
+                    ]]>
+                </FeedbackField>
+            </FeedbackTable>
+            <!-- 一个反填对象可以跟踪多个源单 -->
+            <FeedbackTable />
+            </FeedbackTableCollection>
+           </FeedbackObject>
+    </FeedBackCollection>
+</Map>

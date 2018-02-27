@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BillViewMeta Key="kuqu" Caption="工具栏" Version="">
+
+	<BillBody UserAgent="web">
+		<BillBodyMeta>
+			<BillUIPanel Layout="flex" Key="kuqu_tools" Caption="工具栏"
+				RowGap="7" ColGap="10" ColWidth="repeat(8,auto) 1fr" S="">
+				<BillUIGridPanel Key="kuqu_grid">
+					<BillUIRowPanel>
+						<BillUIColPanel Width="4">
+							<BillUIWidget Caption="库区编号" Key="kuqubianhao"
+								EnabledWhen="True" ParameterKey="kuqubianhao" DataTableKey="kuqujibenxinxi_view"
+								WidgetType="BillUIString">
+							</BillUIWidget>
+						</BillUIColPanel>
+						<BillUIColPanel Width="4">
+							<BillUIWidget Caption="仓库名称" Key="cangkumingcheng"
+								EnabledWhen="True" ParameterKey="cangkumingcheng" DataTableKey="kuqujibenxinxi_view"
+								WidgetType="BillUIString">
+							</BillUIWidget>
+						</BillUIColPanel>
+						<BillUIColPanel Width="2">
+							<BillUIWidget Caption="查询" Key="search" EnabledWhen="True"
+								Icon="glyphicon glyphicon-send" WidgetType="BillUIButton">
+								<Triggers>
+									<Trigger Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                        	this.search("kuqujibenxinxi_view");
+                                 			]]>
+									</Trigger>
+								</Triggers>
+							</BillUIWidget>
+
+						</BillUIColPanel>
+					</BillUIRowPanel>
+					<BillUIRowPanel>
+						<BillUIColPanel Width="12">
+							<BillUIPanel Layout="flex" Key="dictionary_tools">
+								<BillUIGrid Key="grid0" OptMode="View" RowId=""
+									DataTableKey="kuqujibenxinxi_view">
+									<GridHeads>
+										<GridHead Col="cangkubianhao" Caption="仓库编号"
+											enableEdit="True" Width="160px">
+											<BillUIWidget Key="cangkubianhao" WidgetType="BillUIString" />
+										</GridHead>
+										<GridHead Col="cangkumingchen" Caption="仓库名称"
+											enableEdit="True" Width="160px">
+											<BillUIWidget Key="cangkumingchen" WidgetType="BillUIString" />
+										</GridHead>
+										<GridHead Col="kuqubianhao" Caption="库区编号"
+											enableEdit="True" Width="160px">
+											<BillUIWidget Key="kuqubianhao" WidgetType="BillUIString" />
+										</GridHead>
+										<GridHead Col="kuqumingcheng" Caption="库区名称"
+											enableEdit="True" Width="160px">
+											<BillUIWidget Key="kuqumingcheng" WidgetType="BillUIInteger" />
+										</GridHead>
+										<GridHead Col="cctjbm" Caption="储存条件" enableEdit="True"
+											Width="160px">
+											<BillUIWidget Key="cctjbm" WidgetType="BillUIInteger">
+												<Formatters>
+													<Formatter>
+												        <![CDATA[
+												            [{'type':'chucuntiaojian'}]
+												        ]]>
+													</Formatter>
+												</Formatters>
+											</BillUIWidget>
+										</GridHead>
+										<GridHead Col="kqlbbh" Caption="库区类别" enableEdit="True"
+											Width="160px">
+											<BillUIWidget Key="kqlbbh" WidgetType="BillUIInteger">
+												<Formatters>
+													<Formatter>
+									        <![CDATA[
+									            [{'url':'/bill/selectSrc','type':'kuqutype'}]
+									        ]]>
+													</Formatter>
+												</Formatters>
+											</BillUIWidget>
+										</GridHead>
+										<GridHead Col="ID" Caption="库区基本信息ID" enableEdit="True"
+											Width="120px" Show="false">
+											<BillUIWidget Key="ID" WidgetType="BillUIString" />
+										</GridHead>
+
+									</GridHeads>
+								</BillUIGrid>
+							</BillUIPanel>
+						</BillUIColPanel>
+					</BillUIRowPanel>
+				</BillUIGridPanel>
+			</BillUIPanel>
+		</BillBodyMeta>
+	</BillBody>
+
+</BillViewMeta>

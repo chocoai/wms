@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="kehuxinxi" Caption="客户信息图表" DefaultFilter="" Pagging="10"
+               TableName="SQLQuery::select quyu,count(quyu) as count | from xyy_erp_dic_kehujibenxinxi group by quyu HAVING quyu IS NOT NULL " DataSource="" Head="false">
+    </DataTable>
+</DataSet>

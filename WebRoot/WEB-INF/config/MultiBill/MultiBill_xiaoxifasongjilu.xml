@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BillFormMeta Key="xiaoxifasongjilu" Version="1.0.0" BillType="MultiBill" Caption="消息发送记录">
+    <BillBody>
+        <BillBodyMeta UserAgent="web">
+            <BillUIPanel Layout="flex" FlexDirection="column" Width="100%" Key="mainContainer" Caption="" S="">
+                <BillUIPanel Layout="grid" Key="tools" Caption="查询面板" RowGap="3" ColGap="10"
+                             ColWidth="300px 300px 300px 1fr" S="panel panel-default publicPanel">
+                    <BillUIWidget Key="huiyuanbianhao" ParameterKey="huiyuanbianhao"  DataTableKey="xiaoxifasongjilu"  Caption="会员编号"
+                                  EnabledWhen="True" Left="1" Top="1" Width="1" Height="1"
+                                  Icon="glyphicon glyphicon-send" WidgetType="BillUIString">
+                    </BillUIWidget>
+                    <BillUIWidget Key="mobanleixing" ParameterKey="mobanleixing" DataTableKey="xiaoxifasongjilu" Caption="模板类型" EnabledWhen="True"
+                                  Left="2" Top="1" Width="1" Height="1"
+                                  Icon="glyphicon glyphicon-send" WidgetType="BillUISelect" Src="bill/selectSrc?type=messageType">
+                        <Init Type="javascript/angular" Runat="client">
+                            <![CDATA[
+                                                            this.loadDataSource();
+                                                        ]]>
+                        </Init>
+                    </BillUIWidget>
+                    <BillUIWidget Caption="取消" Key="cancel"
+                                  Left="5" Top="1" Width="1" Height="1" EnabledWhen="True"
+                                  Icon="glyphicon glyphicon-send" WidgetType="BillUIButton">
+                        <Triggers>
+                            <Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+                                         @yaodianmingchen.setValue("");
+                                         @yaopinmingchen.setValue("");
+                                         @$this.__load();
+                                    ]]>
+                            </Trigger>
+                        </Triggers>
+                    </BillUIWidget>
+                    <BillUIWidget Caption="查询" Key="search"
+                                  Left="6" Top="1" Width="1" Height="1" EnabledWhen="True"
+                                  Icon="glyphicon glyphicon-send" WidgetType="BillUIButton">
+                        <Triggers>
+                            <Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+                                    @$this.__load("xiaoxifasongjilu");
+	                            ]]>
+                            </Trigger>
+                        </Triggers>
+                    </BillUIWidget>
+                </BillUIPanel>
+
+                <BillUIPanel Layout="grid" Key="mainContainer_list" Caption="消息发送记录" RowGap="1" ColGap="1" ColWidth="1fr">
+                    <BillUIGrid Key="grid0" Left="1" Top="1" Width="1" Height="1" OptMode="View" DataTableKey="xiaoxifasongjilu">
+                        <GridHeads>
+                            <GridHead Col="huiyuanbianhao" Caption="会员编号" enableEdit="True" Width="120px">
+                                <BillUIWidget Key="huiyuanbianhao" WidgetType="BillUIString"/>
+                            </GridHead>
+                            <GridHead Col="mobanleixing" Caption="模板类型" enableEdit="True" Width="50px">
+                                <BillUIWidget Key="mobanleixing" WidgetType="BillUIInteger">
+                                    <Formatters>
+                                        <Formatter>
+                                            <![CDATA[
+                                                            [{'type':'messageType'}]
+                                                       ]]>
+                                        </Formatter>
+                                    </Formatters>
+                                </BillUIWidget>
+                            </GridHead>
+                            <GridHead Col="xiaoxineirong" Caption="消息内容" enableEdit="True" Width="80px">
+                                <BillUIWidget Key="xiaoxineirong" WidgetType="BillUIString"/>
+                            </GridHead>
+                            <GridHead Col="fasongshijian" Caption="发送时间" enableEdit="True" Width="80px">
+                                <BillUIWidget Key="fasongshijian" WidgetType="BillUIDateTime"/>
+                            </GridHead>
+                            <GridHead Col="shifoufasong" Caption="是否发送" enableEdit="True" Width="100px">
+                                <BillUIWidget Key="shifoufasong" WidgetType="BillUIInteger">
+                                    <Formatters>
+                                        <Formatter>
+                                            <![CDATA[
+                                                            [{'type':'bool'}]
+                                                       ]]>
+                                        </Formatter>
+                                    </Formatters>
+                                        </BillUIWidget>
+                            </GridHead>
+                        </GridHeads>
+                    </BillUIGrid>
+                </BillUIPanel>
+            </BillUIPanel>
+        </BillBodyMeta>
+    </BillBody>
+    <BillHeadMeta>
+    	
+    </BillHeadMeta>
+</BillFormMeta>

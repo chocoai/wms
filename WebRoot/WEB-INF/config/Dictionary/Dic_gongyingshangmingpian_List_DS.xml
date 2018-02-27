@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="gongyingshangmingpian" Caption="供应商名片列表" DefaultFilter="" Pagging="20" PermissionType="CommType"
+               TableName="SQLQuery::select * | from xyy_erp_dic_gongyingshangmingpian where 1 = 1 @mingcheng @jibie order by createTime desc" DataSource="" Head="false">
+        <Parameters>
+            <Parameter Key="mingcheng" Type="String">
+                <Where>
+                    <![CDATA[
+                        m.if(mingcheng==null | mingcheng=="" ,""," and mingcheng like '%"+mingcheng+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="jibie" Type="Integer">
+                <Where>
+                    <![CDATA[
+						m.if(jibie==null," "," and jibie="+jibie+"")
+	            ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

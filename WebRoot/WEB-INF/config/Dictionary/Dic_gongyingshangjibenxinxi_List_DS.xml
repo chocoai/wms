@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="gongyingshangjibenxinxi" Caption="供应商基本信息列表" DefaultFilter="" Pagging="20" PermissionType="CommType"
+               TableName="SQLQuery::select * | from xyy_erp_dic_gongyingshangjibenxinxi where 1 = 1 and shifouhuodong=1  @gys @status order by createTime desc" DataSource="" Head="false">
+        <Parameters>
+            <Parameter Key="gys" Type="String">
+                <Where>
+                    <![CDATA[
+                        m.if(gys==null | gys=="" ,""," and mixCondition like '%"+gys+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="status" Type="Integer">
+                <Where>
+                    <![CDATA[
+						m.if(status==null," "," and status="+status+"")
+	            ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

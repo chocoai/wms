@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BillFormMeta Key="shangpinjibenxinxi" Version="1.0.0" BillType="Dics" Caption="商品基本信息列表">
+    <BillBody>
+        <BillBodyMeta UserAgent="web">
+            <BillUIPanel Layout="flex" FlexDirection="column" Width="100%" Key="mainContainer" Caption="商品基本信息列表" S="">
+				<BillUIPanel Layout="flex" Key="toolbox" Caption="工具栏" >
+                    <BillUIWidget Key="edit" Caption="编辑"
+                                  Left="2" Top="1" Width="1" Height="1" EnabledWhen="True"
+                                  Icon="glyphicon glyphicon-edit" WidgetType="BillUIButton">
+                        <Triggers>
+                            <Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+                                            @$this.$edit();
+	                            ]]>
+                            </Trigger>
+                        </Triggers>
+                    </BillUIWidget>
+                    <BillUIWidget Key="del" Caption="删除"
+                                  EnabledWhen="True"
+                                  Icon="glyphicon glyphicon-trash" WidgetType="BillUIButton" S="btn btn-danger">
+                        <Triggers>
+                            <Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+                                        this.setEnvModel({dtlDel:'false'});
+                                       @$this.$del();
+	                            ]]>
+                            </Trigger>
+                        </Triggers>
+                    </BillUIWidget>
+                    <BillUIWidget Key="print" Caption="打印"
+                                  EnabledWhen="True"
+                                  Icon="glyphicon glyphicon-print" WidgetType="BillUIButton">
+                        <Triggers>
+                            <Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+
+	                            ]]>
+                            </Trigger>
+                        </Triggers>
+                    </BillUIWidget>
+                    <BillUIWidget Key="prePrint" Caption="打印预览" Disable="true"
+                                  EnabledWhen="True"
+                                  Icon="glyphicon glyphicon-camera" WidgetType="BillUIButton">
+                        <Triggers>
+                            <Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+
+	                            ]]>
+                            </Trigger>
+                        </Triggers>
+                    </BillUIWidget>
+                    <BillUIWidget Key="downloadExcel" Caption="导出"
+                                  EnabledWhen="True" FileName="商品资料导出"
+                                  Icon="glyphicon glyphicon-save-file" WidgetType="BillUIButton">
+                        <Init Type="javascript/angular" Runat="client">
+                            <![CDATA[
+                                            this.setEnable();
+										]]>
+                        </Init>
+                        <Triggers>
+                            <Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+                                 @$this.downloadExcel("shangpinjibenxinxi");
+	                            ]]>
+                            </Trigger>
+                        </Triggers>
+                        <ExportSheets>
+                            <ExportSheet SheetName="商品基本信息" TitleName="" DataTableKey="shangpinjibenxinxi">
+                                <ExportColumns>
+                                    <ExportColumn Caption="商品编号" DataTableColumn="shangpinbianhao"/>
+                                    <ExportColumn Caption="商品名称" DataTableColumn="shangpinmingcheng" />
+                                    <ExportColumn Caption="通用名" DataTableColumn="tongyongming"/>
+                                    <ExportColumn Caption="规格/型号" DataTableColumn="guige"/>
+                                    <ExportColumn Caption="单位" DataTableColumn="danwei" Type="Dic">
+                                        <![CDATA[
+                                          {'url':'select','type':'baozhuangdanwei'}
+                                        ]]>
+                                    </ExportColumn>
+
+                                    <ExportColumn Caption="商品类别" DataTableColumn="shangpinleibie" Type="Dic">
+                                        <![CDATA[
+                                          {'url':'select','type':'shangpinleibie'}
+                                        ]]>
+                                    </ExportColumn>
+                                    <ExportColumn Caption="生产厂家" DataTableColumn="shengchanchangjia"/>
+                                    <ExportColumn Caption="产地" DataTableColumn="chandi"/>
+                                    <ExportColumn Caption="大包装数量" DataTableColumn="dbzsl"/>
+                                    <ExportColumn Caption="中包装数量" DataTableColumn="zbzsl"/>
+                                    <ExportColumn Caption="小包装数量" DataTableColumn="xbzsl"/>
+
+                                    <ExportColumn Caption="大包装条码" DataTableColumn="dbztm"/>
+                                    <ExportColumn Caption="中包装条码" DataTableColumn="zbztm"/>
+                                    <ExportColumn Caption="小包装条码" DataTableColumn="xbztm"/>
+                                    <ExportColumn Caption="是否拆零" DataTableColumn="shifouchailing" Type="Dic">
+                                        <![CDATA[
+                                          {'url':'select','type':'bool'}
+                                        ]]>
+                                    </ExportColumn>
+                                    <ExportColumn Caption="拆分粒度" DataTableColumn="chaifenlidu" Type="Dic">
+                                        <![CDATA[
+                                          {'url':'select','type':'chaifenlidu'}
+                                        ]]>
+                                    </ExportColumn>
+
+                                    <ExportColumn Caption="效期单位" DataTableColumn="xiaoqidanwei" Type="Dic">
+                                        <![CDATA[
+                                          {'url':'select','type':'xiaoqidanwei'}
+                                        ]]>
+                                    </ExportColumn>
+                                    <ExportColumn Caption="有效期" DataTableColumn="youxiaoqi"/>
+                                    <ExportColumn Caption="存储条件" DataTableColumn="cunchutiaojian" Type="Dic">
+                                        <![CDATA[
+                                          {'url':'select','type':'kufangtiaojian'}
+                                        ]]>
+                                    </ExportColumn>
+                                    <ExportColumn Caption="养护周期" DataTableColumn="yanghuzhouqi"/>
+                                    <ExportColumn Caption="质量标准" DataTableColumn="zhiliangbiaozhun"/>
+
+                                    <ExportColumn Caption="首营企业" DataTableColumn="qiyeName"/>
+                                    <ExportColumn Caption="进项税率" DataTableColumn="jinxiangshuilv"/>
+                                    <ExportColumn Caption="销项税率" DataTableColumn="xiaoxiangshuilv"/>
+                                    <ExportColumn Caption="税务分类编码" DataTableColumn="swflbm"/>
+                                    <ExportColumn Caption="是否税务优惠" DataTableColumn="sfswyh" Type="Dic">
+                                        <![CDATA[
+                                          {'url':'select','type':'bool'}
+                                        ]]>
+                                    </ExportColumn>
+
+                                    <ExportColumn Caption="注册批件" DataTableColumn="zhucepijian"/>
+                                    <ExportColumn Caption="再注册批件" DataTableColumn="zzcpj"/>
+                                    <ExportColumn Caption="补充申请批件" DataTableColumn="bcsqpj"/>
+                                    <ExportColumn Caption="签发机关" DataTableColumn="qianfajiguan"/>
+
+                                    <ExportColumn Caption="批准文号" DataTableColumn="pizhunwenhao"/>
+                                    <ExportColumn Caption="发证日期" DataTableColumn="fazhengriqi"/>
+                                    <ExportColumn Caption="有效期至" DataTableColumn="youxiaoqizhi"/>
+
+                                    <ExportColumn Caption="商品剂型" DataTableColumn="jixing" Type="Dic">
+                                        <![CDATA[
+                                          {'url':'select','type':'shangpinjixing'}
+                                        ]]>
+                                    </ExportColumn>
+                                    <ExportColumn Caption="处方分类" DataTableColumn="chufangfenlei" Type="Dic">
+                                        <![CDATA[
+                                          {'url':'select','type':'chufangfenlei'}
+                                        ]]>
+                                    </ExportColumn>
+                                    <ExportColumn Caption="第一类医疗器械背案凭证" DataTableColumn="dylylqxbapz"/>
+                                    <ExportColumn Caption="医疗器械注册证" DataTableColumn="ylqxzcz"/>
+                                    <ExportColumn Caption="注册证书" DataTableColumn="zhucezhengshu"/>
+                                </ExportColumns>
+                            </ExportSheet>
+                        </ExportSheets>
+                    </BillUIWidget>
+				</BillUIPanel>
+                <BillUIPanel Layout="flex" Key="bills_tools" Caption="查询面板" S="panel panel-default publicPanel">
+                	<BillUIGridPanel Device="sm" key="boxtool">
+                         <BillUIRowPanel>
+                             <BillUIColPanel Width="3">
+                                 <BillUIWidget Key="shangpin" ParameterKey="shangpin"
+                                               DataTableKey="shangpinjibenxinxi"  Caption="商品"
+                                               EnabledWhen="True" Icon="glyphicon glyphicon-send" WidgetType="BillUIString">
+                                 </BillUIWidget>
+                             </BillUIColPanel>
+                             <BillUIColPanel Width="3">
+                                 <BillUIWidget Key="shengchanchangjia" ParameterKey="shengchanchangjia"
+                                               DataTableKey="shangpinjibenxinxi"  Caption="生产厂家"
+                                               EnabledWhen="True" Icon="glyphicon glyphicon-send" WidgetType="BillUIString">
+                                 </BillUIWidget>
+                             </BillUIColPanel>
+
+
+                             <BillUIColPanel Width="3">
+                                 <BillUIWidget Key="status" ParameterKey="status"
+                                               DataTableKey="shangpinjibenxinxi" Caption="状态"
+                                               EnabledWhen="True" Src="bill/getDataStatus?type=shangpinjibenxinxi&amp;dataType=dic"
+                                               Icon="glyphicon glyphicon-send" WidgetType="BillUISelect">
+                                     <Init Type="javascript/angular" Runat="client">
+                                         <![CDATA[
+				                                         this.loadDataSource();
+				                                 ]]>
+                                     </Init>
+                                 </BillUIWidget>
+                             </BillUIColPanel>
+                             <BillUIColPanel Width="3">
+                                 <BillUIWidget Caption="取消" Key="cancel" EnabledWhen="True"
+                                               Icon="glyphicon glyphicon-send" WidgetType="BillUIButton">
+                                     <Triggers>
+                                         <Trigger Type="javascript/angular" Runat="client">
+                                             <![CDATA[
+                                                 @shangpin.setValue("");
+                                                 @shengchanchangjia.setValue("");
+                                                 @status.setValue("");
+                                                 @$this.__loadDics("shangpinjibenxinxi");
+                                            ]]>
+                                         </Trigger>
+                                     </Triggers>
+                                 </BillUIWidget>
+                                 <BillUIWidget Caption="查询" Key="search" EnabledWhen="True"
+                                               Icon="glyphicon glyphicon-send" WidgetType="BillUIButton">
+                                     <Triggers>
+                                         <Trigger Type="javascript/angular" Runat="client">
+                                             <![CDATA[
+			                                    @$this.__loadDics("shangpinjibenxinxi");
+				                            ]]>
+                                         </Trigger>
+                                     </Triggers>
+                                 </BillUIWidget>
+                             </BillUIColPanel>
+                         </BillUIRowPanel>
+                	</BillUIGridPanel>
+                </BillUIPanel>
+
+				<!--<BillUIPanel Layout="tab" Key="bills_tabs">-->
+                    <BillUIGrid Key="grid0" SelectMode="Radio" OptMode="View" DataTableKey="shangpinjibenxinxi">
+                        <DoubleClickHandlers>
+                            <DoubleClickHandler>
+                                <![CDATA[
+                                    var dingdan=this.row;
+                                    window.location.href='/bill/view/dics-item?billKey=shangpinjibenxinxi&ID='+dingdan.ID+'&allDisabled=true';
+                                ]]>
+                            </DoubleClickHandler>
+                        </DoubleClickHandlers>
+                       <GridHeads>
+                       		<GridHead Col="status" Caption="审批状态" enableEdit="True">
+                                <BillUIWidget Key="status" WidgetType="BillUIInteger">
+                                    <Formatters>
+                                        <Formatter>
+                                            <![CDATA[
+                                                [{'url':'/bill/getDataStatus','type':'shangpinjibenxinxi','dataType':'dic'}]
+                                            ]]>
+                                        </Formatter>
+                                    </Formatters>
+                                </BillUIWidget>
+                           	</GridHead>
+                       		<GridHead Col="shangpinbianhao" Caption="商品编号" enableEdit="True" Width="180px">
+                               <BillUIWidget Key="shangpinbianhao" WidgetType="BillUIString"/>
+                           </GridHead>
+                           <GridHead Col="shangpinmingcheng" Caption="商品名称" enableEdit="True" Width="150px">
+                               <BillUIWidget Key="shangpinmingcheng" WidgetType="BillUIString"/>
+                           </GridHead>
+
+                           <GridHead Col="guige" Caption="规格" enableEdit="True" Width="100px">
+                               <BillUIWidget Key="guige" WidgetType="BillUIString"/>
+                           </GridHead>
+                           <GridHead Col="danwei" Caption="单位" enableEdit="True" Width="60px">
+                               <BillUIWidget Key="danwei" WidgetType="BillUIInteger">
+                                   <Formatters>
+                                       <Formatter>
+                                           <![CDATA[
+                                                [{'type':'baozhuangdanwei'}]
+                                            ]]>
+                                       </Formatter>
+                                   </Formatters>
+                               </BillUIWidget>
+                           </GridHead>
+                           <GridHead Col="shengchanchangjia" Caption="生产厂家" enableEdit="True" Width="150px">
+                               <BillUIWidget Key="shengchanchangjia" WidgetType="BillUIString"/>
+                           </GridHead>
+
+                           <GridHead Col="chandi" Caption="产地" enableEdit="True" Width="140px">
+                               <BillUIWidget Key="chandi" WidgetType="BillUIString"/>
+                           </GridHead>
+
+                           <GridHead Col="shangpinleibie" Caption="商品类别" enableEdit="True" Width="100px">
+                               <BillUIWidget Key="shangpinleibie" WidgetType="BillUIInteger">
+                                   <Formatters>
+                                       <Formatter>
+                                           <![CDATA[
+                                                [{'type':'shangpinleibie'}]
+                                            ]]>
+                                       </Formatter>
+                                   </Formatters>
+                               </BillUIWidget>
+                           </GridHead>
+
+                           <GridHead Col="pizhunwenhao" Caption="批准文号" enableEdit="True" Width="140px">
+                               <BillUIWidget Key="pizhunwenhao" WidgetType="BillUIString"/>
+                           </GridHead>
+
+                           <GridHead Col="jinxiangshuilv" Caption="进项税率" enableEdit="True" >
+                               <BillUIWidget Key="jinxiangshuilv" WidgetType="BillUIDecimal"/>
+                           </GridHead>
+
+                           <GridHead Col="xiaoxiangshuilv" Caption="销项税率" enableEdit="True">
+                               <BillUIWidget Key="xiaoxiangshuilv" WidgetType="BillUIDecimal"/>
+                           </GridHead>
+
+                            <GridHead Col="dongjie" Caption="是否冻结" enableEdit="True">
+                                <BillUIWidget Key="dongjie" WidgetType="BillUIInteger">
+                                    <Formatters>
+                                        <Formatter>
+                                            <![CDATA[
+													[{'url':[{name:'否',value:1},{name:'是',value:0}],'type':'dongjie','local':'true'}]
+												]]>
+                                        </Formatter>
+                                    </Formatters>
+                                </BillUIWidget>
+                            </GridHead>
+                           <GridHead Col="tingcai" Caption="是否停采" enableEdit="True" Width="80px">
+                               <BillUIWidget Key="tingcai" WidgetType="BillUIInteger">
+                                   <Formatters>
+                                       <Formatter>
+                                           <![CDATA[
+													[{'url':[{name:'否',value:1},{name:'是',value:0}],'type':'tingcai','local':'true'}]
+												]]>
+                                       </Formatter>
+                                   </Formatters>
+                               </BillUIWidget>
+                           </GridHead>
+                       </GridHeads>
+                    </BillUIGrid>
+                <!--</BillUIPanel>-->
+            </BillUIPanel>
+        </BillBodyMeta>
+    </BillBody>
+    <BillHeadMeta>
+        <BillEventCollection>
+            <Event Type="StatusChanged" Processor="com.xyy.bill.handler.biz.DicGoodsStatusHandler"/>
+        </BillEventCollection>
+    </BillHeadMeta>
+</BillFormMeta>
+

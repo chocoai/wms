@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BillViewMeta Key="box" Caption="工具栏" Version="">
+
+    <BillBody UserAgent="web">
+        <BillBodyMeta>
+            <BillUIPanel Layout="flex" Key="dictionary_tools" Caption="工具栏"  >
+                <BillUIGridPanel Device="sm" key="boxtool">
+                    <!--Devie   xs,sm,md,lg-->
+                    <BillUIRowPanel S="toolBox">
+                        <BillUIColPanel Width="12">
+                            <!--属性 colPush 向右推 colPull 向左拉 colOffset 左边距 -->
+                            <BillUIWidget Key="add" Caption="新增" DataTableKey="gonghuoshangxiaoqizhengzhao"
+                                          DataTableColumn="add" EnabledWhen="True"
+                                          Icon="glyphicon glyphicon-plus-sign" WidgetType="BillUIButton"
+                                          S="btn btn-success">
+                                <Triggers>
+                                    <Trigger Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+	                            			var flag2 = @$this.validAdd();
+			                            	flag2.then(function(data){
+												if(data==false){
+				                            		alert("请选择一个节点！");
+				                            		return;
+				                            	}else {
+					                            	var flag = @$this.edit();
+					                            	flag.then(function(data){
+														if(data.isParent==false){
+															alert("明细节点下不可新增明细节点！");
+					                            			return;
+														}else{
+															@add.setAllEnable();
+															@$this.add();
+						                            	    @add.setDisable();
+						                            	    @cancel.setEnable();
+						                            	    @del.setDisable();
+						                            	    @edit.setDisable();
+						                                    @submit.setEnable();
+						                                    @tree.setDisable();
+														}
+													});
+												}
+											});
+	                            		]]>
+                                    </Trigger>
+                                </Triggers>
+                                <Init Type="javascript/angular" Runat="client">
+                                    <![CDATA[
+                                    	this.setDisable();
+								        this.setAllDisable();
+							]]>
+                                </Init>
+                            </BillUIWidget>
+                            <BillUIWidget Key="submit" Caption="保存"
+                                          DataTableKey="gonghuoshangxiaoqizhengzhao" colOffset="" DataTableColumn="update"
+                                          EnabledWhen="True" Icon="glyphicon glyphicon-floppy-disk"
+                                          WidgetType="BillUIButton">
+                                <Triggers>
+                                    <Trigger Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                  			@$this.save();
+	                            			@submit.setAllDisable();
+											@tree.setEnable();
+	                            		]]>
+                                    </Trigger>
+                                </Triggers>
+                                <Init Type="javascript/angular" Runat="client">
+                                    <![CDATA[
+								this.setDisable();
+							]]>
+                                </Init>
+                            </BillUIWidget>
+
+                            <BillUIWidget Key="del" Caption="删除" DataTableKey="gonghuoshangxiaoqizhengzhao"
+                                          DataTableColumn="delete" EnabledWhen="True" Icon="glyphicon
+glyphicon-trash"
+                                          WidgetType="BillUIButton" S="btn btn-danger ">
+                                <Triggers>
+                                    <Trigger Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+	                            			var flag = @$this.edit();
+			                            	flag.then(function(data){
+			                            		if(data.hasChild==true){
+													alert("汇总节点下还有子节点，不可删除！");
+													return;
+												}else{
+													@$this.del();
+													@del.setAllDisable();
+												}
+			                            	})
+	                            		]]>
+                                    </Trigger>
+                                </Triggers>
+                                <Init Type="javascript/angular" Runat="client">
+                                    <![CDATA[
+							]]>
+                                </Init>
+                            </BillUIWidget>
+
+                            <BillUIWidget Key="cancel" Caption="取消"
+                                          DataTableKey="gonghuoshangxiaoqizhengzhao" DataTableColumn="delete" EnabledWhen="True"
+                                          Icon="glyphicon glyphicon-remove-circle" WidgetType="BillUIButton" S="btn btn-danger ">
+                                <Triggers>
+                                    <Trigger Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+											this.setAllDisable();
+											@add.setEnable();
+											@del.setEnable();
+											@edit.setEnable();
+											@submit.setDisable();
+											this.setDisable();
+											@tree.setEnable();
+	                            		]]>
+                                    </Trigger>
+                                </Triggers>
+                                <Init Type="javascript/angular" Runat="client">
+                                    <![CDATA[
+								this.setDisable();
+							]]>
+                                </Init>
+                            </BillUIWidget>
+
+                            <BillUIWidget Key="edit" Caption="编辑" DataTableKey="gonghuoshangxiaoqizhengzhao"
+                                          DataTableColumn="delete" EnabledWhen="True" Icon="glyphicon glyphicon-edit"
+                                          WidgetType="BillUIButton" S="btn btn-danger ">
+                                <Triggers>
+                                    <Trigger Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+											@add.setDisable();
+											@del.setDisable();
+											@cancel.setEnable();
+											@submit.setEnable();
+											@edit.setDisable();
+											@edit.setAllEnable();
+											@tree.setDisable();
+											@nodeType.setDisable();
+	                            		]]>
+                                    </Trigger>
+                                </Triggers>
+                                <Init Type="javascript/angular" Runat="client">
+                                    <![CDATA[
+							]]>
+                                </Init>
+                            </BillUIWidget>
+                        </BillUIColPanel>
+                    </BillUIRowPanel>
+                </BillUIGridPanel>
+            </BillUIPanel>
+        </BillBodyMeta>
+    </BillBody>
+
+</BillViewMeta>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BillFormMeta Key="yanghujihuadan" Version="1.0.0" BillType="MultiBill" Caption="养护计划单明细">
+    <BillBody>
+        <BillBodyMeta UserAgent="web">
+            <BillUIPanel Layout="flex" FlexDirection="column" Width="100%" Key="mainContainer" Caption="" S="">
+                <BillUIPanel Layout="tab" Key="mainContainer_tab" Caption="养护计划单明细"
+                             S="panel  panel-primary  publicPanel">
+                    <BillUIPanel Layout="flex" Key="mainContainer_details1" Caption="养护计划单明细"
+                                 ColWidth="1fr">
+                        <BillUIGrid Key="xiaoshoudingdanM"  SelectMode="Multi"  OptMode="View"
+                                    DataTableKey="yanghujihuadan">
+                            <GridHeads>
+                                <GridHead Col="shangpinbianhao" Caption="商品编号" enableEdit="True" Width="80px">
+                                    <BillUIWidget Key="shangpinbianhao" WidgetType="BillUIString"/>
+                                </GridHead>
+                                <GridHead Col="shangpinmingcheng" Caption="商品名称" enableEdit="True" Width="80px">
+                                    <BillUIWidget Key="shangpinmingcheng" WidgetType="BillUIString"/>
+                                </GridHead>
+                                <GridHead Col="shangpinguige" Caption="商品规格" enableEdit="True" Width="80px">
+                                    <BillUIWidget Key="shangpinguige" WidgetType="BillUIString"/>
+                                </GridHead>
+                                <GridHead Col="shengchanchangjia" Caption="生产厂家" enableEdit="True" Width="100px">
+                                    <BillUIWidget Key="shengchanchangjia" WidgetType="BillUIString"/>
+                                </GridHead>
+                                <GridHead Col="danwei" Caption="单位" enableEdit="True" Width="100px">
+                                    <BillUIWidget Key="danwei" WidgetType="BillUIString"/>
+                                </GridHead>
+                                <GridHead Col="shengchanriqi" Caption="生产日期" enableEdit="True" Width="100px">
+                                    <BillUIWidget Key="shengchanriqi" WidgetType="BillUIDateTime"/>
+                                </GridHead>
+                                <GridHead Col="youxiaoqizhi" Caption="有效期至" enableEdit="True" Width="100px">
+                                    <BillUIWidget Key="youxiaoqizhi" WidgetType="BillUIDateTime"/>
+                                </GridHead>
+                                <GridHead Col="jxqts" Caption="近效期天数" enableEdit="True" Width="100px">
+                                    <BillUIWidget Key="jxqts" WidgetType="BillUIInteger"/>
+                                </GridHead>
+                                <GridHead Col="jhyhrq" Caption="计划养护日期" enableEdit="True" Width="100px">
+                                    <BillUIWidget Key="jhyhrq" WidgetType="BillUIDateTime"/>
+                                </GridHead>
+                                <GridHead Col="yyhts" Caption="应养护天数" enableEdit="True" Width="100px">
+                                    <BillUIWidget Key="yyhts" WidgetType="BillUIInteger"/>
+                                </GridHead>
+                                <GridHead Col="yuqitianshu" Caption="逾期天数" enableEdit="True" Width="100px">
+                                    <BillUIWidget Key="yuqitianshu" WidgetType="BillUIInteger"/>
+                                </GridHead>
+                                <GridHead Col="shuliang" Caption="数量" enableEdit="True" Width="100px">
+                                    <BillUIWidget Key="shuliang" WidgetType="BillUIInteger"/>
+                                </GridHead>
+                                <GridHead Col="yanghuriqi" Caption="养护日期" enableEdit="True" Width="100px">
+                                    <BillUIWidget Key="yanghuriqi" WidgetType="BillUIDateTime"/>
+                                </GridHead>
+                                <GridHead Col="yanghuzhouqi" Caption="养护周期" enableEdit="True" Width="100px">
+                                    <BillUIWidget Key="yanghuzhouqi" WidgetType="BillUIInteger"/>
+                                </GridHead>
+                                <GridHead Col="shangpinchandi" Caption="商品产地" enableEdit="True" Width="100px">
+                                    <BillUIWidget Key="shangpinchandi" WidgetType="BillUIString"/>
+                                </GridHead>
+                                <GridHead Col="pizhunwenhao" Caption="批准文号" enableEdit="True" Width="100px">
+                                    <BillUIWidget Key="pizhunwenhao" WidgetType="BillUIString"/>
+                                </GridHead>
+                                <GridHead Col="beizhu" Caption="备注" enableEdit="True" Width="100px">
+                                    <BillUIWidget Key="beizhu" WidgetType="BillUIString"/>
+                                </GridHead>
+                            </GridHeads>
+                        </BillUIGrid>
+                    </BillUIPanel>
+                </BillUIPanel>
+            </BillUIPanel>
+        </BillBodyMeta>
+    </BillBody>
+    <BillHeadMeta>
+<!--         <RuleKeys> -->
+<!--             <RuleKey Type="PULL" PullType="MULTI"> -->
+<!--                 xiaoshoudingdan_xiaoshoutuihuidan_xsth003 -->
+<!--             </RuleKey> -->
+<!--         </RuleKeys> -->
+	<Parameters>
+		<!-- 供应商名称 -->
+           <Parameter Key="gysmc" Type="String" >
+           	<DefaultValue></DefaultValue>
+               <Where>
+                <![CDATA[
+                	m.if(gysmc==null | gysmc=="" ," "," and gysmc = "+gysmc)
+				]]>
+               </Where>
+           </Parameter>
+       </Parameters>
+    </BillHeadMeta>
+</BillFormMeta>

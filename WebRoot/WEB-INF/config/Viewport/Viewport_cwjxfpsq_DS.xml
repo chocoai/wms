@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="cwjxfpsq_view" Caption="进项发票申请" DefaultFilter="" PermissionType="PrivateType"  Pagging="100"
+        TableName="SQLQuery::
+		        SELECT *,'进项发票申请' as zhaiyao | from xyy_erp_bill_jinxiangfapiaoshenqing
+					where  jiesuanzhuangtai = 0 and status = 40 and shifouoyinyong=0
+		              @kaishishijian @jiesushijian @gysbh @gysmc @danjubianhao order by createTime asc"
+        DataSource="" Head="false" Singleton="" OrderBy="">
+        <Parameters>
+            <Parameter Key="gysbh" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(gysbh==null | gysbh=="" ,""," and gysbh like '%"+gysbh+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="gysmc" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(gysmc==null | gysmc=="",""," and gysmc like '%"+gysmc+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="danjubianhao" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(danjubianhao==null | danjubianhao=="" ,""," and danjubianhao like '%"+danjubianhao+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="kaishishijian" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(kaishishijian==null | kaishishijian=="" ,""," and DATE_FORMAT(kaipiaoriqi,'%Y-%m-%d') >= DATE_FORMAT('"+kaishishijian+"','%Y-%m-%d')")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="jiesushijian" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(jiesushijian==null | jiesushijian=="" ,""," and DATE_FORMAT(kaipiaoriqi,'%Y-%m-%d') <= DATE_FORMAT('"+jiesushijian+"','%Y-%m-%d')")
+	            ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

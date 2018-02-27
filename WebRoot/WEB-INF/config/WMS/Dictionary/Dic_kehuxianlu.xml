@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BillFormMeta Key="kehuxianlu" Version="1.0.0" BillType="Dics" Caption="客户线路维护">
+    <BillBody>
+        <BillBodyMeta UserAgent="web">
+            <BillUIPanel Layout="flex" FlexDirection="column" Width="100%" Key="mainContainer" Caption="客户线路" S="" >
+                <BillUIPanel Layout="flex" Key="dictionary_tools" Caption="工具栏">
+                    <BillUIWidget Key="save" Caption="保存" EnabledWhen="True"
+                                  Icon="glyphicon glyphicon-floppy-disk" WidgetType="BillUIButton">
+                        <Triggers>
+                            <Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+                                    setStatus(40);
+                                    @$this.save('bills');
+	                            ]]>
+                            </Trigger>
+                        </Triggers>
+                    </BillUIWidget>
+
+                    <BillUIWidget Key="goback" Caption="返回"
+                                  DataTableKey="gonghuoshangxiaoqizhengzhao" DataTableColumn="delete" EnabledWhen="True"
+                                  Icon="glyphicon glyphicon-remove-circle" WidgetType="BillUIButton"
+                                  S="btn btn-danger ">
+                        <Triggers>
+                            <Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+                                    @$this.$reBack();
+                                ]]>
+                            </Trigger>
+                        </Triggers>
+                    </BillUIWidget>
+                    <BillUIWidget Key="tiqu" Caption="提取客户地址信息"
+                                  EnabledWhen="True"
+                                  Icon="glyphicon glyphicon-floppy-disk" WidgetType="BillUIButton">
+                        <Triggers>
+                            <Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+
+                                    $this.openWindow("kehu","kehuxianlu_view",{
+                                        condition:"",
+                                        cos:[],
+                                        ok:function(data){
+                                            insertRows("kehuxianlu_list", data ,true);
+                                        },
+                                        cancel:function(){
+                                            alert('取消');
+                                        }
+                                    });
+                                ]]>
+                            </Trigger>
+                        </Triggers>
+                    </BillUIWidget>
+                 </BillUIPanel>
+
+               <BillUIPanel Layout="flex" Key="one" S="panel panel-success publicPanel"
+                             Caption="线路基础资料">
+                    <BillUIGridPanel Device="sm" Key="h1">
+                        <BillUIRowPanel >
+                            <BillUIColPanel Width="4">
+                                <BillUIWidget Key="xianlumingcheng" Caption="线路名称"
+                                              DataTableKey="kehuxianlu" Required="required"
+                                              EnabledWhen="True" Disable="true" Src="xianlu"
+                                              WidgetType="BillUIPopupWindow">
+                                    <Triggers>
+                                        <Trigger>
+                                            <![CDATA[
+                                                var xianlu=this.rows[0];
+                                                this.setValue(xianlu.xianlumingcheng);
+                                                @xianluID.setValue(xianlu.ID);
+                                            ]]>
+                                        </Trigger>
+                                    </Triggers>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                    <BillUIColPanel Width="4">
+                       <BillUIWidget Key="xianluID" Caption="" DataTableColumn="xianluID"
+                                     DataTableKey="kehuxianlu"
+                                     EnabledWhen="True" Disable="true"
+                                     WidgetType="BillUIString">
+                           <Init Type="javascript/angular" Runat="client">
+                               <![CDATA[
+                                            	this.setHide();
+	                                        ]]>
+                           </Init>
+                       </BillUIWidget>
+                   </BillUIColPanel>
+               </BillUIRowPanel>
+           </BillUIGridPanel>
+       </BillUIPanel>
+
+                <BillUIPanel Layout="tab" Key="mainContainer"
+                             Caption="客户线路信息" S="panel  panel-primary  publicPanel">
+                    <BillUIGrid Key="kehuxianlu" SelectMode="Single" OptMode="View" DataTableKey="kehuxianlu_list">
+                        <GridHeads>
+                        <!--    <GridHead Col="xianlumingcheng" Caption="线路名称" enableEdit="True">
+                                <BillUIWidget Key="xianlumingcheng" WidgetType="BillUIPopupWindow" Src="xianlu"
+                                              Disable="true">
+                                    <Triggers>
+                                        <Trigger>
+                                            <![CDATA[
+                                                    var xianlu=this.rows[0];
+                                                    console.log("xianlu",xianlu);
+                                                    this.setValue(xianlu.xianlumingcheng);
+                                                    @xianluID.setValue(xianlu.ID);
+                                            ]]>
+                                        </Trigger>
+                                    </Triggers>
+                                </BillUIWidget>
+                            </GridHead>
+                            <GridHead Col="xianluID" Caption="" Width="0px" enableEdit="True">
+                                <BillUIWidget Key="xianluID" WidgetType="BillUIString">
+                                    <Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                            	this.setHide();
+	                                        ]]>
+                                    </Init>
+                                </BillUIWidget>
+                            </GridHead>-->
+                           <!-- <GridHead Col="kehubianhao" Caption="客户编号" enableEdit="True">
+                                <BillUIWidget Key="kehubianhao" Src="kehu"
+                                              WidgetType="BillUIPopupWindow">
+                                    <Triggers>
+                                        <Trigger>
+                                            <![CDATA[
+                                                var kehu=this.rows[0];
+                                                this.setValue(kehu.kehubianhao);
+                                                @kehumingcheng.setValue(kehu.kehumingcheng);
+                                                @lianxiren.setValue(kehu.lianxiren);
+                                                @dianhua.setValue(kehu.dianhua);
+                                                @dizhi.setValue(kehu.dizhi);
+                                            ]]>
+                                        </Trigger>
+                                    </Triggers>
+                                </BillUIWidget>
+                            </GridHead>-->
+                            <GridHead Col="kehubianhao" Caption="客户编号" enableEdit="True">
+                                <BillUIWidget Key="kehubianhao" WidgetType="BillUIString"/>
+                            </GridHead>
+                            <GridHead Col="kehumingcheng" Caption="客户名称" enableEdit="True">
+                                <BillUIWidget Key="kehumingcheng" WidgetType="BillUIString"/>
+                            </GridHead>
+                            <GridHead Col="lianxiren" Caption="联系人" enableEdit="True">
+                                <BillUIWidget Key="lianxiren" WidgetType="BillUIString"/>
+                            </GridHead>
+                            <GridHead Col="dianhua" Caption="电话" enableEdit="True">
+                                <BillUIWidget Key="dianhua" WidgetType="BillUIString"/>
+                            </GridHead>
+                            <GridHead Col="dizhi" Caption="地址" enableEdit="True">
+                                <BillUIWidget Key="dizhi" WidgetType="BillUIString"/>
+                            </GridHead>
+                        </GridHeads>
+                    </BillUIGrid>
+                </BillUIPanel>
+            </BillUIPanel>
+        </BillBodyMeta>
+    </BillBody>
+    <BillHeadMeta>
+        <BillEventCollection>
+            <Event Type="PreSave" Processor="com.xyy.wms.handler.biz.DickehuxianluPreHandler" />
+        </BillEventCollection>
+    </BillHeadMeta>
+</BillFormMeta>
+

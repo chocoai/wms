@@ -1,0 +1,5 @@
+.tab-ul{border-bottom:1px solid #1E1F24;}
+.tab-ul li.curr{background:#1E1F24;}
+/*canvas画布*/
+.am-topbar-inverse{    background-color: #1E1F24; border-color: #000;}
+.am-card:hover{ border-color: #1E1F24;}

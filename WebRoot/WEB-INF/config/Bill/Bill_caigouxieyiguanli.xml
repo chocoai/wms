@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BillFormMeta Key="caigouxieyiguanli" Version="1.0.0" BillType="Bill"
+	Caption="采购协议管理">
+	<BillBody>
+		<BillBodyMeta UserAgent="web">
+			<BillUIPanel Layout="flex" FlexDirection="column" Width="100%"
+				Key="mainContainer" Caption="采购协议管理" S="">
+				<BillUIPanel Layout="flex" Key="toolbox" Caption="工具栏">
+					<!--属性 colPush 向右推 colPull 向左拉 colOffset 左边距 -->
+					<BillUIWidget Key="save" Caption="保存" EnabledWhen="True"
+						Icon="glyphicon glyphicon-floppy-disk" WidgetType="BillUIButton">
+						<Triggers>
+							<Trigger Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                        setStatus(1);
+                                    	@$this.save();
+	                            ]]>
+							</Trigger>
+						</Triggers>
+						<Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                        		if(getStatus()>=20){
+                                        			this.setHide();
+                                        		}else{
+                                        			this.setShow();
+                                        		}
+									]]>
+						</Init>
+					</BillUIWidget>
+					<BillUIWidget Key="submit" Caption="提交" EnabledWhen="True"
+						Icon="glyphicon glyphicon-floppy-saved" WidgetType="BillUIButton">
+						<Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                        		if(getStatus()>=20){
+                                        			this.setDisable();
+                                        			@pull.setDisable();
+                                        		}else{
+                                        			this.setEnable();
+                                        			@pull.setEnable();
+                                        		}
+									]]>
+						</Init>
+						<Triggers>
+							<Trigger Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                         setStatus(20);
+		                                 @$this.save();
+	                                  ]]>
+							</Trigger>
+						</Triggers>
+					</BillUIWidget>
+					<BillUIWidget Key="process" Caption="审核流程"
+						EnabledWhen="True" S="btn btn-primary setHide" Icon="glyphicon glyphicon-exclamation-sign"
+						WidgetType="BillUIButton">
+						<Init Type="javascript/angular" Runat="client">
+                            <![CDATA[
+                                            var status=getStatus();
+                                            if(status>=20){
+                                                this.setShow();
+                                            }
+										]]>
+						</Init>
+						<Triggers>
+							<Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+												this.setEnvModel({piID:getHeadValue("piID")});
+												@$this.process();
+	                            		]]>
+							</Trigger>
+						</Triggers>
+					</BillUIWidget>
+					<BillUIWidget Key="box" WidgetType="BillUIView" Src="toolboxCGDD">
+					</BillUIWidget>
+					
+				</BillUIPanel>
+				<BillUIPanel Layout="flex" Key="mainContainer_head"
+					Caption="采购协议管理" S="panel panel-success publicPanel">
+					<BillUIGridPanel Key="caigouxieyiguanli">
+
+						<BillUIRowPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="danjubianhao" Caption="单据编号"
+									DataTableKey="caigouxieyiguanli" DataTableColumn="danjubianhao"
+									EnabledWhen="True" Disable="true" WidgetType="BillUIString">
+								</BillUIWidget>
+
+							</BillUIColPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="dengjiriqi" Caption="登记日期"
+									Required="required" DataTableKey="caigouxieyiguanli"
+									DataTableColumn="dengjiriqi" EnabledWhen="True" WidgetType="BillUIDateTime">
+									<Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                        		var value = this.getValue();
+                                        		if(value != null && value != 'undefined'){
+                                        			var t=this.formatDate(new Date());
+                                                	this.setValue(t);
+                                        		}
+										]]>
+									</Init>
+								</BillUIWidget>
+							</BillUIColPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="qishiriqi" Caption="起始日期"
+									Required="required" DataTableKey="caigouxieyiguanli"
+									DataTableColumn="qishiriqi" EnabledWhen="True" WidgetType="BillUIDateTime">
+									<Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                        		var value = this.getValue();
+                                        		if(value != null && value != 'undefined'){
+                                        			var t=this.formatDate(new Date());
+                                                	this.setValue(t);
+                                        		}
+										]]>
+									</Init>
+								</BillUIWidget>
+							</BillUIColPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="jiezhiriqi" Caption="截止日期"
+									Required="required" DataTableKey="caigouxieyiguanli"
+									DataTableColumn="jiezhiriqi" EnabledWhen="True" WidgetType="BillUIDateTime">
+									<Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                        		var value = this.getValue();
+                                        		if(value != null && value != 'undefined'){
+                                        			var t=this.formatDate(new Date());
+                                                	this.setValue(t);
+                                        		}
+										]]>
+									</Init>
+								</BillUIWidget>
+							</BillUIColPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="xieyichangshang" Caption="协议厂商"
+									DataTableKey="caigouxieyiguanli" Required="required"
+									DataTableColumn="xieyichangshang" EnabledWhen="True" WidgetType="BillUIPopupWindow"
+									 Src="gongyingshangmingpian">
+									<Triggers>
+										<Trigger>
+                                            <![CDATA[
+                                                var huoshang=this.rows[0];
+                                                this.setValue(huoshang.mingcheng);
+                                                @lianxiren.setValue(huoshang.lianxiren);
+                                                @lianxidianhua.setValue(huoshang.dianhua);
+                                        ]]>
+										</Trigger>
+									</Triggers>
+
+									<!-- <Rules>
+										<Rule Type="Interface">
+											<ErrorMsg>
+                                                <![CDATA[
+													供应商资质过期
+		                                        ]]>
+											</ErrorMsg>
+											<RuleExpr>
+                                                <![CDATA[
+		                                             com.xyy.erp.platform.common.func.GongYingShangValidate
+		                                         ]]>
+											</RuleExpr>
+										</Rule>
+									</Rules> -->
+								</BillUIWidget>
+							</BillUIColPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="lianxiren" Caption="联系人"
+									DataTableKey="caigouxieyiguanli" DataTableColumn="lianxiren" Required="required"
+									 EnabledWhen="True" WidgetType="BillUIString">
+								</BillUIWidget>
+							</BillUIColPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="lianxidianhua" Caption="联系电话"
+									DataTableKey="caigouxieyiguanli" DataTableColumn="lianxidianhua" Required="required"
+									 EnabledWhen="True" WidgetType="BillUIString">
+								</BillUIWidget>
+							</BillUIColPanel>	
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="xyqdr" Caption="协议签订人"
+									DataTableKey="caigouxieyiguanli" DataTableColumn="xyqdr" Required="required"
+									 EnabledWhen="True" WidgetType="BillUIString">
+								</BillUIWidget>
+							</BillUIColPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="fltxfs" Caption="返利兑现方式"
+									DataTableKey="caigouxieyiguanli" DataTableColumn="fltxfs"
+									EnabledWhen="True" Required="required" WidgetType="BillUISelect">
+									<Init Type="javascript/angular" Runat="client">
+                                        			<![CDATA[
+			                                          this.loadDataSource();
+													]]>
+									</Init>
+									<Properties>
+										<Property Name="datasource" Type="internal">[{name:"无",value:0},{name:"购物卡",value:1},{name:"加油卡",value:2},{name:"现金",value:3},{name:"票折",value:4}]</Property>
+									</Properties>
+								</BillUIWidget>
+							</BillUIColPanel>
+							
+							
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="yxrwl" Caption="意向任务量"
+									DataTableKey="caigouxieyiguanli" DataTableColumn="yxrwl" Required="required"
+									 EnabledWhen="True" WidgetType="BillUIString">
+								</BillUIWidget>
+							</BillUIColPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="xieyijibie" Caption="协议级别"
+									DataTableKey="caigouxieyiguanli" DataTableColumn="xieyijibie"
+									EnabledWhen="True" Required="required" WidgetType="BillUISelect">
+									<Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+			                                          this.loadDataSource();
+													]]>
+									</Init>
+									<Properties>
+										<Property Name="datasource" Type="internal">[{name:"无",value:0},{name:"一级",value:1},{name:"二级",value:2},{name:"省代",value:9},{name:"临时",value:8},{name:"商业",value:7}]</Property>
+									</Properties>
+								</BillUIWidget>
+							</BillUIColPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="huikuanshijian" Caption="回款时间"
+									DataTableKey="caigouxieyiguanli" DataTableColumn="huikuanshijian"
+									EnabledWhen="True" Required="required" WidgetType="BillUISelect"
+									>
+									<Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+			                                          this.loadDataSource();
+													]]>
+									</Init>
+									<Properties>
+										<Property Name="datasource" Type="internal">[{name:"无",value:0},{name:"月结",value:1},{name:"预付",value:2},{name:"送二结一",value:3},{name:"货到付款",value:4},{name:"一级商业购进",value:5}]</Property>
+									</Properties>
+								</BillUIWidget>
+							</BillUIColPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="xieyizhifufangshi" Caption="支付方式" 
+											  DataTableKey="caigouxieyiguanli"
+											  DataTableColumn="xieyizhifufangshi" EnabledWhen="True" Required="Required"
+											  WidgetType="BillUISelect">
+									<Init Type="javascript/angular" Runat="client">
+										<![CDATA[
+                                                this.loadDataSource();
+                                        ]]>
+									</Init>
+									<Properties>
+										<Property Name="datasource" Type="internal">[{name:"无",value:0},{name:"6个月承兑",value:1},{name:"3个月承兑",value:2},{name:"电汇",value:3},{name:"一级商业购进",value:4},{name:"现金",value:5}]</Property>
+									</Properties>
+								</BillUIWidget>
+							</BillUIColPanel>
+							<BillUIColPanel Width="6">
+								<BillUIWidget Key="xieyibianhao" Caption="协议编号"
+									DataTableKey="caigouxieyiguanli" DataTableColumn="xieyibianhao" Required="required"
+									 EnabledWhen="True" WidgetType="BillUIString">
+								</BillUIWidget>
+							</BillUIColPanel>
+							<BillUIColPanel Width="12">
+								<BillUIWidget Key="jinhuoqudao" Caption="进货渠道"
+									DataTableKey="caigouxieyiguanli" DataTableColumn="jinhuoqudao" Required="required"
+									 EnabledWhen="True" WidgetType="BillUITextArea">
+								</BillUIWidget>
+							</BillUIColPanel>
+							<BillUIColPanel Width="12">
+								<BillUIWidget Key="zhengceneirong" Caption="政策内容"
+									DataTableKey="caigouxieyiguanli" DataTableColumn="zhengceneirong" Required="required"
+									 EnabledWhen="True" WidgetType="BillUITextArea">
+								</BillUIWidget>
+							</BillUIColPanel>
+							<BillUIColPanel Width="12">
+								<BillUIWidget Key="huodongpinzhong" Caption="活动品种"
+									DataTableKey="caigouxieyiguanli" DataTableColumn="huodongpinzhong" Required="required"
+									 EnabledWhen="True" WidgetType="BillUITextArea">
+								</BillUIWidget>
+							</BillUIColPanel>
+							<BillUIColPanel Width="6">
+								<BillUIWidget Key="cndwsj" Caption="承诺到位时间"
+									 DataTableKey="caigouxieyiguanli" DateFormat="yyyy-mm-dd hh:ii:ss"
+									DataTableColumn="cndwsj" EnabledWhen="True" WidgetType="BillUIDateTime">
+									<Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                        		var value = this.getValue();
+                                        		if(value != null && value != 'undefined'){
+                                        			var t=this.formatDate(new Date());
+                                                	this.setValue(t);
+                                        		}
+										]]>
+									</Init>
+								</BillUIWidget>
+							</BillUIColPanel>
+							<BillUIColPanel Width="12">
+								<BillUIWidget Key="synxy" Caption="上一年协议" 
+									DataTableKey="caigouxieyiguanli" DataTableColumn="synxy" 
+									 EnabledWhen="True" WidgetType="BillUITextArea">
+								</BillUIWidget>
+							</BillUIColPanel>
+							<BillUIColPanel Width="12">
+								<BillUIWidget Key="fljsgs" Caption="返利计算公式"
+									DataTableKey="caigouxieyiguanli" DataTableColumn="fljsgs" 
+									 EnabledWhen="True" WidgetType="BillUITextArea">
+								</BillUIWidget>
+							</BillUIColPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="hsflje" Caption="核算返利金额"
+									DataTableKey="caigouxieyiguanli" DataTableColumn="hsflje" 
+									 EnabledWhen="True" WidgetType="BillUIDecimal">
+								</BillUIWidget>
+							</BillUIColPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="bcflje" Caption="本次返利金额"
+									DataTableKey="caigouxieyiguanli" DataTableColumn="bcflje" 
+									 EnabledWhen="True" WidgetType="BillUIDecimal">
+								</BillUIWidget>
+							</BillUIColPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="cwgdje" Caption="财务勾兑金额"
+									DataTableKey="caigouxieyiguanli" DataTableColumn="cwgdje" 
+									 EnabledWhen="True" WidgetType="BillUIDecimal">
+								</BillUIWidget>
+							</BillUIColPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="ljflje" Caption="累计返利金额"
+									DataTableKey="caigouxieyiguanli" DataTableColumn="ljflje" 
+									 EnabledWhen="True" WidgetType="BillUIDecimal">
+								</BillUIWidget>
+							</BillUIColPanel>
+							
+						</BillUIRowPanel>
+					</BillUIGridPanel>
+				</BillUIPanel>
+			</BillUIPanel>
+		</BillBodyMeta>
+
+	</BillBody>
+
+	<BillHeadMeta>
+		<BillStatusCollection>
+			<Status Default="true" Code="1">录入</Status>
+			<Status Code="20">正式</Status>
+			<Status Code="40">审核通过</Status>
+		</BillStatusCollection>
+		<!-- <ProcessCollection>
+			<Process Name="采购协议申请">
+                <![CDATA[
+                        status==20
+                ]]>
+			</Process>
+		</ProcessCollection> -->
+
+		<!-- <BillEventCollection>
+			<Event Type="StatusChanged" Processor="com.xyy.bill.handler.biz.CaiGouDingDanEvent" />
+			<Event Type="PreSave" Processor="com.xyy.bill.handler.biz.CaiGouDingDanEvent" />
+		</BillEventCollection> -->
+
+	</BillHeadMeta>
+</BillFormMeta>
+

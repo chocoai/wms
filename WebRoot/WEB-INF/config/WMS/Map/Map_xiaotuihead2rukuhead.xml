@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Map Key="xiaotuihead2rukuhead" Caption="消退订单上引"
+	SrcDataObjectKey="xiaoshoutuihuidan"
+    SrcDataType="Bill"  
+    TgtDataObjectKey="xiaotuishouhuo"
+    TgtDataType="Bill"  
+    MaxPushValue="100"
+     MinPushValue="0">
+<TargetTableCollection>
+     
+   <TargetTable Key="xiaotuishouhuo" SrcTableKey="xiaoshoutuihuidan">
+             <Field FieldKey="rukudanID">
+                <![CDATA[
+                     =BillID
+              ]]>
+            </Field>
+            <Field FieldKey="dingdanbianhao">
+                <![CDATA[
+                     =danjubianhao
+              ]]>
+            </Field>
+            <Field FieldKey="danweibianhao">
+                <![CDATA[
+                     =kehubianhao
+              ]]>
+            </Field>
+			<Field FieldKey="danweimingcheng">
+                <![CDATA[
+                     =kehumingcheng
+              ]]>
+            </Field>
+            
+            <Field FieldKey="caigouyuan">
+                <![CDATA[
+                     =yewuyuan
+              ]]>
+            </Field>
+        </TargetTable>
+        
+        </TargetTableCollection>
+      <FeedBackCollection>
+        
+       
+    </FeedBackCollection> 
+</Map>
+
+
+   
+

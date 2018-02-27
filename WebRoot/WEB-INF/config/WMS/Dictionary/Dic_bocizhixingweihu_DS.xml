@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="bocizhixingweihu" BillType="Dictionary" Caption="波次计划维护" DefaultFilter="" TableName="Table::xyy_wms_dic_bocizhixingweihu" DataSource="" Head="true">
+        <Field FieldKey="guizebianhao" FieldName="规则编号" FieldType="Varchar" Comment="规则编号" DefaultValue="='BCZX'+o.orderNo()"/>
+        <Field FieldKey="guizemiaoshu" FieldName="规则描述" FieldType="Text" Comment="规则描述"/>
+         <Field FieldKey="cangkuID" FieldName="仓库Id" FieldType="Varchar"  Comment="仓库Id"/> 
+       <Field FieldKey="cangkubianhao" FieldName="仓库编号" FieldType="Varchar"  Comment="仓库编号"/> 
+        <Field FieldKey="cangkumingcheng" FieldName="仓库名称" FieldType="Varchar"  Comment="仓库名称"/>
+        <Field FieldKey="jhwbztj" FieldName="集货位标准体积" FieldType="Decimal" Comment="集货位标准体积" Bound="14,2"/>
+        <Field FieldKey="sfqyjhwgl" FieldName="是否启用集货位管理" FieldType="Int" Comment="是否启用集货位管理" DefaultValue="1"/>
+        <Field FieldKey="tyjhw" FieldName="允许同一集货位" FieldType="Int" Comment="允许同一集货位"/>
+        <Field FieldKey="jhwpplx" FieldName="集货位匹配类型" FieldType="Varchar" Comment="集货位匹配类型"/>
+        <Field FieldKey="clbzxtj" FieldName="拆零标准箱体积" FieldType="Decimal" Comment="拆零标准箱体积(cm3)" Bound="14,2"/>
+        <Field FieldKey="zjbzxtj" FieldName="整件标准箱体积" FieldType="Decimal" Comment="整件标准箱体积(cm3)" Bound="14,2"/>
+        <Field FieldKey="dpdcsqsx" FieldName="单品单次索取上限" FieldType="Int" Comment="单品单次索取上限(件)"/>
+        <Field FieldKey="qiyong" FieldName="是否启用" FieldType="Int" Comment="是否启用"/> 
+    </DataTable> 
+</DataSet>

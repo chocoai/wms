@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="yhpz" Caption="养护商品查询" DefaultFilter="" PermissionType="CommType" Pagging="100"
+               TableName="SQLQuery::
+        select * | from (
+            SELECT
+            x.kucunshuliang AS shuliang,
+            y.*,
+            k.kuqubianhao,
+            h.huoweibianhao,
+            x.ID AS rowID
+            FROM
+            xyy_wms_bill_shangpinpihaohuoweikucun x,
+            xyy_wms_dic_huoweiziliaoweihu h,
+            xyy_wms_dic_kuqujibenxinxi k,
+            (
+            SELECT
+                a.goodsId as goodsid,
+                a.shangpinbianhao,
+                a.shangpinmingcheng,
+                a.guige,
+                a.danwei,
+                a.dbzsl as baozhuangshuliang,
+                a.pizhunwenhao,
+                a.shengchanchangjia,
+                b.pihao,
+                b.pihaoId,
+                b.shengchanriqi,
+                b.youxiaoqizhi,
+                b.zhujima,
+                b.orgId
+            FROM
+                xyy_wms_dic_yanghupinzhong a,
+                xyy_wms_dic_shangpinpihao b
+            WHERE
+            1=1
+                @yanghuleixing
+            AND a.goodsid = b.goodsId and a.orgId=b.orgId
+            ) y
+            WHERE
+                x.pihaoId = y.pihaoId
+              AND x.huoweiId=h.ID
+              AND h.kuquId=k.ID
+               and x.orgId=y.orgId
+                and x.orgId=h.orgId
+                and h.orgId=k.orgId
+                and x.kucunshuliang>0 @kuqubianhao @xiangdao @zhujima
+               ) z
+            where 1 = 1  @huozhu " DataSource="" Head="false" Singleton="" OrderBy="">
+        <Parameters>
+            <Parameter Key="yanghuleixing" Type="Integer">
+                <Where>
+                    <![CDATA[
+					m.if(yanghuleixing==null | yanghuleixing=="",""," and a.yanghuleixing = "+yanghuleixing+" and case "+yanghuleixing+" when 1 then   a.shenhezhuangtai=1 else 1=1 end ")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="huozhu" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(huozhu==null | huozhu=="",""," and huozhu = '"+huozhu+"'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="kuqubianhao" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(kuqubianhao==null | kuqubianhao=="" ,""," and k.kuqubianhao like '%"+kuqubianhao+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="xiangdao" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(xiangdao==null | xiangdao=="" ,""," and h.xiangdao like '%"+xiangdao+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="zhujima" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(zhujima==null | zhujima=="" ,""," and y.zhujima like '%"+zhujima+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <!--<Parameter Key="shifouzhongdian" Type="In">
+                <Where>
+                    <![CDATA[
+					m.if(shifouzhongdian==null | shifouzhongdian=="" ,""," and d.shifouzhongdian like '%"+shifouzhongdian+"%'")
+	            ]]>
+                </Where>
+            </Parameter>-->
+        </Parameters>
+    </DataTable>
+</DataSet>

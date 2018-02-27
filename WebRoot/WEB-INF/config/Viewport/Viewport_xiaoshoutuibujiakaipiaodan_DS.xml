@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="xiaoshoutuibujiakaipiaodan" Caption="销售退补价开票单上引视图" DefaultFilter="" PermissionType="CommType"  Pagging="10"
+        TableName="SQLQuery::select * | from xyy_erp_bill_xiaoshoutuibujiakaipiaodan where 1=1 and shifouzhixing = 0 and status = 38 @kehubianhao  "  DataSource="" Head="false" Singleton="" OrderBy="">
+        <Parameters>
+            <Parameter Key="kehubianhao" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(kehubianhao==null | kehubianhao=="" ,""," and kehubianhao = '"+kehubianhao+"'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="kehumingcheng" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(kehumingcheng==null | kehumingcheng=="" ,""," and kehumingcheng like '%"+kehumingcheng+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

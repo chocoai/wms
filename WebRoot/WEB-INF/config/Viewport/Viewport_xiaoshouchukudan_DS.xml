@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="xiaoshouchukudan" Caption="销售出库单特殊上引视图" DefaultFilter="" PermissionType="CommType"  Pagging="10"
+        TableName="SQLQuery::select * | from xyy_erp_bill_xiaoshouchukudan where 1=1 and status = 20 @kehubianhao  "  DataSource="" Head="false" Singleton="" OrderBy="">
+        <Parameters>
+            <Parameter Key="kehubianhao" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(kehubianhao==null | kehubianhao=="" ,""," and kehubianhao = '"+kehubianhao+"'")
+	            ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+    <DataTable Key="xiaoshouchukudan_details" Caption="销售出库单明细视图" DefaultFilter="" PermissionType="CommType"  Pagging="10"
+               TableName="SQLQuery::select * | from xyy_erp_bill_xiaoshouchukudan_details where  BillID is null   "  DataSource="" Head="false" Singleton="" OrderBy="">
+        <Parameters>
+            <Parameter Key="tuihui" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(tuihui==null | tuihui=="" ,"and BillID is null"," and shuliang > yituishuliang ")
+	            ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

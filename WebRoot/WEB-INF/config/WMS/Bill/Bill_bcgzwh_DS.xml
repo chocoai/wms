@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+	<DataTable Key="bcgzwh" BillType="Bill" Caption="波次计划维护"
+		DefaultFilter="" TableName="Table::xyy_erp_bill_bcgzwh" DataSource=""
+		Head="true">
+		<Field FieldKey="guizebianhao" FieldName="规则编号" FieldType="Varchar"
+			Comment="规则编号" />
+		<Field FieldKey="guizemiaoshu" FieldName="规则描述" FieldType="Varchar"
+			Comment="规则描述" />
+		<Field FieldKey="cangkubianhao" FieldName="仓库编号" FieldType="Varchar"
+			Comment="仓库编号" />
+		<Field FieldKey="bocishu" FieldName="波次数" FieldType="Int"
+			Comment="波次数" />
+		<Field FieldKey="zidongzhixing" FieldName="是否自动执行" FieldType="Int"
+			Comment="是否自动执行" />
+		<Field FieldKey="tiaojianfenzu" FieldName="条件分组" FieldType="Varchar"
+			Comment="条件分组" />
+		<Field FieldKey="ddssx" FieldName="订单数上线" FieldType="Int"
+			Comment="订单数上线" />
+		<Field FieldKey="ddsxx" FieldName="订单数下线" FieldType="Int"
+			Comment="订单数下线" />
+		<Field FieldKey="zcddsj" FieldName="最长等待时间（分）" FieldType="Int"
+			Comment="最长等待时间（分）" />
+		<Field FieldKey="bizStstus" FieldName="状态" FieldType="Int"
+			Comment="状态" />
+	</DataTable>
+</DataSet>

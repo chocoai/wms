@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="xiaoxiangfapiaoguanli" Caption="销项发票管理叙事薄" DefaultFilter="" Pagging="10"
+               TableName="SQLQuery::select * | from xyy_erp_bill_xiaoxiangfapiaoguanli where status>0 and createTime &lt;now() @danjubianhao  @kehubianhao @kehumingcheng @fapiaohaoma @status ORDER BY createTime DESC" DataSource="" Head="false">
+        <Parameters> 
+            <Parameter Key="danjubianhao" Type="String">
+                <Where>
+                <![CDATA[
+					m.if(danjubianhao==null | danjubianhao=="" ," "," and danjubianhao like '%"+danjubianhao+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="kehubianhao" Type="String" >
+                <Where>
+                <![CDATA[
+					m.if(kehubianhao==null | kehubianhao==" " ," "," and kehubianhao like '%"+kehubianhao+"%'")
+                ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="kehumingcheng" Type="String" >
+                <Where>
+                <![CDATA[
+					m.if(kehumingcheng==null | kehumingcheng==" " ," "," and kehumingcheng like '%"+kehumingcheng+"%'")
+                ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="fapiaohaoma" Type="String" >
+                <Where>
+                <![CDATA[
+					m.if(fapiaohaoma==null | fapiaohaoma==" " ," "," and fapiaohaoma like '%"+fapiaohaoma+"%'")
+                ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="status" Type="Integer" >
+                <Where>
+                    <![CDATA[
+					    m.if(status==null," "," and status="+status+"")
+                    ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

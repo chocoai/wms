@@ -1,0 +1,157 @@
+<div ng-controller="myApp.systemManagement.operation">
+	<div class="row">
+		<div class="col-sm-12">
+			<!--子系统-->
+			<div class="panel panel-default">
+				<div class="panel-heading clearfix">
+					<div class="pull-left">功能管理</div>
+					<div class="pull-right btn-group">
+						<button class="btn btn-success btn-sm"
+							ng-click="addOpt()">新增</button>
+					</div>
+				</div>
+				<div class="panel-body">
+					<form class="form-inline">
+						<div class="form-group">
+							<label for="exampleInputName2">功能名称</label>
+							<input type="text" class="form-control" ng-model="searchObj.name" id="exampleInputName2" >
+						</div>
+						<div class="form-group">
+							<label>状态</label>
+							<select class="form-control" ng-model="searchObj.state">
+								<option value="">全部</option>
+								<option value="1">正常</option>
+								<option value="0">禁用</option>
+							</select>
+						</div>
+						<button type="button" class="btn btn-primary btn-sm" ng-click="search()">查询</button>
+						<button type="button" class="btn btn-default btn-sm" ng-click="reset()">清空</button>
+					</form>
+					<br><br>
+
+					<table class="table table-hover table-bordered table-striped table-condensed">
+						<thead>
+							<tr>
+								<th style="width: 2%">序号</th>
+								<th style="width: 10%">功能名称</th>
+								<!--<th>模块名称</th>-->
+								<th style="width: 10%">URL</th>
+								<th style="width: 10%">状态</th>
+								<th style="width: 10%">权限</th>
+								<th style="width: 10%">备注</th>
+								<th style="width: 10%">操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="opt in operationList">
+								<td>{{$index+1}}</td>
+								<td>{{opt.name}}</td>
+								<!--<td>{{opt.moduleName}}</td>-->
+								<td>{{opt.url}}</td>
+								<td>
+									<label ng-if="opt.authority==0">公共</label>
+									<label ng-if="opt.authority==1">私有</label>
+									</td>
+								<td>
+									<label ng-if="opt.state==1" style="color: green;">正常</label>
+									<p ng-if="opt.state==0" style="color: red;">禁用</p>
+								</td>
+								<td>
+									<p ng-show="opt.remark.length>15" title="{{opt.remark}}">{{opt.remark.substring(1,15)}}......</p>
+									<p ng-show="opt.remark.length<15" >{{opt.remark}}</p>
+								</td>
+								<td>
+									<button class="btn btn-primary btn-sm" ng-click="editOpt(opt.id)">编辑</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<div paging page-info="pageInfo" load="load()"/>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="modal fade" id="myModule2" tabindex="-1" role="dialog"
+		 aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" >功能编辑</h4>
+				</div>
+				<div class="modal-body">
+					<form role="form" name="form">
+						<div class="form-group">
+							<label>功能名称</label> <input type="text" class="form-control"
+													   ng-model="opt.name" required>
+						</div>
+						<div class="form-group">
+							<label>模块名称</label> <input type="text" class="form-control"
+													   ng-model="opt.moduleName" ng-click="editModule(opt.id)" required>
+						</div>
+						<div class="form-group">
+							<label>URL</label> <input type="text" class="form-control"
+													  ng-model="opt.url" required>
+						</div>
+						<div class="form-group">
+							<label>状态</label>
+							<select class="form-control" ng-model="opt.state"
+									ng-options="s.value as s.name for s in stateList" required>
+							</select>
+						</div>
+						<div class="form-group">
+							<label>权限</label>
+							<select class="form-control" ng-model="opt.authority"
+									ng-options="a.value as a.name for a in authority" required>
+							</select>
+						</div>
+						<div class="form-group">
+							<label>备注</label> <input type="text" class="form-control"
+													 ng-model="opt.remark">
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary"
+							ng-click="saveOpt()" ng-disabled="form.$invalid">保存</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="modal fade" id="myModule" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" >绑定模块</h4>
+				</div>
+				<div class="modal-body">
+					<div class="panel panel-default">
+						<div class="panel-heading clearfix">
+							<div class="pull-left">模块树</div>
+						</div>
+						<div class="panel-body">
+							<img src="/lib/images/1_open.png">
+							<treecontrol class="tree-classic" tree-model="dataForTheTree1"
+								options="treeOptions1" expanded-nodes="expandedNodes"
+								selected-node="node1" on-selection="buttonClick(node)">
+							{{node.name}} </treecontrol>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary"
+						ng-click="saveModule()">保存</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+</div>

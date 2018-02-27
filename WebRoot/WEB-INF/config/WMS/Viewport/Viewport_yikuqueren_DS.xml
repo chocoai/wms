@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+	<DataTable Key="queryyikuqueren" Caption="" DefaultFilter=""
+		Pagging="5" PermissionType="CommType"
+		TableName="SQLQuery::
+					SELECT
+						d.*
+						|
+					FROM
+						xyy_wms_bill_yikukaipiao d
+					 where 1=1 and d.zhuangtai !=2 @kaishiriqi @jiezhiriqi @danjubianhao @orgId
+						"
+		DataSource="" Head="false">
+		<Parameters>
+			<Parameter Key="danjubianhao" Type="String" >
+				<Where>
+		                    <![CDATA[
+							m.if(danjubianhao==null | danjubianhao=="" ," "," and d.danjubianhao like '%"+danjubianhao+"%'")
+			            ]]>
+				</Where>
+			</Parameter>
+			<Parameter Key="orgId" Type="String" >
+				<Where>
+					<![CDATA[
+							m.if(orgId==null | danjubianhao=="" ," "," and d.orgId like '%"+orgId+"%'")
+			            ]]>
+				</Where>
+			</Parameter>
+			<Parameter Key="kaishiriqi" Type="Datetime">
+				<Where>
+		                <![CDATA[
+							m.if(kaishiriqi==null | kaishiriqi=="" ,""," and DATE_FORMAT(zhidanriqi,'%Y-%m-%d') >= DATE_FORMAT('"+kaishiriqi+"','%Y-%m-%d')")
+			            ]]>
+				</Where>
+			</Parameter>
+			<Parameter Key="jiezhiriqi" Type="Datetime">
+				<Where>
+		                <![CDATA[
+							m.if(jiezhiriqi==null | jiezhiriqi=="" ,""," and DATE_FORMAT(zhidanriqi,'%Y-%m-%d') <= DATE_FORMAT('"+jiezhiriqi+"','%Y-%m-%d')")
+			            ]]>
+				</Where>
+			</Parameter>
+			<Parameter Key="kufang" Type="String">
+				<Where>
+		                    <![CDATA[
+							m.if(kufang==null | kufang=="" ," "," and kufang like '%"+kufang+"%'")
+			            ]]>
+				</Where>
+			</Parameter>
+
+			<Parameter Key="shangpinmingcheng" Type="String">
+				<Where>
+		                    <![CDATA[
+							m.if(shangpinmingcheng==null | shangpinmingcheng=="" ," "," and shangpinmingcheng like '%"+shangpinmingcheng+"%'")
+			            ]]>
+				</Where>
+			</Parameter>
+
+		</Parameters>
+	</DataTable>
+	<DataTable Key="queryyikuqueren_details" Caption="采购 订单明细视图"
+		DefaultFilter="" PermissionType="PrivateType" Pagging="10"
+		TableName="SQLQuery::select * | from xyy_wms_bill_yikukaipiao_details where 1!=1"
+		DataSource="" Head="false" Singleton="" OrderBy="">
+	</DataTable>
+</DataSet>

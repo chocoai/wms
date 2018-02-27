@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="wanglaiyue" Caption="往来余额查询" DefaultFilter="" Pagging="15" PermissionType="CommType"
+
+               TableName="WebService::com.xyy.bill.inf.WanglaizhangService"
+               DataSource="" Head="false">
+        <Parameters>
+            <Parameter Key="duixiangleixing" Type="String">
+                <Where>
+                    <![CDATA[
+							m.if(duixiangleixing==null | duixiangleixing=="" ," "," and duixiangleixing like '%"+duixiangleixing+"%'")
+			            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="id" Type="String">
+                <Where>
+                    <![CDATA[
+							m.if(id==null | id=="" ," "," and id like '%"+id+"%'")
+			            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="name" Type="String">
+                <Where>
+                    <![CDATA[
+							m.if(name==null | name=="" ," "," and name like '%"+name+"%'")
+			            ]]>
+                </Where>
+            </Parameter>
+
+        </Parameters>
+
+    </DataTable>
+
+</DataSet>

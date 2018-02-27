@@ -1,0 +1,212 @@
+<div ng-controller="myApp.OperationManagement.processMonitor" class="panel panel-default">
+    <!-- 导航 -->
+    <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="">流程监控</a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li ng-class="{'active':viewStatus==1}"><a ng-click="searchType(1)">执行中</a></li>
+                        <li ng-class="{'active':viewStatus==2}"><a ng-click="searchType(2)">已挂起</a></li>
+                        <li ng-class="{'active':viewStatus==3}"><a ng-click="searchType(3)">已结束</a></li>
+                        <li ng-class="{'active':viewStatus==4}"><a ng-click="searchType(4)">已强制停止</a></li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+
+    <!-- 搜索条件 -->
+    <div class="panel panel-default">
+        <div class="panel-heading">搜索条件</div>
+        <div class="panel-body">
+            <form class="form-horizontal" name="myForm" role="form" >
+                <div class="form-group">
+                    <label class="col-sm-1 control-label">实例id</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" ng-model="searchCondition.id">
+                    </div>
+                    <label  class="col-sm-2 control-label">实例名称</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" ng-model="searchCondition.name">
+                    </div>
+                </div>
+                <div class="form-group" >
+                    <label  class="col-sm-1 control-label">流程名称</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" ng-model="searchCondition.pdName">
+                    </div>
+                    <label  class="col-sm-2 control-label">开始时间</label>
+                    <div class="col-sm-4">
+                        <input type="date" class="form-control" name="creator" ng-model="searchCondition.startTime" >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-1 control-label">结束时间</label>
+                    <div class="col-sm-4">
+                        <input type="date" class="form-control" ng-model="searchCondition.endTime"/>
+                    </div>
+                    <button type="button" class="btn btn-primary" ng-click="search()">查询</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!--列表-->
+    <div class="panel-collapse">
+        <table class="table table-bordered table-striped table-hover table-condensed">
+            <thead>
+            <tr>
+                <td>实例ID</td>
+                <td>实例名称</td>
+                <td>流程名称</td>
+                <td>开始时间</td>
+                <td>版本</td>
+                <!--<td>父实例ID</td>-->
+                <td>状态</td>
+                <td>操作</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="row in rows">
+                <td><a ng-click="oview(row)">{{ row.id}}</a></td>
+                <td>{{row.name}}</td>
+                <td>{{row.pdId}}</td>
+                <td>{{row.startTime}}</td>
+                <td>{{row.entityId}}</td>
+                <!--<td>{{row.mainProcess}}</td>-->
+                <td>
+                    <span ng-if="row.status==1">执行状态</span>
+                    <span ng-if="row.status==2">挂起状态</span>
+                    <span ng-if="row.status==3">结束状态</span>
+                    <span ng-if="row.status==4">强制停止状态</span>
+                </td>
+                <td>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default btn-sm" ng-click="oview(row)">查看</button>
+                        <button type="button" class="btn btn-primary btn-sm" ng-click="show(row)">执行详情</button>
+                        <button type="button" class="btn btn-danger btn-sm" ng-click="deletePi(row)">删除</button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <!--分页组件-->
+        <div paging page-info="pageInfo" load="load()"/>
+    </div>
+
+
+    <!-- 删除流程 -->
+    <div class="modal fade bs-example-modal-sm" tabindex="-1" id="my-prompt" role="dialog" aria-labelledby="mySmallModalLabel">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">提示</div>
+                <div class="modal-body">确定删除该流程相关数据？</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default"  id="close" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" ng-click="">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 流程详情 -->
+    <div class="modal fade" tabindex="-1" id="my-show-popup">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header clearfix">
+                    <h4 class="modal-title pull-left">流程详情</h4>
+                    <div class="pull-right">
+                        <span type="button" class="close" data-dismiss="modal">&times;</span>
+                    </div>
+                </div>
+                <div class="modal-body" id="doc-my-tabs">
+                    <div class="modal-title">token列表</div>
+                    <form class="form-horizontal" name="myForm">
+                        <table class="table table-hover table-bordered table-compact">
+                            <tr>
+                                <td>token分支</td>
+                                <td>执行过程</td>
+                                <td style="display:none">activityInfo</td>
+                            </tr>
+                            <tr ng-repeat="token in processlist" ng-click="selectToken(token)">
+                                <td >分支-{{$index+1}}</td>
+                                <td>{{token.note}}</td>
+                                <td style="display:none">{{token.activitys}}</td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+
+                <br/>
+                <div ng-if="activitys" class="" id="doc-my-tabs1">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">活动列表 </div>
+                        <div class="panel-body">
+                            <table class="table table-bordered table-striped table-hover table-condensed">
+                                <tr>
+                                    <td style="display:none">活动实例id</td>
+                                    <td>活动名称</td>
+                                    <td>开始时间</td>
+                                    <td>结束时间</td>
+                                    <td>状态</td>
+                                    <td>任务数</td>
+                                    <td>查看任务</td>
+                                </tr>
+                                <tr ng-repeat="activity in activitys">
+                                    <td style="display:none">{{activity.id}}</td>
+                                    <td>{{activity.adName}}</td>
+                                    <td>{{activity.startTime}}</td>
+                                    <td>{{activity.endTime}}</td>
+                                    <td>{{activity.status}}</td>
+                                    <td>{{activity.taskCount}}</td>
+                                    <td><button type="button" class="btn btn-success btn-sm" ng-if="activity.taskCount=0" ng-click="seeTask(activity)">task</button></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 任务信息 -->
+    <div class="modal fade" tabindex="-1" id="my-show-popup1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header clearfix">
+                    <h4 class="modal-title pull-left">任务信息</h4>
+                    <div class="pull-right">
+                        <span type="button" class="close" data-dismiss="modal">&times;</span>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-bordered table-striped table-hover table-condensed">
+                        <tr>
+                            <td>任务编号</td>
+                            <td>活动名称</td>
+                            <td>发起人</td>
+                            <td>发起时间</td>
+                            <td>开始时间</td>
+                            <td>结束时间</td>
+                            <td>状态</td>
+                        </tr>
+                        <tr ng-repeat="task in currentTasklist">
+                            <td>{{task.taskNumber}}</td>
+                            <td>{{task.adName}}</td>
+                            <td>{{task.senderName}}</td>
+                            <td>{{task.createTime}}</td>
+                            <td>{{task.takeTime}}</td>
+                            <td>{{task.endTime}}</td>
+                            <td>{{task.status}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

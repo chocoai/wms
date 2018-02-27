@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BillViewMeta Key="huoweihekuqu" Caption="工具栏" Version="">
+	<Parameters>
+		<Parameter Key="t1" Type="String" Scope="Global">
+			<DefaultValue>=o.orderNo()</DefaultValue>
+			<Where></Where>
+		</Parameter>
+	</Parameters>
+	
+	
+	<BillBody UserAgent="web">
+		<BillBodyMeta>
+			<BillUIPanel Layout="flex" Key="yiruhuowei_tools" Caption="工具栏" RowGap="7" ColGap="10"
+                             ColWidth="repeat(8,auto) 1fr" S="">
+			     <BillUIGridPanel Key="yiruhuowei_grid">
+                    <BillUIRowPanel>
+              
+                         <BillUIColPanel Width="4">
+                            <BillUIWidget Caption="货位编号" Key="cancel"
+                                EnabledWhen="True"   ParameterKey="huoweibianhao"
+                                DataTableKey="huoweihekuqu_view"
+                                WidgetType="BillUIString">
+                            </BillUIWidget>
+                        </BillUIColPanel> 
+                        <BillUIColPanel Width="2">
+                            <BillUIWidget Caption="查询" Key="search"
+                                EnabledWhen="True"
+                                Icon="glyphicon glyphicon-send" WidgetType="BillUIButton">
+                                <Triggers>
+                                    <Trigger Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                        	this.search("huoweihekuqu_view");
+                                 			]]>
+                                    </Trigger>
+                                </Triggers>
+                            </BillUIWidget>
+
+                        </BillUIColPanel>
+                    </BillUIRowPanel>
+			         <BillUIRowPanel>
+						 <BillUIColPanel Width="12">
+							 <BillUIPanel Layout="flex" Key="dictionary_tools">
+					
+								 <BillUIGrid Key="grid0" OptMode="View"   RowId="" DataTableKey="huoweihekuqu_view">
+								 <GridHeads>
+				
+									 <GridHead Col="huoweibianhao" Caption="货位" enableEdit="True"
+											   Width="150px">
+										 <BillUIWidget Key="huoweibianhao" WidgetType="BillUIString"/>
+									 </GridHead>
+									 <GridHead Col="huoweiID" Caption="货位id" enableEdit="True" Show="false"
+											   Width="150px">
+										 <BillUIWidget Key="huoweiID" WidgetType="BillUIString"/>
+									 </GridHead>
+									 <GridHead Col="kuqubianhao" Caption="库区" enableEdit="True"
+											   Width="150px">
+										 <BillUIWidget Key="kuqubianhao" WidgetType="BillUIString"/>
+									 </GridHead>
+									 
+								 </GridHeads>
+							 </BillUIGrid>
+							 </BillUIPanel>
+
+						 </BillUIColPanel>
+			         </BillUIRowPanel>
+			         
+			     </BillUIGridPanel>
+             </BillUIPanel>
+		</BillBodyMeta>
+	</BillBody>
+	
+</BillViewMeta>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0"> 
+    <DataTable Key="shangpinzhangye" Caption="" DefaultFilter="" Pagging="20" PermissionType="CommType"
+               TableName="WebService::com.xyy.bill.inf.ShangpinzhangyeService" DataSource="" Head="false">
+        <Parameters>
+            <Parameter Key="shangpinbianhao" Type="String">
+                <Where>
+                <![CDATA[
+					m.if(shangpinbianhao==null | shangpinbianhao=="" ,""," and b.shangpinbianhao like '%"+shangpinbianhao+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="shangpinmingcheng" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(shangpinmingcheng==null | shangpinmingcheng=="" ,""," and b.shangpinmingcheng like '%"+shangpinmingcheng+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

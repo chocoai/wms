@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="yhzx" BillType="Bill" Caption="养护执行" DefaultFilter="" TableName="Table::INT_WMS_KC_ZTBHB" DataSource="" Head="true">
+        <Field FieldKey="sp_sort" FieldName="商品种类" FieldType="Varchar"  Comment="商品种类"/>
+        <Field FieldKey="spid" FieldName="商品ID" FieldType="Varchar" Comment="商品ID"/>
+        <Field FieldKey="sl_kc" FieldName="移库数量" FieldType="Decimal" Comment="移库数量"/>
+        <Field FieldKey="kczt_old" FieldName="移库之前库存状态" FieldType="Int" Comment="移库之前库存状态"/>
+        <Field FieldKey="kczt_new" FieldName="移库之后库存状态" FieldType="Int"  Comment="移库之后库存状态"/>
+        <Field FieldKey="kfbh_old" FieldName="" FieldType="Varchar"  Comment=""/>
+        <Field FieldKey="kfbh_new" FieldName="" FieldType="Varchar"  Comment=""/>
+        <Field FieldKey="ph" FieldName="批号" FieldType="Varchar"  Comment="批号"/>
+        <Field FieldKey="yzid" FieldName="" FieldType="Varchar"  Comment=""/>
+        <Field FieldKey="rq_sc" FieldName="生产日期" FieldType="Date"  Comment="生产日期"/>
+        <Field FieldKey="yxqz" FieldName="有效期至" FieldType="Date"  Comment="有效期至"/>
+        <Field FieldKey="change_time" FieldName="移库时间" FieldType="Date"  Comment="移库时间"/>
+        <Field FieldKey="is_zx" FieldName="是否迁移" FieldType="Int"  Comment="是否迁移"/>
+    </DataTable>
+</DataSet>

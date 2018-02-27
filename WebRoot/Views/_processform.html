@@ -1,0 +1,55 @@
+<div class="panel panel-default">
+
+    <div class="panel-heading clearfix">
+        <h3 class="panel-title pull-left">流程表单信息</h3>
+        <div class="pull-right">
+            <button class="btn-success btn-sm btn" data-toggle="modal" data-target="#my-popup-addProcessform">新增
+            </button>
+        </div>
+    </div>
+
+    <div class="panel-body">
+        <input type="hidden" id="afindexHidden"/>
+        <table class="table table-bordered table-hover">
+            <tr>
+
+                <td>引用表单名称：</td>
+                <td>无数据显示方式：</td>
+<!--                 <td>许可类型：</td> -->
+<!--                 <td>排除字段：</td> -->
+<!--                 <td>必填字段：</td> -->
+                <td>排序号：</td>
+                <td>操作</td>
+            </tr>
+            <tr class="danger" ng-repeat="pf in currentRow.processform">
+
+                <td>
+                    <span>{{pf.formName}}</span>
+                </td>
+                <td>
+                    <span ng-if="pf.showType==0">隐藏</span>
+                    <span ng-if="pf.showType==1">新建</span>
+                </td>
+<!--                 <td> -->
+<!--                     <span ng-if="pf.permisisionType==0">乐观许可</span> -->
+<!--                     <span ng-if="pf.permisisionType==1">悲观许可</span> -->
+<!--                 </td> -->
+<!--                 <td> -->
+<!--                     {{pf.excludeFields}} -->
+<!--                 </td> -->
+<!--                 <td> -->
+<!--                     <span>{{pf.requireField}}</span> -->
+<!--                 </td> -->
+                <td>
+                    <span>{{pf.sortNumber}}</span>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-warning btn-sm" ng-click="afedit(pf,$index)">修改</button>
+                    <button type="button" class="btn btn-warning btn-sm" ng-click="delProcessForm($index)">删除</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+

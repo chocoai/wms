@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BillFormMeta Key="yuetaiziliaoweihu" Version="1.0.0"
+	BillType="Dics" Caption="月台资料">
+	<BillBody>
+		<BillBodyMeta UserAgent="web">
+			<BillUIPanel Layout="flex" FlexDirection="column" Width="100%"
+				Key="mainContainer" Caption="仓库资料" S="">
+				<BillUIPanel Layout="flex" Key="toolbox" Caption="工具栏">
+					<!--属性 colPush 向右推 colPull 向左拉 colOffset 左边距 -->
+
+					<BillUIWidget Key="save" Caption="保存" EnabledWhen="True"
+						Icon="glyphicon glyphicon-floppy-disk" WidgetType="BillUIButton">
+						<Triggers>
+							<Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+                                                        setStatus(40);
+			                                        	@$this.save();
+				                            		]]>
+							</Trigger>
+						</Triggers>
+					</BillUIWidget>
+					<BillUIWidget Key="goback" Caption="返回" EnabledWhen="True"
+						Icon="glyphicon glyphicon-align-left" WidgetType="BillUIButton" S="btn btn-danger">
+						<Triggers>
+							<Trigger Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                       @$this.$reBack();
+	                            ]]>
+							</Trigger>
+						</Triggers>
+					</BillUIWidget>
+				</BillUIPanel>
+
+
+				<BillUIPanel Layout="flex" Key="bills_tools" Caption=""
+					S="panel panel-default publicPanel">
+					<BillUIGridPanel Device="sm" key="boxtool">
+						<BillUIRowPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="cangkubianhao" ParameterKey="cangkubianhao"
+									DataTableKey="yuetaiziliaoweihu" Caption="仓库编号" EnabledWhen="True"
+									Icon="glyphicon glyphicon-send" DataTableColumn="cangkubianhao"
+									Disable="true" WidgetType="BillUIPopupWindow" ViewSize="lg" Required="Required"
+									Src="cangku">
+
+									<Triggers>
+										<Trigger>
+                                                <![CDATA[
+                                                    var cangku=this.rows[0];  
+                                                    @cangkuID.setValue(cangku.ID);  
+                                                    this.setValue(cangku.cangkubianhao);
+                                                    @cangkumingchen.setValue(cangku.cangkumingchen);
+                                                ]]>
+										</Trigger>
+									</Triggers>
+								</BillUIWidget>
+							</BillUIColPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="cangkumingchen" ParameterKey="cangkumingchen" 
+									DataTableKey="yuetaiziliaoweihu" Caption="仓库" EnabledWhen="True"
+									Icon="glyphicon glyphicon-send" WidgetType="BillUIString" Required="Required"
+									DataTableColumn="cangkumingchen">
+								</BillUIWidget>
+							</BillUIColPanel>
+						</BillUIRowPanel>
+
+						<BillUIRowPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="yuetaibianhao" ParameterKey="yuetaibianhao"
+									DataTableKey="yuetaiziliaoweihu" Caption="月台编号" EnabledWhen="True"
+									Icon="glyphicon glyphicon-send" WidgetType="BillUIString" Required="Required"
+									DataTableColumn="yuetaibianhao">
+								</BillUIWidget>
+							</BillUIColPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="yuetaimingchen" ParameterKey="yuetaimingchen"
+									DataTableKey="yuetaiziliaoweihu" Caption="月台名称" EnabledWhen="True"
+									Icon="glyphicon glyphicon-send" WidgetType="BillUIString"
+									DataTableColumn="yuetaimingchen">
+								</BillUIWidget>
+							</BillUIColPanel>
+						</BillUIRowPanel>
+
+						<BillUIRowPanel>
+							<BillUIColPanel Width="3">
+								<!-- <BillUIWidget Key="status" Caption="月台类型" DataTableKey="yuetaiziliaoweihu" 
+									DataTableColumn="status" WidgetType="BillUISelect"> <Init Type="javascript/angular" 
+									Runat="client"> <![CDATA[ this.loadDataSource(); ]]> </Init> <Properties> 
+									<Property Name="datasource" Type="internal"> [{name:"收货",value:1},{name:"发货",value:2}] 
+									</Property> </Properties> </BillUIWidget> -->
+
+
+								<BillUIWidget Key="yuetaileixing" Caption="月台类型"
+									DataTableKey="yuetaiziliaoweihu" DataTableColumn="yuetaileixing"
+									EnabledWhen="True" Src="bill/selectSrc?type=yuetaileixing"
+									WidgetType="BillUISelect">
+									<Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+												this.loadDataSource();
+										]]>
+									</Init>
+								</BillUIWidget>
+							</BillUIColPanel>
+
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="qiyong" Caption="是否启用"
+									DataTableKey="yuetaiziliaoweihu" DataTableColumn="qiyong"
+									EnabledWhen="True" Src="bill/selectSrc?type=bool" WidgetType="BillUISelect">
+									<Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+												this.loadDataSource();
+										]]>
+									</Init>
+								</BillUIWidget>
+							</BillUIColPanel>
+						</BillUIRowPanel>
+
+						<BillUIRowPanel>
+							<BillUIColPanel Width="6">
+								<BillUIWidget Key="yuetaimiashu" ParameterKey="yuetaimiashu"
+									DataTableKey="yuetaiziliaoweihu" Caption="月台描述" EnabledWhen="True"
+									Icon="glyphicon glyphicon-send" WidgetType="BillUIString"
+									DataTableColumn="yuetaimiashu">
+								</BillUIWidget>
+							</BillUIColPanel>
+						</BillUIRowPanel>
+					</BillUIGridPanel>
+				</BillUIPanel>
+			</BillUIPanel>
+		</BillBodyMeta>
+
+	</BillBody>
+
+	<BillHeadMeta>
+		<BillStatusCollection>
+			<Status Default="true" Code="1">录入</Status>
+			<Status Code="20">正式</Status>
+			<Status Code="40">审核通过</Status>
+		</BillStatusCollection>
+		<ProcessCollection>
+			<Process Name="仓库资料">
+                <![CDATA[
+                        status==20
+                ]]>
+			</Process>
+		</ProcessCollection>
+
+		<BillEventCollection>
+		</BillEventCollection>
+
+	</BillHeadMeta>
+</BillFormMeta>
+

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="cn" ng-app="xyyerp">
+<head>
+    <base href="/"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>采购订单</title>
+    <link rel='stylesheet' href='/lib/css/bootstrap.css'>
+    <link rel='stylesheet' href='/lib/css/css.css'>
+    <script src="//cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//cdn.bootcss.com/angular.js/1.5.10/angular.min.js"></script>
+    <script src="/lib/js/util.js"></script>
+    <script src="//cdn.bootcss.com/angular-ui-bootstrap/2.4.0/ui-bootstrap-tpls.min.js"></script>
+    <script src="/Shared/myDirective.js"></script>
+    <script src="/Shared/SharedService.js"></script>
+    <!--
+        bill库
+    -->
+    <style></style>
+    <script>
+        //应用
+        var main = angular.module('xyyerp', ['myApp.myDirective']);
+        //入口模块配置
+        main.run(function ($rootScope, $interval) {
+           //根模型
+            if (!$rootScope._model) {
+                $rootScope._model = new $Model();
+            }
+            //根环境变量
+            if (!$rootScope._env) {
+                $rootScope._env = new $Env();
+            }
+
+        //调用队列
+        $rootScope.$on('$_INSTRUCTION_METHOD_CALL', function (e, param) {
+            CACHE.pushQueue({id: CACHE.count(), data: param, count: 0});
+        });
+        $interval(function () {
+            var dels = [];
+            for (var i = 0; i < CACHE.queue().length; i++) {
+                if (CACHE.queue()[i].count > 1800) {
+                    dels.push(CACHE.queue()[i]);
+                } else {
+                    CACHE.queue()[i].count += 1;
+                    $rootScope.$broadcast('$_INSTRUCTION_METHOD_CALLBACK', CACHE.queue()[i]);
+                }
+            }
+            for (var i = 0; i < dels.length; i++) {
+                CACHE.delQueue(dels[i]);
+            }
+        }, 10);
+    });
+
+    //主控制器
+    main.controller('xyyerp.mainCtrl', function ($scope, $http, $interval, $rootScope, $compile, $q) {
+            window.billKey = 'caigoudingdan';
+            $rootScope._env = {
+            "billid": "3a848bf48bf444678d1fb29827ddaf02",
+            "billkey": "caigoudingdan",
+            "ua": "WEB",
+            "t1": 0,
+            "t2": 0,
+            "t3": ""
+        };
+            $rootScope.billKey = 'caigoudingdan';
+            $scope.renderId = '4615141b710e479890f35673f9316ebd';
+            $scope.$http = $http;
+            $scope.$q = $q;
+            $scope._$$controller$$ = '_$$controller$$';
+            $scope.$compile = $compile;
+            $scope.checkRuleLists = [];
+            mixer(ERPBill, $scope);
+            $scope.pageInit();
+         });
+    </script>
+</head>
+<body>
+<div billuitemplate></div>
+<div ng-controller="xyyerp.mainCtrl" Version="1.0.0" BillType="Bill" Caption="采购订单" Key="caigoudingdan"
+     id="caigoudingdan">
+
+</div>
+</body>
+</html>

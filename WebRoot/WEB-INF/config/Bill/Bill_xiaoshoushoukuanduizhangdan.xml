@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BillFormMeta Key="xiaoshoushoukuanduizhangdan" Version="1.0.0" BillType="Bill" Caption="销售收款对账单">
+    <BillBody>
+        <BillBodyMeta UserAgent="web">
+            <BillUIPanel Layout="flex" FlexDirection="column" Width="100%" Key="mainContainer" Caption="进项发票管理" S="">
+                <BillUIPanel Layout="flex" Key="toolbox" Caption="工具栏">
+                	<BillUIWidget Key="goback" Caption="返回"
+                                  EnabledWhen="True"
+                                  Icon="glyphicon glyphicon-align-left" WidgetType="BillUIButton" S="btn btn-danger">
+                        <Triggers>
+                            <Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+                                  @$this.return();
+                       ]]>
+                            </Trigger>
+                        </Triggers>
+                    </BillUIWidget>
+                    <BillUIWidget Key="save" Caption="保存"
+                                  EnabledWhen="True"
+                                  Icon="glyphicon glyphicon-floppy-disk" WidgetType="BillUIButton">
+                        <Triggers>
+                            <Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+                                			var cos = window.$body.xiaoshoushoukuanduizhangdan_details.cos;
+                                			if(cos.length == 0){
+                                				alert("请导入相关信息!");
+                                				return;
+                                			}
+                                			for(var i=0;i<cos.length;i++){
+                                				if(cos[i].shifoupipei == 0){
+                                					alert("导入存在不匹配的支付信息，请删除不匹配的行！");
+                                					return;
+                                				}
+                                			}
+                                    	    @$this.save();
+	                                    ]]>
+                            </Trigger>
+                        </Triggers>
+                        <Init Type="javascript/angular" Runat="client">
+                            <![CDATA[
+                            			setDisabled('gridAdd');
+                                 		if(getStatus()>=20){
+                                 			this.setHide();
+                                 		}else{
+                                 			this.setShow();
+                                 		}
+								]]>
+                        </Init>
+                    </BillUIWidget>
+                    <BillUIWidget Key="submit" Caption="提交"
+                                  EnabledWhen="True"
+                                  Icon="glyphicon glyphicon-floppy-saved" WidgetType="BillUIButton">
+                        <Init Type="javascript/angular" Runat="client">
+                            <![CDATA[
+                                        @pull.setDisable();
+                                        if(getStatus()>=20){
+                                            this.setDisable();
+                                        }else{
+                                            this.setEnable();
+                                        }
+                            ]]>
+                        </Init>
+                        <Triggers>
+                            <Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+                                		var cos = window.$body.xiaoshoushoukuanduizhangdan_details.cos;
+                                			if(cos.length == 0){
+                                				alert("请导入相关信息!");
+                                				return;
+                                			}
+                                			for(var i=0;i<cos.length;i++){
+                                				if(cos[i].shifoupipei == 0){
+                                					alert("导入存在不匹配的支付信息，请删除不匹配的行！");
+                                					return;
+                                				}
+                                			}
+                                         setStatus(20);
+		                                 @$this.save();
+	                                  ]]>
+                            </Trigger>
+                        </Triggers>
+                    </BillUIWidget>
+                    <BillUIWidget Key="upload" Caption="导入"
+                                  EnabledWhen="True"
+                                  Icon="glyphicon glyphicon-floppy-saved" WidgetType="BillUIAttachment" ParseExcel="true" TempletUrl="销售对账单导入模板.xlsx">
+                        <ImportSheets>
+							<ImportSheet  DataTableKey="xyy_erp_bill_xiaoshoushoukuanduizhangdan_details">
+								<ImportColumns>  
+									<ImportColumn Key="交易日期" CellNummber="0" DataTableColumn="jiaoyiriqi" />
+									<ImportColumn Key="电商编号" CellNummber="1" DataTableColumn="dianshangbianhao" />
+									<ImportColumn Key="客户名称" CellNummber="2" DataTableColumn="kehumingcheng" />
+									<ImportColumn Key="交易金额" CellNummber="3" DataTableColumn="jiaoyijine" />
+									<ImportColumn Key="交易备注" CellNummber="4" DataTableColumn="jiaoyibeizhu" />
+								</ImportColumns>
+							</ImportSheet>
+						</ImportSheets>
+						<Init Type="javascript/angular" Runat="client">
+                            <![CDATA[
+                                        @upload.setDisable();
+                                        if(getStatus()>=20){
+                                            this.setDisable();
+                                        }
+                            ]]>
+                        </Init>
+                        <Triggers>
+                            <Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+                                			 
+                                             var data=window.$head;
+                                             data.billKey="xiaoshoushoukuanduizhangdan";
+                                             $this.importFn(data,{
+                                                    ok:function(data){
+                                                      if(data.status == 1){
+                                                        insertRows("xiaoshoushoukuanduizhangdan_details",data.data);
+                                                       	alert("导入Excel成功");
+                                                      }
+                                                    }
+			                                    });
+	                            ]]>
+                            </Trigger>
+                        </Triggers>
+                    </BillUIWidget>
+                </BillUIPanel>
+                <BillUIPanel Layout="flex" Key="mainContainer_head" Caption="销售收款对账单" S="panel panel-success publicPanel">
+                    <BillUIGridPanel Key="xiaoshoushoukuanduizhangdan">
+                        <BillUIRowPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="kaipiaoriqi" Caption="开票日期" Required="Required"
+                                              DataTableKey="xiaoshoushoukuanduizhangdan" DataTableColumn="kaipiaoriqi"
+                                              EnabledWhen="True" WidgetType="BillUIDateTime">
+                                    <Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                        		var value = this.getValue();
+                                        		if(value != null && value != 'undefined'){
+                                        			var t=this.formatDate(new Date());
+                                                	this.setValue(t);
+                                        		}
+										]]>
+                                    </Init>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="kaipiaoyuan" Caption="开票员" DataTableKey="xiaoshoushoukuanduizhangdan"
+                                              DataTableColumn="kaipiaoyuan" EnabledWhen="True" Required="Required"
+                                              WidgetType="BillUIString"> 
+                                              <Init Type="javascript/angular" Runat="client">
+			                                        <![CDATA[
+			                                  				var t=this.getRealName();
+			                                                this.setValue(t);
+													]]>
+			                                    </Init>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="zhifubianhao" Caption="支付编号" DataTableKey="xiaoshoushoukuanduizhangdan" Required="Required"
+                                              DataTableColumn="zhifubianhao" EnabledWhen="True" WidgetType="BillUIPopupWindow"
+                                              Disable="true" Src="zhifufangshi">
+                                    <Triggers>
+                                        <Trigger>
+                                            <![CDATA[
+                                                	var zffs=$this.rows[0];
+                                                    $this.setValue(zffs.zffsbh);
+                                                    @zhifumingcheng.setValue(zffs.zffsmc);
+                                        ]]>
+                                        </Trigger>
+                                    </Triggers>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="zhifumingcheng" Caption="支付名称" DataTableKey="xiaoshoushoukuanduizhangdan" Required="Required"
+                                              DataTableColumn="zhifumingcheng" EnabledWhen="True" WidgetType="BillUIString"
+                                              Disable="true">
+                                              <Triggers>
+                                              	<Trigger>
+                                              		<![CDATA[
+                                              			var pipeifangshi = getHeadValue("pipeifangshi");
+			                                			 var zhifubianhao = getHeadValue("zhifubianhao");
+			                                			 if(zhifubianhao != null&& zhifubianhao != '' &&pipeifangshi != null && pipeifangshi != '' ){
+			                                			 	@upload.setEnable();
+			                                			 }
+                                              		]]>
+                                              	</Trigger>
+                                              </Triggers>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="pipeifangshi" Caption="匹配方式" DataTableKey="xiaoshoushoukuanduizhangdan" Required="Required"
+                                              DataTableColumn="pipeifangshi" EnabledWhen="True" WidgetType="BillUISelect">
+                                              <Init Type="javascript/angular" Runat="client">
+			                                        <![CDATA[
+			                                          this.loadDataSource();
+													]]>
+				                            </Init>
+                                        <Properties>
+                                            <Property Name="datasource" Type="internal">
+                                                [{name:"订单号",value:1}]
+                                            </Property>
+                                        </Properties>
+                                        <Triggers>
+                                         	<Trigger>
+                                           		<![CDATA[
+                                           			var pipeifangshi = getHeadValue("pipeifangshi");
+		                                			 var zhifubianhao = getHeadValue("zhifubianhao");
+		                                			 if(zhifubianhao != null&& zhifubianhao != '' &&pipeifangshi != null && pipeifangshi != '' ){
+		                                			 	@upload.setEnable();
+		                                			 }
+                                           			]]>
+                                            	</Trigger>
+                                            </Triggers>
+                                            <Formatters>
+                                    </Formatters>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                        </BillUIRowPanel>
+                    </BillUIGridPanel>
+                </BillUIPanel>
+                <BillUIPanel Layout="flex" Key="mainContainer_tab" Caption="单据明细"
+                             S="panel  panel-primary  publicPanel">
+                    <BillUIPanel Layout="flex" Key="mainContainer_details" Caption="单据明细">
+                        <BillUIGrid Key="xiaoshoushoukuanduizhangdan_details"  OptMode="Edit"
+                                    DataTableKey="xiaoshoushoukuanduizhangdan_details" IsFull="true">
+                            <GridHeads>
+                                <GridHead Col="jiaoyiriqi" Caption="交易日期" enableEdit="True" Width="100px">
+                                    <BillUIWidget Key="jiaoyiriqi" WidgetType="BillUIDateTime" ViewSize="lg"
+                                                  Disable="true" >
+                                    </BillUIWidget>
+                                </GridHead>
+                                <GridHead Col="dianshangbianhao" Caption="订单编号" enableEdit="True" Width="100px">
+                                    <BillUIWidget Key="dianshangbianhao" Disable="true" WidgetType="BillUIString"/>
+                                </GridHead>
+                                <GridHead Col="kehumingcheng" Caption="客户名称" enableEdit="True" Width="80px">
+                                    <BillUIWidget Key="kehumingcheng" Disable="true" WidgetType="BillUIString"/>
+                                </GridHead>
+                                <GridHead Col="jiaoyijine" Caption="交易金额" enableEdit="True" Width="80px">
+                                    <BillUIWidget Key="jiaoyijine" Disable="true" WidgetType="BillUIDecimal"/>
+                                </GridHead>
+                                <GridHead Col="jiaoyibeizhu" Caption="交易备注" enableEdit="True" Width="120px">
+                                    <BillUIWidget Key="jiaoyibeizhu" Disable="true" WidgetType="BillUIString"/>
+                                </GridHead>
+                                
+                                <GridHead Col="pipeidianshangbianhao" Caption="匹配编号" enableEdit="True" Width="100px">
+                                    <BillUIWidget Key="pipeidianshangbianhao" Disable="true" WidgetType="BillUIString">
+                                    </BillUIWidget>
+                                </GridHead>
+                                <GridHead Col="pipeikehumingcheng" Caption="匹配客户名称" enableEdit="True" Width="120px">
+                                    <BillUIWidget Key="pipeikehumingcheng" Disable="true" WidgetType="BillUIString"/>
+                                </GridHead>
+                                <GridHead Col="hanshuijine" Caption="含税金额" enableEdit="True" Width="120px">
+                                    <BillUIWidget Key="hanshuijine" Disable="true" WidgetType="BillUIDecimal"/>
+                                </GridHead>
+                                <GridHead Col="yjsje" Caption="已结算金额" enableEdit="True" Width="120px">
+                                    <BillUIWidget Key="yjsje" Disable="true" WidgetType="BillUIDecimal"/>
+                                </GridHead>
+                                <GridHead Col="ppwjsje" Caption="匹配未结算金额" enableEdit="True" Width="120px">
+                                    <BillUIWidget Key="ppwjsje" Disable="true" WidgetType="BillUIDecimal"/>
+                                </GridHead>
+                                <GridHead Col="shifoupipei" Caption="是否匹配" enableEdit="True" Width="120px">
+                                    <BillUIWidget Key="shifoupipei" Disable="true" WidgetType="BillUIInteger">
+                                    <Formatters>
+                                        <Formatter>
+                                            <![CDATA[
+                                             [{'url':[{name:'否',value:'0'},{name:'是',value:'1'}],'type':'shifoupipei','local':'true'}]
+                                            ]]>
+                                        </Formatter>
+                                    </Formatters>
+                                    </BillUIWidget>
+                                </GridHead>
+                            </GridHeads>
+                        </BillUIGrid>
+                    </BillUIPanel>
+
+                    <BillUIPanel Layout="flex" Key="zhidanrenxinxi" Caption="制单人信息">
+                        <BillUIGridPanel Key="zhidanren" S="zhidanren" >
+                            <BillUIRowPanel>
+                                <BillUIColPanel Width="12">
+                                    <BillUIWidget Key="creatorName" Caption="制单人：" enableEdit="false" Disable="true"  DataTableKey="xiaoshoushoukuanduizhangdan"
+                                                  DataTableColumn="creatorName"
+                                                  WidgetType="BillUIString"/>
+                                    <BillUIWidget Key="createTime" Caption="制单时间：" enableEdit="false" Disable="true"  DataTableKey="xiaoshoushoukuanduizhangdan"
+                                                  DataTableColumn="createTime"
+                                                  WidgetType="BillUIString"/>
+                                    <BillUIWidget Key="updatorName" Caption="更新人：" enableEdit="false" Disable="true"  DataTableKey="xiaoshoushoukuanduizhangdan"
+                                                  DataTableColumn="updatorName"
+                                                  WidgetType="BillUIString"/>
+                                    <BillUIWidget Key="updateTime" Caption="更新时间：" enableEdit="false" Disable="true"  DataTableKey="xiaoshoushoukuanduizhangdan"
+                                                  DataTableColumn="updateTime"
+                                                  WidgetType="BillUIString"/>
+                                </BillUIColPanel>
+                            </BillUIRowPanel>
+                        </BillUIGridPanel>
+                    </BillUIPanel>
+                    
+                </BillUIPanel>
+            </BillUIPanel>
+        </BillBodyMeta>
+
+    </BillBody>
+
+    <BillHeadMeta>
+        <BillWorkflows>
+            <BillStatusCollection>
+                <Status Default="true" Code="1">录入</Status>
+                <Status Code="20">正式</Status>
+            </BillStatusCollection>
+        </BillWorkflows>
+        <BillEventCollection>
+            <Event  Type="ParseExcel" Processor="com.xyy.bill.event.listener.CWSKDZParseExcelListener"/>
+            <Event  Type="PostSave" Processor="com.xyy.bill.event.listener.CWSKDZPostSaveListener"/>
+        </BillEventCollection>
+    </BillHeadMeta>
+</BillFormMeta>
+

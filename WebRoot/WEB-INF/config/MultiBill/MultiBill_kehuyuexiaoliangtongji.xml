@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BillFormMeta Key="kehuyuexiaoliangtongji" Version="1.0.0" BillType="MultiBill" Caption="客户月销量统计">
+    <BillBody>
+        <BillBodyMeta UserAgent="web">
+            <BillUIPanel Layout="flex" FlexDirection="column" Width="100%" Key="mainContainer" Caption="多样式表单" S="">
+                <BillUIPanel Layout="grid" Key="tools" Caption="查询面板" RowGap="3" ColGap="10"
+                             ColWidth="300px 300px 300px 1fr" S="panel panel-default publicPanel">
+                    <BillUIWidget Key="yaodianmingchen" ParameterKey="yaodianmingchen"  DataTableKey="kehuyuexiaoliangtongji"  Caption="药店名称"
+                                  Left="1" Top="1" Width="1" Height="1" EnabledWhen="True"
+                                  Icon="glyphicon glyphicon-send" WidgetType="BillUIString">
+                    </BillUIWidget>
+                    <BillUIWidget Key="xiaoshoushijian" ParameterKey="xiaoshoushijian" DataTableKey="kehuyuexiaoliangtongji" Caption="销售日期"
+                                  Left="2" Top="1" Width="1" Height="1" EnabledWhen="True"
+                                  Icon="glyphicon glyphicon-send" WidgetType="BillUIDateTime">
+                    </BillUIWidget>
+                    <BillUIWidget Caption="取消" Key="cancel"
+                                  Left="5" Top="1" Width="1" Height="1" EnabledWhen="True"
+                                  Icon="glyphicon glyphicon-send" WidgetType="BillUIButton">
+                        <Triggers>
+                            <Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+                                         @yaodianmingchen.setValue("");
+                                         @yaopinmingchen.setValue("");
+                                         @$this.__load();
+                                    ]]>
+                            </Trigger>
+                        </Triggers>
+                    </BillUIWidget>
+                    <BillUIWidget Caption="查询" Key="search"
+                                  Left="6" Top="1" Width="1" Height="1" EnabledWhen="True"
+                                  Icon="glyphicon glyphicon-send" WidgetType="BillUIButton">
+                        <Triggers>
+                            <Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+                                        @$this.__load("kehuyuexiaoliangtongji");
+                                    ]]>
+                            </Trigger>
+                        </Triggers>
+                    </BillUIWidget>
+                </BillUIPanel>
+
+                <BillUIPanel Layout="tab" Key="mainContainer_tab" Caption="多样式表单列表" RowGap="1" ColGap="1" ColWidth="1fr">
+                    <BillUIPanel Layout="flex" Key="mainContainer_details1" Caption="月销量统计" RowGap="1" ColGap="1"
+                                 ColWidth="1fr">
+                        <BillUIGrid Key="grid1" Left="1" Top="1" Width="1" Height="1" OptMode="View" DataTableKey="kehuyuexiaoliangtongji">
+                            <GridHeads>
+                                <GridHead Col="yaodianmingchen" Caption="药店名称" enableEdit="True" >
+                                    <BillUIWidget Key="yaodianmingchen" WidgetType="BillUIString"/>
+                                </GridHead>
+                                <GridHead Col="lianxidizhi" Caption="联系地址" enableEdit="True" >
+                                    <BillUIWidget Key="lianxidizhi" WidgetType="BillUIString"/>
+                                </GridHead>
+                                <GridHead Col="lianxiren" Caption="联系人" enableEdit="True" >
+                                    <BillUIWidget Key="lianxiren" WidgetType="BillUIString"/>
+                                </GridHead>
+                                <GridHead Col="xiaoshoujiage" Caption="销售单价" enableEdit="True" >
+                                    <BillUIWidget Key="xiaoshoujiage" WidgetType="BillUIDecimal"/>
+                                </GridHead>
+                                <GridHead Col="xiaoshouzongjia" Caption="销售总额" enableEdit="True" >
+                                    <BillUIWidget Key="xiaoshouzongjia" WidgetType="BillUIDecimal"/>
+                                </GridHead>
+                                <!--<GridHead Col="xiaoshoushijian" Caption="销售时间" enableEdit="True" Width="80px">
+                                    <BillUIWidget Key="xiaoshoushijian" WidgetType="BillUIDateTime"/>
+                                </GridHead>-->
+                            </GridHeads>
+                        </BillUIGrid>
+                    </BillUIPanel>
+                </BillUIPanel>
+
+                <BillUIChart Title="月销量TOP10"  ChartType="GenerialChart" Width="600px" Height="400px"
+                             Tooltip="true" Float="wipe" DataSetType="datasoruce"  DataTableKey="kehurixiaoliangtongji" DataSetkey="kehuxiaoliang"
+                             Toolbox="dataZoom,restore,saveAsImage"   Legend="false">
+                    <Category Axis="X" GroupType="field" GroudBy="yaodianmingchen">
+                        <Series Chart="bar"  GroupRule="field"  Group="yaodianmingchen"
+                                GatherFieldKey="xiaoshouzongjia"
+                                GatherType="sum"
+                        />
+                    </Category>
+                    <Init Type="javascript/angular" Runat="client">
+                        <![CDATA[
+                                this.loadDataSource();
+                            ]]>
+                    </Init>
+                </BillUIChart>
+            </BillUIPanel>
+        </BillBodyMeta>
+    </BillBody>
+    <BillHeadMeta>
+    </BillHeadMeta>
+</BillFormMeta>

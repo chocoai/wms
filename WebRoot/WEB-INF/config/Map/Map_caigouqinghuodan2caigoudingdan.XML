@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Map Key="caigouqinghuodan2caigoudingdan" Caption="采购请货单转采购订单" 
+    SrcDataObjectKey="caigouqinghuodan" 
+    SrcDataType="Bill"  
+    TgtDataObjectKey="caigoudingdan" 
+    TgtDataType="Bill"  
+    MaxPushValue="100"
+     MinPushValue="0">
+    <TargetTableCollection>
+     
+    <TargetTable Key="caigoudingdan_details" SrcTableKey="caigouqinghuodan_details">
+            <Field FieldKey="shangpinbianhao">
+                <![CDATA[
+                     =shangpinbianhao
+              ]]>
+            </Field>
+            <Field FieldKey="shangpinmingcheng">
+                <![CDATA[
+                     =shangpinmingcheng
+              ]]>
+            </Field>
+            <Field FieldKey="guige">
+                <![CDATA[
+                     =guige
+              ]]>
+            </Field>
+			<Field FieldKey="danwei">
+                <![CDATA[
+                     =danwei
+              ]]>
+            </Field>
+            <Field FieldKey="shengchanchangjia">
+                <![CDATA[
+                     =shengchanchangjia
+              ]]>
+            </Field>
+			<Field FieldKey="shuliang">
+                <![CDATA[
+                     =shuliang
+              ]]>
+            </Field>
+			<Field FieldKey="hanshuijia">
+                <![CDATA[
+                     =hanshuijia
+              ]]>
+            </Field>
+            <Field FieldKey="hanshuijine">
+                <![CDATA[
+                     =hanshuijine
+              ]]>
+            </Field>
+            <Field FieldKey="zuidijinjia">
+                <![CDATA[
+                     =stock.getZdhsjj(shangpinbianhao)
+              ]]>
+            </Field>
+            <Field FieldKey="zuigaojinjia">
+                <![CDATA[
+                     =stock.getZghsjj(shangpinbianhao)
+              ]]>
+            </Field>
+            <Field FieldKey="zuihoujinjia">
+                <![CDATA[
+                     =stock.getZhhsjj(shangpinbianhao)
+              ]]>
+            </Field>
+            <Field FieldKey="zhjhdw">
+                <![CDATA[
+                     =stock.getGysmc(shangpinbianhao)
+              ]]>
+            </Field>
+            <Field FieldKey="shuilv">
+                <![CDATA[
+                     =shuilv
+              ]]>
+            </Field>
+            <Field FieldKey="koulv">
+                <![CDATA[
+                     =100
+              ]]>
+            </Field>
+			<Field FieldKey="pizhunwenhao">
+                <![CDATA[
+                     =pizhunwenhao
+              ]]>
+            </Field>
+			<Field FieldKey="chandi">
+                <![CDATA[
+                     =chandi
+              ]]>
+            </Field>
+        </TargetTable>
+    </TargetTableCollection>
+    
+    <FeedBackCollection>
+       <FeedbackObject TableKey="caigoudingdan_details" BillStatus="1">            
+           <FeedbackTableCollection>
+              <FeedbackTable Key="shifoutiqu" TableKey="xyy_erp_bill_caigouqinghuodan_details">
+                <FeedbackField FieldKey="shifoutiqu"  FeedFieldKey=""  OpSign="Assign">
+                    <![CDATA[
+                        1
+                    ]]>
+                </FeedbackField>
+              </FeedbackTable>               
+           </FeedbackTableCollection>
+        </FeedbackObject>
+        <FeedbackObject TableKey="caigoudingdan_details" BillStatus="20">            
+           <FeedbackTableCollection>
+              <FeedbackTable Key="shifoutiqu" TableKey="xyy_erp_bill_caigouqinghuodan_details">
+                <FeedbackField FieldKey="shifoutiqu"  FeedFieldKey=""  OpSign="Assign">
+                    <![CDATA[
+                        1
+                    ]]>
+                </FeedbackField>
+              </FeedbackTable>               
+           </FeedbackTableCollection>
+        </FeedbackObject>
+     
+    </FeedBackCollection>
+    
+</Map>

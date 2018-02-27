@@ -1,0 +1,33 @@
+<div class="isPC">
+    <table class="table table-bordered table-striped table-hover">
+        <tr>
+            <th width="165">审核人</th>
+            <th width="120">审核时间</th>
+            <th width="165">审核结果</th>
+            <th width="225">审核意见</th>
+            <th width="225">备注</th>
+        </tr>
+        <#if taskList??&&(taskList?size>0)>
+            <#list taskList as  taskInstance>
+                <tr>
+                    <td>${taskInstance.creatorName!}</td>
+                    <td>${taskInstance.createTime!}</td>
+                    <td><#if taskInstance.shenhejieguo==0>
+                        <span>不通过</span>
+                        <#elseif taskInstance.shenhejieguo==1>
+                            <span>通过</span>
+                    </#if>
+                    </td>
+                    <td>${taskInstance.shenheyijian!}</td>
+                    <td>${taskInstance.beizhu!}</td>
+                </tr>
+            </#list>
+            <#else>
+                <tr>
+                    <td colspan="5">
+                        <div class="noData">暂无数据！</div>
+                    </td>
+                </tr>
+        </#if>
+    </table>
+</div>

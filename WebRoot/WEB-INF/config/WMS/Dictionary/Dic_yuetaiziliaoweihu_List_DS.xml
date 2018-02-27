@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="yuetaiziliaoweihu" Caption="月台资料叙事薄" DefaultFilter="" Pagging="10"
+               TableName="SQLQuery::select * | from xyy_wms_dic_yuetaiziliaoweihu where 1=1 and qiyong != -1 @yuetaibianhao @qiyong   ORDER BY createTime DESC" DataSource="" Head="false">
+        <Parameters> 
+            <Parameter Key="yuetaibianhao" Type="String">
+                <Where>
+                <![CDATA[
+					m.if(yuetaibianhao==null | yuetaibianhao=="" ," "," and yuetaibianhao like '%"+yuetaibianhao+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="qiyong" Type="String" >
+                <Where>
+                <![CDATA[
+					m.if(qiyong==null | qiyong==" " ," "," and qiyong like '%"+qiyong+"%'")
+                ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

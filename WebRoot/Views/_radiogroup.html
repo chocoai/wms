@@ -1,0 +1,66 @@
+<!--_checkboxgroup组件
+<div id="{{tid}}">
+-->
+<div>
+    <span id="{{tid}}">
+        laoding...
+    </span>
+    <span>
+        &nbsp; &nbsp;<input type="button" ng-click="test()" value="请选择">
+    </span>
+</div>
+<!--
+            $scope.head_list=$scope.heads.split(",");
+            $scope.fields_list=$scope.fields.split(",");
+-->
+<div class="modal fade"  role="dialog" id="{{pid}}" >
+	 <div class="modal-dialog" role="document">
+         <div class="modal-content">
+        <div class="modal-header" >
+            <table class="table" style="margin: 0;">
+	            <tr>
+		            <td  ng-repeat="search in search_list">
+		            {{mySplit(search,0)}}: <input type="text" id="{{mySplit(search,1)}}" > 
+		            </td>
+		            <td>
+		            	<button type="button" class="btn btn-warning radius btn-xs pull-right" ng-click="close()" style="margin: 0 0 0 8px;">关闭</button>
+		            	<button type="button" class="btn btn-primary radius btn-xs pull-right" ng-if="search_list!=null"  ng-click="sure()" >搜索</button>
+		            </td>
+	            </tr>
+            </table>
+            <!-- -->
+        </div>
+        <div class="modal-body" >
+            <table class="table table-hover" style="background-color: white">
+                <thead>
+                <tr class="primary">
+                    <th>选择</th>
+                    <th ng-repeat="head in head_list">
+                        {{head}}
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="row in $currentData">
+                    <th>
+                        <div ng-if="!checkModel">
+                        <label>    <input type="radio" value="{{row[key]}}" name="myradio"> <label id="{{row[key]}}">{{row[value]}}</label></label>
+                        </div>
+                        <div ng-if="checkModel && checkModel.indexOf(row[key])>=0">
+                           <label> <input type="radio" value="{{row[key]}}" checked="true" name="myradio"> <label id="{{row[key]}}">{{row[value]}}</label></label>
+                        </div>
+                        <div ng-if="checkModel && checkModel.indexOf(row[key])<0">
+                            <label><input type="radio" value="{{row[key]}}" name="myradio"> <label id="{{row[key]}}">{{row[value]}}</label></label>
+                        </div>
+                    </th>
+                    <th ng-repeat="field in fields_list">
+                        {{row[field]}}
+                    </th>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+     </div>
+    </div>
+</div>

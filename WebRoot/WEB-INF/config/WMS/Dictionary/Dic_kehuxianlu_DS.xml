@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0"> 
+    <DataTable Key="kehuxianlu" BillType="Dictionary" Caption="客户基本信息" DefaultFilter="" TableName="Table::xyy_wms_dic_kehuxianlu" DataSource="" Head="true">
+        <!--<Field FieldKey="clientid" FieldName="客户ID" FieldType="Varchar" Comment="客户ID"/>-->
+
+       <!-- <Field FieldKey="kehumingcheng" FieldName="客户名称" FieldType="Varchar" MixCondition="true" Comment="客户名称"/>-->
+     <!--   <Field FieldKey="xianlumingcheng" FieldName="线路名称" FieldType="Varchar" Comment="线路名称"/>-->
+      <Field FieldKey="xianluID" FieldName="线路id" FieldType="Varchar" Comment="线路id"/>
+        <Field FieldKey="shifouhuodong" FieldName="是否活动" FieldType="Int" DefaultValue="1"  Comment="活动状态：0.否 1.是"/>
+        <!--  <Field FieldKey="lianxiren" FieldName="联系人" FieldType="Varchar" Comment="联系人"/>
+          <Field FieldKey="dianhua" FieldName="电话" FieldType="Varchar" Comment="电话"/>
+          <Field FieldKey="dizhi" FieldName="地址" FieldType="Varchar" Comment="地址"/>-->
+    </DataTable>
+    <DataTable Key="kehuxianlu_list" BillType="Dictionary"  Caption="客户—线路" DefaultFilter="ID" TableName="Table::xyy_wms_dic_kehuxianlu_list" DataSource="" Head="false">
+        <Field FieldKey="kehubianhao" FieldName="客户编号" FieldType="Varchar"  Comment="客户编号" />
+    </DataTable>
+</DataSet>

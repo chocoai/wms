@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="spph" Caption="商品批号视图" DefaultFilter="" PermissionType="CommType"  Pagging="10"
+        TableName="SQLQuery::select * | from xyy_erp_dic_shangpinpihao where 1=1 @goodsid   order by createTime desc"  DataSource="" Head="false" Singleton="" OrderBy="">
+        <Parameters>
+            <Parameter Key="goodsid" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(goodsid==null | goodsid=="","and goodsId is null"," and goodsId = '"+goodsid+"'")
+	            ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

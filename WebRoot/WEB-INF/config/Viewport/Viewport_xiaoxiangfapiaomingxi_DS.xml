@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="xiaoxiangfapiaomingxi_view" Caption="进项发票" DefaultFilter="" PermissionType="CommType"  Pagging="10"
+        TableName="SQLQuery::   SELECT * |  FROM (
+                                SELECT a.danjubianhao,a.createTime as kaipiaoriqi,a.kehubianhao,a.kehumingcheng,a.creatorName as kaipiaoyuan,
+                                a.yewuyuan,a.fapiaozhuangtai,a.yjsje,b.rowID,'销售出库单' as zhaiyao,
+                                b.shangpinbianhao,b.shangpinmingcheng,b.guige,b.danwei,b.shengchanchangjia,b.hanshuijia,
+                                b.hanshuijine,b.shuilv,b.ykpsl,b.shuliang,b.pizhunwenhao,b.chandi FROM xyy_erp_bill_xiaoshouchukudan a
+                                LEFT JOIN xyy_erp_bill_xiaoshouchukudan_details b ON b.BillID = a.BillID
+                                where 1=1
+                                UNION
+                                SELECT a.danjubianhao,a.createTime as kaipiaoriqi,a.kehubianhao,a.kehumingcheng,a.creatorName as kaipiaoyuan,
+                                a.yewuyuan,a.fapiaozhuangtai,a.yjsje,b.rowID,'销售退回入库单' as zhaiyao,
+                                b.shangpinbianhao,b.shangpinmingcheng,b.guige,b.danwei,b.shengchanchangjia,b.hanshuijia,
+                                b.hanshuijine,b.shuilv,b.ykpsl,b.shuliang,b.pizhunwenhao,b.chandi FROM xyy_erp_bill_xiaoshoutuihuirukudan a
+                                LEFT JOIN xyy_erp_bill_xiaoshoutuihuirukudan_details b ON a.BillID = b.BillID
+                                where 1=1
+                                UNION
+                                SELECT a.danjubianhao,a.createTime as kaipiaoriqi,a.kehubianhao,a.kehumingcheng,a.creatorName as kaipiaoyuan,
+                                a.yewuyuan,a.fapiaozhuangtai,a.yjsje,b.rowID,'销售退补价执行单' as zhaiyao,
+                                b.shangpinbianhao,b.shangpinmingcheng,b.guige,b.danwei,b.shengchanchangjia,b.yuanhanshuijia as hanshuijia,
+                                b.hanshuijine,b.shuilv,b.ykpsl,b.shuliang,b.pizhunwenhao,b.chandi FROM xyy_erp_bill_xiaoshoutuibujiazhixingdan a
+                                LEFT JOIN xyy_erp_bill_xiaoshoutuibujiazhixingdan_details b ON a.BillID = b.BillID
+                                where 1=1
+                                ) T
+                                ORDER BY kaipiaoriqi ASC "  DataSource="" Head="false" Singleton="" OrderBy="">
+        <Parameters>
+            <Parameter Key="kehubianhao" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(kehubianhao==null | kehubianhao=="" ,""," and a.kehubianhao like '%"+kehubianhao+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="kehumingcheng" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(kehumingcheng==null | kehumingcheng=="",""," and a.kehumingcheng = '"+kehumingcheng+"'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="danjubianhao" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(danjubianhao==null | danjubianhao=="" ,""," and a.danjubianhao like '%"+danjubianhao+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="kaishishijian" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(kaishishijian==null | kaishishijian=="" ,""," and DATE_FORMAT(a.createTime,'%Y-%m-%d') >= DATE_FORMAT('"+kaishishijian+"','%Y-%m-%d')")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="jiesushijian" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(jiesushijian==null | jiesushijian=="" ,""," and DATE_FORMAT(a.createTime,'%Y-%m-%d') <= DATE_FORMAT('"+jiesushijian+"','%Y-%m-%d')")
+	            ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

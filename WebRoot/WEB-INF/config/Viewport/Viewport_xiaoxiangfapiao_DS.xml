@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="xiaoxiangfapiao_view" Caption="进项发票" DefaultFilter="" PermissionType="CommType"  Pagging="10"
+        TableName="SQLQuery::   SELECT *  | FROM (
+                                select a.danjubianhao,a.createTime as kaipiaoriqi,a.kehubianhao,a.kehumingcheng,a.creatorName as kaipiaoyuan,a.BillID,
+                                a.yewuyuan,a.fapiaozhuangtai,M.hanshuijine,IFNULL(a.yjsje,0) as yjsje ,a.rowID,1 as type,d.shuilv,
+                                IFNULL((M.hanshuijine - a.yjsje),0) as wjsje,'销售出库单' as zhaiyao
+                                from xyy_erp_bill_xiaoshouchukudan a
+                                LEFT JOIN xyy_erp_bill_caigourukudan_details d ON d.BillID = a.BillID
+                                LEFT JOIN (SELECT b.BillID, SUM(b.hanshuijine) as hanshuijine
+                                FROM xyy_erp_bill_xiaoshouchukudan_details b GROUP BY b.BillID)
+                                M ON M.BillID = a.BillID
+                                WHERE 1=1 @kehubianhao @kehumingcheng @danjubianhao @kaishishijian @jiesushijian
+                                UNION
+                                select a.danjubianhao,a.createTime as kaipiaoriqi,a.kehubianhao,a.kehumingcheng,a.creatorName as kaipiaoyuan,a.BillID,
+                                a.yewuyuan,a.fapiaozhuangtai,M.hanshuijine,IFNULL(a.yjsje,0) as yjsje ,a.rowID,1 as type,d.shuilv,
+                                IFNULL((M.hanshuijine - a.yjsje),0) as wjsje,'销售退回入库单' as zhaiyao
+                                from xyy_erp_bill_xiaoshoutuihuirukudan a
+                                LEFT JOIN xyy_erp_bill_caigoutuichuchukudan_details d ON d.BillID = a.BillID
+                                LEFT JOIN (SELECT b.BillID, SUM(b.hanshuijine) as hanshuijine
+                                FROM xyy_erp_bill_xiaoshoutuihuirukudan_details b GROUP BY b.BillID)
+                                M ON M.BillID = a.BillID
+                                WHERE 1=1 @kehubianhao @kehumingcheng @danjubianhao @kaishishijian @jiesushijian
+                                UNION
+                                select a.danjubianhao,a.createTime as kaipiaoriqi,a.kehubianhao,a.kehumingcheng,a.creatorName as kaipiaoyuan,a.BillID,
+                                a.yewuyuan,a.fapiaozhuangtai,M.hanshuijine,IFNULL(a.yjsje,0) as yjsje ,a.rowID,1 as type,d.shuilv,
+                                IFNULL((M.hanshuijine - a.yjsje),0) as wjsje,'销售退补价执行单' as zhaiyao
+                                from xyy_erp_bill_xiaoshoutuibujiazhixingdan a
+                                LEFT JOIN xyy_erp_bill_caigoutuibujiazhixingdan_details d ON d.BillID = a.BillID
+                                LEFT JOIN (SELECT b.BillID, SUM(b.hanshuijine) as hanshuijine
+                                FROM xyy_erp_bill_xiaoshoutuibujiazhixingdan_details b GROUP BY b.BillID)
+                                M ON M.BillID = a.BillID
+                                WHERE 1=1 @kehubianhao @kehumingcheng @danjubianhao @kaishishijian @jiesushijian
+                                ) T  order by kaipiaoriqi asc "  DataSource="" Head="false" Singleton="" OrderBy="">
+        <Parameters>
+            <Parameter Key="kehubianhao" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(kehubianhao==null | kehubianhao=="" ,""," and a.kehubianhao like '%"+kehubianhao+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="kehumingcheng" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(kehumingcheng==null | kehumingcheng=="",""," and a.kehumingcheng = '"+kehumingcheng+"'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="danjubianhao" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(danjubianhao==null | danjubianhao=="" ,""," and a.danjubianhao like '%"+danjubianhao+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="kaishishijian" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(kaishishijian==null | kaishishijian=="" ,""," and DATE_FORMAT(a.createTime,'%Y-%m-%d') >= DATE_FORMAT('"+kaishishijian+"','%Y-%m-%d')")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="jiesushijian" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(jiesushijian==null | jiesushijian=="" ,""," and DATE_FORMAT(a.createTime,'%Y-%m-%d') <= DATE_FORMAT('"+jiesushijian+"','%Y-%m-%d')")
+	            ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

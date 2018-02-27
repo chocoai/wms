@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="zhudongbuhuo" Caption="损溢开票单叙事薄" DefaultFilter="" Pagging="10"
+               TableName="SQLQuery::select * | from xyy_wms_bill_zhudongbuhuo where 1=1 and status != -1 @danjubianhao @zhidanriqi ORDER BY createTime DESC " DataSource="" Head="false">
+        <Parameters>
+            <Parameter Key="danjubianhao" Type="String">
+                <Where>
+                    <![CDATA[ m.if(danjubianhao==null | danjubianhao=="" ," "," and danjubianhao like '%"+danjubianhao+"%'") ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="zhidanriqi" Type="DateTime">
+                <Where>
+                    <![CDATA[
+					m.if(zhidanriqi==null | zhidanriqi=="" ," "," and zhidanriqi like '%"+zhidanriqi+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

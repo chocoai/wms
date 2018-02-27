@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="caigouqinghuodan" Caption="采购请货单叙事薄" DefaultFilter="" Pagging="10"
+               TableName="SQLQuery::select * | from xyy_erp_bill_caigouqinghuodan where 1=1 and status != -1 @kaipiaoyuan @status ORDER BY createTime DESC" DataSource="" Head="false">
+        <Parameters> 
+            <Parameter Key="kaipiaoyuan" Type="String" >
+                <Where>
+                <![CDATA[
+					m.if(kaipiaoyuan==null | kaipiaoyuan==" " ," "," and kaipiaoyuan like '%"+kaipiaoyuan+"%'")
+                ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="status" Type="Integer" >
+                <Where>
+                <![CDATA[
+                	m.if(status==null," "," and status="+status+"")
+				]]> 
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

@@ -1,0 +1,45 @@
+
+
+<div class="panel panel-default">
+    <div class="panel-heading  clearfix">
+        <h3 class="panel-title pull-left">活动用户信息</h3>
+        <div class="pull-right">
+            <button class="btn-success btn-sm radius btn" data-toggle="modal" data-target="#my-popup-addProcessuser"  >新增</button>
+        </div>
+    </div>
+    <div class="panel-body">
+        <table class="table table-bordered table-hover"  ng-repeat="process in po.processuser">
+            <tr class="danger">
+                <td width="120">用户类型：</td>
+                <td>
+                    <span ng-if="process.type==0">执行用户</span>
+                    <span ng-if="process.type==1">代理用户</span>
+                    <span ng-if="process.type==2">抄送用户</span>
+                    <span ng-if="process.type==3">督办用户</span>
+                </td>
+            </tr>
+            <tr>
+                <td>用户类别：</td>
+                <td>
+                    <span ng-if="process.category==0">用户id</span>
+                    <span ng-if="process.category==1">角色</span>
+                    <span ng-if="process.category==2">分组</span>
+                    <span ng-if="process.category==3">部门</span>
+                    <span ng-if="process.category==4">岗位</span>
+                </td>
+            </tr>
+            <tr>
+                <td>指定名称：</td>
+                <td>
+                    <span >{{process.name}}</span>
+            </tr>
+            <tr>
+                <td>操作：</td>
+                <td>
+                    <button type="button" class="btn btn-warning btn-sm" ng-click="psedit(process,$index)">修改</button>
+                    <button type="button" class="btn btn-warning btn-sm" ng-click="psdelete2(process,$index)">删除</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

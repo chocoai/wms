@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">   
+    <DataTable Key="kucunyuzhanyukou" BillType="Bill" Caption="库存预占预扣表" DefaultFilter="" TableName="Table::xyy_wms_bill_kucunyuzhanyukou" DataSource="" Head="true">
+	    <Field FieldKey="cangkuId" FieldName="仓库ID" FieldType="Varchar" Comment="仓库ID" /> 
+	    <Field FieldKey="goodsid" FieldName="商品ID" FieldType="Varchar" Comment="商品ID" /> 
+	    <Field FieldKey="pihaoId" FieldName="批号ID" FieldType="Varchar" Comment="批号ID" /> 
+	    <Field FieldKey="huoweiId" FieldName="货位ID" FieldType="Varchar" Comment="货位ID" /> 
+	    <Field FieldKey="yewubianhao" FieldName="业务编号" FieldType="Varchar" Comment="业务编号"/>
+	    <Field FieldKey="danjubianhao" FieldName="单据编号" FieldType="Varchar" Comment="单据编号"/>
+        <Field FieldKey="zuoyeleixing" FieldName="作业类型" FieldType="Int" Comment="1、入库预占 2、出库预扣 3、补入预占 4、补出预扣 5、移入预占 6、移出预扣7、预计损溢"/>   
+        <Field FieldKey="shuliang" FieldName="数量" FieldType="Decimal" DefaultValue="0.00"  Comment="数量" Bound="14,2"/>   
+        <Field FieldKey="beizhu" FieldName="备注" FieldType="Varchar"  Comment="数量"/>   
+    </DataTable>     
+    
+</DataSet>

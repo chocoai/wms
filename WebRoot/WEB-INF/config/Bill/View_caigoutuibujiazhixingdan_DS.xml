@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="caigoutuibujiazhixingdan" Caption="采购退补价执行单叙事薄" DefaultFilter="" Pagging="10"
+               TableName="SQLQuery::select * | from xyy_erp_bill_caigoutuibujiazhixingdan where 1 = 1 and status != -1 @danjubianhao  @gysmc @status @sjdjbh order by createTime DESC" DataSource="" Head="false">
+        <Parameters> 
+            <Parameter Key="danjubianhao" Type="String">
+                <Where>
+                <![CDATA[ 
+					m.if(danjubianhao==null | danjubianhao=="" ," "," and danjubianhao like '%"+danjubianhao+"%'")
+	            ]]>
+                </Where>
+            </Parameter> 
+            <Parameter Key="gysmc" Type="String" >
+                <Where> 
+                <![CDATA[
+					m.if(gysmc==null | gysmc=="" ," "," and gysmc like '%"+gysmc+"%'")
+                ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="sjdjbh" Type="String" >
+                <Where> 
+                <![CDATA[
+					m.if(sjdjbh==null | sjdjbh=="" ," "," and sjdjbh like '%"+sjdjbh+"%'")
+                ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="status" Type="Integer" >
+                <Where>
+                <![CDATA[
+                	m.if(status==null ," "," and status="+status+"")
+				]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

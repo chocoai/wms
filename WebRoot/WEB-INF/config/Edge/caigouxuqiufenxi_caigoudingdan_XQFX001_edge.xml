@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BillEdge Name="采购需求分析多样式表单-采购订单" Key="caigouxuqiufenxi_caigoudingdan_XQFX001" Version="1.0.0" Code="XQFX001" SourceBillKey="caigouxuqiufenxi" TargetBillKey="caigoudingdan" Caption="采购需求分析多样式表单-采购订单">
+	<BillTransformEdge>
+		<BillHeadTransformEdge>
+			<TargetBillField Key="caigouyuan" Category="property" />
+			<TargetBillField Key="gysbh" Category="property" />
+			<TargetBillField Key="gysmc" Category="property" />
+			<TargetBillField Key="jiesuanfangshi" Category="property" />
+			<TargetBillField Key="sfyfk" Category="property" />
+			<TargetBillField Key="songhuofangshi" Category="property" />
+			<TargetBillField Key="qidongshijian" Category="property" />
+			<TargetBillField Key="daohuoshijian" Category="property" />
+			<TargetBillField Key="yunshugongju" Category="property" />
+			<TargetBillField Key="kaipiaoyuan" Category="property" />
+		</BillHeadTransformEdge>
+		<BillBodyTransformEdge>
+			<BillBodyEdge targetDltKey="caigoudingdan_details">
+				<BillDtlEdge sourceDltKey="caigouxuqiufenxi_details">
+					<TargetBillField Key="shangpinbianhao" Category="property" />
+					<TargetBillField Key="shangpinmingcheng" Category="property" />
+					<TargetBillField Key="guige" Category="property" />
+					<TargetBillField Key="danwei" Category="property" />
+					<TargetBillField Key="shengchanchangjia" Category="property" />
+					<TargetBillField Key="shuliang" Category="property" />
+					<TargetBillField Key="hanshuijia" Category="property" />
+					<TargetBillField Key="hanshuijine" Category="property" />
+					<TargetBillField Key="hscbj" Category="property" />
+					<TargetBillField Key="zuidijinjia" Category="property" />
+					<TargetBillField Key="zuigaojinjia" Category="property" />
+					<TargetBillField Key="zuihoujinjia" Category="property" />
+					<TargetBillField Key="hscbj" Category="property" />
+					<TargetBillField Key="koulv" Category="property" />
+					<TargetBillField Key="shuilv" Category="property" />
+					<TargetBillField Key="pizhunwenhao" Category="property" />
+					<TargetBillField Key="chandi" Category="property" />
+					<TargetBillField Key="beizhu" Category="property" />
+				</BillDtlEdge>
+			</BillBodyEdge>
+		</BillBodyTransformEdge>
+	</BillTransformEdge>
+	<BillGroupJoinEdge>
+		<BillHeadGroupJoinEdge>
+			<GroupFileds GroupType="field" />
+			<JoinFileds />
+		</BillHeadGroupJoinEdge>
+		<BillBodyGroupJoinEdge>
+			<TargetSubBillGroupJoinEdges>
+				<TargetSubBillGroupJoinEdge>
+					<GroupFileds GroupType="field" />
+					<JoinFileds />
+				</TargetSubBillGroupJoinEdge>
+			</TargetSubBillGroupJoinEdges>
+		</BillBodyGroupJoinEdge>
+	</BillGroupJoinEdge>
+	<BillBackWriteEdge>
+		<BillHeadBackWriteEdge />
+		<BillBodyBackWriteEdge />
+	</BillBackWriteEdge>
+	<DataFilterEdge>
+		<SourceBillHeadFilterEdge>
+			<Filter />
+		</SourceBillHeadFilterEdge>
+		<SourceBillBodyFilterEdge />
+	</DataFilterEdge>
+	<RuleFilterEdge>
+		<RuleHeadFilterEdge>
+			<Filter />
+		</RuleHeadFilterEdge>
+		<RuleBodyFilterEdge />
+	</RuleFilterEdge>
+	<Description />
+	<BillEdgeController>
+		<BackWriteController CtrType="Save" />
+		<AutoSaveController CtrType="NoSave" />
+		<DisplayController CtrType="NoGo" />
+		<MultiConvertCtrl CtrType="AllowAndWarning" />
+	</BillEdgeController>
+	<BillEdgeHook />
+</BillEdge>
+

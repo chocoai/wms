@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Map Key="bhgphead2sykphead" Caption="不合格品上引"
+     SrcDataObjectKey="buhegepin"
+     SrcDataType="Bill"
+     TgtDataObjectKey="sunyikaipiao"
+     TgtDataType="Bill"
+     MaxPushValue="100"
+     MinPushValue="0">
+    <TargetTableCollection>
+
+        <TargetTable Key="sunyikaipiao" SrcTableKey="buhegepin">
+            <Field FieldKey="dingdanbianhao">
+                <![CDATA[
+                     =dingdanbianhao
+              ]]>
+            </Field>
+            <Field FieldKey="zhidanriqi">
+                <![CDATA[
+                     =dingdanriqi
+              ]]>
+            </Field>
+            <Field FieldKey="zhidanren">
+                <![CDATA[
+                     =zhijianyuan
+              ]]>
+            </Field>
+
+            <Field FieldKey="kufang">
+                <![CDATA[
+                     =kufang
+              ]]>
+            </Field>
+        </TargetTable>
+
+    </TargetTableCollection>
+    <FeedBackCollection>
+        <FeedbackObject TableKey="sunyikaipiao" BillStatus="20">
+            <FeedbackTableCollection>
+                <FeedbackTable Key="tempbuhegepin" TableKey="xyy_wms_bill_buhegepin">
+                    <FeedbackField FieldKey="sunyizhuangtai" FeedFieldKey="" OpSign="Assign">
+                        <![CDATA[
+	                		=2
+	                	]]>
+                    </FeedbackField>
+                </FeedbackTable>
+            </FeedbackTableCollection>
+        </FeedbackObject>
+
+    </FeedBackCollection>
+</Map>
+
+
+
+

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<BillViewMeta Key="zhifufangshi" Caption="支付方式" Version="">
+	<Parameters>
+		<Parameter Key="t1" Type="String" Scope="Global">
+			<DefaultValue></DefaultValue>
+			<Where></Where>
+		</Parameter> 
+	</Parameters>
+	<BillBody UserAgent="web">
+		<BillBodyMeta>
+			<BillUIPanel Layout="flex" Key="dictionary_tools" Caption="支付方式"  S="">
+			     <BillUIGridPanel Key="zhifufangshi_grid">
+                    <BillUIRowPanel>
+                        <BillUIColPanel Width="4">
+                            <BillUIWidget Caption="支付方式编号" Key="cancel"
+                                EnabledWhen="True"   ParameterKey="zffsbh"
+                                DataTableKey="zhifufangshi_view"
+                                WidgetType="BillUIString">
+                            </BillUIWidget>
+                        </BillUIColPanel>
+						<BillUIColPanel Width="4">
+							<BillUIWidget Caption="支付方式名称" Key="cancel"
+										  EnabledWhen="True"   ParameterKey="zffsmc"
+										  DataTableKey="zhifufangshi_view"
+										  WidgetType="BillUIString">
+							</BillUIWidget>
+						</BillUIColPanel>
+
+                        <BillUIColPanel Width="1">
+                            <BillUIWidget Caption="查询" Key="search"
+                                EnabledWhen="True"
+                                Icon="glyphicon glyphicon-send" WidgetType="BillUIButton">
+                                <Triggers>
+                                    <Trigger Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                        	this.search("zhifufangshi_view");
+                                 			]]>
+                                    </Trigger>
+                                </Triggers>
+                            </BillUIWidget>
+                        </BillUIColPanel>
+                    </BillUIRowPanel>
+			         <BillUIRowPanel>
+						 <BillUIColPanel Width="12">
+							 <BillUIPanel Layout="flex" Key="dictionary_tools">
+								 <BillUIGrid Key="grid0" OptMode="View" selectMode="single" DataTableKey="zhifufangshi_view">
+								 <GridHeads>
+									 <GridHead Col="zffsbh" Caption="支付方式编号" Width="80px">
+										 <BillUIWidget Key="zffsbh" WidgetType="BillUIString"/>
+									 </GridHead>
+									 <GridHead Col="zffsmc" Caption="支付方式名称" Width="100px">
+										 <BillUIWidget Key="zffsmc" WidgetType="BillUIString"/>
+									 </GridHead>
+									 <GridHead Col="zijinzhanghu" Caption="资金账户"  Width="120px">
+										 <BillUIWidget Key="zijinzhanghu" WidgetType="BillUIString"/>
+									 </GridHead>
+								 </GridHeads>
+							 </BillUIGrid>
+							 </BillUIPanel>
+
+						 </BillUIColPanel>
+			         </BillUIRowPanel>
+			         
+			     </BillUIGridPanel>
+             </BillUIPanel>
+		</BillBodyMeta>
+	</BillBody>
+	
+</BillViewMeta>

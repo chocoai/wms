@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="kuqujibenxinxi_view" Caption="库区资料弹框" DefaultFilter="" Pagging="10"
+               TableName="SQLQuery::select K.*,c.cangkumingchen,c.cangkubianhao
+               |
+               from
+               xyy_wms_dic_cangkuziliao c
+               left join
+               xyy_wms_dic_kuqujibenxinxi k
+               on c.ID=k.cangkuID
+               and c.orgId=k.orgId
+               where 1=1 and k.status != -1 and k.qiyong = 1 @kuqubianhao  @cangkumingcheng @cangkuID @orgId ORDER BY k.createTime DESC" PermissionType="CommType" DataSource="" Head="false">
+        <Parameters> 
+            <Parameter Key="kuqubianhao" Type="String">
+                <Where>
+                <![CDATA[
+					m.if(kuqubianhao==null | kuqubianhao=="" ," "," and kuqubianhao like '%"+kuqubianhao+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="orgId" Type="String" >
+                <Where>
+                    <![CDATA[
+							m.if(orgId==null | danjubianhao=="" ," "," and k.orgId like '%"+orgId+"%'")
+			            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="cangkumingcheng" Type="String">
+                <Where>
+                <![CDATA[
+					m.if(cangkumingcheng==null | cangkumingcheng=="" ," "," and cangkumingcheng like '%"+cangkumingcheng+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="cangkuID" Type="String">
+                <Where>
+                <![CDATA[
+					m.if(cangkuID==null | cangkuID=="" ," "," and cangkuID like '%"+cangkuID+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

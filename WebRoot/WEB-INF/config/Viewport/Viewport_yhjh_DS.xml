@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="yhjh" Caption="养护计划查询" DefaultFilter="" PermissionType="CommType"  Pagging="20"
+        TableName="SQLQuery::select * | from (select * from xyy_erp_bill_yanghujihua where shifouzhixing = 0 and status = 20
+        ) z
+        where 1 = 1 @yanghuleixing @bumen @yanghuyuan @kufang  "  DataSource="" Head="false" Singleton="" OrderBy="">
+        <Parameters>
+            <Parameter Key="yanghuleixing" Type="Integer">
+                <Where>
+                    <![CDATA[
+					m.if(yanghuleixing==null | yanghuleixing=="",""," and z.yanghuleixing = "+yanghuleixing+" ")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="bumen" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(bumen==null | bumen=="",""," and z.bumen = '"+bumen+"'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="yanghuyuan" Type="String">
+                <Where>
+             <![CDATA[
+					m.if(yanghuyuan==null | yanghuyuan=="" ,""," and z.yanghuyuan like '%"+yanghuyuan+"%'")
+	            ]]> 
+                </Where>
+            </Parameter>
+            <Parameter Key="kufang" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(kufang==null | kufang=="" ,""," and z.kufang like '%"+kufang+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

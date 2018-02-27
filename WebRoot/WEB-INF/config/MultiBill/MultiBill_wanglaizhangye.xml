@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BillFormMeta Key="wanglaizhangye" Version="1.0.0"
+	BillType="MultiBill" Caption="往来账页">
+	<BillBody>
+		<BillBodyMeta UserAgent="web">
+			<BillUIPanel Layout="flex" FlexDirection="column" Width="100%"
+				Key="mainContainer" Caption="往来账页查询" S="">
+
+				<BillUIPanel Layout="flex" Key="tools" Caption="查询面板"
+					S="panel panel-default publicPanel">
+					<BillUIGridPanel Device="sm" key="boxtool">
+						<BillUIRowPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="duixiangleixing" ParameterKey="duixiangleixing"
+									DataTableKey="wanglaizhangye" Caption="对象类型"
+									Icon="glyphicon glyphicon-send" WidgetType="BillUISelect">
+									<Init Type="javascript/angular" Runat="client">
+                                            <![CDATA[
+                                      			   this.loadDataSource();
+                                      			   @id.setDisable();
+                                 			]]>
+									</Init>
+									<Properties>
+										<Property Name="datasource" Type="internal">[{name:"供应商应付款",value:1},{name:"客户应收款",value:2}]
+										</Property>
+									</Properties>
+									<Triggers>
+										<Trigger Type="javascript/angular" Runat="client">
+                                            <![CDATA[
+                                            	var duixiangleixing = this.getValue();
+					                            setEnv({duixiangleixing:duixiangleixing});   
+					                            @id.setEnable();    
+	                                        ]]>
+										</Trigger>
+									</Triggers>
+
+								</BillUIWidget>
+							</BillUIColPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="id" ParameterKey="id"
+									DataTableKey="wanglaizhangye" 
+									WidgetType="BillUIPopupWindow" 
+									Disable="true"
+                                    Src="wanglaiduixiang"
+									Caption="对象编号">
+									<Triggers>
+                                            <Trigger>
+                                                <![CDATA[
+                                                	var pc=this.rows[0];
+	                                                this.setValue(pc.objectId);
+	                                                @name.setValue(pc.objectName);
+                                                ]]>
+                                            </Trigger>
+                                    </Triggers>
+								</BillUIWidget>
+							</BillUIColPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="name" ParameterKey="name"
+									DataTableKey="wanglaizhangye" WidgetType="BillUIString" Disable="true"
+									Caption="对象名称">
+								</BillUIWidget>
+							</BillUIColPanel>
+
+							<BillUIColPanel Width="3">
+								<BillUIWidget Caption="查询" Key="search"
+									EnabledWhen="True" Icon="glyphicon glyphicon-send" WidgetType="BillUIButton">
+									<Triggers>
+										<Trigger Type="javascript/angular" Runat="client">
+                                            <![CDATA[
+	                                            var type = @duixiangleixing.getValue();
+	                                            type.then(function(date){
+	                                                if(date == 1||date == 2){
+	                                                    @$this.__load("wanglaizhangye");
+	                                                }else{
+	                                                    alert("对象类型不能为空");
+	                                                }
+	                                            });
+	                                        ]]>
+										</Trigger>
+									</Triggers>
+								</BillUIWidget>
+							</BillUIColPanel>
+						</BillUIRowPanel>
+					</BillUIGridPanel>
+				</BillUIPanel>
+				<BillUIGrid Key="grid0" OptMode="View" DataTableKey="wanglaizhangye">
+					<GridHeads>
+						<GridHead Col="danjubianhao" Caption="单据编号" enableEdit="True"
+							Width="120px">
+							<BillUIWidget Key="danjubianhao" WidgetType="BillUIString" />
+						</GridHead>
+						<GridHead Col="objectId" Caption="对象编号" enableEdit="True"
+							Width="120px">
+							<BillUIWidget Key="objectId" WidgetType="BillUIString" />
+						</GridHead>
+						<GridHead Col="objectName" Caption="对象名称" enableEdit="True"
+							Width="120px">
+							<BillUIWidget Key="objectName" WidgetType="BillUIString" />
+						</GridHead>
+						<GridHead Col="kaipiaoriqi" Caption="开票日期" enableEdit="True"
+							Width="120px">
+							<BillUIWidget Key="kaipiaoriqi" WidgetType="BillUIDateTime" />
+						</GridHead>
+						<GridHead Col="kaipiaoyuan" Caption="开票员" enableEdit="True"
+							Width="120px">
+							<BillUIWidget Key="kaipiaoyuan" WidgetType="BillUIString" />
+						</GridHead>
+						<GridHead Col="zhaiyao" Caption="摘要" enableEdit="True"
+							Width="200px">
+							<BillUIWidget Key="zhaiyao" WidgetType="BillUIString" />
+						</GridHead>
+						<GridHead Col="jiefang" Caption="借方" enableEdit="True"
+							Width="200px">
+							<BillUIWidget Key="jiefang" WidgetType="BillUIDecimal" />
+						</GridHead>
+						<GridHead Col="daifang" Caption="贷方" enableEdit="True"
+							Width="200px">
+							<BillUIWidget Key="daifang" WidgetType="BillUIDecimal" />
+						</GridHead>
+						<GridHead Col="yue" Caption="余额" enableEdit="True" Width="200px">
+							<BillUIWidget Key="yue" WidgetType="BillUIDecimal" />
+						</GridHead>
+						<GridHead Col="beizhu" Caption="备注" enableEdit="True"
+							Width="60px">
+							<BillUIWidget Key="beizhu" WidgetType="BillUIString" />
+						</GridHead>
+					</GridHeads>
+				</BillUIGrid>
+			</BillUIPanel>
+		</BillBodyMeta>
+	</BillBody>
+	<BillHeadMeta>
+
+	</BillHeadMeta>
+</BillFormMeta>

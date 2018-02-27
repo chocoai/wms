@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<BillViewMeta Key="shangpinPC" Caption="商品" Version="">
+	<Parameters>
+		<Parameter Key="t1" Type="String" Scope="Global">
+			<DefaultValue></DefaultValue>
+			<Where></Where>
+		</Parameter> 
+	</Parameters>
+	<BillBody UserAgent="web">
+		<BillBodyMeta>
+			<BillUIPanel Layout="flex" Key="dictionary_tools" Caption="商品"  S="">
+			     <BillUIGridPanel Key="shangpin_grid">
+                    <BillUIRowPanel>
+						<BillUIColPanel Width="4">
+							<BillUIWidget Caption="商品" Key="shangpin"
+										  EnabledWhen="True"   ParameterKey="shangpin"
+										  DataTableKey="shangpinPC_view"
+										  WidgetType="BillUIString">
+							</BillUIWidget>
+						</BillUIColPanel>
+						<BillUIColPanel Width="4">
+							<BillUIWidget Caption="商品批号" Key="pihao"
+										  EnabledWhen="True"   ParameterKey="pihao"
+										  DataTableKey="shangpinPC_view"
+										  WidgetType="BillUIString">
+							</BillUIWidget>
+						</BillUIColPanel>
+
+                        <BillUIColPanel Width="1">
+                            <BillUIWidget Caption="查询" Key="search"
+                                EnabledWhen="True"
+                                Icon="glyphicon glyphicon-send" WidgetType="BillUIButton">
+                                <Triggers>
+                                    <Trigger Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                        	this.search("shangpinPC_view");
+                                 			]]>
+                                    </Trigger>
+                                </Triggers>
+                            </BillUIWidget>
+                        </BillUIColPanel>
+                    </BillUIRowPanel>
+			         <BillUIRowPanel>
+						 <BillUIColPanel Width="12">
+							 <BillUIPanel Layout="flex" Key="dictionary_tools">
+								 <BillUIGrid Key="grid0" OptMode="View" selectMode="single" DataTableKey="shangpinPC_view">
+								 <GridHeads>
+									 <GridHead Col="shangpinbianhao" Caption="商品编号" Width="150px">
+										 <BillUIWidget Key="shangpinbianhao" WidgetType="BillUIString"/>
+									 </GridHead>
+									 <GridHead Col="shangpinmingcheng" Caption="商品名称"
+											   Width="120px">
+										 <BillUIWidget Key="shangpinmingcheng" WidgetType="BillUIString"/>
+									 </GridHead>
+									 <GridHead Col="pihao" Caption="批号"
+											   Width="100px">
+										 <BillUIWidget Key="pihao" WidgetType="BillUIString"/>
+									 </GridHead>
+									 <GridHead Col="kucunzhuangtai" Caption="库存状态"
+											   Width="100px">
+										 <BillUIWidget Key="kucunzhuangtai" WidgetType="BillUIInteger">
+		                                    <Formatters>
+		                                        <Formatter>
+		                                            <![CDATA[
+		                                                [{'type':'kucunzhuangtai'}]
+		                                            ]]>
+		                                        </Formatter>
+		                                    </Formatters>
+		                                </BillUIWidget>
+									 </GridHead>
+									 <GridHead Col="kucunshuliang" Caption="库存数量"
+											   Width="100px">
+										 <BillUIWidget Key="kucunshuliang" WidgetType="BillUIString"/>
+									 </GridHead>
+								 </GridHeads>
+							 </BillUIGrid>
+							 </BillUIPanel>
+
+						 </BillUIColPanel>
+			         </BillUIRowPanel>
+			         
+			     </BillUIGridPanel>
+             </BillUIPanel>
+		</BillBodyMeta>
+	</BillBody>
+	
+</BillViewMeta>

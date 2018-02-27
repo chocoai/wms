@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<BillViewMeta Key="kehu" Caption="客户" Version="">
+	<Parameters>
+		<Parameter Key="t1" Type="String" Scope="Global">
+			<DefaultValue></DefaultValue>
+			<Where></Where>
+		</Parameter> 
+	</Parameters>
+	<BillBody UserAgent="web">
+		<BillBodyMeta>
+			<BillUIPanel Layout="flex" Key="dictionary_tools" Caption="客户"  S="">
+			     <BillUIGridPanel Key="kehu_grid">
+                    <BillUIRowPanel>
+                        <BillUIColPanel Width="8">
+                            <BillUIWidget Caption="客户" Key="cancel"
+                                EnabledWhen="True"   ParameterKey="kehu"
+                                DataTableKey="kehu_view"
+                                WidgetType="BillUIString">
+                            </BillUIWidget>
+                        </BillUIColPanel>
+                        <BillUIColPanel Width="2">
+                            <BillUIWidget Caption="查询" Key="search"
+                                EnabledWhen="True"
+                                Icon="glyphicon glyphicon-send" WidgetType="BillUIButton">
+                                <Triggers>
+                                    <Trigger Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                        	this.search("kehu_view");
+                                 			]]>
+                                    </Trigger>
+                                </Triggers>
+                            </BillUIWidget>
+                        </BillUIColPanel>
+                    </BillUIRowPanel>	
+			         <BillUIRowPanel>
+						 <BillUIColPanel Width="12">
+							 <BillUIPanel Layout="flex" Key="dictionary_tools">
+								 <BillUIGrid Key="grid0" OptMode="View" selectMode="single" DataTableKey="kehu_view">
+								 <GridHeads>
+									 <GridHead Col="kehubianhao" Caption="客户编号" Width="150px">
+										 <BillUIWidget Key="kehubianhao" WidgetType="BillUIString"/>
+									 </GridHead>
+									 <GridHead Col="kehumingcheng" Caption="客户名称" Width="120px">
+										 <BillUIWidget Key="kehumingcheng" WidgetType="BillUIString"/>
+									 </GridHead>
+									 <GridHead Col="yewuyuan" Caption="业务员" Width="80px">
+										 <BillUIWidget Key="yewuyuan" WidgetType="BillUIString"/>
+									 </GridHead>
+									 <GridHead Col="dizhi" Caption="地址" Width="180px">
+										 <BillUIWidget Key="dizhi" WidgetType="BillUIString"/>
+									 </GridHead>
+									 <!--<GridHead Col="jingyingfanwei" Caption="经营范围" Width="160px">-->
+										 <!--<BillUIWidget Key="jingyingfanwei" WidgetType="BillUIString"/>-->
+									 <!--</GridHead>-->
+									 <GridHead Col="kaihuyinhang" Caption="开户银行" Width="120px">
+										 <BillUIWidget Key="kaihuyinhang" WidgetType="BillUIString"/>
+									 </GridHead>
+									 <GridHead Col="yinhangzhanghao" Caption="银行账号" Width="120px">
+										 <BillUIWidget Key="yinhangzhanghao" WidgetType="BillUIString"/>
+									 </GridHead>
+									 <GridHead Col="shuihao" Caption="税号" Width="120px">
+										 <BillUIWidget Key="shuihao" WidgetType="BillUIString"/>
+									 </GridHead>
+								 </GridHeads>
+							 </BillUIGrid>
+							 </BillUIPanel>
+
+						 </BillUIColPanel>
+			         </BillUIRowPanel>
+			         
+			     </BillUIGridPanel>
+             </BillUIPanel>
+		</BillBodyMeta>
+	</BillBody>
+	
+</BillViewMeta>

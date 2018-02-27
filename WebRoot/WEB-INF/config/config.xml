@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Config>
+	<Bills>
+		<Bill Name="采购退出出库单" Key="caigoutuichuchukudan" File="config/Bill/Bill_caigoutuichuchukudan_DS.xml" DefFile="config/Bill/Bill_caigoutuichuchukudan.xml" />
+		<Bill Name="供应商停采申请" Key="gystingcaishenqing" File="config/Bill/Bill_gystingcaishenqing_DS.xml" DefFile="config/Bill/Bill_gystingcaishenqing.xml" />
+		<Bill Name="采购请货单" Key="caigouqinghuodan" File="config/Bill/Bill_caigouqinghuodan_DS.xml" DefFile="config/Bill/Bill_caigouqinghuodan.xml" />
+		<Bill Name="销售订单" Key="xiaoshoudingdan" File="config/Bill/Bill_xiaoshoudingdan_DS.xml" DefFile="config/Bill/Bill_xiaoshoudingdan.xml" />
+		<Bill Name="进项发票管理" Key="jinxiangfapiaoshenqing" File="config/Bill/Bill_jinxiangfapiaoshenqing_DS.xml" DefFile="config/Bill/Bill_jinxiangfapiaoshenqing.xml" />
+		<Bill Name="缺货登记单" Key="quehuodengjidan" File="config/Bill/Bill_quehuodengjidan_DS.xml" DefFile="config/Bill/Bill_quehuodengjidan.xml" />
+		<Bill Name="进项发票管理" Key="jinxiangfapiaoguanli" File="config/Bill/Bill_jinxiangfapiaoguanli_DS.xml" DefFile="config/Bill/Bill_jinxiangfapiaoguanli.xml" />
+<!-- 		<Bill Name="采购入库单" Key="caigourukudan" File="config/Bill/Bill_caigourukudan_DS.xml" DefFile="config/Bill/Bill_caigourukudan.xml" />
+ -->		<Bill Name="首营商品单" Key="shouyingshangpin" File="config/Bill/Bill_shouyingshangpin_DS.xml" DefFile="config/Bill/Bill_shouyingshangpin.xml" />
+		<Bill Name="客户冻结/解冻" Key="kehudongjiejiedongshenqing" File="config/Bill/Bill_kehudongjiejiedongshenqing_DS.xml" DefFile="config/Bill/Bill_kehudongjiejiedongshenqing.xml" />
+		<Bill Name="销售退补价执行单" Key="xiaoshoutuibujiazhixingdan" File="config/Bill/Bill_xiaoshoutuibujiazhixingdan_DS.xml" DefFile="config/Bill/Bill_xiaoshoutuibujiazhixingdan.xml" />
+		<Bill Name="销售收款冲红" Key="xiaoshoushoukuanchonghong" File="config/Bill/Bill_xiaoshoushoukuanchonghong_DS.xml" DefFile="config/Bill/Bill_xiaoshoushoukuanchonghong.xml" />
+		<Bill Name="损益执行单" Key="sunyizhixingdan" File="config/Bill/Bill_sunyizhixingdan_DS.xml" DefFile="config/Bill/Bill_sunyizhixingdan.xml" />
+		<Bill Name="采购协议管理" Key="caigouxieyiguanli" File="config/Bill/Bill_caigouxieyiguanli_DS.xml" DefFile="config/Bill/Bill_caigouxieyiguanli.xml" />
+		<Bill Name="首营供应商" Key="shouyinggys" File="config/Bill/Bill_shouyinggys_DS.xml" DefFile="config/Bill/Bill_shouyinggys.xml" />
+		<Bill Name="支付核单" Key="zhifuhedan" File="config/Bill/Bill_zhifuhedan_DS.xml" DefFile="config/Bill/Bill_zhifuhedan.xml" />
+		<Bill Name="审核单" Key="shenhedan" File="config/Bill/Bill_shenhedan_DS.xml" DefFile="config/Bill/Bill_shenhedan.xml" />
+		<Bill Name="商品停售/解除停售申请" Key="shangpintingshoujieshoushenqing" File="config/Bill/Bill_shangpintingshoujieshoushenqing_DS.xml" DefFile="config/Bill/Bill_shangpintingshoujieshoushenqing.xml" />
+		<Bill Name="损益开票单" Key="sunyikaipiaodan" File="config/Bill/Bill_sunyikaipiaodan_DS.xml" DefFile="config/Bill/Bill_sunyikaipiaodan.xml" />
+		<Bill Name="销售退补价开票单" Key="xiaoshoutuibujiakaipiaodan" File="config/Bill/Bill_xiaoshoutuibujiakaipiaodan_DS.xml" DefFile="config/Bill/Bill_xiaoshoutuibujiakaipiaodan.xml" />
+		<Bill Name="采购需求分析" Key="caigouxuqiufenxi" File="config/Bill/Bill_caigouxuqiufenxi_DS.xml" DefFile="config/Bill/Bill_caigouxuqiufenxi.xml" />
+		<Bill Name="客户停售" Key="kehutingshoushenqing" File="config/Bill/Bill_kehutingshoushenqing_DS.xml" DefFile="config/Bill/Bill_kehutingshoushenqing.xml" />
+		<Bill Name="养护执行" Key="yanghuzhixing" File="config/Bill/Bill_yanghuzhixing_DS.xml" DefFile="config/Bill/Bill_yanghuzhixing.xml" />
+		<Bill Name="销售退回入库单" Key="xiaoshoutuihuirukudan" File="config/Bill/Bill_xiaoshoutuihuirukudan_DS.xml" DefFile="config/Bill/Bill_xiaoshoutuihuirukudan.xml" />
+		<Bill Name="养护计划" Key="yanghujihua" File="config/Bill/Bill_yanghujihua_DS.xml" DefFile="config/Bill/Bill_yanghujihua.xml" />
+		<Bill Name="采购付款单" Key="caigoufukuandan" File="config/Bill/Bill_caigoufukuandan_DS.xml" DefFile="config/Bill/Bill_caigoufukuandan.xml" />
+		<Bill Name="商品冻结/解冻申请" Key="shangpindongjiejiedongshenqing" File="config/Bill/Bill_shangpindongjiejiedongshenqing_DS.xml" DefFile="config/Bill/Bill_shangpindongjiejiedongshenqing.xml" />
+		<Bill Name="首营客户" Key="shouyingkehu" File="config/Bill/Bill_shouyingkehu_DS.xml" DefFile="config/Bill/Bill_shouyingkehu.xml" />
+		<Bill Name="销售收款单" Key="xiaoshoushoukuandan" File="config/Bill/Bill_xiaoshoushoukuandan_DS.xml" DefFile="config/Bill/Bill_xiaoshoushoukuandan.xml" />
+		<Bill Name="重点养护品种" Key="zhongdianyanghupinzhong" File="config/Bill/Bill_zhongdianyanghupinzhong_DS.xml" DefFile="config/Bill/Bill_zhongdianyanghupinzhong.xml" />
+		<Bill Name="销项发票管理" Key="xiaoxiangfapiaoguanli" File="config/Bill/Bill_xiaoxiangfapiaoguanli_DS.xml" DefFile="config/Bill/Bill_xiaoxiangfapiaoguanli.xml" />
+		<Bill Name="采购退补价执行单" Key="caigoutuibujiazhixingdan" File="config/Bill/Bill_caigoutuibujiazhixingdan_DS.xml" DefFile="config/Bill/Bill_caigoutuibujiazhixingdan.xml" />
+		<Bill Name="采购付款冲红" Key="caigoufukuanchonghong" File="config/Bill/Bill_caigoufukuanchonghong_DS.xml" DefFile="config/Bill/Bill_caigoufukuanchonghong.xml" />
+		<Bill Name="采购退补价开票单" Key="caigoutuibujiakaipiaodan" File="config/Bill/Bill_caigoutuibujiakaipiaodan_DS.xml" DefFile="config/Bill/Bill_caigoutuibujiakaipiaodan.xml" />
+		<Bill Name="销售收款对账单" Key="xiaoshoushoukuanduizhangdan" File="config/Bill/Bill_xiaoshoushoukuanduizhangdan_DS.xml" DefFile="config/Bill/Bill_xiaoshoushoukuanduizhangdan.xml" />
+		<Bill Name="采购订单" Key="caigoudingdan" File="config/Bill/Bill_caigoudingdan_DS.xml" DefFile="config/Bill/Bill_caigoudingdan.xml" />
+		<Bill Name="电商订单" Key="dianshangdingdan" File="config/Bill/Bill_dianshangdingdan_DS.xml" DefFile="config/Bill/Bill_dianshangdingdan.xml" />
+		<Bill Name="销售退回单" Key="xiaoshoutuihuidan" File="config/Bill/Bill_xiaoshoutuihuidan_DS.xml" DefFile="config/Bill/Bill_xiaoshoutuihuidan.xml" />
+		<Bill Name="供应商冻结/解冻" Key="gysdongjiejiedongshenqing" File="config/Bill/Bill_gysdongjiejiedongshenqing_DS.xml" DefFile="config/Bill/Bill_gysdongjiejiedongshenqing.xml" />
+		<Bill Name="采购付款计划" Key="caigoufukuanjihuadan" File="config/Bill/Bill_caigoufukuanjihuadan_DS.xml" DefFile="config/Bill/Bill_caigoufukuanjihuadan.xml" />
+		<Bill Name="销售出库单" Key="xiaoshouchukudan" File="config/Bill/Bill_xiaoshouchukudan_DS.xml" DefFile="config/Bill/Bill_xiaoshouchukudan.xml" />
+		<Bill Name="商品停采/解采申请" Key="shangpintingcaishenqing" File="config/Bill/Bill_shangpintingcaishenqing_DS.xml" DefFile="config/Bill/Bill_shangpintingcaishenqing.xml" />
+		<Bill Name="采购退出开票单" Key="caigoutuichukaipiaodan" File="config/Bill/Bill_caigoutuichukaipiaodan_DS.xml" DefFile="config/Bill/Bill_caigoutuichukaipiaodan.xml" />
+		<Bill Name="不良品处理计划单" Key="buliangpinchulijihuadan" File="config/Bill/Bill_buliangpinchulijihuadan_DS.xml" DefFile="config/Bill/Bill_buliangpinchulijihuadan.xml" />
+	</Bills>
+</Config>
+

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">   
+    <DataTable Key="yanghupinzhong" BillType="Dictionary"  Caption="养护品种信息" DefaultFilter="" TableName="Table::xyy_erp_dic_yanghupinzhong" DataSource="" Head="true">
+        <Field FieldKey="goodsid" FieldName="商品ID" FieldType="Varchar"  Comment="商品ID" Bound="20"/>
+       
+        <Field FieldKey="shangpinbianhao" FieldName="商品编号" FieldType="Varchar" MixCondition="true" Comment="商品编号"/>
+		<Field FieldKey="shangpinmingcheng" FieldName="商品名称" FieldType="Varchar" MixCondition="true" Comment="商品名称"/>
+        <Field FieldKey="guige" FieldName="规格/型号" FieldType="Varchar" Comment="规格/型号"/>
+        <Field FieldKey="yanghuleixing" FieldName="养护类型" FieldType="Int" DefaultValue="0"  Comment="养护类型：0普通养护1重点养护"/>
+        <Field FieldKey="shenhezhuangtai" FieldName="审核状态" FieldType="Int" DefaultValue="0"  Comment="审核状态：0未审核1审核通过"/>
+        <Field FieldKey="danwei" FieldName="单位" FieldType="Int" Comment="单位"/>
+        <Field FieldKey="shengchanchangjia" FieldName="生产厂家" FieldType="Varchar" Comment="生产厂家"/>
+        <Field FieldKey="chandi" FieldName="产地" FieldType="Varchar" Comment="产地"/>
+        <Field FieldKey="dbzsl" FieldName="大包装数量" FieldType="Int" Comment="大包装数量"/>
+        <Field FieldKey="xiaoqidanwei" FieldName="效期单位" FieldType="Int" Comment="效期单位:1.月2.日3.年"/>
+        <Field FieldKey="youxiaoqi" FieldName="有效期" FieldType="Int" Comment="有效期"/>
+        <Field FieldKey="pizhunwenhao" FieldName="批准文号" FieldType="Varchar" Comment="批准文号"/>
+        <Field FieldKey="jixing" FieldName="商品剂型" FieldType="Int" Comment="剂型:1.片剂2.丸剂3.胶囊剂。。。"/>
+
+    </DataTable>
+</DataSet>

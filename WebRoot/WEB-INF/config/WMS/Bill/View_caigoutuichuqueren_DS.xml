@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+	<DataTable Key="caigoutuichuqueren" Caption="采购退出叙事薄" DefaultFilter=""
+		Pagging="20"
+		TableName="SQLQuery::select * | from xyy_wms_bill_caigoutuichuqueren where 1 = 1 @dingdanbianhao @dingdanleixing  @caigouyuan @danweibianhao  @status order by createTime desc "
+		DataSource="" Head="false">
+		<Parameters>
+			<Parameter Key="dingdanbianhao" Type="String">
+				<Where>
+                <![CDATA[
+					m.if(dingdanbianhao==null | dingdanbianhao=="" ,""," and dingdanbianhao like '%"+dingdanbianhao+"%'")
+	            ]]>
+	            
+				</Where>
+			</Parameter>
+			<Parameter Key="dingdanleixing" Type="Integer">
+				<Where>
+                <![CDATA[
+					m.if(dingdanleixing==null | dingdanleixing=="" ,""," and dingdanleixing like '%"+dingdanleixing+"%'")
+                ]]>
+				</Where>
+			</Parameter>
+			<Parameter Key="danweibianhao" Type="String">
+				<Where>
+                <![CDATA[
+					m.if(danweibianhao==null | danweibianhao=="" ,""," and danweibianhao like '%"+danweibianhao+"%'")
+                ]]>
+				</Where>
+			</Parameter>
+			<Parameter Key="kaipiaoyuan" Type="String">
+				<Where>
+                <![CDATA[
+					m.if(kaipiaoyuan==null | kaipiaoyuan=="" ,""," and kaipiaoyuan like '%"+kaipiaoyuan+"%'")
+                ]]>
+				</Where>
+			</Parameter>
+
+			
+		</Parameters>
+	</DataTable>
+</DataSet>

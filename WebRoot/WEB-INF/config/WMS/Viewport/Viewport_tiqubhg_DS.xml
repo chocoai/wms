@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="querybhgpdj" Caption="" DefaultFilter=""
+               Pagging="5" PermissionType="CommType"
+               TableName="SQLQuery::
+					SELECT
+						d.*
+						|
+					FROM
+						xyy_wms_bill_buhegepin d left join xyy_wms_bill_buhegepin_details s on
+						d.BillID=s.BillID
+					 where d.sunyizhuangtai=0 @kaishiriqi @jiezhiriqi  @kufang  @dingdanbianhao @shangpinmingcheng
+						"
+               DataSource="" Head="false">
+        <Parameters>
+            <Parameter Key="dingdanbianhao" Type="String">
+                <Where>
+                    <![CDATA[
+							m.if(dingdanbianhao==null | dingdanbianhao=="" ," "," and d.dingdanbianhao like '%"+dingdanbianhao+"%'")
+			            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="kaishiriqi" Type="Datetime">
+                <Where>
+                    <![CDATA[
+							m.if(kaishiriqi==null | kaishiriqi=="" ,""," and DATE_FORMAT(dingdanriqi,'%Y-%m-%d') >= DATE_FORMAT('"+kaishiriqi+"','%Y-%m-%d')")
+			            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="jiezhiriqi" Type="Datetime">
+                <Where>
+                    <![CDATA[
+							m.if(jiezhiriqi==null | jiezhiriqi=="" ,""," and DATE_FORMAT(dingdanriqi,'%Y-%m-%d') <= DATE_FORMAT('"+jiezhiriqi+"','%Y-%m-%d')")
+			            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="kufang" Type="String">
+                <Where>
+                    <![CDATA[
+							m.if(kufang==null | kufang=="" ," "," and kufang like '%"+kufang+"%'")
+			            ]]>
+                </Where>
+            </Parameter>
+
+            <Parameter Key="shangpinmingcheng" Type="String">
+                <Where>
+                    <![CDATA[
+							m.if(shangpinmingcheng==null | shangpinmingcheng=="" ," "," and shangpinmingcheng like '%"+shangpinmingcheng+"%'")
+			            ]]>
+                </Where>
+            </Parameter>
+
+        </Parameters>
+    </DataTable>
+    <DataTable Key="querybhgpdj_details" Caption=" 不合格品明细视图"
+               DefaultFilter="" PermissionType="CommType" Pagging="10"
+               TableName="SQLQuery::select * | from xyy_wms_bill_buhegepin_details where 1!=1"
+               DataSource="" Head="false" Singleton="" OrderBy="">
+    </DataTable>
+</DataSet>

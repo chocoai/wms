@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="phkc" Caption="商品批号库存视图" DefaultFilter="" PermissionType="CommType"  Pagging="10"
+        TableName="SQLQuery::select * | from (
+         select b.pihao, a.kucunshuliang, b.shengchanriqi,b.youxiaoqizhi from xyy_erp_bill_shangpinpihaokucun a, xyy_erp_dic_shangpinpihao b
+         where a.pihaoId = b.pihaoId  @goodsid) x"  DataSource="" Head="false" Singleton="" OrderBy="">
+        <Parameters>
+            <Parameter Key="goodsid" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(goodsid==null | goodsid=="","and a.shangpinId is null"," and a.shangpinId = '"+goodsid+"'")
+	            ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

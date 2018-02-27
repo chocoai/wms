@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="shouyingshangpin" Caption="首营商品叙事薄" DefaultFilter="" Pagging="20"
+               TableName="SQLQuery::select * | from xyy_erp_bill_shouyingshangpin where status != -1 @danjubianhao  @shangpinmingcheng @status order by createTime desc" DataSource="" Head="false">
+        <Parameters>
+            <Parameter Key="danjubianhao" Type="String">
+                <Where>
+                <![CDATA[
+					m.if(danjubianhao==null | danjubianhao=="" ,""," and danjubianhao like '%"+danjubianhao+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="shangpinmingcheng" Type="String" >
+                <Where>
+                <![CDATA[
+					m.if(shangpinmingcheng==null | shangpinmingcheng=="" ,""," and shangpinmingcheng like '%"+shangpinmingcheng+"%'")
+                ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="status" Type="Integer" >
+                <Where>
+                <![CDATA[
+                	m.if(status==null,""," and status="+status+"")
+				]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

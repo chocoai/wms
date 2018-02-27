@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BillFormMeta Key="bocijihua" Version="1.0.0" BillType="Bill" Caption="波次计划明细">
+    <BillBody>
+        <BillBodyMeta UserAgent="web">
+            <BillUIPanel Layout="flex" FlexDirection="column" Width="100%" Key="mainContainer" Caption="业务订单" S="">
+                <BillUIPanel Layout="flex" Key="toolbox" Caption="工具栏" >
+                    <BillUIWidget Key="save" Caption="保存" 
+                                  EnabledWhen="True"
+                                  Icon="glyphicon glyphicon-floppy-disk" WidgetType="BillUIButton">
+
+                        <Triggers>
+                            <Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+                                	setStatus(20);
+                                    @$this.save("bills");
+                     			]]>
+                            </Trigger>
+                        </Triggers>
+                    </BillUIWidget>
+                   <BillUIWidget Key="goback" Caption="返回"
+                                          EnabledWhen="True"
+                                          Icon="glyphicon glyphicon-align-left" WidgetType="BillUIButton" S="btn btn-danger">
+                                <Triggers>
+                                    <Trigger Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                        @$this.return();
+	                            ]]>
+                                    </Trigger>
+                                </Triggers>
+                            </BillUIWidget>
+                     <BillUIWidget Key="tiqu" Caption="提取出库订单"
+                                  EnabledWhen="True"
+                                   WidgetType="BillUIButton">
+                        <Triggers>
+                            <Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+                                	var cos=getRows("bocijihua_details");
+                                    $this.openWindow("bocijihua","bocijihua_view",{
+                                           condition:"",
+                                           cos:cos,
+                                            ok:function(data){
+                                            	 var postdata=[];
+                                            	 var hangshu=0;
+                                            	 for(var i=0;i<data.length;i++){
+                                            	 	postdata.push(data[i].BillID);
+                                            	 }
+                                                  var aa=map('xiaoshoudingdan2chukudingdan',2,postdata);
+                                                  if(postdata.length==1){
+                                                 	insertRows("bocijihua_details", aa.bocijihua_details,true);
+                                                    insertRows("bocijihua_details2", aa.bocijihua_details2,true);
+                                                    hangshu=aa.bocijihua_details2.length;
+                                                  }else{
+	                                                  var bool=true;
+	                                                  for(var j=0;j<aa.length;j++){
+	                                                  	if(j>0)bool=false;
+	                                                    insertRows("bocijihua_details", aa[j].bocijihua_details.cos,bool);
+	                                                    insertRows("bocijihua_details2", aa[j].bocijihua_details2.cos,bool);
+	                                                    hangshu=hangshu+aa[j].bocijihua_details2.cos.length;
+	                                                  }
+                                                  }
+                                                @dingdanshu.setValue(postdata.length);  
+                                                @hangshu.setValue(hangshu);  
+                                            },
+                                           cancel:function(){
+                                               
+                                           }
+                                    });
+                                	
+                     			]]>
+                            </Trigger>
+                        </Triggers>
+                    </BillUIWidget> 
+                     <BillUIWidget Key="tishengyxj" Caption="提升优先级"
+                                          EnabledWhen="True"
+                                 WidgetType="BillUIButton">
+                                <Triggers>
+                                    <Trigger Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                        var sos=getSos("bocijihua_details");
+                                        var cos=getDataset("bocijihua_details").cos;
+                                        if(sos.length==0){
+                                        	alert("请选择需要提升优先级的订单！");
+                                        	return;
+                                        }
+                                    	for(var i=0;i<sos.length;i++){
+                                    		for(var j=0;j<cos.length;j++){
+                                    			if(cos[j].rowID==sos[i].rowID){
+                                    			if(cos[j].youxianji==""||cos[j].youxianji==null){
+                                    				window.$body.bocijihua_details.cos[j].youxianji=10;
+                                    			}else{
+                                    				window.$body.bocijihua_details.cos[j].youxianji=parseInt(cos[j].youxianji)+10;
+                                    			}
+		                                    		break;
+                                    			}
+                                    		}
+                                    	}
+	                              ]]>
+                                    </Trigger>
+                                </Triggers>
+                            </BillUIWidget>
+                </BillUIPanel>
+
+                 <BillUIPanel Layout="flex" Key="mainContainer_head" Caption="波次汇总" S="panel panel-success publicPanel"
+                             RowGap="5" ColGap="10" ColWidth="300px 300px 300px  300px 1fr 1fr">
+                    <BillUIGridPanel Key="bocijihua">
+                        <BillUIRowPanel>
+                         <BillUIColPanel Width="3">
+                                <BillUIWidget Key="danjubianhao" Caption="波次编号" Disable="true"
+                                              DataTableKey="bocijihua" DataTableColumn="danjubianhao"
+                                              EnabledWhen="True" WidgetType="BillUIString" Required="required">
+                                  <Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                  				var BillID=getHeadValue("BillID");
+                                  				if(BillID!=null&&BillID!=""){
+                                  					setDisabled("save");
+                                  				   setDisabled("tiqu");
+                                  				   setDisabled("tishengyxj");
+                                  				}
+										]]>
+                                    </Init>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="jihuariqi" Caption="计划日期" Disable="true"
+                                              DataTableKey="bocijihua" DataTableColumn="jihuariqi"
+                                              EnabledWhen="True" WidgetType="BillUIDateTime" Required="required">
+                                    <Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                        var BillID=getHeadValue("BillID");
+                                        if(BillID==null||BillID==""){
+                                  				var t=this.formatDate(new Date());
+                                                this.setValue(t);
+                                        }
+										]]>
+                                    </Init>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                             <BillUIColPanel Width="3">
+                                <BillUIWidget Key="caozuoren" Caption="操作人" Disable="true"
+                                              DataTableKey="bocijihua" DataTableColumn="caozuoren"
+                                              EnabledWhen="True" WidgetType="BillUIString" Required="required">
+                                    <Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                  				var t=this.getRealName();
+		                                        this.setValue(t);
+										]]>
+                                    </Init>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                              <BillUIColPanel Width="3">
+                                <BillUIWidget Key="dingdanshu" Caption="订单数" Disable="true"
+                                              DataTableKey="bocijihua" DataTableColumn="dingdanshu"
+                                              EnabledWhen="True" WidgetType="BillUIString" Required="required">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                  </BillUIRowPanel>
+                  <BillUIRowPanel>
+                  	  <BillUIColPanel Width="3">
+                                <BillUIWidget Key="hangshu" Caption="行数" Disable="true"
+                                              DataTableKey="bocijihua" DataTableColumn="hangshu"
+                                              EnabledWhen="True" WidgetType="BillUIString" Required="required">
+                                </BillUIWidget>
+                      </BillUIColPanel>
+                  </BillUIRowPanel>
+                  </BillUIGridPanel>          
+                </BillUIPanel> 
+
+			 <BillUIPanel Layout="tab" Key="mainContainer_tab" Caption="波次明细" S="panel panel-success publicPanel">
+                    <BillUIPanel Layout="flex" Key="mainContainer_details" Caption="订单汇总" RowGap="1" ColGap="1"
+                                 ColWidth="1fr">
+                        <BillUIGrid Key="bocijihuaDetails" Left="1" Top="1" Width="1" Height="1" SelectMode="Multi"
+                                    DataTableKey="bocijihua_details">
+                            <GridHeads>
+                                <GridHead Col="dingdanzhuangtai" Caption="订单状态" enableEdit="True" Width="50px">
+                                    <BillUIWidget Key="dingdanzhuangtai" WidgetType="BillUIString" Disable="true" >
+                                      <Formatters>
+                                            <Formatter>
+                                                <![CDATA[
+                                                        [{'type':'chukudingdanzhuangtai'}]
+                                            			]]>
+                                            </Formatter>
+                                        </Formatters>
+                                    </BillUIWidget>
+                                </GridHead>
+                                <GridHead Col="huozhubianhao" Caption="货主编号" enableEdit="True" Width="60px">
+                                    <BillUIWidget Key="huozhubianhao" WidgetType="BillUIString" Disable="true"/>
+                                </GridHead>
+
+                                <GridHead Col="dingdanbianhao" Caption="订单编号" enableEdit="True" Width="120px">
+                                    <BillUIWidget Key="dingdanbianhao" WidgetType="BillUIString" Disable="true">
+                                    </BillUIWidget>
+                                </GridHead>
+                                <GridHead Col="dingdanriqi" Caption="订单日期" enableEdit="True" Width="150px">
+                                    <BillUIWidget Key="dingdanriqi" WidgetType="BillUIString" Disable="true"/>
+                                </GridHead>
+                                <GridHead Col="dingdanleixing" Caption="订单类型" enableEdit="True" Width="60px">
+                                    <BillUIWidget Key="dingdanleixing" WidgetType="BillUIString" Disable="true">
+                                      <Formatters>
+                                            <Formatter>
+                                                <![CDATA[
+                                                        [{'type':'dingdanleixing'}]
+                                            			]]>
+                                            </Formatter>
+                                        </Formatters>
+                                    </BillUIWidget>
+                                </GridHead>
+
+                                <GridHead Col="tihuofangshi" Caption="提货方式" enableEdit="True" Width="40px">
+                                    <BillUIWidget Key="tihuofangshi" WidgetType="BillUIInteger" Disable="true">
+                                     <Formatters>
+			                                        <Formatter>
+			                                            <![CDATA[
+			                                               [{'url':[{name:'配送',value:'1'},{name:'托运',value:'2'}],'type':'tihuofangshi','local':'true'}]
+			                                            ]]>
+			                                        </Formatter>
+			                                    </Formatters>
+                                    </BillUIWidget>
+                                </GridHead>
+                                <GridHead Col="qsjhw" Caption="起始集货位" enableEdit="True" Width="100px">
+                                    <BillUIWidget Key="qsjhw" WidgetType="BillUIString" Disable="true"/>
+                                </GridHead>
+                                <GridHead Col="zzjhw" Caption="终止集货位" enableEdit="True" Width="100px">
+                                    <BillUIWidget Key="zzjhw" WidgetType="BillUIInteger" Disable="true">
+                                    </BillUIWidget>
+                                </GridHead>
+                               <GridHead Col="youxianji" Caption="优先级" enableEdit="True" Width="50px">
+                                    <BillUIWidget Key="youxianji" WidgetType="BillUIString" Disable="true"/>
+                                </GridHead>
+                                <GridHead Col="luxianmingcheng" Caption="路线名称" enableEdit="True" Width="120px">
+                                    <BillUIWidget Key="luxianmingcheng" WidgetType="BillUIString" Disable="true"/>
+                                </GridHead>
+                                <GridHead Col="kehubianhao" Caption="客户编号" enableEdit="True" Width="100px">
+                                    <BillUIWidget Key="kehubianhao" WidgetType="BillUIString" Disable="true"/>
+                                </GridHead>
+                                <GridHead Col="kehumingcheng" Caption="客户名称" enableEdit="True" Width="220px">
+                                    <BillUIWidget Key="kehumingcheng" WidgetType="BillUIString" Disable="true"/>
+                                </GridHead>
+                                <GridHead Col="kehudizhi" Caption="地址" enableEdit="True" Width="300px">
+                                    <BillUIWidget Key="kehudizhi" WidgetType="BillUIString" Disable="true"/>
+                                </GridHead>
+                                <GridHead Col="kehudianhua" Caption="电话" enableEdit="True" Width="120px">
+                                    <BillUIWidget Key="kehudianhua" WidgetType="BillUIString"/>
+                                </GridHead>
+                                <GridHead Col="ywymc" Caption="业务员" enableEdit="True" Width="120px">
+                                    <BillUIWidget Key="ywymc" WidgetType="BillUIString"/>
+                                </GridHead>
+                                <GridHead Col="remark" Caption="客户备注" enableEdit="True" Width="200px">
+		                                    <BillUIWidget Key="remark" WidgetType="BillUIString"/>
+		                        </GridHead>
+                            </GridHeads>
+                        </BillUIGrid>
+                    </BillUIPanel>
+               
+                
+                    <BillUIPanel Layout="flex" Key="mainContainer_details2" Caption="订单明细" RowGap="1" ColGap="1"
+                                 ColWidth="1fr">
+                        <BillUIGrid Key="bocijihuaDetails2" Left="1" Top="1" Width="1" Height="1" 
+                                    DataTableKey="bocijihua_details2">
+                            <GridHeads>
+                            	<GridHead Col="shangpinzhuangtai" Caption="状态" enableEdit="True" Width="50px">
+                                    <BillUIWidget Key="shangpinzhuangtai" WidgetType="BillUIString" Disable="true" >
+                                      <Formatters>
+                                            <Formatter>
+                                                <![CDATA[
+                                                        [{'type':'chukushangpinzhuangtai'}]
+                                            			]]>
+                                            </Formatter>
+                                        </Formatters>
+                                    </BillUIWidget>
+                                </GridHead>
+                                <GridHead Col="dingdanbianhao" Caption="订单编号" enableEdit="True" Width="50px">
+                                    <BillUIWidget Key="dingdanbianhao" WidgetType="BillUIString" Disable="true" >
+                                    </BillUIWidget>
+                                </GridHead>
+                                <GridHead Col="shangpinbianhao" Caption="商品编号" enableEdit="True" Width="50px">
+                                    <BillUIWidget Key="shangpinbianhao" WidgetType="BillUIString" Disable="true" >
+                                    </BillUIWidget>
+                                </GridHead> 
+                                <GridHead Col="shangpinmingcheng" Caption="商品名称" enableEdit="True" Width="50px">
+                                    <BillUIWidget Key="shangpinmingcheng" WidgetType="BillUIString" Disable="true" >
+                                    </BillUIWidget>
+                                </GridHead> 
+                                <GridHead Col="guige" Caption="规格" enableEdit="True" Width="50px">
+                                    <BillUIWidget Key="guige" WidgetType="BillUIString" Disable="true" >
+                                    </BillUIWidget>
+                                </GridHead> 
+                                  <GridHead Col="danwei" Caption="单位" enableEdit="True" Width="50px">
+                                    <BillUIWidget Key="danwei" WidgetType="BillUIInteger" Disable="true" >
+                                    <Formatters>
+                                            <Formatter>
+                                                <![CDATA[
+                                                        [{'type':'baozhuangdanwei'}]
+                                            			]]>
+                                            </Formatter>
+                                        </Formatters>
+                                    </BillUIWidget>
+                                </GridHead> 
+                                 <GridHead Col="shengchanchangjia" Caption="生产厂家" enableEdit="True" Width="50px">
+                                    <BillUIWidget Key="shengchanchangjia" WidgetType="BillUIString" Disable="true" >
+                                    </BillUIWidget>
+                                </GridHead>  
+                                 <GridHead Col="shuliang" Caption="数量" enableEdit="True" Width="50px">
+                                    <BillUIWidget Key="shuliang" WidgetType="BillUIString" Disable="true" >
+                                    </BillUIWidget>
+                                </GridHead> 
+                                  <GridHead Col="chonghongshuliang" Caption="冲红数量" enableEdit="True" Width="50px">
+                                    <BillUIWidget Key="chonghongshuliang" WidgetType="BillUIString" Disable="true" >
+                                    </BillUIWidget>
+                                </GridHead> 
+                            </GridHeads>
+                        </BillUIGrid>
+                </BillUIPanel>
+            </BillUIPanel>
+         </BillUIPanel>
+         </BillBodyMeta>
+    </BillBody>
+
+    <BillHeadMeta>
+    	<BillEventCollection>
+			<Event Type="PreSave" Processor="com.xyy.wms.outbound.biz.WavePlanPreEvent" />
+			<Event Type="PostSave" Processor="com.xyy.wms.outbound.biz.WavePlanPostEvent" />
+		</BillEventCollection>
+    </BillHeadMeta>
+</BillFormMeta>
+

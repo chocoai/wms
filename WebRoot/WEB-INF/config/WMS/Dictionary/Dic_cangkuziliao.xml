@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BillFormMeta Key="cangkuziliao" Version="1.0.0" BillType="Dictionary"
+	Caption="仓库资料">
+	<BillBody>
+
+		<BillBodyMeta UserAgent="web">
+			<BillUIPanel Layout="flex" FlexDirection="column" Width="100%"
+				Key="mainContainer" Caption="仓库资料" S="">
+				<BillUIPanel Layout="flex" Key="toolbox" Caption="工具栏">
+					<!--属性 colPush 向右推 colPull 向左拉 colOffset 左边距 -->
+
+					<BillUIWidget Key="save" Caption="保存" EnabledWhen="True"
+						Icon="glyphicon glyphicon-floppy-disk" WidgetType="BillUIButton">
+						<Triggers>
+							<Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+                                                        setStatus(40);
+			                                        	@$this.save();
+				                            		]]>
+							</Trigger>
+						</Triggers>
+					</BillUIWidget>
+					<BillUIWidget Key="goback" Caption="返回" EnabledWhen="True"
+						Icon="glyphicon glyphicon-align-left" WidgetType="BillUIButton" S="btn btn-danger">
+						<Triggers>
+							<Trigger Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                       @$this.$reBack();
+	                            ]]>
+							</Trigger>
+						</Triggers>
+					</BillUIWidget>
+
+				</BillUIPanel>
+
+
+
+				<BillUIPanel Layout="flex" Key="bills_tools" Caption=""
+					S="panel panel-default publicPanel">
+					<BillUIGridPanel Device="sm" key="boxtool">
+						<BillUIRowPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="cangkubianhao" ParameterKey="cangkubianhao" 
+									DataTableKey="cangkuziliao" Caption="仓库编号" EnabledWhen="True" Required="Required"
+									Icon="glyphicon glyphicon-send" DataTableColumn="cangkubianhao"
+									WidgetType="BillUIString" >
+									<Init Type="javascript/angular" Runat="client">
+									<![CDATA[
+										 var v = getHeadValue("cangkubianhao");
+                                                if(v != ""&&v != null){
+                                                    setDisabled('cangkubianhao');
+                                                    }else{
+                                                	  @cangkubianhao.setValue(" ");
+                                                    }
+										]]>
+									</Init>
+									<!-- <CheckRules>
+										<CheckRule>
+              						  <![CDATA[										    
+              						           {"type":"builtin","rule":/^-?[0-9]\d*$/,"msg":"请填写数字类型"}
+													]]>
+										</CheckRule>
+									</CheckRules> -->
+								</BillUIWidget>
+							</BillUIColPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="cangkumingchen" ParameterKey="cangkumingchen" 
+									DataTableKey="cangkuziliao" Caption="仓库" EnabledWhen="True"
+									Icon="glyphicon glyphicon-send" WidgetType="BillUIString" Required="Required"
+									DataTableColumn="cangkumingchen">
+								</BillUIWidget>
+							</BillUIColPanel>
+						</BillUIRowPanel>
+
+
+
+
+						<BillUIRowPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="sheng" Caption="省"
+									DataTableKey="cangkuziliao" DataTableColumn="sheng"
+									EnabledWhen="True" K="areaName" V="areaCode" WidgetType="BillUISelect">
+									<Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                             this.loadDataSource('common/findAreaByParentId?parentId=0');
+                                             var code=getHeadValue("sheng");
+                                             if(code!=0){
+                                                 @shi.loadDataSource('common/findAreaByParentId?parentId='+code);
+                                             }
+                                         ]]>
+									</Init>
+									<Triggers>
+										<Trigger Type="javascript/angular" Runat="client">
+                                            <![CDATA[
+                                            var code=this.getValue();
+                                            @shi.loadDataSource('common/findAreaByParentId?parentId='+code);
+                                            @qu.clearDataSource();
+                                            ]]>
+										</Trigger>
+									</Triggers>
+								</BillUIWidget>
+							</BillUIColPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="shi" Caption="市" DataTableKey="cangkuziliao"
+											  DataTableColumn="shi" EnabledWhen="True"
+									K="areaName" V="areaCode" WidgetType="BillUISelect">
+									<Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                             var code=getHeadValue("shi");
+                                             if(code!=0){
+                                                @qu.loadDataSource('common/findAreaByParentId?parentId='+code);
+                                               }
+                                         ]]>
+									</Init>
+									<Triggers>
+										<Trigger Type="javascript/angular" Runat="client">
+                                            <![CDATA[
+                                            var code=this.getValue();
+                                            @qu.loadDataSource('common/findAreaByParentId?parentId='+code);
+                                            ]]>
+										</Trigger>
+									</Triggers>
+								</BillUIWidget>
+							</BillUIColPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="qu" Caption="区" DataTableKey="cangkuziliao"
+											  DataTableColumn="qu" EnabledWhen="True"
+									K="areaName" V="areaCode" WidgetType="BillUISelect">
+								</BillUIWidget>
+							</BillUIColPanel>
+						</BillUIRowPanel>
+
+						<BillUIRowPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="fuzheren" ParameterKey="fuzheren"
+									DataTableKey="cangkuziliao" Caption="负责人" EnabledWhen="True"
+									Icon="glyphicon glyphicon-send" WidgetType="BillUIString"
+									DataTableColumn="fuzheren">
+								</BillUIWidget>
+							</BillUIColPanel>
+
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="dianhua" ParameterKey="dianhua"
+									DataTableKey="cangkuziliao" Caption="电话" EnabledWhen="True"
+									Icon="glyphicon glyphicon-send" WidgetType="BillUIString"
+									DataTableColumn="dianhua">
+								</BillUIWidget>
+							</BillUIColPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="cangkumiashu" ParameterKey="cangkumiashu"
+									DataTableKey="cangkuziliao" Caption="仓库描述" EnabledWhen="True"
+									Icon="glyphicon glyphicon-send" WidgetType="BillUIString"
+									DataTableColumn="cangkumiashu">
+								</BillUIWidget>
+							</BillUIColPanel>
+						</BillUIRowPanel>
+
+						<BillUIRowPanel>
+							<BillUIColPanel Width="6">
+								<BillUIWidget Key="xiangxidizhi" ParameterKey="xiangxidizhi"
+									DataTableKey="cangkuziliao" Caption="详细地址" EnabledWhen="True"
+									Icon="glyphicon glyphicon-send" WidgetType="BillUIString"
+									DataTableColumn="xiangxidizhi">
+								</BillUIWidget>
+							</BillUIColPanel>
+
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="qiyong" Caption="是否启用"
+									DataTableKey="cangkuziliao" DataTableColumn="qiyong"
+									EnabledWhen="True" Src="bill/selectSrc?type=bool" WidgetType="BillUISelect">
+									<Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+												this.loadDataSource();
+										]]>
+									</Init>
+								</BillUIWidget>
+							</BillUIColPanel>
+						</BillUIRowPanel>
+					</BillUIGridPanel>
+				</BillUIPanel>
+
+
+
+			</BillUIPanel>
+		</BillBodyMeta>
+
+	</BillBody>
+
+	<BillHeadMeta>
+		<BillStatusCollection>
+			<Status Default="true" Code="1">录入</Status>
+			<Status Code="20">正式</Status>
+			<Status Code="40">审核通过</Status>
+		</BillStatusCollection>
+	<BillEventCollection>
+			<Event Type="PreSave" Processor="com.xyy.wms.handler.biz.DicCangkuHandler" />
+		</BillEventCollection>
+	</BillHeadMeta> 
+</BillFormMeta>
+

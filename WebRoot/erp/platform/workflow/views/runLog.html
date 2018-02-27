@@ -1,0 +1,163 @@
+
+<div ng-controller="myApp.OperationManagement.runLog" class="panel panel-default">
+    <!--导航-->
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="">异常流程管理</a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li ng-class="{'active':viewStatus==0}">
+                        <a ng-click="searchType(0)">未处理</a>
+                    </li>
+                    <li ng-class="{'active':viewStatus==1}">
+                        <a ng-click="searchType(1)">已处理</a>
+                    </li>
+                    <li  ng-class="{'active':viewStatus==2}">
+                        <a ng-click="searchType(2)">不需要处理</a>
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+
+    <!--列表-->
+    <div class="panel-body" style="height: 100%">
+        <table class="table table-bordered table-striped table-hover table-condensed">
+            <tr>
+                <td>错误号</td>
+                <td>错误消息</td>
+                <td>控制台信息</td>
+                <td>说明</td>
+                <td>状态</td>
+                <td>创建时间</td>
+                <td>操作</td>
+            </tr>
+            <tr ng-repeat="row in rows">
+                <td>{{row.errNumber}}</td>
+                <td>{{row.message}}</td>
+                <td>{{row.printStack|limitTo:50}}......</td>
+                <td>{{row.remark|limitTo:50}}......</td>
+                <td><span ng-if="row.status==0||row.status==null">未处理</span>
+                    <span ng-if="row.status==1">已处理</span>
+                    <span ng-if="row.status==2">不需要处理</span>
+                </td>
+                <td>{{row.createTime}}</td>
+                <td>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-warning " ng-click="rledit(row)" ng-if="row.status==0||row.status==null">解决</button>
+                        <button type="button" class="btn btn-sm btn-info " ng-click="rlview(row)">查看</button>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <!--分页组件-->
+        <div paging  page-info="pageInfo"  load="load()"/>
+
+
+    </div>
+
+    <!--详情-->
+    <div class="modal fade" id="my-popup-rlview">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header clearfix">
+                    <h4 class="modal-title pull-left">运行日志详情</h4>
+                    <div class="pull-right">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" name="myForm">
+                         <div class="form-group">
+                             <label class="col-sm-2 control-label">错误号</label>
+                             <div class="col-sm-9 input-group">
+                                 <input type="text" class="form-control" ng-model="currentRow.exception.errNumber" />
+                             </div>
+                         </div>
+                         <div class="form-group">
+                             <label class="col-sm-2 control-label">错误信息格式</label>
+                             <div class="col-sm-9 input-group">
+                                 <textarea rows="8" cols="50" ng-model="currentRow.exception.errInfo"/>
+                             </div>
+                         </div>
+                         <div class="form-group">
+                             <label class="col-sm-2 control-label">错误信息</label>
+                             <div class="col-sm-9 input-group">
+                                 <textarea rows="8" cols="50" ng-model="currentRow.exception.message"/>
+                             </div>
+                         </div>
+                         <div class="form-group">
+                             <label class="col-sm-2 control-label">控制台信息</label>
+                             <div class="col-sm-9 input-group">
+                                 <textarea rows="8" cols="50" ng-model="currentRow.exception.printStack"/>
+                             </div>
+                         </div>
+                         <div class="form-group">
+                             <label class="col-sm-2 control-label">状态</label>
+                             <div class="col-sm-9 input-group">
+                                 <label ng-if="currentRow.exception.status==null||currentRow.exception.status==0">未处理</label>
+                                 <label ng-if="currentRow.exception.status==1">已处理</label>
+                                 <label ng-if="currentRow.exception.status==2">不需要处理</label>
+                             </div>
+                         </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">说明</label>
+                            <div class="col-sm-9 input-group">
+                                <textarea rows="8" cols="50" ng-model="currentRow.exception.remark"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">创建时间</label>
+                            <div class="col-sm-9 input-group">
+                                <input type="text" name="createTime"  ng-model="currentRow.exception.createTime"  >
+                            </div>
+                        </div>
+                        <div class="form-group" ng-if="currentRow.exception.status !=0">
+                            <label class="col-sm-2 control-label">更新时间</label>
+                            <div class="col-sm-9 input-group">
+                                <input type="text" name="updateTime"  ng-model="currentRow.exception.updateTime"  >
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--解决-->
+    <div class="modal fade" tabindex="-1" id="my-prompt-rldeal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <h4 class="modal-header">你确认解决该异常吗</h4>
+                <div class="modal-body">
+                    <form class="form-horizontal" name="myForm" role="form" novalidate>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">请选择处理状态：</label>
+                            <div class="col-sm-8">
+                                <select ng-model="acceptor.status">
+                                    <option value="1">已处理</option>
+                                    <option value="2">不需要处理</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">处理说明：</label>
+                            <div class="col-sm-8 input-group">
+                                <textarea rows="5" cols="45" ng-model="acceptor.remark"/>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" id="close" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" ng-disabled="myForm.$invalid" ng-click="update()">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

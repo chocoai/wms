@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="spphxqtz" BillType="Bill" Caption="商品批号调整" DefaultFilter="" TableName="Table::xyy_wms_bill_spphxqtz" DataSource="" Head="true">
+        <!--
+             单据编号	varchar	规则：YBM+年月日时分秒+3位随机码, 例如：YBM20160426112240764
+        -->
+        <Field FieldKey="danjubianhao" FieldName="单据编号" FieldType="Varchar" Bound="50" DefaultValue="='CG'+o.orderNo()" Comment="单据编号"/>
+        <Field FieldKey="billid" FieldName="单据ID" FieldType="Varchar" Comment="单据ID"/>
+        <Field FieldKey="zhidanriqi" FieldName="制单日期" FieldType="Date" Comment="制单日期"/>
+        <Field FieldKey="zhidanren" FieldName="调整人" FieldType="Varchar" Comment="调整人" />
+        <Field FieldKey="kufang" FieldName="库房" FieldType="Varchar" Comment="库房"/>
+        <Field FieldKey="huozhu" FieldName="货主"  FieldType="Varchar" DefaultValue="小药药" Comment="货主" />
+
+    </DataTable>
+
+    <DataTable Key="spphxqtz_details" BillType="Bill"  Caption="商品批号调整明细" DefaultFilter="BillID" Pagging="100" TableName="Table::xyy_wms_bill_spphxqtz_details" DataSource="" Head="false">
+        <Field FieldKey="billid" FieldName="单据ID" FieldType="Varchar"  Comment="单据ID"/>
+        <Field FieldKey="danjubianhao" FieldName="单据编号" FieldType="Varchar"  Comment="单据编号"/>
+        <Field FieldKey="shangpinbianhao" FieldName="商品编号" FieldType="Varchar"   Comment="商品编号" />
+        <Field FieldKey="shangpinmingcheng" FieldName="商品名称" FieldType="Varchar" Comment="商品名称" />
+        <Field FieldKey="goodsid" FieldName="商品ID" FieldType="Varchar" Comment="商品ID" />
+        <Field FieldKey="guige" FieldName="规格" FieldType="Varchar" Comment="规格"/>
+        <Field FieldKey="danwei" FieldName="单位" FieldType="Int" Comment="单位" />
+        <Field FieldKey="shengchanchangjia" FieldName="生产厂家" FieldType="Varchar" Comment="生产厂家" />
+        <Field FieldKey="ypihao" FieldName="原批号" FieldType="Varchar" Comment="原批号" />
+        <Field FieldKey="pihaoId" FieldName="批号id" FieldType="Varchar"  Comment="批号id" />
+        <Field FieldKey="yshengchanriqi" FieldName="原生产日期" FieldType="Date" Comment="原生产日期" />
+        <Field FieldKey="yyouxiaoqizhi" FieldName="原有效期至" FieldType="Date" Comment="原有效期至" />
+        <Field FieldKey="dbzsl" FieldName="包装数量" FieldType="Decimal" Comment="包装数量"/>
+        <Field FieldKey="newpihao" FieldName="新批号" FieldType="Varchar"  Comment="新批号"/>
+        <Field FieldKey="newshengchanriqi" FieldName="新生产日期" FieldType="Varchar"  Comment="新生产日期"/>
+        <Field FieldKey="newyouxiaoqizhi" FieldName="新有效期至" FieldType="Varchar"  Comment="新有效期至"/>
+        <Field FieldKey="pizhunwenhao" FieldName="批准文号" FieldType="Varchar"  Comment="批准文号"/>
+    </DataTable>
+</DataSet>

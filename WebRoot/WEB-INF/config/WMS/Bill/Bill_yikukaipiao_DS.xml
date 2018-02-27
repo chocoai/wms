@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+	<DataTable Key="yikukaipiao" BillType="Bill" Caption="移库开票单"
+		DefaultFilter="" TableName="Table::xyy_wms_bill_yikukaipiao"
+		DataSource="" Head="true">
+        <Field FieldKey="danjubianhao" FieldName="单据编号" FieldType="Varchar"
+			DefaultValue="='YKKP'+o.orderNo()" Comment="单据编号" />
+		<Field FieldKey="cangkumingcheng" FieldName="仓库名称" FieldType="Varchar"
+			Bound="50" Comment="仓库名称" />
+		<Field FieldKey="cangkubianhao" FieldName="仓库编号" FieldType="Varchar"
+			   Bound="50" Comment="仓库编号" />
+		<Field FieldKey="zhidanriqi" FieldName="制单日期" FieldType="Date"
+			Comment="制单日期" />
+		<Field FieldKey="zhidanren" FieldName="制单人" FieldType="Varchar"
+			Comment="制单人" />
+		<Field FieldKey="beizhu" FieldName="备注" FieldType="Varchar"
+			Comment="备注" />
+		<Field FieldKey="zhuangtai" FieldName="状态" FieldType="Int" DefaultValue="1"
+			Comment="状态" />
+		<Field FieldKey="shifouhuixie" FieldName="是否回写 " FieldType="Int" DefaultValue="0"
+			   Comment="是否回写" />
+	</DataTable>
+
+	<DataTable Key="yikukaipiao_details" BillType="Bill"
+		Caption="移库开票单明细" DefaultFilter="BillID" Pagging="100"
+		TableName="Table::xyy_wms_bill_yikukaipiao_details" DataSource=""
+		Head="false">
+		<Field FieldKey="danjubianhao" FieldName="单据编号" FieldType="Varchar"
+			DefaultValue="='YKKP'+o.orderNo()" Comment="单据编号" />
+		<Field FieldKey="huozhu" FieldName="货主" FieldType="Varchar"
+			Comment="货主" />
+		<Field FieldKey="shangpinbianhao" FieldName="商品编号" FieldType="Varchar"
+			Comment="商品编号" />
+		<Field FieldKey="goodsid" FieldName="商品ID" FieldType="Varchar"
+		Comment="商品ID" />
+		<Field FieldKey="shangpinmingcheng" FieldName="商品名称" FieldType="Varchar"
+			Comment="商品名称" />
+		<Field FieldKey="guige" FieldName="规格" FieldType="Varchar"
+			Comment="规格" />
+		<Field FieldKey="dbzsl" FieldName="大包装数量" FieldType="Decimal"
+			   Comment="大包装数量" />
+
+		<Field FieldKey="danwei" FieldName="单位" FieldType="Int"
+			Comment="单位" />
+		<Field FieldKey="shengchanchangjia" FieldName="生产厂家" FieldType="Varchar"
+			Comment="生产厂家" />
+		<Field FieldKey="pihao" FieldName="批号" FieldType="Varchar"
+			Comment="批号" />
+		<Field FieldKey="pihaoId" FieldName="批号Id" FieldType="Varchar"
+		Comment="批号" />
+		<Field FieldKey="shengchanriqi" FieldName="生产日期" FieldType="Date"
+			Comment="生产日期" />
+		<Field FieldKey="youxiaoqizhi" FieldName="有效期至" FieldType="Date"
+			Comment="有效期至" />
+		<Field FieldKey="yichukuqu" FieldName="移出库区" FieldType="Varchar"
+			Comment="移出库区" />
+		<Field FieldKey="yckqlbmc" FieldName="移出库区类别" FieldType="Varchar"
+			   Comment="移出库区类别" />
+		<Field FieldKey="yckqlbbh" FieldName="移出库区类别编号" FieldType="Int"
+			   Comment="移出库区类别编号" />
+		<Field FieldKey="yrkqlbbh" FieldName="移入库区类别编号" FieldType="Int"
+			   Comment="移入库区类别编号" />
+		<Field FieldKey="yichuhuowei" FieldName="移出货位" FieldType="Varchar"
+			Comment="移出货位" />
+		<Field FieldKey="huoweiID" FieldName="移出货位id" FieldType="Varchar"
+		Comment="移出货位id" />
+		<Field FieldKey="ychwkcsl" FieldName="移出货位库存数量" FieldType="Decimal"
+			Comment="移出货位库存数量" />
+		<Field FieldKey="yiruhuowei" FieldName="移入货位" FieldType="Varchar"
+			Comment="移入货位" />
+		<Field FieldKey="yrhuoweiID" FieldName="移入货位id" FieldType="Varchar"
+		    Comment="移入货位id" />
+		<Field FieldKey="yirukuqu" FieldName="移入库区" FieldType="Varchar"
+			Comment="移入库区" />
+		<Field FieldKey="yrkqlbmc" FieldName="移入库区类别" FieldType="Varchar"
+			   Comment="移入库区类别" />
+		<Field FieldKey="shuliang" FieldName="数量" FieldType="Decimal" Bound="14,2"
+			Comment="数量" />
+		<Field FieldKey="zhengjianshu" FieldName="整件数" FieldType="Decimal" Bound="14,2"
+			Comment="整件数" />
+		<Field FieldKey="lingsanshu" FieldName="零散数" FieldType="Decimal" Bound="14,2"
+			Comment="零散数" />
+		<Field FieldKey="yikuyuanyin" FieldName="移库原因" FieldType="Varchar"
+			Comment="移库原因" />
+		<Field FieldKey="pizhunwenhao" FieldName="批准文号" FieldType="Varchar"
+			Comment="批准文号" />
+	</DataTable>
+</DataSet>

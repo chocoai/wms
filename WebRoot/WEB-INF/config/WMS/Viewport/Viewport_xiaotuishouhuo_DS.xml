@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="xiaotuishouhuo_view" Caption="销退收货" DefaultFilter="" PermissionType="PrivateType"  Pagging="10"
+        TableName="SQLQuery:: 
+        SELECT *
+               |
+				FROM
+					xyy_wms_bill_xiaoshoutuihuidan
+				WHERE
+					1 = 1
+				and zhuangtai!=1
+              @danjubianhao
+              @kehubianhao
+              @kehumingcheng
+              ORDER BY createTime DESC"  
+        
+        DataSource="" Head="false" Singleton="" OrderBy="">
+        <Parameters>
+           <Parameter Key="danjubianhao" Type="String"> 
+                <Where>
+                    <![CDATA[
+					m.if(danjubianhao==null | danjubianhao=="",""," and danjubianhao like '%"+danjubianhao+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="kehubianhao" Type="String"> 
+                <Where>
+                    <![CDATA[
+					m.if(kehubianhao==null | kehubianhao=="",""," and kehubianhao like '%"+kehubianhao+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="kehumingcheng" Type="String"> 
+                <Where>
+                    <![CDATA[
+					m.if(kehumingcheng==null | kehumingcheng=="",""," and kehumingcheng like '%"+kehumingcheng+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+           
+        </Parameters>
+    </DataTable>
+    
+    <DataTable Key="xiaotuishouhuo_details1" Caption="采购订单" DefaultFilter="" PermissionType="PrivateType"  Pagging="100"
+        TableName="SQLQuery:: 
+        SELECT a.*,dbzsl
+               |
+				FROM
+					xyy_erp_bill_xiaoshoutuihuidan_details a,
+					xyy_wms_dic_shangpinziliao b
+				where  BillID is null and a.shangpinbianhao=b.shangpinbianhao
+              ORDER BY createTime DESC"  
+        
+        DataSource="" Head="false" Singleton="" OrderBy="">
+        
+    </DataTable>
+</DataSet>

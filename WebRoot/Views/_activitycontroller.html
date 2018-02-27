@@ -1,0 +1,506 @@
+<style>
+    .bigInput{width:300px;}
+</style>
+<table class="table table-bordered table-striped table-hover">
+    <!-- <tr>
+        <td><span style="color: red">*</span>作用于活动的过滤器：</td>
+        <td>
+            <div checkboxgroup  check-model="po.activitycontroller.filter"  action="activityFilterList"  key="id" value="name" fields="name,clazz" heads="名称,类名称"></div>
+
+       </td>
+    </tr> -->
+    <tr>
+        <td>活动过滤器类型：</td>
+        <td>
+            <select ng-model="po.activitycontroller.filterType">
+                <option value="1">Java类处理器</option>
+                <option value="2">Js处理器</option>
+            </select>
+        </td>
+        <td>活动过滤器：</td>
+        <td>
+            <textarea row="3" jsdecoder ng-if="po.activitycontroller.filterType == 2" ng-model="po.activitycontroller.filter" style='width:100%; resize: vertical'></textarea>
+            <textarea row="3" cols="35" ng-if="po.activitycontroller.filterType == 1 || po.activitycontroller.filterType == null" ng-model="po.activitycontroller.filter" maxlength="200"></textarea>
+        </td>
+    </tr>
+    <tr>
+        <td><span style="color: red">*</span>时间限制：</td>
+        <td><input type="text" name="timeLimit" ng-model="po.activitycontroller.timeLimit" maxlength="15" required
+                   ng-pattern="/^\d+$/">&nbsp;&nbsp;&nbsp;&nbsp;
+            <span ng-show="activitysForm2.timeLimit.$error.required  && !activitysForm2.timeLimit.$pristine"
+                  class="text-danger">请输入时间限制</span>
+            <span ng-show="activitysForm2.timeLimit.$error.pattern && !activitysForm2.timeLimit.$pristine"
+                  class="text-danger">时间限制为正整数</span>
+        </td>
+        <td width="200"><span style="color: red">*</span>时间单位：</td>
+        <td>
+            <select name="timeUnit" ng-model="po.activitycontroller.timeUnit" required>
+                <option value="0">毫秒</option>
+                <option value="1">秒</option>
+                <option value="2">分</option>
+                <option value="3">小时</option>
+                <option value="4">天</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td><span style="color: red">*</span>受理是否提醒：</td>
+        <td>
+            <select name="awakeStatus" ng-model="po.activitycontroller.awakeStatus" required>
+                <option value="0">不提醒</option>
+                <option value="1">提醒</option>
+            </select>
+        </td>
+        <td><span style="color: red">*</span>受理提醒类型：</td>
+        <td>
+            <input type="text" name="awakeType" ng-model="po.activitycontroller.awakeType" >
+            <span>(1：短信提醒，2：邮件提醒，3：微信提醒，4：在线提醒；可多选，例：1,2,3,4)</span>
+        </td>
+    </tr>
+    <tr>
+        <td>受理提醒超时(毫秒)：</td>
+        <td><input type="text" name="awakeTimeout" ng-model="po.activitycontroller.awakeTimeout" maxlength="15"
+                   ng-pattern="/^\d+$/">&nbsp;&nbsp;&nbsp;&nbsp;
+            <span ng-show="activitysForm2.awakeTimeout.$error.pattern && !activitysForm2.awakeTimeout.$pristine"
+                  class="text-danger">提醒超时为正整数</span>
+        </td>
+        <td>受理提醒计数：</td>
+        <td><input type="text" name="awakeCount" ng-model="po.activitycontroller.awakeCount" maxlength="10"
+                   ng-pattern="/^\d+$/">&nbsp;&nbsp;&nbsp;&nbsp;
+            <span ng-show="activitysForm2.awakeCount.$error.pattern && !activitysForm2.awakeCount.$pristine"
+                  class="text-danger">提醒计数为正整数</span>
+        </td>
+    </tr>
+    <tr>
+        <td>受理提醒间隔(毫秒)：</td>
+        <td colspan="3"><input type="text" name="awakeInterval" ng-model="po.activitycontroller.awakeInterval"
+                               maxlength="15"
+                               ng-pattern="/^\d+$/">&nbsp;&nbsp;&nbsp;&nbsp;
+            <span ng-show="activitysForm2.awakeInterval.$error.pattern && !activitysForm2.awakeInterval.$pristine"
+                  class="text-danger">提醒间隔为正整数</span>
+        </td>
+    </tr>
+    
+    <tr>
+        <td><span style="color: red">*</span>处理是否提醒：</td>
+        <td>
+            <select name="handleStatus" ng-model="po.activitycontroller.handleStatus" required>
+                <option value="0">不提醒</option>
+                <option value="1">提醒</option>
+            </select>
+        </td>
+        <td><span style="color: red">*</span>处理提醒类型：</td>
+        <td>
+            <input type="text" name="handleType" ng-model="po.activitycontroller.handleType" >
+            <span>(1：短信提醒，2：邮件提醒，3：微信提醒，4：在线提醒；可多选，例：1,2,3,4)</span>
+        </td>
+    </tr>
+    <tr>
+        <td>处理提醒超时(毫秒)：</td>
+        <td><input type="text" name="handleTimeout" ng-model="po.activitycontroller.handleTimeout" maxlength="15"
+                   ng-pattern="/^\d+$/">&nbsp;&nbsp;&nbsp;&nbsp;
+            <span ng-show="activitysForm2.handleTimeout.$error.pattern && !activitysForm2.handleTimeout.$pristine"
+                  class="text-danger">提醒超时为正整数</span>
+        </td>
+        <td>处理提醒计数：</td>
+        <td><input type="text" name="handleCount" ng-model="po.activitycontroller.handleCount" maxlength="10"
+                   ng-pattern="/^\d+$/">&nbsp;&nbsp;&nbsp;&nbsp;
+            <span ng-show="activitysForm2.handleCount.$error.pattern && !activitysForm2.handleCount.$pristine"
+                  class="text-danger">提醒计数为正整数</span>
+        </td>
+    </tr>
+    <tr>
+        <td>处理提醒间隔(毫秒)：</td>
+        <td colspan="3"><input type="text" name="handleInterval" ng-model="po.activitycontroller.handleInterval"
+                               maxlength="15"
+                               ng-pattern="/^\d+$/">&nbsp;&nbsp;&nbsp;&nbsp;
+            <span ng-show="activitysForm2.handleInterval.$error.pattern && !activitysForm2.handleInterval.$pristine"
+                  class="text-danger">提醒间隔为正整数</span>
+        </td>
+    </tr>
+    
+    <tr>
+        <td><span style="color: red">*</span>预约是否提醒：</td>
+        <td>
+            <select name="appointStatus" ng-model="po.activitycontroller.appointStatus" required>
+                <option value="0">不提醒</option>
+                <option value="1">提醒</option>
+            </select>
+        </td>
+        <td><span style="color: red">*</span>预约提醒类型：</td>
+        <td>
+            <input type="text" name="appointType" ng-model="po.activitycontroller.appointType">
+            <span>(1：短信提醒，2：邮件提醒，3：微信提醒，4：在线提醒；可多选，例：1,2,3,4)</span>
+        </td>
+    </tr>
+    <tr>
+        <td>预约提醒超时(毫秒)：</td>
+        <td><input type="text" name="appointTimeout" ng-model="po.activitycontroller.appointTimeout" maxlength="15"
+                   ng-pattern="/^\d+$/">&nbsp;&nbsp;&nbsp;&nbsp;
+            <span ng-show="activitysForm2.appointTimeout.$error.pattern && !activitysForm2.appointTimeout.$pristine"
+                  class="text-danger">提醒超时为正整数</span>
+        </td>
+        <td>预约提醒计数：</td>
+        <td><input type="text" name="appointCount" ng-model="po.activitycontroller.appointCount" maxlength="10"
+                   ng-pattern="/^\d+$/">&nbsp;&nbsp;&nbsp;&nbsp;
+            <span ng-show="activitysForm2.appointCount.$error.pattern && !activitysForm2.appointCount.$pristine"
+                  class="text-danger">提醒计数为正整数</span>
+        </td>
+    </tr>
+    <tr>
+        <td>预约提醒间隔(毫秒)：</td>
+        <td colspan="3"><input type="text" name="appointInterval" ng-model="po.activitycontroller.appointInterval"
+                               maxlength="15"
+                               ng-pattern="/^\d+$/">&nbsp;&nbsp;&nbsp;&nbsp;
+            <span ng-show="activitysForm2.appointInterval.$error.pattern && !activitysForm2.appointInterval.$pristine"
+                  class="text-danger">提醒间隔为正整数</span>
+        </td>
+    </tr>
+    
+    <tr>
+        <td><span style="color: red">*</span>挂起是否提醒：</td>
+        <td>
+            <select name="suspendStatus" ng-model="po.activitycontroller.suspendStatus" required>
+                <option value="0">不提醒</option>
+                <option value="1">提醒</option>
+            </select>
+        </td>
+        <td><span style="color: red">*</span>提醒类型：</td>
+        <td>
+            <input type="text" name="suspendType" ng-model="po.activitycontroller.suspendType" >
+            <span>(1：短信提醒，2：邮件提醒，3：微信提醒，4：在线提醒；可多选，例：1,2,3,4)</span>
+        </td>
+    </tr>
+    <tr>
+        <td>挂起提醒超时(毫秒)：</td>
+        <td><input type="text" name="suspendTimeout" ng-model="po.activitycontroller.suspendTimeout" maxlength="15"
+                   ng-pattern="/^\d+$/">&nbsp;&nbsp;&nbsp;&nbsp;
+            <span ng-show="activitysForm2.suspendTimeout.$error.pattern && !activitysForm2.suspendTimeout.$pristine"
+                  class="text-danger">提醒超时为正整数</span>
+        </td>
+        <td>挂起提醒计数：</td>
+        <td><input type="text" name="suspendCount" ng-model="po.activitycontroller.suspendCount" maxlength="10"
+                   ng-pattern="/^\d+$/">&nbsp;&nbsp;&nbsp;&nbsp;
+            <span ng-show="activitysForm2.suspendCount.$error.pattern && !activitysForm2.suspendCount.$pristine"
+                  class="text-danger">提醒计数为正整数</span>
+        </td>
+    </tr>
+    <tr>
+        <td>挂起提醒间隔(毫秒)：</td>
+        <td colspan="3"><input type="text" name="suspendInterval" ng-model="po.activitycontroller.suspendInterval"
+                               maxlength="15"
+                               ng-pattern="/^\d+$/">&nbsp;&nbsp;&nbsp;&nbsp;
+            <span ng-show="activitysForm2.suspendInterval.$error.pattern && !activitysForm2.suspendInterval.$pristine"
+                  class="text-danger">提醒间隔为正整数</span>
+        </td>
+    </tr>
+     <!--<tr>
+        <td><span style="color: red">*</span>是否督办：</td>
+        <td>
+           	<select name="overseeStatus" ng-model="po.activitycontroller.overseeStatus" required>
+				<option value="0">不督办</option>
+				<option value="1">督办</option>
+			</select>
+        </td>
+        <td><span style="color: red">*</span>提醒类型：</td>
+        <td>
+            <input type="text" name="overseeType" ng-model="po.activitycontroller.overseeType" >
+            <span>(1：短信提醒，2：邮件提醒，3：微信提醒，4：在线提醒；可多选，例：1,2,3,4)</span>
+        </td>
+    </tr>-->
+    <!--<tr>
+        <td><span style="color: red">*</span>督办方式：</td>
+        <td>
+           	<select name="overseeMode" ng-model="po.activitycontroller.overseeMode" required>
+				<option value="1">分组</option>
+				<option value="2">指定</option>
+			</select>
+        </td>
+        <td>督办超时间隔(毫秒)：</td>
+        <td><input type="text" name="overseeInterval" ng-model="po.activitycontroller.overseeInterval" maxlength="15"
+                   ng-pattern="/^\d+$/">&nbsp;&nbsp;&nbsp;&nbsp;
+            <span ng-show="activitysForm2.overseeInterval.$error.pattern && !activitysForm2.overseeInterval.$pristine"
+                  class="text-danger">超时间隔为正整数</span>
+        </td>
+    </tr>
+    <tr>
+		<td>督办受理超时(毫秒)：</td>
+        <td><input type="text" name="overseeAwakeTimeout" ng-model="po.activitycontroller.overseeAwakeTimeout" maxlength="15"
+                   ng-pattern="/^\d+$/">&nbsp;&nbsp;&nbsp;&nbsp;
+            <span ng-show="activitysForm2.overseeAwakeTimeout.$error.pattern && !activitysForm2.overseeAwakeTimeout.$pristine"
+                  class="text-danger">提醒超时为正整数</span>
+        </td>
+        <td>督办处理超时(毫秒)：</td>
+        <td><input type="text" name="overseeHandleTimeout" ng-model="po.activitycontroller.overseeHandleTimeout" maxlength="15"
+                   ng-pattern="/^\d+$/">&nbsp;&nbsp;&nbsp;&nbsp;
+            <span ng-show="activitysForm2.overseeHandleTimeout.$error.pattern && !activitysForm2.overseeHandleTimeout.$pristine"
+                  class="text-danger">提醒超时为正整数</span>
+        </td>
+    </tr>
+	<tr>
+		<td>督办预约超时(毫秒)：</td>
+        <td><input type="text" name="overseeAppointTimeout" ng-model="po.activitycontroller.overseeAppointTimeout" maxlength="15"
+                   ng-pattern="/^\d+$/">&nbsp;&nbsp;&nbsp;&nbsp;
+            <span ng-show="activitysForm2.overseeAppointTimeout.$error.pattern && !activitysForm2.overseeAppointTimeout.$pristine"
+                  class="text-danger">提醒超时为正整数</span>
+        </td>
+        <td>督办挂起超时(毫秒)：</td>
+        <td><input type="text" name="overseeSuspendTimeout" ng-model="po.activitycontroller.overseeSuspendTimeout" maxlength="15"
+                   ng-pattern="/^\d+$/">&nbsp;&nbsp;&nbsp;&nbsp;
+            <span ng-show="activitysForm2.overseeSuspendTimeout.$error.pattern && !activitysForm2.overseeSuspendTimeout.$pristine"
+                  class="text-danger">提醒超时为正整数</span>
+        </td>
+    </tr>-->
+     <!-- <tr>
+        <td><span style="color: red">*</span>是否允许委托给代理执行：</td>
+         <td>
+           <select name="proxyStatus" ng-model="po.activitycontroller.proxyStatus" >
+			<option value="0">不允许</option>
+			<option value="1">允许</option>
+		   </select>
+         </td>
+    </tr>
+    <tr>
+        <td><span style="color: red">*</span>是否允许抄送：</td>
+         <td>
+           <select name="sendStatus" ng-model="po.activitycontroller.sendStatus" >
+			<option value="0">不允许</option>
+			<option value="1">允许</option>
+		   </select>
+         </td>
+    </tr> -->
+
+    <tr>
+        <td><span style="color: red">*</span>是否自动迁移：</td>
+        <td>
+            <select name="canAutoMigrate" ng-model="po.activitycontroller.canAutoMigrate">
+                <option value="0">否</option>
+                <option value="1">是</option>
+            </select>
+        </td>
+        <td>自动迁移的节点名称：</td>
+        <td>
+            <input type="text" class="bigInput" name="autoMigrateName" ng-model="po.activitycontroller.autoMigrateName" maxlength="20">
+        </td>
+    </tr>
+    <tr>
+        <td><span style="color: red">*</span>是否允许退回：</td>
+        <td>
+            <select name="canBack" ng-model="po.activitycontroller.canBack">
+                <option value="0">否</option>
+                <option value="1">是</option>
+            </select>
+        </td>
+        <td>退回节点名称：</td>
+        <td>
+            <input type="text" class="bigInput" name="canBackName" ng-model="po.activitycontroller.canBackName" maxlength="20">
+        </td>
+    </tr>
+    <tr>
+        <td><span style="color: red">*</span>是否需要允许动态指定用户：</td>
+        <td colspan="3">
+            <select name="canAssignmentUser" ng-model="po.activitycontroller.canAssignmentUser">
+                <option value="0">不需要</option>
+                <option value="1">必需</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td><span style="color: red">*</span>是否可以结束流程(否单)：</td>
+        <td colspan="3">
+            <select name="canEnd" ng-model="po.activitycontroller.canEnd">
+                <option value="0">不可以</option>
+                <option value="1">可以</option>
+            </select>
+        </td>
+    </tr>
+    <!--<tr ng-if="po.activitycontroller.canEnd == 1">
+        <td>否单表单：</td>
+        <td>
+            <div radiogroup check-model="po.activitycontroller.endFormId" action="endformList" key="id"
+                 value="formTitle" fields="formTitle,tabTitle" heads="表单名,标题"></div>
+        </td>
+        <td>否单处理器：</td>
+        <td>
+            <input type="text" class="bigInput" name="endHander" ng-model="po.activitycontroller.endHander" maxlength="100">
+        </td>
+    </tr>-->
+    <tr>
+        <td><span style="color: red">*</span>是否允许挂起：</td>
+        <td colspan="3">
+            <select name="canSuspend" ng-model="po.activitycontroller.canSuspend">
+                <option value="0">不可以</option>
+                <option value="1">可以</option>
+            </select>
+        </td>
+    </tr>
+    <!--<tr ng-if="po.activitycontroller.canSuspend == 1">
+        <td>挂起表单：</td>
+        <td>
+            <div radiogroup check-model="po.activitycontroller.suspendFormId" action="suspendformList" key="id"
+                 value="formTitle" fields="formTitle,tabTitle" heads="表单名,标题"></div>
+        </td>
+        <td>挂起处理器：</td>
+        <td>
+            <input type="text" class="bigInput" name="suspendHander" ng-model="po.activitycontroller.suspendHander" maxlength="100">
+        </td>
+    </tr>-->
+    <tr>
+        <td><span style="color: red">*</span>是否允许预约：</td>
+        <td colspan="3">
+            <select name="canOrder" ng-model="po.activitycontroller.canOrder">
+                <option value="0">不可以</option>
+                <option value="1">可以</option>
+            </select>
+        </td>
+    </tr>
+    <!--<tr ng-if="po.activitycontroller.canOrder == 1">
+        <td>预约表单：</td>
+        <td>
+            <div radiogroup check-model="po.activitycontroller.orderFormId" action="orderformList" key="id"
+                 value="formTitle" fields="formTitle,tabTitle" heads="表单名,标题"></div>
+        </td>
+        <td>预约处理器：</td>
+        <td>
+            <input type="text" class="bigInput" name="orderHander" ng-model="po.activitycontroller.orderHander" maxlength="100">
+        </td>
+    </tr>-->
+    <tr>
+        <td><span style="color: red">*</span>是否可以恢复流程运行：</td>
+        <td>
+            <select name="canResume" ng-model="po.activitycontroller.canResume">
+                <option value="0">不可以</option>
+                <option value="1">可以</option>
+            </select>
+        </td>
+        <td><span style="color: red">*</span>是否可以显示流程图：</td>
+        <td>
+            <select name="canShape" ng-model="po.activitycontroller.canShape">
+                <option value="0">不可以</option>
+                <option value="1">可以</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td><span style="color: red">*</span>是否可以提交：</td>
+        <td>
+            <select name="canSubmit" ng-model="po.activitycontroller.canSubmit">
+                <option value="0">不可以</option>
+                <option value="1">可以</option>
+            </select>
+        </td>
+        <td><span style="color: red">*</span>是否可以保存流程表单，而不做提交：</td>
+        <td>
+            <select name="canSave" ng-model="po.activitycontroller.canSave">
+                <option value="0">不可以</option>
+                <option value="1">可以</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td><span style="color: red">*</span>是否抄送：</td>
+        <td colspan="3">
+            <select name="canCopySend" ng-model="po.activitycontroller.canCopySend">
+                <option value="0">不可以</option>
+                <option value="1">可以</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td><span style="color: red">*</span>是否可以移交任务：</td>
+        <td colspan="3">
+            <select name="canTransfer" ng-model="po.activitycontroller.canTransfer">
+                <option value="0">不可以</option>
+                <option value="1">可以</option>
+            </select>
+        </td>
+    </tr>
+    <tr ng-if="po.activitycontroller.canTransfer == 1">
+        <td><span style="color: red">*</span>移交任务方式：</td>
+        <td colspan="3">
+            <select name="canTransferWay" ng-model="po.activitycontroller.canTransferWay">
+                <option value="0">标准移交</option>
+                <option value="1">随机移交</option>
+                <option value="2">选择性移交</option>
+                <option value="3">选择性随机移交</option>
+            </select>
+        </td>
+    </tr>
+    <!--<tr>
+        <td><span style="color: red">*</span>是否可以指派任务：</td>
+        <td colspan="3">
+            <select name="canAssignmentUser" ng-model="po.activitycontroller.canAssignmentUser">
+                <option value="0">不可以</option>
+                <option value="1">可以</option>
+            </select>
+        </td>
+    </tr>
+    <tr ng-if="po.activitycontroller.canAssignmentUser == 1">
+        <td><span style="color: red">*</span>指派任务方式：</td>
+        <td>
+            <select name="canAssignmentUserWay" ng-model="po.activitycontroller.canAssignmentUserWay">
+                <option value="0">标准指派</option>
+                <option value="1">随机指派</option>
+                <option value="2">选择性指派</option>
+                <option value="3">选择性随机指派</option>
+            </select>
+        </td>
+
+        <td><span style="color: red">*</span>指派任务节点名称：</td>
+        <td>
+            <input type="text" class="bigInput" name="canAssignmentName" ng-model="po.activitycontroller.canAssignmentName"
+                   maxlength="20">
+        </td>
+    </tr>-->
+
+    <tr>
+        <td><span style="color: red">*</span>是否可以跳转：</td>
+        <td>
+            <select name="canJumpTo" ng-model="po.activitycontroller.canJumpTo">
+                <option value="0">不可以</option>
+                <option value="1">可以</option>
+            </select>
+        </td>
+        <td><span style="color: red">*</span>是否可以查看流程附件：</td>
+        <td>
+            <select name="canViewAttach" ng-model="po.activitycontroller.canViewAttach">
+                <option value="0">不可以</option>
+                <option value="1">可以</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td><span style="color: red">*</span>是否可以查看流程日志：</td>
+        <td>
+            <select name="canViewLog" ng-model="po.activitycontroller.canViewLog">
+                <option value="0">不可以</option>
+                <option value="1">可以</option>
+            </select>
+        </td>
+
+        <td><span style="color: red">*</span>是否可以显示主表单：</td>
+        <td>
+            <select name="canViewMainForm" ng-model="po.activitycontroller.canViewMainForm">
+                <option value="0">不可以</option>
+                <option value="1">可以</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td><span style="color: red">*</span>是否可以跟踪当前流程的子流程：</td>
+        <td>
+            <select name="canViewSubProcess" ng-model="po.activitycontroller.canViewSubProcess">
+                <option value="0">不可以</option>
+                <option value="1">可以</option>
+            </select>
+        </td>
+
+        <td><span style="color: red">*</span>是否可以跟踪当前流程其他分支情况：</td>
+        <td>
+            <select name="canViewSubThread" ng-model="po.activitycontroller.canViewSubThread">
+                <option value="0">不可以</option>
+                <option value="1">可以</option>
+            </select>
+        </td>
+    </tr>
+</table>

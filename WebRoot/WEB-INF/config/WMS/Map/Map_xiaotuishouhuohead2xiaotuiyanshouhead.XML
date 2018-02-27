@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Map Key="xiaotuishouhuohead2xiaotuiyanshouhead" Caption="上引销退收货单"
+	SrcDataObjectKey="xiaotuishouhuo"
+    SrcDataType="Bill"  
+    TgtDataObjectKey="xiaotuiyanshou"
+    TgtDataType="Bill"  
+    MaxPushValue="100"
+     MinPushValue="0">
+<TargetTableCollection>
+     
+    <TargetTable Key="xiaotuiyanshou" SrcTableKey="xiaotuishouhuo">
+            <Field FieldKey="dingdanbianhao">
+                <![CDATA[
+                     =dingdanbianhao
+              ]]>
+            </Field>
+            <Field FieldKey="wenkongfangshi">
+                <![CDATA[
+                     =wenkongfangshi
+              ]]>
+            </Field>
+            <Field FieldKey="dingdanriqi">
+                <![CDATA[
+                     =dingdanriqi
+              ]]>
+            </Field>
+            <Field FieldKey="dingdanleixing">
+                <![CDATA[
+                     =dingdanleixing
+              ]]>
+            </Field>
+            <Field FieldKey="huozhubianhao">
+                <![CDATA[
+                     =huozhubianhao
+              ]]>
+            </Field>
+            <Field FieldKey="huozhumingcheng">
+                <![CDATA[
+                     =huozhumingcheng
+              ]]>
+            </Field>
+            <Field FieldKey="danweibianhao">
+                <![CDATA[
+                     =danweibianhao
+              ]]>
+            </Field>
+			<Field FieldKey="danweimingcheng">
+                <![CDATA[
+                     =danweimingcheng
+              ]]>
+            </Field>
+            <Field FieldKey="shouhuoyuan">
+                <![CDATA[
+                     =shouhuoyuan
+              ]]>
+            </Field>
+            <Field FieldKey="caigouyuan">
+                <![CDATA[
+                     =caigouyuan
+              ]]>
+            </Field>
+            <Field FieldKey="qiyunshijian">
+                <![CDATA[
+                     =qiyunshijian
+              ]]>
+            </Field>
+            <Field FieldKey="daohuoshijian">
+                <![CDATA[
+                     =daohuoshijian
+              ]]>
+            </Field>
+            <Field FieldKey="yunshuwendu">
+                <![CDATA[
+                     =yunshuwendu
+              ]]>
+            </Field>
+            <Field FieldKey="daohuowendu">
+                <![CDATA[
+                     =daohuowendu
+              ]]>
+            </Field>
+          
+            <Field FieldKey="kufang">
+                <![CDATA[
+                     =kufang
+              ]]>
+            </Field>
+            <Field FieldKey="cangkubianhao">
+                <![CDATA[
+                     =cangkubianhao
+              ]]>
+            </Field>
+            <Field FieldKey="rukudanID">
+                <![CDATA[
+                     =BillID
+              ]]>
+            </Field>
+        </TargetTable>                         
+        </TargetTableCollection>
+      <FeedBackCollection>
+    </FeedBackCollection> 
+</Map>
+
+
+   
+

@@ -1,0 +1,9 @@
+package com.xyy.expression;
+/**
+ * Token类型
+ * @author evan
+ *
+ */
+public enum TokenType {
+	TOKEN_TYPE_CELL_REF, TOKEN_TYPE_VAR, TOKEN_TYPE_FUN, TOKEN_TYPE_OPE, TOKEN_TYPE_INT, TOKEN_TYPE_FLOAT, TOKEN_TYPE_STRING, TOKEN_TYPE_CHAR, TOKEN_TYPE_EXPR, TOKEN_TYPE_REM, TOKEN_TYPE_OTHER
+}

@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BillFormMeta Key="zhifuhedan" Version="1.0.0" BillType="Bill" Caption="支付核单">
+    <BillBody>
+        <BillBodyMeta UserAgent="web">
+            <BillUIPanel Layout="flex" FlexDirection="column" Width="100%" Key="mainContainer" Caption="业务订单" S="">
+                <BillUIPanel Layout="flex" Key="toolbox" Caption="工具栏" >
+                    <BillUIWidget Key="box" WidgetType="BillUIView" Src="toolbase">
+                    </BillUIWidget>
+                    <BillUIWidget Key="choose" Caption="支付确认"
+                                  EnabledWhen="True"
+                                  Icon="glyphicon glyphicon-floppy-disk" WidgetType="BillUIButton">
+                        <Init Type="javascript/angular" Runat="client">
+                            <![CDATA[
+                                         if(getHeadValue('shifouzhifu')==1){
+                                            this.setDisable();
+                                         }else{
+                                            this.setEnable();
+                                         }
+
+                                 ]]>
+                        </Init>
+                        <Triggers>
+                            <Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+                            	    if(confirm("确认已支付？")){
+                            	         setHeadValue('shifouzhifu',1);
+                            	         @$this.save();
+                            	    }
+                     			]]>
+                            </Trigger>
+                        </Triggers>
+                    </BillUIWidget>
+                </BillUIPanel>
+
+                <BillUIPanel Layout="flex" Key="mainContainer_head" Caption="支付核单" S="panel panel-success publicPanel"
+                             RowGap="5" ColGap="10" ColWidth="300px 300px 300px  300px 1fr 1fr">
+                    <BillUIGridPanel Key="zhifuhedan">
+                        <BillUIRowPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="danjubianhao" Caption="单据编号" DataTableKey="zhifuhedan"
+                                              DataTableColumn="danjubianhao" EnabledWhen="True" Disable="true"
+                                              WidgetType="BillUIString"/>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="kaipiaoriqi" Caption="开票日期"
+                                              DataTableKey="zhifuhedan" DataTableColumn="kaipiaoriqi"
+                                              EnabledWhen="True" WidgetType="BillUIDateTime">
+                                    <Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                  				var t=this.formatDate(new Date());
+                                                this.setValue(t);
+										]]>
+                                    </Init>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="kaipiaoyuan" Caption="开票员" DataTableKey="zhifuhedan"
+                                              DataTableColumn="kaipiaoyuan" EnabledWhen="True"
+                                              WidgetType="BillUIString">
+                                              <Init Type="javascript/angular" Runat="client">
+			                                        <![CDATA[
+			                                  				var t=this.getRealName();
+			                                                this.setValue(t);
+													]]>
+			                                    </Init>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="yewuyuan" Caption="业务员" DataTableKey="zhifuhedan"
+                                              DataTableColumn="yewuyuan" EnabledWhen="True" WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="kehubianhao" Caption="客户编号" WidgetType="BillUIPopupWindow" DataTableKey="zhifuhedan"
+                                              DataTableColumn="kehubianhao" Disable="true" Src="kehu" >
+                                   <Triggers>
+                                       <Trigger>
+                                           <![CDATA[
+                                               var kehu=this.rows[0];
+                                               this.setValue(kehu.kehubianhao);
+                                               @kehumingcheng.setValue(kehu.kehumingcheng);
+                                               @dizhi.setValue(kehu.dizhi);
+											   @dfywy.setValue(kehu.lianxiren);
+											   @jingyingfanwei.setValue(kehu.jingyingfanwei);
+                                   			]]>
+                                       </Trigger>
+                                   </Triggers>
+                               </BillUIWidget>
+                            </BillUIColPanel>
+
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="kehumingcheng" Caption="客户名称" DataTableKey="zhifuhedan"
+                                              DataTableColumn="kehumingcheng" EnabledWhen="True"
+                                              WidgetType="BillUIString"  >
+                                </BillUIWidget>
+                            </BillUIColPanel>
+							<BillUIColPanel Width="3">
+                                <BillUIWidget Key="lianxiren" Caption="联系人" DataTableKey="zhifuhedan"
+                                              DataTableColumn="lianxiren"
+                                              Left="2" Top="3" Width="1" Height="1" EnabledWhen="True"
+                                              WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="jiesuanfangshi" Caption="结算方式" DataTableKey="zhifuhedan"
+                                              DataTableColumn="jiesuanfangshi"
+                                              EnabledWhen="True" 
+                                              Src="bill/selectSrc?type=jiesuanfangshi"
+                                              WidgetType="BillUISelect">
+                                    <Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+												this.loadDataSource();
+										]]>
+                                    </Init>
+
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="shifouzhifu" Caption="是否支付" DataTableKey="zhifuhedan"
+                                              DataTableColumn="shifouzhifu"
+                                              EnabledWhen="True"
+                                              Src="bill/selectSrc?type=bool"
+                                              WidgetType="BillUISelect">
+                                    <Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+												this.loadDataSource();
+										]]>
+                                    </Init>
+
+                                </BillUIWidget>
+                            </BillUIColPanel>
+
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="dingdanzonge" Caption="订单总额" DataTableKey="zhifuhedan"
+                                              DataTableColumn="dingdanzonge" EnabledWhen="True"
+                                              WidgetType="BillUIDecimal">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="youhuijine" Caption="优惠金额" DataTableKey="zhifuhedan"
+                                              DataTableColumn="youhuijine" EnabledWhen="True"
+                                              WidgetType="BillUIDecimal">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="hanshuijine" Caption="含税金额（实付金额）" DataTableKey="zhifuhedan"
+                                              DataTableColumn="hanshuijine" EnabledWhen="True"
+                                              WidgetType="BillUIDecimal">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="beizhu" Caption="备注" DataTableKey="zhifuhedan"
+                                              DataTableColumn="beizhu" EnabledWhen="True"
+                                              WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                        </BillUIRowPanel>
+                        <BillUIRowPanel>
+                        </BillUIRowPanel>
+
+                        
+                    </BillUIGridPanel>
+                </BillUIPanel>
+            </BillUIPanel>
+        </BillBodyMeta>
+
+    </BillBody>
+
+    <BillHeadMeta>
+        <BillStatusCollection>
+            <Status Default="true" Code="20">正式</Status>
+        </BillStatusCollection>
+        <BillEventCollection>
+            <Event Type="PostSave" Processor="com.xyy.bill.event.listener.ZFHDPostListener"/>
+        </BillEventCollection>
+    </BillHeadMeta>
+
+</BillFormMeta>
+

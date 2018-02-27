@@ -1,0 +1,146 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!-- core -->
+<Config>
+
+    <!--
+    	数据对象handler配置
+        scope:global,load,save,del    -->
+    <HandlerCollection>
+
+        <Handler
+            Class="com.xyy.bill.handler.BillPreproccess"
+            Name="预处理"
+            Scope="global" />
+
+        <Handler
+            Class="com.xyy.bill.handler.BillLoadHandler"
+            Name="单据加载"
+            Scope="load" />
+     
+        
+        <Handler
+            Class="com.xyy.bill.handler.BillSaveHandler"
+            Name="单据保存"
+            Scope="save" />
+
+        <Handler
+            Class="com.xyy.bill.handler.BillWorkflowHandler"
+            Name="工作流处理"
+            Scope="save" />
+        
+        
+        <Handler
+            Class="com.xyy.bill.handler.BillSaveLogHandler"
+            Name="单据日志记录"
+            Scope="save" />
+        <!-- 
+        	状态回写需要记录状态回写日志
+        	回写  mapkey targetid sourceid   log   createtime  longtime
+        								{
+        								  fieldKey:{oldValue:"",newValue:""}
+        		has("abc")=100        	
+        	
+        						
+        	回写记录ID (BILLID或ID或BillDtlID)
+      
+         -->
+        <Handler
+            Class="com.xyy.bill.handler.BillStatusBackWriteHandler"
+            Name="状态回写"
+            Scope="save" />
+        
+  
+        <Handler
+            Class="com.xyy.bill.handler.BillAutoPushHandler"
+            Name="自动化下推"
+            Scope="save" />
+		 
+		 <Handler
+            Class="com.xyy.bill.handler.BillMigrateGatewayHandler"
+            Name="数据迁移网关"
+            Scope="save" />
+            
+        <Handler
+            Class="com.xyy.bill.handler.BillDataMigrateHandler"
+            Name="数据迁移"
+            Scope="migration" />
+
+        <Handler
+            Class="com.xyy.bill.handler.BillDelHandler"
+            Name="单据删除"
+            Scope="del" />
+            
+        <Handler Class="com.xyy.bill.handler.BillParseExcelHandler" 
+        	Name="导入Excel" Scope="parseExcel"/>
+    </HandlerCollection>
+    
+    <!-- 
+    	字典数据Handler配置
+     -->    
+    <DicHandlerCollection>
+
+        <Handler
+            Class="com.xyy.bill.handler.DicPreprocess"
+            Name="预处理"
+            Scope="global" />
+
+        <Handler
+            Class="com.xyy.bill.handler.DicLoadHandler"
+            Name="字典加载"
+            Scope="load" />
+        
+        <Handler
+            Class="com.xyy.bill.handler.DicSaveHandler"
+            Name="字典保存"
+            Scope="save" />
+
+        <Handler
+            Class="com.xyy.bill.handler.DicWorkflowHandler"
+            Name="工作流处理"
+            Scope="save" />
+
+        <Handler
+            Class="com.xyy.bill.handler.DicSaveLogHandler"
+            Name="字典日志记录"
+            Scope="save" />
+
+         
+        <Handler
+            Class="com.xyy.bill.handler.DicDelHandler"
+            Name="单据删除"
+            Scope="del" />
+    </DicHandlerCollection>
+    
+    
+     <!--
+    	map 转换 handler配置
+        scope:global,s1,s2,s3,s4
+    -->
+    <MapHandlerCollection>
+        <Handler
+            Class="com.xyy.bill.map.MapPreproccess"
+            Name="预处理"
+            Scope="global" />
+        
+        <Handler
+            Class="com.xyy.bill.map.MapOne2OneHandler"
+            Name="单据加载"
+            Scope="s1" />
+     
+        <Handler
+            Class="com.xyy.bill.map.MapMany2OneHandler"
+            Name="单据保存"
+            Scope="s2" />
+
+        <Handler
+            Class="com.xyy.bill.map.MapRefOne2OneHandler"
+            Name="工作流处理"
+            Scope="s3" />
+
+        <Handler
+            Class="com.xyy.bill.map.MapRefDetailsHandler"
+            Name="状态回写"
+            Scope="s4" />
+    </MapHandlerCollection>
+
+</Config>

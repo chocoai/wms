@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0"> 
+    <DataTable Key="querypandianjihua" Caption="" DefaultFilter="" Pagging="5" PermissionType="CommType"
+        TableName="SQLQuery::
+                    select
+                    p.*
+                    |
+                    from(
+					SELECT
+						d.*
+					FROM
+						xyy_wms_bill_pandianjihua d
+					 where 1=1 and d.zhuangtai !=2 @kaishiriqi @jiezhiriqi   @danjubianhao @shangpinmingcheng @orgId
+						) p"
+               DataSource="" Head="false">
+               <Parameters>
+		            <Parameter Key="danjubianhao" Type="String">
+		                <Where>
+		                    <![CDATA[
+							m.if(danjubianhao==null | danjubianhao=="" ," "," and d.danjubianhao like '%"+danjubianhao+"%'")
+			            ]]>
+		                </Where>
+		            </Parameter>
+				   <Parameter Key="orgId" Type="String" >
+					   <Where>
+						   <![CDATA[
+							m.if(orgId==null | danjubianhao=="" ," "," and d.orgId like '%"+orgId+"%'")
+			            ]]>
+					   </Where>
+				   </Parameter>
+		            <Parameter Key="kaishiriqi" Type="DateTime">
+		                <Where>
+		                    <![CDATA[
+							m.if(kaishiriqi==null | kaishiriqi=="" ," "," and kaishiriqi like '%"+kaishiriqi+"%'")
+			            ]]>
+		                </Where>
+		            </Parameter>
+		            <Parameter Key="jiezhiriqi" Type="DateTime">
+		                <Where>
+		                    <![CDATA[
+							m.if(jiezhiriqi==null | jiezhiriqi=="" ," "," and jiezhiriqi like '%"+jiezhiriqi+"%'")
+			            ]]>
+		                </Where>
+		            </Parameter>
+		            <Parameter Key="cangkumingcheng" Type="String">
+		                <Where>
+		                    <![CDATA[
+							m.if(cangkumingcheng==null | cangkumingcheng=="" ," "," and cangkumingcheng like '%"+cangkumingcheng+"%'")
+			            ]]>
+		                </Where>
+		            </Parameter>
+		     		         
+		          <Parameter Key="shangpinmingcheng" Type="String">
+		                <Where>
+		                    <![CDATA[
+							m.if(shangpinmingcheng==null | shangpinmingcheng=="" ," "," and shangpinmingcheng like '%"+shangpinmingcheng+"%'")
+			            ]]>
+		                </Where>
+		            </Parameter>
+		            
+		        </Parameters>
+    </DataTable>
+    <DataTable Key="querypandianjihua_details" Caption="采购 订单明细视图" DefaultFilter="" PermissionType="CommType"  Pagging="10"
+               TableName="SQLQuery::select * | from xyy_wms_bill_pandianjihua_details where 1!=1"  DataSource="" Head="false" Singleton="" OrderBy="">
+    </DataTable>
+</DataSet>

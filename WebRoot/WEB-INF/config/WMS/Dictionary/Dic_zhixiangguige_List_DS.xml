@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="zhixiangguige" Caption="月台资料叙事薄" DefaultFilter="" Pagging="10"
+               TableName="SQLQuery::select * | from xyy_wms_dic_zhixiangguige where 1=1 and qiyong != -1 @zhixiangguigesize    ORDER BY createTime DESC" DataSource="" Head="false">
+        <Parameters> 
+            <Parameter Key="zhixiangguigesize" Type="Integer">
+                <Where>
+                <![CDATA[
+					m.if(zhixiangguigesize==null | zhixiangguigesize=="" ," "," and zhixiangguigesize like '%"+zhixiangguigesize+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

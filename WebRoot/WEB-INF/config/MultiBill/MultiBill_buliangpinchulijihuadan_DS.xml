@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="buliangpinchulijihuadan" Caption="不良品处理计划单明细" DefaultFilter="" Pagging="10"
+               TableName="SQLQuery::select * | from xyy_erp_bill_buliangpinchulijihuadan_details where 1 = 1 " DataSource="" Head="false">
+        <Parameters>
+            <!--<Parameter Key="danjubianhao" Type="String">
+                <DefaultValue></DefaultValue>
+                <Where>
+                    <![CDATA[
+					m.if(danjubianhao==null | danjubianhao=="" ," "," and danjubianhao like '%"+danjubianhao+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="buliangpinleixing" Type="String" >
+                <DefaultValue></DefaultValue>
+                <Where>
+                    <![CDATA[
+					m.if(buliangpinleixing==null | buliangpinleixing=="" ,""," and buliangpinleixing = "+huoshangmingcheng+"")
+                ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="huoshangmingcheng" Type="String" >
+                <Where>
+                    <![CDATA[
+					m.if(huoshangmingcheng==null | huoshangmingcheng=="" ," "," and huoshangmingcheng like '%"+huoshangmingcheng+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="status" Type="Integer" >
+                <Where>
+                    <![CDATA[
+                	m.if(status==null ,""," and status="+status+"")
+				]]>
+                </Where>
+            </Parameter>-->
+        </Parameters>
+    </DataTable>
+</DataSet>

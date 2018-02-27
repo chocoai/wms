@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="dianshangdingdanyichang" Caption="电商订单(异常)叙事薄" DefaultFilter=""  PermissionType="CommType" Pagging="20"
+               TableName="SQLQuery::select * | from xyy_erp_bill_dianshangdingdan where STATE = 21 " DataSource="" Head="false">
+
+    </DataTable>
+</DataSet>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+	<DataTable Key="ljqhwgxwh" Caption="仓库资料" DefaultFilter=""
+		Pagging="10"
+		TableName="SQLQuery::select l.*,c.cangkumingchen | from xyy_wms_dic_ljqhwgxwh l left join xyy_wms_dic_cangkuziliao c on l.cangkuID=c.ID where 1=1 @ljqmc @cangkumingchen   ORDER BY l.createTime DESC"
+		DataSource="" Head="false">
+		<Parameters>
+			<Parameter Key="ljqmc" Type="String">
+				<Where>
+                <![CDATA[
+					m.if(ljqmc==null | ljqmc=="" ," "," and ljqmc like '%"+ljqmc+"%'")
+	            ]]>
+				</Where>
+			</Parameter>
+			<Parameter Key="cangkumingchen" Type="String">
+				<Where>
+					<![CDATA[
+					m.if(cangkumingchen==null | cangkumingchen=="" ," "," and c.cangkumingchen like '%"+cangkumingchen+"%'")
+	            ]]>
+				</Where>
+			</Parameter>
+
+		</Parameters>
+	</DataTable>
+</DataSet>

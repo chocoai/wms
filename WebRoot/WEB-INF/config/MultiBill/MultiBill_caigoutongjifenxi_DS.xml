@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="caigoutongjifenxi" Caption="采购统计与分析" DefaultFilter="" Pagging="10" 
+               TableName="SQLQuery::SELECT * | FROM xyy_erp_caigoujilu a,xyy_erp_dic_kehujibenxinxi b,xyy_erp_dic_gongyingshangjibenxinxi 
+c,xyy_erp_dic_shangpinjibenxinxi d WHERE a.yaodianID = b.ID AND a.gongyingshangID = c.ID AND a.yaopinID = d.ID @kehumingcheng@caigoudanhao" DataSource="" Head="false">
+        <Parameters>
+            <Parameter Key="kehumingcheng" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(kehumingcheng==null | kehumingcheng=="" ," "," and b.kehumingcheng like '%"+kehumingcheng+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="caigoudanhao" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(caigoudanhao==null | caigoudanhao=="" ," "," and a.caigoudanhao like '%"+caigoudanhao+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+
+    <DataTable Key="rongqiziliaoweihu" BillType="Dictionary" Caption="容器资料" DefaultFilter="" TableName="Table::xyy_wms_dic_rqzlwh" DataSource="" Head="true">
+   
+        <Field FieldKey="rongqibianhao" FieldName="容器编号" FieldType="Varchar" Comment="容器编号 "/>
+        <Field FieldKey="cangkuID" FieldName="仓库ID" FieldType="Varchar" Comment="仓库ID" />
+        <Field FieldKey="rongqileixing" FieldName="容器类型" FieldType="Int" Comment="容器类型"/>
+        <Field FieldKey="chang" FieldName="长" FieldType="Decimal" Comment="长" Bound="14,2"/>
+        <Field FieldKey="kuan" FieldName="宽"  FieldType="Decimal" Comment="宽" Bound="14,2"/>
+        <Field FieldKey="gao" FieldName="高" FieldType="Decimal" Comment="高" Bound="14,2"/>
+        <Field FieldKey="tiji" FieldName="体积" FieldType="Decimal"  Comment="体积" Bound="14,2"/>
+        <Field FieldKey="shifouqiyong" FieldName="是否启用" FieldType="Int" DefaultValue="1" Comment="是否启用"/>
+        <Field FieldKey="beizhu" FieldName="备注" FieldType="Varchar"  Comment="备注"/>
+        <Field FieldKey="tijixianzhi" FieldName="体积限制" FieldType="Decimal" Bound="14,2" Comment="体积限制"/>
+        <Field FieldKey="zhongliangxianzhi" FieldName="重量限制" FieldType="Decimal" Bound="14,2" Comment="重量限制"/>
+        <Field FieldKey="shuliangxianzhi" FieldName="数量限制" FieldType="Decimal" Bound="14,2" Comment="数量限制"/>
+        <Field FieldKey="fdrjsx" FieldName="浮动容积上限" FieldType="Decimal"  Comment="浮动容积上限"/>
+   		<Field FieldKey="shifousuoding" FieldName="是否锁定" FieldType="Int"  Comment="是否锁定(0,已释放1,锁定中)" />
+    </DataTable>
+</DataSet>

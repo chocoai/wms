@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="caigouxieyiguanli" BillType="Bill" Caption="采购协议管理" DefaultFilter="" TableName="Table::xyy_erp_bill_caigouxieyiguanli" DataSource="" Head="true">
+    
+		<Field FieldKey="danjubianhao" FieldName="单据编号" FieldType="Varchar" Bound="50" DefaultValue="='CGXY'+o.orderNo()" Comment="单据编号"/>
+		<Field FieldKey="dengjiriqi" FieldName="登记日期" FieldType="Date"  Comment="登记日期"/>
+		<Field FieldKey="qishiriqi" FieldName="起始日期" FieldType="Date"  Comment="起始日期"/>
+		<Field FieldKey="jiezhiriqi" FieldName="截止日期" FieldType="Date"  Comment="截止日期"/>
+		<Field FieldKey="xieyichangshang" FieldName="协议厂商" FieldType="Varchar"  Comment="协议厂商"/>
+		<Field FieldKey="xyqdr" FieldName="协议签订人" FieldType="Varchar"  Comment="协议签订人"/>
+		<Field FieldKey="fltxfs" FieldName="返利兑现方式" FieldType="Int"  DefaultValue="0"  Comment="返利兑现方式"/>
+		<Field FieldKey="lianxiren" FieldName="联系人" FieldType="Varchar"  Comment="联系人"/>
+		<Field FieldKey="lianxidianhua" FieldName="联系电话" FieldType="Varchar"  Comment="联系电话"/>
+		<Field FieldKey="yxrwl" FieldName="意向任务量" FieldType="Varchar"  Comment="意向任务量"/>
+		<Field FieldKey="xieyijibie" FieldName="协议级别" FieldType="Int" DefaultValue="0"  Comment="协议级别"/>
+		<Field FieldKey="huikuanshijian" FieldName="回款时间" FieldType="Int" DefaultValue="0"  Comment="回款时间"/>
+		<Field FieldKey="xieyizhifufangshi" FieldName="协议支付方式" FieldType="Int" DefaultValue="0"  Comment="协议支付方式"/>
+		<Field FieldKey="xieyibianhao" FieldName="协议编号" FieldType="Varchar"  Comment="协议编号"/>
+		<Field FieldKey="jinhuoqudao" FieldName="进货渠道" FieldType="Varchar" Bound="3000"  Comment="进货渠道"/>
+		<Field FieldKey="zhengceneirong" FieldName="政策内容" FieldType="Varchar" Bound="3000"  Comment="政策内容"/>
+		<Field FieldKey="huodongpinzhong" FieldName="活动品种" FieldType="Varchar" Bound="3000"  Comment="活动品种"/>
+		<Field FieldKey="cndwsj" FieldName="承诺到位时间" FieldType="TimeStamp"  Comment="承诺到位时间"/>
+		<Field FieldKey="synxy" FieldName="上一年协议" FieldType="Varchar"  Comment="上一年协议"/>
+		<Field FieldKey="fljsgs" FieldName="返利计算公式" FieldType="Varchar"  Comment="返利计算公式"/>
+		<Field FieldKey="hsflje" FieldName="核算返利金额" FieldType="Decimal" DefaultValue="0.00" Comment="核算返利金额" Bound="14,2" />
+		<Field FieldKey="bcflje" FieldName="本次返利金额" FieldType="Decimal" DefaultValue="0.00" Comment="本次返利金额" Bound="14,2" />
+		<Field FieldKey="cwgdje" FieldName="财务勾兑金额" FieldType="Decimal" DefaultValue="0.00" Comment="财务勾兑金额" Bound="14,2" />
+		<Field FieldKey="ljflje" FieldName="累计返利金额" FieldType="Decimal" DefaultValue="0.00" Comment="累计返利金额" Bound="14,2" />
+		
+		
+		<Field FieldKey="shifouhuodong" FieldName="是否活动" FieldType="Int" DefaultValue="1"  Comment="是否活动"/>
+    </DataTable>
+
+</DataSet>

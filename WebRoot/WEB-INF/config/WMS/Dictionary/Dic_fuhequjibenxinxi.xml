@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BillFormMeta Key="fuhequjibenxinxi" Version="1.0.0" BillType="Dictionary" Caption="复核区资料卡片">
+    <BillBody>
+        <BillBodyMeta UserAgent="web">
+            <BillUIPanel Layout="flex" FlexDirection="column" Width="100%" Key="mainContainer" Caption="支付方式管理" S="">
+                <BillUIPanel Layout="flex" Key="dictionary_tools" Caption="工具栏" >
+                    <BillUIWidget Key="submit" Caption="保存"
+                                  DataTableKey="gonghuoshangxiaoqizhengzhao" colOffset="" DataTableColumn="update"
+                                  EnabledWhen="True" Icon="glyphicon glyphicon-floppy-disk"
+                                  WidgetType="BillUIButton">
+                        <Triggers>
+                            <Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+                                	var qishizuhao=getHeadValue("qishizuhao");
+                                	var zongzizuhao=getHeadValue("zongzizuhao");
+                                	var qishicenghao=getHeadValue("qishicenghao");
+                                	var zhongzicenghao=getHeadValue("zhongzicenghao");
+                                	var qishileihao=getHeadValue("qishileihao");
+                                	var zongziliehao=getHeadValue("zongziliehao");
+                                	if(qishizuhao>zongzizuhao){
+                                		alert("起始组号不能大于终止组号！");
+                                		return;
+                                	}
+                                	if(qishicenghao>zhongzicenghao){
+                                		alert("起始层号不能大于终止层号！");
+                                		return;
+                                	}
+                                	if(qishileihao>zongziliehao){
+                                		alert("起始列号不能大于终止列号！");
+                                		return;
+                                	}
+                                	setStatus(20);
+                                    	@$this.save();
+				                            		]]>
+                            </Trigger>
+                        </Triggers>
+                    </BillUIWidget>
+                    <BillUIWidget Key="goback" Caption="返回"
+                                  DataTableKey="gonghuoshangxiaoqizhengzhao" DataTableColumn="delete" EnabledWhen="True"
+                                  Icon="glyphicon glyphicon-remove-circle" WidgetType="BillUIButton" S="btn btn-danger ">
+                        <Triggers>
+                            <Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+                                        	@$this.$reBack();
+	                            		]]>
+                            </Trigger>
+                        </Triggers>
+                    </BillUIWidget>
+                </BillUIPanel>
+            	<BillUIPanel Layout="flex" Key="mainContainer_tab" Caption="核区资料卡片"
+                         S="">
+                <BillUIPanel Layout="flex" Key="one" Caption="核区资料卡片">
+                    <BillUIGridPanel Device="sm" Key="h1">
+                       <BillUIRowPanel>
+                                        <BillUIColPanel Width="3">
+                                            <BillUIWidget Key="cangkubianhao"  DataTableKey="fuhequjibenxinxi" 
+									Caption="仓库编号" DataTableColumn="cangkubianhao" Required="required"
+									Disable="true" EnabledWhen="True" WidgetType="BillUIPopupWindow" ViewSize="lg"
+                                                  Src="cangku">
+                                        <Init Type="javascript/angular" Runat="client">
+                                            <![CDATA[
+                                            	var orgId=this.getOrgId();
+	                                        ]]>
+                                        </Init>
+                                        <Triggers>
+                                            <Trigger>
+                                                <![CDATA[
+                                                    var cangku=this.rows[0];     
+                                                    this.setValue(cangku.cangkubianhao);
+                                                    @cangkuID.setValue(cangku.ID);
+                                                    @cangkumingcheng.setValue(cangku.cangkumingchen);
+                                                ]]>
+                                            </Trigger>
+                                        </Triggers>
+								</BillUIWidget>
+                                        </BillUIColPanel>
+                                        <BillUIColPanel Width="3">
+                                            <BillUIWidget Key="fhqbh" Caption="复核区编号" DataTableKey="fuhequjibenxinxi"
+                                                          DataTableColumn="fhqbh" EnabledWhen="True" Required="Required"
+                                                          WidgetType="BillUIString">
+                                        <Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                                var v = getHeadValue("fhwbh");
+                                                if(v != ""&&v != null){
+                                                    setDisabled('cangkubianhao');
+                                                    setDisabled('fhqbh');
+                                                    setDisabled('fhqmc');
+                                                    setDisabled('qishizuhao');
+                                                    setDisabled('zongzizuhao');
+                                                    setDisabled('qishicenghao');
+                                                    setDisabled('zhongzicenghao');
+                                                    setDisabled('qishileihao');
+                                                    setDisabled('zongziliehao');
+                                                    setDisabled('huadaohao');
+                                                }
+                                            ]]>
+                                       </Init>
+                                            </BillUIWidget>
+                                        </BillUIColPanel>
+                                        <BillUIColPanel Width="3">
+                                            <BillUIWidget Key="fhqmc" Caption="复核区名称" DataTableKey="fuhequjibenxinxi"
+                                                          DataTableColumn="fhqmc" EnabledWhen="True" Required="Required"
+                                                          WidgetType="BillUIString">
+                                            </BillUIWidget>
+                                        </BillUIColPanel>
+                                        <BillUIColPanel Width="3">
+                                            <BillUIWidget Key="fhwbh" Caption="复核位编号" DataTableKey="fuhequjibenxinxi"
+                                                          DataTableColumn="fhwbh" EnabledWhen="True"  Disable="Disable"
+                                                          WidgetType="BillUIString">
+                                            </BillUIWidget>
+                                        </BillUIColPanel>
+                     </BillUIRowPanel>
+
+                                    <BillUIRowPanel>
+                                        <BillUIColPanel Width="3">
+                                            <BillUIWidget Key="qishizuhao" Caption="起始组号" Required="Required"
+                                                          DataTableKey="fuhequjibenxinxi" DataTableColumn="qishizuhao"
+                                                          EnabledWhen="True"
+                                                          WidgetType="BillUIString">
+                                                <CheckRules>
+                                                <CheckRule>
+										        <![CDATA[
+										             {"type":"builtin","rule":/^\+?[1-9]\d*$/,"msg":"请输入非零数字"}
+										        ]]>
+										    	</CheckRule>
+										    </CheckRules>
+                                            </BillUIWidget>
+                                        </BillUIColPanel>
+                                        <BillUIColPanel Width="3">
+                                            <BillUIWidget Key="zongzizuhao" Caption="终止组号" Required="Required"
+                                                          DataTableKey="fuhequjibenxinxi" DataTableColumn="zongzizuhao"
+                                                          EnabledWhen="True"
+                                                          WidgetType="BillUIString">
+                                                             <CheckRules>
+                                                <CheckRule>
+										        <![CDATA[
+										              {"type":"builtin","rule":/^\+?[1-9]\d*$/,"msg":"请输入非零数字"}
+										        ]]>
+										    	</CheckRule>
+										    </CheckRules>
+                                            </BillUIWidget>
+                                        </BillUIColPanel>
+                                        <BillUIColPanel Width="3">
+                                            <BillUIWidget Key="qishicenghao" Caption="起始层号" Required="Required"
+                                                          DataTableKey="fuhequjibenxinxi" DataTableColumn="qishicenghao"
+                                                          EnabledWhen="True" WidgetType="BillUIString">
+                                                             <CheckRules>
+                                                <CheckRule>
+										        <![CDATA[
+										              {"type":"builtin","rule":/^\+?[1-9]\d*$/,"msg":"请输入非零数字"}
+										        ]]>
+										    	</CheckRule>
+										    </CheckRules>
+                                            </BillUIWidget>
+                                        </BillUIColPanel>
+                                        <BillUIColPanel Width="3">
+                                            <BillUIWidget Key="zhongzicenghao" Caption="终止层号" Required="Required"
+                                                          DataTableKey="fuhequjibenxinxi" DataTableColumn="zhongzicenghao"
+                                                          EnabledWhen="True" WidgetType="BillUIString">
+                                                             <CheckRules>
+                                                <CheckRule>
+										        <![CDATA[
+										             {"type":"builtin","rule":/^\+?[1-9]\d*$/,"msg":"请输入非零数字"}
+										        ]]>
+										    	</CheckRule>
+										    </CheckRules>
+                                            </BillUIWidget>
+                                        </BillUIColPanel>
+                                    </BillUIRowPanel>
+                                    
+                                     <BillUIRowPanel>
+                                        <BillUIColPanel Width="3">
+                                            <BillUIWidget Key="qishileihao" Caption="起始列号" Required="Required"
+                                                          DataTableKey="fuhequjibenxinxi" DataTableColumn="qishileihao"
+                                                          EnabledWhen="True"
+                                                          WidgetType="BillUIString">
+                                                             <CheckRules>
+                                                <CheckRule>
+										        <![CDATA[
+										              {"type":"builtin","rule":/^\+?[1-9]\d*$/,"msg":"请输入非零数字"}
+										        ]]>
+										    	</CheckRule>
+										    </CheckRules>
+                                            </BillUIWidget>
+                                        </BillUIColPanel>
+                                        <BillUIColPanel Width="3">
+                                            <BillUIWidget Key="zongziliehao" Caption="终止列号" Required="Required"
+                                                          DataTableKey="fuhequjibenxinxi" DataTableColumn="zongziliehao"
+                                                          EnabledWhen="True"
+                                                          WidgetType="BillUIString">
+                                                             <CheckRules>
+                                                <CheckRule>
+										        <![CDATA[
+										              {"type":"builtin","rule":/^\+?[1-9]\d*$/,"msg":"请输入非零数字"}
+										        ]]>
+										    	</CheckRule>
+										    </CheckRules>
+                                            </BillUIWidget>
+                                        </BillUIColPanel>
+                                        <BillUIColPanel Width="3">
+                                            <BillUIWidget Key="shifouqiyong" Caption="是否启用" Required="Required"
+                                                          DataTableKey="fuhequjibenxinxi" DataTableColumn="shifouqiyong"
+                                                          EnabledWhen="True" Src="bill/selectSrc?type=bool" WidgetType="BillUISelect">
+											<Init Type="javascript/angular" Runat="client">
+		                                        <![CDATA[
+														this.loadDataSource();
+												]]>
+											</Init>
+                                            </BillUIWidget>
+                                        </BillUIColPanel>
+                                        <BillUIColPanel Width="3">
+                                            <BillUIWidget Key="huadaohao" Caption="滑道号" Required="Required"
+                                                          DataTableKey="fuhequjibenxinxi" DataTableColumn="huadaohao"
+                                                          EnabledWhen="True" WidgetType="BillUIString">
+                                              <CheckRules>
+                                                <CheckRule>
+										        <![CDATA[
+										              {"type":"builtin","rule":/^\+?[1-9]\d*$/,"msg":"请输入非零数字"}
+										        ]]>
+										    	</CheckRule>
+										    </CheckRules>
+                                            </BillUIWidget>
+                                        </BillUIColPanel>
+                                    </BillUIRowPanel>
+                                    <BillUIRowPanel> 
+                                    	<BillUIColPanel Width="6">
+                                    		<BillUIWidget Key="beizhu" Caption="备注"
+                                                          DataTableKey="fuhequjibenxinxi" DataTableColumn="beizhu"
+                                                          EnabledWhen="True" WidgetType="BillUITextArea">
+                                            </BillUIWidget>
+                                    	</BillUIColPanel>
+                                    	<BillUIColPanel Width="0"  >
+								<BillUIWidget Key="cangkuID"  
+									Caption="" DataTableKey="fuhequjibenxinxi" DataTableColumn="cangkuID"
+									Disable="true" EnabledWhen="True" WidgetType="BillUIString" ViewSize="lg" >
+                                     <Init Type="javascript/angular" Runat="client">
+                                            <![CDATA[
+                                            	this.setHide();
+	                                        ]]>
+                                        </Init>         
+								</BillUIWidget>
+								<BillUIWidget Key="cangkumingcheng"  
+									Caption="" DataTableKey="fuhequjibenxinxi" DataTableColumn="cangkumingcheng"
+									Disable="true" EnabledWhen="True" WidgetType="BillUIString" ViewSize="lg" >
+                                     <Init Type="javascript/angular" Runat="client">
+                                            <![CDATA[
+                                            	this.setHide();
+	                                        ]]>
+                                        </Init>         
+								</BillUIWidget>
+							</BillUIColPanel>
+                                    </BillUIRowPanel>
+                                    
+                    </BillUIGridPanel>
+                </BillUIPanel>
+            </BillUIPanel>
+            </BillUIPanel>
+        </BillBodyMeta>
+    </BillBody>
+    <BillHeadMeta>
+    	<BillEventCollection>
+			<Event Type="PostSave" Processor="com.xyy.wms.basicData.biz.FuhequziliaoEvent" />
+		</BillEventCollection>
+    </BillHeadMeta>
+</BillFormMeta>

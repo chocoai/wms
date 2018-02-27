@@ -1,0 +1,81 @@
+jdbcUrl=jdbc:mysql://rm-bp1505z7znbz68p07.mysql.rds.aliyuncs.com:3306/xyy_erp?characterEncoding=UTF-8&autoReconnect=true&failOverReadOnly=false&zeroDateTimeBehavior=convertToNull
+user=xyy_erp
+password=b9~oh-T23sUFp65J6lPgrLGIfW6z0cuR
+devMode=true
+#jdbcUrl = jdbc:mysql://127.0.0.1/test?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
+#user = root
+#password = root
+#devMode = true
+
+
+#############################	database	start	###########################################
+# 使用的数据库类型，根据db.type的值，下面对应类型的数据库连接要配置正确
+db.type = mysql
+#db.type = postgresql
+#db.type = oracle
+
+# 使用postgresql数据库
+postgresql.driverClass = org.postgresql.Driver
+postgresql.jdbcUrl = jdbc:postgresql://127.0.0.1:5432/jfinaluib
+postgresql.userName = postgres
+postgresql.passWord = 678789
+
+# 使用mysql数据库
+#jdbc:mysql://192.168.1.15/cdtloan
+mysql.jdbcUrl = jdbc:mysql://localhost:3306/jfinal_demo?characterEncoding=UTF-8&autoReconnect=true&failOverReadOnly=false&zeroDateTimeBehavior=convertToNull
+#mysql.jdbcUrl = jdbc:mysql://10.1.2.9:3306/cdtloan?characterEncoding=UTF-8&autoReconnect=true&failOverReadOnly=false&zeroDateTimeBehavior=convertToNull
+mysql.userName = root
+mysql.passWord = root
+
+# 使用oracle数据库
+oracle.driverClass = oracle.jdbc.driver.OracleDriver
+oracle.jdbcUrl = jdbc:oracle:thin:@127.0.0.1:1521:orcl
+oracle.userName = scott
+oracle.passWord = 678789
+
+# 初始连接池大小、最小空闲连接数、最大活跃连接数
+db.initialSize = 3
+db.minIdle = 1
+db.maxActive = 5
+
+#############################	database	end	###########################################
+
+#############################	config	start	###########################################
+
+#扫描的包，多个用逗号隔开
+config.scan.package =com.xyy.system.controller,com.xyy.system.service
+
+#扫描的jar，多个用逗号隔开
+config.scan.jar = 
+
+#是否开发模式
+config.devMode = true
+
+#IDEA加密秘钥
+config.securityKey = ttJw6Oc4NEtwPf8CbmwLNQ==
+
+#密码错误最大次数，达到后锁定
+config.passErrorCount = 100000
+
+#锁定多少小时之后再可登陆
+config.passErrorHour = 1
+
+#文件上传大小限制 10 * 1024 * 1024 = 10M
+config.maxPostSize = 10485760
+
+#cookie最大时间 3600 * 24 * 15 = 12960000 秒 = 15 天
+config.maxAge = 12960000
+
+#域名或者服务器IP，多个逗号隔开，验证Referer时使用
+config.domain = 127.0.0.1, localhost
+
+#邮件发送配置
+config.mail.host = smtp.163.com
+config.mail.port = 25
+config.mail.from = dongcb678@163.com
+config.mail.userName = dongcb678@163.com
+config.mail.password = 123456
+#接收邮件地址
+config.mail.to = dongcb678@163.com
+
+#############################	config	end	###########################################

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="huoweihekuqu_view" Caption="批号" DefaultFilter="" PermissionType="CommType" Pagging="6" 
+        TableName="SQLQuery::
+    SELECT
+    h.huoweibianhao,
+    h.kuqubianhao,
+    h.huoweiID,
+    c.kucunshuliang
+	|
+	FROM
+	xyy_wms_dic_huoweiziliaoweihu h left join
+	xyy_wms_bill_shangpinpihaohuoweikucun c
+	on h.huoweiID=c.huoweiId
+    WHERE
+	1=1
+    @huoweibianhao"   DataSource="" Head="false">
+        <Parameters> 
+            <Parameter Key="goodsid" Type="String">
+                <Where>
+                <![CDATA[
+					m.if(huoweibianhao==null | huoweibianhao=="" ,""," and huoweibianhao like '%"+huoweibianhao+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

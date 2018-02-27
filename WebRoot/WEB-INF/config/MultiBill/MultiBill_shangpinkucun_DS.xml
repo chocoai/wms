@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0"> 
+    <DataTable Key="shangpinkucun" Caption="" DefaultFilter="" Pagging="15" PermissionType="CommType"
+               TableName="SQLQuery::SELECT
+	b.shangpinbianhao,
+	b.shangpinmingcheng,
+	b.guige,
+    b.danwei,
+	b.shengchanchangjia,
+    a.kucunshuliang,
+    a.kchsje,
+    a.chengbendanjia,
+b.pizhunwenhao,b.chandi,b.rowID |
+FROM
+	xyy_erp_bill_shangpinzongkucun a,
+	xyy_erp_dic_shangpinjibenxinxi b
+WHERE
+	a.shangpinID = b.goodsid  @shangpin @shengchanchangjia @orgID order by a.createTime desc" DataSource="" Head="false">
+        <Parameters>
+            <Parameter Key="orgID" Type="String">
+                <Where>
+                    <![CDATA[
+                        m.if(orgID==null  | orgID=="" ,""," and a.orgId = '"+orgID+"'")
+                    ]]>
+                </Where>
+            </Parameter>
+
+            <Parameter Key="shangpin" Type="String" >
+                <Where>
+                <![CDATA[
+					m.if(shangpin==null  | shangpin=="" ,""," and b.mixCondition like '%"+shangpin+"%'")
+                ]]>
+                </Where>
+            </Parameter>
+
+            <Parameter Key="shengchanchangjia" Type="String" >
+                <Where>
+                    <![CDATA[
+					m.if(shengchanchangjia==null  | shengchanchangjia=="" ,""," and b.shengchanchangjia like '%"+shengchanchangjia+"%'")
+                ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

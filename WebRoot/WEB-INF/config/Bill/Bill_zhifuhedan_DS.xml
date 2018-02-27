@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="zhifuhedan" BillType="Bill" Caption="支付核单" DefaultFilter="" TableName="Table::xyy_erp_bill_zhifuhedan" DataSource="" Head="true">
+        <!--  
+             单据编号	varchar	规则：YBM+年月日时分秒+3位随机码, 例如：YBM20160426112240764
+        -->
+        <Field FieldKey="danjubianhao" FieldName="单据编号" FieldType="Varchar" DefaultValue="=o.orderNo()" Comment="单据编号"/>
+        <Field FieldKey="yxsddbh" FieldName="原销售订单编号" FieldType="Varchar" Comment="原销售订单编号"/>
+        <Field FieldKey="kehubianhao" FieldName="客户编号" FieldType="Varchar" Comment="客户编号"/>
+        <Field FieldKey="kehumingcheng" FieldName="客户名称" FieldType="Varchar" Comment="客户名称"/>
+        <Field FieldKey="jiesuanfangshi" FieldName="结算方式" FieldType="Int" DefaultValue="0" Comment="结算方式"/>
+        <Field FieldKey="shifouzhifu" FieldName="是否支付" FieldType="Int" DefaultValue="0" Comment="是否支付：1已付，0未付"/>
+        <Field FieldKey="lianxiren" FieldName="联系人" FieldType="Varchar" Comment="联系人"/>
+        <!--<Field FieldKey="lianxidianhua" FieldName="联系电话" FieldType="Varchar" Comment="联系电话"/>-->
+        <Field FieldKey="dingdanzonge" FieldName="订单总额" FieldType="Decimal" Comment="订单总额"/>
+        <Field FieldKey="youhuijine" FieldName="优惠金额" FieldType="Decimal" Comment="优惠金额"/>
+        <Field FieldKey="hanshuijine" FieldName="含税金额（实付金额）" FieldType="Decimal" Comment="含税金额（实付金额）"/>
+        <Field FieldKey="beizhu" FieldName="备注" FieldType="Varchar" Comment="备注"/>
+    </DataTable>
+
+
+</DataSet>

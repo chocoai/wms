@@ -1,0 +1,992 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BillFormMeta Key="shouyinggys" Version="1.0.0" BillType="Bill" Caption="首营供应商">
+    <BillBody> 
+        <BillBodyMeta UserAgent="web">
+            <BillUIPanel Layout="flex" FlexDirection="column" Width="100%" Key="mainContainer" Caption="业务订单" S="">
+                <BillUIPanel Layout="flex" Key="toolbox" Caption="工具栏">
+                    <BillUIWidget Key="save" Caption="保存"
+                                  EnabledWhen="True"
+                                  Icon="glyphicon glyphicon-floppy-disk" WidgetType="BillUIButton">
+                        <Triggers>
+                            <Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+                                 var cos=getDataset("gongyingshang_weituoren").cos;
+                                    var bool=true;
+                                    for(var i=0;i<cos.length;i++){
+                                        if(cos[i].sfzlxr==1){
+                                            bool=false;
+                                        }
+                                    }
+                                    if(bool){
+                                         alert("请填写主联系人");
+                                          return;
+                                      }
+                                        if(getHeadValue('sfszhy')==0){
+                                         if(getHeadValue('zzjgdmz')==''){
+                                            alert("请填写组织机构代码证信息");
+                                            return;
+                                        }
+                                         if(getHeadValue('fazhengriqi')==''){
+                                            alert("请填写发证日期信息");
+                                            return;
+                                        }
+                                         if(getHeadValue('fzyxq')==''){
+                                            alert("请填写有效期至（组织机构代码证）信息");
+                                            return;
+                                        }
+                                         if(getHeadValue('shuihao')==''){
+                                            alert("请填写税务登记证号信息");
+                                            return;
+                                        }
+                                         if(getHeadValue('swfzjg')==''){
+                                            alert("请填写发证机关（组织机构代码证）信息");
+                                            return;
+                                        }
+                                    };
+                                     var name=getHeadValue("qiyeleixing");
+                                     var selName=getFormat(name,'qiyeleixing');
+                                       var mingcheng=getHeadValue("gysmc");
+                                       if(name==0){
+                                        alert("请填写供应商类型信息");
+                                        return;
+                                     }
+                                    if(mingcheng==''){
+                                        alert("请填写供应商类型名称信息");
+                                        return;
+                                     }
+                                     var cos2=getDataset("zhiliangzhengzhaoxinxi").cos;
+                                    if(name==1){
+                                        if(cos2.length<2){
+                                            alert(selName+"证书类型必包括：'药品生产许可证'、'GMP'");
+                                            return;
+                                         }
+                                        var bool=true;
+                                        var gmp=true;
+                                        for(var i=0;i<cos2.length;i++){
+                                            if(cos2[i].zhengshuleixing==1){
+                                                bool=false;
+                                            }else if(cos2[i].zhengshuleixing==2){
+                                                gmp=false;
+                                            }
+                                        }
+                                        if(bool || gmp){
+                                            alert(selName+"证书必包括：'药品生产许可证'、'GMP'");
+                                            return;
+                                        }
+                                    }else if(name==2){
+                                        if(cos2.length<2){
+                                            alert(selName+"证书必包括：'药品经营许可证'、'GSP'");
+                                            return;
+                                         }
+                                        var bool=true;
+                                        var gmp=true;
+                                        for(var i=0;i<cos2.length;i++){
+                                            if(cos2[i].zhengshuleixing==7){
+                                                bool=false;
+                                            }else if(cos2[i].zhengshuleixing==8){
+                                                gmp=false;
+                                            }
+                                        }
+                                        if(bool || gmp){
+                                            alert(selName+"证书必包括：'药品经营许可证'、'GSP'");
+                                            return;
+                                        }
+                                    }
+                                     var fs=getHeadValue("yxqzfs");
+                                     if(fs==0){
+                                        if(getHeadValue('zcyxq')==''){
+                                            alert("请填写（营业执照）有效期至信息");
+                                            return;
+                                        }
+                                     }
+                                 if(getStatus()==0){
+                                            var mingcheng=getHeadValue("gysmc");
+                                            var orderFunc=@save.orderFunc('qiyeleixing',name);
+                                            var zhujimaFunc=@save.zhujimaFunc(mingcheng);
+                                            Promise.all([orderFunc,zhujimaFunc]).then(function(data) {
+                                                     var order=JSON.parse(data[0]);
+                                                     var zhu=JSON.parse(data[1]);
+                                                     if(order.result[0].bianhao){
+                                                        var bianhao=order.result[0].bianhao;
+                                                        setHeadValue("gysbh",bianhao);
+                                                        setHeadValue("suppliersid",bianhao);
+                                                     }
+                                                     if(zhu.result[0].zhujima){
+                                                        var zhujima=zhu.result[0].zhujima;
+                                                        setHeadValue("zhujima",zhujima);
+                                                     }
+                                                      setStatus(1);
+                                                     @$this.save();
+                                                    } ,function(e){
+                                                });
+                                 }else {
+                                    if(getStatus()==20){
+                                        	alert("单据已经提交，不能编辑");
+                                        }else{
+	                                         @$this.save();
+                                         }
+                                 }
+
+	                            ]]>
+                            </Trigger>
+                        </Triggers>
+                    </BillUIWidget>
+                    <BillUIWidget Key="submit" Caption="提交"
+                                  EnabledWhen="True"
+                                  Icon="glyphicon glyphicon-floppy-saved" WidgetType="BillUIButton">
+                        <Triggers>
+                            <Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+                                var cos=getDataset("gongyingshang_weituoren").cos;
+                                    var bool=true;
+                                    for(var i=0;i<cos.length;i++){
+                                        if(cos[i].sfzlxr==1){
+                                            bool=false;
+                                        }
+                                    }
+                                    if(bool){
+                                         alert("请填写主联系人");
+                                          return;
+                                      }
+                                        if(getHeadValue('sfszhy')==0){
+                                         if(getHeadValue('zzjgdmz')==''){
+                                            alert("请填写组织机构代码证信息");
+                                            return;
+                                        }
+                                         if(getHeadValue('fazhengriqi')==''){
+                                            alert("请填写发证日期信息");
+                                            return;
+                                        }
+                                         if(getHeadValue('fzyxq')==''){
+                                            alert("请填写有效期至信息");
+                                            return;
+                                        }
+                                         if(getHeadValue('shuihao')==''){
+                                            alert("请填写税务登记证号信息");
+                                            return;
+                                        }
+                                         if(getHeadValue('swfzjg')==''){
+                                            alert("请填写发证机关（组织机构代码证）信息");
+                                            return;
+                                        }
+                                    };
+                                       var name=getHeadValue("qiyeleixing");
+                                       var selName=getFormat(name,'qiyeleixing');
+                                       var mingcheng=getHeadValue("gysmc");
+                                       if(name==0){
+                                        alert("请填写供应商类型信息");
+                                        return;
+                                     }
+                                    if(mingcheng==''){
+                                        alert("请填写供应商名称信息");
+                                        return;
+                                     }
+                                     var cos2=getDataset("zhiliangzhengzhaoxinxi").cos;
+                                    if(name==1){
+                                        if(cos2.length<2){
+                                            alert(selName+"证书类型必包括：'药品生产许可证'、'GMP'");
+                                            return;
+                                         }
+                                        var bool=true;
+                                        var gmp=true;
+                                        for(var i=0;i<cos2.length;i++){
+                                            if(cos2[i].zhengshuleixing==2){
+                                                bool=false;
+                                            }else if(cos2[i].zhengshuleixing==1){
+                                                gmp=false;
+                                            }
+                                        }
+                                        if(bool || gmp){
+                                            alert(selName+"证书必包括：'药品生产许可证'、'GMP'");
+                                            return;
+                                        }
+                                    }else if(name==2){
+                                        if(cos2.length<2){
+                                            alert(selName+"证书必包括：'药品经营许可证'、'GSP'");
+                                            return;
+                                         }
+                                        var bool=true;
+                                        var gmp=true;
+                                        for(var i=0;i<cos2.length;i++){
+                                            if(cos2[i].zhengshuleixing==7){
+                                                bool=false;
+                                            }else if(cos2[i].zhengshuleixing==8){
+                                                gmp=false;
+                                            }
+                                        }
+                                        if(bool || gmp){
+                                            alert(selName+"证书必包括：'药品经营许可证'、'GSP'");
+                                            return;
+                                        }
+                                    }
+                                     var fs=getHeadValue("yxqzfs");
+                                     if(fs==0){
+                                        if(getHeadValue('zcyxq')==''){
+                                            alert("请填写（营业执照）有效期至信息");
+                                            return;
+                                        }
+                                     }
+                                 if(getStatus()==0){
+                                            var orderFunc=@save.orderFunc('qiyeleixing',name);
+                                            var zhujimaFunc=@save.zhujimaFunc(mingcheng);
+                                            Promise.all([orderFunc,zhujimaFunc]).then(function(data) {
+                                                     var order=JSON.parse(data[0]);
+                                                     var zhu=JSON.parse(data[1]);
+                                                     if(order.result[0].bianhao){
+                                                        var bianhao=order.result[0].bianhao;
+                                                        setHeadValue("gysbh",bianhao);
+                                                        setHeadValue("suppliersid",bianhao);
+                                                     }
+                                                     if(zhu.result[0].zhujima){
+                                                        var zhujima=zhu.result[0].zhujima;
+                                                        setHeadValue("zhujima",zhujima);
+                                                     }
+                                                     @$this.save('bills',{
+                                                     before:{
+                                                        setStatus:[20]
+                                                     }
+                                                     });
+                                                    } ,function(e){
+                                                });
+                                 }else{
+                                     if(getStatus()==20){
+                                        	alert("单据已经提交，不能编辑");
+                                        }else{
+	                                        @$this.save('bills',{
+                                                     before:{
+                                                        setStatus:[20]
+                                                     }
+                                                     });
+                                         }
+                                 }
+                                          ]]>
+                            </Trigger>
+                        </Triggers>
+                    </BillUIWidget>
+                    <BillUIWidget Key="goback" Caption="返回"
+                                  EnabledWhen="True"
+                                  Icon="glyphicon glyphicon-align-left" WidgetType="BillUIButton" S="btn btn-danger">
+                        <Triggers>
+                            <Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+                                        @$this.return();
+	                            ]]>
+                            </Trigger>
+                        </Triggers>
+                    </BillUIWidget>
+                    <BillUIWidget Key="fujian" DataTableColumn="fujian" WidgetType="BillUIAttachment"
+                                  EnabledWhen="True" DataTableKey="shouyinggys"/>
+                    <BillUIWidget Key="process" Caption="审核流程"
+                                  EnabledWhen="True" S="btn btn-primary setHide"
+                                  Icon="glyphicon glyphicon-exclamation-sign" WidgetType="BillUIButton">
+                        <Init Type="javascript/angular" Runat="client">
+                            <![CDATA[
+                                            var status=getStatus();
+                                            if(status>=20){
+                                                this.setShow();
+                                            }
+										]]>
+                        </Init>
+                        <Triggers>
+                            <Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+                                                this.setEnvModel({piID:getHeadValue("piID")});
+												@$this.process();
+	                            		]]>
+                            </Trigger>
+                        </Triggers>
+                    </BillUIWidget>
+                    <BillUIWidget Key="downloadExcel" Caption="导出" Disable="true"
+                                  EnabledWhen="True" FileName="首营供应商导出"
+                                  Icon="glyphicon glyphicon-save-file" WidgetType="BillUIButton">
+                        <Init Type="javascript/angular" Runat="client">
+                            <![CDATA[
+                                        if(getHeadValue("BillID")){
+                                         this.setEnable();
+                                        }
+										]]>
+                        </Init>
+                        <Triggers>
+                            <Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+                                 @$this.downloadExcel();
+	                            ]]>
+                            </Trigger>
+                        </Triggers>
+                        <ExportSheets>
+                            <ExportSheet SheetName="首营供应商信息" TitleName="" DataTableKey="shouyinggys">
+                                <ExportColumns>
+                                    <ExportColumn Caption="单据编号" DataTableColumn="danjubianhao" />
+                                    <ExportColumn Caption="开票日期" DataTableColumn="kaipiaoriqi"/>
+                                    <ExportColumn Caption="开票员" DataTableColumn="kaipiaoyuan"/>
+                                    <ExportColumn Caption="供应商编号" DataTableColumn="gysbh" />
+                                    <ExportColumn Caption="供应商名称" DataTableColumn="gysmc"/>
+                                    <ExportColumn Caption="法定代表人" DataTableColumn="farendaibiao"/>
+                                    <ExportColumn Caption="供应商类别" DataTableColumn="qiyeleixing" Type="Dic">
+                                        <![CDATA[
+                                          {'url':'select','type':'qiyeleixing'}
+                                        ]]>
+                                    </ExportColumn>
+                                    <ExportColumn Caption="注册地址" DataTableColumn="dizhi"/>
+
+                                    <ExportColumn Caption="经营范围" DataTableColumn="fanweiName" />
+                                    <ExportColumn Caption="营业执照" DataTableColumn="yingyezhizhao"/>
+
+                                    <ExportColumn Caption="发证机关（营业执照）" DataTableColumn="fazhengjiguan"/>
+                                    <ExportColumn Caption="注册日期" DataTableColumn="zhuceriqi"/>
+                                    <ExportColumn Caption="有效期至方式" DataTableColumn="yxqzfs" Type="Dic">
+                                        <![CDATA[
+                                          {'url':'select','type':'yxqzfs'}
+                                        ]]>
+                                    </ExportColumn>
+                                    <ExportColumn Caption="有效期至（营业执照）" DataTableColumn="zcyxq" />
+                                    <ExportColumn Caption="是否三证合一" DataTableColumn="sfszhy" Type="Dic">
+                                        <![CDATA[
+                                          {'url':'select','type':'bool'}
+                                        ]]>
+                                    </ExportColumn>
+
+                                    <ExportColumn Caption="开户银行" DataTableColumn="kaihuyinhang" />
+                                    <ExportColumn Caption="银行账号" DataTableColumn="yinhangzhanghao"/>
+                                    <ExportColumn Caption="开户户名" DataTableColumn="kaihuhuming" />
+                                    <ExportColumn Caption="组织机构代码证" DataTableColumn="zzjgdmz"/>
+                                    <ExportColumn Caption="发证日期" DataTableColumn="fazhengriqi"/>
+
+                                    <ExportColumn Caption="有效期至（组织机构代码证）" DataTableColumn="fzyxq"/>
+                                    <ExportColumn Caption="税务登记号" DataTableColumn="shuihao"/>
+                                    <ExportColumn Caption="发证机关（组织机构代码证）" DataTableColumn="swfzjg"/>
+
+                                    <ExportColumn Caption="采购员" DataTableColumn="caigouyuan"/>
+                                </ExportColumns>
+                            </ExportSheet>
+                            <ExportSheet SheetName="证照信息" TitleName="" DataTableKey="zhiliangzhengzhaoxinxi">
+                                <ExportColumns>
+                                    <ExportColumn Caption="证书类型" DataTableColumn="zhengshuleixing" Type="Dic">
+                                        <![CDATA[
+                                          {'url':'select','type':'zhengjianmingcheng'}
+                                        ]]>
+                                    </ExportColumn>
+                                    <ExportColumn Caption="证书编号" DataTableColumn="zhengshubianhao"/>
+
+                                    <ExportColumn Caption="发证机关" DataTableColumn="fazhengjiguan"/>
+                                    <ExportColumn Caption="发证日期" DataTableColumn="fazhengriqi"/>
+                                    <ExportColumn Caption="有效期至" DataTableColumn="youxiaoqizhi"/>
+
+                                </ExportColumns>
+                            </ExportSheet>
+                            <ExportSheet SheetName="委托人信息" TitleName="" DataTableKey="gongyingshang_weituoren">
+                                <ExportColumns>
+                                    <ExportColumn Caption="姓名" DataTableColumn="xingming"/>
+                                    <ExportColumn Caption="性别" DataTableColumn="xingbie" Type="Dic">
+                                        <![CDATA[
+                                          {'url':'select','type':'xingbie'}
+                                        ]]>
+                                    </ExportColumn>
+                                    <ExportColumn Caption="电话" DataTableColumn="dianhua"/>
+                                    <ExportColumn Caption="证件号码" DataTableColumn="zhengjianhaoma" />
+
+                                    <ExportColumn Caption="地址" DataTableColumn="dizhi"/>
+                                    <ExportColumn Caption="委托人有效期" DataTableColumn="wtryxq"/>
+                                    <ExportColumn Caption="委托书编号" DataTableColumn="wtsbh"/>
+                                    <ExportColumn Caption="是否主联系人" DataTableColumn="sfzlxr" Type="Dic">
+                                        <![CDATA[
+                                          {'url':'select','type':'bool'}
+                                        ]]>
+                                    </ExportColumn>
+                                </ExportColumns>
+                            </ExportSheet>
+                        </ExportSheets>
+                    </BillUIWidget>
+                </BillUIPanel>
+
+                <BillUIPanel Layout="flex" Key="mainContainer_head" Caption="首营供应商" S="">
+                    <BillUIGridPanel Device="sm" Key="h3">
+                        <BillUIRowPanel S="lineBorder">
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="danjubianhao" Caption="单据编号" DataTableKey="shouyinggys"
+                                              DataTableColumn="danjubianhao" Required="required"
+                                              EnabledWhen="True" Disable="true" WidgetType="BillUIString">
+                                </BillUIWidget>
+
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="kaipiaoriqi" Caption="开票日期" Required="required"
+                                              DataTableKey="shouyinggys" DataTableColumn="kaipiaoriqi"
+                                              EnabledWhen="True" WidgetType="BillUIDateTime">
+                                    <Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                        		var value = getHeadValue('kaipiaoriqi');
+                                        		if(value == '' || !value){
+                                        			var t=this.formatDate(new Date());
+                                                	this.setValue(t);
+                                        		}
+                                        		var kaipiaoyuan = getHeadValue('kaipiaoyuan');
+                                        		if(kaipiaoyuan == '' || !kaipiaoyuan){
+                                        			var t=this.getRealName();
+                                        			setHeadValue('kaipiaoyuan',t);
+                                        		}
+										]]>
+                                    </Init>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="kaipiaoyuan" Caption="开票员" DataTableKey="shouyinggys"
+                                              DataTableColumn="kaipiaoyuan"  Required="required"
+                                              EnabledWhen="True" WidgetType="BillUIPopupWindow" ViewSize="normal"
+                                              Disable="true" Src="renyuan">
+                                    <Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                                var orgId=this.getOrgId();
+                                                this.setEnvModel({deptName:'采购部'},{orgId:orgId});
+													]]>
+                                    </Init>
+                                    <Triggers>
+                                        <Trigger>
+                                            <![CDATA[
+                                                var caigouyuan=this.rows[0];
+	                                            this.setValue(caigouyuan.realName);
+                                        ]]>
+                                        </Trigger>
+                                    </Triggers>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                        </BillUIRowPanel>
+                        <BillUIRowPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="gysbh" Caption="供应商编号"
+                                              DataTableKey="shouyinggys" DataTableColumn="gysbh"
+                                              EnabledWhen="True" Disable="true"
+                                              WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="5">
+                                <BillUIWidget Key="gysmc" Caption="供应商名称" DataTableKey="shouyinggys"
+                                              DataTableColumn="gysmc" EnabledWhen="True" Required="Required"
+                                              WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="4">
+                                <BillUIWidget Key="farendaibiao" Caption="法定代表人" Required="required"
+                                              DataTableKey="shouyinggys" DataTableColumn="farendaibiao"
+                                              EnabledWhen="True"
+                                              WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                        </BillUIRowPanel>
+                        <BillUIRowPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="qiyeleixing" Caption="供应商类别" Required="Required"
+                                              DataTableKey="shouyinggys" DataTableColumn="qiyeleixing"
+                                              EnabledWhen="True"
+                                              WidgetType="BillUISelect" Src="bill/selectSrc?type=qiyeleixing">
+                                    <Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                                this.loadDataSource();
+                                                var v = getHeadValue("qiyeleixing");
+                                                @jingyingfanwei.loadDataSource('bill/selectSrc?type=shangpinleibie');
+                                                @zhengshuleixing.loadDataSource();
+                                                if(v==1){
+                                                    @jingyingfanwei.loadDataSource('bill/selectSrc?type=shangpinjixing');
+                                                    @zhengshuleixing.removeData('7,8,9,10,11,12,13,16');
+                                                }else if(v==2){
+                                                    @zhengshuleixing.removeData('1,2,9,10,11,12,13,16');
+                                                }else if(v==3){
+                                                    @zhengshuleixing.removeData('1,2,3,4,7,8,12,13,16');
+                                                }else if(v==4){
+                                                    @zhengshuleixing.removeData('1,2,7,8,9,10,11,12,13,16');
+                                                }else{
+                                                    @zhengshuleixing.removeData('1,2,3,4,7,8,9,10,11,16');
+                                               }
+                                        ]]>
+                                    </Init>
+                                    <Triggers>
+                                        <Trigger Type="javascript/angular" Runat="client">
+                                            <![CDATA[
+                                            var v = this.getValue();
+                                            setHeadValue('jingyingfanwei','');
+                                            setHeadValue('fanweiName','');
+                                            @jingyingfanwei.loadDataSource('bill/selectSrc?type=shangpinleibie');
+                                            @zhengshuleixing.loadDataSource();
+                                            @zhengshuleixing.clearDataSource();
+                                           if(v==1){
+                                                    @jingyingfanwei.loadDataSource('bill/selectSrc?type=shangpinjixing');
+                                                    @zhengshuleixing.removeData('7,8,9,10,11,12,13,16');
+                                            }else if(v==2){
+                                                    @zhengshuleixing.removeData('1,2,9,10,11,12,13,16');
+                                           }else if(v==3){
+                                                    @zhengshuleixing.removeData('1,2,3,4,7,8,12,13,16');
+                                           }else if(v==4){
+                                                    @zhengshuleixing.removeData('1,2,7,8,9,10,11,12,13,16');
+                                           }else{
+                                                    @zhengshuleixing.removeData('1,2,3,4,7,8,9,10,11,16');
+                                           }
+											]]>
+                                        </Trigger>
+                                    </Triggers>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="9">
+                                <BillUIWidget Key="dizhi" Caption="注册地址" Required="Required"
+                                              DataTableKey="shouyinggys" DataTableColumn="dizhi"
+                                              EnabledWhen="True"
+                                              WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                        </BillUIRowPanel>
+
+                        <BillUIRowPanel >
+                            <BillUIColPanel Width="12">
+                                <BillUIWidget Key="jingyingfanwei" Caption="经营范围" Required="Required"
+                                              DataTableKey="shouyinggys" DataTableColumn="jingyingfanwei"
+                                              EnabledWhen="True" S="checkboxWrap"
+                                              WidgetType="BillUICheckbox">
+                                    <Triggers>
+                                        <Trigger Type="javascript/angular" Runat="client">
+                                            <![CDATA[
+												var names=this.getSelectionName();
+												setHeadValue("fanweiName",names);
+	                            		]]>
+                                        </Trigger>
+                                    </Triggers>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                        </BillUIRowPanel>
+
+                        <BillUIRowPanel >
+                            <BillUIColPanel Width="4">
+                                <BillUIWidget Key="yingyezhizhao" Caption="营业执照" Required="Required"
+                                              DataTableKey="shouyinggys" DataTableColumn="yingyezhizhao"
+                                              EnabledWhen="True"
+                                              WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="4">
+                                <BillUIWidget Key="fazhengjiguan" Caption="发证机关（营业执照）" Required="Required"
+                                              DataTableKey="shouyinggys" DataTableColumn="fazhengjiguan"
+                                              EnabledWhen="True"
+                                              WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="4">
+                                <BillUIWidget Key="zhuceriqi" Caption="注册日期" Required="Required"
+                                              DataTableKey="shouyinggys" DataTableColumn="zhuceriqi"
+                                              EnabledWhen="True"
+                                              WidgetType="BillUIDateTime" DateFormat="yyyy-mm-dd">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                        </BillUIRowPanel>
+                        <BillUIRowPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="yxqzfs" Caption="有效期至方式" Required="Required"
+                                              DataTableKey="shouyinggys" DataTableColumn="yxqzfs"
+                                              EnabledWhen="True"
+                                              WidgetType="BillUISelect" Src="bill/selectSrc?type=yxqzfs">
+                                    <Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                                  var v=getHeadValue("yxqzfs");
+                                                  if(v==1){
+                                                        setHeadValue("zcyxq","");
+                                                        @zcyxq.setDisable();
+                                                    }else{
+                                                        @zcyxq.setEnable();
+                                                     }
+												this.loadDataSource();
+										]]>
+                                    </Init>
+                                    <Triggers>
+                                        <Trigger Type="javascript/angular" Runat="client">
+                                            <![CDATA[
+                                                    var v=this.getValue();
+                                                    if(v==1){
+                                                        setHeadValue("zcyxq","");
+                                                        @zcyxq.setDisable();
+                                                    }else{
+                                                        @zcyxq.setEnable();
+                                                    }
+                                                ]]>
+                                        </Trigger>
+                                    </Triggers>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+
+                            <BillUIColPanel Width="4">
+                                <BillUIWidget Key="zcyxq" Caption="有效期至（营业执照）"
+                                              DataTableKey="shouyinggys" DataTableColumn="zcyxq"
+                                              EnabledWhen="True"
+                                              WidgetType="BillUIDateTime" DateFormat="yyyy-mm-dd">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                        </BillUIRowPanel>
+                        <BillUIRowPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="sfszhy" Caption="是否三证合一" Required="Required"
+                                              DataTableKey="shouyinggys" DataTableColumn="sfszhy"
+                                              EnabledWhen="True"
+                                              WidgetType="BillUISelect" Src="bill/selectSrc?type=bool">
+                                    <Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                                 var v=getHeadValue("sfszhy");
+                                                  if(v==1){
+                                                         @zzjgdmz.setDisable();
+                                                        setHeadValue("zzjgdmz","");
+                                                        @fazhengriqi.setDisable();
+                                                        setHeadValue("fazhengriqi","");
+                                                        @fzyxq.setDisable();
+                                                        setHeadValue("fzyxq","");
+                                                        @shuihao.setDisable();
+                                                        setHeadValue("shuihao","");
+                                                        @swfzjg.setDisable();
+                                                        setHeadValue("swfzjg","");
+                                                    }else{
+                                                        @zzjgdmz.setEnable();
+                                                        @fazhengriqi.setEnable();
+                                                        @fzyxq.setEnable();
+                                                        @shuihao.setEnable();
+                                                        @swfzjg.setEnable();
+                                                    }
+												this.loadDataSource();
+										]]>
+                                    </Init>
+                                    <Triggers>
+                                        <Trigger Type="javascript/angular" Runat="client">
+                                            <![CDATA[
+                                                    var v=this.getValue();
+                                                    if(v==1){
+                                                        @zzjgdmz.setDisable();
+                                                        setHeadValue("zzjgdmz","");
+                                                        @fazhengriqi.setDisable();
+                                                        setHeadValue("fazhengriqi","");
+                                                        @fzyxq.setDisable();
+                                                        setHeadValue("fzyxq","");
+                                                        @shuihao.setDisable();
+                                                        setHeadValue("shuihao","");
+                                                        @swfzjg.setDisable();
+                                                        setHeadValue("swfzjg","");
+                                                    }else{
+                                                        @zzjgdmz.setEnable();
+                                                        @fazhengriqi.setEnable();
+                                                        @fzyxq.setEnable();
+                                                        @shuihao.setEnable();
+                                                        @swfzjg.setEnable();
+                                                    }
+                                                ]]>
+                                        </Trigger>
+                                    </Triggers>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="kaihuyinhang" Caption="开户银行" Required="Required"
+                                              DataTableKey="shouyinggys" DataTableColumn="kaihuyinhang"
+                                              EnabledWhen="True"
+                                              WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="yinhangzhanghao" Caption="银行账号" Required="Required"
+                                              DataTableKey="shouyinggys" DataTableColumn="yinhangzhanghao"
+                                              EnabledWhen="True"
+                                              WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="kaihuhuming" Caption="开户户名" Required="Required"
+                                              DataTableKey="shouyinggys" DataTableColumn="kaihuhuming"
+                                              EnabledWhen="True"
+                                              WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                        </BillUIRowPanel>
+                        <BillUIRowPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="zzjgdmz" Caption="组织机构代码证"
+                                              DataTableKey="shouyinggys" DataTableColumn="zzjgdmz"
+                                              EnabledWhen="True"
+                                              WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="fazhengriqi" Caption="发证日期"
+                                              DataTableKey="shouyinggys" DataTableColumn="fazhengriqi"
+                                              EnabledWhen="True"
+                                              WidgetType="BillUIDateTime" DateFormat="yyyy-mm-dd">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="4">
+                                <BillUIWidget Key="fzyxq" Caption="有效期至（组织机构代码证）"
+                                              DataTableKey="shouyinggys" DataTableColumn="fzyxq"
+                                              EnabledWhen="True"
+                                              WidgetType="BillUIDateTime" DateFormat="yyyy-mm-dd">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                        </BillUIRowPanel>
+                        <BillUIRowPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="shuihao" Caption="税务登记号"
+                                              DataTableKey="shouyinggys" DataTableColumn="shuihao"
+                                              EnabledWhen="True"
+                                              WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="5">
+                                <BillUIWidget Key="swfzjg" Caption="发证机关（组织机构代码证）"
+                                              DataTableKey="shouyinggys" DataTableColumn="swfzjg"
+                                              EnabledWhen="True"
+                                              WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                        </BillUIRowPanel>
+                    </BillUIGridPanel>
+                </BillUIPanel>
+
+                <BillUIPanel Layout="tab" Key="mainContainer_tab" Caption="供应商证照信息明细"
+                             S="panel  panel-primary  publicPanel">
+                    <BillUIPanel Layout="grid" Key="one"
+                                 Caption="证照信息">
+                        <BillUIGrid Key="grid0" OptMode="Edit" DataTableKey="zhiliangzhengzhaoxinxi">
+                            <Rules>
+                                <Rule Type="Interface">
+                                    <ErrorMsg>
+                                        <![CDATA[
+                                            证书类型明细项不能为空,请认真填写！！！
+                                        ]]>
+                                    </ErrorMsg>
+
+                                    <RuleExpr>
+                                        <![CDATA[
+                                             com.xyy.erp.platform.common.func.ConditionLicenceSale
+                                         ]]>
+                                    </RuleExpr>
+                                </Rule>
+                            </Rules>
+                            <GridHeads>
+                                <GridHead Col="zhengshuleixing" Caption="证书类型"
+                                          enableEdit="True" Width="180px">
+                                    <BillUIWidget Key="zhengshuleixing"
+                                                  WidgetType="BillUISelect"
+                                                  Src="bill/selectSrc?type=zhengjianmingcheng">
+                                        <Init Type="javascript/angular" Runat="client">
+                                            <![CDATA[
+                                                var v = getHeadValue("qiyeleixing");
+                                                this.loadDataSource();
+                                                 if(v==1){
+                                                    this.removeData('7,8,9,10,11,12,13,16');
+                                                }else if(v==2){
+                                                    this.removeData('1,2,9,10,11,12,13,16');
+                                               }else if(v==3){
+                                                    this.removeData('1,2,3,4,7,8,12,13,16');
+                                               }else if(v==4){
+                                                    this.removeData('1,2,7,8,9,10,11,12,13,16');
+                                               }else{
+                                                    this.removeData('1,2,3,4,7,8,9,10,11,16');
+                                               }
+                                        ]]>
+                                        </Init>
+                                        <Formatters>
+                                            <Formatter>
+                                                <![CDATA[
+					                                          [{'type':'zhengjianmingcheng'}]
+					                                       ]]>
+                                            </Formatter>
+                                        </Formatters>
+                                    </BillUIWidget>
+                                </GridHead>
+                                <GridHead Col="zhengshubianhao" Caption="证书编号"
+                                          enableEdit="True" Width="180px">
+                                    <BillUIWidget Key="zhengshubianhao" WidgetType="BillUIString"/>
+                                </GridHead>
+                                <GridHead Col="fazhengjiguan" Caption="发证机关"
+                                          enableEdit="True" Width="100px">
+                                    <BillUIWidget Key="fazhengjiguan" WidgetType="BillUIString">
+                                    </BillUIWidget>
+                                </GridHead>
+                                <GridHead Col="fazhengriqi" Caption="发证日期"
+                                          enableEdit="True" Width="180px">
+                                    <BillUIWidget Key="fazhengriqi" WidgetType="BillUIDateTime"/>
+                                </GridHead>
+                                <GridHead Col="youxiaoqizhi" Caption="有效期至"
+                                          enableEdit="True" Width="180px">
+                                    <BillUIWidget Key="youxiaoqizhi" WidgetType="BillUIDateTime"/>
+                                </GridHead>
+                            </GridHeads>
+                        </BillUIGrid>
+                    </BillUIPanel>
+
+                    <BillUIPanel Layout="grid" Key="gongyingshang_weituoren"
+                                 Caption="委托人">
+                        <BillUIGrid Key="grid0" OptMode="Edit" DataTableKey="gongyingshang_weituoren">
+                            <Rules>
+                                <Rule Type="Interface">
+                                    <ErrorMsg>
+                                        <![CDATA[
+                                            委托人明细项不能为空,请认真填写！！！
+                                        ]]>
+                                    </ErrorMsg>
+
+                                    <RuleExpr>
+                                        <![CDATA[
+                                             com.xyy.erp.platform.common.func.ConditionWtrSale
+                                         ]]>
+                                    </RuleExpr>
+                                </Rule>
+                            </Rules>
+                            <GridHeads>
+                                <GridHead Col="xingming" Caption="姓名"
+                                          enableEdit="True" Width="80px">
+                                    <BillUIWidget Key="xingming"
+                                                  WidgetType="BillUIString">
+                                        <Triggers>
+                                            <Trigger Type="javascript/angular" Runat="client">
+                                                <![CDATA[
+                                                var co=getDataset("gongyingshang_weituoren").co;
+                                                var v=co.sfzlxr;
+                                                if(v==1){
+                                                    setHeadValue('lianxiren',co.xingming);
+                                                }
+                                                ]]>
+                                            </Trigger>
+                                        </Triggers>
+                                    </BillUIWidget>
+                                </GridHead>
+                                <GridHead Col="xingbie" Caption="性别"
+                                          enableEdit="True" Width="60px">
+                                    <BillUIWidget Key="xingbie"
+                                                  WidgetType="BillUISelect" Src="bill/selectSrc?type=xingbie">
+                                        <Init Type="javascript/angular" Runat="client">
+                                            <![CDATA[
+                                                         this.loadDataSource();
+                                                        ]]>
+                                        </Init>
+                                        <Formatters>
+                                            <Formatter>
+                                                <![CDATA[
+					                                          [{'type':'xingbie'}]
+					                                       ]]>
+                                            </Formatter>
+                                        </Formatters>
+                                    </BillUIWidget>
+                                </GridHead>
+                                <GridHead Col="dianhua" Caption="电话"
+                                          enableEdit="True" Width="100px">
+                                    <BillUIWidget Key="dianhua" WidgetType="BillUIString">
+                                        <Triggers>
+                                            <Trigger Type="javascript/angular" Runat="client">
+                                                <![CDATA[
+                                                var co=getDataset("gongyingshang_weituoren").co;
+                                                var v=co.sfzlxr;
+                                                if(v==1){
+                                                    setHeadValue('dianhua',co.dianhua);
+                                                }
+                                                ]]>
+                                            </Trigger>
+                                        </Triggers>
+                                        <CheckRules>
+                                            <CheckRule>
+                                                <![CDATA[
+                                                     {"type":"builtin","rule":telAndMobile,"msg":"请输入正确手机或者固定电话"}
+                                                ]]>
+                                            </CheckRule>
+                                        </CheckRules>
+
+                                    </BillUIWidget>
+                                </GridHead>
+                                <GridHead Col="zhengjianhaoma" Caption="证件号码"
+                                          enableEdit="True" Width="180px">
+                                    <BillUIWidget Key="zhengjianhaoma" WidgetType="BillUIString">
+                                        <Triggers>
+                                            <Trigger Type="javascript/angular" Runat="client">
+                                                <![CDATA[
+                                                var co=getDataset("gongyingshang_weituoren").co;
+                                                var v=co.sfzlxr;
+                                                if(v==1){
+                                                    setHeadValue('zhengjianhaoma',co.zhengjianhaoma);
+                                                }
+                                                ]]>
+                                            </Trigger>
+                                        </Triggers>
+                                    </BillUIWidget>
+                                </GridHead>
+                                <GridHead Col="dizhi" Caption="地址"
+                                          enableEdit="True" Width="180px">
+                                    <BillUIWidget Key="dizhi" WidgetType="BillUIString"/>
+                                </GridHead>
+                                <GridHead Col="wtryxq" Caption="委托人有效期"
+                                          enableEdit="True" Width="80px">
+                                    <BillUIWidget Key="wtryxq" WidgetType="BillUIDateTime"/>
+                                </GridHead>
+                                <GridHead Col="wtsbh" Caption="委托书编号"
+                                          enableEdit="True" Width="80px">
+                                    <BillUIWidget Key="wtsbh" WidgetType="BillUIString"/>
+                                </GridHead>
+                                <GridHead Col="sfzlxr" Caption="是否主联系人"
+                                          enableEdit="True" Width="80px">
+                                    <BillUIWidget Key="sfzlxr"
+                                                  WidgetType="BillUISelect" Src="bill/selectSrc?type=bool">
+                                        <Init Type="javascript/angular" Runat="client">
+                                            <![CDATA[
+                                                         this.loadDataSource();
+                                                        ]]>
+                                        </Init>
+                                        <Triggers>
+                                            <Trigger Type="javascript/angular" Runat="client">
+                                                <![CDATA[
+                                                var co=getDataset("gongyingshang_weituoren").co;
+                                                var rows=getRows("gongyingshang_weituoren");
+                                                var v=this.getValue();
+                                                if(v==1){
+                                                    for(var i=0;i<rows.length;i++){
+                                                      if(rows[i].SN!=co.SN){
+                                                          setColValue("gongyingshang_weituoren", "sfzlxr", i, 0);
+                                                      }
+                                                    };
+                                                    setHeadValue('lianxiren',co.xingming);
+                                                    setHeadValue('dianhua',co.dianhua);
+                                                    setHeadValue('zhengjianhaoma',co.zhengjianhaoma);
+                                                }else if(v==0){
+                                                    for(var i=0;i<rows.length;i++){
+                                                      if(rows[i].SN!==co.SN){
+                                                        setColValue("gongyingshang_weituoren", "sfzlxr", i,1);
+                                                      }
+                                                    };
+                                                }
+                                                ]]>
+                                            </Trigger>
+                                        </Triggers>
+                                        <Formatters>
+                                            <Formatter>
+                                                <![CDATA[
+					                                          [{'type':'bool'}]
+					                                       ]]>
+                                            </Formatter>
+                                        </Formatters>
+                                    </BillUIWidget>
+                                </GridHead>
+                            </GridHeads>
+                        </BillUIGrid>
+                    </BillUIPanel>
+                </BillUIPanel>
+            </BillUIPanel>
+        </BillBodyMeta>
+
+    </BillBody>
+
+    <BillHeadMeta>
+        <BillStatusCollection>
+            <Status Default="true" Code="1">录入</Status>
+            <Status Code="20">正式</Status>
+            <Status Code="38">一级审核</Status>
+            <Status Code="39">二级审核</Status>
+            <Status Code="40">审核通过</Status>
+        </BillStatusCollection>
+        <ProcessCollection>
+            <Process  Version="2" Name="首营企业">
+                <![CDATA[
+                        status==20
+                ]]>
+            </Process>
+        </ProcessCollection>
+        <BillEventCollection>
+            <Event Type="StatusChanged" Processor="com.xyy.bill.handler.biz.BillDistributorSYHandler"/>
+        </BillEventCollection>
+    </BillHeadMeta>
+</BillFormMeta>
+

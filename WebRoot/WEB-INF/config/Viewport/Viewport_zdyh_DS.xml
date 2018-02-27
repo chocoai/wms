@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="zdyh" Caption="重点养护商品查询" DefaultFilter="" PermissionType="CommType"  Pagging="100"
+        TableName="SQLQuery::select * | from (SELECT
+	x.*, y.shengchanriqi,
+	y.youxiaoqizhi
+FROM
+	(
+		SELECT
+			b.*, a.kucunshuliang,
+			a.pihaoId
+		FROM
+			xyy_erp_bill_shangpinpihaokucun a,
+			xyy_erp_dic_yanghupinzhong b
+		WHERE
+			b.yanghuleixing = 1
+		AND a.shangpinId = b.goodsid
+	) x,
+	xyy_erp_dic_shangpinpihao y
+WHERE
+	x.pihaoId = y.pihaoId) z
+        where 1 = 1  @shangpinmingcheng @shangpinbianhao @shengchanchangjia  "  DataSource="" Head="false" Singleton="" OrderBy="">
+        <Parameters>
+            
+            <Parameter Key="shangpinbianhao" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(shangpinbianhao==null | shangpinbianhao=="",""," and z.shangpinbianhao = '"+shangpinbianhao+"'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="shangpinmingcheng" Type="String">
+                <Where>
+             <![CDATA[
+					m.if(shangpinmingcheng==null | shangpinmingcheng=="" ,""," and z.shangpinmingcheng like '%"+shangpinmingcheng+"%'")
+	            ]]> 
+                </Where>
+            </Parameter>
+            <Parameter Key="shengchanchangjia" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(shengchanchangjia==null | shengchanchangjia=="" ,""," and z.shengchanchangjia like '%"+shengchanchangjia+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BillEdge Name="拣货单-装箱复核单" Key="jianhuodan_zhuangxiangfuhedan_shtxd001" Version="1.0.0" Code="shtxd001" Caption="拣货单-装箱复核单" SourceBillKey="jianhuodan" TargetBillKey="zhuangxiangfuhedan">
+	<Description />
+	<BillTransformEdge>
+		<BillHeadTransformEdge>
+			<TargetBillField Key="danjubianhao" Category="property" />
+			<TargetBillField Key="zhifuleixing" Category="property"><![CDATA[=zhifuleixing]]></TargetBillField>
+			<TargetBillField Key="shouhuoren" Category="property"><![CDATA[=shouhuoren]]></TargetBillField>
+			<TargetBillField Key="riqi" Category="property" />
+			<TargetBillField Key="shoujihao" Category="property"><![CDATA[=shoujihao]]></TargetBillField>
+			<TargetBillField Key="shouhuodizhi" Category="property"><![CDATA[=shouhuodizhi]]></TargetBillField>
+			<TargetBillField Key="xiaoshouyuan" Category="property" />
+			<TargetBillField Key="dingdanID" Category="property"><![CDATA[=dingdanbianhao]]></TargetBillField>
+		</BillHeadTransformEdge>
+		<BillBodyTransformEdge>
+			<BillBodyEdge targetDltKey="zhuangxiangfuhedan_details">
+				<BillDtlEdge sourceDltKey="">
+					<TargetBillField Key="jianguanfangchuan" Category="property"><![CDATA[=jianhuodan_details.shifoujianguan]]></TargetBillField>
+					<TargetBillField Key="pinxianghaoma" Category="property" />
+					<TargetBillField Key="shangpinmingcheng" Category="property"><![CDATA[=jianhuodan_details.shangpinmingcheng]]></TargetBillField>
+					<TargetBillField Key="shangpinbianhao" Category="property"><![CDATA[=jianhuodan_details.shangpinbianhao]]></TargetBillField>
+					<TargetBillField Key="shangpinguige" Category="property"><![CDATA[=jianhuodan_details.shangpinguige]]></TargetBillField>
+					<TargetBillField Key="jihuashuliang" Category="property"><![CDATA[=jianhuodan_details.jihuashuliang]]></TargetBillField>
+					<TargetBillField Key="baozhuangdanwei" Category="property"><![CDATA[=jianhuodan_details.baozhuangdanwei]]></TargetBillField>
+					<TargetBillField Key="pihao" Category="property"><![CDATA[=jianhuodan_details.pihao]]></TargetBillField>
+					<TargetBillField Key="xianshihuowei" Category="property" />
+					<TargetBillField Key="shengchanchangjia" Category="property"><![CDATA[=jianhuodan_details.shengchanchangjia]]></TargetBillField>
+					<TargetBillField Key="jhlss" Category="property"><![CDATA[=jianhuodan_details.jhlss]]></TargetBillField>
+					<TargetBillField Key="chonghongyuanyin" Category="property" />
+					<TargetBillField Key="sjlss" Category="property"><![CDATA[=jianhuodan_details.sjlss]]></TargetBillField>
+					<TargetBillField Key="shijijianshu" Category="property"><![CDATA[=jianhuodan_details.shijijianshu]]></TargetBillField>
+					<TargetBillField Key="shijishuliang" Category="property"><![CDATA[=jianhuodan_details.shijishuliang]]></TargetBillField>
+					<TargetBillField Key="zhongbaozhuang" Category="property" />
+					<TargetBillField Key="jianhuoyuan" Category="property" />
+					<TargetBillField Key="cuowuleixin" Category="property" />
+					<TargetBillField Key="jihuajianshu" Category="property"><![CDATA[=jianhuodan_details.jihuajianshu]]></TargetBillField>
+					<TargetBillField Key="shengchanriqi" Category="property"><![CDATA[=jianhuodan_details.shengchanriqi]]></TargetBillField>
+					<TargetBillField Key="cuowuzhuangtai" Category="property" />
+					<TargetBillField Key="youxiaoqizhi" Category="property"><![CDATA[=jianhuodan_details.youxiaoqizhi]]></TargetBillField>
+					<TargetBillField Key="tihuofangshi" Category="property" />
+					<TargetBillField Key="scrqyq" Category="property" />
+					<TargetBillField Key="phclfs" Category="property" />
+					<TargetBillField Key="sfgzyp" Category="property" />
+					<TargetBillField Key="shifouyisui" Category="property" />
+					<TargetBillField Key="sfsrfh" Category="property" />
+					<TargetBillField Key="kucunbianhao" Category="property" />
+					<TargetBillField Key="zhiliangzhuangkuang" Category="property" />
+					<TargetBillField Key="zhujima" Category="property" />
+					<TargetBillField Key="fhtbh" Category="property" />
+					<TargetBillField Key="shifoujianguan" Category="property" />
+					<TargetBillField Key="zhengsanbiaozhi" Category="property" />
+					<TargetBillField Key="zhouzhuanxiang" Category="property" />
+					<TargetBillField Key="cfdbh" Category="property" />
+					<TargetBillField Key="pihaoneima" Category="property" />
+				</BillDtlEdge>
+			</BillBodyEdge>
+		</BillBodyTransformEdge>
+	</BillTransformEdge>
+	<BillGroupJoinEdge>
+		<BillHeadGroupJoinEdge>
+			<GroupFileds GroupType="field"><![CDATA[zhifuleixing,shouhuoren,shoujihao,shouhuodizhi]]></GroupFileds>
+			<JoinFileds />
+		</BillHeadGroupJoinEdge>
+		<BillBodyGroupJoinEdge>
+			<TargetSubBillGroupJoinEdges>
+				<TargetSubBillGroupJoinEdge Key="zhuangxiangfuhedan_details">
+					<GroupFileds GroupType="field" />
+					<JoinFileds />
+				</TargetSubBillGroupJoinEdge>
+			</TargetSubBillGroupJoinEdges>
+		</BillBodyGroupJoinEdge>
+	</BillGroupJoinEdge>
+	<BillBackWriteEdge>
+		<BillHeadBackWriteEdge>
+			<BackWriteEdge SourceKey="jianhuodan">
+				<BackWriteRule />
+			</BackWriteEdge>
+		</BillHeadBackWriteEdge>
+		<BillBodyBackWriteEdge>
+			<BackWriteEdge SourceKey="jianhuodan_details">
+				<BackWriteRule />
+			</BackWriteEdge>
+		</BillBodyBackWriteEdge>
+	</BillBackWriteEdge>
+	<DataFilterEdge>
+		<SourceBillHeadFilterEdge>
+			<Filter />
+		</SourceBillHeadFilterEdge>
+		<SourceBillBodyFilterEdge />
+	</DataFilterEdge>
+	<RuleFilterEdge>
+		<RuleHeadFilterEdge>
+			<Filter />
+		</RuleHeadFilterEdge>
+		<RuleBodyFilterEdge />
+	</RuleFilterEdge>
+	<BillEdgeHook />
+	<BillEdgeController>
+		<MultiConvertCtrl CtrType="AllowAndWarning" />
+		<BackWriteController CtrType="Save" />
+		<AutoSaveController CtrType="AutoSave" />
+		<DisplayController CtrType="GoEditor" />
+	</BillEdgeController>
+</BillEdge>
+

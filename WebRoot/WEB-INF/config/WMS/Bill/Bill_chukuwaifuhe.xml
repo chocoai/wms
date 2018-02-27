@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BillFormMeta Key="chukuwaifuhe" Version="1.0.0" BillType="Bill"
+              Caption="出库外复核">
+    <BillBody>
+        <BillBodyMeta UserAgent="web">
+            <BillUIPanel Layout="flex" FlexDirection="column" Width="100%"
+                         Key="mainContainer" Caption="出库外复核" S="">
+                <BillUIPanel Layout="flex" Key="toolbox" Caption="工具栏">
+                    <BillUIWidget Key="box" WidgetType="BillUIView" Src="toolbase">
+                    </BillUIWidget>
+                    <BillUIWidget Key="save" Caption="复核" EnabledWhen="True"
+                                  Icon="glyphicon glyphicon-floppy-disk" WidgetType="BillUIButton">
+                        <Triggers>
+                            <Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+                                          @$this.save('bills',{
+                                        before:{
+                                           setStatus:[47]
+                                        }
+                                    });      
+                     			]]>
+                            </Trigger>
+                        </Triggers>
+                    </BillUIWidget>
+                </BillUIPanel>
+
+                <BillUIPanel Layout="flex" Key="mainContainer_head"
+                             Caption="出库外复核" S="panel panel-success publicPanel" RowGap="5"
+                             ColGap="10" ColWidth="300px 300px 300px  300px 1fr 1fr">
+                    <BillUIGridPanel Key="chukuwaifuhe">
+                        <BillUIRowPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="dingdanbianhao" ParameterKey="dingdanbianhao"
+                                              DataTableKey="chukuwaifuhe" DataTableColumn="dingdanbianhao"
+                                              Caption="订单编号" EnabledWhen="True" WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="huozumingcheng" ParameterKey="huozumingcheng"
+                                              DataTableKey="chukuwaifuhe" DataTableColumn="huozumingcheng"
+                                              Caption="货主名称" EnabledWhen="True" WidgetType="BillUIString"
+                                              Disable="true">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+
+
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="kehumingcheng" ParameterKey="kehumingcheng"
+                                              DataTableKey="chukuwaifuhe" DataTableColumn="kehumingcheng"
+                                              Caption="客户名称" EnabledWhen="True" Disable="true"
+                                              WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="zancunqu" ParameterKey="zancunqu"
+                                              DataTableKey="chukuwaifuhe" DataTableColumn="zancunqu" Caption="暂存区"
+                                              EnabledWhen="True" Disable="true" WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                        </BillUIRowPanel>
+
+                        <BillUIRowPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="zongjianshu" ParameterKey="zongjianshu"
+                                              DataTableKey="chukuwaifuhe" DataTableColumn="zongjianshu"
+                                              Caption="总件数" EnabledWhen="True" Disable="true"
+                                              WidgetType="BillUIInteger">
+
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="zhengjianshu" ParameterKey="zhengjianshu"
+                                              DataTableKey="chukuwaifuhe" DataTableColumn="zhengjianshu"
+                                              Caption="整件数" EnabledWhen="True" Disable="true"
+                                              WidgetType="BillUIInteger">
+                                    <Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+										var rows = getRows("chukuwaifuhe_details");
+										var zhengjianshu=0;
+	                                     for(var i=0;i<rows.length;i++){
+	                                     	zhengjianshu=zhengjianshu+rows[i].zhengjianshu;
+	                                     }
+	                                     this.setValue(zhengjianshu);
+	                                   	 setHide('gridAdd');
+										 setHide('gridDel');
+                                       ]]>
+                                    </Init>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="pinxiangshu" ParameterKey="pinxiangshu"
+                                              DataTableKey="chukuwaifuhe" DataTableColumn="pinxiangshu"
+                                              Caption="拼箱数" EnabledWhen="True" Disable="true" WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="xianlumingcheng" ParameterKey="xianlumingcheng"
+                                              DataTableKey="chukuwaifuhe" DataTableColumn="xianlumingcheng"
+                                              Caption="线路名称" EnabledWhen="True" Disable="true"
+                                              WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="caozuoren" ParameterKey="caozuoren"
+                                              DataTableKey="chukuwaifuhe" DataTableColumn="caozuoren"
+                                              Caption="" EnabledWhen="True" Disable="true"
+                                              WidgetType="BillUIString">
+                                    <!-- 获取系统登录用户名 -->
+                                    <Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                            	this.setHide();
+                                        	 var r = this.getRealName();
+												 @caozuoren.setValue(r);
+	                                        ]]>
+                                    </Init>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+
+                        </BillUIRowPanel>
+                    </BillUIGridPanel>
+                </BillUIPanel>
+
+                <BillUIPanel Layout="tab" Key="mainContainer_tab"
+                             Caption="出库外复核明细" S="panel  panel-primary  publicPanel">
+                    <BillUIPanel Layout="flex" Key="mainContainer_details"
+                                 Caption="出库外复核明细" RowGap="1" ColGap="1" ColWidth="1fr">
+                        <BillUIGrid Key="chukuwaifuhe_details" Left="1" Top="1"
+                                    Width="1" Height="1" DataTableKey="chukuwaifuhe_details">
+
+
+                            <GridHeads>
+                                <GridHead Col="shangpinbianhao" Caption="商品编号"
+                                          enableEdit="True" Width="120px">
+                                    <BillUIWidget Key="shangpinbianhao" WidgetType="BillUIString"
+                                                  Disable="true">
+                                    </BillUIWidget>
+                                </GridHead>
+                                <GridHead Col="shangpinmingcheng" Caption="商品名称"
+                                          enableEdit="True" Width="200px">
+                                    <BillUIWidget Key="shangpinmingcheng" WidgetType="BillUIString"
+                                                  Disable="true">
+                                    </BillUIWidget>
+                                </GridHead>
+                                <GridHead Col="guige" Caption="规格" enableEdit="True"
+                                          Width="120px">
+                                    <BillUIWidget Key="guige" WidgetType="BillUIString"
+                                                  Disable="true"/>
+                                </GridHead>
+
+                                <GridHead Col="danwei" Caption="单位" enableEdit="True"
+                                          Width="50px">
+                                    <BillUIWidget Key="danwei" WidgetType="BillUIInteger"
+                                                  Disable="true">
+                                        <Formatters>
+                                            <Formatter>
+                                                <![CDATA[
+ 									            [{'type':'baozhuangdanwei'}]
+									        ]]>
+                                            </Formatter>
+                                        </Formatters>
+                                    </BillUIWidget>
+                                </GridHead>
+                                <GridHead Col="shengchanchangjia" Caption="生产厂家"
+                                          enableEdit="True" Width="120px">
+                                    <BillUIWidget Key="shengchanchangjia" WidgetType="BillUIString"
+                                                  Disable="true"/>
+                                </GridHead>
+                                <GridHead Col="pinxianghao" Caption="拼箱号" enableEdit="True"
+                                          Width="70px">
+                                    <BillUIWidget Key="pinxianghao" WidgetType="BillUIString"
+                                                  Disable="true"/>
+                                </GridHead>
+                                <GridHead Col="shengchanriqi" Caption="生产日期"
+                                          enableEdit="True" Width="100px">
+                                    <BillUIWidget Key="shengchanriqi" WidgetType="BillUIDateTime"
+                                                  Disable="true"/>
+                                </GridHead>
+                                <GridHead Col="youxiaoqizhi" Caption="有效期至" enableEdit="True"
+                                          Width="100px">
+                                    <BillUIWidget Key="youxiaoqizhi" WidgetType="BillUIDateTime"
+                                                  Disable="true"/>
+                                </GridHead>
+                                <GridHead Col="shangpingpihaosn" Caption="商品批号"
+                                          enableEdit="True" Width="120px">
+                                    <BillUIWidget Key="shangpingpihaosn" WidgetType="BillUIInteger"
+                                                  Disable="true"/>
+                                </GridHead>
+                                <GridHead Col="shuliang" Caption="数量" enableEdit="True"
+                                          Width="80px">
+                                    <BillUIWidget Key="shuliang" WidgetType="BillUIString"
+                                                  Disable="true"/>
+                                </GridHead>
+                                <GridHead Col="chonghongshuliang" Caption="冲红数量" enableEdit="True"
+                                          Width="100px">
+                                    <BillUIWidget Key="chonghongshuliang" WidgetType="BillUIString"
+                                                  Disable="true"/>
+                                </GridHead>
+                                <GridHead Col="zhengjianshu" Caption="整件数" enableEdit="True"
+                                          Width="80px">
+                                    <BillUIWidget Key="zhengjianshu" WidgetType="BillUIInteger"
+                                                  Disable="true">
+                                    </BillUIWidget>
+                                </GridHead>
+                                <GridHead Col="lingjianshu" Caption="零散数" enableEdit="True"
+                                          Width="120px">
+                                    <BillUIWidget Key="lingjianshu" WidgetType="BillUIString"
+                                                  Disable="true"/>
+                                </GridHead>
+                                <GridHead Col="fhymc" Caption="内复核员" enableEdit="True"
+                                          Width="80px">
+                                    <BillUIWidget Key="fhymc" WidgetType="BillUIInteger"
+                                                  Disable="true">
+                                    </BillUIWidget>
+                                </GridHead>
+                                <GridHead Col="caozuoren" Caption="拣货员" enableEdit="True"
+                                          Width="80px">
+                                    <BillUIWidget Key="caozuoren" WidgetType="BillUIString"
+                                                  Disable="true"/>
+                                </GridHead>
+                            </GridHeads>
+                        </BillUIGrid>
+                    </BillUIPanel>
+                </BillUIPanel>
+            </BillUIPanel>
+        </BillBodyMeta>
+    </BillBody>
+
+    <BillHeadMeta>
+        <BillEventCollection>
+            <Event Type="PostSave" Processor="com.xyy.wms.outbound.biz.ChuKuWaiFuHePostHandler"/>
+        </BillEventCollection>
+    </BillHeadMeta>
+</BillFormMeta>
+

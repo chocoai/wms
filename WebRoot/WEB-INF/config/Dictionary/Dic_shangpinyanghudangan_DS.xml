@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+
+    <DataTable Key="shangpinyanghudangan"  BillType="Dictionary" Caption="商品养护档案" DefaultFilter="" TableName="Table::xyy_erp_dic_shangpinyanghudangan" DataSource="" Head="true">
+        <Field FieldKey="shangpinmingcheng" FieldName="商品名称" FieldType="Varchar" Comment="商品名称"/>
+        <Field FieldKey="shangpinbianhao" FieldName="商品编号" FieldType="Varchar" Comment="商品编号"/>
+        <Field FieldKey="jiandangriqi" FieldName="建档日期" FieldType="TimeStamp" Comment="建档日期"/>
+        <Field FieldKey="jiandangren" FieldName="建档人" FieldType="Varchar" Comment="建档人"/>
+        <Field FieldKey="shangpinguige" FieldName="商品规格" FieldType="Varchar" Comment="商品规格"/> 
+        <Field FieldKey="baozhuangdanwei" FieldName="包装单位" FieldType="Varchar" Comment="包装单位"/> 
+        <Field FieldKey="jixing" FieldName="剂型" FieldType="Varchar" Comment="剂型"/> 
+        <Field FieldKey="pizhunwenhao" FieldName="批准文号" FieldType="Varchar" Comment="批准文号"/> 
+        <Field FieldKey="zhucangtiaojian" FieldName="贮藏条件" FieldType="Varchar" Comment="贮藏条件"/>
+        <Field FieldKey="zhiliangbiaozhun" FieldName="质量标准" FieldType="Varchar" Comment="质量标准"/>
+        <Field FieldKey="shangpinzhuangtai" FieldName="商品状态" FieldType="Varchar" Comment="商品状态：0已过期1正常2近效期"/>
+    </DataTable>
+    <DataTable Key="yanghuqingkuang"   Caption="养护情况" DefaultFilter="ID" TableName="Table::xyy_erp_dic_yanghuqingkuang" DataSource="" Head="false">
+        <Field FieldKey="BillDtlID" FieldName="BillDtlID" FieldType="BillID" Comment="主键"/>
+        <Field FieldKey="ID" FieldName="ID" FieldType="BillDtlID" Comment="外键"/>
+        <Field FieldKey="riqi" FieldName="日期" FieldType="TimeStamp" Comment="日期"/> 
+        <Field FieldKey="pihao" FieldName="批号" FieldType="Varchar" Comment="批号"/> 
+        <Field FieldKey="shengchanriqi" FieldName="生产日期" FieldType="TimeStamp" Comment="生产日期"/> 
+        <Field FieldKey="youxiaoqizhi" FieldName="有效期至" FieldType="TimeStamp" Comment="有效期至"/> 
+        <Field FieldKey="shuliang" FieldName="数量" FieldType="Int" Comment="数量"/>
+        <Field FieldKey="yanghufangfa" FieldName="养护方法/措施" FieldType="Varchar" Comment="养护方法/措施"/>
+        <Field FieldKey="zhiliangqingkuang" FieldName="质量情况" FieldType="Varchar" Comment="质量情况"/>
+        <Field FieldKey="dcclnr" FieldName="调查处理内容" FieldType="Varchar" Comment="调查处理内容"/>
+        <Field FieldKey="yanghuxiangmu" FieldName="养护项目" FieldType="Varchar" Comment="养护项目"/>
+        <Field FieldKey="beizhu" FieldName="备注" FieldType="Varchar" Comment="备注"/>
+    </DataTable>
+</DataSet>

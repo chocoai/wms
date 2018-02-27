@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="cn" ng-app="xyyerp">
+<head>
+    <base href="/"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>客户基本信息</title>
+    <link rel='stylesheet' href='../lib/css/bootstrap.css'>
+    <link rel='stylesheet' href='../lib/css/css.css'>
+    <script src="//cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//cdn.bootcss.com/angular.js/1.5.10/angular.min.js"></script>
+    <script src="/lib/js/util.js"></script>
+    <script src="//cdn.bootcss.com/angular-ui-bootstrap/2.4.0/ui-bootstrap-tpls.min.js"></script>
+    <script src="/Shared/myDirective.js"></script>
+    <script src="/Shared/SharedService.js"></script>
+    <script src="/lib/js/dictionary.js"></script>
+    <style></style>
+    <script>
+        var main = angular.module('xyyerp', ['myApp.myDirective']);
+        main.run(function ($rootScope, $interval) {
+            if (!$rootScope._model) {
+                $rootScope._model = new $Model();
+            }
+            if (!$rootScope._env) {
+                $rootScope._env = new $Env();
+            }
+        });
+    main.controller('xyyerp.mainCtl042502c6b89049a6897004c99b32b5a8', function ($scope, $http, $interval, $rootScope, $compile, $q) {
+        $scope._model = new $Model($rootScope._model);
+        $scope._env = new $Model($rootScope._env);
+        clone({"billkey": "kehujibenxinxi", "ua": "WEB"}, $scope._env);
+        clone({billtype: 'Dictionary'}, $scope._env);
+        $scope.renderId = '9df1441eec564e88a2ab092ec5b8afa4';
+        $scope.$http = $http;
+        $scope.$q = $q;
+        $scope.$interval = $interval;
+        $scope._$$controller$$ = '_$$controller$$';
+        $scope.$compile = $compile;
+        $scope.checkRuleLists = [];
+        mixer(ERPDic, $scope);
+        $scope.pageInit();
+    });
+    </script>
+</head>
+<body>
+<div billuitemplate></div>
+<div zhujimatemplate></div>
+<div ng-controller="xyyerp.mainCtl042502c6b89049a6897004c99b32b5a8" Version="1.0.0" BillType="Dictionary"
+     Caption="客户基本信息" Key="kehujibenxinxi" id="kehujibenxinxi">
+    <div user-agent="web">
+        <div Caption="客户基本信息" style="flex-direction:column;display:flex;">
+            <div Caption="工具栏" id="dictionary_tools" style="flex-direction:column;display:flex;flex-basis:1;">
+                <div billuiview src="tooldicbox" renderId="9df1441eec564e88a2ab092ec5b8afa4" key="box"
+                     style="flex-basis:1;"></div>
+            </div>
+            <div class="container" id="h1" style="flex-basis:1;">
+                <div class="row">
+                    <div class="col-sm-3 ">
+                        <div Caption="客户基本信息" class="panel publicPanel panel-info"
+                             style="flex-direction:column;display:flex;">
+                            <div ng-model="kehujibenxinxi.tree" init="dGhpcy50cmVlb3B0aW9ucy5lZGl0LmVuYWJsZT10cnVlOw=="
+                                 triggers="WyJAYm94LkBhZGQuc2V0RW5hYmxlKCk7IEBib3guQGRlbC5zZXRFbmFibGUoKTsgQGJveC5AZWRpdC5zZXRFbmFibGUoKTsgQGJveC5Ac3VibWl0LnNldERpc2FibGUoKTsgQGJveC5AY2FuY2VsLnNldERpc2FibGUoKTsgdmFyIHNlbD10aGlzLnRyZWUuZ2V0U2VsZWN0ZWROb2RlcygpOyBpZihzZWwubGVuZ3RoPT0xKXsgQCR0aGlzLmNsaWNrKHNlbCk7IH0iXQ=="
+                                 billuitree renderId="9df1441eec564e88a2ab092ec5b8afa4" multiselect
+                                 treeoptions="treeoptions" treemodel="treemodel" class="ztree"
+                                 table-key="kehujibenxinxi" id="tree" key="tree" billuitree style="flex-basis:1;"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-9 ">
+                        <div Caption="字段明细" class="panel publicPanel panel-info"
+                             style="flex-direction:column;display:flex;">
+                            <div class="container" id="h2" style="flex-basis:1;">
+                                <div class="row">
+                                    <div class="col-sm-4 ">
+                                        <div class="input-group"><span class="input-group-addon">助记码：</span><input
+                                                ng-model="kehujibenxinxi.zhujima" billuistring
+                                                renderId="9df1441eec564e88a2ab092ec5b8afa4" key="zhujima" title="助记码："
+                                                null type="text" class="form-control"></div>
+                                    </div>
+                                    <div class="col-sm-3 ">
+                                        <div class="input-group"><span class="input-group-addon">代码：</span><input
+                                                ng-model="kehujibenxinxi.code" billuistring
+                                                renderId="9df1441eec564e88a2ab092ec5b8afa4" key="code" title="代码：" null
+                                                type="text" class="form-control"></div>
+                                    </div>
+                                    <div class="col-sm-5 ">
+                                        <div class="input-group"><span class="input-group-addon">字典名称：</span><input
+                                                ng-model="kehujibenxinxi.name" billuistring
+                                                renderId="9df1441eec564e88a2ab092ec5b8afa4" key="name" title="字典名称："
+                                                null type="text" class="form-control"></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4 ">
+                                        <div class="input-group"><span class="input-group-addon">节点类型：</span><select
+                                                ng-model="kehujibenxinxi.nodeType"
+                                                init="dGhpcy5sb2FkRGF0YVNvdXJjZSgpOw==" billuiselect
+                                                renderId="9df1441eec564e88a2ab092ec5b8afa4" key="nodeType" v k
+                                                source-src="bill/selectSrc?type=nodeType" class="form-control"></select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 ">
+                                        <div class="input-group"><span class="input-group-addon">节点状态：</span><select
+                                                ng-model="kehujibenxinxi.status" init="dGhpcy5sb2FkRGF0YVNvdXJjZSgpOw=="
+                                                billuiselect renderId="9df1441eec564e88a2ab092ec5b8afa4" key="status" v
+                                                k source-src="bill/selectSrc?type=nodeStatus"
+                                                class="form-control"></select></div>
+                                    </div>
+                                    <div class="col-sm-5 ">
+                                        <div class="input-group"><span class="input-group-addon">客户名称：</span><input
+                                                ng-model="kehujibenxinxi.kehumingcheng" billuistring
+                                                renderId="9df1441eec564e88a2ab092ec5b8afa4" key="kehumingcheng"
+                                                title="客户名称：" null type="text" class="form-control"></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4 ">
+                                        <div class="input-group"><span class="input-group-addon">客户类别：</span><select
+                                                ng-model="kehujibenxinxi.kehuleibie"
+                                                init="dGhpcy5sb2FkRGF0YVNvdXJjZSgpOw==" billuiselect
+                                                renderId="9df1441eec564e88a2ab092ec5b8afa4" key="kehuleibie" v k
+                                                source-src="bill/selectSrc?type=kuhuleixing"
+                                                class="form-control"></select></div>
+                                    </div>
+                                    <div class="col-sm-3 ">
+                                        <div class="input-group"><span class="input-group-addon">法人代表：</span><input
+                                                ng-model="kehujibenxinxi.farendaibiao" billuistring
+                                                renderId="9df1441eec564e88a2ab092ec5b8afa4" key="farendaibiao"
+                                                title="法人代表：" null type="text" class="form-control"></div>
+                                    </div>
+                                    <div class="col-sm-5 ">
+                                        <div class="input-group"><span class="input-group-addon">客户编号：</span><input
+                                                ng-model="kehujibenxinxi.kehubianhao" billuistring
+                                                renderId="9df1441eec564e88a2ab092ec5b8afa4" key="kehubianhao"
+                                                title="客户编号：" null type="text" class="form-control"></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4 ">
+                                        <div class="input-group"><span class="input-group-addon">邮政编码：</span><input
+                                                ng-model="kehujibenxinxi.youzhengbianma" billuistring
+                                                renderId="9df1441eec564e88a2ab092ec5b8afa4" key="youzhengbianma"
+                                                title="邮政编码：" null type="text" class="form-control"></div>
+                                    </div>
+                                    <div class="col-sm-8 ">
+                                        <div class="input-group"><span class="input-group-addon">联系地址：</span><input
+                                                ng-model="kehujibenxinxi.lianxidizhi" billuistring
+                                                renderId="9df1441eec564e88a2ab092ec5b8afa4" key="lianxidizhi"
+                                                title="联系地址：" null type="text" class="form-control"></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4 ">
+                                        <div class="input-group"><span class="input-group-addon">税号：</span><input
+                                                ng-model="kehujibenxinxi.shuihao" billuistring
+                                                renderId="9df1441eec564e88a2ab092ec5b8afa4" key="shuihao" title="税号："
+                                                null type="text" class="form-control"></div>
+                                    </div>
+                                    <div class="col-sm-3 ">
+                                        <div class="input-group"><span class="input-group-addon">质量负责人：</span><input
+                                                ng-model="kehujibenxinxi.zlfzr" billuistring
+                                                renderId="9df1441eec564e88a2ab092ec5b8afa4" key="zlfzr" title="质量负责人："
+                                                null type="text" class="form-control"></div>
+                                    </div>
+                                    <div class="col-sm-5 ">
+                                        <div class="input-group"><span class="input-group-addon">传真：</span><input
+                                                ng-model="kehujibenxinxi.chuanzhen" billuistring
+                                                renderId="9df1441eec564e88a2ab092ec5b8afa4" key="chuanzhen" title="传真："
+                                                null type="text" class="form-control"></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4 ">
+                                        <div class="input-group"><span class="input-group-addon">电子邮箱：</span><input
+                                                ng-model="kehujibenxinxi.dianziyouxiang" billuistring
+                                                renderId="9df1441eec564e88a2ab092ec5b8afa4" key="dianziyouxiang"
+                                                title="电子邮箱：" null type="text" class="form-control"></div>
+                                    </div>
+                                    <div class="col-sm-3 ">
+                                        <div class="input-group"><span class="input-group-addon">银行账号：</span><input
+                                                ng-model="kehujibenxinxi.yinhangzhanghao" billuistring
+                                                renderId="9df1441eec564e88a2ab092ec5b8afa4" key="yinhangzhanghao"
+                                                title="银行账号：" null type="text" class="form-control"></div>
+                                    </div>
+                                    <div class="col-sm-5 ">
+                                        <div class="input-group"><span class="input-group-addon">开户户名：</span><input
+                                                ng-model="kehujibenxinxi.kaihuhuming" billuistring
+                                                renderId="9df1441eec564e88a2ab092ec5b8afa4" key="kaihuhuming"
+                                                title="开户户名：" null type="text" class="form-control"></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4 ">
+                                        <div class="input-group"><span class="input-group-addon">企业网址：</span><input
+                                                ng-model="kehujibenxinxi.qiyewangzhi" billuistring
+                                                renderId="9df1441eec564e88a2ab092ec5b8afa4" key="qiyewangzhi"
+                                                title="企业网址：" null type="text" class="form-control"></div>
+                                    </div>
+                                    <div class="col-sm-3 ">
+                                        <div class="input-group"><span class="input-group-addon">审批状态：</span><select
+                                                ng-model="kehujibenxinxi.shenpizhuangtai"
+                                                init="dGhpcy5sb2FkRGF0YVNvdXJjZSgpOw==" billuiselect
+                                                renderId="9df1441eec564e88a2ab092ec5b8afa4" key="shenpizhuangtai" v k
+                                                source-src="bill/selectSrc?type=shenpizhuangtai"
+                                                class="form-control"></select></div>
+                                    </div>
+                                    <div class="col-sm-5 ">
+                                        <div class="input-group"><span class="input-group-addon">开户银行：</span><input
+                                                ng-model="kehujibenxinxi.kaihuyinhang" billuistring
+                                                renderId="9df1441eec564e88a2ab092ec5b8afa4" key="kaihuyinhang"
+                                                title="开户银行：" null type="text" class="form-control"></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4 ">
+                                        <div class="input-group"><span class="input-group-addon">冻结：</span><select
+                                                ng-model="kehujibenxinxi.dongjie"
+                                                init="dGhpcy5sb2FkRGF0YVNvdXJjZSgpOw==" billuiselect
+                                                renderId="9df1441eec564e88a2ab092ec5b8afa4" key="dongjie" v k
+                                                source-src="bill/selectSrc?type=dongjie" class="form-control"></select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 ">
+                                        <div class="input-group"><span class="input-group-addon">停止销售：</span><select
+                                                ng-model="kehujibenxinxi.tingzhixiaoshou"
+                                                init="dGhpcy5sb2FkRGF0YVNvdXJjZSgpOw==" billuiselect
+                                                renderId="9df1441eec564e88a2ab092ec5b8afa4" key="tingzhixiaoshou" v k
+                                                source-src="bill/selectSrc?type=bool" class="form-control"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4 ">
+                                        <div class="input-group"><span class="input-group-addon">联系人：</span><input
+                                                ng-model="kehujibenxinxi.lianxiren" billuistring
+                                                renderId="9df1441eec564e88a2ab092ec5b8afa4" key="lianxiren" title="联系人："
+                                                null type="text" class="form-control"></div>
+                                    </div>
+                                    <div class="col-sm-3 ">
+                                        <div class="input-group"><span class="input-group-addon">联系电话：</span><input
+                                                ng-model="kehujibenxinxi.lianxidianhua" billuistring
+                                                renderId="9df1441eec564e88a2ab092ec5b8afa4" key="lianxidianhua"
+                                                title="联系电话：" null type="text" class="form-control"></div>
+                                    </div>
+                                    <div class="col-sm-5 ">
+                                        <div class="input-group"><span class="input-group-addon">销售员：</span><input
+                                                ng-model="kehujibenxinxi.xiaoshouyuan" billuistring
+                                                renderId="9df1441eec564e88a2ab092ec5b8afa4" key="xiaoshouyuan"
+                                                title="销售员：" null type="text" class="form-control"></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-5 ">
+                                        <div class="input-group"><span class="input-group-addon">营业执照号：</span><input
+                                                ng-model="kehujibenxinxi.yyzzh" billuistring
+                                                renderId="9df1441eec564e88a2ab092ec5b8afa4" key="yyzzh" title="营业执照号："
+                                                null type="text" class="form-control"></div>
+                                    </div>
+                                    <div class="col-sm-3 ">
+                                        <div class="input-group"><span class="input-group-addon">注册日期：</span><input
+                                                ng-model="kehujibenxinxi.zhuceriqi" billuidatetime
+                                                data-date-format="yyyy-mm-dd hh:ii:ss"
+                                                renderId="9df1441eec564e88a2ab092ec5b8afa4" key="zhuceriqi" type="text"
+                                                class="form-control"></div>
+                                    </div>
+                                    <div class="col-sm-4 ">
+                                        <div class="input-group"><span class="input-group-addon">有效期至：</span><input
+                                                ng-model="kehujibenxinxi.zcyxq" billuidatetime
+                                                data-date-format="yyyy-mm-dd hh:ii:ss"
+                                                renderId="9df1441eec564e88a2ab092ec5b8afa4" key="zcyxq" type="text"
+                                                class="form-control"></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-5 ">
+                                        <div class="input-group"><span class="input-group-addon">组织机构代码证：</span><input
+                                                ng-model="kehujibenxinxi.zzjgdmz" billuistring
+                                                renderId="9df1441eec564e88a2ab092ec5b8afa4" key="zzjgdmz"
+                                                title="组织机构代码证：" null type="text" class="form-control"></div>
+                                    </div>
+                                    <div class="col-sm-3 ">
+                                        <div class="input-group"><span class="input-group-addon">发证日期：</span><input
+                                                ng-model="kehujibenxinxi.fazhengriqi" billuidatetime
+                                                data-date-format="yyyy-mm-dd hh:ii:ss"
+                                                renderId="9df1441eec564e88a2ab092ec5b8afa4" key="fazhengriqi"
+                                                type="text" class="form-control"></div>
+                                    </div>
+                                    <div class="col-sm-4 ">
+                                        <div class="input-group"><span class="input-group-addon">有效期至：</span><input
+                                                ng-model="kehujibenxinxi.fzyxq" billuidatetime
+                                                data-date-format="yyyy-mm-dd hh:ii:ss"
+                                                renderId="9df1441eec564e88a2ab092ec5b8afa4" key="fzyxq" type="text"
+                                                class="form-control"></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-5 ">
+                                        <div class="input-group"><span class="input-group-addon">提货人身份证：</span><input
+                                                ng-model="kehujibenxinxi.thysfz" billuistring
+                                                renderId="9df1441eec564e88a2ab092ec5b8afa4" key="thysfz" title="提货人身份证："
+                                                null type="text" class="form-control"></div>
+                                    </div>
+                                    <div class="col-sm-3 ">
+                                        <div class="input-group"><span class="input-group-addon">提货人：</span><input
+                                                ng-model="kehujibenxinxi.tihuoren" billuistring
+                                                renderId="9df1441eec564e88a2ab092ec5b8afa4" key="tihuoren" title="提货人："
+                                                null type="text" class="form-control"></div>
+                                    </div>
+                                    <div class="col-sm-4 ">
+                                        <div class="input-group"><span class="input-group-addon">有效期至：</span><input
+                                                ng-model="kehujibenxinxi.thyxq" billuidatetime
+                                                data-date-format="yyyy-mm-dd hh:ii:ss"
+                                                renderId="9df1441eec564e88a2ab092ec5b8afa4" key="thyxq" type="text"
+                                                class="form-control"></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-5 ">
+                                        <div class="input-group"><span class="input-group-addon">省：</span><select
+                                                ng-model="kehujibenxinxi.sheng"
+                                                init="dGhpcy5sb2FkRGF0YVNvdXJjZSgnY29tbW9uL2ZpbmRBcmVhQnlQYXJlbnRJZD9wYXJlbnRJZD0wJyk7"
+                                                triggers="WyJ2YXIgY29kZT10aGlzLmdldFZhbHVlKCk7IEBzaGkubG9hZERhdGFTb3VyY2UoJ2NvbW1vbi9maW5kQXJlYUJ5UGFyZW50SWQ/cGFyZW50SWQ9Jytjb2RlKTsgQHF1LmNsZWFyRGF0YVNvdXJjZSgpOyJd"
+                                                billuiselect renderId="9df1441eec564e88a2ab092ec5b8afa4" key="sheng"
+                                                v="areaCode" k="areaName" source-src class="form-control"></select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 ">
+                                        <div class="input-group"><span class="input-group-addon">市：</span><select
+                                                ng-model="kehujibenxinxi.shi"
+                                                triggers="WyJ2YXIgY29kZT10aGlzLmdldFZhbHVlKCk7IEBxdS5sb2FkRGF0YVNvdXJjZSgnY29tbW9uL2ZpbmRBcmVhQnlQYXJlbnRJZD9wYXJlbnRJZD0nK2NvZGUpOyJd"
+                                                billuiselect renderId="9df1441eec564e88a2ab092ec5b8afa4" key="shi"
+                                                v="areaCode" k="areaName" source-src class="form-control"></select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 ">
+                                        <div class="input-group"><span class="input-group-addon">区：</span><select
+                                                ng-model="kehujibenxinxi.qu" billuiselect
+                                                renderId="9df1441eec564e88a2ab092ec5b8afa4" key="qu" v="areaCode"
+                                                k="areaName" source-src class="form-control"></select></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-8 ">
+                                        <div class="input-group"><span class="input-group-addon">仓库地址：</span><input
+                                                ng-model="kehujibenxinxi.cangkudizhi" billuistring
+                                                renderId="9df1441eec564e88a2ab092ec5b8afa4" key="cangkudizhi"
+                                                title="仓库地址：" null type="text" class="form-control"></div>
+                                    </div>
+                                    <div class="col-sm-4 ">
+                                        <div class="input-group"><span class="input-group-addon">发票类型：</span><select
+                                                ng-model="kehujibenxinxi.fapiaoleixing"
+                                                init="dGhpcy5sb2FkRGF0YVNvdXJjZSgpOw==" billuiselect
+                                                renderId="9df1441eec564e88a2ab092ec5b8afa4" key="fapiaoleixing" v k
+                                                source-src="bill/selectSrc?type=fapiaoleixing"
+                                                class="form-control"></select></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4 ">
+                                        <div class="input-group"><span class="input-group-addon">信贷额度：</span><input
+                                                ng-model="kehujibenxinxi.xindaiedu" billuidecimal
+                                                renderId="9df1441eec564e88a2ab092ec5b8afa4" key="xindaiedu"
+                                                title="信贷额度：" type="number" class="form-control"></div>
+                                    </div>
+                                    <div class="col-sm-3 ">
+                                        <div class="input-group"><span class="input-group-addon">信贷期限：</span><input
+                                                ng-model="kehujibenxinxi.xindaiqixian" billuiinteger
+                                                renderId="9df1441eec564e88a2ab092ec5b8afa4" key="xindaiqixian"
+                                                title="信贷期限：" type="number" class="form-control"></div>
+                                    </div>
+                                    <div class="col-sm-5 ">
+                                        <div class="input-group"><span class="input-group-addon">预收款：</span><select
+                                                ng-model="kehujibenxinxi.yushoukuan"
+                                                init="dGhpcy5sb2FkRGF0YVNvdXJjZSgpOw==" billuiselect
+                                                renderId="9df1441eec564e88a2ab092ec5b8afa4" key="yushoukuan" v k
+                                                source-src="bill/selectSrc?type=yushoukuan"
+                                                class="form-control"></select></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12 ">
+                                        <div class="input-group"><span class="input-group-addon">经营范围：</span><input
+                                                ng-model="kehujibenxinxi.jingyingfanwei" billuipopupwindow
+                                                src="jingyingfanwei" readonly="readonly"
+                                                renderId="9df1441eec564e88a2ab092ec5b8afa4" key="jingyingfanwei"
+                                                title="经营范围：" type="text" viewsize="normal" class="form-control"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div Caption="客户基本信息关系分录" class="panel  panel-primary  publicPanel">
+                            <ul role="tablist" class="nav nav-tabs">
+                                <li role="presentation" class="active" role="presentation"><a
+                                        href="#mainContainer_details1" data-toggle="tab" role="tab">客户质量证照</a></li>
+                                <li role="presentation" role="presentation"><a href="#mainContainer_details2"
+                                                                               data-toggle="tab" role="tab">客户委托人</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div id="mainContainer_details1" class="tab-pane active" role="tabpanel">
+                                    <div style="flex-direction:column;display:flex;">
+                                        <div heads="W3siY29sIjoiemhlbmdzaHVtaW5nY2hlbmciLCJ3aWRnZXQiOiJQR1JwZGlCamJHRnpjejBpYVc1d2RYUXRaM0p2ZFhBaUlENDhjMlZzWldOMElHNW5MVzF2WkdWc1BTSmZYeVJrWDIxdlpHVnNKRjlmSWlBZ1ptOXliV0YwZEdWeWN6MGlWek4wYldJelNuUlpXRkpHWlVoQ2VVOXBTbUpsZVdRd1pWaENiRXA2YjI1bGJXaHNZbTFrY1dGWFJuVmlWMngxV2pKT2IxcFhOVzVLTXpGa1NXNHhaQ0lnSUdsdWFYUTlJbVJIYUhCamVUVnpZakpHYTFKSFJqQlpWazUyWkZoS2FscFRaM0JQZHowOUlpQWdZbWxzYkhWcGMyVnNaV04wSUNCeVpXNWtaWEpKWkQwaU9XUm1NVFEwTVdWbFl6VTJOR1U0T0dFeVlXSXdPVEpsWXpWaU9HRm1ZVFFpSUNCclpYazlJbnBvWlc1bmMyaDFiV2x1WjJOb1pXNW5JaUFnZGlBZ2F5QWdjMjkxY21ObExYTnlZejBpWW1sc2JDOXpaV3hsWTNSVGNtTS9kSGx3WlQxNmFHVnVaMnBwWVc1dGFXNW5ZMmhsYm1jaUlDQmpiR0Z6Y3owaVptOXliUzFqYjI1MGNtOXNJaUErUEM5elpXeGxZM1ErUEM5a2FYWSsiLCJ3aWR0aCI6IjE4MHB4IiwiY2FwdGlvbiI6IuivgeS5puWQjeensCIsIm9yZGVyIjowfSx7ImNvbCI6InpoZW5nc2h1YmlhbmhhbyIsIndpZGdldCI6IlBHUnBkaUJqYkdGemN6MGlhVzV3ZFhRdFozSnZkWEFpSUQ0OGFXNXdkWFFnYm1jdGJXOWtaV3c5SWw5ZkpHUmZiVzlrWld3a1gxOGlJQ0JpYVd4c2RXbHpkSEpwYm1jZ0lISmxibVJsY2tsa1BTSTVaR1l4TkRReFpXVmpOVFkwWlRnNFlUSmhZakE1TW1Wak5XSTRZV1poTkNJZ0lHdGxlVDBpZW1obGJtZHphSFZpYVdGdWFHRnZJaUFnZEdsMGJHVWdJRzUxYkd3Z0lIUjVjR1U5SW5SbGVIUWlJQ0JqYkdGemN6MGlabTl5YlMxamIyNTBjbTlzSWlBK1BDOWthWFkrIiwid2lkdGgiOiI4MHB4IiwiY2FwdGlvbiI6IuivgeS5pue8luWPtyIsIm9yZGVyIjowfSx7ImNvbCI6ImZhemhlbmdqaWd1YW4iLCJ3aWRnZXQiOiJQR1JwZGlCamJHRnpjejBpYVc1d2RYUXRaM0p2ZFhBaUlENDhhVzV3ZFhRZ2JtY3RiVzlrWld3OUlsOWZKR1JmYlc5a1pXd2tYMThpSUNCaWFXeHNkV2x6ZEhKcGJtY2dJSEpsYm1SbGNrbGtQU0k1WkdZeE5EUXhaV1ZqTlRZMFpUZzRZVEpoWWpBNU1tVmpOV0k0WVdaaE5DSWdJR3RsZVQwaVptRjZhR1Z1WjJwcFozVmhiaUlnSUhScGRHeGxJQ0J1ZFd4c0lDQjBlWEJsUFNKMFpYaDBJaUFnWTJ4aGMzTTlJbVp2Y20wdFkyOXVkSEp2YkNJZ1Bqd3ZaR2wyUGc9PSIsIndpZHRoIjoiMTAwcHgiLCJjYXB0aW9uIjoi5Y+R6K+B5py65YWzIiwib3JkZXIiOjB9LHsiY29sIjoiZmF6aGVuZ3JpcWkiLCJ3aWRnZXQiOiJQR1JwZGlCamJHRnpjejBpYVc1d2RYUXRaM0p2ZFhBaUlENDhhVzV3ZFhRZ2JtY3RiVzlrWld3OUlsOWZKR1JmYlc5a1pXd2tYMThpSUNCaWFXeHNkV2xrWVhSbGRHbHRaU0FnWkdGMFlTMWtZWFJsTFdadmNtMWhkRDBpZVhsNWVTMXRiUzFrWkNCb2FEcHBhVHB6Y3lJZ0lISmxibVJsY2tsa1BTSTVaR1l4TkRReFpXVmpOVFkwWlRnNFlUSmhZakE1TW1Wak5XSTRZV1poTkNJZ0lHdGxlVDBpWm1GNmFHVnVaM0pwY1draUlDQjBlWEJsUFNKMFpYaDBJaUFnWTJ4aGMzTTlJbVp2Y20wdFkyOXVkSEp2YkNJZ1Bqd3ZaR2wyUGc9PSIsIndpZHRoIjoiODBweCIsImNhcHRpb24iOiLlj5Hor4Hml6XmnJ8iLCJvcmRlciI6MH0seyJjb2wiOiJ5b3V4aWFvcWl6aGkiLCJ3aWRnZXQiOiJQR1JwZGlCamJHRnpjejBpYVc1d2RYUXRaM0p2ZFhBaUlENDhhVzV3ZFhRZ2JtY3RiVzlrWld3OUlsOWZKR1JmYlc5a1pXd2tYMThpSUNCaWFXeHNkV2xrWVhSbGRHbHRaU0FnWkdGMFlTMWtZWFJsTFdadmNtMWhkRDBpZVhsNWVTMXRiUzFrWkNCb2FEcHBhVHB6Y3lJZ0lISmxibVJsY2tsa1BTSTVaR1l4TkRReFpXVmpOVFkwWlRnNFlUSmhZakE1TW1Wak5XSTRZV1poTkNJZ0lHdGxlVDBpZVc5MWVHbGhiM0ZwZW1ocElpQWdkSGx3WlQwaWRHVjRkQ0lnSUdOc1lYTnpQU0ptYjNKdExXTnZiblJ5YjJ3aUlENDhMMlJwZGo0PSIsIndpZHRoIjoiODBweCIsImNhcHRpb24iOiLmnInmlYjmnJ/oh7MiLCJvcmRlciI6MH0seyJjb2wiOiJ4dWtlbGVpeGluZyIsIndpZGdldCI6IlBHUnBkaUJqYkdGemN6MGlhVzV3ZFhRdFozSnZkWEFpSUQ0OGMyVnNaV04wSUc1bkxXMXZaR1ZzUFNKZlh5UmtYMjF2WkdWc0pGOWZJaUFnWm05eWJXRjBkR1Z5Y3owaVZ6TjBiV0l6U25SWldGSkdaVWhDZVU5cFNtSmxlV1F3WlZoQ2JFcDZiMjVsU0ZaeVdsZDRiR0ZYU25CYVUyUTVXRk5LT1ZoUlBUMGlJQ0JwYm1sMFBTSmtSMmh3WTNrMWMySXlSbXRTUjBZd1dWWk9kbVJZU21wYVUyZHdUM2M5UFNJZ0lHSnBiR3gxYVhObGJHVmpkQ0FnY21WdVpHVnlTV1E5SWpsa1pqRTBOREZsWldNMU5qUmxPRGhoTW1GaU1Ea3laV00xWWpoaFptRTBJaUFnYTJWNVBTSjRkV3RsYkdWcGVHbHVaeUlnSUhZZ0lHc2dJSE52ZFhKalpTMXpjbU05SW1KcGJHd3ZjMlZzWldOMFUzSmpQM1I1Y0dVOWVIVnJaV3hsYVdKcFpTSWdJR05zWVhOelBTSm1iM0p0TFdOdmJuUnliMndpSUQ0OEwzTmxiR1ZqZEQ0OEwyUnBkajQ9Iiwid2lkdGgiOiI4MHB4IiwiY2FwdGlvbiI6IuiuuOWPr+exu+WeiyIsIm9yZGVyIjowfSx7ImNvbCI6InNob3VxdWFuZmFud2VpIiwid2lkZ2V0IjoiUEdScGRpQmpiR0Z6Y3owaWFXNXdkWFF0WjNKdmRYQWlJRDQ4YVc1d2RYUWdibWN0Ylc5a1pXdzlJbDlmSkdSZmJXOWtaV3drWDE4aUlDQmlhV3hzZFdsemRISnBibWNnSUhKbGJtUmxja2xrUFNJNVpHWXhORFF4WldWak5UWTBaVGc0WVRKaFlqQTVNbVZqTldJNFlXWmhOQ0lnSUd0bGVUMGljMmh2ZFhGMVlXNW1ZVzUzWldraUlDQjBhWFJzWlNBZ2JuVnNiQ0FnZEhsd1pUMGlkR1Y0ZENJZ0lHTnNZWE56UFNKbWIzSnRMV052Ym5SeWIyd2lJRDQ4TDJScGRqND0iLCJ3aWR0aCI6IjgwcHgiLCJjYXB0aW9uIjoi5o6I5p2D6IyD5Zu0Iiwib3JkZXIiOjB9XQ=="
+                                             billuigrid renderId="9df1441eec564e88a2ab092ec5b8afa4"
+                                             key="zhiliangzhengzhaoxinxi" row-id table-key="zhiliangzhengzhaoxinxi"
+                                             select-mode="single" opt-mode="edit" style="flex-basis:1;"></div>
+                                    </div>
+                                </div>
+                                <div id="mainContainer_details2" class="tab-pane" role="tabpanel">
+                                    <div style="flex-direction:column;display:flex;">
+                                        <div heads="W3siY29sIjoibGlhbnhpcmVuIiwid2lkZ2V0IjoiUEdScGRpQmpiR0Z6Y3owaWFXNXdkWFF0WjNKdmRYQWlJRDQ4YVc1d2RYUWdibWN0Ylc5a1pXdzlJbDlmSkdSZmJXOWtaV3drWDE4aUlDQmlhV3hzZFdsemRISnBibWNnSUhKbGJtUmxja2xrUFNJNVpHWXhORFF4WldWak5UWTBaVGc0WVRKaFlqQTVNbVZqTldJNFlXWmhOQ0lnSUd0bGVUMGliR2xoYm5ocGNtVnVJaUFnZEdsMGJHVWdJRzUxYkd3Z0lIUjVjR1U5SW5SbGVIUWlJQ0JqYkdGemN6MGlabTl5YlMxamIyNTBjbTlzSWlBK1BDOWthWFkrIiwid2lkdGgiOiI4MHB4IiwiY2FwdGlvbiI6IuiBlOezu+S6uiIsIm9yZGVyIjowfSx7ImNvbCI6InhpbmdiaWUiLCJ3aWRnZXQiOiJQR1JwZGlCamJHRnpjejBpYVc1d2RYUXRaM0p2ZFhBaUlENDhjMlZzWldOMElHNW5MVzF2WkdWc1BTSmZYeVJrWDIxdlpHVnNKRjlmSWlBZ1ptOXliV0YwZEdWeWN6MGlWek4wYldJelNuUlpXRkpHWlVoQ2VVOXBTbUpsZVdRd1pWaENiRXA2YjI1bFIyeDFXakpLY0ZwVFpEbFlVMG81V0ZFOVBTSWdJR2x1YVhROUltUkhhSEJqZVRWellqSkdhMUpIUmpCWlZrNTJaRmhLYWxwVFozQlBkejA5SWlBZ1ltbHNiSFZwYzJWc1pXTjBJQ0J5Wlc1a1pYSkpaRDBpT1dSbU1UUTBNV1ZsWXpVMk5HVTRPR0V5WVdJd09USmxZelZpT0dGbVlUUWlJQ0JyWlhrOUluaHBibWRpYVdVaUlDQjJJQ0JySUNCemIzVnlZMlV0YzNKalBTSmlhV3hzTDNObGJHVmpkRk55WXo5MGVYQmxQWGhwYm1kaWFXVWlJQ0JqYkdGemN6MGlabTl5YlMxamIyNTBjbTlzSWlBK1BDOXpaV3hsWTNRK1BDOWthWFkrIiwid2lkdGgiOiI4MHB4IiwiY2FwdGlvbiI6IuaAp+WIqyIsIm9yZGVyIjowfSx7ImNvbCI6ImRpYW5odWEiLCJ3aWRnZXQiOiJQR1JwZGlCamJHRnpjejBpYVc1d2RYUXRaM0p2ZFhBaUlENDhhVzV3ZFhRZ2JtY3RiVzlrWld3OUlsOWZKR1JmYlc5a1pXd2tYMThpSUNCaWFXeHNkV2x6ZEhKcGJtY2dJSEpsYm1SbGNrbGtQU0k1WkdZeE5EUXhaV1ZqTlRZMFpUZzRZVEpoWWpBNU1tVmpOV0k0WVdaaE5DSWdJR3RsZVQwaVpHbGhibWgxWVNJZ0lIUnBkR3hsSUNCdWRXeHNJQ0IwZVhCbFBTSjBaWGgwSWlBZ1kyeGhjM005SW1admNtMHRZMjl1ZEhKdmJDSWdQand2WkdsMlBnPT0iLCJ3aWR0aCI6IjEwMHB4IiwiY2FwdGlvbiI6IueUteivnSIsIm9yZGVyIjowfSx7ImNvbCI6InpoZW5namlhbmhhb21hIiwid2lkZ2V0IjoiUEdScGRpQmpiR0Z6Y3owaWFXNXdkWFF0WjNKdmRYQWlJRDQ4YVc1d2RYUWdibWN0Ylc5a1pXdzlJbDlmSkdSZmJXOWtaV3drWDE4aUlDQmlhV3hzZFdsemRISnBibWNnSUhKbGJtUmxja2xrUFNJNVpHWXhORFF4WldWak5UWTBaVGc0WVRKaFlqQTVNbVZqTldJNFlXWmhOQ0lnSUd0bGVUMGllbWhsYm1kcWFXRnVhR0Z2YldFaUlDQjBhWFJzWlNBZ2JuVnNiQ0FnZEhsd1pUMGlkR1Y0ZENJZ0lHTnNZWE56UFNKbWIzSnRMV052Ym5SeWIyd2lJRDQ4TDJScGRqND0iLCJ3aWR0aCI6IjgwcHgiLCJjYXB0aW9uIjoi6K+B5Lu25Y+356CBIiwib3JkZXIiOjB9LHsiY29sIjoiZGl6aGkiLCJ3aWRnZXQiOiJQR1JwZGlCamJHRnpjejBpYVc1d2RYUXRaM0p2ZFhBaUlENDhhVzV3ZFhRZ2JtY3RiVzlrWld3OUlsOWZKR1JmYlc5a1pXd2tYMThpSUNCaWFXeHNkV2x6ZEhKcGJtY2dJSEpsYm1SbGNrbGtQU0k1WkdZeE5EUXhaV1ZqTlRZMFpUZzRZVEpoWWpBNU1tVmpOV0k0WVdaaE5DSWdJR3RsZVQwaVpHbDZhR2tpSUNCMGFYUnNaU0FnYm5Wc2JDQWdkSGx3WlQwaWRHVjRkQ0lnSUdOc1lYTnpQU0ptYjNKdExXTnZiblJ5YjJ3aUlENDhMMlJwZGo0PSIsIndpZHRoIjoiODBweCIsImNhcHRpb24iOiLlnLDlnYAiLCJvcmRlciI6MH0seyJjb2wiOiJ3dHJ5eHEiLCJ3aWRnZXQiOiJQR1JwZGlCamJHRnpjejBpYVc1d2RYUXRaM0p2ZFhBaUlENDhhVzV3ZFhRZ2JtY3RiVzlrWld3OUlsOWZKR1JmYlc5a1pXd2tYMThpSUNCaWFXeHNkV2xrWVhSbGRHbHRaU0FnWkdGMFlTMWtZWFJsTFdadmNtMWhkRDBpZVhsNWVTMXRiUzFrWkNCb2FEcHBhVHB6Y3lJZ0lISmxibVJsY2tsa1BTSTVaR1l4TkRReFpXVmpOVFkwWlRnNFlUSmhZakE1TW1Wak5XSTRZV1poTkNJZ0lHdGxlVDBpZDNSeWVYaHhJaUFnZEhsd1pUMGlkR1Y0ZENJZ0lHTnNZWE56UFNKbWIzSnRMV052Ym5SeWIyd2lJRDQ4TDJScGRqND0iLCJ3aWR0aCI6IjgwcHgiLCJjYXB0aW9uIjoi5aeU5omY5Lq65pyJ5pWI5pyfIiwib3JkZXIiOjB9LHsiY29sIjoid2VpdHVvc2h1Iiwid2lkZ2V0IjoiUEdScGRpQmpiR0Z6Y3owaWFXNXdkWFF0WjNKdmRYQWlJRDQ4YVc1d2RYUWdibWN0Ylc5a1pXdzlJbDlmSkdSZmJXOWtaV3drWDE4aUlDQmlhV3hzZFdsemRISnBibWNnSUhKbGJtUmxja2xrUFNJNVpHWXhORFF4WldWak5UWTBaVGc0WVRKaFlqQTVNbVZqTldJNFlXWmhOQ0lnSUd0bGVUMGlkMlZwZEhWdmMyaDFJaUFnZEdsMGJHVWdJRzUxYkd3Z0lIUjVjR1U5SW5SbGVIUWlJQ0JqYkdGemN6MGlabTl5YlMxamIyNTBjbTlzSWlBK1BDOWthWFkrIiwid2lkdGgiOiI4MHB4IiwiY2FwdGlvbiI6IuWnlOaJmOS5piIsIm9yZGVyIjowfSx7ImNvbCI6Ind0c3l4cSIsIndpZGdldCI6IlBHUnBkaUJqYkdGemN6MGlhVzV3ZFhRdFozSnZkWEFpSUQ0OGFXNXdkWFFnYm1jdGJXOWtaV3c5SWw5ZkpHUmZiVzlrWld3a1gxOGlJQ0JpYVd4c2RXbGtZWFJsZEdsdFpTQWdaR0YwWVMxa1lYUmxMV1p2Y20xaGREMGllWGw1ZVMxdGJTMWtaQ0JvYURwcGFUcHpjeUlnSUhKbGJtUmxja2xrUFNJNVpHWXhORFF4WldWak5UWTBaVGc0WVRKaFlqQTVNbVZqTldJNFlXWmhOQ0lnSUd0bGVUMGlkM1J6ZVhoeElpQWdkSGx3WlQwaWRHVjRkQ0lnSUdOc1lYTnpQU0ptYjNKdExXTnZiblJ5YjJ3aUlENDhMMlJwZGo0PSIsIndpZHRoIjoiODBweCIsImNhcHRpb24iOiLlp5TmiZjkuabmnInmlYjmnJ8iLCJvcmRlciI6MH0seyJjb2wiOiJ4dWtlbGVpeGluZyIsIndpZGdldCI6IlBHUnBkaUJqYkdGemN6MGlhVzV3ZFhRdFozSnZkWEFpSUQ0OGMyVnNaV04wSUc1bkxXMXZaR1ZzUFNKZlh5UmtYMjF2WkdWc0pGOWZJaUFnWm05eWJXRjBkR1Z5Y3owaVZ6TjBiV0l6U25SWldGSkdaVWhDZVU5cFNtSmxlV1F3WlZoQ2JFcDZiMjVsU0ZaeVdsZDRiR0ZYU25CYVUyUTVXRk5LT1ZoUlBUMGlJQ0JwYm1sMFBTSmtSMmh3WTNrMWMySXlSbXRTUjBZd1dWWk9kbVJZU21wYVUyZHdUM2M5UFNJZ0lHSnBiR3gxYVhObGJHVmpkQ0FnY21WdVpHVnlTV1E5SWpsa1pqRTBOREZsWldNMU5qUmxPRGhoTW1GaU1Ea3laV00xWWpoaFptRTBJaUFnYTJWNVBTSjRkV3RsYkdWcGVHbHVaeUlnSUhZZ0lHc2dJSE52ZFhKalpTMXpjbU05SW1KcGJHd3ZjMlZzWldOMFUzSmpQM1I1Y0dVOWVIVnJaV3hsYVdKcFpTSWdJR05zWVhOelBTSm1iM0p0TFdOdmJuUnliMndpSUQ0OEwzTmxiR1ZqZEQ0OEwyUnBkajQ9Iiwid2lkdGgiOiI4MHB4IiwiY2FwdGlvbiI6IuiuuOWPr+exu+WeiyIsIm9yZGVyIjowfSx7ImNvbCI6InNob3VxdWFuZmFud2VpIiwid2lkZ2V0IjoiUEdScGRpQmpiR0Z6Y3owaWFXNXdkWFF0WjNKdmRYQWlJRDQ4YVc1d2RYUWdibWN0Ylc5a1pXdzlJbDlmSkdSZmJXOWtaV3drWDE4aUlDQmlhV3hzZFdsemRISnBibWNnSUhKbGJtUmxja2xrUFNJNVpHWXhORFF4WldWak5UWTBaVGc0WVRKaFlqQTVNbVZqTldJNFlXWmhOQ0lnSUd0bGVUMGljMmh2ZFhGMVlXNW1ZVzUzWldraUlDQjBhWFJzWlNBZ2JuVnNiQ0FnZEhsd1pUMGlkR1Y0ZENJZ0lHTnNZWE56UFNKbWIzSnRMV052Ym5SeWIyd2lJRDQ4TDJScGRqND0iLCJ3aWR0aCI6IjgwcHgiLCJjYXB0aW9uIjoi5o6I5p2D6IyD5Zu0Iiwib3JkZXIiOjB9XQ=="
+                                             billuigrid renderId="9df1441eec564e88a2ab092ec5b8afa4" key="kehuweituoren"
+                                             row-id table-key="kehuweituoren" select-mode="single" opt-mode="edit"
+                                             style="flex-basis:1;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

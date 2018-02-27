@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="shangpintingshoujieshoushenqing" BillType="Bill" Caption="商品停售/解除停售" DefaultFilter="" TableName="Table::xyy_erp_bill_shangpintingshoujieshoushenqing" DataSource="" Head="true">
+        <!-- 
+             订单编号	varchar	规则：YBM+年月日时分秒+3位随机码, 例如：YBM20160426112240764
+        -->
+        <Field FieldKey="danjubianhao" FieldName="单据编号" FieldType="Varchar" DefaultValue="='STS'+o.orderNo()" Comment="单据编号"/>
+        <Field FieldKey="shenqingxingzhi" FieldName="申请性质" FieldType="Int" DefaultValue="4" Comment="申请性质:4停售1解除停售"/>
+        <Field FieldKey="beizhu" FieldName="备注" FieldType="Varchar" Comment="备注"/>
+    </DataTable>  
+
+    <DataTable Key="shangpintingshoujieshoushenqing_details" BillType="Bill"  Caption="商品停售/解除停售申请明细" DefaultFilter="BillID" Pagging="100" TableName="Table::xyy_erp_bill_shangpintingshoujieshoushenqing_details" DataSource="" Head="false">
+        <Field FieldKey="shangpinbianhao" FieldName="商品编号" FieldType="Varchar" Comment="商品编号"/>
+        <Field FieldKey="shangpinmingcheng" FieldName="商品名称" FieldType="Varchar" Comment="商品名称"/>
+        <Field FieldKey="guige" FieldName="规格" FieldType="Varchar" Comment="规格"/>
+        <Field FieldKey="danwei" FieldName="单位" FieldType="Int" Comment="单位"/>
+        <Field FieldKey="shengchanchangjia" FieldName="生产厂家" FieldType="Varchar" Comment="生产厂家"/>
+        <Field FieldKey="pizhunwenhao" FieldName="批准文号" FieldType="Varchar" Comment="批准文号"/>
+        <Field FieldKey="chandi" FieldName="产地" FieldType="Varchar" Comment="产地"/>
+        <Field FieldKey="pihao" FieldName="批号" FieldType="Varchar" Comment="批号"/>
+        <Field FieldKey="tingshouleixing" FieldName="申请性质" FieldType="Int" DefaultValue="1" Comment="申请性质:1全部2批号"/>
+        <Field FieldKey="yuanying" FieldName="原因" FieldType="Varchar" Comment="原因"/>
+        <Field FieldKey="beizhu" FieldName="备注" FieldType="Varchar" Comment="备注"/>
+    </DataTable> 
+</DataSet>

@@ -1,0 +1,336 @@
+
+<!DOCTYPE html>
+<html lang="cn" ng-app="xyyerp">
+<head>
+    <base href="/"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>采购订单叙事薄</title>
+    <link rel='stylesheet' href='../lib/css/bootstrap.css'>
+    <link rel='stylesheet' href='../lib/css/css.css'>
+    <script src="//cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//cdn.bootcss.com/angular.js/1.5.10/angular.min.js"></script>
+    <script src="/lib/js/util.js"></script>
+    <script src="/lib/js/xyyErpApp.js"></script>
+    <script src="//cdn.bootcss.com/angular-ui-bootstrap/2.4.0/ui-bootstrap-tpls.min.js"></script>
+    <script src="/Shared/myDirective.js"></script>
+    <script src="/Shared/SharedService.js"></script>
+    <script src="/lib/js/bill.js"></script>
+    <style></style>
+</head>
+<body>
+<div billuitemplate></div>
+<div zhujimatemplate></div>
+
+
+<div ng-controller="xyyerp.mainCtl936134832e954338bb5e6e0352a51c68" Version="1.0.0" BillType="Bills" Caption="采购订单叙事薄"
+     Key="caigoudingdan" id="caigoudingdan">
+    <div user-agent="web">
+        <div Caption="采购订单叙事薄" style="flex-direction:column;display:flex;">
+            <div Caption="工具栏" id="toolbox" style="flex-direction:column;display:flex;flex-basis:1;">
+                <div billuiview src="toolbillsbox" renderId="7faa3d3bcb0f4e06810d1bc0b5d5da6d" key="box"
+                     style="flex-basis:1;"></div>
+            </div>
+            <div class="panel panel-default publicPanel" Caption="查询面板" id="bills_tools"
+                 style="flex-direction:column;display:flex;flex-basis:1;">
+                <div class="row">
+                    <div class="col-sm-3 ">
+                        <div class="input-group"><span class="input-group-addon">采购订单号</span><input
+                                ng-model="$caigoudingdan.params.danjubianhao" billuistring
+                                renderId="7faa3d3bcb0f4e06810d1bc0b5d5da6d" key="danjubianhao" title="采购订单号" null
+                                type="text" class="form-control"></div>
+                    </div>
+                    <div class="col-sm-3 ">
+                        <div class="input-group"><span class="input-group-addon">货商名称</span><input
+                                ng-model="$caigoudingdan.params.huoshangmingcheng" billuistring
+                                renderId="7faa3d3bcb0f4e06810d1bc0b5d5da6d" key="huoshangmingcheng" title="货商名称" null
+                                type="text" class="form-control"></div>
+                    </div>
+                    <div class="col-sm-3 ">
+                        <div class="input-group"><span class="input-group-addon">状态</span><select
+                                ng-model="$caigoudingdan.params.status" init="dGhpcy5sb2FkRGF0YVNvdXJjZSgpOw=="
+                                billuiselect renderId="7faa3d3bcb0f4e06810d1bc0b5d5da6d" key="status" v k
+                                source-src="bill/selectSrc?type=status" class="form-control"></select></div>
+                    </div>
+                    <div class="col-sm-3 ">
+                        <button triggers="WyJAZGFuanViaWFuaGFvLnNldFZhbHVlKFwiXCIpOyBAa2VodW1pbmdjaGVuZy5zZXRWYWx1ZShcIlwiKTsgQHN0YXR1cy5zZXRWYWx1ZShcIlwiKTsgQCR0aGlzLl9fbG9hZCgpOyJd"
+                                billuibutton renderId="7faa3d3bcb0f4e06810d1bc0b5d5da6d" key="cancel"
+                                class="btn btn-primary"><i class="glyphicon glyphicon-send"></i>取消
+                        </button>
+                        <button triggers="WyJAJHRoaXMuX19sb2FkKFwiY2FpZ291ZGluZ2RhblwiKTsiXQ==" billuibutton
+                                renderId="7faa3d3bcb0f4e06810d1bc0b5d5da6d" key="search" class="btn btn-primary"><i
+                                class="glyphicon glyphicon-send"></i>查询
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel  panel-primary  publicPanel" Caption="查询展示列" id="bills_tabs" style="flex-basis:1;">
+            <ul role="tablist" class="nav nav-tabs"></ul>
+            <div class="tab-content">
+                <div heads="W3siY29sIjoiZGFuanViaWFuaGFvIiwid2lkZ2V0IjoiUEdScGRpQmpiR0Z6Y3owaWFXNXdkWFF0WjNKdmRYQWlJRDQ4YVc1d2RYUWdibWN0Ylc5a1pXdzlJbDlmSkdSZmJXOWtaV3drWDE4aUlDQmlhV3hzZFdsemRISnBibWNnSUhKbGJtUmxja2xrUFNJM1ptRmhNMlF6WW1OaU1HWTBaVEEyT0RFd1pERmlZekJpTldRMVpHRTJaQ0lnSUd0bGVUMGlaR0Z1YW5WaWFXRnVhR0Z2SWlBZ2RHbDBiR1VnSUc1MWJHd2dJSFI1Y0dVOUluUmxlSFFpSUNCamJHRnpjejBpWm05eWJTMWpiMjUwY205c0lpQStQQzlrYVhZKyIsIndpZHRoIjoiMTUwcHgiLCJjYXB0aW9uIjoi5Y2V5o2u57yW5Y+3Iiwib3JkZXIiOjB9LHsiY29sIjoia2FpcGlhb3JpcWkiLCJ3aWRnZXQiOiJQR1JwZGlCamJHRnpjejBpYVc1d2RYUXRaM0p2ZFhBaUlENDhhVzV3ZFhRZ2JtY3RiVzlrWld3OUlsOWZKR1JmYlc5a1pXd2tYMThpSUNCaWFXeHNkV2xrWVhSbGRHbHRaU0FnWkdGMFlTMWtZWFJsTFdadmNtMWhkRDBpZVhsNWVTMXRiUzFrWkNCb2FEcHBhVHB6Y3lJZ0lISmxibVJsY2tsa1BTSTNabUZoTTJRelltTmlNR1kwWlRBMk9ERXdaREZpWXpCaU5XUTFaR0UyWkNJZ0lHdGxlVDBpYTJGcGNHbGhiM0pwY1draUlDQjBlWEJsUFNKMFpYaDBJaUFnWTJ4aGMzTTlJbVp2Y20wdFkyOXVkSEp2YkNJZ1Bqd3ZaR2wyUGc9PSIsIndpZHRoIjoiMTUwcHgiLCJjYXB0aW9uIjoi5byA56Wo5pel5pyfIiwib3JkZXIiOjB9LHsiY29sIjoiYml6aG9uZyIsIndpZGdldCI6IlBHUnBkaUJqYkdGemN6MGlhVzV3ZFhRdFozSnZkWEFpSUQ0OGFXNXdkWFFnYm1jdGJXOWtaV3c5SWw5ZkpHUmZiVzlrWld3a1gxOGlJQ0JtYjNKdFlYUjBaWEp6UFNKWE0zUnRZak5LZEZsWVVrWmxTRUo1VDJsS1ltVjVaREJsV0VKc1NucHZibGx0YkRaaFJ6bDFXbmxrT1ZoVFNqbFlVVDA5SWlBZ1ltbHNiSFZwYVc1MFpXZGxjaUFnY21WdVpHVnlTV1E5SWpkbVlXRXpaRE5pWTJJd1pqUmxNRFk0TVRCa01XSmpNR0kxWkRWa1lUWmtJaUFnYTJWNVBTSmlhWHBvYjI1bklpQWdkR2wwYkdVZ0lIUjVjR1U5SW01MWJXSmxjaUlnSUdOc1lYTnpQU0ptYjNKdExXTnZiblJ5YjJ3aUlENDhMMlJwZGo0PSIsIndpZHRoIjoiNjBweCIsImNhcHRpb24iOiLluIHnp40iLCJvcmRlciI6MH0seyJjb2wiOiJodW9zaGFuZ2JpYW5oYW8iLCJ3aWRnZXQiOiJQR1JwZGlCamJHRnpjejBpYVc1d2RYUXRaM0p2ZFhBaUlENDhhVzV3ZFhRZ2JtY3RiVzlrWld3OUlsOWZKR1JmYlc5a1pXd2tYMThpSUNCaWFXeHNkV2x6ZEhKcGJtY2dJSEpsYm1SbGNrbGtQU0kzWm1GaE0yUXpZbU5pTUdZMFpUQTJPREV3WkRGaVl6QmlOV1ExWkdFMlpDSWdJR3RsZVQwaWFIVnZjMmhoYm1kaWFXRnVhR0Z2SWlBZ2RHbDBiR1VnSUc1MWJHd2dJSFI1Y0dVOUluUmxlSFFpSUNCamJHRnpjejBpWm05eWJTMWpiMjUwY205c0lpQStQQzlrYVhZKyIsIndpZHRoIjoiMTUwcHgiLCJjYXB0aW9uIjoi6LSn5ZWG57yW5Y+3Iiwib3JkZXIiOjB9LHsiY29sIjoiaHVvc2hhbmdtaW5nY2hlbmciLCJ3aWRnZXQiOiJQR1JwZGlCamJHRnpjejBpYVc1d2RYUXRaM0p2ZFhBaUlENDhhVzV3ZFhRZ2JtY3RiVzlrWld3OUlsOWZKR1JmYlc5a1pXd2tYMThpSUNCaWFXeHNkV2x6ZEhKcGJtY2dJSEpsYm1SbGNrbGtQU0kzWm1GaE0yUXpZbU5pTUdZMFpUQTJPREV3WkRGaVl6QmlOV1ExWkdFMlpDSWdJR3RsZVQwaWFIVnZjMmhoYm1kdGFXNW5ZMmhsYm1jaUlDQjBhWFJzWlNBZ2JuVnNiQ0FnZEhsd1pUMGlkR1Y0ZENJZ0lHTnNZWE56UFNKbWIzSnRMV052Ym5SeWIyd2lJRDQ4TDJScGRqND0iLCJ3aWR0aCI6IjE2MHB4IiwiY2FwdGlvbiI6Iui0p+WVhuWQjeensCIsIm9yZGVyIjowfSx7ImNvbCI6InpoZW5nZGFua291bHYiLCJ3aWRnZXQiOiJQR1JwZGlCamJHRnpjejBpYVc1d2RYUXRaM0p2ZFhBaUlENDhhVzV3ZFhRZ2JtY3RiVzlrWld3OUlsOWZKR1JmYlc5a1pXd2tYMThpSUNCaWFXeHNkV2xrWldOcGJXRnNJQ0J5Wlc1a1pYSkpaRDBpTjJaaFlUTmtNMkpqWWpCbU5HVXdOamd4TUdReFltTXdZalZrTldSaE5tUWlJQ0JyWlhrOUlucG9aVzVuWkdGdWEyOTFiSFlpSUNCMGFYUnNaU0FnZEhsd1pUMGliblZ0WW1WeUlpQWdZMnhoYzNNOUltWnZjbTB0WTI5dWRISnZiQ0lnUGp3dlpHbDJQZz09Iiwid2lkdGgiOiI4MHB4IiwiY2FwdGlvbiI6IuaVtOWNleaJo+eOhyIsIm9yZGVyIjowfSx7ImNvbCI6ImZhaHVvZGl6aGkiLCJ3aWRnZXQiOiJQR1JwZGlCamJHRnpjejBpYVc1d2RYUXRaM0p2ZFhBaUlENDhhVzV3ZFhRZ2JtY3RiVzlrWld3OUlsOWZKR1JmYlc5a1pXd2tYMThpSUNCaWFXeHNkV2x6ZEhKcGJtY2dJSEpsYm1SbGNrbGtQU0kzWm1GaE0yUXpZbU5pTUdZMFpUQTJPREV3WkRGaVl6QmlOV1ExWkdFMlpDSWdJR3RsZVQwaVptRm9kVzlrYVhwb2FTSWdJSFJwZEd4bElDQnVkV3hzSUNCMGVYQmxQU0owWlhoMElpQWdZMnhoYzNNOUltWnZjbTB0WTI5dWRISnZiQ0lnUGp3dlpHbDJQZz09Iiwid2lkdGgiOiIxODBweCIsImNhcHRpb24iOiLlj5HotKflnLDlnYAiLCJvcmRlciI6MH0seyJjb2wiOiJjYWlnb3V5dWFuIiwid2lkZ2V0IjoiUEdScGRpQmpiR0Z6Y3owaWFXNXdkWFF0WjNKdmRYQWlJRDQ4YVc1d2RYUWdibWN0Ylc5a1pXdzlJbDlmSkdSZmJXOWtaV3drWDE4aUlDQmlhV3hzZFdsemRISnBibWNnSUhKbGJtUmxja2xrUFNJM1ptRmhNMlF6WW1OaU1HWTBaVEEyT0RFd1pERmlZekJpTldRMVpHRTJaQ0lnSUd0bGVUMGlZMkZwWjI5MWVYVmhiaUlnSUhScGRHeGxJQ0J1ZFd4c0lDQjBlWEJsUFNKMFpYaDBJaUFnWTJ4aGMzTTlJbVp2Y20wdFkyOXVkSEp2YkNJZ1Bqd3ZaR2wyUGc9PSIsIndpZHRoIjoiODBweCIsImNhcHRpb24iOiLph4fotK3lkZgiLCJvcmRlciI6MH0seyJjb2wiOiJjYWlnb3V6dXpoaSIsIndpZGdldCI6IlBHUnBkaUJqYkdGemN6MGlhVzV3ZFhRdFozSnZkWEFpSUQ0OGFXNXdkWFFnYm1jdGJXOWtaV3c5SWw5ZkpHUmZiVzlrWld3a1gxOGlJQ0JpYVd4c2RXbHpkSEpwYm1jZ0lISmxibVJsY2tsa1BTSTNabUZoTTJRelltTmlNR1kwWlRBMk9ERXdaREZpWXpCaU5XUTFaR0UyWkNJZ0lHdGxlVDBpWTJGcFoyOTFlblY2YUdraUlDQjBhWFJzWlNBZ2JuVnNiQ0FnZEhsd1pUMGlkR1Y0ZENJZ0lHTnNZWE56UFNKbWIzSnRMV052Ym5SeWIyd2lJRDQ4TDJScGRqND0iLCJ3aWR0aCI6IjEyMHB4IiwiY2FwdGlvbiI6IumHh+i0ree7hOe7hyIsIm9yZGVyIjowfSx7ImNvbCI6InN0YXR1cyIsIndpZGdldCI6IlBHUnBkaUJqYkdGemN6MGlhVzV3ZFhRdFozSnZkWEFpSUQ0OGFXNXdkWFFnYm1jdGJXOWtaV3c5SWw5ZkpHUmZiVzlrWld3a1gxOGlJQ0JtYjNKdFlYUjBaWEp6UFNKWE0zUnRZak5LZEZsWVVrWmxTRUo1VDJsS1ltVjVaREZqYlhkdVQybGpkbGx0YkhOaVF6bDZXbGQ0YkZrelVsUmpiVTF1VEVOa01HVllRbXhLZW05dVl6TlNhR1JJVm5wS016RmtTVzR4WkNJZ0lHSnBiR3gxYVdsdWRHVm5aWElnSUhKbGJtUmxja2xrUFNJM1ptRmhNMlF6WW1OaU1HWTBaVEEyT0RFd1pERmlZekJpTldRMVpHRTJaQ0lnSUd0bGVUMGljM1JoZEhWeklpQWdkR2wwYkdVZ0lIUjVjR1U5SW01MWJXSmxjaUlnSUdOc1lYTnpQU0ptYjNKdExXTnZiblJ5YjJ3aUlENDhMMlJwZGo0PSIsIndpZHRoIjoiODBweCIsImNhcHRpb24iOiLnirbmgIEiLCJvcmRlciI6MH0seyJjb2wiOiJiZWl6aHUiLCJ3aWRnZXQiOiJQR1JwZGlCamJHRnpjejBpYVc1d2RYUXRaM0p2ZFhBaUlENDhhVzV3ZFhRZ2JtY3RiVzlrWld3OUlsOWZKR1JmYlc5a1pXd2tYMThpSUNCaWFXeHNkV2x6ZEhKcGJtY2dJSEpsYm1SbGNrbGtQU0kzWm1GaE0yUXpZbU5pTUdZMFpUQTJPREV3WkRGaVl6QmlOV1ExWkdFMlpDSWdJR3RsZVQwaVltVnBlbWgxSWlBZ2RHbDBiR1VnSUc1MWJHd2dJSFI1Y0dVOUluUmxlSFFpSUNCamJHRnpjejBpWm05eWJTMWpiMjUwY205c0lpQStQQzlrYVhZKyIsIndpZHRoIjoiMTYwcHgiLCJjYXB0aW9uIjoi5aSH5rOoIiwib3JkZXIiOjB9XQ=="
+                     row-check-rule="dGhpcy5zdGF0dXM8MTAsc3VjY2Vzcyx3YXJuaW5n" billuigrid
+                     renderId="7faa3d3bcb0f4e06810d1bc0b5d5da6d" key="grid0" row-id table-key="caigoudingdan"
+                     select-mode="multi" opt-mode="view"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>main.controller('xyyerp.mainCtl936134832e954338bb5e6e0352a51c68', function ($scope, $http, $interval, $rootScope, $compile, $q) {
+    $scope._model = new $Model($rootScope._model);
+    $scope._env = new $Model($rootScope._env);
+    clone({"billkey": "caigoudingdan", "ua": "WEB"}, $scope._env);
+    clone({billtype: 'Bills'}, $scope._env);
+    $scope.renderId = '7faa3d3bcb0f4e06810d1bc0b5d5da6d';
+    $scope.$http = $http;
+    $scope.$q = $q;
+    $scope.$interval = $interval;
+    $scope._$$controller$$ = '_$$controller$$';
+    $scope.$compile = $compile;
+    $scope.checkRuleLists = [];
+    mixer(ERPBill, $scope);
+    $scope.pageInit();
+});</script>
+
+
+
+
+<div ng-controller="xyyerp.mainCtl495432126b7a4e73a122fae92c1f6612" Version="1.0.0" BillType="Bill" Caption="采购订单"
+     Key="caigoudingdan" id="caigoudingdan">
+    <div user-agent="web">
+        <div Caption="采购订单" style="flex-direction:column;display:flex;">
+            <div Caption="工具栏" id="toolbox" style="flex-direction:column;display:flex;flex-basis:1;">
+                <div billuiview src="toolbox" renderId="429b4d254bfa45a9b2ba924251309d71" key="box"
+                     style="flex-basis:1;"></div>
+            </div>
+            <div class="panel panel-success publicPanel" Caption="采购订单" id="mainContainer_head"
+                 style="flex-direction:column;display:flex;flex-basis:1;">
+                <div class="container" id="caigoudingdan" style="flex-basis:1;">
+                    <div class="row">
+                        <div class="col-xs-3 ">
+                            <div class="input-group"><span class="input-group-addon">单据编号：</span><input
+                                    ng-model="caigoudingdan.danjubianhao" billuistring readonly="readonly"
+                                    renderId="429b4d254bfa45a9b2ba924251309d71" key="danjubianhao" title="单据编号：" null
+                                    type="text" class="form-control"></div>
+                        </div>
+                        <div class="col-xs-3 ">
+                            <div class="input-group"><span class="input-group-addon">开票日期</span><input
+                                    ng-model="caigoudingdan.kaipiaoriqi"
+                                    init="dmFyIHQ9dGhpcy5mb3JtYXREYXRlKG5ldyBEYXRlKCkpOyB0aGlzLnNldFZhbHVlKHQpOw=="
+                                    billuidatetime readonly="readonly" data-date-format="yyyy-mm-dd hh:ii:ss"
+                                    renderId="429b4d254bfa45a9b2ba924251309d71" key="kaipiaoriqi" type="text"
+                                    class="form-control"></div>
+                        </div>
+                        <div class="col-xs-3 ">
+                            <div class="input-group"><span class="input-group-addon">币种</span><select
+                                    ng-model="caigoudingdan.bizhong" init="dGhpcy5sb2FkRGF0YVNvdXJjZSgpOw=="
+                                    billuiselect renderId="429b4d254bfa45a9b2ba924251309d71" key="bizhong" v k
+                                    source-src="bill/selectSrc?type=bizhong" class="form-control"></select></div>
+                        </div>
+                        <div class="col-xs-3 ">
+                            <div class="input-group"><span class="input-group-addon">货商编号</span><input
+                                    ng-model="caigoudingdan.huoshangbianhao"
+                                    triggers="WyJ2YXIgaHVvc2hhbmc9dGhpcy5yb3dzWzBdOyB0aGlzLnNldFZhbHVlKGh1b3NoYW5nLmd5c2JoKTsgQGh1b3NoYW5nbWluZ2NoZW5nLnNldFZhbHVlKGh1b3NoYW5nLmd5c21jKTsgQGZhaHVvZGl6aGkuc2V0VmFsdWUoaHVvc2hhbmcubGlhbnhpZGl6aGkpOyJd"
+                                    billuipopupwindow src="huoshang" readonly="readonly"
+                                    renderId="429b4d254bfa45a9b2ba924251309d71" key="huoshangbianhao" title="货商编号"
+                                    type="text" viewsize class="form-control"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-3 ">
+                            <div class="input-group"><span class="input-group-addon">货商名称</span><input
+                                    ng-model="caigoudingdan.huoshangmingcheng" billuistring
+                                    renderId="429b4d254bfa45a9b2ba924251309d71" key="huoshangmingcheng" title="货商名称"
+                                    null type="text" class="form-control"></div>
+                        </div>
+                        <div class="col-xs-3 ">
+                            <div class="input-group"><span class="input-group-addon">整单扣率</span><input
+                                    ng-model="caigoudingdan.zhengdankoulv" billuistring
+                                    renderId="429b4d254bfa45a9b2ba924251309d71" key="zhengdankoulv" title="整单扣率" null
+                                    type="text" class="form-control"></div>
+                        </div>
+                        <div class="col-xs-3 ">
+                            <div class="input-group"><span class="input-group-addon">发货地址</span><input
+                                    ng-model="caigoudingdan.fahuodizhi" billuistring
+                                    renderId="429b4d254bfa45a9b2ba924251309d71" key="fahuodizhi" title="发货地址" null
+                                    type="text" class="form-control"></div>
+                        </div>
+                        <div class="col-xs-3 ">
+                            <div class="input-group"><span class="input-group-addon">采购员</span><input
+                                    ng-model="caigoudingdan.caigouyuan"
+                                    triggers="WyJ2YXIgY2FpZ291eXVhbj10aGlzLnJvd3NbMF07IHRoaXMuc2V0VmFsdWUoY2FpZ291eXVhbi5yZWFsTmFtZSk7IEBjYWlnb3V6dXpoaS5zZXRWYWx1ZShjYWlnb3V5dWFuLmRlcHROYW1lKTsiXQ=="
+                                    billuipopupwindow src="renyuan" readonly="readonly"
+                                    renderId="429b4d254bfa45a9b2ba924251309d71" key="caigouyuan" title="采购员" type="text"
+                                    viewsize class="form-control"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-3 ">
+                            <div class="input-group"><span class="input-group-addon">采购组织</span><input
+                                    ng-model="caigoudingdan.caigouzuzhi" billuistring
+                                    renderId="429b4d254bfa45a9b2ba924251309d71" key="caigouzuzhi" title="采购组织" null
+                                    type="text" class="form-control"></div>
+                        </div>
+                        <div class="col-xs-3 ">
+                            <div class="input-group"><span class="input-group-addon">备注</span><input
+                                    ng-model="caigoudingdan.beizhu" billuistring
+                                    renderId="429b4d254bfa45a9b2ba924251309d71" key="beizhu" title="备注" null type="text"
+                                    class="form-control"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel  panel-primary  publicPanel" Caption="采购订单明细" id="mainContainer_tab"
+                 style="flex-basis:1;">
+                <ul role="tablist" class="nav nav-tabs">
+                    <li role="presentation" class="active" role="presentation"><a href="#mainContainer_details1"
+                                                                                  data-toggle="tab"
+                                                                                  role="tab">采购订单明细</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div id="mainContainer_details1" class="tab-pane active" role="tabpanel">
+                        <div style="flex-direction:column;display:flex;">
+                            <div heads="W3siY29sIjoic2hhbmdwaW5iaWFuaGFvIiwid2lkZ2V0IjoiUEdScGRpQmpiR0Z6Y3owaWFXNXdkWFF0WjNKdmRYQWlJRDQ4YVc1d2RYUWdibWN0Ylc5a1pXdzlJbDlmSkdSZmJXOWtaV3drWDE4aUlDQjBjbWxuWjJWeWN6MGlWM2xLTWxsWVNXZGpNbWhvWW0xa2QyRlhORGxrUjJod1kzazFlV0l6WkhwWGVrSmtUM2xDTUdGSGJIcE1iazVzWkVaYWFHSklWbXhMU0U1dldWYzFibU5IYkhWTWJrNXZXVmMxYm1OSGJIVlpiV3hvWW0xb2FHSjVhemRKUlVKNllVZEdkVm96UW5CaWJURndZbTFrYW1GSFZuVmFlVFY2V2xoU1YxbFhlREZhVTJoNllVZEdkVm96UW5CaWFUVjZZVWRHZFZvelFuQmliVEZ3WW0xa2FtRkhWblZhZVdzM1NVVkNlbUZIUm5WYU0wSndZbTFrTVdGWFpHeE1iazVzWkVaYWFHSklWbXhMU0U1dldWYzFibU5IYkhWTWJrNXZXVmMxYm1OSGJIVmFNMVp3V2pKVmNFOTVRa0ZhUjBaMVpESldjRXh1VG14a1JscG9Za2hXYkV0SVRtOVpWelZ1WTBkc2RVeHRTbWhpTTNCdlpGZEdkVm95VW1oaWJtUnNZVk5yTjBsRlFtOVpWelY2WVVoV2NHRnRiR2hNYms1c1pFWmFhR0pJVm14TFNFNXZXVmMxYm1OSGJIVk1iV2hvWW01T2IyUlhiSEZoVnpWeFlWZEZjRTk1UWtGbGJsWndXa2RzY1dGWE5YRmhWMFYxWXpKV01GWnRSbk5rVjFWdll6Sm9hR0p0WkhkaFZ6UjFXVzFzYUdJemNHOWtWelZ4WVZjMWNXRlhSWEJQZVVKQll6Sm9NV0ZYZURKTWJrNXNaRVphYUdKSVZteExTRTV2V1ZjMWJtTkhiSFZNYlhCd1ltNW9jRmxYTlc1ak1tZ3hZVmQ0TWt0VWMyZFJSM2h3WW0xa2VtRkhPVEZoYld4b1RHNU9iR1JHV21oaVNGWnNTMGhPYjFsWE5XNWpSMngxVEcxNGNHSnRaSHBoUnpreFlXMXNhRXRVYzJkUlIzaHdZbTFrZWxsWE5YRmhWMFoxWXpKb01VeHVUbXhrUmxwb1lraFdiRXRJVG05WlZ6VnVZMGRzZFV4dWFIQlpWemxwV1ZjNU5tRklWbWhpYldSNllVaFZjRTk1UWtGbGJsWndXakpHZG1GdGJIVmhiV3hvVEc1T2JHUkdXbWhpU0Zac1MwaE9iMWxYTlc1alIyeDFURzFvYUdKdVRtOWtWMnh4WVZjMWNXRlhSWEJQZVVKQlkwZHNObUZJVm5Wa01sWjFZVWRHZGt4dVRteGtSbHBvWWtoV2JFdElUbTlaVnpWdVkwZHNkVXh1UW5CbGJXZ3hZbTVrYkdKdGFHaGllV3MzU1VWQ2VtRkhWblZhTWs1dldWYzFhbUZIUm5WYU1uQndXVk0xZWxwWVVsZFpWM2d4V2xOb2VtRkhSblZhTTBKd1ltazFlbUZIVm5WYU1rNXZXVmMxYW1GSFJuVmFNbkJ3V1ZOck4wbEZRbnBoUjBaMVdqTkNjR0p0VG05WlZ6VnJZVk0xZWxwWVVsZFpWM2d4V2xOb2VtRkhSblZhTTBKd1ltazFlbUZIUm5WYU0wSndZbTFPYjFsWE5XdGhVMnMzU1VWQ2NWbHVjSHBpUXpWNldsaFNWMWxYZURGYVUyaDZZVWRHZFZvelFuQmlhVFZ4WVZkR2RWbHRSblpsYldneFdWYzFibU15YURGTFZITm5VVWhDTm1ReWFEVmxTRVYxWXpKV01GWnRSbk5rVjFWdll6Sm9hR0p0WkhkaFZ6UjFaVmM1TVdWSGJHaGlNMFp3Wlcxb2NFdFVjMmRSU0U0MVdrZHdhV0ZETlhwYVdGSlhXVmQ0TVZwVGFIcGhSMFoxV2pOQ2NHSnBOWHBsVjFKeFdXMW5jRTk1UWtGYVJ6bDFXakp3Y0ZwVE5YcGFXRkpYV1ZkNE1WcFRhSHBoUjBaMVdqTkNjR0pwTldwWlZ6azJaRmM0Y0U5NVFqSlpXRWxuWVRJNU1XSklXVGxSU0hCdldsYzFibHBIUm5WaE1qa3hZa2haZFZveVZqQldiVVp6WkZkVmIwdFVjMmRoTWpreFlraFpkV1JIYUd4aWFXaHRaRmMxYW1SSGJIWmlhV2hyUzFoeloxRkhkSFprVjNneVRHNU9iR1JHV21oaVNGWnNTMGRSY0U5NVFqbE1SMW94WW0xT01HRlhPWFZMUjFWd1pYbENhbUl5TlhwaU1uaHNURzE0ZGxwNWFHeExWSE5uWmxOcmFWaFJQVDBpSUNCaWFXeHNkV2x3YjNCMWNIZHBibVJ2ZHlBZ2MzSmpQU0p6YUdGdVozQnBiaUlnSUhKbFlXUnZibXg1UFNKeVpXRmtiMjVzZVNJZ0lISmxibVJsY2tsa1BTSTBNamxpTkdReU5UUmlabUUwTldFNVlqSmlZVGt5TkRJMU1UTXdPV1EzTVNJZ0lHdGxlVDBpYzJoaGJtZHdhVzVpYVdGdWFHRnZJaUFnZEdsMGJHVWdJSFI1Y0dVOUluUmxlSFFpSUNCMmFXVjNjMmw2WlNBZ1kyeGhjM005SW1admNtMHRZMjl1ZEhKdmJDSWdQand2WkdsMlBnPT0iLCJ3aWR0aCI6IjgwcHgiLCJjYXB0aW9uIjoi5ZWG5ZOB57yW5Y+3Iiwib3JkZXIiOjB9LHsiY29sIjoic2hhbmdwaW5taW5nY2hlbmciLCJ3aWRnZXQiOiJQR1JwZGlCamJHRnpjejBpYVc1d2RYUXRaM0p2ZFhBaUlENDhhVzV3ZFhRZ2JtY3RiVzlrWld3OUlsOWZKR1JmYlc5a1pXd2tYMThpSUNCd2NtOXdaWEowYVdWelBTSlhNM1IxV1ZjeGJFOXBTbXRaV0ZKb1ZrZEdhV0pIVldsTVNGSTFZMGRWTmtsdGJIVmtSMVo1WW0xR2MwbHBlREpaVjNneFdsUnZhV015YUdoaWJXUjNZVmMxY1dGWFNteGlibWh3WW01b2NFbHVNV1FpSUNCMGNtbG5aMlZ5Y3owaVYzbEtNbGxZU1dkak1taG9ZbTFrZDJGWE5EbGtSMmh3WTNrMWVXSXpZemRKU0ZKdllWaE5kV015VmpCV2JVWnpaRmRWYjJNeWFHaGliV1IzWVZjMGRXTXlhR2hpYldSM1lWYzFkR0ZYTlc1Wk1taHNZbTFqY0U5NVFrRmpNbWhvWW0xa2QyRlhOVzVrVjJ4dVdsTTFlbHBZVWxkWlYzZ3hXbE5vZW1GSFJuVmFNMEp3WW1rMWVtRkhSblZhTTBKd1ltMWtNV0ZYWkd4TFZITm5VVWhPYjFsWE5XNWpSMngxV1cxc2FHSnRhR2hpZVRWNldsaFNWMWxYZURGYVUyaDZZVWRHZFZvelFuQmlhVFY2WVVkR2RWb3pRbkJpYlVwd1dWYzFiMWxYT0hCUGVVSkJXVzFXY0dWdGFERk1iazVzWkVaYWFHSklWbXhMU0U1dldWYzFibU5IYkhWTWJVcHNZVmh3YjJSVGF6ZEpSVUo2WVVkR2RWb3pRbkJpYlRGd1ltMWthbUZIVm5WYWVUVjZXbGhTVjFsWGVERmFVMmg2WVVkR2RWb3pRbkJpYVRWNllVZEdkVm96UW5CaWJURndZbTFrYW1GSFZuVmFlV3MzU1VWQ2VtRkhSblZhTTBKd1ltMWtNV0ZYWkd4TWJrNXNaRVphYUdKSVZteExTRTV2V1ZjMWJtTkhiSFZNYms1dldWYzFibU5IYkhWYU0xWndXakpWY0U5NVFrRmFSMFoxWkRKV2NFeHVUbXhrUmxwb1lraFdiRXRJVG05WlZ6VnVZMGRzZFV4dFNtaGlNM0J2WkZkR2RWb3lVbWhpYm1Sc1lWTnJOMGxGUW05WlZ6VjZZVWhXY0dGdGJHaE1iazVzWkVaYWFHSklWbXhMU0U1dldWYzFibU5IYkhWTWJXaG9ZbTVPYjJSWGJIRmhWelZ4WVZkRmNFOTVRa0ZsYmxad1drZHNjV0ZYTlhGaFYwVjFZekpXTUZadFJuTmtWMVZ2WXpKb2FHSnRaSGRoVnpSMVdXMXNhR0l6Y0c5a1Z6VnhZVmMxY1dGWFJYQlBlVUpCWXpKb01XRlhlREpNYms1c1pFWmFhR0pJVm14TFNFNXZXVmMxYm1OSGJIVk1iWEJ3WW01b2NGbFhOVzVqTW1neFlWZDRNa3RVYzJkUlIzaHdZbTFrZW1GSE9URmhiV3hvVEc1T2JHUkdXbWhpU0Zac1MwaE9iMWxYTlc1alIyeDFURzE0Y0dKdFpIcGhSemt4WVcxc2FFdFVjMmRSUjNod1ltMWtlbGxYTlhGaFYwWjFZekpvTVV4dVRteGtSbHBvWWtoV2JFdElUbTlaVnpWdVkwZHNkVXh1YUhCWlZ6bHBXVmM1Tm1GSVZtaGliV1I2WVVoVmNFOTVRa0ZsYmxad1dqSkdkbUZ0YkhWaGJXeG9URzVPYkdSR1dtaGlTRlpzUzBoT2IxbFhOVzVqUjJ4MVRHMW9hR0p1VG05a1YyeHhZVmMxY1dGWFJYQlBlVUpCWTBkc05tRklWblZrTWxaMVlVZEdka3h1VG14a1JscG9Za2hXYkV0SVRtOVpWelZ1WTBkc2RVeHVRbkJsYldneFltNWtiR0p0YUdoaWVXczNTVVZDZW1GSFZuVmFNazV2V1ZjMWFtRkhSblZhTW5Cd1dWTTFlbHBZVWxkWlYzZ3hXbE5vZW1GSFJuVmFNMEp3WW1rMWVtRkhWblZhTWs1dldWYzFhbUZIUm5WYU1uQndXVk5yTjBsRlFucGhSMFoxV2pOQ2NHSnRUbTlaVnpWcllWTTFlbHBZVWxkWlYzZ3hXbE5vZW1GSFJuVmFNMEp3WW1rMWVtRkhSblZhTTBKd1ltMU9iMWxYTld0aFUyczNTVVZDY1ZsdWNIcGlRelY2V2xoU1YxbFhlREZhVTJoNllVZEdkVm96UW5CaWFUVnhZVmRHZFZsdFJuWmxiV2d4V1ZjMWJtTXlhREZMVkhOblVVaENObVF5YURWbFNFVjFZekpXTUZadFJuTmtWMVZ2WXpKb2FHSnRaSGRoVnpSMVpWYzVNV1ZIYkdoaU0wWndaVzFvY0V0VWMyZFJTRTQxV2tkd2FXRkROWHBhV0ZKWFdWZDRNVnBUYUhwaFIwWjFXak5DY0dKcE5YcGxWMUp4V1cxbmNFOTVRa0ZhUnpsMVdqSndjRnBUTlhwYVdGSlhXVmQ0TVZwVGFIcGhSMFoxV2pOQ2NHSnBOV3BaVnprMlpGYzRjRTk1UWpKWldFbG5ZVEk1TVdKSVdUbFJTSEJ2V2xjMWJscEhSblZoTWpreFlraFpkVm95VmpCV2JVWnpaRmRWYjB0VWMyZGhNamt4WWtoWmRXUkhhR3hpYVdodFpGYzFhbVJIYkhaaWFXaHJTMWh6WjFGSGRIWmtWM2d5VEc1T2JHUkdXbWhpU0Zac1MwZFJjRTk1UWpsTVIxb3hZbTFPTUdGWE9YVkxSMVZ3WlhsQ2FtSXlOWHBpTW5oc1RHMTRkbHA1YUd4TFZITm5abE5yYVZoUlBUMGlJQ0JpYVd4c2RXbHpkSEpwYm1jZ0lISmxibVJsY2tsa1BTSTBNamxpTkdReU5UUmlabUUwTldFNVlqSmlZVGt5TkRJMU1UTXdPV1EzTVNJZ0lHdGxlVDBpYzJoaGJtZHdhVzV0YVc1blkyaGxibWNpSUNCMGFYUnNaU0FnZW1oMWFtbHRZU0FnZEhsd1pUMGlkR1Y0ZENJZ0lHTnNZWE56UFNKbWIzSnRMV052Ym5SeWIyd2lJRDQ4TDJScGRqND0iLCJ3aWR0aCI6IjgwcHgiLCJjYXB0aW9uIjoi5ZWG5ZOB5ZCN56ewIiwib3JkZXIiOjB9LHsiY29sIjoic2hhbmdwaW5ndWlnZSIsIndpZGdldCI6IlBHUnBkaUJqYkdGemN6MGlhVzV3ZFhRdFozSnZkWEFpSUQ0OGFXNXdkWFFnYm1jdGJXOWtaV3c5SWw5ZkpHUmZiVzlrWld3a1gxOGlJQ0JpYVd4c2RXbHpkSEpwYm1jZ0lISmxibVJsY2tsa1BTSTBNamxpTkdReU5UUmlabUUwTldFNVlqSmlZVGt5TkRJMU1UTXdPV1EzTVNJZ0lHdGxlVDBpYzJoaGJtZHdhVzVuZFdsblpTSWdJSFJwZEd4bElDQnVkV3hzSUNCMGVYQmxQU0owWlhoMElpQWdZMnhoYzNNOUltWnZjbTB0WTI5dWRISnZiQ0lnUGp3dlpHbDJQZz09Iiwid2lkdGgiOiI4MHB4IiwiY2FwdGlvbiI6IuWVhuWTgeinhOagvCIsIm9yZGVyIjowfSx7ImNvbCI6ImRhbndlaSIsIndpZGdldCI6IlBHUnBkaUJqYkdGemN6MGlhVzV3ZFhRdFozSnZkWEFpSUQ0OGFXNXdkWFFnYm1jdGJXOWtaV3c5SWw5ZkpHUmZiVzlrWld3a1gxOGlJQ0JpYVd4c2RXbHpkSEpwYm1jZ0lISmxibVJsY2tsa1BTSTBNamxpTkdReU5UUmlabUUwTldFNVlqSmlZVGt5TkRJMU1UTXdPV1EzTVNJZ0lHdGxlVDBpWkdGdWQyVnBJaUFnZEdsMGJHVWdJRzUxYkd3Z0lIUjVjR1U5SW5SbGVIUWlJQ0JqYkdGemN6MGlabTl5YlMxamIyNTBjbTlzSWlBK1BDOWthWFkrIiwid2lkdGgiOiIxMDBweCIsImNhcHRpb24iOiLljZXkvY0iLCJvcmRlciI6MH0seyJjb2wiOiJzaGFuZ3BpbnNodWxpYW5nIiwid2lkZ2V0IjoiUEdScGRpQmpiR0Z6Y3owaWFXNXdkWFF0WjNKdmRYQWlJRDQ4YVc1d2RYUWdibWN0Ylc5a1pXdzlJbDlmSkdSZmJXOWtaV3drWDE4aUlDQmlhV3hzZFdsa1pXTnBiV0ZzSUNCeVpXNWtaWEpKWkQwaU5ESTVZalJrTWpVMFltWmhORFZoT1dJeVltRTVNalF5TlRFek1EbGtOekVpSUNCclpYazlJbk5vWVc1bmNHbHVjMmgxYkdsaGJtY2lJQ0IwYVhSc1pTQWdkSGx3WlQwaWJuVnRZbVZ5SWlBZ1kyeGhjM005SW1admNtMHRZMjl1ZEhKdmJDSWdQand2WkdsMlBnPT0iLCJ3aWR0aCI6IjEwMHB4IiwiY2FwdGlvbiI6IuWVhuWTgeaVsOmHjyIsIm9yZGVyIjowfSx7ImNvbCI6ImhhbnNodWlqaWEiLCJ3aWRnZXQiOiJQR1JwZGlCamJHRnpjejBpYVc1d2RYUXRaM0p2ZFhBaUlENDhhVzV3ZFhRZ2JtY3RiVzlrWld3OUlsOWZKR1JmYlc5a1pXd2tYMThpSUNCaWFXeHNkV2xrWldOcGJXRnNJQ0J5Wlc1a1pYSkpaRDBpTkRJNVlqUmtNalUwWW1aaE5EVmhPV0l5WW1FNU1qUXlOVEV6TURsa056RWlJQ0JyWlhrOUltaGhibk5vZFdscWFXRWlJQ0IwYVhSc1pTQWdkSGx3WlQwaWJuVnRZbVZ5SWlBZ1kyeGhjM005SW1admNtMHRZMjl1ZEhKdmJDSWdQand2WkdsMlBnPT0iLCJ3aWR0aCI6IjEwMHB4IiwiY2FwdGlvbiI6IuWQq+eojuS7tyIsIm9yZGVyIjowfSx7ImNvbCI6Inp1aWRpamluamlhIiwid2lkZ2V0IjoiUEdScGRpQmpiR0Z6Y3owaWFXNXdkWFF0WjNKdmRYQWlJRDQ4YVc1d2RYUWdibWN0Ylc5a1pXdzlJbDlmSkdSZmJXOWtaV3drWDE4aUlDQmlhV3hzZFdsa1pXTnBiV0ZzSUNCeVpXNWtaWEpKWkQwaU5ESTVZalJrTWpVMFltWmhORFZoT1dJeVltRTVNalF5TlRFek1EbGtOekVpSUNCclpYazlJbnAxYVdScGFtbHVhbWxoSWlBZ2RHbDBiR1VnSUhSNWNHVTlJbTUxYldKbGNpSWdJR05zWVhOelBTSm1iM0p0TFdOdmJuUnliMndpSUQ0OEwyUnBkajQ9Iiwid2lkdGgiOiIxMDBweCIsImNhcHRpb24iOiLmnIDkvY7ov5vku7ciLCJvcmRlciI6MH0seyJjb2wiOiJ6dWlnYW9qaW5qaWEiLCJ3aWRnZXQiOiJQR1JwZGlCamJHRnpjejBpYVc1d2RYUXRaM0p2ZFhBaUlENDhhVzV3ZFhRZ2JtY3RiVzlrWld3OUlsOWZKR1JmYlc5a1pXd2tYMThpSUNCaWFXeHNkV2xrWldOcGJXRnNJQ0J5Wlc1a1pYSkpaRDBpTkRJNVlqUmtNalUwWW1aaE5EVmhPV0l5WW1FNU1qUXlOVEV6TURsa056RWlJQ0JyWlhrOUlucDFhV2RoYjJwcGJtcHBZU0lnSUhScGRHeGxJQ0IwZVhCbFBTSnVkVzFpWlhJaUlDQmpiR0Z6Y3owaVptOXliUzFqYjI1MGNtOXNJaUErUEM5a2FYWSsiLCJ3aWR0aCI6IjEwMHB4IiwiY2FwdGlvbiI6IuacgOmrmOi/m+S7tyIsIm9yZGVyIjowfSx7ImNvbCI6InpoamhkdyIsIndpZGdldCI6IlBHUnBkaUJqYkdGemN6MGlhVzV3ZFhRdFozSnZkWEFpSUQ0OGFXNXdkWFFnYm1jdGJXOWtaV3c5SWw5ZkpHUmZiVzlrWld3a1gxOGlJQ0JpYVd4c2RXbHpkSEpwYm1jZ0lISmxibVJsY2tsa1BTSTBNamxpTkdReU5UUmlabUUwTldFNVlqSmlZVGt5TkRJMU1UTXdPV1EzTVNJZ0lHdGxlVDBpZW1ocWFHUjNJaUFnZEdsMGJHVWdJRzUxYkd3Z0lIUjVjR1U5SW5SbGVIUWlJQ0JqYkdGemN6MGlabTl5YlMxamIyNTBjbTlzSWlBK1BDOWthWFkrIiwid2lkdGgiOiIxMDBweCIsImNhcHRpb24iOiLmnIDlkI7ov5votKfljZXkvY0iLCJvcmRlciI6MH0seyJjb2wiOiJrb3VsdiIsIndpZGdldCI6IlBHUnBkaUJqYkdGemN6MGlhVzV3ZFhRdFozSnZkWEFpSUQ0OGFXNXdkWFFnYm1jdGJXOWtaV3c5SWw5ZkpHUmZiVzlrWld3a1gxOGlJQ0JpYVd4c2RXbGtaV05wYldGc0lDQnlaVzVrWlhKSlpEMGlOREk1WWpSa01qVTBZbVpoTkRWaE9XSXlZbUU1TWpReU5URXpNRGxrTnpFaUlDQnJaWGs5SW10dmRXeDJJaUFnZEdsMGJHVWdJSFI1Y0dVOUltNTFiV0psY2lJZ0lHTnNZWE56UFNKbWIzSnRMV052Ym5SeWIyd2lJRDQ4TDJScGRqND0iLCJ3aWR0aCI6IjEwMHB4IiwiY2FwdGlvbiI6IuaJo+eOhyIsIm9yZGVyIjowfSx7ImNvbCI6InNodWlsdiIsIndpZGdldCI6IlBHUnBkaUJqYkdGemN6MGlhVzV3ZFhRdFozSnZkWEFpSUQ0OGFXNXdkWFFnYm1jdGJXOWtaV3c5SWw5ZkpHUmZiVzlrWld3a1gxOGlJQ0JpYVd4c2RXbGtaV05wYldGc0lDQnlaVzVrWlhKSlpEMGlOREk1WWpSa01qVTBZbVpoTkRWaE9XSXlZbUU1TWpReU5URXpNRGxrTnpFaUlDQnJaWGs5SW5Ob2RXbHNkaUlnSUhScGRHeGxJQ0IwZVhCbFBTSnVkVzFpWlhJaUlDQmpiR0Z6Y3owaVptOXliUzFqYjI1MGNtOXNJaUErUEM5a2FYWSsiLCJ3aWR0aCI6IjEwMHB4IiwiY2FwdGlvbiI6IueojueOhyIsIm9yZGVyIjowfSx7ImNvbCI6ImxpbmdzaG91amlhIiwid2lkZ2V0IjoiUEdScGRpQmpiR0Z6Y3owaWFXNXdkWFF0WjNKdmRYQWlJRDQ4YVc1d2RYUWdibWN0Ylc5a1pXdzlJbDlmSkdSZmJXOWtaV3drWDE4aUlDQmlhV3hzZFdsa1pXTnBiV0ZzSUNCeVpXNWtaWEpKWkQwaU5ESTVZalJrTWpVMFltWmhORFZoT1dJeVltRTVNalF5TlRFek1EbGtOekVpSUNCclpYazlJbXhwYm1kemFHOTFhbWxoSWlBZ2RHbDBiR1VnSUhSNWNHVTlJbTUxYldKbGNpSWdJR05zWVhOelBTSm1iM0p0TFdOdmJuUnliMndpSUQ0OEwyUnBkajQ9Iiwid2lkdGgiOiIxMDBweCIsImNhcHRpb24iOiLpm7bllK7ku7ciLCJvcmRlciI6MH0seyJjb2wiOiJsaW5nc2hvdWppbmUiLCJ3aWRnZXQiOiJQR1JwZGlCamJHRnpjejBpYVc1d2RYUXRaM0p2ZFhBaUlENDhhVzV3ZFhRZ2JtY3RiVzlrWld3OUlsOWZKR1JmYlc5a1pXd2tYMThpSUNCaWFXeHNkV2xrWldOcGJXRnNJQ0J5Wlc1a1pYSkpaRDBpTkRJNVlqUmtNalUwWW1aaE5EVmhPV0l5WW1FNU1qUXlOVEV6TURsa056RWlJQ0JyWlhrOUlteHBibWR6YUc5MWFtbHVaU0lnSUhScGRHeGxJQ0IwZVhCbFBTSnVkVzFpWlhJaUlDQmpiR0Z6Y3owaVptOXliUzFqYjI1MGNtOXNJaUErUEM5a2FYWSsiLCJ3aWR0aCI6IjEwMHB4IiwiY2FwdGlvbiI6IumbtuWUrumHkeminSIsIm9yZGVyIjowfSx7ImNvbCI6InBpemh1bndlbmhhbyIsIndpZGdldCI6IlBHUnBkaUJqYkdGemN6MGlhVzV3ZFhRdFozSnZkWEFpSUQ0OGFXNXdkWFFnYm1jdGJXOWtaV3c5SWw5ZkpHUmZiVzlrWld3a1gxOGlJQ0JpYVd4c2RXbHpkSEpwYm1jZ0lISmxibVJsY2tsa1BTSTBNamxpTkdReU5UUmlabUUwTldFNVlqSmlZVGt5TkRJMU1UTXdPV1EzTVNJZ0lHdGxlVDBpY0dsNmFIVnVkMlZ1YUdGdklpQWdkR2wwYkdVZ0lHNTFiR3dnSUhSNWNHVTlJblJsZUhRaUlDQmpiR0Z6Y3owaVptOXliUzFqYjI1MGNtOXNJaUErUEM5a2FYWSsiLCJ3aWR0aCI6IjgwcHgiLCJjYXB0aW9uIjoi5om55YeG5paH5Y+3Iiwib3JkZXIiOjB9LHsiY29sIjoic2hlbmdjaGFuY2hhbmdqaWEiLCJ3aWRnZXQiOiJQR1JwZGlCamJHRnpjejBpYVc1d2RYUXRaM0p2ZFhBaUlENDhhVzV3ZFhRZ2JtY3RiVzlrWld3OUlsOWZKR1JmYlc5a1pXd2tYMThpSUNCaWFXeHNkV2x6ZEhKcGJtY2dJSEpsYm1SbGNrbGtQU0kwTWpsaU5HUXlOVFJpWm1FME5XRTVZakppWVRreU5ESTFNVE13T1dRM01TSWdJR3RsZVQwaWMyaGxibWRqYUdGdVkyaGhibWRxYVdFaUlDQjBhWFJzWlNBZ2JuVnNiQ0FnZEhsd1pUMGlkR1Y0ZENJZ0lHTnNZWE56UFNKbWIzSnRMV052Ym5SeWIyd2lJRDQ4TDJScGRqND0iLCJ3aWR0aCI6IjgwcHgiLCJjYXB0aW9uIjoi55Sf5Lqn5Y6C5a62Iiwib3JkZXIiOjB9LHsiY29sIjoic2hhbmdwaW5jaGFuZGkiLCJ3aWRnZXQiOiJQR1JwZGlCamJHRnpjejBpYVc1d2RYUXRaM0p2ZFhBaUlENDhhVzV3ZFhRZ2JtY3RiVzlrWld3OUlsOWZKR1JmYlc5a1pXd2tYMThpSUNCaWFXeHNkV2x6ZEhKcGJtY2dJSEpsYm1SbGNrbGtQU0kwTWpsaU5HUXlOVFJpWm1FME5XRTVZakppWVRreU5ESTFNVE13T1dRM01TSWdJR3RsZVQwaWMyaGhibWR3YVc1amFHRnVaR2tpSUNCMGFYUnNaU0FnYm5Wc2JDQWdkSGx3WlQwaWRHVjRkQ0lnSUdOc1lYTnpQU0ptYjNKdExXTnZiblJ5YjJ3aUlENDhMMlJwZGo0PSIsIndpZHRoIjoiODBweCIsImNhcHRpb24iOiLllYblk4HkuqflnLAiLCJvcmRlciI6MH0seyJjb2wiOiJqYnpzbCIsIndpZGdldCI6IlBHUnBkaUJqYkdGemN6MGlhVzV3ZFhRdFozSnZkWEFpSUQ0OGFXNXdkWFFnYm1jdGJXOWtaV3c5SWw5ZkpHUmZiVzlrWld3a1gxOGlJQ0JpYVd4c2RXbHBiblJsWjJWeUlDQnlaVzVrWlhKSlpEMGlOREk1WWpSa01qVTBZbVpoTkRWaE9XSXlZbUU1TWpReU5URXpNRGxrTnpFaUlDQnJaWGs5SW1waWVuTnNJaUFnZEdsMGJHVWdJSFI1Y0dVOUltNTFiV0psY2lJZ0lHTnNZWE56UFNKbWIzSnRMV052Ym5SeWIyd2lJRDQ4TDJScGRqND0iLCJ3aWR0aCI6IjgwcHgiLCJjYXB0aW9uIjoi5Lu25YyF6KOF5pWw6YePIiwib3JkZXIiOjB9LHsiY29sIjoiYmFvemh1YW5nc2h1bGlhbmciLCJ3aWRnZXQiOiJQR1JwZGlCamJHRnpjejBpYVc1d2RYUXRaM0p2ZFhBaUlENDhhVzV3ZFhRZ2JtY3RiVzlrWld3OUlsOWZKR1JmYlc5a1pXd2tYMThpSUNCaWFXeHNkV2xwYm5SbFoyVnlJQ0J5Wlc1a1pYSkpaRDBpTkRJNVlqUmtNalUwWW1aaE5EVmhPV0l5WW1FNU1qUXlOVEV6TURsa056RWlJQ0JyWlhrOUltSmhiM3BvZFdGdVozTm9kV3hwWVc1bklpQWdkR2wwYkdVZ0lIUjVjR1U5SW01MWJXSmxjaUlnSUdOc1lYTnpQU0ptYjNKdExXTnZiblJ5YjJ3aUlENDhMMlJwZGo0PSIsIndpZHRoIjoiODBweCIsImNhcHRpb24iOiLljIXoo4XmlbDph48iLCJvcmRlciI6MH0seyJjb2wiOiJsaW5nc2FuamlhbnNodSIsIndpZGdldCI6IlBHUnBkaUJqYkdGemN6MGlhVzV3ZFhRdFozSnZkWEFpSUQ0OGFXNXdkWFFnYm1jdGJXOWtaV3c5SWw5ZkpHUmZiVzlrWld3a1gxOGlJQ0JpYVd4c2RXbHBiblJsWjJWeUlDQnlaVzVrWlhKSlpEMGlOREk1WWpSa01qVTBZbVpoTkRWaE9XSXlZbUU1TWpReU5URXpNRGxrTnpFaUlDQnJaWGs5SW14cGJtZHpZVzVxYVdGdWMyaDFJaUFnZEdsMGJHVWdJSFI1Y0dVOUltNTFiV0psY2lJZ0lHTnNZWE56UFNKbWIzSnRMV052Ym5SeWIyd2lJRDQ4TDJScGRqND0iLCJ3aWR0aCI6IjgwcHgiLCJjYXB0aW9uIjoi6Zu25pWj5Lu25pWwIiwib3JkZXIiOjB9LHsiY29sIjoicHp3aHl4cSIsIndpZGdldCI6IlBHUnBkaUJqYkdGemN6MGlhVzV3ZFhRdFozSnZkWEFpSUQ0OGFXNXdkWFFnYm1jdGJXOWtaV3c5SWw5ZkpHUmZiVzlrWld3a1gxOGlJQ0JpYVd4c2RXbGtZWFJsZEdsdFpTQWdaR0YwWVMxa1lYUmxMV1p2Y20xaGREMGllWGw1ZVMxdGJTMWtaQ0JvYURwcGFUcHpjeUlnSUhKbGJtUmxja2xrUFNJME1qbGlOR1F5TlRSaVptRTBOV0U1WWpKaVlUa3lOREkxTVRNd09XUTNNU0lnSUd0bGVUMGljSHAzYUhsNGNTSWdJSFI1Y0dVOUluUmxlSFFpSUNCamJHRnpjejBpWm05eWJTMWpiMjUwY205c0lpQStQQzlrYVhZKyIsIndpZHRoIjoiODBweCIsImNhcHRpb24iOiLmibnlh4bmloflj7fmnInmlYjmnJ8iLCJvcmRlciI6MH0seyJjb2wiOiJzeWRqYmgiLCJ3aWRnZXQiOiJQR1JwZGlCamJHRnpjejBpYVc1d2RYUXRaM0p2ZFhBaUlENDhhVzV3ZFhRZ2JtY3RiVzlrWld3OUlsOWZKR1JmYlc5a1pXd2tYMThpSUNCaWFXeHNkV2x6ZEhKcGJtY2dJSEpsYm1SbGNrbGtQU0kwTWpsaU5HUXlOVFJpWm1FME5XRTVZakppWVRreU5ESTFNVE13T1dRM01TSWdJR3RsZVQwaWMzbGthbUpvSWlBZ2RHbDBiR1VnSUc1MWJHd2dJSFI1Y0dVOUluUmxlSFFpSUNCamJHRnpjejBpWm05eWJTMWpiMjUwY205c0lpQStQQzlrYVhZKyIsIndpZHRoIjoiODBweCIsImNhcHRpb24iOiLpppbokKXljZXmja7nvJblj7ciLCJvcmRlciI6MH0seyJjb2wiOiJjZ2hzY2IiLCJ3aWRnZXQiOiJQR1JwZGlCamJHRnpjejBpYVc1d2RYUXRaM0p2ZFhBaUlENDhhVzV3ZFhRZ2JtY3RiVzlrWld3OUlsOWZKR1JmYlc5a1pXd2tYMThpSUNCaWFXeHNkV2xrWldOcGJXRnNJQ0J5Wlc1a1pYSkpaRDBpTkRJNVlqUmtNalUwWW1aaE5EVmhPV0l5WW1FNU1qUXlOVEV6TURsa056RWlJQ0JyWlhrOUltTm5hSE5qWWlJZ0lIUnBkR3hsSUNCMGVYQmxQU0p1ZFcxaVpYSWlJQ0JqYkdGemN6MGlabTl5YlMxamIyNTBjbTlzSWlBK1BDOWthWFkrIiwid2lkdGgiOiIxMDBweCIsImNhcHRpb24iOiLph4fotK3moLjnrpfmiJDmnKwiLCJvcmRlciI6MH0seyJjb2wiOiJiZWl6aHUiLCJ3aWRnZXQiOiJQR1JwZGlCamJHRnpjejBpYVc1d2RYUXRaM0p2ZFhBaUlENDhhVzV3ZFhRZ2JtY3RiVzlrWld3OUlsOWZKR1JmYlc5a1pXd2tYMThpSUNCaWFXeHNkV2x6ZEhKcGJtY2dJSEpsYm1SbGNrbGtQU0kwTWpsaU5HUXlOVFJpWm1FME5XRTVZakppWVRreU5ESTFNVE13T1dRM01TSWdJR3RsZVQwaVltVnBlbWgxSWlBZ2RHbDBiR1VnSUc1MWJHd2dJSFI1Y0dVOUluUmxlSFFpSUNCamJHRnpjejBpWm05eWJTMWpiMjUwY205c0lpQStQQzlrYVhZKyIsIndpZHRoIjoiODBweCIsImNhcHRpb24iOiLlpIfms6giLCJvcmRlciI6MH1d"
+                                 sorts="W3t2YWx1ZTonc2hhbmdwaW5iaWFuaGFvJyxuYW1lOifllYblk4HnvJblj7cnfSx7dmFsdWU6J3NoYW5ncGluZ3VpZ2UnLG5hbWU6J+WVhuWTgeinhOagvCd9XQ=="
+                                 billuigrid renderId="429b4d254bfa45a9b2ba924251309d71" key="caigoudingdan_details"
+                                 row-id table-key="caigoudingdan_details" select-mode="multi" opt-mode="edit"
+                                 style="flex-basis:1;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>
+<script>main.controller('xyyerp.mainCtl495432126b7a4e73a122fae92c1f6612', function ($scope, $http, $interval, $rootScope, $compile, $q) {
+    $scope._model = new $Model($rootScope._model);
+    $scope._env = new $Model($rootScope._env);
+    clone({
+        "billid": "bb48ebe9fe344190acc65ddced5588b3",
+        "billkey": "caigoudingdan",
+        "ua": "WEB",
+        "t1": 0,
+        "t2": 0,
+        "t3": ""
+    }, $scope._env);
+    clone({billtype: 'Bill'}, $scope._env);
+    $scope.renderId = '429b4d254bfa45a9b2ba924251309d71';
+    $scope.$http = $http;
+    $scope.$q = $q;
+    $scope.$interval = $interval;
+    $scope._$$controller$$ = '_$$controller$$';
+    $scope.$compile = $compile;
+    $scope.checkRuleLists = [];
+    mixer(ERPBill, $scope);
+    $scope.pageInit();
+});</script>
+
+
+<div class="workbooksubNav">
+    <ul>
+        <li class="curr">
+        </li>
+    </ul>
+</div>
+
+<script>
+    $("div[Caption='工具栏']").hide();
+    $("div[ng-controller]").hide();
+    $("div[ng-controller]").eq(0).show();
+    var dataTab = $("div[BillType]");
+    var dataArray = new Array();
+    for (var i = 0; i < dataTab.length; i++) {
+        var dataAttr ={
+            caption:$(dataTab[i]).attr('Caption'),
+            ngcontroller:$(dataTab[i]).attr('ng-controller')
+        };
+        dataArray.push(dataAttr);
+        var element=$(".workbooksubNav ul li");
+        element.append("<a onclick=changeTab('"+dataAttr.ngcontroller+"')>"+dataAttr.caption+"</a>");
+    };
+
+   function changeTab(tab) {
+        $("div[ng-controller]").hide();
+        $("div[ng-controller='"+tab+"']").show();
+    };
+
+
+
+</script>
+
+
+<div ng-controller="xyyerp.mainCtl936134832e954338bb5e6e0352a51c69" Version="1.0.0" BillType="Bills" Caption="采购订单叙事薄222"
+     Key="caigoudingdan" id="caigoudingdan">
+    <div user-agent="web">
+        <div Caption="采购订单叙事薄" style="flex-direction:column;display:flex;">
+            <div Caption="工具栏" id="toolbox" style="flex-direction:column;display:flex;flex-basis:1;">
+                <div billuiview src="toolbillsbox" renderId="7faa3d3bcb0f4e06810d1bc0b5d5da6d" key="box"
+                     style="flex-basis:1;"></div>
+            </div>
+            <div class="panel panel-default publicPanel" Caption="查询面板" id="bills_tools"
+                 style="flex-direction:column;display:flex;flex-basis:1;">
+                <div class="row">
+                    <div class="col-sm-3 ">
+                        <div class="input-group"><span class="input-group-addon">采购订单号</span><input
+                                ng-model="$caigoudingdan.params.danjubianhao" billuistring
+                                renderId="7faa3d3bcb0f4e06810d1bc0b5d5da6d" key="danjubianhao" title="采购订单号" null
+                                type="text" class="form-control"></div>
+                    </div>
+                    <div class="col-sm-3 ">
+                        <div class="input-group"><span class="input-group-addon">货商名称</span><input
+                                ng-model="$caigoudingdan.params.huoshangmingcheng" billuistring
+                                renderId="7faa3d3bcb0f4e06810d1bc0b5d5da6d" key="huoshangmingcheng" title="货商名称" null
+                                type="text" class="form-control"></div>
+                    </div>
+                    <div class="col-sm-3 ">
+                        <div class="input-group"><span class="input-group-addon">状态</span><select
+                                ng-model="$caigoudingdan.params.status" init="dGhpcy5sb2FkRGF0YVNvdXJjZSgpOw=="
+                                billuiselect renderId="7faa3d3bcb0f4e06810d1bc0b5d5da6d" key="status" v k
+                                source-src="bill/selectSrc?type=status" class="form-control"></select></div>
+                    </div>
+                    <div class="col-sm-3 ">
+                        <button triggers="WyJAZGFuanViaWFuaGFvLnNldFZhbHVlKFwiXCIpOyBAa2VodW1pbmdjaGVuZy5zZXRWYWx1ZShcIlwiKTsgQHN0YXR1cy5zZXRWYWx1ZShcIlwiKTsgQCR0aGlzLl9fbG9hZCgpOyJd"
+                                billuibutton renderId="7faa3d3bcb0f4e06810d1bc0b5d5da6d" key="cancel"
+                                class="btn btn-primary"><i class="glyphicon glyphicon-send"></i>取消
+                        </button>
+                        <button triggers="WyJAJHRoaXMuX19sb2FkKFwiY2FpZ291ZGluZ2RhblwiKTsiXQ==" billuibutton
+                                renderId="7faa3d3bcb0f4e06810d1bc0b5d5da6d" key="search" class="btn btn-primary"><i
+                                class="glyphicon glyphicon-send"></i>查询
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel  panel-primary  publicPanel" Caption="查询展示列" id="bills_tabs" style="flex-basis:1;">
+            <ul role="tablist" class="nav nav-tabs"></ul>
+            <div class="tab-content">
+                <div heads="W3siY29sIjoiZGFuanViaWFuaGFvIiwid2lkZ2V0IjoiUEdScGRpQmpiR0Z6Y3owaWFXNXdkWFF0WjNKdmRYQWlJRDQ4YVc1d2RYUWdibWN0Ylc5a1pXdzlJbDlmSkdSZmJXOWtaV3drWDE4aUlDQmlhV3hzZFdsemRISnBibWNnSUhKbGJtUmxja2xrUFNJM1ptRmhNMlF6WW1OaU1HWTBaVEEyT0RFd1pERmlZekJpTldRMVpHRTJaQ0lnSUd0bGVUMGlaR0Z1YW5WaWFXRnVhR0Z2SWlBZ2RHbDBiR1VnSUc1MWJHd2dJSFI1Y0dVOUluUmxlSFFpSUNCamJHRnpjejBpWm05eWJTMWpiMjUwY205c0lpQStQQzlrYVhZKyIsIndpZHRoIjoiMTUwcHgiLCJjYXB0aW9uIjoi5Y2V5o2u57yW5Y+3Iiwib3JkZXIiOjB9LHsiY29sIjoia2FpcGlhb3JpcWkiLCJ3aWRnZXQiOiJQR1JwZGlCamJHRnpjejBpYVc1d2RYUXRaM0p2ZFhBaUlENDhhVzV3ZFhRZ2JtY3RiVzlrWld3OUlsOWZKR1JmYlc5a1pXd2tYMThpSUNCaWFXeHNkV2xrWVhSbGRHbHRaU0FnWkdGMFlTMWtZWFJsTFdadmNtMWhkRDBpZVhsNWVTMXRiUzFrWkNCb2FEcHBhVHB6Y3lJZ0lISmxibVJsY2tsa1BTSTNabUZoTTJRelltTmlNR1kwWlRBMk9ERXdaREZpWXpCaU5XUTFaR0UyWkNJZ0lHdGxlVDBpYTJGcGNHbGhiM0pwY1draUlDQjBlWEJsUFNKMFpYaDBJaUFnWTJ4aGMzTTlJbVp2Y20wdFkyOXVkSEp2YkNJZ1Bqd3ZaR2wyUGc9PSIsIndpZHRoIjoiMTUwcHgiLCJjYXB0aW9uIjoi5byA56Wo5pel5pyfIiwib3JkZXIiOjB9LHsiY29sIjoiYml6aG9uZyIsIndpZGdldCI6IlBHUnBkaUJqYkdGemN6MGlhVzV3ZFhRdFozSnZkWEFpSUQ0OGFXNXdkWFFnYm1jdGJXOWtaV3c5SWw5ZkpHUmZiVzlrWld3a1gxOGlJQ0JtYjNKdFlYUjBaWEp6UFNKWE0zUnRZak5LZEZsWVVrWmxTRUo1VDJsS1ltVjVaREJsV0VKc1NucHZibGx0YkRaaFJ6bDFXbmxrT1ZoVFNqbFlVVDA5SWlBZ1ltbHNiSFZwYVc1MFpXZGxjaUFnY21WdVpHVnlTV1E5SWpkbVlXRXpaRE5pWTJJd1pqUmxNRFk0TVRCa01XSmpNR0kxWkRWa1lUWmtJaUFnYTJWNVBTSmlhWHBvYjI1bklpQWdkR2wwYkdVZ0lIUjVjR1U5SW01MWJXSmxjaUlnSUdOc1lYTnpQU0ptYjNKdExXTnZiblJ5YjJ3aUlENDhMMlJwZGo0PSIsIndpZHRoIjoiNjBweCIsImNhcHRpb24iOiLluIHnp40iLCJvcmRlciI6MH0seyJjb2wiOiJodW9zaGFuZ2JpYW5oYW8iLCJ3aWRnZXQiOiJQR1JwZGlCamJHRnpjejBpYVc1d2RYUXRaM0p2ZFhBaUlENDhhVzV3ZFhRZ2JtY3RiVzlrWld3OUlsOWZKR1JmYlc5a1pXd2tYMThpSUNCaWFXeHNkV2x6ZEhKcGJtY2dJSEpsYm1SbGNrbGtQU0kzWm1GaE0yUXpZbU5pTUdZMFpUQTJPREV3WkRGaVl6QmlOV1ExWkdFMlpDSWdJR3RsZVQwaWFIVnZjMmhoYm1kaWFXRnVhR0Z2SWlBZ2RHbDBiR1VnSUc1MWJHd2dJSFI1Y0dVOUluUmxlSFFpSUNCamJHRnpjejBpWm05eWJTMWpiMjUwY205c0lpQStQQzlrYVhZKyIsIndpZHRoIjoiMTUwcHgiLCJjYXB0aW9uIjoi6LSn5ZWG57yW5Y+3Iiwib3JkZXIiOjB9LHsiY29sIjoiaHVvc2hhbmdtaW5nY2hlbmciLCJ3aWRnZXQiOiJQR1JwZGlCamJHRnpjejBpYVc1d2RYUXRaM0p2ZFhBaUlENDhhVzV3ZFhRZ2JtY3RiVzlrWld3OUlsOWZKR1JmYlc5a1pXd2tYMThpSUNCaWFXeHNkV2x6ZEhKcGJtY2dJSEpsYm1SbGNrbGtQU0kzWm1GaE0yUXpZbU5pTUdZMFpUQTJPREV3WkRGaVl6QmlOV1ExWkdFMlpDSWdJR3RsZVQwaWFIVnZjMmhoYm1kdGFXNW5ZMmhsYm1jaUlDQjBhWFJzWlNBZ2JuVnNiQ0FnZEhsd1pUMGlkR1Y0ZENJZ0lHTnNZWE56UFNKbWIzSnRMV052Ym5SeWIyd2lJRDQ4TDJScGRqND0iLCJ3aWR0aCI6IjE2MHB4IiwiY2FwdGlvbiI6Iui0p+WVhuWQjeensCIsIm9yZGVyIjowfSx7ImNvbCI6InpoZW5nZGFua291bHYiLCJ3aWRnZXQiOiJQR1JwZGlCamJHRnpjejBpYVc1d2RYUXRaM0p2ZFhBaUlENDhhVzV3ZFhRZ2JtY3RiVzlrWld3OUlsOWZKR1JmYlc5a1pXd2tYMThpSUNCaWFXeHNkV2xrWldOcGJXRnNJQ0J5Wlc1a1pYSkpaRDBpTjJaaFlUTmtNMkpqWWpCbU5HVXdOamd4TUdReFltTXdZalZrTldSaE5tUWlJQ0JyWlhrOUlucG9aVzVuWkdGdWEyOTFiSFlpSUNCMGFYUnNaU0FnZEhsd1pUMGliblZ0WW1WeUlpQWdZMnhoYzNNOUltWnZjbTB0WTI5dWRISnZiQ0lnUGp3dlpHbDJQZz09Iiwid2lkdGgiOiI4MHB4IiwiY2FwdGlvbiI6IuaVtOWNleaJo+eOhyIsIm9yZGVyIjowfSx7ImNvbCI6ImZhaHVvZGl6aGkiLCJ3aWRnZXQiOiJQR1JwZGlCamJHRnpjejBpYVc1d2RYUXRaM0p2ZFhBaUlENDhhVzV3ZFhRZ2JtY3RiVzlrWld3OUlsOWZKR1JmYlc5a1pXd2tYMThpSUNCaWFXeHNkV2x6ZEhKcGJtY2dJSEpsYm1SbGNrbGtQU0kzWm1GaE0yUXpZbU5pTUdZMFpUQTJPREV3WkRGaVl6QmlOV1ExWkdFMlpDSWdJR3RsZVQwaVptRm9kVzlrYVhwb2FTSWdJSFJwZEd4bElDQnVkV3hzSUNCMGVYQmxQU0owWlhoMElpQWdZMnhoYzNNOUltWnZjbTB0WTI5dWRISnZiQ0lnUGp3dlpHbDJQZz09Iiwid2lkdGgiOiIxODBweCIsImNhcHRpb24iOiLlj5HotKflnLDlnYAiLCJvcmRlciI6MH0seyJjb2wiOiJjYWlnb3V5dWFuIiwid2lkZ2V0IjoiUEdScGRpQmpiR0Z6Y3owaWFXNXdkWFF0WjNKdmRYQWlJRDQ4YVc1d2RYUWdibWN0Ylc5a1pXdzlJbDlmSkdSZmJXOWtaV3drWDE4aUlDQmlhV3hzZFdsemRISnBibWNnSUhKbGJtUmxja2xrUFNJM1ptRmhNMlF6WW1OaU1HWTBaVEEyT0RFd1pERmlZekJpTldRMVpHRTJaQ0lnSUd0bGVUMGlZMkZwWjI5MWVYVmhiaUlnSUhScGRHeGxJQ0J1ZFd4c0lDQjBlWEJsUFNKMFpYaDBJaUFnWTJ4aGMzTTlJbVp2Y20wdFkyOXVkSEp2YkNJZ1Bqd3ZaR2wyUGc9PSIsIndpZHRoIjoiODBweCIsImNhcHRpb24iOiLph4fotK3lkZgiLCJvcmRlciI6MH0seyJjb2wiOiJjYWlnb3V6dXpoaSIsIndpZGdldCI6IlBHUnBkaUJqYkdGemN6MGlhVzV3ZFhRdFozSnZkWEFpSUQ0OGFXNXdkWFFnYm1jdGJXOWtaV3c5SWw5ZkpHUmZiVzlrWld3a1gxOGlJQ0JpYVd4c2RXbHpkSEpwYm1jZ0lISmxibVJsY2tsa1BTSTNabUZoTTJRelltTmlNR1kwWlRBMk9ERXdaREZpWXpCaU5XUTFaR0UyWkNJZ0lHdGxlVDBpWTJGcFoyOTFlblY2YUdraUlDQjBhWFJzWlNBZ2JuVnNiQ0FnZEhsd1pUMGlkR1Y0ZENJZ0lHTnNZWE56UFNKbWIzSnRMV052Ym5SeWIyd2lJRDQ4TDJScGRqND0iLCJ3aWR0aCI6IjEyMHB4IiwiY2FwdGlvbiI6IumHh+i0ree7hOe7hyIsIm9yZGVyIjowfSx7ImNvbCI6InN0YXR1cyIsIndpZGdldCI6IlBHUnBkaUJqYkdGemN6MGlhVzV3ZFhRdFozSnZkWEFpSUQ0OGFXNXdkWFFnYm1jdGJXOWtaV3c5SWw5ZkpHUmZiVzlrWld3a1gxOGlJQ0JtYjNKdFlYUjBaWEp6UFNKWE0zUnRZak5LZEZsWVVrWmxTRUo1VDJsS1ltVjVaREZqYlhkdVQybGpkbGx0YkhOaVF6bDZXbGQ0YkZrelVsUmpiVTF1VEVOa01HVllRbXhLZW05dVl6TlNhR1JJVm5wS016RmtTVzR4WkNJZ0lHSnBiR3gxYVdsdWRHVm5aWElnSUhKbGJtUmxja2xrUFNJM1ptRmhNMlF6WW1OaU1HWTBaVEEyT0RFd1pERmlZekJpTldRMVpHRTJaQ0lnSUd0bGVUMGljM1JoZEhWeklpQWdkR2wwYkdVZ0lIUjVjR1U5SW01MWJXSmxjaUlnSUdOc1lYTnpQU0ptYjNKdExXTnZiblJ5YjJ3aUlENDhMMlJwZGo0PSIsIndpZHRoIjoiODBweCIsImNhcHRpb24iOiLnirbmgIEiLCJvcmRlciI6MH0seyJjb2wiOiJiZWl6aHUiLCJ3aWRnZXQiOiJQR1JwZGlCamJHRnpjejBpYVc1d2RYUXRaM0p2ZFhBaUlENDhhVzV3ZFhRZ2JtY3RiVzlrWld3OUlsOWZKR1JmYlc5a1pXd2tYMThpSUNCaWFXeHNkV2x6ZEhKcGJtY2dJSEpsYm1SbGNrbGtQU0kzWm1GaE0yUXpZbU5pTUdZMFpUQTJPREV3WkRGaVl6QmlOV1ExWkdFMlpDSWdJR3RsZVQwaVltVnBlbWgxSWlBZ2RHbDBiR1VnSUc1MWJHd2dJSFI1Y0dVOUluUmxlSFFpSUNCamJHRnpjejBpWm05eWJTMWpiMjUwY205c0lpQStQQzlrYVhZKyIsIndpZHRoIjoiMTYwcHgiLCJjYXB0aW9uIjoi5aSH5rOoIiwib3JkZXIiOjB9XQ=="
+                     row-check-rule="dGhpcy5zdGF0dXM8MTAsc3VjY2Vzcyx3YXJuaW5n" billuigrid
+                     renderId="7faa3d3bcb0f4e06810d1bc0b5d5da6d" key="grid0" row-id table-key="caigoudingdan"
+                     select-mode="multi" opt-mode="view"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>main.controller('xyyerp.mainCtl936134832e954338bb5e6e0352a51c69', function ($scope, $http, $interval, $rootScope, $compile, $q) {
+    $scope._model = new $Model($rootScope._model);
+    $scope._env = new $Model($rootScope._env);
+    clone({"billkey": "caigoudingdan", "ua": "WEB"}, $scope._env);
+    clone({billtype: 'Bills'}, $scope._env);
+    $scope.renderId = '7faa3d3bcb0f4e06810d1bc0b5d5da6d';
+    $scope.$http = $http;
+    $scope.$q = $q;
+    $scope.$interval = $interval;
+    $scope._$$controller$$ = '_$$controller$$';
+    $scope.$compile = $compile;
+    $scope.checkRuleLists = [];
+    mixer(ERPBill, $scope);
+    $scope.pageInit();
+});</script>
+</body>
+</html>

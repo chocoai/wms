@@ -1,0 +1,59 @@
+<div class="panel panel-default">
+    <div class="panel-heading  clearfix">
+        <h3 class="panel-title pull-left">活动事件信息</h3>
+        <div class="pull-right">
+            <button class="btn-success btn-sm radius btn" data-toggle="modal" data-target="#my-popup-addEvent"  >新增</button>
+        </div>
+    </div>
+    <div class="panel-body">
+        <table class="table table-bordered table-hover"  ng-repeat="event in po.eventdefinition">
+            <!-- <tr>
+                <td width="120">事件标题：</td>
+                <td>{{event.title}}</td>
+            </tr> -->
+            <tr class="am-danger">
+                <td width="20%">事件类别：</td>
+                <td>
+                    <span ng-if="event.category == 0">开始事件</span>
+                    <span ng-if="event.category == 1">结束事件</span>
+                </td>
+            </tr>
+            <!-- <tr>
+	            <td>事件类型：</td>
+	            <td>
+	                 <span ng-if="event.type == 0">流程事件</span>
+	                <span ng-if="event.type == 1">活动事件</span>
+	            </td>
+	        </tr> -->
+	        <tr class="am-danger">
+                <td width="20%">接口类型：</td>
+                <td>
+                    <span ng-if="event.interfaceType == 1">Java类型</span>
+                    <span ng-if="event.interfaceType == 2">JS类型</span>
+                </td>
+            </tr>
+	        <!-- <tr>
+	            <td>事件类名称：</td>
+	            <td>{{event.clazz}}</td>
+	        </tr> -->
+	        <tr>
+	            <td width="20%">事件定义：</td>
+	            <td >
+	            	<span ng-if="event.interfaceType == 1">{{event.clazz}}</span>
+                    <span ng-if="event.interfaceType == 2">{{event.jsExpr}}</span>
+	            </td>
+	        </tr>
+            <tr>
+                <td width="20%">事件描述：</td>
+                <td>{{event.desc}}</td>
+            </tr>
+            <tr>
+                <td width="20%">操作：</td>
+                <td>
+                    <button type="button" class="btn btn-warning btn-sm" ng-click="ededit(event,$index)">修改</button>
+                    <button type="button" class="btn btn-warning btn-sm" ng-click="eddelete(event,$index)">删除</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

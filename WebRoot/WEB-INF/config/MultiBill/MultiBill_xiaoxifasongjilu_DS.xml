@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="xiaoxifasongjilu" Caption="消息发送记录" DefaultFilter="" Pagging="20"
+               TableName="SQLQuery::select x.*,m.mobanleixing | from xyy_erp_bill_xiaoxifasongjilu x, xyy_erp_dic_xiaoximobanxinxi m where 1 = 1 and x.xxmbbh = m.id @huiyuanbianhao @mobanleixing" DataSource="" Head="false">
+        <Parameters>
+            <Parameter Key="huiyuanbianhao" Type="String">
+                <DefaultValue></DefaultValue>
+                <Where>
+                <![CDATA[
+					m.if(huiyuanbianhao==null | huiyuanbianhao=="" ,""," and x.huiyuanbianhao like '%"+huiyuanbianhao+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="mobanleixing" Type="Integer" >
+                <Where>
+                <![CDATA[
+					m.if(mobanleixing==null  | mobanleixing=="" ,""," and m.mobanleixing = "+mobanleixing+"")
+                ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

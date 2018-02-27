@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="kehudizhi" BillType="Dictionary"  Caption="客户基本信息" DefaultFilter="" TableName="Table::xyy_wms_dic_kehudizhi" DataSource="" Head="true">
+        <Field FieldKey="clientid" FieldName="客户ID" FieldType="Varchar" Comment="客户ID" Bound="20"/>
+
+        <Field FieldKey="kehubianhao" FieldName="客户编号" FieldType="Varchar" MixCondition="true" Comment="客户编号"/>
+        <Field FieldKey="kehumingcheng" FieldName="客户名称" FieldType="Varchar" MixCondition="true" Comment="客户名称"/>
+        <Field FieldKey="farendaibiao" FieldName="法人代表" FieldType="Varchar" Comment="法人代表"/>
+        <Field FieldKey="kehuleixing" FieldName="客户类型" FieldType="Int" Comment="客户类型"/>
+
+        <Field FieldKey="sheng" FieldName="省" FieldType="Int" Comment="省"/>
+        <Field FieldKey="shi" FieldName="市" FieldType="Int" Comment="市"/>
+        <Field FieldKey="qu" FieldName="区" FieldType="Int" Comment="区"/>
+        <Field FieldKey="lianxiren" FieldName="联系人" FieldType="Varchar" Comment="联系人"/>
+        <Field FieldKey="dianhua" FieldName="电话" FieldType="Varchar" Comment="电话"/>
+        <Field FieldKey="zhengjianhaoma" FieldName="证件号码" FieldType="Varchar" Comment="证件号码"/>
+        <Field FieldKey="dizhi" FieldName="地址" FieldType="Varchar" Comment="地址"/>
+
+        <Field FieldKey="jingyingfanwei" FieldName="经营范围（营业执照）" FieldType="Text" Comment="经营范围（营业执照）"/>
+        <Field FieldKey="fanweiName" FieldName="经营范围中文" FieldType="Text" Comment="经营范围中文"/>
+        <Field FieldKey="jingyingfangshi" FieldName="经营方式" FieldType="Int" Comment="经营方式"/>
+        <Field FieldKey="yingyezhizhao" FieldName="营业执照" FieldType="Varchar" Comment="营业执照"/>
+        <Field FieldKey="fazhengjiguan" FieldName="发证机关" FieldType="Varchar" Comment="发证机关"/>
+        <Field FieldKey="zhuceriqi" FieldName="注册日期" FieldType="Date" Comment="注册日期"/>
+        <Field FieldKey="yxqzfs" FieldName="有效期至方式" FieldType="Int" Comment="有效期至方式"/>
+        <Field FieldKey="zcyxq" FieldName="有效期至" FieldType="Varchar" Comment="注册有效期至"/>
+
+        <Field FieldKey="sfszhy" FieldName="是否三证合一" FieldType="Int" Comment="是否三证合一"/>
+        <Field FieldKey="kaihuyinhang" FieldName="开户银行" FieldType="Varchar" Comment="开户银行"/>
+        <Field FieldKey="yinhangzhanghao" FieldName="银行账号" FieldType="Varchar" Comment="银行账号"/>
+        <Field FieldKey="kaihuhuming" FieldName="开户户名" FieldType="Varchar" Comment="开户户名"/>
+        <Field FieldKey="zzjgdmz" FieldName="组织机构代码证" FieldType="Varchar" Comment="组织机构代码证"/>
+        <Field FieldKey="fazhengriqi" FieldName="发证日期" FieldType="Varchar" Comment="发证日期"/>
+        <Field FieldKey="fzyxq" FieldName="有效期至" FieldType="Varchar" Comment="发证有效期"/>
+        <Field FieldKey="shuihao" FieldName="税务登记证号" FieldType="Varchar" Comment="税务登记证号"/>
+        <Field FieldKey="swfzjg" FieldName="发证机关" FieldType="Varchar" Comment="发证机关"/>
+        <Field FieldKey="yewuyuan" FieldName="业务员" FieldType="Varchar" Comment="业务员"/>
+
+
+        <Field FieldKey="qyfzr" FieldName="企业负责人" FieldType="Varchar" Comment="企业负责人"/>
+        <Field FieldKey="zlfzr" FieldName="质量负责人" FieldType="Varchar" Comment="质量负责人"/>
+        <Field FieldKey="cangkudizhi" FieldName="仓库地址" FieldType="Varchar" Comment="仓库地址"/>
+
+        <Field FieldKey="shifouhuodong" FieldName="是否活动" FieldType="Int" DefaultValue="1"  Comment="活动状态：0.否 1.是"/>
+        <Field FieldKey="dongjie" FieldName="冻结" FieldType="Int" Comment="冻结状态：0.冻结 1.不冻结"/>
+        <Field FieldKey="tingshou" FieldName="停售" FieldType="Int" DefaultValue="1"  Comment="操作：0.停售 1.正常"/>
+
+        <Field FieldKey="xukeleixing" FieldName="许可类型" FieldType="Int" Comment="许可类型"/>
+        <Field FieldKey="shouquanfanwei" FieldName="授权范围" FieldType="Varchar" Comment="授权范围"/>
+        <Field FieldKey="fujian" FieldName="上传附件" FieldType="Text" Comment="上传附件"/>
+        <Field FieldKey="onlineid" FieldName="电商ID" FieldType="Varchar" Comment="电商ID" Bound="20"/>
+        <Field FieldKey="fapiaoleixing" FieldName="发票类型" FieldType="Int" Comment="0.普通发票 1.增值税发票"/>
+    </DataTable>
+</DataSet>

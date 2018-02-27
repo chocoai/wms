@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="caigouxuqiufenxi" Caption="采购需求分析多样式表单" DefaultFilter="" Pagging="10" PermissionType="CommType"
+               TableName="SQLQuery::
+					SELECT
+						s.*,k.shuliang
+						|
+					FROM
+						xyy_erp_dic_shangpinjigoukucun k,
+						xyy_erp_dic_shangpinjibenxinxi s
+					WHERE
+						k.shangpinID = s.ID
+					AND k.kucunzhuangtai = 1
+
+			" DataSource="" Head="false">
+        <!-- <Parameters>
+			<Parameter Key="gysbh" Type="String">
+                <Where>
+                <![CDATA[
+					m.if(gysbh==null | gysbh=="" ,""," and gysbh like '%"+gysbh+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="gysmc" Type="String" >
+                <Where>
+                <![CDATA[
+					m.if(gysmc==null | gysmc=="" ,""," and gysmc like '%"+gysmc+"%'")
+                ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="shangpinbianhao" Type="String" >
+                <Where>
+                <![CDATA[
+					m.if(shangpinbianhao==null | shangpinbianhao=="" ,""," and shangpinbianhao like '%"+shangpinbianhao+"%'")
+                ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="shangpinmingcheng" Type="String" >
+                <Where>
+                <![CDATA[
+					m.if(shangpinmingcheng==null | shangpinmingcheng=="" ,""," and shangpinmingcheng like '%"+shangpinmingcheng+"%'")
+                ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="shengchanchangjia" Type="String" >
+                <Where>
+                <![CDATA[
+					m.if(shengchanchangjia==null | shengchanchangjia=="" ,""," and shengchanchangjia like '%"+shengchanchangjia+"%'")
+                ]]>
+                </Where>
+            </Parameter>
+        </Parameters> -->
+    </DataTable>
+</DataSet>

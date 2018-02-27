@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<BillViewMeta Key="yhjh" Caption="养护计划查询视图" Version="">
+	<BillBody UserAgent="web">
+		<BillBodyMeta>
+			<BillUIPanel Layout="flex" Key="dictionary_tools" Caption="养护计划查询视图"  S="">
+			     <BillUIGridPanel Key="yhjh_grid">
+                    <BillUIRowPanel>
+                        <BillUIColPanel Width="4">
+                            <BillUIWidget Caption="部门" Key="cancel"
+                                EnabledWhen="True"   ParameterKey="bumen"
+                                DataTableKey="yhjh"
+                                WidgetType="BillUIString">
+                            </BillUIWidget>
+                        </BillUIColPanel>
+						<BillUIColPanel Width="4">
+							<BillUIWidget Caption="库房" Key="cancel"
+										  EnabledWhen="True"   ParameterKey="kufang"
+										  DataTableKey="yhjh"
+										  WidgetType="BillUIString">
+							</BillUIWidget>
+						</BillUIColPanel>
+						<BillUIColPanel Width="4">
+							<BillUIWidget Caption="养护员" Key="cancel"
+										  EnabledWhen="True"   ParameterKey="yanghuyuan"
+										  DataTableKey="yhjh"
+										  WidgetType="BillUIString">
+							</BillUIWidget>
+						</BillUIColPanel>
+
+                        <BillUIColPanel Width="1">
+                            <BillUIWidget Caption="查询" Key="search"
+                                EnabledWhen="True"
+                                Icon="glyphicon glyphicon-send" WidgetType="BillUIButton">
+                                <Triggers>
+                                    <Trigger Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                        	this.search("yhjh");
+                                 			]]>
+                                    </Trigger>
+                                </Triggers>
+                            </BillUIWidget>
+                        </BillUIColPanel>
+                    </BillUIRowPanel>
+			         <BillUIRowPanel>
+						 <BillUIColPanel Width="12">
+							 <BillUIPanel Layout="flex" Key="dictionary_tools">
+								 <BillUIGrid Key="grid0" OptMode="View" SelectMode="Single" DataTableKey="yhjh">
+								 <GridHeads>
+									 <GridHead Col="riqi" Caption="日期" Width="120px">
+										 <BillUIWidget Key="riqi" WidgetType="BillUIString"/>
+									 </GridHead>
+									 <GridHead Col="kufang" Caption="库房"
+											   Width="220px">
+										 <BillUIWidget Key="kufang" WidgetType="BillUIString"/>
+									 </GridHead>
+									 <GridHead Col="bumen" Caption="部门"  Width="120px">
+										 <BillUIWidget Key="bumen" WidgetType="BillUIString">
+
+										 </BillUIWidget>
+									 </GridHead>
+								 	 <GridHead Col="yanghuyuan" Caption="养护员"  Width="40px">
+									 	<BillUIWidget Key="yanghuyuan" WidgetType="BillUIInteger"/>
+								 	 </GridHead>
+								 	 <GridHead Col="yanghuleixing" Caption="养护类型"  Width="180px">
+										 <BillUIWidget Key="yanghuleixing" WidgetType="BillUIString">
+										 	<Formatters>
+												<Formatter>
+													<![CDATA[
+                                                        [{'type':'yanghuleixing'}]
+                                            			]]>
+												</Formatter>
+											</Formatters>
+										</BillUIWidget>
+									 </GridHead>
+								 </GridHeads>
+							 </BillUIGrid>
+							 </BillUIPanel>
+
+						 </BillUIColPanel>
+			         </BillUIRowPanel>
+			         
+			     </BillUIGridPanel>
+             </BillUIPanel>
+		</BillBodyMeta>
+	</BillBody>
+	
+</BillViewMeta>

@@ -1,0 +1,23 @@
+﻿
+<div ng-controller="myApp.OperationManagement.resumeProcess" class="panel panel-default">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="">异常流程恢复</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="panel-body">
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <label class="col-md-2 control-label">异常流程实例Id：</label>
+                <div class="col-md-4">
+                    <input type="text" id="processInstanceId" class="form-control"  ng-model="id">
+                </div>
+                <button type="button" class="btn btn-primary" ng-click="resume()">一键恢复</button>
+            </div>
+
+        </form>
+    </div>
+</div>

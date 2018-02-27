@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="quehuodengjidan" Caption="缺货登记单明细" DefaultFilter="" Pagging="5" BillType="MultiBill"
+               TableName="SQLQuery::
+               SELECT *
+               |
+				FROM
+					xyy_erp_bill_quehuodengjidan_details
+				WHERE
+					1 = 1
+				AND BillID IN (SELECT BillID FROM xyy_erp_bill_quehuodengjidan WHERE `status` = 40)
+				AND shifoutiqu = 0
+				AND shangpinbianhao IN (
+					SELECT
+						shangpinbianhao
+					FROM
+						xyy_erp_dic_gongyingshang_shangpin
+					WHERE
+					1=1
+						@gysbh
+					)
+               @gysmc " DataSource="" Head="false">
+        <Parameters>
+			<!-- 供应商名称 -->
+            <Parameter Key="gysmc" Type="String" >
+            	<DefaultValue></DefaultValue>
+                <Where>
+	                <![CDATA[
+	                	m.if(gysmc==null | gysmc=="" ," "," and gysmc = '"+gysmc+"'")
+					]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="gysbh" Type="String" >
+            	<DefaultValue></DefaultValue>
+                <Where>
+	                <![CDATA[
+	                	m.if(gysbh==null | gysbh=="" ," "," and ID = '"+gysbh+"'")
+					]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

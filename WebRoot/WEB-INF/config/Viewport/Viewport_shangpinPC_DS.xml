@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="shangpinPC_view" Caption="商品名称" DefaultFilter="" PermissionType="CommType"  Pagging="10"
+        TableName="SQLQuery::select b.*,a.orgId,a.kucunzhuangtai,a.kucunshuliang,c.pihao,a.pihaoID,
+        c.shengchanriqi,
+	    c.youxiaoqizhi | from
+        xyy_erp_bill_shangpinpihaokucun a,
+	xyy_erp_dic_shangpinjibenxinxi b,
+xyy_erp_dic_shangpinpihao c
+	 where a.shangpinID = b.goodsid
+and c.ID= a.pihaoID and b.dongjie=1 and b.shifouhuodong=1 and b.status=40 @shangpin  @pihao @orgID  @kucunzhuangtai  order by a.createTime desc"  DataSource="" Head="false" Singleton="" OrderBy="">
+        <Parameters>
+            <Parameter Key="kucunzhuangtai" Type="Integer">
+                <Where>
+                    <![CDATA[
+					m.if(kucunzhuangtai==null ,""," and a.kucunzhuangtai = "+kucunzhuangtai+"")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="orgID" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(orgID==null | orgID=="",""," and a.orgId = '"+orgID+"'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="pihao" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(pihao==null | pihao=="",""," and c.pihao like '%"+pihao+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="shangpin" Type="String">
+                <Where>
+             <![CDATA[
+					m.if(shangpin==null | shangpin=="" ,""," and b.mixCondition like '%"+shangpin+"%' ")
+	            ]]> 
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

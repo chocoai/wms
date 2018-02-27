@@ -1,0 +1,103 @@
+
+<div ng-controller="myApp.OperationManagement.process">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <span class="navbar-brand" >流程设计管理</span>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active" ng-class="{'active':viewStatus==2}"><a ng-click="releaseStatus()" style="cursor:pointer" >已发布</a></li>
+                    <li  ng-class="{'active':viewStatus==1}"><a ng-click="draftStatus()" style="cursor:pointer" >草稿</a></li>
+                </ul>
+                <div class="nav navbar-nav navbar-right">
+                    <button class="btn btn-primary btn-sm" ng-click="addProcess()">添加</button>
+
+                </div>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+
+
+
+
+    <!--搜索条件-->
+    <div class="panel panel-default">
+        <div class="panel-heading">搜索条件</div>
+        <div class="panel-body">
+            <label>流程名称：</label>
+            <input type="text" value=""  ng-model="searchCondition.name" >
+            <button type="button" class="btn btn-default btn-info btn-sm" ng-click="searchProcess()">查询</button>
+        </div>
+    </div>
+
+    <!--列表-->
+    <table class="table table-bordered table-striped table-hover">
+        <thead>
+        <tr>
+            <th>流程名称</th>
+            <th>流程类别名称</th>
+            <th>流程版本</th>
+            <th>流程描述</th>
+            <th>创建时间</th>
+            <th>状态</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="row in rows">
+            <td>{{row.name}}</td>
+            <td>{{row.tidName}}</td>
+            <td>{{row.version}}</td>
+            <td>{{row.desc}}</td>
+            <td>{{row.createTime}}</td>
+            <td><label ng-if="row.status==1">草稿状态</label><label ng-if="row.status==2">发布状态</label></td>
+            <td>
+                <div  class="btn-group">
+                    <button type="button" class="btn btn-success btn-sm" ng-if="row.status==1" ng-click="design(row)">设计</button>
+                    <button type="button" class="btn btn-primary btn-sm" ng-if="row.status==1" ng-click="vertify(row, 2)">发布</button>
+                    <button type="button" class="btn btn-default btn-sm" ng-if="row.status==2" ng-click="vertify(row,1)">拷贝</button>
+                    <button type="button" class="btn btn-danger btn-sm" ng-if="row.status==1" ng-click="vertify(row,0)">删除</button>
+                    <button type="button" class="btn btn-warning btn-sm" ng-if="row.status==1 && row.lockout!=null" ng-click="unlock(row)">解锁</button>
+                    <button type="button" class="btn btn-primary btn-sm" ng-if="row.status==2" ng-click="design(row)">编辑</button>
+                    <button type="button" class="btn btn-warning btn-sm" ng-if="row.status==2" ng-click="vertify(row, 3)">停用</button>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!--分页组件-->
+    <div paging  page-info="pageInfo"  load="load()"/>
+
+    <div class="modal fade" id="toDel"  role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+
+                    <h3 class="modal-title" ng-if="status==0">删除提示</h3>
+                    <h3 class="modal-title" ng-if="status==2">发布提示</h3>
+                    <h3 class="modal-title" ng-if="status==3">停用提示</h3>
+                    <h3 class="modal-title" ng-if="status==1">确认拷贝该流程</h3>
+                </div>
+                <div class="modal-body">
+                        <h4 ng-if="status==0">确认删除该流程</h4>
+                        <h4 ng-if="status==2">确认发布该流程</h4>
+                        <h4 ng-if="status==3">确认停用该流程</h4>
+                    <div  ng-if="status==1">
+                        <input type="text" name="copyProcessName" ng-model="currentCopyRow.copyProcessName" placeholder="请输入新的流程名称"/>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="processPlan()">确认</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" >取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

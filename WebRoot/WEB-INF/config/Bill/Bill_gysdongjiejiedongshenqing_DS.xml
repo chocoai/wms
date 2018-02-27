@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="gysdongjiejiedongshenqing" Caption="供应商冻结/解冻" BillType="Bill" DefaultFilter="" TableName="Table::xyy_erp_bill_gysdongjiejiedongshenqing" DataSource="" Head="true">
+        <Field FieldKey="danjubianhao" FieldName="单据编号" FieldType="Varchar" DefaultValue="='GYSDJJD'+o.orderNo()" Comment="单据编号"/>
+        <Field FieldKey="shenqingxingzhi" FieldName="申请性质" FieldType="Int" DefaultValue="0" Comment="申请性质:1冻结0解冻"/>
+        <Field FieldKey="beizhu" FieldName="备注" FieldType="Varchar" Comment="备注"/>
+    </DataTable>
+    
+    <DataTable Key="gysdongjiejiedongshenqing_details" BillType="Bill"  Caption="供应商冻结解冻明细" DefaultFilter="BillID" Pagging="100" TableName="Table::xyy_erp_bill_gysdongjiejiedongshenqing_details" DataSource="" Head="false">
+        <Field FieldKey="gysbh" FieldName="供应商编号" FieldType="Varchar" Comment="供应商编号"/>
+        <Field FieldKey="gysmc" FieldName="供应商名称" FieldType="Varchar" Comment="供应商名称"/>
+        <Field FieldKey="lianxiren" FieldName="联系人" FieldType="Varchar" Comment="联系人"/>
+        <Field FieldKey="dizhi" FieldName="地址" FieldType="Varchar" Comment="地址"/>
+
+        <Field FieldKey="dianhua" FieldName="电话" FieldType="Varchar"  Comment="电话"/>
+        <Field FieldKey="caigouyuan" FieldName="采购员" FieldType="Varchar"  Comment="采购员"/>
+        <Field FieldKey="yuanying" FieldName="原因" FieldType="Varchar" Comment="原因"/>
+        <Field FieldKey="beizhu" FieldName="备注" FieldType="Varchar"  Comment="备注"/>
+ 
+    </DataTable>
+</DataSet>

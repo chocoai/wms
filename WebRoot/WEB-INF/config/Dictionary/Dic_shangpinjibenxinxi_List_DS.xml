@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="shangpinjibenxinxi" Caption="商品基本信息列表" DefaultFilter="" Pagging="20" PermissionType="CommType"
+               TableName="SQLQuery::select * | from xyy_erp_dic_shangpinjibenxinxi where 1 = 1 and shifouhuodong=1 @status @shengchanchangjia @shangpin order by createTime desc" DataSource="" Head="false">
+        <Parameters>
+            <Parameter Key="shangpin" Type="String">
+                <Where>
+                    <![CDATA[
+                        m.if(shangpin==null | shangpin=="" ,""," and mixCondition like '%"+shangpin+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="shengchanchangjia" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(shengchanchangjia==null | shengchanchangjia=="" ,""," and shengchanchangjia like '%"+shengchanchangjia+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="status" Type="Integer">
+                <Where>
+                    <![CDATA[
+						m.if(status==null," "," and status="+status+"")
+	            ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

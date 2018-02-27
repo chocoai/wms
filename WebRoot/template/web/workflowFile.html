@@ -1,0 +1,51 @@
+<form id="uploadForm" onsubmit="return false">
+    <input type="hidden" value="${pid!}" name="pid">
+    <input type="hidden" value="${tid!}" name="tid">
+    <table class="table table-bordered">
+        <tr>
+            <th>选择附件</th>
+            <th>操作</th>
+        </tr>
+        <tr>
+            <td>
+            	<input type="file" id="attach" name="attach" multiple="true" accept="image/*,.xls,.xlsx,.doc,.docx,.ppt,.pptx,.txt,.pdf,.wps,.et,.dps" onchange="upload();">
+               	<span style="display: none; color:red" id="error"></span>
+            </td>
+            <td>
+                <button class="btn btn-sm btn-success" onclick="loadFile()">一键上传</button>
+            </td>
+        </tr>
+    </table>
+</form>
+<div>
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a aria-controls="processFile" role="tab" data-toggle="tab">流程附件</a></li>
+    </ul>
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="processFile">
+            <div class="panel  panel-default fileList">
+                <ul data-widget="gallery" class="gallery avg-sm-2 avg-md-3 avg-lg-4 gallery-imgbordered" data-gallery="{ pureview: true }" >
+                    <#list  attachList as attach>
+                        <li>
+                            <div class="gallery-item">
+                                <a href="${attach.url!}" title="${attach.name!}" target="_blank">
+                                	<#if attach.type==1>
+                                	<img src="${attach.url!}" alt="${attach.name!}"/>
+                                	<#else>
+                                	<img src="${attach.url!}" alt="${attach.name!}"/>
+                                    </#if>
+                                    <h3 class="gallery-title">${attach.name!}</h3>
+                                </a>
+                                <span class="del" onclick="deleteAttach('${attach.id!}')"></span>
+                            </div>
+                        </li>
+                    </#list>
+                </ul>
+            </div>
+            <#if attachList?size=0>
+                <div class="noData attachList">暂无流程附件</div>
+            </#if>
+    	</div>
+    </div>
+</div>
+<script src="/lib/js/fileupload.js"></script>

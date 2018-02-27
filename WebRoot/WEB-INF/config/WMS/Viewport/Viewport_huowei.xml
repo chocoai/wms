@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BillViewMeta Key="huowei" Caption="工具栏" Version="">
+    <Parameters>
+        <Parameter Key="t1" Type="String" Scope="Global">
+            <DefaultValue>=o.orderNo()</DefaultValue>
+            <Where></Where>
+        </Parameter>
+    </Parameters>
+
+
+    <BillBody>
+        <BillBodyMeta UserAgent="web">
+            <BillUIPanel Layout="flex" FlexDirection="column" Key="mainContainer" Caption="工具栏" S="">
+                <BillUIGridPanel Key="huowei_grid">
+                    <BillUIRowPanel>
+
+                        <BillUIColPanel Width="4">
+                            <BillUIWidget Caption="货位编号" Key="cancel"
+                                          EnabledWhen="True"   ParameterKey="huoweibianhao"
+                                          DataTableKey="huowei_view"
+                                          WidgetType="BillUIString">
+                            </BillUIWidget>
+                        </BillUIColPanel>
+                        <BillUIColPanel Width="4">
+                            <BillUIWidget Caption="库区名称" Key="cancel"
+                                          EnabledWhen="True"   ParameterKey="kuqumingcheng"
+                                          DataTableKey="huowei_view"
+                                          WidgetType="BillUIString">
+                            </BillUIWidget>
+                        </BillUIColPanel>
+                        <BillUIColPanel Width="2">
+                            <BillUIWidget Caption="查询" Key="search"
+                                          EnabledWhen="True"
+                                          Icon="glyphicon glyphicon-send" WidgetType="BillUIButton">
+                                <Triggers>
+                                    <Trigger Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                        	this.search("huowei_view");
+                                 			]]>
+                                    </Trigger>
+                                </Triggers>
+                            </BillUIWidget>
+
+                        </BillUIColPanel>
+                    </BillUIRowPanel>
+                    <BillUIRowPanel>
+                        <BillUIColPanel Width="12">
+                            <BillUIPanel Layout="flex" Key="dictionary_tools">
+
+                                <BillUIGrid Key="grid0" OptMode="View"  DataTableKey="huowei_view" SelectMode="Multi">
+
+                                    <GridHeads>
+
+                                        <GridHead Col="huoweibianhao" Caption="货位" enableEdit="True"
+                                                  Width="150px">
+                                            <BillUIWidget Key="huoweibianhao" WidgetType="BillUIString"/>
+                                        </GridHead>
+                                        <GridHead Col="kuqubianhao" Caption="库区" enableEdit="True"
+                                                  Width="150px">
+                                            <BillUIWidget Key="kuqubianhao" WidgetType="BillUIString"/>
+                                        </GridHead>
+                                        <GridHead Col="kuqumingcheng" Caption="库区名称" enableEdit="True"
+                                                  Width="150px">
+                                            <BillUIWidget Key="kuqumingcheng" WidgetType="BillUIString"/>
+                                        </GridHead>
+                                        <GridHead Col="rowID" Caption="行表示" enableEdit="True" Show="false"
+                                                  Width="150px">
+                                            <BillUIWidget Key="rowID" WidgetType="BillUIString" />
+                                        </GridHead>
+
+
+                                    </GridHeads>
+                                </BillUIGrid>
+                            </BillUIPanel>
+
+                        </BillUIColPanel>
+                    </BillUIRowPanel>
+
+                </BillUIGridPanel>
+            </BillUIPanel>
+        </BillBodyMeta>
+    </BillBody>
+
+</BillViewMeta>

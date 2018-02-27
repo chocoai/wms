@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="zhongdianyanghupinzhong" BillType="Bill" Caption="重点养护品种" DefaultFilter="" TableName="Table::xyy_erp_bill_zhongdianyanghupinzhong" DataSource="" Head="true">
+        <!--  
+             单据编号	varchar	规则：YBM+年月日时分秒+3位随机码, 例如：YBM20160426112240764
+        -->
+       
+        <Field FieldKey="riqi" FieldName="日期" FieldType="Date" Comment="日期"/>
+        <Field FieldKey="qishiriqi" FieldName="起始日期" FieldType="Date" Comment="起始日期"/>
+        <Field FieldKey="jieshuriqi" FieldName="结束日期" FieldType="Date" Comment="结束日期"/>
+        <Field FieldKey="kufang" FieldName="库房" FieldType="Varchar" Comment="库房"/>
+        <Field FieldKey="bumen" FieldName="部门" FieldType="Varchar" Comment="部门"/>
+        <Field FieldKey="yanghuyuan" FieldName="养护员" FieldType="Varchar"  Comment="养护员"/>
+        <Field FieldKey="jinxiaoqi" FieldName="近效期" FieldType="Int" DefaultValue="180" Comment="近效期"/>
+
+    </DataTable>
+
+
+    <DataTable Key="zhongdianyanghupinzhong_details" BillType="Bill"  Caption="重点养护品种明细" DefaultFilter="BillID"  TableName="Table::xyy_erp_bill_zhongdianyanghupinzhong_details" DataSource="" Head="false">
+        <Field FieldKey="goodsid" FieldName="商品ID" FieldType="Varchar" Comment="商品ID" Tramsfor="false" Bound="20"/>
+        <Field FieldKey="shangpinbianhao" FieldName="商品编号" FieldType="Varchar"  Comment="商品编号"/>
+        <Field FieldKey="shangpinmingcheng" FieldName="商品名称" FieldType="Varchar"  Comment="商品名称"/>
+        <Field FieldKey="guige" FieldName="规格" FieldType="Varchar"  Comment="规格"/>
+        <Field FieldKey="danwei" FieldName="单位" FieldType="Int"  Comment="单位"/>
+        <Field FieldKey="baozhuangshuliang" FieldName="包装数量" FieldType="Int"  Comment="包装数量"/>
+        <Field FieldKey="pizhunwenhao" FieldName="批准文号" FieldType="Varchar"  Comment="批准文号"/>
+        <Field FieldKey="chandi" FieldName="生产产地" FieldType="Varchar"  Comment="生产产地"/>
+        <Field FieldKey="shengchanchangjia" FieldName="生产厂家" FieldType="Varchar" Comment="生产厂家"/>
+        <Field FieldKey="jixing" FieldName="剂型" FieldType="Int"  Comment="剂型"/>
+        <Field FieldKey="yanghuzhongdian" FieldName="养护重点" FieldType="Varchar"  Comment="养护重点"/>
+        <Field FieldKey="beizhu" FieldName="备注" FieldType="Varchar"  Comment="备注"/>
+    </DataTable>
+</DataSet>

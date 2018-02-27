@@ -1,0 +1,113 @@
+<div ng-controller="myApp.systemManagement.roleCtrl">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="panel panel-default" >
+                <div class="panel-heading clearfix">
+                    <div class="pull-left">
+                        	角色树
+                    </div>
+                    <div class="pull-right btn-group">
+                        <button class="btn btn-success btn-sm" ng-click="add()">新增</button>
+                        <button class="btn btn-primary btn-sm" ng-click="edit()">编辑</button>
+                        <!--<button class="btn btn-danger btn-sm" ng-click="del()">删除</button>-->
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <treecontrol class="tree-classic"
+                                 tree-model="dataForTheTree"
+                                 expanded-nodes="expandedNodes"
+                                 options="treeOptions"
+                                 on-selection="buttonClick(node,selected)"
+                                 selected-node="node1">
+                        {{node.name}}
+                    </treecontrol>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <div class="panel panel-default" >
+                <div class="panel-heading clearfix" >
+                    <div class="pull-left">
+                        权限树
+                    </div>
+                    <div class="pull-right btn-group">
+                        <button class="btn btn-primary btn-sm" ng-if="rows.id!=null" ng-click="RPRsave()">保存</button>
+                    </div>
+                </div>
+                <div class="panel-body" >
+                    <treecontrol class="tree-classic"
+                                 tree-model="dataForTheTree1"
+                                 expanded-nodes="expandedNodes1"
+                                 options="treeOptions1"
+                                 on-selection="showSelected()"
+                                 selected-nodes="selectedNodes">
+                        {{node.name}}
+                    </treecontrol>
+                </div>
+            </div>
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+                 aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel">角色信息</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form role="form">
+                            <div class="form-group">
+                            <label >角色名称</label>
+                            <input type="text" ng-model="rows.roleName" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                            <label>父节点</label>
+                            <select class="form-control"  ng-if="rows.id==null" ng-model="rows.parentId" ng-options="role.id as role.roleName for role in allList" required></select>
+                            <select class="form-control"  ng-if="rows.id!=null" ng-model="rows.parentId" ng-options="role.id as role.roleName for role in rList" required></select>
+                            </div>
+                            <div class="form-group">
+                            <label >是否继承权限</label>
+                            <select type="text" ng-model="rows.inheritable"  class="form-control" ng-options="sex.value as sex.name for sex in sexArr" required >
+                            </select>
+                            </div>
+                            <div class="form-group">
+                            <label >排序</label>
+                            <input type="number" ng-model="rows.sortNo" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                            <label>状态</label>
+                            <select type="text" ng-model="rows.state" class="form-control" ng-options="state.value as state.name for state in stateArr" required>
+                            </select>
+                            </div>
+                            <div class="form-group">
+                            <label>备注</label>
+                            <input type="text" ng-model="rows.remark" class="form-control" >
+                            </div>
+
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <button type="button" class="btn pull-right btn-primary btn-sm" ng-if="rows.id!=null"  ng-click="save()">保存</button>
+                            <button type="button" class="btn pull-right btn-primary btn-sm" ng-if="rows.id==null"  ng-click="addSave()">保存</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade bs-example-modal-sm" id="tipModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                <div class="modal-dialog modal-sm" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="modal-title "><h4><b>提示</b></h4></div>
+                        </div>
+                        <div class="modal-body">
+                            <div id="tipText" style="font-size: 16px"></div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

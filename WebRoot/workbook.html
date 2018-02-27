@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="lib/css/css.css">
+</head>
+<body>
+
+<div class="workbookWrap">
+    <div class="workbook">
+        <!--工作簿容器-->
+        <div id="bk1" class="iframeWrap">
+            bk1
+            <iframe src="http://www.baidu.com" frameborder="0"></iframe>
+        </div>
+        <div id="bk2" class="iframeWrap">
+            bk2
+            <iframe src="http://www.qq.com" frameborder="0"></iframe>
+        </div>
+        <div id="bk3" class="iframeWrap">
+            bk3
+            <iframe src="" frameborder="0"></iframe>
+        </div>
+
+    </div>
+
+
+    <div class="subNav">
+        <ul class="clearfix">
+            <li>
+                <a href="#bk1">bk1</a>
+            </li>
+            <li>
+                <a href="#bk2">bk2</a>
+            </li>
+            <li>
+                <a href="#bk3">bk3</a>
+            </li>
+
+        </ul>
+    </div>
+
+</div>
+
+
+
+<script src="lib/js/jquery.min.js"></script>
+<script>
+    $(function () {
+        $('.workbook .iframeWrap').eq(0).show();
+        $('.subNav li').eq(0).addClass('curr');
+        $('.subNav li a').on('click',function () {
+            $('.subNav li').removeClass('curr');
+            $(this).parent('li').addClass('curr');
+            $('.workbook div').hide();
+            var _id= $(this).attr('href').substring(1);
+            $('#'+_id).show();
+        });
+    });
+</script>
+</body>
+</html>

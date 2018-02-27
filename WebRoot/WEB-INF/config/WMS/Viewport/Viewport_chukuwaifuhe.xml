@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<BillViewMeta Key="chukuwaifuhe" Caption="出库外复核" Version="">
+	<BillBody UserAgent="web">
+		<BillBodyMeta>
+			<BillUIPanel Layout="flex" Key="dictionary_tools" Caption="出库外复核"  S="">
+			     <BillUIGridPanel Key="chukuwaifuhe_grid">
+                    <BillUIRowPanel>
+						<BillUIColPanel Width="3">
+							<BillUIWidget Caption="容器号" Key="cancel"
+										  EnabledWhen="True"   ParameterKey="rongqihao"
+										  DataTableKey="chukuwaifuhe_view"
+										  WidgetType="BillUIString">
+							</BillUIWidget>
+						</BillUIColPanel>
+                        <BillUIColPanel Width="1">
+                            <BillUIWidget Caption="查询" Key="search"
+                                EnabledWhen="True"
+                                Icon="glyphicon glyphicon-send" WidgetType="BillUIButton">
+                                <Triggers>
+                                    <Trigger Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                        	this.search("chukuwaifuhe_view");
+                                 			]]>
+                                    </Trigger>
+                                </Triggers>
+                            </BillUIWidget>
+                        </BillUIColPanel>
+                    </BillUIRowPanel>
+			         <BillUIRowPanel>
+						 <BillUIColPanel Width="12">
+							 <BillUIPanel Layout="flex" Key="dictionary_tools">
+								 <BillUIGrid Key="grid0" OptMode="View" SelectMode="Single" DataTableKey="chukuwaifuhe_view">
+								 	<GridHeads>
+		                                <GridHead Col="dingdanbianhao" Caption="订单编号" enableEdit="True" Width="140px">
+		                                    <BillUIWidget Key="dingdanbianhao" WidgetType="BillUIString">
+		                                    </BillUIWidget>
+		                                </GridHead>
+		                                <GridHead Col="rongqihao" Caption="容器号" enableEdit="True" Width="140px">
+		                                    <BillUIWidget Key="rongqihao" WidgetType="BillUIString">
+		                                    </BillUIWidget>
+		                                </GridHead>
+		                                <GridHead Col="caozuoren" Caption="操作人" enableEdit="True" Width="140px">
+		                                    <BillUIWidget Key="caozuoren" WidgetType="BillUIString">
+		                                    </BillUIWidget>
+		                                </GridHead>
+		                                <GridHead Col="fuhetai" Caption="复核台" enableEdit="True" Width="140px">
+		                                    <BillUIWidget Key="fuhetai" WidgetType="BillUIString">
+		                                    </BillUIWidget>
+		                                </GridHead>
+                            		</GridHeads>
+							 	</BillUIGrid>
+							 </BillUIPanel>
+						 </BillUIColPanel>
+			         </BillUIRowPanel>
+			     </BillUIGridPanel>
+             </BillUIPanel>
+		</BillBodyMeta>
+	</BillBody>
+	
+</BillViewMeta>

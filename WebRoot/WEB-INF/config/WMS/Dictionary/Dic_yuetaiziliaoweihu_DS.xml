@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="yuetaiziliaoweihu" BillType="Dictionary" Caption="月台资料" DefaultFilter="" TableName="Table::xyy_wms_dic_yuetaiziliaoweihu" DataSource="" Head="true">
+        <Field FieldKey="cangkubianhao" FieldName="仓库编号" FieldType="Varchar" Comment="仓库编号" />
+        <Field FieldKey="cangkumingchen" FieldName="仓库名称" FieldType="Varchar" Comment="仓库名称"/>
+        <Field FieldKey="cangkuID" FieldName="仓库ID" FieldType="Varchar" Comment="仓库ID" />
+         <Field FieldKey="yuetaibianhao" FieldName="月台编号" FieldType="Varchar"  Comment="月台编号"/> 
+        <Field FieldKey="yuetaimingchen" FieldName="月台名称" FieldType="Varchar" Comment="月台名称"/>
+        <Field FieldKey="yuetaimiashu" FieldName="月台描述" FieldType="Varchar" Comment="月台描述"/>
+        <Field FieldKey="yuetaileixing" FieldName="月台类型" FieldType="Int" DefaultValue="1" Comment="月台类型"/>
+        <Field FieldKey="qiyong" FieldName="启用" FieldType="Int" DefaultValue="1" Comment="启用" />
+        <Field FieldKey="status" FieldName="状态" FieldType="Int" Comment="状态"  />
+    </DataTable>
+</DataSet>

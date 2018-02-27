@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+	<DataTable Key="caigoutuichukaipiaodan" Caption="采购退出开票单" DefaultFilter=""
+		PermissionType="PrivateType" Pagging="20"
+		TableName="SQLQuery:: 
+        SELECT *
+               |
+				FROM
+					xyy_wms_bill_caigoutuichukaipiaodan
+				WHERE
+					1 = 1
+			  and zhuangtai!=1	
+              @danjubianhao
+              @gysbh
+              @gysmc
+              ORDER BY createTime DESC "
+
+
+		DataSource="" Head="false" Singleton="" OrderBy="">
+		<Parameters>
+			<Parameter Key="danjubianhao" Type="String">
+				<Where>
+                    <![CDATA[
+					m.if(danjubianhao==null | danjubianhao=="",""," and danjubianhao like '%"+danjubianhao+"%'")
+	            ]]>
+				</Where>
+			</Parameter>
+			<Parameter Key="gysmc" Type="String">
+				<Where>
+                    <![CDATA[
+					m.if(gysmc==null | gysmc=="",""," and gysmc like '%"+gysmc+"%'")
+	            ]]>
+				</Where>
+			</Parameter>
+			<Parameter Key="gysbh" Type="String">
+				<Where>
+                    <![CDATA[
+					m.if(gysbh==null | gysbh=="",""," and gysbh like '%"+gysbh+"%'")
+	            ]]>
+				</Where>
+			</Parameter>
+
+		</Parameters>
+	</DataTable>
+
+	<DataTable Key="caigoutuichukaipiaodan_details1" Caption="采购退出开票单"
+	DefaultFilter="" PermissionType="PrivateType" Pagging="100"
+	TableName="SQLQuery:: 
+       SELECT
+	a.*,dbzsl |
+			FROM
+	xyy_wms_bill_caigoutuichukaipiaodan_details a,
+	xyy_wms_dic_shangpinziliao b
+ 		WHERE a.shangpinbianhao=b.shangpinbianhao and BillID is null
+              ORDER BY createTime DESC
+             "
+
+
+
+	DataSource="" Head="false" Singleton="" OrderBy="">
+		<Parameters>
+			<Parameter Key="danjubianhao" Type="String">
+				<Where>
+                    <![CDATA[
+					m.if( BillID is null)
+	            ]]>
+				</Where>
+			</Parameter>
+
+
+		</Parameters>
+	</DataTable>
+</DataSet>

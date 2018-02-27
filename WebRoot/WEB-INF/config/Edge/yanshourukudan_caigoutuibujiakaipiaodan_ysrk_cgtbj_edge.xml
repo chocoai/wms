@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BillEdge Name="验收入库单-采购退补价开票单" Key="yanshourukudan_caigoutuibujiakaipiaodan_ysrk_cgtbj" Version="1.0.0" Code="ysrk_cgtbj" Caption="验收入库单-采购退补价开票单" TargetBillKey="caigoutuibujiakaipiaodan" SourceBillKey="yanshourukudan">
+	<BillTransformEdge>
+		<BillHeadTransformEdge>
+			<TargetBillField Key="danjubianhao" Category="property" />
+			<TargetBillField Key="kaipiaoriqi" Category="property"><![CDATA[=kaipiaoshijian]]></TargetBillField>
+			<TargetBillField Key="caigouyuan" Category="property"><![CDATA[=caigouyuan]]></TargetBillField>
+			<TargetBillField Key="gysbh" Category="property"><![CDATA[=huoshangbianhao]]></TargetBillField>
+			<TargetBillField Key="gysmc" Category="property"><![CDATA[=huoshangmingcheng]]></TargetBillField>
+			<TargetBillField Key="dfywy" Category="property" />
+			<TargetBillField Key="beizhu" Category="property"><![CDATA[=beizhu]]></TargetBillField>
+		</BillHeadTransformEdge>
+		<BillBodyTransformEdge>
+			<BillBodyEdge targetDltKey="caigoutuibujiakaipiaodan_details">
+				<BillDtlEdge sourceDltKey="yanshourukudan_details">
+					<TargetBillField Key="shangpinbianhao" Category="property"><![CDATA[=yanshourukudan_details.shangpinbianhao]]></TargetBillField>
+					<TargetBillField Key="shangpinmingcheng" Category="property"><![CDATA[=yanshourukudan_details.shangpinmingcheng]]></TargetBillField>
+					<TargetBillField Key="shangpinguige" Category="property"><![CDATA[=yanshourukudan_details.shangpinguige]]></TargetBillField>
+					<TargetBillField Key="danwei" Category="property"><![CDATA[=yanshourukudan_details.danwei]]></TargetBillField>
+					<TargetBillField Key="kufang" Category="property"><![CDATA[=yanshourukudan_details.kufangmingcheng]]></TargetBillField>
+					<TargetBillField Key="pihao" Category="property"><![CDATA[=yanshourukudan_details.pihao]]></TargetBillField>
+					<TargetBillField Key="shengchanriqi" Category="property"><![CDATA[=yanshourukudan_details.shengchanriqi]]></TargetBillField>
+					<TargetBillField Key="youxiaoqizhi" Category="property"><![CDATA[=yanshourukudan_details.youxiaoqi]]></TargetBillField>
+					<TargetBillField Key="shengchanchangjia" Category="property"><![CDATA[=yanshourukudan_details.shengchanchangjia]]></TargetBillField>
+					<TargetBillField Key="shangpinshuliang" Category="property"><![CDATA[=yanshourukudan_details.shuliang]]></TargetBillField>
+					<TargetBillField Key="yuanhanshuijia" Category="property"><![CDATA[=yanshourukudan_details.yuanhanshuijia]]></TargetBillField>
+					<TargetBillField Key="xinhanshuijia" Category="property"><![CDATA[=yanshourukudan_details.xinhanshuijia]]></TargetBillField>
+					<TargetBillField Key="hanshuichajia" Category="property"><![CDATA[=yanshourukudan_details.hanshuichajia]]></TargetBillField>
+					<TargetBillField Key="hanshuijine" Category="property"><![CDATA[=yanshourukudan_details.hanshuijine]]></TargetBillField>
+					<TargetBillField Key="jine" Category="property"><![CDATA[=yanshourukudan_details.jine]]></TargetBillField>
+					<TargetBillField Key="shuie" Category="property"><![CDATA[=yanshourukudan_details.shuie]]></TargetBillField>
+					<TargetBillField Key="koulv" Category="property"><![CDATA[=yanshourukudan_details.koulv]]></TargetBillField>
+					<TargetBillField Key="shuilv" Category="property"><![CDATA[=yanshourukudan_details.shuilv]]></TargetBillField>
+					<TargetBillField Key="yixiaoshuliang" Category="property" />
+					<TargetBillField Key="bckcb" Category="property" />
+					<TargetBillField Key="weixiaoshuliang" Category="property" />
+					<TargetBillField Key="bkccb" Category="property" />
+					<TargetBillField Key="pizhunwenhao" Category="property"><![CDATA[=yanshourukudan_details.pizhunwenhao]]></TargetBillField>
+					<TargetBillField Key="shangpinchandi" Category="property"><![CDATA[=yanshourukudan_details.shangpinchandi]]></TargetBillField>
+					<TargetBillField Key="beizhu" Category="property"><![CDATA[=yanshourukudan_details.beizhu]]></TargetBillField>
+				</BillDtlEdge>
+			</BillBodyEdge>
+		</BillBodyTransformEdge>
+	</BillTransformEdge>
+	<BillBackWriteEdge>
+		<BillBodyBackWriteEdge />
+		<BillHeadBackWriteEdge />
+	</BillBackWriteEdge>
+	<DataFilterEdge>
+		<SourceBillBodyFilterEdge>
+			<Filter SourceKey="caigoutuibujiakaipiaodan_details" />
+		</SourceBillBodyFilterEdge>
+		<SourceBillHeadFilterEdge>
+			<Filter />
+		</SourceBillHeadFilterEdge>
+	</DataFilterEdge>
+	<BillGroupJoinEdge>
+		<BillBodyGroupJoinEdge>
+			<TargetSubBillGroupJoinEdges>
+				<TargetSubBillGroupJoinEdge Key="caigoutuibujiakaipiaodan_details">
+					<GroupFileds GroupType="field" />
+					<JoinFileds />
+				</TargetSubBillGroupJoinEdge>
+			</TargetSubBillGroupJoinEdges>
+		</BillBodyGroupJoinEdge>
+		<BillHeadGroupJoinEdge>
+			<GroupFileds GroupType="field" />
+			<JoinFileds />
+		</BillHeadGroupJoinEdge>
+	</BillGroupJoinEdge>
+	<RuleFilterEdge>
+		<RuleHeadFilterEdge>
+			<Filter />
+		</RuleHeadFilterEdge>
+		<RuleBodyFilterEdge />
+	</RuleFilterEdge>
+	<Description />
+	<BillEdgeController>
+		<BackWriteController CtrType="Submit" />
+		<AutoSaveController CtrType="NoSave" />
+		<DisplayController CtrType="NoGo" />
+		<MultiConvertCtrl CtrType="AllowAndWarning" />
+	</BillEdgeController>
+	<BillEdgeHook />
+</BillEdge>
+

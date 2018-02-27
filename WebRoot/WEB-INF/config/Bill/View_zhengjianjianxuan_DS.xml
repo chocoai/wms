@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+	<DataTable Key="zhengjianjianxuan" Caption="整件拣选叙事簿"
+		DefaultFilter="" Pagging="20"
+		TableName="SQLQuery::select * | FROM xyy_wms_bill_dabaorenwu WHERE 1=1  @czrmc @status @taskCode @taskType ORDER BY createTime DESC,dingdanbianhao ASC"
+		DataSource="" Head="false">
+		<Parameters>
+			<Parameter Key="czrmc" Type="String">
+				<Where>
+                    <![CDATA[
+					    m.if(czrmc==null | czrmc=="" ," "," and czrmc like '%"+czrmc+"%'")
+	                ]]>
+				</Where>
+			</Parameter>
+			<Parameter Key="status" Type="Integer">
+				<Where>
+                    <![CDATA[
+					   	m.if(status==null,""," and status="+status+"")
+	                ]]>
+				</Where>
+			</Parameter>
+			<Parameter Key="taskCode" Type="String">
+				<Where>
+                    <![CDATA[
+					    m.if(taskCode==null | taskCode=="" ," "," and taskCode like '%"+taskCode+"%'")
+	                ]]>
+				</Where>
+			</Parameter>
+			<Parameter Key="taskType" Type="Integer">
+				<Where>
+                    <![CDATA[
+					    m.if(taskType==null | taskType=="" ," "," and taskType like '%"+taskType+"%'")
+	                ]]>
+				</Where>
+			</Parameter>
+
+		</Parameters>
+
+	</DataTable>
+</DataSet>

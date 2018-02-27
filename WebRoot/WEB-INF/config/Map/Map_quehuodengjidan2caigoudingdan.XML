@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Map Key="quehuodengjidan2caigoudingdan" Caption="缺货登记单转采购订单" 
+    SrcDataObjectKey="quehuodengjidan" 
+    SrcDataType="Bill"  
+    TgtDataObjectKey="caigoudingdan" 
+    TgtDataType="Bill"  
+    MaxPushValue="100"
+     MinPushValue="0">
+    <TargetTableCollection>
+     
+    <TargetTable Key="caigoudingdan_details" SrcTableKey="quehuodengjidan_details">
+            <Field FieldKey="shangpinbianhao">
+                <![CDATA[
+                     =shangpinbianhao
+              ]]>
+            </Field>
+            <Field FieldKey="shangpinmingcheng">
+                <![CDATA[
+                     =shangpinmingcheng
+              ]]>
+            </Field>
+            <Field FieldKey="guige">
+                <![CDATA[
+                     =guige
+              ]]>
+            </Field>
+			<Field FieldKey="danwei">
+                <![CDATA[
+                     =danwei
+              ]]>
+            </Field>
+            <Field FieldKey="shengchanchangjia">
+                <![CDATA[
+                     =shengchanchangjia
+              ]]>
+            </Field>
+			<Field FieldKey="shuliang">
+                <![CDATA[
+                     =quehuoshuliang
+              ]]>
+            </Field>
+            <Field FieldKey="hanshuijine">
+                <![CDATA[
+                     =0
+              ]]>
+            </Field>
+            
+            <!-- <Field FieldKey="hscbj">
+                <![CDATA[
+                     =stock.getHscbj(shangpinbianhao)
+              ]]>
+            </Field> -->
+            <Field FieldKey="zuidijinjia">
+                <![CDATA[
+                     =stock.getZdhsjj(shangpinbianhao)
+              ]]>
+            </Field>
+            <Field FieldKey="zuigaojinjia">
+                <![CDATA[
+                     =stock.getZghsjj(shangpinbianhao)
+              ]]>
+            </Field>
+            <Field FieldKey="zuihoujinjia">
+                <![CDATA[
+                     =stock.getZhhsjj(shangpinbianhao)
+              ]]>
+            </Field>
+            <Field FieldKey="zhjhdw">
+                <![CDATA[
+                     =stock.getGysmc(shangpinbianhao)
+              ]]>
+            </Field>
+            
+            
+            
+            <Field FieldKey="shuilv">
+                <![CDATA[
+                     =goods.getJinxiangshuilv(shangpinbianhao)
+              ]]>
+            </Field>
+            <Field FieldKey="koulv">
+                <![CDATA[
+                     =100
+              ]]>
+            </Field>
+			<Field FieldKey="pizhunwenhao">
+                <![CDATA[
+                     =pizhunwenhao
+              ]]>
+            </Field>
+			<Field FieldKey="chandi">
+                <![CDATA[
+                     =chandi
+              ]]>
+            </Field>
+        </TargetTable>
+    </TargetTableCollection>
+    
+    <FeedBackCollection>
+       <FeedbackObject TableKey="caigoudingdan_details" BillStatus="1">            
+           <FeedbackTableCollection>
+              <FeedbackTable Key="shifoutiqu" TableKey="xyy_erp_bill_quehuodengjidan_details">
+                <FeedbackField FieldKey="shifoutiqu"  FeedFieldKey=""  OpSign="Assign">
+                    <![CDATA[
+                        1
+                    ]]>
+                </FeedbackField>
+              </FeedbackTable>               
+           </FeedbackTableCollection>
+        </FeedbackObject>
+        <FeedbackObject TableKey="caigoudingdan_details" BillStatus="20">            
+           <FeedbackTableCollection>
+              <FeedbackTable Key="shifoutiqu" TableKey="xyy_erp_bill_quehuodengjidan_details">
+                <FeedbackField FieldKey="shifoutiqu"  FeedFieldKey=""  OpSign="Assign">
+                    <![CDATA[
+                        1
+                    ]]>
+                </FeedbackField>
+              </FeedbackTable>               
+           </FeedbackTableCollection>
+        </FeedbackObject>
+     
+    </FeedBackCollection>
+    
+</Map>

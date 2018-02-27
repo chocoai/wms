@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BillViewMeta Key="luojiquyu" Caption="工具栏" Version="">
+	<Parameters>
+		<Parameter Key="t1" Type="String" Scope="Global">
+			<DefaultValue>=o.orderNo()</DefaultValue>
+			<Where></Where>
+		</Parameter>
+	</Parameters>
+
+
+	<BillBody UserAgent="web">
+		<BillBodyMeta>
+			<BillUIPanel Layout="flex" Key="luojiquyu_tools" Caption="工具栏"
+				RowGap="7" ColGap="10" ColWidth="repeat(8,auto) 1fr" S="">
+				<BillUIGridPanel Key="luojiquyu_grid">
+					<BillUIRowPanel>
+
+						<!-- <BillUIColPanel Width="4">
+							<BillUIWidget Caption="商品编号" Key="cancel"
+								EnabledWhen="True" ParameterKey="shangpinbianhao" DataTableKey="luojiquyu_view"
+								WidgetType="BillUIString">
+							</BillUIWidget>
+						</BillUIColPanel>
+						<BillUIColPanel Width="2">
+							<BillUIWidget Caption="查询" Key="search" EnabledWhen="True"
+								Icon="glyphicon glyphicon-send" WidgetType="BillUIButton">
+								<Triggers>
+									<Trigger Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                        	this.search("luojiquyu");
+                                 			]]>
+									</Trigger>
+								</Triggers>
+							</BillUIWidget>
+
+						</BillUIColPanel> -->
+					</BillUIRowPanel>
+					<BillUIRowPanel>
+						<BillUIColPanel Width="12">
+							<BillUIPanel Layout="flex" Key="dictionary_tools">
+
+								<BillUIGrid Key="grid0" OptMode="View" RowId=""
+									DataTableKey="luojiquyu_view">
+									<GridHeads>
+
+										<GridHead Col="ljqbh" Caption="逻辑区域编号" enableEdit="True"
+											Width="150px">
+											<BillUIWidget Key="ljqbh" WidgetType="BillUIString" />
+										</GridHead>
+										<GridHead Col="ljqmc" Caption="逻辑区域名称" enableEdit="True"
+											Width="150px">
+											<BillUIWidget Key="ljqmc" WidgetType="BillUIString" />
+										</GridHead>
+										
+
+									</GridHeads>
+								</BillUIGrid>
+							</BillUIPanel>
+
+						</BillUIColPanel>
+					</BillUIRowPanel>
+
+				</BillUIGridPanel>
+			</BillUIPanel>
+		</BillBodyMeta>
+	</BillBody>
+
+</BillViewMeta>

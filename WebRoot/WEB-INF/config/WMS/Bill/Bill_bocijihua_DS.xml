@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">   
+    <DataTable Key="bocijihua" BillType="Bill" Caption="波次计划" DefaultFilter="" TableName="Table::xyy_wms_bill_bocijihua" DataSource="" Head="true">
+        <Field FieldKey="danjubianhao" FieldName="波次编号" FieldType="Varchar" Comment="波次编号" DefaultValue="='BC'+o.orderNo()"/>
+        <Field FieldKey="dingdanshu" FieldName="订单数" FieldType="Int" Comment="订单数"/>
+        <Field FieldKey="hangshu" FieldName="行数" FieldType="Int" Comment="行数"/> 
+ 		<Field FieldKey="pingueishu" FieldName="品规数" FieldType="Int" Comment="品规数"/> 
+        <Field FieldKey="zongshuliang" FieldName="总数量" FieldType="Decimal" Bound="14,2" Comment="总数量"/>       
+        <Field FieldKey="zongzhongliang" FieldName="总重量" FieldType="Decimal" DefaultValue="0.00"  Comment="总重量" Bound="14,2"/>   
+        <Field FieldKey="zongtiji" FieldName="总体积" FieldType="Decimal" DefaultValue="0.00"  Comment="总体积" Bound="14,2"/>   
+        <Field FieldKey="youxianji" FieldName="优先级" FieldType="Varchar" Comment="优先级"/>
+        <Field FieldKey="jihuariqi" FieldName="计划时间" FieldType="TimeStamp" Comment="计划时间"/>       
+        <Field FieldKey="bociStatus" FieldName="波次状态" FieldType="Int" Comment="波次状态（10 已计划 20 已执行 30 已结束）"/>
+        <Field FieldKey="caozuoren" FieldName="操作人" FieldType="Varchar" Comment="操作人"/>
+        <Field FieldKey="czrmc" FieldName="操作人名称" FieldType="Varchar" Comment="操作人名称"/>   
+         <Field FieldKey="cangkuID" FieldName="仓库ID" FieldType="Varchar" Comment="仓库ID" />  
+        <Field FieldKey="error" FieldName="波次执行错误" FieldType="Text" Comment="波次执行错误" />   
+    </DataTable>    
+
+    <DataTable Key="bocijihua_details" BillType="Bill" Caption="波次计划" DefaultFilter="BillID" Pagging="100" TableName="Table::xyy_wms_bill_bocijihua_details" DataSource="" Head="false">
+        <Field FieldKey="danjubianhao" FieldName="波次编号" FieldType="Varchar" Comment="波次编号" DefaultValue="=o.orderNo()"/>
+        <Field FieldKey="orgCode" FieldName="机构编号" FieldType="Varchar" Comment="机构编号"/>
+        <Field FieldKey="huozhubianhao" FieldName="货主编号" FieldType="Varchar" Comment="货主编号"/>
+        <Field FieldKey="huozhumingcheng" FieldName="货主名称" FieldType="Varchar" Comment="货主名称"/>
+        <Field FieldKey="dingdanbianhao" FieldName="订单编号" FieldType="Varchar" Comment="订单编号"/>
+        <Field FieldKey="dingdanriqi" FieldName="订单日期" FieldType="Date" Comment="订单日期"/>
+ 		<Field FieldKey="dingdanleixing" FieldName="订单类型code" FieldType="Int" Comment="订单类型code"/>
+        <Field FieldKey="ddlxmc" FieldName="订单类型名称" FieldType="Varchar" Comment="订单类型名称"/>       
+        <Field FieldKey="tihuofangshi" FieldName="提货方式code" FieldType="Varchar" Comment="提货方式code"/> 
+ 		<Field FieldKey="thfsmc" FieldName="提货方式名称" FieldType="Varchar" Comment="提货方式名称"/>
+        <Field FieldKey="youxianji" FieldName="优先级" FieldType="Varchar" Comment="优先级"/>    
+        <Field FieldKey="luxianId" FieldName="路线Id" FieldType="Varchar" Comment="路线Id"/>    
+        <Field FieldKey="luxian" FieldName="路线code" FieldType="Varchar" Comment="路线code"/>  
+        <Field FieldKey="luxianmingcheng" FieldName="路线名称" FieldType="Varchar" Comment="路线名称"/>        
+        <Field FieldKey="kehubianhao" FieldName="客户编号" FieldType="Varchar" Comment="客户编号"/> 
+ 		<Field FieldKey="kehumingcheng" FieldName="客户名称" FieldType="Varchar" Comment="客户名称"/>
+        <Field FieldKey="kehudizhi" FieldName="客户地址" FieldType="Varchar" Comment="客户地址"/>       
+        <Field FieldKey="kehudianhua" FieldName="客户电话" FieldType="Varchar" Comment="客户电话"/>
+        <Field FieldKey="yewuyuan" FieldName="业务员编码" FieldType="Varchar" Comment="业务员编码"/>       
+        <Field FieldKey="ywymc" FieldName="业务员名称" FieldType="Varchar" Comment="业务员名称"/>
+ 		<Field FieldKey="peisongzhouqi" FieldName="配送周期" FieldType="Varchar" Comment="配送周期"/>
+        <Field FieldKey="pszqmc" FieldName="配送周期名称" FieldType="Varchar" Comment="配送周期名称"/>       
+        <Field FieldKey="dingdanzhuangtai" FieldName="订单状态" FieldType="Int" Comment="订单状态"/>
+        <Field FieldKey="qsjhw" FieldName="起始集货位" FieldType="Varchar" Comment="起始集货位"/>
+        <Field FieldKey="zzjhw" FieldName="终止集货位" FieldType="Varchar" Comment="终止集货位" />
+        <Field FieldKey="sjdjbh" FieldName="上级单据编号" FieldType="Varchar" Comment="上级单据编号"/>
+    	 <Field FieldKey="dianshangbianhao" FieldName="电商编号" FieldType="Varchar"  Bound="32" Comment="电商编号"/>
+    	 <Field FieldKey="zongzhongliang" FieldName="总重量" FieldType="Decimal" DefaultValue="0.00"  Comment="总重量" Bound="14,2"/>   
+        <Field FieldKey="zongtiji" FieldName="总体积" FieldType="Decimal" DefaultValue="0.00"  Comment="总体积" Bound="14,2"/>  
+         <Field FieldKey="remark" FieldName="客户备注" FieldType="Varchar" Comment="客户备注"/>
+         <Field FieldKey="zhehejianshu" FieldName="折合件数" FieldType="Decimal" Comment="折合件数" DefaultValue="0.00"/>
+         <Field FieldKey="kehuleixing" FieldName="客户类型" FieldType="Int" Comment="客户类型"/>
+         
+         <Field FieldKey="cangkuID" FieldName="仓库ID" FieldType="Varchar" Comment="仓库ID" />  
+    </DataTable>
+    
+  <DataTable Key="bocijihua_details2" BillType="Bill"  Caption="销售订单明细" DefaultFilter="BillID"  TableName="Table::xyy_wms_bill_bocijihua_details2" DataSource="" Head="false">
+         <Field FieldKey="danjubianhao" FieldName="波次编号" FieldType="Varchar" Comment="波次编号" DefaultValue="=o.orderNo()"/>
+          <Field FieldKey="cangkuID" FieldName="仓库ID" FieldType="Varchar" Comment="仓库ID" />  
+        <Field FieldKey="dingdanbianhao" FieldName="订单编号" FieldType="Varchar"/>
+        <Field FieldKey="shangpinbianhao" FieldName="商品编号" FieldType="Varchar"  Comment="商品编号"/>
+        <Field FieldKey="goodsid" FieldName="商品ID" FieldType="Varchar" Comment="商品ID" Tramsfor="false" Bound="20"/>
+        <Field FieldKey="shangpinmingcheng" FieldName="商品名称" FieldType="Varchar"  Comment="商品名称"/>
+        <Field FieldKey="guige" FieldName="规格" FieldType="Varchar"  Comment="规格"/>
+        <Field FieldKey="danwei" FieldName="单位" FieldType="Int"  Comment="单位"/>
+        <Field FieldKey="shengchanchangjia" FieldName="生产厂家" FieldType="Varchar" Comment="生产厂家"/>
+       <!-- <Field FieldKey="shengchanriqi" FieldName="生产日期" FieldType="TimeStamp" Comment="生产日期"/>
+        <Field FieldKey="youxiaoqizhi" FieldName="有效期至" FieldType="TimeStamp" Comment="有效期至"/>-->
+        <Field FieldKey="kekaishuliang" FieldName="可开数量" FieldType="Decimal"  Bound="14,2" Comment="可开数量"/>
+        <Field FieldKey="chukushuliang" FieldName="出库数量" FieldType="Decimal" Bound="14,2" DefaultValue="0"  Comment="出库数量"/>
+        <Field FieldKey="shuliang" FieldName="数量" FieldType="Decimal" Bound="14,2" DefaultValue="1" Comment="数量" />
+        <Field FieldKey="hanshuijia" FieldName="含税价" Bound="14,3" FieldType="Decimal" DefaultValue="0.0"  Comment="含税价" />
+        <Field FieldKey="oldhanshuijia" FieldName="原含税价" Bound="14,3" FieldType="Decimal" DefaultValue="0.0"  Comment="原含税价"/>
+        <Field FieldKey="oldhanshuijine" FieldName="原含税金额" Bound="14,2" FieldType="Decimal" DefaultValue="0.0"  Comment="原含税金额"/>
+        <Field FieldKey="youhuijine" FieldName="优惠金额" Bound="14,2" FieldType="Decimal" DefaultValue="0.0" Comment="优惠金额"/>
+        <Field FieldKey="danjia" FieldName="单价" Bound="14,6" FieldType="Decimal" DefaultValue="0.0"  Comment="单价=含税价/（1+税率/100）"/>
+        <Field FieldKey="jine" FieldName="金额" Bound="14,2" FieldType="Decimal" DefaultValue="0.0" Comment="金额"/>
+        <Field FieldKey="hanshuijine" FieldName="含税金额" Bound="14,2" FieldType="Decimal" DefaultValue="0.0" Comment="含税金额"/>
+        <Field FieldKey="shuie" FieldName="税额" Bound="14,2" FieldType="Decimal" DefaultValue="0.0"  Comment="税额"/>
+        <Field FieldKey="shuilv" FieldName="税率" FieldType="Decimal" DefaultValue="17.00"   Bound="14,2"  Comment="税率"/>
+        <Field FieldKey="pizhunwenhao" FieldName="批准文号" FieldType="Varchar"  Comment="批准文号"/>
+        <Field FieldKey="chandi" FieldName="产地" FieldType="Varchar"  Comment="产地"/> 
+        <Field FieldKey="beizhu" FieldName="备注" FieldType="Varchar"  Comment="备注"/>
+        <Field FieldKey="shangpinzhuangtai" FieldName="商品状态" FieldType="Int" Comment="商品状态" /> 
+         <Field FieldKey="zhengjianshu" FieldName="整件数" FieldType="Decimal" Comment="整件数" Bound="14,2"/> 
+         <Field FieldKey="lingjianshu" FieldName="零件数" FieldType="Decimal" Comment="零件数" Bound="14,2"/> 
+         <Field FieldKey="dbzsl" FieldName="大包装数量" FieldType="Int" Comment="大包装数量" />
+         <Field FieldKey="dbzzl" FieldName="大包装重量" FieldType="Decimal" Comment="大包装重量"  Bound="14,2"/>
+         <Field FieldKey="dbztj" FieldName="大包装体积" FieldType="Decimal" Comment="大包装体积"  Bound="14,2"/>
+        <Field FieldKey="chonghongshuliang" FieldName="冲红数量" FieldType="Decimal" Bound="14,2" DefaultValue="0" Comment="冲红数量" />
+			
+    </DataTable>   
+     
+    
+</DataSet>

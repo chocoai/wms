@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="kqzyqxwh" Caption="库区作业权限维护叙事薄" DefaultFilter="" Pagging="10"
+               TableName="SQLQuery::
+               select * | from xyy_wms_dic_kqzyqxwh where 1=1 
+               @cangkumingcheng  
+               @zhiyuanmingcheng 
+               @gonghao" 
+               DataSource="" Head="false">
+        <Parameters> 
+            <Parameter Key="cangkumingcheng" Type="String">
+                <Where>
+                <![CDATA[
+                	m.if(cangkumingcheng==null | cangkumingcheng==" " ," "," and cangkumingcheng like '%"+cangkumingcheng+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="zhiyuanmingcheng" Type="String" >
+                <Where>
+                <![CDATA[
+					m.if(zhiyuanmingcheng==null | zhiyuanmingcheng==" " ," "," and zhiyuanmingcheng like '%"+zhiyuanmingcheng+"%'")
+                ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="gonghao" Type="String" >
+                <Where>
+                <![CDATA[
+					m.if(gonghao==null | gonghao==" " ," "," and gonghao like '%"+gonghao+"%'")
+                ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BillFormMeta Key="shenhedan" Version="1.0.0" BillType="Bill" Caption="审核单">
+    <BillBody>
+        <BillBodyMeta UserAgent="web">
+            <BillUIPanel Layout="flex" FlexDirection="column" Width="100%" Key="mainContainer" Caption="业务订单" S="">
+                <BillUIPanel Layout="flex" Key="toolbox" Caption="工具栏" >
+                    <BillUIWidget Key="box" WidgetType="BillUIView" Src="toolbox">
+                    </BillUIWidget>
+                </BillUIPanel>
+                <BillUIPanel Layout="flex" Key="mainContainer_head" Caption="审核单" S="panel panel-success publicPanel"
+                             RowGap="5" ColGap="10" ColWidth="300px 300px 300px  300px 1fr 1fr">
+                    <BillUIGridPanel>
+                        <BillUIRowPanel>
+                            <BillUIColPanel Width="4">
+                                <BillUIWidget Key="shenheyijian" Caption="审核意见：" DataTableKey="shenhedan"
+                                              DataTableColumn="shenheyijian" EnabledWhen="True"
+                                              WidgetType="BillUIString"/>
+                            </BillUIColPanel>
+
+                            <BillUIColPanel Width="4">
+                                <BillUIWidget Key="shenhejieguo" Caption="审核结果：" DataTableKey="shenhedan"
+                                              DataTableColumn="shenhejieguo" EnabledWhen="True"
+                                              WidgetType="BillUISelect">
+                                <Init Type="javascript/angular" Runat="client">
+                                    <![CDATA[
+                                         this.loadDataSource();
+                                 ]]>
+                                </Init>
+                                <Properties>
+                                    <Property Name="datasource" Type="internal">[{name:"通过",value:1},{name:"不通过",value:0}]
+                                    </Property>
+                                </Properties>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                        </BillUIRowPanel>
+                    </BillUIGridPanel>
+                </BillUIPanel>
+
+            </BillUIPanel>
+        </BillBodyMeta>
+
+    </BillBody>
+
+    <BillHeadMeta>
+    </BillHeadMeta>
+</BillFormMeta>
+

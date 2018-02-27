@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BillFormMeta Key="kehudizhi" Version="1.0.0" BillType="Dics" Caption="客户地址">
+    <BillBody>
+        <BillBodyMeta UserAgent="web">
+            <BillUIPanel Layout="flex" FlexDirection="column" Width="100%" Key="mainContainer" Caption="客户地址" S="">
+				<BillUIPanel Layout="flex" Key="toolbox" Caption="工具栏" >
+                    <BillUIWidget Key="edit" Caption="编辑"
+                                  Left="2" Top="1" Width="1" Height="1" EnabledWhen="True"
+                                  Icon="glyphicon glyphicon-edit" WidgetType="BillUIButton">
+                        <Triggers>
+                            <Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+                                            @$this.$edit();
+	                            ]]>
+                            </Trigger>
+                        </Triggers>
+                    </BillUIWidget>
+                    <BillUIWidget Key="downloadExcel" Caption="导出"
+                                  EnabledWhen="True" FileName="客户地址资料导出" Icon="glyphicon glyphicon-save-file"
+                                  WidgetType="BillUIButton">
+
+                        <Init Type="javascript/angular" Runat="client">
+                            <![CDATA[
+                                            this.setEnable();
+										]]>
+                        </Init>
+                        <Triggers>
+                            <Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+                                 @$this.downloadExcel('kehudizhi');
+	                            ]]>
+                            </Trigger>
+                        </Triggers>
+                        <ExportSheets>
+                            <ExportSheet SheetName="客户地址资料信息" TitleName=""
+                                         DataTableKey="kehudizhi">
+                                <ExportColumns>
+                                    <ExportColumn Caption="客户编号" DataTableColumn="kehubianhao" />
+                                    <ExportColumn Caption="客户名称" DataTableColumn="kehumingcheng" />
+                                    <ExportColumn Caption="联系人" DataTableColumn="lianxiren" />
+                                    <ExportColumn Caption="电话" DataTableColumn="dianhua" />
+                                    <ExportColumn Caption="地址" DataTableColumn="dizhi" />
+                                </ExportColumns>
+                            </ExportSheet>
+                        </ExportSheets>
+                    </BillUIWidget>
+				</BillUIPanel>
+                <BillUIPanel Layout="flex" Key="bills_tools" Caption="查询面板" S="panel panel-default publicPanel">
+                	<BillUIGridPanel Device="sm" key="boxtool">
+                         <BillUIRowPanel>
+                             <BillUIColPanel Width="3">
+                                 <BillUIWidget Key="kehubianhao" ParameterKey="kehubianhao"
+                                               DataTableKey="kehudizhi"  Caption="客户编号"
+                                               EnabledWhen="True" Icon="glyphicon glyphicon-send" WidgetType="BillUIString">
+                                 </BillUIWidget>
+                             </BillUIColPanel>
+                             <BillUIColPanel Width="3">
+                                 <BillUIWidget Key="kehumingcheng" ParameterKey="kehumingcheng"
+                                               DataTableKey="kehudizhi"  Caption="客户名称"
+                                               EnabledWhen="True" Icon="glyphicon glyphicon-send" WidgetType="BillUIString">
+                                 </BillUIWidget>
+                             </BillUIColPanel>
+
+                             <BillUIColPanel Width="3">
+                                 <BillUIWidget Caption="查询" Key="search" EnabledWhen="True"
+                                               Icon="glyphicon glyphicon-send" WidgetType="BillUIButton">
+                                     <Triggers>
+                                         <Trigger Type="javascript/angular" Runat="client">
+                                             <![CDATA[
+			                                    @$this.__loadDics("kehudizhi");
+				                            ]]>
+                                         </Trigger>
+                                     </Triggers>
+                                 </BillUIWidget>
+                                 <BillUIWidget Caption="重置" Key="cancel" EnabledWhen="True"
+                                               Icon="glyphicon glyphicon-send" WidgetType="BillUIButton">
+                                     <Triggers>
+                                         <Trigger Type="javascript/angular" Runat="client">
+                                             <![CDATA[
+                                                 @$this.__loadDics();
+                                            ]]>
+                                         </Trigger>
+                                     </Triggers>
+                                 </BillUIWidget>
+                             </BillUIColPanel>
+                         </BillUIRowPanel>
+                	</BillUIGridPanel>
+                </BillUIPanel>
+
+                <BillUIPanel Layout="tab" Key="bills_tools" Caption="查询展示列" S="panel  panel-primary  publicPanel">
+                    <BillUIGrid Key="grid0" SelectMode="Radio" OptMode="View" DataTableKey="kehudizhi">
+                        <DoubleClickHandlers>
+                            <DoubleClickHandler>
+                                <![CDATA[
+                                    var clientNo=this.row;
+                                    window.location.href='/bill/view/dics-item?billKey=kehudizhi&ID='+clientNo.ID+'&allDisabled=true';
+                                ]]>
+                            </DoubleClickHandler>
+                        </DoubleClickHandlers>
+                       <GridHeads>
+                      
+                       		<GridHead Col="kehubianhao" Caption="客户编号" enableEdit="True" Width="180px">
+                               <BillUIWidget Key="kehubianhao" WidgetType="BillUIString"/>
+                           </GridHead>
+                           <GridHead Col="rowID" Caption="rowID" Width="220px" Show="false">
+                               <BillUIWidget Key="rowID" WidgetType="BillUIString"/>
+                           </GridHead>
+                           <GridHead Col="kehumingcheng" Caption="客户名称" enableEdit="True" Width="150px">
+                               <BillUIWidget Key="kehumingcheng" WidgetType="BillUIString"/>
+                           </GridHead>
+
+                           <GridHead Col="lianxiren" Caption="联系人" enableEdit="True" Width="100px">
+                               <BillUIWidget Key="lianxiren" WidgetType="BillUIString"/>
+                           </GridHead>
+                           
+                           <GridHead Col="dianhua" Caption="电话" enableEdit="True" Width="150px">
+                               <BillUIWidget Key="dianhua" WidgetType="BillUIString"/>
+                           </GridHead>
+
+                           <GridHead Col="dizhi" Caption="地址" enableEdit="True" Width="140px">
+                               <BillUIWidget Key="dizhi" WidgetType="BillUIString"/>
+                           </GridHead>                                                     
+                           <!-- <GridHead Col="defaultAddr" Caption="是否默认地址"  Width="80px">
+                               <BillUIWidget Key="defaultAddr" WidgetType="BillUIInteger">
+                                   <Formatters>
+                                       <Formatter>
+                                           <![CDATA[
+													[{'url':[{name:'否',value:1},{name:'是',value:0}],'type':'defaultAddr','local':'true'}]
+												]]>
+                                       </Formatter>
+                                   </Formatters>
+                               </BillUIWidget>
+                           </GridHead> -->
+                       </GridHeads>
+                    </BillUIGrid>
+                </BillUIPanel>
+            </BillUIPanel>
+        </BillBodyMeta>
+    </BillBody>
+    <BillHeadMeta>
+      <!--  <BillEventCollection>
+            <Event Type="StatusChanged" Processor="com.xyy.bill.handler.biz.DicGoodsStatusHandler"/>
+        </BillEventCollection>-->
+    </BillHeadMeta>
+</BillFormMeta>
+

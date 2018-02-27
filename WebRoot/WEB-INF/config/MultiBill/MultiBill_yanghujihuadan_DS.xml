@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="yanghujihuadan" Caption="养护计划单明细" DefaultFilter="" Pagging="5" BillType="MultiBill"
+               TableName="SQLQuery::select * | from xyy_erp_bill_yanghujihuadan_details  " DataSource="" Head="false">
+        <!-- <Parameters>
+			供应商名称
+            <Parameter Key="gysmc" Type="String" >
+            	<DefaultValue></DefaultValue>
+                <Where>
+	                <![CDATA[
+	                	m.if(gysmc==null | gysmc=="" ," "," and gysmc = "+gysmc)
+					]]>
+                </Where>
+            </Parameter>
+        </Parameters> -->
+    </DataTable>
+</DataSet>

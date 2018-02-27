@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="xiaoshoushoukuanduizhangdan" BillType="Bill" Caption="销售收款对账单" DefaultFilter="" TableName="Table::xyy_erp_bill_xiaoshoushoukuanduizhangdan" DataSource="" Head="true">
+        <Field FieldKey="kaipiaoriqi" FieldName="开票日期" FieldType="Date" Tramsfor="false" Comment="开票日期"/>
+        <Field FieldKey="kaipiaoyuan" FieldName="开票员" FieldType="Varchar" Comment="开票员"/>
+        <Field FieldKey="zhifubianhao" FieldName="支付编号" FieldType="Varchar" Comment="支付编号"/>
+        <Field FieldKey="zhifumingcheng" FieldName="支付名称" FieldType="Varchar" Comment="支付名称"/>
+        <Field FieldKey="pipeifangshi" FieldName="匹配方式" FieldType="Int" Comment="匹配方式"/>
+    </DataTable>
+
+    <DataTable Key="xiaoshoushoukuanduizhangdan_details" BillType="Bill"  Caption="销售收款对账单明细" DefaultFilter="BillID" Pagging="5" TableName="Table::xyy_erp_bill_xiaoshoushoukuanduizhangdan_details" DataSource="" Head="false">
+    	<Field FieldKey="dianshangbianhao" FieldName="电商编号" FieldType="Varchar"  Bound="32" Comment="电商编号"/>
+    	<Field FieldKey="kehubianhao" FieldName="客户编号" FieldType="Varchar" Comment="客户编号"/>
+        <Field FieldKey="kehumingcheng" FieldName="客户名称" FieldType="Varchar" Comment="客户名称"/>
+        <Field FieldKey="jiaoyiriqi" FieldName="交易日期" FieldType="Date" Tramsfor="false" Comment="交易日期"/>
+    	<Field FieldKey="jiaoyijine" FieldName="交易金额" FieldType="Decimal" Tramsfor="false" Bound="14,2" Comment="交易金额" />
+    	<Field FieldKey="jiaoyibeizhu" FieldName="交易备注" FieldType="Varchar" Tramsfor="false" Comment="交易备注"/>
+    	
+    	<Field FieldKey="pipeidianshangbianhao" FieldName="匹配编号" FieldType="Varchar"  Bound="32" Comment="匹配编号"/>
+        <Field FieldKey="pipeikehumingcheng" FieldName="匹配客户名称" FieldType="Varchar" Comment="匹配客户名称"/>
+    	<Field FieldKey="hanshuijine" FieldName="含税金额" FieldType="Decimal" Tramsfor="false" Bound="14,2" Comment="含税金额" />
+    	<Field FieldKey="yjsje" FieldName="已结算金额" FieldType="Decimal" DefaultValue="0.0000" Bound="14,2" Comment="未结算金额" />
+        <Field FieldKey="ppwjsje" FieldName="匹配未结算金额" FieldType="Decimal" DefaultValue="0.0000" Bound="14,2" Comment="匹配未结算金额" />
+        <Field FieldKey="kaipiaoriqi" FieldName="开票日期" FieldType="Date" Tramsfor="false" Comment="开票日期"/>
+        <Field FieldKey="kaipiaoyuan" FieldName="开票员" FieldType="Varchar" Comment="开票员"/>
+         
+    	<Field FieldKey="shifoupipei" FieldName="是否匹配" FieldType="Int" Comment="是否匹配 0.不匹配  1.匹配"/>
+    	<Field FieldKey="sffkyy" FieldName="是否付款引用" FieldType="Int"  Tramsfor="false" Comment="是否付款引用  0.否  1.是  "/>
+    	<Field FieldKey="jiesuanzhuangtai" FieldName="结算状态" FieldType="Int" Tramsfor="false" Comment="结算状态  0.未完成  1.已完成  "/>
+    </DataTable>
+</DataSet>

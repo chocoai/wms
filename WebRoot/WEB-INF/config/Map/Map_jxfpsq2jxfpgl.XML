@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Map Key="jxfpsq2jxfpgl" Caption="迁移表转进项开票"
+    SrcDataObjectKey="jinxiangfapiaoshenqing"
+    SrcDataType="Bill"  
+    TgtDataObjectKey="jinxiangfapiaoguanli"
+    TgtDataType="Bill"  
+    MaxPushValue="100"
+     MinPushValue="0">
+    <TargetTableCollection>
+     
+    <TargetTable Key="jinxiangfapiaoguanli" SrcTableKey="jinxiangfapiaoshenqing">
+            <Field FieldKey="sjdjbh">
+                <![CDATA[
+                     =danjubianhao
+              ]]>
+            </Field>
+            <Field FieldKey="gysbh">
+                <![CDATA[
+                     =gysbh
+              ]]>
+            </Field>
+			<Field FieldKey="gysmc">
+                <![CDATA[
+                     =gysmc
+              ]]>
+            </Field>
+            <Field FieldKey="shenqingren">
+                <![CDATA[
+                     =kaipiaoyuan
+              ]]>
+            </Field>
+			<Field FieldKey="shuihao">
+                <![CDATA[
+                     =shuihao
+              ]]>
+            </Field>
+            <Field FieldKey="lianxidizhi">
+                <![CDATA[
+                     =lianxidizhi
+              	]]>
+            </Field>
+            <Field FieldKey="lianxiren">
+                <![CDATA[
+                     =lianxiren
+              	]]>
+            </Field>
+            <Field FieldKey="kaihuyinhang">
+                <![CDATA[
+                     =kaihuyinhang
+              ]]>
+            </Field>
+            <Field FieldKey="yinhangzhanghu">
+                <![CDATA[
+                     =yinhangzhanghu
+              ]]>
+            </Field>
+            <Field FieldKey="guihao">
+                <![CDATA[
+                     =guihao
+              ]]>
+            </Field>
+            <Field FieldKey="fapiaoleixing">
+                <![CDATA[
+                     =fapiaoleixing
+              ]]>
+            </Field>
+            <Field FieldKey="fapiaohaoma">
+                <![CDATA[
+                     =fapiaohaoma
+              ]]>
+            </Field> 
+        </TargetTable>
+        
+        <TargetTable Key="jinxiangfapiaoguanli_details" SrcTableKey="jinxiangfapiaoshenqing_details">
+            <Field FieldKey="danjubianhao">
+                <![CDATA[
+                     =danjubianhao
+              ]]>
+            </Field>
+            <Field FieldKey="shangpinbianhao">
+                <![CDATA[
+                     =shangpinbianhao
+              ]]>
+            </Field>
+			<Field FieldKey="shangpinmingcheng">
+                <![CDATA[
+                     =shangpinmingcheng
+              ]]>
+            </Field>
+            <Field FieldKey="guige">
+                <![CDATA[
+                     =guige
+              ]]>
+            </Field>
+			<Field FieldKey="danwei">
+                <![CDATA[
+                     =danwei
+              ]]>
+            </Field>
+            <Field FieldKey="shengchanchangjia">
+                <![CDATA[
+                     =shengchanchangjia
+              	]]>
+            </Field>
+            <Field FieldKey="ydsl">
+                <![CDATA[
+                     =ydsl
+              ]]>
+            </Field>
+            <Field FieldKey="ykpsl">
+                <![CDATA[
+                     =ykpsl
+              ]]>
+            </Field>
+            <Field FieldKey="shuliang">
+                <![CDATA[
+                     =shuliang
+              ]]>
+            </Field>
+            <Field FieldKey="hanshuijia">
+                <![CDATA[
+                     =hanshuijia
+              ]]>
+            </Field>
+            <Field FieldKey="danjia">
+                <![CDATA[
+                     =danjia
+              ]]>
+            </Field>
+            <Field FieldKey="hanshuijine">
+                <![CDATA[
+                     =hanshuijine
+              ]]>
+            </Field>
+            <Field FieldKey="jine">
+                <![CDATA[
+                     =jine
+              ]]>
+            </Field>
+            <Field FieldKey="shuie">
+                <![CDATA[
+                     =shuie
+              ]]>
+            </Field>
+            <Field FieldKey="shuilv">
+                <![CDATA[
+                     =shuilv
+              ]]>
+            </Field> 
+            <Field FieldKey="pizhunwenhao">
+                <![CDATA[
+                     =pizhunwenhao
+              ]]>
+            </Field> 
+            <Field FieldKey="chandi">
+                <![CDATA[
+                     =chandi
+              ]]>
+            </Field> 
+            <Field FieldKey="beizhu">
+                <![CDATA[
+                     =beizhu
+              ]]>
+            </Field> 
+        </TargetTable>
+        
+        <TargetTable Key="jinxiangfapiaoguanli_details1" SrcTableKey="jinxiangfapiaoshenqing_details1">
+            <Field FieldKey="danjubianhao">
+                <![CDATA[
+                     =danjubianhao
+              ]]>
+            </Field>
+            <Field FieldKey="zhidanriqi">
+                <![CDATA[
+                     =zhidanriqi
+              ]]>
+            </Field>
+            <Field FieldKey="zhidanren">
+                <![CDATA[
+                     =zhidanren
+              ]]>
+            </Field>
+			<Field FieldKey="yuandanjine">
+                <![CDATA[
+                     =yuandanjine
+              ]]>
+            </Field>
+            <Field FieldKey="hanshuijine">
+                <![CDATA[
+                     =hanshuijine
+              	]]>
+            </Field>
+            <Field FieldKey="danjia">
+                <![CDATA[
+                     =danjia
+              ]]>
+            </Field>
+            <Field FieldKey="jine">
+                <![CDATA[
+                     =jine
+              ]]>
+            </Field>
+            <Field FieldKey="shuie">
+                <![CDATA[
+                     =shuie
+              ]]>
+            </Field>
+            <Field FieldKey="shuilv">
+                <![CDATA[
+                     =shuilv
+              ]]>
+            </Field>
+            <Field FieldKey="zhaiyao">
+                <![CDATA[
+                     =zhaiyao
+              ]]>
+            </Field>
+            <Field FieldKey="danjuleixin">
+                <![CDATA[
+                     =danjuleixin
+              ]]>
+            </Field> 
+        </TargetTable>
+    </TargetTableCollection>
+    
+    <FeedBackCollection>
+        
+        <FeedbackObject TableKey="jinxiangfapiaoguanli" BillStatus="40">            
+           <FeedbackTableCollection>
+              <FeedbackTable Key="jxfpsfjs" TableKey="xyy_erp_bill_jinxiangfapiaoshenqing">
+                <FeedbackField FieldKey="jiesuanzhuangtai"  FeedFieldKey=""  OpSign="Assign">
+                    <![CDATA[
+                        1
+                    ]]>
+                </FeedbackField>
+                <FeedbackField FieldKey="shifouoyinyong"  FeedFieldKey=""  OpSign="Assign">
+                    <![CDATA[
+                        1
+                    ]]>
+                </FeedbackField>
+            </FeedbackTable>               
+           </FeedbackTableCollection>
+        </FeedbackObject>
+        <FeedbackObject TableKey="jinxiangfapiaoguanli" BillStatus="-1">            
+           <FeedbackTableCollection>
+              <FeedbackTable Key="jxfpqxjs" TableKey="xyy_erp_bill_jinxiangfapiaoshenqing">
+                <FeedbackField FieldKey="jiesuanzhuangtai"  FeedFieldKey=""  OpSign="Assign">
+                    <![CDATA[
+                        0
+                    ]]>
+                </FeedbackField>
+                <FeedbackField FieldKey="shifouoyinyong"  FeedFieldKey=""  OpSign="Assign">
+                    <![CDATA[
+                        0
+                    ]]>
+                </FeedbackField>
+            </FeedbackTable>               
+           </FeedbackTableCollection>
+        </FeedbackObject>
+    </FeedBackCollection>
+    
+</Map>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="sunyikaipiao" Caption="损溢开票单叙事薄"
+               DefaultFilter="" Pagging="10"
+               TableName="SQLQuery::select * | from xyy_wms_bill_sunyikaipiao  where 1=1 and status != -1 @danjubianhao @zhidanriqi ORDER BY createTime DESC "
+               DataSource="" Head="false">
+        <Parameters>
+            <Parameter Key="danjubianhao" Type="String">
+                <Where>
+                    <![CDATA[ m.if(danjubianhao==null | danjubianhao=="" ," "," and danjubianhao like '%"+danjubianhao+"%'") ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="zhidanriqi" Type="DateTime">
+                <Where>
+                    <![CDATA[
+					m.if(zhidanriqi==null | zhidanriqi=="" ," "," and zhidanriqi like '%"+zhidanriqi+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <!-- <Parameter Key="gysbh" Type="String" > <Where> <![CDATA[ m.if(gysbh==null
+                | gysbh==" " ," "," and gysbh like '%"+gysbh+"%'") ]]> </Where> </Parameter> -->
+            <!-- <Parameter Key="gysmc" Type="String" > <Where> <![CDATA[ m.if(gysmc==null
+                | gysmc==" " ," "," and gysmc like '%"+gysmc+"%'") ]]> </Where> </Parameter>
+                <Parameter Key="status" Type="Integer" > <Where> <![CDATA[ m.if(status==null,"
+                "," and status="+status+"") ]]> </Where> </Parameter> </Parameters> -->
+        </Parameters>
+    </DataTable>
+</DataSet>

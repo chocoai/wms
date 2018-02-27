@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BillFormMeta Key="zhixiangguige" Version="1.0.0" BillType="Dics"
+              Caption="纸箱规格">
+    <BillBody>
+        <BillBodyMeta UserAgent="web">
+            <BillUIPanel Layout="flex" FlexDirection="column" Width="100%"
+                         Key="mainContainer" Caption="仓库资料" S="">
+                <BillUIPanel Layout="flex" Key="toolbox" Caption="工具栏">
+                    <!--属性 colPush 向右推 colPull 向左拉 colOffset 左边距 -->
+
+                    <BillUIWidget Key="save" Caption="保存" EnabledWhen="True"
+                                  Icon="glyphicon glyphicon-floppy-disk" WidgetType="BillUIButton">
+                        <Triggers>
+                            <Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+                                                        setStatus(40);
+			                                        	@$this.save();
+				                            		]]>
+                            </Trigger>
+                        </Triggers>
+                    </BillUIWidget>
+                    <BillUIWidget Key="goback" Caption="返回" EnabledWhen="True"
+                                  Icon="glyphicon glyphicon-align-left" WidgetType="BillUIButton" S="btn btn-danger">
+                        <Triggers>
+                            <Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+                                       @$this.$reBack();
+	                            ]]>
+                            </Trigger>
+                        </Triggers>
+                    </BillUIWidget>
+                </BillUIPanel>
+
+
+                <BillUIPanel Layout="flex" Key="bills_tools" Caption=""
+                             S="panel panel-default publicPanel">
+                    <BillUIGridPanel Device="sm" key="boxtool">
+                        <BillUIRowPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="cangkubianhao" ParameterKey="cangkubianhao"
+                                              DataTableKey="zhixiangguige" Caption="仓库编号" EnabledWhen="True"
+                                              Icon="glyphicon glyphicon-send" DataTableColumn="cangkubianhao"
+                                              Disable="true" WidgetType="BillUIPopupWindow" ViewSize="lg"
+                                              Required="Required" Src="cangku">
+                                    <Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                            	var orgId=this.getOrgId();
+	                                        ]]>
+                                    </Init>
+                                    <Triggers>
+                                        <Trigger>
+                                            <![CDATA[
+                                                    var cangku=this.rows[0];  
+                                                    @cangkuID.setValue(cangku.ID);  
+                                                    this.setValue(cangku.cangkubianhao);
+                                                    @cangkumingchen.setValue(cangku.cangkumingchen);
+                                                ]]>
+                                        </Trigger>
+                                    </Triggers>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="cangkumingchen" ParameterKey="cangkumingchen" Disable="true"
+                                              DataTableKey="zhixiangguige" Caption="仓库" EnabledWhen="True"
+                                              Icon="glyphicon glyphicon-send" WidgetType="BillUIString"
+                                              Required="Required" DataTableColumn="cangkumingchen">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                        </BillUIRowPanel>
+
+                        <BillUIRowPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="zhixiangguigesize" Caption="纸箱规格"
+                                              DataTableKey="zhixiangguige" DataTableColumn="zhixiangguigesize"
+                                              EnabledWhen="True" Src="bill/selectSrc?type=zhixiangguigesize"
+                                              WidgetType="BillUISelect" Required="Required">
+                                    <Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+												this.loadDataSource();
+										]]>
+                                    </Init>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="zhixiangtiji" ParameterKey="zhixiangtiji"
+                                              DataTableKey="zhixiangguige" Caption="纸箱体积（cm³）" EnabledWhen="True"
+                                              Icon="glyphicon glyphicon-send" WidgetType="BillUIString"
+                                              Required="Required" DataTableColumn="zhixiangtiji">
+                                    <Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+			                       			var value=getHeadValue("zhixiangtiji");
+			                       			if(value==0){
+			                       				this.setValue(" ");
+			                       			}else{
+                                                return;
+			                       			}
+
+										]]>
+                                    </Init>
+                                    <CheckRules>
+                                        <CheckRule>
+                                            <![CDATA[
+												              {"type":"builtin","rule":/^\d*(\.\d{1,2})?$/,"msg":"请填写两位小数以内的数字类型"}
+												        ]]>
+                                        </CheckRule>
+                                    </CheckRules>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                        </BillUIRowPanel>
+
+                        <BillUIRowPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="liyonglv" Caption="利用率"
+                                              DataTableKey="zhixiangguige" DataTableColumn="liyonglv"
+                                              Required="Required" EnabledWhen="True" WidgetType="BillUIString">
+                                    <CheckRules>
+                                        <CheckRule>
+                                            <![CDATA[
+												              {"type":"builtin","rule":/^\d*(\.\d{1,2})?$/,"msg":"请填写两位小数以内的数字类型"}
+												        ]]>
+                                        </CheckRule>
+                                    </CheckRules>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="qiyong" Caption="是否启用"
+                                              DataTableKey="zhixiangguige" DataTableColumn="qiyong"
+                                              EnabledWhen="True" Src="bill/selectSrc?type=bool"
+                                              WidgetType="BillUISelect" Required="Required">
+                                    <Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+												this.loadDataSource();
+										]]>
+                                    </Init>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                        </BillUIRowPanel>
+                    </BillUIGridPanel>
+                </BillUIPanel>
+            </BillUIPanel>
+        </BillBodyMeta>
+    </BillBody>
+
+    <BillHeadMeta>
+        <BillStatusCollection>
+            <Status Default="true" Code="1">录入</Status>
+            <Status Code="20">正式</Status>
+            <Status Code="40">审核通过</Status>
+        </BillStatusCollection>
+        <ProcessCollection>
+            <Process Name="仓库资料">
+                <![CDATA[
+                        status==20
+                ]]>
+            </Process>
+        </ProcessCollection>
+
+        <BillEventCollection>
+        </BillEventCollection>
+
+    </BillHeadMeta>
+</BillFormMeta>
+

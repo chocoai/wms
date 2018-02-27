@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<BillViewMeta Key="spph" Caption="商品批号视图" Version="">
+	<BillBody UserAgent="web">
+		<BillBodyMeta>
+			<BillUIPanel Layout="flex" Key="dictionary_tools" Caption="商品批号视图"  S="">
+			     <BillUIGridPanel Key="spph_grid">
+                    <BillUIRowPanel>
+                        <BillUIColPanel Width="4">
+                            <BillUIWidget Caption="商品ID" Key="cancel"
+                                EnabledWhen="True"   ParameterKey="shangpinId"
+                                DataTableKey="spph"
+                                WidgetType="BillUIString">
+                            </BillUIWidget>
+                        </BillUIColPanel>
+                        <BillUIColPanel Width="1">
+                            <BillUIWidget Caption="查询" Key="search"
+                                EnabledWhen="True"
+                                Icon="glyphicon glyphicon-send" WidgetType="BillUIButton">
+                                <Triggers>
+                                    <Trigger Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                        	this.search("spph");
+                                 			]]>
+                                    </Trigger>
+                                </Triggers>
+                            </BillUIWidget>
+                        </BillUIColPanel>
+                    </BillUIRowPanel>
+			         <BillUIRowPanel>
+						 <BillUIColPanel Width="12">
+							 <BillUIPanel Layout="flex" Key="dictionary_tools">
+								 <BillUIGrid Key="grid0" OptMode="View" selectMode="single" DataTableKey="spph">
+								 <GridHeads>
+									 <GridHead Col="goodsId" Caption="商品ID" Width="150px">
+										 <BillUIWidget Key="goodsId" WidgetType="BillUIString"/>
+									 </GridHead>
+									 <GridHead Col="pihao" Caption="批号"  Width="120px">
+									 	<BillUIWidget Key="pihao" WidgetType="BillUIString"/>
+								 	 </GridHead>
+									 <GridHead Col="shengchanriqi" Caption="生产日期"  Width="120px">
+										 <BillUIWidget Key="shengchanriqi" WidgetType="BillUIDateTime"/>
+									 </GridHead>
+									 <GridHead Col="youxiaoqizhi" Caption="有效期至" Width="120px">
+										 <BillUIWidget Key="youxiaoqizhi" WidgetType="BillUIDateTime"/>
+									 </GridHead>
+								 </GridHeads>
+							 		</BillUIGrid>
+							 </BillUIPanel>
+
+						 </BillUIColPanel>
+			         </BillUIRowPanel>
+			         
+			     </BillUIGridPanel>
+             </BillUIPanel>
+		</BillBodyMeta>
+	</BillBody>
+	
+</BillViewMeta>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="shangpinfenleixinxi" BillType="Dictionary"  Caption="商品分类信息" DefaultFilter="" TableName="Table::xyy_erp_dic_shangpinfenleixinxi" DataSource="" Head="true">
+        <Field FieldKey="pinleimingcheng" FieldName="品类名称" FieldType="Varchar" Bound="36" Comment="品类名称"/>
+        
+        <Field FieldKey="pinleibianhao" FieldName="品类编号" FieldType="Varchar" Comment="品类编号"/>
+<!--         <Field FieldKey="pinleimingcheng" FieldNameWW="品类名称" FieldType="Varchar" Comment="品类名称"/> -->
+        <Field FieldKey="shuoming" FieldName="说明" FieldType="Varchar" Comment="说明"/>
+    </DataTable>
+</DataSet>

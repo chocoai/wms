@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Map Key="caigou2ruku" Caption="采购订单上引"
+	SrcDataObjectKey="caigoudingdan"
+    SrcDataType="Bill"  
+    TgtDataObjectKey="rukushouhuo"
+    TgtDataType="Bill"  
+    MaxPushValue="100"
+     MinPushValue="0">
+<TargetTableCollection>
+     
+         <TargetTable Key="rukushouhuo_details" SrcTableKey="caigoudingdan_details">
+            <Field FieldKey="rukuID">
+                <![CDATA[
+                     =BillDtlID
+              ]]>
+            </Field>
+            
+            <Field FieldKey="shangpinbianhao">
+                <![CDATA[
+                     =shangpinbianhao
+              ]]>
+            </Field>
+			<Field FieldKey="shangpinmingcheng">
+                <![CDATA[
+                     =shangpinmingcheng
+              ]]>
+            </Field>
+            <Field FieldKey="shangpinguige">
+                <![CDATA[
+                     =guige
+              ]]>
+            </Field>
+			<Field FieldKey="baozhuangdanwei">
+                <![CDATA[
+                     =danwei
+              ]]>
+            </Field>
+            <Field FieldKey="shengchanchangjia">
+                <![CDATA[
+                     =shengchanchangjia
+              	]]>
+            </Field>
+           <Field FieldKey="pizhunwenhao">
+                <![CDATA[
+                     =pizhunwenhao
+              	]]>
+            </Field>
+           
+           <Field FieldKey="caigoushuliang">
+                <![CDATA[
+                     =shuliang-wmsshuliang
+              ]]>
+            </Field>
+           
+            <Field FieldKey="hanshuijia">
+                <![CDATA[
+                     =hanshuijia
+              ]]>
+              
+            </Field>
+            
+            <Field FieldKey="pihao">
+                <![CDATA[
+                     =""
+              ]]>
+              
+            </Field>
+            <Field FieldKey="rongqibianhao">
+                <![CDATA[
+                     =""
+              ]]>
+              
+            </Field>
+            <Field FieldKey="baozhuangshuliang">
+                <![CDATA[
+                     =stock.getDbzsl(shangpinbianhao)
+                    ]]>
+            </Field>
+            
+            
+        </TargetTable>
+        <!-- <TargetTable Key="rukushouhuo_details" SrcTableKey="shangpinziliao">
+            <Field FieldKey="baozhuangshuliang">
+                <![CDATA[
+                     =dbzsl
+              ]]>
+            </Field>
+        </TargetTable> -->
+        
+        </TargetTableCollection>
+      <FeedBackCollection>
+        
+    </FeedBackCollection> 
+</Map>
+
+
+   
+

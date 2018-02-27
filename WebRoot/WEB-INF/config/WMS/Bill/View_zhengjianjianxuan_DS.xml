@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+	<DataTable Key="zhengjianjianxuan" Caption="整件拣选"
+		DefaultFilter="" Pagging="10"
+		TableName="SQLQuery::
+		SELECT
+	* |
+FROM
+	xyy_wms_bill_dabaorenwu t1
+WHERE t1.status != 30 and
+	EXISTS (
+		SELECT
+			1
+		FROM
+			xyy_wms_dic_kqzyqxwh t2,
+			xyy_wms_dic_kuqujibenxinxi t3
+		WHERE
+		 t2.kuqubianhao = t3.kuqubianhao
+		@gonghao
+		AND (
+			(
+				t3.kqlbbh = 1
+				AND t1.taskType = 20
+				AND t2.jianhuo = 1
+			)
+			OR (
+				t3.kqlbbh = 1
+				AND t1.taskType in (30,40)
+				AND t1.status in (32,27,26)
+				AND t2.buhuo = 1
+			)
+			OR (
+				t3.kqlbbh = 2
+				AND t1.taskType = 10
+				AND t2.jianhuo = 1
+				AND t1.xiajiakuqu=t2.kuqubianhao
+			)
+			OR (
+				t3.kqlbbh = 2
+				AND t1.taskType in (30,40)
+				AND t1.status in (28,29,26)
+				AND t2.buhuo = 1
+				and t1.shangjiakuqu=t2.kuqubianhao
+			)
+		)
+	)
+	  @czrmc @status @taskCode @taskType @caozuorenID @dingdanbianhao @bocibianhao  ORDER BY t1.youxianji Desc ,t1.createTime DESC
+		"
+		DataSource="" Head="false">
+		<Parameters>
+			<Parameter Key="czrmc" Type="String">
+				<Where>
+                    <![CDATA[
+					    m.if(czrmc==null | czrmc=="" ," "," and t1.czrmc like '%"+czrmc+"%'")
+	                ]]>
+				</Where>
+			</Parameter>
+			<Parameter Key="status" Type="Integer">
+				<Where>
+                    <![CDATA[
+					   	m.if(status==null,""," and t1.status="+status+"")
+	                ]]>
+				</Where>
+			</Parameter>
+			<Parameter Key="taskCode" Type="String">
+				<Where>
+                    <![CDATA[
+					    m.if(taskCode==null | taskCode=="" ," "," and t1.taskCode like '%"+taskCode+"%'")
+	                ]]>
+				</Where>
+			</Parameter>
+			<Parameter Key="taskType" Type="Integer">
+				<Where>
+                    <![CDATA[
+					    m.if(taskType==null | taskType=="" ," "," and t1.taskType = "+taskType)
+	                ]]>
+				</Where>
+			</Parameter>
+			
+			<Parameter Key="caozuorenID" Type="String">
+				<Where>
+                    <![CDATA[
+                      m.if(userCode==null | userCode=="" ," "," and (t1.caozuoren = '"+userCode+"' or t1.caozuoren is null)")
+	                ]]>
+				</Where>
+			</Parameter>
+			<Parameter Key="gonghao" Type="String">
+				<Where>
+                    <![CDATA[
+                      m.if(userCode==null | userCode=="" ," "," and t2.gonghao = '"+userCode+"'")
+	                ]]>
+				</Where>
+			</Parameter>
+			<Parameter Key="dingdanbianhao" Type="String">
+				<Where>
+                    <![CDATA[
+                      m.if(dingdanbianhao==null | dingdanbianhao=="" ," "," and t1.dingdanbianhao = '"+dingdanbianhao+"'")
+	                ]]>
+				</Where>
+			</Parameter>
+			<Parameter Key="bocibianhao" Type="String">
+				<Where>
+                    <![CDATA[
+                      m.if(bocibianhao==null | bocibianhao=="" ," "," and t1.bocibianhao = '"+bocibianhao+"'")
+	                ]]>
+				</Where>
+			</Parameter>
+
+		</Parameters>
+
+	</DataTable>
+</DataSet>

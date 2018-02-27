@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="fenjianhuadaoziliao" Caption="分拣滑道资料叙事薄" DefaultFilter="" Pagging="10"
+               TableName="SQLQuery::select
+                *
+                |
+                from
+                xyy_wms_dic_fenjianhuadaoziliao
+                where 1=1 @cangkubianhao @cangkumingcheng @fjhdbh @fjhdlx @shifouqiyong "
+               DataSource="" Head="false">
+        <Parameters>
+            <Parameter Key="cangkubianhao" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(cangkubianhao==null | cangkubianhao==" " ," "," and cangkubianhao like '%"+cangkubianhao+"%'")
+                ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="cangkumingcheng" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(cangkumingcheng==null | cangkumingcheng==" " ," "," and cangkumingcheng like '%"+cangkumingcheng+"%'")
+                ]]>
+                </Where>
+            </Parameter>
+
+            <Parameter Key="fjhdbh" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(fjhdbh==null | fjhdbh==" " ," "," and fjhdbh like '%"+fjhdbh+"%'")
+                ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="fjhdlx" Type="Integer">
+                <Where>
+                    <![CDATA[
+                	m.if(fjhdlx==null," "," and fjhdlx="+fjhdlx+"")
+				]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="shifouqiyong" Type="Integer">
+                <Where>
+                    <![CDATA[
+                	m.if(shifouqiyong==null," "," and shifouqiyong="+shifouqiyong+"")
+				]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

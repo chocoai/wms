@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BillViewMeta Key="kufangAll" Caption="库房" Version="">
+    <Parameters>
+        <Parameter Key="t1" Type="String" Scope="Global">
+            <DefaultValue></DefaultValue>
+            <Where></Where>
+        </Parameter>
+    </Parameters>
+    <BillBody UserAgent="web">
+        <BillBodyMeta>
+            <BillUIPanel Layout="flex" Key="dictionary_tools" Caption="库房"  S="">
+                <BillUIGridPanel Key="kufangAll_grid">
+                    <BillUIRowPanel>
+                        <BillUIColPanel Width="8">
+                            <BillUIWidget Caption="库房名称" Key="cancel"
+                                          EnabledWhen="True"   ParameterKey="kuqumingcheng"
+                                          DataTableKey="kufangAll_view"
+                                          WidgetType="BillUIString">
+                            </BillUIWidget>
+
+                        </BillUIColPanel>
+
+
+                        <BillUIColPanel Width="2">
+                            <BillUIWidget Caption="查询" Key="search"
+                                          EnabledWhen="True"
+                                          Icon="glyphicon glyphicon-send" WidgetType="BillUIButton">
+                                <Triggers>
+                                    <Trigger Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                        	this.search("kufangAll_view");
+                                 			]]>
+                                    </Trigger>
+                                </Triggers>
+                            </BillUIWidget>
+                        </BillUIColPanel>
+                    </BillUIRowPanel>
+                    <BillUIRowPanel>
+                        <BillUIColPanel Width="12">
+                            <BillUIPanel Layout="flex" Key="dictionary_tools">
+                                <BillUIGrid Key="grid0" OptMode="View" selectMode="single" DataTableKey="kufangAll_view">
+                                    <GridHeads>
+                                        <GridHead Col="kuqubianhao" Caption="库房编号" Width="100px">
+                                            <BillUIWidget Key="kuqubianhao" WidgetType="BillUIString"/>
+                                        </GridHead>
+                                        <GridHead Col="kuqumingcheng" Caption="库房名称"
+                                                  Width="100px">
+                                            <BillUIWidget Key="kuqumingcheng" WidgetType="BillUIString"/>
+                                        </GridHead>
+                                    </GridHeads>
+                                </BillUIGrid>
+                            </BillUIPanel>
+
+                        </BillUIColPanel>
+                    </BillUIRowPanel>
+
+                </BillUIGridPanel>
+            </BillUIPanel>
+        </BillBodyMeta>
+    </BillBody>
+
+</BillViewMeta>

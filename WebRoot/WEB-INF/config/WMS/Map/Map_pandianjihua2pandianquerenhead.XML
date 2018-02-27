@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Map Key="pandianjihua2pandianquerenhead" Caption="盘点计划上引"
+	SrcDataObjectKey="pandianjihua"
+    SrcDataType="Bill"  
+    TgtDataObjectKey="pandianqueren"
+    TgtDataType="Bill"  
+    MaxPushValue="100"
+     MinPushValue="0">
+	<TargetTableCollection>
+     
+    	<TargetTable Key="pandianqueren" SrcTableKey="pandianjihua">
+            <Field FieldKey="danjubianhao">
+                <![CDATA[
+                     =danjubianhao
+              ]]>
+            </Field>
+            <Field FieldKey="cangkumingcheng">
+                <![CDATA[
+                     =cangkumingcheng
+              ]]>
+            </Field>
+            <Field FieldKey="cangkubianhao">
+                <![CDATA[
+                     =cangkubianhao
+              ]]>
+            </Field>
+            <Field FieldKey="kuqu">
+                <![CDATA[
+                     =kuqu
+              ]]>
+            </Field>
+            <Field FieldKey="kuqumingcheng">
+                <![CDATA[
+                     =kuqumingcheng
+              ]]>
+            </Field>
+        </TargetTable>
+        
+     </TargetTableCollection>
+        <FeedBackCollection>
+        <FeedbackObject TableKey="pandianqueren" BillStatus="20">
+            <FeedbackTableCollection>
+                <FeedbackTable Key="temppandianjihua" TableKey="xyy_wms_bill_pandianjihua">
+                    <FeedbackField FieldKey="zhuangtai" FeedFieldKey="" OpSign="Assign">
+                        <![CDATA[
+	                		=2
+	                	]]>
+                    </FeedbackField>
+                </FeedbackTable>
+            </FeedbackTableCollection>
+        </FeedbackObject>
+
+    </FeedBackCollection>
+       
+</Map>
+
+
+   
+

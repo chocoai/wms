@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">   
+    <DataTable Key="shangpinjibenxinxi" BillType="Dictionary"  Caption="商品基本信息" DefaultFilter="" TableName="Table::xyy_erp_dic_shangpinjibenxinxi" DataSource="" Head="true">
+        <Field FieldKey="goodsid" FieldName="商品ID" FieldType="Varchar"  Comment="商品ID" Bound="20"/>
+        
+        <Field FieldKey="shangpinbianhao" FieldName="商品编号" FieldType="Varchar" MixCondition="true" Comment="商品编号"/>
+		<Field FieldKey="shangpinmingcheng" FieldName="商品名称" FieldType="Varchar" MixCondition="true" Comment="商品名称"/>
+        <Field FieldKey="tongyongming" FieldName="通用名" FieldType="Varchar" Comment="通用名"/>
+        <Field FieldKey="guige" FieldName="规格/型号" FieldType="Varchar" Comment="规格/型号"/>
+   
+        <Field FieldKey="danwei" FieldName="单位" FieldType="Int" Comment="单位"/>
+        <Field FieldKey="shangpindalei" FieldName="商品大类" FieldType="Int" Comment="商品大类"/>
+        <Field FieldKey="shangpinleibie" FieldName="商品类别" FieldType="Int" Comment="商品类别（小类）:1.中成药2.化学原料药3.化学药制剂。。。"/>
+        <Field FieldKey="shengchanchangjia" FieldName="生产厂家" FieldType="Varchar" Comment="生产厂家"/>
+        <Field FieldKey="chandi" FieldName="产地" FieldType="Varchar" Comment="产地"/>
+
+        <Field FieldKey="dbzsl" FieldName="大包装数量" FieldType="Int" DefaultValue="1" Comment="大包装数量"/>
+        <Field FieldKey="zbzsl" FieldName="中包装数量" FieldType="Int" DefaultValue="1" Comment="中包装数量"/>
+        <Field FieldKey="xbzsl" FieldName="小包装数量" FieldType="Int"  DefaultValue="1" Comment="小包装数量"/>
+
+        <Field FieldKey="dbztm" FieldName="大包装条码" FieldType="Varchar" Comment="大包装条码"/>
+        <Field FieldKey="zbztm" FieldName="中包装条码" FieldType="Varchar" Comment="中包装条码"/>
+        <Field FieldKey="xbztm" FieldName="小包装条码" FieldType="Varchar" Comment="小包装条码"/>
+
+        <Field FieldKey="shifouchailing" FieldName="是否拆零" FieldType="Int" Comment="是否拆零"/>
+        <Field FieldKey="chaifenlidu" FieldName="拆分粒度" FieldType="Int" DefaultValue="1"  Comment="拆分粒度"/>
+        <Field FieldKey="xiaoqidanwei" FieldName="效期单位" FieldType="Int" Comment="效期单位:1.月2.日3.年"/>
+        <Field FieldKey="youxiaoqi" FieldName="有效期" FieldType="Int" Comment="有效期"/>
+        <Field FieldKey="cunchutiaojian" FieldName="存储条件" FieldType="Int" Comment="存储条件:2.常温1.阴凉"/>
+        <Field FieldKey="yanghuzhouqi" FieldName="养护周期" FieldType="Int" Comment="养护周期"/>
+
+        <Field FieldKey="zhiliangbiaozhun" FieldName="质量标准" FieldType="Varchar" Comment="质量标准"/>
+        <Field FieldKey="shouyingqiye" FieldName="首营企业" FieldType="Varchar" Comment="首营企业"/>
+        <Field FieldKey="qiyeName" FieldName="首营企业中文" FieldType="Varchar" Comment="首营企业中文"/>
+        <Field FieldKey="jinxiangshuilv" FieldName="进项税率" FieldType="Decimal" Bound="14,2"  DefaultValue="17" Comment="进项税率"/>
+        <Field FieldKey="xiaoxiangshuilv" FieldName="销项税率" FieldType="Decimal" Bound="14,2"  DefaultValue="17" Comment="销项税率"/>
+        <Field FieldKey="swflbm" FieldName="税务分类编码" FieldType="Varchar" Comment="税务分类编码"/>
+        <Field FieldKey="sfswyh" FieldName="是否税务优惠" FieldType="Int" Comment="是否税务优惠：0.否 1.是"/>
+
+        <Field FieldKey="dongjie" FieldName="冻结" FieldType="Int" DefaultValue="1"  Comment="操作：0.冻结 1.解冻"/>
+        <Field FieldKey="tingcai" FieldName="停采" FieldType="Int" DefaultValue="1"  Comment="操作：0.停采 1.正常"/>
+        <Field FieldKey="shifouhuodong" FieldName="是否活动" FieldType="Int" DefaultValue="1"  Comment="操作：0.否 1.是"/>
+
+        <Field FieldKey="zhucepijian" FieldName="注册批件" FieldType="Varchar" Comment="注册批件"/>
+        <Field FieldKey="zzcpj" FieldName="再注册批件" FieldType="Varchar" Comment="再注册批件"/>
+        <Field FieldKey="bcsqpj" FieldName="补充申请批件" FieldType="Varchar" Comment="补充申请批件"/>
+        <Field FieldKey="qianfajiguan" FieldName="签发机关" FieldType="Varchar" Comment="签发机关"/>
+
+        <Field FieldKey="pizhunwenhao" FieldName="批准文号" FieldType="Varchar" Comment="批准文号"/>
+        <Field FieldKey="fazhengriqi" FieldName="发证日期" FieldType="Varchar" Comment="发证日期"/>
+        <Field FieldKey="youxiaoqizhi" FieldName="有效期至" FieldType="Varchar" Comment="有效期至"/>
+
+        <Field FieldKey="jixing" FieldName="商品剂型" FieldType="Int" Comment="剂型:1.片剂2.丸剂3.胶囊剂。。。"/>
+        <Field FieldKey="chufangfenlei" FieldName="处方分类" FieldType="Int" Comment="处方分类:1.处方药，2.甲类OTC，3.乙类OTC，4.其他"/>
+
+        <Field FieldKey="dylylqxbapz" FieldName="第一类医疗器械背案凭证" FieldType="Varchar" Comment="第一类医疗器械背案凭证"/>
+        <Field FieldKey="ylqxzcz" FieldName="医疗器械注册证" FieldType="Varchar" Comment="医疗器械注册证"/>
+        <Field FieldKey="zhucezhengshu" FieldName="注册证书" FieldType="Varchar" Comment="注册证书"/>
+        <Field FieldKey="fujian" FieldName="上传附件" FieldType="Text" Comment="上传附件"/>
+    </DataTable>
+</DataSet>

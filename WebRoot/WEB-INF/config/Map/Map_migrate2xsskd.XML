@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Map Key="migrate2xsskd" Caption="迁移表转销售收款"
+    SrcDataObjectKey="migratexiaoshouchukudan"
+    SrcDataType="Migration"  
+    TgtDataObjectKey="xiaoshoushoukuandan"
+    TgtDataType="Bill"  
+    MaxPushValue="100"
+     MinPushValue="0">
+    <TargetTableCollection>
+     
+    <TargetTable Key="xiaoshoushoukuandan_details2" SrcTableKey="migratexiaoxiangfapiao">
+            <Field FieldKey="danjubianhao">
+                <![CDATA[
+                     =danjubianhao
+              ]]>
+            </Field>
+            <Field FieldKey="zhidanriqi">
+                <![CDATA[
+                     =kaipiaoriqi
+              ]]>
+            </Field>
+            <Field FieldKey="zhidanren">
+                <![CDATA[
+                     =kaipiaoyuan
+              ]]>
+            </Field>
+			<Field FieldKey="hanshuijine">
+                <![CDATA[
+                     =ydzje
+              ]]>
+            </Field>
+            <Field FieldKey="yjsje">
+                <![CDATA[
+                     =yjsje
+              	]]>
+            </Field>
+            <Field FieldKey="jsje">
+                <![CDATA[
+                         =wjsje
+                  ]]>
+            </Field>
+            <Field FieldKey="zhaiyao">
+                <![CDATA[
+                     =zhaiyao
+              ]]>
+            </Field>
+            <Field FieldKey="danjuleixin">
+                <![CDATA[
+                     =danjuleixin
+                  ]]>
+            </Field>
+            <Field FieldKey="beizhu">
+                <![CDATA[
+                             =beizhu
+                      ]]>
+            </Field>
+        </TargetTable>
+    </TargetTableCollection>
+    
+    <FeedBackCollection>
+        <FeedbackObject TableKey="xiaoshoushoukuandan_details2" BillStatus="20">
+           <FeedbackTableCollection>
+              <FeedbackTable Key="cgfujhhx" TableKey="xyy_erp_bill_migratexiaoxiangfapiao">
+                <FeedbackField FieldKey="yjsje"  FeedFieldKey="jsje"  OpSign="AddValue">
+                </FeedbackField>
+                <FeedbackField FieldKey="wjsje"  FeedFieldKey=""  OpSign="Assign">
+                	<![CDATA[
+                        =hanshuijine-yjsje-jsje
+                    ]]>
+                </FeedbackField>
+              <FeedbackField FieldKey="jiesuanzhuangtai"  FeedFieldKey=""  OpSign="Assign">
+                  <![CDATA[
+                    =m.if((yjsje+jsje)==hanshuijine,1,0)
+                ]]>
+              </FeedbackField>
+              <FeedbackField FieldKey="sffkyy"  FeedFieldKey=""  OpSign="Assign">
+                	<![CDATA[
+                        =m.if((yjsje+jsje)==hanshuijine,1,0)
+                    ]]>
+                </FeedbackField>
+            </FeedbackTable>               
+           </FeedbackTableCollection>
+        </FeedbackObject>
+    </FeedBackCollection>
+    
+</Map>

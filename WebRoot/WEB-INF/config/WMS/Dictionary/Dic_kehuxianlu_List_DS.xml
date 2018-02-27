@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="kehuxianlu" Caption="客户基本信息列表" DefaultFilter="" Pagging="20"  PermissionType="CommType"
+               TableName="SQLQuery::select
+               b.xianlumingcheng,
+               a.id AS ID,
+               d.rowID,
+               a.status,
+               c.kehubianhao,
+               c.kehumingcheng,
+               c.lianxiren,
+               c.dianhua,
+               c.dizhi
+               |
+               from
+               xyy_wms_dic_kehuxianlu a,
+               xyy_wms_dic_peisongxianlu b,
+               xyy_wms_dic_kehudizhi c,
+               xyy_wms_dic_kehuxianlu_list d
+               WHERE
+               a.xianluID = b.ID
+               AND a.id=d.id
+               AND d.kehubianhao = c.kehubianhao
+               AND b.shifouhuodong =1
+               AND a.shifouhuodong =1
+               @kehubianhao @kehumingcheng" DataSource="" Head="false">
+        <Parameters>
+            <Parameter Key="kehubianhao" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(kehubianhao==null | kehubianhao=="" ," "," and c.kehubianhao like '%"+kehubianhao+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="kehumingcheng" Type="String" >
+                <Where>
+                    <![CDATA[
+					m.if(kehumingcheng==null | kehumingcheng==" " ," "," and kehumingcheng like '%"+kehumingcheng+"%'")
+                ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

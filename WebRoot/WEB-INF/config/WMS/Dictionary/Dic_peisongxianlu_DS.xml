@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="peisongxianlu" BillType="Dictionary" Caption="配送线路资料" DefaultFilter="" TableName="Table::xyy_wms_dic_peisongxianlu" DataSource="" Head="true">
+        <!--
+             单据编号	varchar	规则：YBM+年月日时分秒+3位随机码, 例如：YBM20160426112240764
+        -->
+            
+        <Field FieldKey="xianlubianhao" FieldName="线路编号" FieldType="Varchar" DefaultValue="" Bound="50" Comment="线路编号"/>
+        <Field FieldKey="xianlumingcheng" FieldName="线路名称" FieldType="Varchar"  Comment="线路名称"/>
+        <Field FieldKey="xlyxj" FieldName="线路优先级" FieldType="Int"  Comment="线路优先级"/>
+        <Field FieldKey="shifouhuodong" FieldName="是否活动" FieldType="Int" DefaultValue="1"  Comment="活动状态：0.否 1.是"/>
+
+    </DataTable>
+</DataSet>

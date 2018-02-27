@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="gongyingshangjibenxinxi" BillType="Dictionary"  Caption="供应商基本信息" DefaultFilter="" TableName="Table::xyy_wms_dic_gongyingshangjibenxinxi" DataSource="" Head="true">
+        <Field FieldKey="suppliersid" FieldName="供应商ID" FieldType="Varchar" Comment="供应商ID" Bound="20"/>
+        
+        <Field FieldKey="gysbh" FieldName="供应商编号" FieldType="Varchar" MixCondition="true" Comment="供应商编号"/>
+        <Field FieldKey="gysmc" FieldName="供应商名称" FieldType="Varchar" MixCondition="true" Comment="供应商名称"/>
+        <Field FieldKey="farendaibiao" FieldName="法人代表" FieldType="Varchar" Comment="法人代表"/>
+        <Field FieldKey="qiyeleixing" FieldName="企业类型" FieldType="Int" Comment="企业类型"/>
+        <Field FieldKey="dizhi" FieldName="地址" FieldType="Varchar" Comment="地址"/>
+
+        <Field FieldKey="lianxiren" FieldName="联系人" FieldType="Varchar" Comment="联系人"/>
+        <Field FieldKey="dianhua" FieldName="电话" FieldType="Varchar" Comment="电话"/>
+        <Field FieldKey="zhengjianhaoma" FieldName="证件号码" FieldType="Varchar" Comment="证件号码"/>
+
+        <Field FieldKey="jingyingfanwei" FieldName="经营范围（营业执照）" FieldType="Text" Comment="经营范围（营业执照）"/>
+        <Field FieldKey="fanweiName" FieldName="经营范围中文" FieldType="Text" Comment="经营范围中文"/>
+        <Field FieldKey="yingyezhizhao" FieldName="营业执照" FieldType="Varchar" Comment="营业执照"/>
+        <Field FieldKey="fazhengjiguan" FieldName="发证机关" FieldType="Varchar" Comment="发证机关"/>
+        <Field FieldKey="zhuceriqi" FieldName="注册日期" FieldType="Date" Comment="注册日期"/>
+        <Field FieldKey="yxqzfs" FieldName="有效期至方式" FieldType="Int" Comment="有效期至方式"/>
+        <Field FieldKey="zcyxq" FieldName="有效期至" FieldType="Varchar" Comment="注册有效期至"/>
+
+        <Field FieldKey="sfszhy" FieldName="是否三证合一" FieldType="Int" Comment="是否三证合一"/>
+        <Field FieldKey="kaihuyinhang" FieldName="开户银行" FieldType="Varchar" Comment="开户银行"/>
+        <Field FieldKey="yinhangzhanghao" FieldName="银行账号" FieldType="Varchar" Comment="银行账号"/>
+        <Field FieldKey="kaihuhuming" FieldName="开户户名" FieldType="Varchar" Comment="开户户名"/>
+        <Field FieldKey="zzjgdmz" FieldName="组织机构代码证" FieldType="Varchar" Comment="组织机构代码证"/>
+        <Field FieldKey="fazhengriqi" FieldName="发证日期" FieldType="Varchar" Comment="发证日期"/>
+        <Field FieldKey="fzyxq" FieldName="有效期至" FieldType="Varchar" Comment="发证有效期"/>
+        <Field FieldKey="shuihao" FieldName="税务登记证号" FieldType="Varchar" Comment="税务登记证号"/>
+        <Field FieldKey="swfzjg" FieldName="发证机关" FieldType="Varchar" Comment="发证机关"/>
+        <Field FieldKey="caigouyuan" FieldName="采购员" FieldType="Varchar" Comment="采购员"/>
+
+        <Field FieldKey="tingcai" FieldName="停采" FieldType="Int" DefaultValue="1"  Comment="操作：0.停采 1.正常"/>
+        <Field FieldKey="dongjie" FieldName="冻结" FieldType="Int" Comment="冻结状态：1.冻结 0.不冻结"/>
+        <Field FieldKey="shifouhuodong" FieldName="是否活动" FieldType="Int" Comment="活动状态：1.否 0.是"/>
+
+        <Field FieldKey="xukeleixing" FieldName="许可类型" FieldType="Int" Comment="许可类型"/>
+        <Field FieldKey="shouquanfanwei" FieldName="授权范围" FieldType="Varchar" Comment="授权范围"/>
+        <Field FieldKey="fujian" FieldName="上传附件" FieldType="Text" Comment="上传附件"/>
+        -
+    </DataTable>
+</DataSet>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Config>
+	<Bills>
+		<Bill Name="不合格品销毁单" Key="buhegepinxiaohui" File="config/Bill/Bill_buhegepinxiaohui_DS.xml" DefFile="config/Bill/Bill_buhegepinxiaohui.xml" />
+		<Bill Name="出库拣货" Key="xiaoshoudingdan" File="config/Bill/Bill_xiaoshoudingdan_DS.xml" DefFile="config/Bill/Bill_xiaoshoudingdan.xml" />
+		<Bill Name="销退验收单" Key="xiaotuiyanshou" File="config/Bill/Bill_xiaotuiyanshou_DS.xml" DefFile="config/Bill/Bill_xiaotuiyanshou.xml" />
+		<Bill Name="损溢开票单" Key="sunyikaipiao" File="config/Bill/Bill_sunyikaipiao_DS.xml" DefFile="config/Bill/Bill_sunyikaipiao.xml" />
+		<Bill Name="损溢确认单" Key="sunyiqueren" File="config/Bill/Bill_sunyiqueren_DS.xml" DefFile="config/Bill/Bill_sunyiqueren.xml" />
+		<Bill Name="波次计划明细" Key="bocijihua" File="config/Bill/Bill_bocijihua_DS.xml" DefFile="config/Bill/Bill_bocijihua.xml" />
+		<Bill Name="药检报告单" Key="yjbgd" File="config/Bill/Bill_yjbgd_DS.xml" DefFile="config/Bill/Bill_yjbgd.xml" />
+		<Bill Name="盘点确认" Key="pandianqueren" File="config/Bill/Bill_pandianqueren_DS.xml" DefFile="config/Bill/Bill_pandianqueren.xml" />
+		<Bill Name="上架规则维护" Key="sjgzwh" File="config/Bill/Bill_sjgzwh_DS.xml" DefFile="config/Bill/Bill_sjgzwh.xml" />
+		<Bill Name="盘点计划" Key="pandianjihua" File="config/Bill/Bill_pandianjihua_DS.xml" DefFile="config/Bill/Bill_pandianjihua.xml" />
+		<Bill Name="商品停售/解除停售申请" Key="sptsjssq" File="config/Bill/Bill_sptsjssq_DS.xml" DefFile="config/Bill/Bill_sptsjssq.xml" />
+		<Bill Name="波次计划维护" Key="bcgzwh" File="config/Bill/Bill_bcgzwh_DS.xml" DefFile="config/Bill/Bill_bcgzwh.xml" />
+		<Bill Name="入库验收单" Key="rukuyanshou" File="config/Bill/Bill_rukuyanshou_DS.xml" DefFile="config/Bill/Bill_rukuyanshou.xml" />
+		<Bill Name="收货错误处理单" Key="shouhuocuowuchuli" File="config/Bill/Bill_shouhuocuowuchuli_DS.xml" DefFile="config/Bill/Bill_shouhuocuowuchuli.xml" />
+		<Bill Name="出库外复核" Key="chukuwaifuhe" File="config/Bill/Bill_chukuwaifuhe_DS.xml" DefFile="config/Bill/Bill_chukuwaifuhe.xml" />
+		<Bill Name="近效期药品催销单" Key="jxqypcx" File="config/Bill/Bill_jxqypcx_DS.xml" DefFile="config/Bill/Bill_jxqypcx.xml" />
+		<Bill Name="入库上架单" Key="rukushangjia" File="config/Bill/Bill_rukushangjia_DS.xml" DefFile="config/Bill/Bill_rukushangjia.xml" />
+		<Bill Name="商品批号效期调整" Key="spphxqtz" File="config/Bill/Bill_spphxqtz_DS.xml" DefFile="config/Bill/Bill_spphxqtz.xml" />
+		<Bill Name="移库确认单" Key="yikuqueren" File="config/Bill/Bill_yikuqueren_DS.xml" DefFile="config/Bill/Bill_yikuqueren.xml" />
+		<Bill Name="主动补货单" Key="zhudongbuhuo" File="config/Bill/Bill_zhudongbuhuo_DS.xml" DefFile="config/Bill/Bill_zhudongbuhuo.xml" />
+		<Bill Name="入库拒收单" Key="rukujushou" File="config/Bill/Bill_rukujushou_DS.xml" DefFile="config/Bill/Bill_rukujushou.xml" />
+		<Bill Name="出库内复核" Key="chukuneifuhe" File="config/Bill/Bill_chukuneifuhe_DS.xml" DefFile="config/Bill/Bill_chukuneifuhe.xml" />
+		<Bill Name="重点养护品种" Key="zdyhpz" File="config/Bill/Bill_zdyhpz_DS.xml" DefFile="config/Bill/Bill_zdyhpz.xml" />
+		<Bill Name="出库拣货" Key="zhengjianjianxuan" File="config/Bill/Bill_zhengjianjianxuan_DS.xml" DefFile="config/Bill/Bill_zhengjianjianxuan.xml" />
+		<Bill Name="销退收货单" Key="xiaotuishouhuo" File="config/Bill/Bill_xiaotuishouhuo_DS.xml" DefFile="config/Bill/Bill_xiaotuishouhuo.xml" />
+		<Bill Name="采购订单" Key="caigoudingdan" File="config/Bill/Bill_caigoudingdan_DS.xml" DefFile="config/Bill/Bill_caigoudingdan.xml" />
+		<Bill Name="养护执行" Key="yhzx" File="config/Bill/Bill_yhzx_DS.xml" DefFile="config/Bill/Bill_yhzx.xml" />
+		<Bill Name="养护计划" Key="yhjh" File="config/Bill/Bill_yhjh_DS.xml" DefFile="config/Bill/Bill_yhjh.xml" />
+		<Bill Name="入库收货单" Key="caigoutuichuqueren" File="config/Bill/Bill_caigoutuichuqueren_DS.xml" DefFile="config/Bill/Bill_caigoutuichuqueren.xml" />
+		<Bill Name="采购退出单" Key="caigoutuichu" File="config/Bill/Bill_caigoutuichu_DS.xml" DefFile="config/Bill/Bill_caigoutuichu.xml" />
+		<Bill Name="移库开票单" Key="yikukaipiao" File="config/Bill/Bill_yikukaipiao_DS.xml" DefFile="config/Bill/Bill_yikukaipiao.xml" />
+		<Bill Name="入库收货单" Key="rukushouhuo" File="config/Bill/Bill_rukushouhuo_DS.xml" DefFile="config/Bill/Bill_rukushouhuo.xml" />
+		<Bill Name="质量复检单" Key="zhiliangfujian" File="config/Bill/Bill_zhiliangfujian_DS.xml" DefFile="config/Bill/Bill_zhiliangfujian.xml" />
+		<Bill Name="补货上架单" Key="buhuoshangjia" File="config/Bill/Bill_buhuoshangjia_DS.xml" DefFile="config/Bill/Bill_buhuoshangjia.xml" />
+		<Bill Name="不合格品单" Key="buhegepin" File="config/Bill/Bill_buhegepin_DS.xml" DefFile="config/Bill/Bill_buhegepin.xml" />
+	</Bills>
+</Config>
+

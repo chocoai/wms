@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<BillViewMeta Key="jxqsp" Caption="近效期商品查询视图" Version="">
+	<BillBody UserAgent="web">
+		<BillBodyMeta>
+			<BillUIPanel Layout="flex" Key="dictionary_tools" Caption="近效期商品查询视图"  S="">
+			     <BillUIGridPanel Key="jxqsp_grid">
+                    <BillUIRowPanel>
+                        <BillUIColPanel Width="4">
+                            <BillUIWidget Caption="商品编号" Key="cancel"
+                                EnabledWhen="True"   ParameterKey="shangpinbianhao"
+                                DataTableKey="jxqsp"
+                                WidgetType="BillUIString">
+                            </BillUIWidget>
+                        </BillUIColPanel>
+						<BillUIColPanel Width="4">
+							<BillUIWidget Caption="商品名称" Key="cancel"
+										  EnabledWhen="True"   ParameterKey="shangpinmingcheng"
+										  DataTableKey="jxqsp"
+										  WidgetType="BillUIString">
+							</BillUIWidget>
+						</BillUIColPanel>
+						<BillUIColPanel Width="4">
+							<BillUIWidget Caption="生产厂家" Key="cancel"
+										  EnabledWhen="True"   ParameterKey="shengchanchangjia"
+										  DataTableKey="jxqsp"
+										  WidgetType="BillUIString">
+							</BillUIWidget>
+						</BillUIColPanel>
+
+                        <BillUIColPanel Width="1">
+                            <BillUIWidget Caption="查询" Key="search"
+                                EnabledWhen="True"
+                                Icon="glyphicon glyphicon-send" WidgetType="BillUIButton">
+                                <Triggers>
+                                    <Trigger Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                        	this.search("jxqsp");
+                                 			]]>
+                                    </Trigger>
+                                </Triggers>
+                            </BillUIWidget>
+                        </BillUIColPanel>
+                    </BillUIRowPanel>
+			         <BillUIRowPanel>
+						 <BillUIColPanel Width="12">
+							 <BillUIPanel Layout="flex" Key="dictionary_tools">
+								 <BillUIGrid Key="grid0" OptMode="View" SelectMode="Multi" DataTableKey="jxqsp">
+								 <GridHeads>
+									 <GridHead Col="shangpinbianhao" Caption="商品编号" Width="150px">
+										 <BillUIWidget Key="shangpinbianhao" WidgetType="BillUIString"/>
+									 </GridHead>
+									 <GridHead Col="shangpinmingcheng" Caption="商品名称"
+											   Width="120px">
+										 <BillUIWidget Key="shangpinmingcheng" WidgetType="BillUIString"/>
+									 </GridHead>
+									 <GridHead Col="guige" Caption="规格"  Width="120px">
+										 <BillUIWidget Key="guige" WidgetType="BillUIString"/>
+									 </GridHead>
+									 <GridHead Col="danwei" Caption="包装单位"  Width="120px">
+										 <BillUIWidget Key="danwei" WidgetType="BillUIInteger">
+											 <Formatters>
+												 <Formatter>
+													 <![CDATA[
+                                                  [{'type':'baozhuangdanwei'}]
+                                     	]]>
+												 </Formatter>
+											 </Formatters>
+										 </BillUIWidget>
+								 	 </GridHead>
+								 	 <GridHead Col="baozhuangshuliang" Caption="包装数量"  Width="120px">
+									 	<BillUIWidget Key="baozhuangshuliang" WidgetType="BillUIInteger"/>
+								 	 </GridHead>
+								 	 <GridHead Col="pizhunwenhao" Caption="批准文号"  Width="120px">
+										 <BillUIWidget Key="pizhunwenhao" WidgetType="BillUIString"/>
+									 </GridHead>
+									 <GridHead Col="chandi" Caption="生产产地"  Width="120px">
+									 	<BillUIWidget Key="chandi" WidgetType="BillUIString"/>
+								 	 </GridHead>
+								 	 <GridHead Col="shengchanchangjia" Caption="生产厂家" Width="120px">
+										 <BillUIWidget Key="shengchanchangjia" WidgetType="BillUIString"/>
+									 </GridHead>
+									 <GridHead Col="jixing" Caption="剂型"  Width="120px">
+										 <BillUIWidget Key="jixing" WidgetType="BillUIInteger">
+											 <Formatters>
+												 <Formatter>
+													 <![CDATA[
+                                                  [{'type':'shangpinjixing'}]
+                                     	]]>
+												 </Formatter>
+											 </Formatters>
+										 </BillUIWidget>
+								 	 </GridHead>
+								 </GridHeads>
+							 </BillUIGrid>
+							 </BillUIPanel>
+
+						 </BillUIColPanel>
+			         </BillUIRowPanel>
+			         
+			     </BillUIGridPanel>
+             </BillUIPanel>
+		</BillBodyMeta>
+	</BillBody>
+	
+</BillViewMeta>

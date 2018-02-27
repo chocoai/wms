@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="hwzlwh_view" Caption="批号" DefaultFilter="" PermissionType="CommType" Pagging="6" 
+        TableName="SQLQuery::
+    SELECT
+    o.xiangdao,
+    o.kuqubianhao,
+    o.kuqumingcheng
+    | from
+    (SELECT
+    DISTINCT(h.xiangdao),
+    k.kuqubianhao,
+    k.kuqumingcheng
+	FROM
+	xyy_wms_dic_huoweiziliaoweihu h
+	inner join xyy_wms_dic_kuqujibenxinxi k
+	on h.kuquId=k.ID and h.orgId=k.orgId
+    WHERE
+	1=1
+    @xiangdao @kuqubianhao @orgId) o where 1=1"   DataSource="" Head="false">
+        <Parameters> 
+            <Parameter Key="xiangdao" Type="String">
+            <Where>
+                <![CDATA[
+					m.if(xiangdao==null | xiangdao=="" ,""," and h.xiangdao like '%"+xiangdao+"%'")
+	            ]]>
+            </Where>
+        </Parameter>
+            <Parameter Key="orgId" Type="String" >
+                <Where>
+                    <![CDATA[
+							m.if(orgId==null | danjubianhao=="" ," "," and h.orgId like '%"+orgId+"%'")
+			            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="kuqubianhao" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(kuqubianhao==null | kuqubianhao=="" ,""," and k.kuqubianhao like '%"+kuqubianhao+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Map Key="migrate_details2jxkpsq" Caption="迁移表转进项开票"
+    SrcDataObjectKey="migratecaigourukudan"
+    SrcDataType="Migration"  
+    TgtDataObjectKey="jinxiangfapiaoshenqing"
+    TgtDataType="Bill"  
+    MaxPushValue="100"
+     MinPushValue="0">
+    <TargetTableCollection>
+     
+    <TargetTable Key="jinxiangfapiaoshenqing_details" SrcTableKey="migratejinxiangkaipiao_details">
+            <Field FieldKey="danjubianhao">
+                <![CDATA[
+                     =danjubianhao
+              ]]>
+            </Field>
+            <Field FieldKey="shangpinbianhao">
+                <![CDATA[
+                     =shangpinbianhao
+              ]]>
+            </Field>
+            <Field FieldKey="shangpinmingcheng">
+                <![CDATA[
+                     =shangpinmingcheng
+              ]]>
+            </Field>
+			<Field FieldKey="guige">
+                <![CDATA[
+                     =guige
+              ]]>
+            </Field>
+            <Field FieldKey="danwei">
+                <![CDATA[
+                     =danwei
+              ]]>
+            </Field>
+			<Field FieldKey="shengchanchangjia">
+                <![CDATA[
+                     =shengchanchangjia
+              ]]>
+            </Field>
+            <Field FieldKey="pizhunwenhao">
+                <![CDATA[
+                     =pizhunwenhao
+              ]]>
+            </Field>
+            <Field FieldKey="chandi">
+                <![CDATA[
+                     =chandi
+              ]]>
+            </Field>
+            <Field FieldKey="ydsl">
+                <![CDATA[
+                     =yuandanshuliang
+              ]]>
+            </Field>
+            <Field FieldKey="ykpsl">
+                <![CDATA[
+                     =ykpsl
+              ]]>
+            </Field>
+            <Field FieldKey="shuliang">
+                <![CDATA[
+                     =wkpsl
+              ]]>
+            </Field>
+            <Field FieldKey="hanshuijia">
+                <![CDATA[
+                     =hanshuijia
+              ]]>
+            </Field>
+            <Field FieldKey="hanshuijine">
+                <![CDATA[
+                         =hanshuijine
+                  ]]>
+            </Field>
+            <Field FieldKey="shuilv">
+                <![CDATA[
+                     =shuilv
+              ]]>
+            </Field>
+            <Field FieldKey="danjia">
+                <![CDATA[
+                     =danjia
+              ]]>
+            </Field>
+            <Field FieldKey="jine">
+                <![CDATA[
+                     =jine
+              ]]>
+            </Field>
+            <Field FieldKey="shuie">
+                <![CDATA[
+                     =shuie
+              ]]>
+            </Field>
+        </TargetTable>
+    </TargetTableCollection>
+    
+    <FeedBackCollection>
+        <FeedbackObject TableKey="jinxiangfapiaoshenqing_details" BillStatus="20">
+           <FeedbackTableCollection>
+              <FeedbackTable Key="jxfpsqReback" TableKey="xyy_erp_bill_migratejinxiangkaipiao_details">
+                <FeedbackField FieldKey="ykpsl"  FeedFieldKey="shuliang"  OpSign="AddValue">
+                </FeedbackField>
+                <FeedbackField FieldKey="wkpsl"  FeedFieldKey=""  OpSign="Assign">
+                	<![CDATA[
+                        =ydsl-ykpsl-shuliang
+                    ]]>
+                </FeedbackField>
+                <FeedbackField FieldKey="ykpje"  FeedFieldKey="hanshuijine"  OpSign="AddValue">
+                </FeedbackField>
+                <FeedbackField FieldKey="fapiaozhuangtai"  FeedFieldKey=""  OpSign="Assign">
+                	<![CDATA[
+                        =m.if(ydsl == (ykpsl+shuliang),1,0)
+                    ]]>
+                </FeedbackField>
+                <FeedbackField FieldKey="shifouyinyong"  FeedFieldKey=""  OpSign="Assign">
+                	<![CDATA[
+                		=m.if(ydsl == (ykpsl+shuliang),1,0)
+                	]]>
+                </FeedbackField>
+            </FeedbackTable>               
+           </FeedbackTableCollection>
+        </FeedbackObject>
+        
+    </FeedBackCollection>
+    
+</Map>

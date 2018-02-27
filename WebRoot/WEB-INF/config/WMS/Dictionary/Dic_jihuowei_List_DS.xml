@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="jihuowei" Caption="集货位" DefaultFilter="" Pagging="20"
+               TableName="SQLQuery::select b.*,a.cangkubianhao,a.cangkumingchen,c.xianlubianhao,c.xianlumingcheng | from xyy_wms_dic_cangkuziliao a,xyy_wms_dic_jihuowei b
+               ,xyy_wms_dic_peisongxianlu c   
+               where 1=1 and a.status != -1 and a.ID=b.cangkuID and c.ID = b.luxianid
+               @xianlubianhao @cangkubianhao  @cangkumingchen @jihuoweibianhao @jihuoweileixing @yewuleixing @xiangdao @pai @ceng @lie @tihuofangshi @peisongxianlu @qiyong  
+               ORDER BY a.cangkubianhao , b.jihuoweibianhao"
+               DataSource="" Head="false">
+        <Parameters>
+             <Parameter Key="cangkubianhao" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(cangkubianhao==null | cangkubianhao=="" ,""," and a.cangkubianhao like '%"+cangkubianhao+"%'")
+	            ]]>
+                </Where>
+            </Parameter> 
+             <Parameter Key="cangkumingchen" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(cangkumingchen==null | cangkumingchen=="" ,""," and a.cangkumingchen like '%"+cangkumingchen+"%'")
+	            ]]>
+                </Where>
+            </Parameter> 
+            <Parameter Key="jihuoweibianhao" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(jihuoweibianhao==null | jihuoweibianhao=="" ,""," and b.jihuoweibianhao like '%"+jihuoweibianhao+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="jihuoweileixing" Type="Integer">
+                <Where>
+                    <![CDATA[
+                	m.if(jihuoweileixing==null," "," and b.jihuoweileixing="+jihuoweileixing+"")
+				]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="yewuleixing" Type="Integer">
+                <Where>
+                    <![CDATA[
+                	m.if(yewuleixing==null," "," and b.yewuleixing="+yewuleixing+"")
+				]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="xiangdao" Type="String">
+                <Where>
+                    <![CDATA[
+                	m.if(xiangdao==null | xiangdao=="" ,""," and b.xiangdao like '%"+xiangdao+"%'")
+				]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="pai" Type="String">
+                <Where>
+                    <![CDATA[
+                	m.if(pai==null | pai=="" ,""," and b.pai like '%"+pai+"%'")
+				]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="ceng" Type="String">
+                <Where>
+                    <![CDATA[
+                	m.if(ceng==null | ceng=="" ,""," and b.ceng like '%"+ceng+"%'")
+				]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="lie" Type="String">
+                <Where>
+                    <![CDATA[
+                	m.if(lie==null | lie=="" ,""," and b.lie like '%"+lie+"%'")
+				]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="tihuofangshi" Type="Integer">
+                <Where>
+                    <![CDATA[
+                	m.if(tihuofangshi==null," "," and b.tihuofangshi="+tihuofangshi+"")
+				]]>
+                </Where>
+            </Parameter>
+             
+            <Parameter Key="peisongxianlu" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(peisongxianlu==null," "," and c.peisongxianlu="+peisongxianlu+"")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="qiyong" Type="Integer">
+                <Where>
+                    <![CDATA[
+					m.if(qiyong==null | qiyong=="" ,""," and b.qiyong like '%"+qiyong+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="xianlubianhao" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(xianlubianhao==null," "," and c.xianlubianhao="+xianlubianhao+"")
+	            ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

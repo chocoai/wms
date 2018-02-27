@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0"> 
+    <DataTable Key="kehuyingshouchaxun" Caption="" DefaultFilter="" Pagging="15" PermissionType="CommType"
+               TableName="SQLQuery::
+                SELECT
+	aa.kehubianhao,
+	aa.kehumingcheng,
+	IFNULL(bb.yue, 0) AS qichu,
+	aa.xiaoshoujine,
+	aa.shoukuanjine,
+	IFNULL(
+		(
+			IFNULL(bb.yue, 0) + aa.xiaoshoujine - aa.shoukuanjine
+		),
+		0
+	) AS yue |
+FROM
+	(
+		SELECT
+			b.kehubianhao,
+			b.kehumingcheng,
+			a.wlId,
+			sum(a.jiefang) AS xiaoshoujine,
+			sum(a.daifang) AS shoukuanjine
+		FROM
+			xyy_erp_bill_wanglaizhangye a,
+			xyy_erp_dic_kehujibenxinxi b
+		WHERE
+			a.wlId = b.clientid
+		@kehubianhao @kehumingcheng
+AND kaipiaoriqi &gt;=@kaishiriqi
+
+AND kaipiaoriqi &lt;=@jiezhiriqi
+		GROUP BY
+			b.kehubianhao
+		ORDER BY
+			a.ID DESC
+	) AS aa
+LEFT JOIN (
+	SELECT
+		b.kehubianhao,
+		IFNULL(a.yue, 0) AS yue
+	FROM
+		xyy_erp_bill_wanglaizhangye a,
+		xyy_erp_dic_kehujibenxinxi b
+	WHERE
+		a.wlId = b.clientid
+@kehubianhao @kehumingcheng
+AND kaipiaoriqi &lt;@kaishiriqi
+	ORDER BY
+		a.ID DESC
+	LIMIT 1
+) AS bb ON aa.kehubianhao = bb.kehubianhao" DataSource="" Head="false">
+        <Parameters> 
+            <Parameter Key="kaishiriqi" Type="String">
+                <Where>
+                <![CDATA[
+					m.if(kaishiriqi==null | kaishiriqi=="" ,"DATE_FORMAT(NOW(),'%Y-%m-%d')"," '"+kaishiriqi+"'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="jiezhiriqi" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(jiezhiriqi==null | jiezhiriqi=="" ,"DATE_FORMAT(NOW(),'%Y-%m-%d') "," '"+jiezhiriqi+"'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="kehubianhao" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(kehubianhao==null | kehubianhao=="" ,""," and b.kehubianhao like '%"+kehubianhao+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="kehumingcheng" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(kehumingcheng==null | kehumingcheng=="" ,""," and b.kehumingcheng like '%"+kehumingcheng+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

@@ -1,0 +1,33 @@
+
+
+<table class="table table-hover" style="margin-top:10px;">
+   <tr><td><span style="color: red">*</span>流程名称</td><td>
+       <input type="text" name="name" ng-model="currentRow.processdefinition.name" maxlength="20" required>&nbsp;&nbsp;&nbsp;&nbsp;
+       <span ng-show="processAddForm.name.$error.required && !processAddForm.name.$pristine" class="text-danger" >请输入流程名称</span>
+   </td></tr>
+   <tr><td><span style="color: red">*</span>流程类别</td><td>
+       <div radiogroup  name="tid"  check-model="currentRow.processdefinition.tid"  action="processTypeList"  key="id" value="name"  fields="desc" heads="描述"></div>
+       <span ng-show="processAddForm.tid.$error.required && !processAddForm.tid.$pristine" class="text-danger" >请选择流程类别</span>
+   </td></tr>
+   <tr><td><span style="color: red"></span>流程扩展字段</td><td>
+       <input type="text" name="extFieldsHandler" ng-model="currentRow.processdefinition.extFieldsHandler">
+   </td></tr>
+   <tr><td><span style="color: red"></span>草稿箱扩展字段</td><td>
+       <input type="text" name="draftsFieldsHandler" ng-model="currentRow.processdefinition.draftsFieldsHandler">
+   </td></tr>
+   <tr><td><span style="color: red"></span>是否为主流程：</td><td>
+		<select ng-model="currentRow.processdefinition.mainProcess" >
+			<option value="1">是</option>
+			<option value="0">否</option>
+		</select>
+	</td></tr>
+	<tr><td><span style="color: red"></span>是否允许自主发起：</td><td>
+		<select ng-model="currentRow.processdefinition.canLaunch" >
+			<option value="1">是</option>
+			<option value="0">否</option>
+		</select>
+	</td></tr>   
+   <tr><td>流程描述</td><td>
+       <textarea rows="8" cols="50" name="desc" ng-model="currentRow.processdefinition.desc"/>
+   </td></tr>
+</table>

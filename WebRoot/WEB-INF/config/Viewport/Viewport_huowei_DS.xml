@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="huowei_view" Caption="货位名称" DefaultFilter="" Pagging="30"
+        TableName="SQLQuery::select * | from xyy_erp_dic_huoweizidian where 1 = 1 and parentId is not null   @huoweimingcheng"  DataSource="" Head="false" Singleton="" OrderBy="">
+        <Parameters> 
+            <Parameter Key="huoweimingcheng" Type="String">
+                <DefaultValue></DefaultValue>
+
+                <Where>
+             <![CDATA[
+					m.if(huoweimingcheng==null | huoweimingcheng=="" ,""," and name like '%"+huoweimingcheng+"%'")
+	            ]]> 
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

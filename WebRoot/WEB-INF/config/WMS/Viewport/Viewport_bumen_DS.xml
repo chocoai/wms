@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="bumen_view" Caption="部门名称" DefaultFilter="" Pagging="3" PermissionType="CommType"
+        TableName="SQLQuery::select deptName | from tb_sys_dept "  DataSource="" Head="false">
+        <!-- <Parameters> 
+            <Parameter Key="deptName" Type="String">
+                <Where>
+                <![CDATA[
+					m.if(deptName==null | deptName=="" ,""," and c.deptName like '%"+deptName+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+        </Parameters> -->
+    </DataTable>
+</DataSet>

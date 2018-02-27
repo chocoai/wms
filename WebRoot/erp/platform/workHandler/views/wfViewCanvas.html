@@ -1,0 +1,77 @@
+<!-- 画布容器 -->
+<div id="mycanvas" class="canvas"></div>
+
+<script>
+    workflow.mount(document.getElementById('mycanvas'), "myworkflow", 1200, 800);
+    workflow.render();
+	// workflow.setOperatorMode(1);//设置默认的操作模式
+    var historyLoad = false;
+    var processData = {};
+    processData["taskInstance"] = '${taskInstance}';
+    $.post("/process/getProcess", processData, function (data) {
+        if (data.status && data.status != 1) {
+            alert(data.errorMsg);
+            return;
+        }
+        workflow.loadProcess(data.pdname, data.pdversion);
+        //加载任务的历史记录
+        $.post("/process/loadTaskInstancesForShape", processData, function (data) {
+            if (data.status && data.status != 1) {
+                alert(data.errorMsg);
+                return;
+            }
+            historyLoad = true;
+            workflow.histories = data.histories;
+            showHistory();
+        });
+    });
+
+    /**
+     显示历史记录
+     */
+    function showHistory() {
+        if (historyLoad && workflow.histories) {
+            var nodeList = workflow.container.values();
+            for (var i = 0; i < nodeList.length; i++) {
+                if (nodeList[i].__getType() == "workflow.node.task" || nodeList[i].__getType() == "workflow.node.meeting") {
+                    setTaskShowStatus(nodeList[i]);	//对于会签节点和任务节点，根据任务实例完成情况，更新图形状态
+                }
+            }
+        }
+        workflow.render();
+    }
+    /**
+     根据历史情况记录图形状态
+     状态：0.待受理，1.在途，2.已完成（正常完成），3.挂起，4.否单；5.回退
+     this.fillStyle="#355878";
+     this.strokeStyle="#355878";
+     */
+    function setTaskShowStatus(node) {
+        if (node) {
+            for (var i = 0; i < workflow.histories.length; i++) {
+                var task = workflow.histories[i];
+        
+                if (workflow.cid2oid[node.__getCID()] == task.adId) {
+//                    状态：0.待受理，1.在途，2.已完成（正常完成），3.挂起，4.否单；5.回退，6.已取回，7.已预约
+                    if (task.status == 1) {//正在做的任务
+                        node.fillStyle = "#F44336";
+                        node.strokeStyle = "#F44336";
+                    } else if (task.status == 2 || task.status == 5) {//已完成）
+                        node.fillStyle = "#4CAF50";
+                        node.strokeStyle = "#4CAF50";
+                    } else if (task.status == 3) {//挂起
+                        node.fillStyle = "#FFC107";
+                        node.strokeStyle = "#FFC107";
+                    }else if (task.status == 0) {//待受理
+                        node.fillStyle = "#42A5F5";
+                        node.strokeStyle = "#42A5F5";
+                    }else if (task.status == 4){ //否单
+                        node.fillStyle = "#795548";
+                        node.strokeStyle = "#795548";
+                    }
+                }
+            }
+        }
+    }
+</script>
+  

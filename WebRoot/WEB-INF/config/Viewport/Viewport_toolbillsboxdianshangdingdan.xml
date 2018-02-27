@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BillViewMeta Key="toolbillsboxdianshangedingdan" Caption="工具栏" Version="">
+
+    <BillBody UserAgent="web">
+        <BillBodyMeta>
+            <BillUIPanel Layout="flex" Key="dictionary_tools" Caption="工具栏"  >
+                <BillUIGridPanel Device="sm" key="boxtool">
+                    <!--Devie   xs,sm,md,lg
+                    工具栏：新建、删除、编辑、打印、打印预览、关联生成（下推）、返回
+
+                    -->
+                    <BillUIRowPanel S="toolBox">
+                        <BillUIColPanel Width="12">
+                            <BillUIWidget Key="print" Caption="打印"
+                                          EnabledWhen="True"  Disable="true"
+                                          Icon="glyphicon glyphicon-print" WidgetType="BillUIButton">
+                                <Triggers>
+                                    <Trigger Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+
+	                            ]]>
+                                    </Trigger>
+                                </Triggers>
+                            </BillUIWidget>
+                            <BillUIWidget Key="prePrint" Caption="打印预览" Disable="true"
+                                          EnabledWhen="True"
+                                          Icon="glyphicon glyphicon-camera" WidgetType="BillUIButton">
+                                <Triggers>
+                                    <Trigger Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+
+	                            ]]>
+                                    </Trigger>
+                                </Triggers>
+                            </BillUIWidget>
+
+                        </BillUIColPanel>
+                    </BillUIRowPanel>
+                </BillUIGridPanel>
+            </BillUIPanel>
+        </BillBodyMeta>
+    </BillBody>
+
+</BillViewMeta>

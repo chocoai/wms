@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BillViewMeta Key="toolbillsboxCG" Caption="工具栏" Version="">
+
+    <BillBody UserAgent="web">
+        <BillBodyMeta>
+            <BillUIPanel Layout="flex" Key="dictionary_tools" Caption="工具栏"  >
+                <BillUIGridPanel Device="sm" key="boxtool">
+                    <!--Devie   xs,sm,md,lg
+                    工具栏：新建、删除、编辑、打印、打印预览、关联生成（下推）、返回
+
+                    -->
+                    
+                    <BillUIRowPanel S="toolBox">
+                        <BillUIColPanel Width="12">
+                         
+                            <BillUIWidget Key="add" Caption="新增"
+                                          Left="1" Top="1" Width="1" Height="1" EnabledWhen="True"
+                                          Icon="glyphicon glyphicon-plus-sign" WidgetType="BillUIButton">
+                                <Triggers>
+                                    <Trigger Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+										@$this.add();
+						        ]]>
+                                    </Trigger>
+                                </Triggers>
+                            </BillUIWidget>
+                             <BillUIWidget Key="edit" Caption="编辑"
+                                          Left="2" Top="1" Width="1" Height="1" EnabledWhen="True"
+                                          Icon="glyphicon glyphicon-edit" WidgetType="BillUIButton">
+                                <Triggers>
+                                    <Trigger Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                            @$this.edit();
+	                            ]]>
+                                    </Trigger>
+                                </Triggers>
+                            </BillUIWidget>
+                            
+                            <BillUIWidget Key="print" Caption="打印"
+                                          EnabledWhen="True"  Disable="true"
+                                          Icon="glyphicon glyphicon-print" WidgetType="BillUIButton">
+                                <Triggers>
+                                    <Trigger Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+
+	                            ]]>
+                                    </Trigger>
+                                </Triggers>
+                            </BillUIWidget>
+                            
+                            <BillUIWidget Key="prePrint" Caption="打印预览" Disable="true"
+                                          EnabledWhen="True"
+                                          Icon="glyphicon glyphicon-camera" WidgetType="BillUIButton">
+                                <Triggers>
+                                    <Trigger Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+
+	                            ]]>
+                                    </Trigger>
+                                </Triggers>
+                            </BillUIWidget>
+                            
+                            <!-- <BillUIWidget Key="push" Caption="下推单据" AuxiliaryDir="xiatui" Src="/bill/fetchSourceBillForPushConvert?billKey="
+                                          EnabledWhen="True"
+                                          Icon="glyphicon glyphicon-random" WidgetType="BillUIButton">
+                            </BillUIWidget> -->
+
+                        </BillUIColPanel>
+                    </BillUIRowPanel>
+                </BillUIGridPanel>
+            </BillUIPanel>
+        </BillBodyMeta>
+    </BillBody>
+
+</BillViewMeta>

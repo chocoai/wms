@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="caigourukudanTBJ_view" Caption="采购入库单明细" DefaultFilter="" PermissionType="PrivateType"  Pagging="100"
+        TableName="SQLQuery::
+        select * | from xyy_erp_bill_caigourukudan_details  where 1 = 1
+               and BillID IN (SELECT BillID FROM xyy_erp_bill_caigourukudan 
+               WHERE 1=1
+               and `status` = 20)
+               
+                 "  
+        
+        DataSource="" Head="false" Singleton="" OrderBy="">
+        <Parameters>
+            <!-- <Parameter Key="gysid" Type="String" >
+            	<DefaultValue></DefaultValue>
+                <Where>
+	                <![CDATA[
+	                	m.if(gysid==null | gysid=="" ," "," and ID = '"+gysid+"'")
+					]]>
+                </Where>
+            </Parameter> -->
+            <!-- <Parameter Key="shangpinbianhao" Type="String" >
+            	<DefaultValue></DefaultValue>
+                <Where>
+	                <![CDATA[
+	                	m.if(shangpinbianhao==null | shangpinbianhao=="" ," "," and shangpinbianhao like '%"+shangpinbianhao+"%'")
+					]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="shangpinmingcheng" Type="String" >
+            	<DefaultValue></DefaultValue>
+                <Where>
+	                <![CDATA[
+	                	m.if(shangpinmingcheng==null | shangpinmingcheng=="" ," "," and shangpinmingcheng like '%"+shangpinmingcheng+"%'")
+					]]>
+                </Where>
+            </Parameter> -->
+        </Parameters>
+    </DataTable>
+</DataSet>

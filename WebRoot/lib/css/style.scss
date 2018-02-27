@@ -1,0 +1,115 @@
+@charset "UTF-8";
+@import "reset.css";
+
+$headerHeight:           45px     !default;
+$blue:                    #3a95de !default;
+$lightBlue:              lighten($blue,10%);
+
+//
+
+
+
+
+.minWidth{
+  min-width: 1000px;
+}
+.nowrap *{
+  white-space: nowrap;overflow: hidden;text-overflow: ellipsis;
+}
+
+
+//重定义
+.tab-content{
+  border: 1px solid #ddd; border-top: none; padding: 10px;
+  li{
+    line-height: 1.5;
+  }
+}
+
+
+//部分公共样式end
+
+.header{
+    height: $headerHeight; line-height: $headerHeight; position: fixed;left: 0;top:0;right:0;background: $blue;color: #fff;padding: 0 20px;box-shadow: 0 3px 5px #ccc;z-index: 99;
+  .logo{
+    font-size: 26px;height: 45px;
+  }
+
+  .nav{
+    li{
+      float: left;position: static;
+      a{
+        color: #fff;padding: 0 20px;
+        &:hover,&.curr{
+          background: $lightBlue;
+          .subNav{display: block;}
+        }
+        i{
+          font-size: 18px;
+        }
+      }
+      .subNav{
+        position: absolute;background: $lightBlue;left: 0;right: 0;width:100%;top:$headerHeight;z-index: 999;display: none;
+        li{
+          float: none;
+          ul>li{
+            float: left;
+          }
+        }
+      }
+    }
+
+  //
+
+
+
+  }
+}
+.has-header{margin-top: $headerHeight+20;}
+//内容区域
+//我的工作台
+.myWorkbench{
+  a{float: left;width: 100px;text-align: center;margin: 10px 20px;}
+  ins{
+    font-family:'iconfont';display: block;margin: auto;width: 80px;height: 80px;line-height: 80px;text-align: center;border-radius: 50%;color: $lightBlue;background-color: #f0f0f0;font-size: 40px;margin-bottom: 15px;
+  }
+}
+
+//
+.list{
+  .item-avatar{
+    padding: 15px 0 0 100px;position: relative;min-height: 100px;
+    &>img:first-child{
+      position: absolute;top: 10px;left: 10px;width: 80px;height: 80px;border-radius: 50%;
+    }
+    h2{color: $blue;}
+    p{
+      margin: 10px 0;
+      &:last-child{color: #999;}
+    }
+  }
+}
+
+
+@media  screen and  (max-width: 750px) {
+  .header .nav{
+    display: none;
+    li{
+      float: none;
+    }
+  }
+//
+  .myWorkbench{
+    a{
+      width: 4em;
+      ins{font-size: 20px;height: 40px;width: 40px;line-height: 40px;}
+    }
+  }
+}
+//判断是pc还是mobile
+.pcOrMobile{}
+.isMobile{display:none;}
+@media screen and (max-width: 700px) {
+  .isPC{display:none;}
+  .isMobile { width: auto;display:block;}
+}

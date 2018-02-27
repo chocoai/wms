@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Map Key="yhjhhead2yhzxhead" Caption="养护计划-养护执行状态回写"
+     SrcDataObjectKey="yhjh"
+     SrcDataType="Bill"
+     TgtDataObjectKey="yhzx"
+     TgtDataType="Bill"
+     MaxPushValue="100"
+     MinPushValue="0">
+    <TargetTableCollection>
+
+        <TargetTable Key="yhzx" SrcTableKey="yhjh">
+            <Field FieldKey="danjubianhao">
+                <![CDATA[
+                     =danjubianhao
+              ]]>
+            </Field>
+            <Field FieldKey="bumen">
+                <![CDATA[
+                     =bumen
+              ]]>
+            </Field>
+            <Field FieldKey="yanghuyuan">
+                <![CDATA[
+                     =yanghuyuan
+              ]]>
+            </Field>
+        </TargetTable>
+
+    </TargetTableCollection>
+    <FeedBackCollection>
+        <FeedbackObject TableKey="yhzx" BillStatus="20">
+            <FeedbackTableCollection>
+                <FeedbackTable Key="tempyhjh" TableKey="xyy_wms_bill_yhjh">
+                    <FeedbackField FieldKey="zhuangtai" FeedFieldKey="" OpSign="Assign">
+                        <![CDATA[
+	                		=2
+	                	]]>
+                    </FeedbackField>
+                </FeedbackTable>
+            </FeedbackTableCollection>
+        </FeedbackObject>
+
+    </FeedBackCollection>
+
+</Map>
+
+
+   
+

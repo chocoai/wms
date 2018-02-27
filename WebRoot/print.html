@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>print</title>
+    <link rel="stylesheet" href="lib/css/bootstrap.css">
+    <link rel="stylesheet" href="lib/css/css.css">
+    <script src="lib/js/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="lib/js/angular.min.js"></script>
+    <script src="lib/js/printController.js"></script>
+</head>
+<body ng-app="erpPrint">
+
+<div ng-controller="printCtrl">
+
+
+    <!-- Single button -->
+    <div class="btn-group">
+        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+            打印 <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+            <li><a href="#" ng-click="printOpt(1);$event.stopPropagation();">打印设置预览</a></li>
+        </ul>
+    </div>
+
+
+    <div class="modal fade" id="printModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document" style="width: 90%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">打印设置预览</h4>
+                </div>
+                <div class="modal-body" style="max-height: 600px;" ng-if="showDocker==1">
+                    <div class="row">
+                        <!--打印设置-->
+                        <div style="width: 360px;float: left;">
+                            <div class="panel panel-success">
+                                <div class="panel-heading">
+                                    打印机设置
+                                </div>
+                                <div class="panel-body">
+                                    <div class="optList clearfix">
+                                        <label class="listLable">目标打印机</label>
+                                        <div class="listContent">
+                                            <label class="printList">
+                                                <span>{{currPrint.name}}</span>
+                                                <input type="radio" name="printList" ng-value="currPrint.value">
+                                            </label>
+                                            <button class="btn btn-default btn-sm" data-toggle="modal"
+                                                    data-target="#changePrintModal">更改
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="optList clearfix">
+                                        <label class="listLable">页码</label>
+                                        <div class="listContent">
+                                            <label>
+                                                <input type="radio" name="opt.yema" ng-click="setYema()">
+                                                <span>全部</span>
+                                            </label>
+                                            <label>
+                                                <input type="radio" name="opt.yema">
+                                                <input type="text" class="form-control" placeholder="例如：1-5、8、11-13"
+                                                       ng-model="opt.yema" style="width: 90%;display: inline-block;">
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <!---->
+                                    <div class="optList clearfix">
+                                        <label class="listLable">打印份数</label>
+                                        <div class="listContent">
+                                            <label>
+                                                <input type="text" placeholder="例如：10" ng-model="opt.fenshu"
+                                                       class="form-control">
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <!---->
+                                    <div class="optList clearfix">
+                                        <label class="listLable">布局</label>
+                                        <div class="listContent">
+                                            <label>
+                                                <select ng-model="opt.buju" class="form-control">
+                                                    <option value="0">纵向</option>
+                                                    <option value="1">横向</option>
+                                                </select>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <!---->
+                                    <div class="optList clearfix">
+                                        <label class="listLable">纸张尺寸</label>
+                                        <div class="listContent">
+                                            <label>
+                                                <select ng-model="opt.chicun" class="form-control">
+                                                    <option value="0">A3</option>
+                                                    <option value="1">A4</option>
+                                                    <option value="2">A5</option>
+                                                </select>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <!---->
+                                </div>
+                            </div>
+                            <!---->
+                        </div>
+                        <!--打印预览-->
+                        <div style="margin-left: 380px;">
+                            <div class="panel panel-success">
+                                <div class="panel-heading">
+                                    打印预览
+                                </div>
+                                <div class="panel-body" style="position: relative;max-height: 500px;overflow: auto;">
+                                   <div ng-repeat="x in frameList" >
+                                       <iframe src="{{x.src}}" id="{{x.id}}" width="100%" frameborder="no" border="0" marginwidth="0"
+                                               marginheight="0" scrolling="auto" allowtransparency="yes" class="printFrame"></iframe>
+                                   </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!---->
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <!--打印设置预览-->
+    <!--打印设置-->
+
+    <!--更改打印机-->
+    <!-- Button trigger modal -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="changePrintModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">选择目标打印机</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="text" class="form-control" placeholder="查找打印机……" ng-model="filter"
+                           style="margin-bottom: 10px;">
+
+                    <label ng-repeat="x in printList | filter:filter " class="printList"
+                           ng-class="{'checked':x.value==selection}">
+                        <span>{{x.name}}</span>
+                        <input type="radio" name="printList" ng-value="x.value" ng-checked="x.value==selection"
+                               ng-click="toggleSelection(x)" ng-model="opt.printValue">
+                    </label>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+</body>
+</html>

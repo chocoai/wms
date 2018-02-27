@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="renyuanxinxi" Caption="人员信息" DefaultFilter="" Pagging="1"
+               TableName="SQLQuery::SELECT
+                       	sortNo, realName, createTime
+                   | FROM
+                        tb_sys_user order by createTime" DataSource="" Head="false">
+        <Parameters>
+            
+        </Parameters>
+    </DataTable>
+</DataSet>

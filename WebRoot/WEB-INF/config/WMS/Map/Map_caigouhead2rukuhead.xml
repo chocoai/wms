@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Map Key="caigouhead2rukuhead" Caption="采购订单上引"
+	SrcDataObjectKey="caigoudingdan"
+    SrcDataType="Bill"  
+    TgtDataObjectKey="rukushouhuo"
+    TgtDataType="Bill"  
+    MaxPushValue="100"
+     MinPushValue="0">
+<TargetTableCollection>
+     
+    <TargetTable Key="rukushouhuo" SrcTableKey="caigoudingdan">
+            
+             <Field FieldKey="rukudanID">
+                <![CDATA[
+                     =BillID
+              ]]>
+            </Field>
+            <Field FieldKey="dingdanbianhao">
+                <![CDATA[
+                     =danjubianhao
+              ]]>
+            </Field>
+            <Field FieldKey="danweibianhao">
+                <![CDATA[
+                     =gysbh
+              ]]>
+            </Field>
+			<Field FieldKey="danweimingcheng">
+                <![CDATA[
+                     =gysmc
+              ]]>
+            </Field>
+            
+            <Field FieldKey="caigouyuan">
+                <![CDATA[
+                     =caigouyuan
+              ]]>
+            </Field>
+        </TargetTable>
+        
+        </TargetTableCollection>
+      <FeedBackCollection>
+        
+       
+    </FeedBackCollection> 
+</Map>
+
+
+   
+

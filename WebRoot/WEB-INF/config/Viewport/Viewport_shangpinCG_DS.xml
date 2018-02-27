@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="shangpinCG" Caption="含税价" DefaultFilter="" PermissionType="CommType"  Pagging="10"
+        TableName="SQLQuery::SELECT
+						h.danjubianhao,
+						h.kaipiaoriqi,
+						h.gysmc,
+						b.shangpinbianhao,
+						b.shangpinmingcheng,
+						b.hanshuijia,
+						b.shuliang,
+						b.hanshuijine
+						|
+					FROM
+						xyy_erp_bill_caigoudingdan_details b,
+						xyy_erp_bill_caigoudingdan h
+					WHERE
+						1=1 and
+						h.BillID = b.BillID
+						@gysmc
+						@shangpinbianhao
+						@startTime
+						@endTime
+						ORDER BY 
+						kaipiaoriqi DESC
+	"  DataSource="" Head="false" Singleton="" OrderBy="">
+        <Parameters>
+            <Parameter Key="gysmc" Type="String">
+                <Where>
+             		<![CDATA[
+						m.if(gysmc==null | gysmc=="" ,""," and gysmc like '%"+gysmc+"%'")
+	            	]]> 
+                </Where>
+            </Parameter>
+            <Parameter Key="shangpinbianhao" Type="String">
+                <Where>
+             		<![CDATA[
+						m.if(shangpinbianhao==null | shangpinbianhao=="" ,""," and shangpinbianhao like '%"+shangpinbianhao+"%'")
+	            	]]> 
+                </Where>
+            </Parameter>
+             <Parameter Key="startTime" Type="String" >
+                <Where>
+                <![CDATA[
+					m.if(startTime==null | startTime=="" ,"and date_add(SYSDATE(), INTERVAL - 90 DAY) <= DATE_FORMAT(kaipiaoriqi, '%Y-%m-%d')"," and DATE_FORMAT("+startTime+",'%Y-%m-%d') <= DATE_FORMAT(kaipiaoriqi,'%Y-%m-%d')")
+                ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="endTime" Type="String" >
+                <Where>
+                <![CDATA[
+					m.if(endTime==null | endTime=="" ,"and SYSDATE() >= DATE_FORMAT(kaipiaoriqi, '%Y-%m-%d')"," and DATE_FORMAT(kaipiaoriqi,'%Y-%m-%d') >= DATE_FORMAT("+endTime+",'%Y-%m-%d')")
+                ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

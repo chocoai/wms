@@ -1,0 +1,226 @@
+
+<div ng-controller="deptController">
+    <div class="row">
+        <!-- 组织树 -->
+        <div class="col-sm-3">
+            <div class="panel panel-default">
+                <div class="panel-heading clearfix">
+                    <div class="pull-left"><b>组织机构管理</b></div>
+                    <div class="pull-right">
+                        <button class="btn btn-primary btn-sm" ng-click="addGroups()">添加</button>
+                        <!--<button class="btn btn-danger btn-sm" ng-click="deleteGroup()">删除</button>-->
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <img src="../../../../lib/images/1_open.png">
+                    <div ng-model="d" broadcast-name="departTree" xyyztree treeoptions="treeoptions" treemodel="treedata" class="ztree"  id="tree" key="tree" ></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-9">
+            <div class="panel panel-default">
+                <!-- 组织信息 -->
+                <div class="panel panel-default">
+                    <div class="panel-heading clearfix">
+                        <b>组织信息</b>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-hover table-bordered table-striped table-condensed">
+                            <thead>
+                            <tr>
+                                <th style="width: 10%">组织名称</th>
+                                <th style="width: 10%">状态</th>
+                                <th style="width: 10%">创建人</th>
+                                <th style="width: 10%">创建时间</th>
+                                <th style="width: 10%">备注</th>
+                                <th style="width: 10%">操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="mrow in mrows">
+                                <td>{{mrow.deptName}}</td>
+                                <td>
+                                    <label ng-if="mrow.state==1" style="color: green;">正常</label>
+                                    <p ng-if="mrow.state==0" style="color: red;">禁用</p>
+                                </td>
+                                <td>{{mrow.creator}}</td>
+                                <td>{{mrow.createTime}}</td>
+                                <td>
+                                    <p ng-show="mrow.remark.length>15" title="{{mrow.remark}}">{{mrow.remark.substring(1,15)}}......</p>
+                                    <p ng-show="mrow.remark.length<15" >{{mrow.remark}}</p>
+                                </td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button class="btn btn-sm btn-primary" ng-click="editSave(mrow.id)">编辑</button>
+                                        <!--<button class="btn btn-sm btn-danger" ng-click="delStation(mrow.id)">删除</button>-->
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div paging  page-info="pageInfo2"  load="init()"/>
+                        <!--<form class="form-horizontal" name="myGroupForm" role="form" ng-submit="editSave()" novalidate>-->
+                            <!--<div class="form-group">-->
+                                <!--<label  class="col-sm-2 control-label">组织名称</label>-->
+                                <!--<div class="col-sm-4">-->
+                                    <!--<input type="text" name="deptName" class="form-control" ng-model="groupList.deptName" required>-->
+                                <!--</div>-->
+                                <!--<label  class="col-sm-2 control-label">排序</label>-->
+                                <!--<div class="col-sm-4">-->
+                                    <!--<input type="number" name="sortNo" class="form-control" ng-model="groupList.sortNo">-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="form-group" >-->
+                                <!--<label  class="col-sm-2 control-label">创建时间</label>-->
+                                <!--<div class="col-sm-4" style="padding-top: 7px">-->
+                                    <!--{{groupList.createTime}}-->
+                                <!--</div>-->
+                                <!--<label  class="col-sm-2 control-label">创建人</label>-->
+                                <!--<div class="col-sm-4">-->
+                                    <!--<input type="text" class="form-control" name="creator" ng-model="groupList.creator" >-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="form-group">-->
+                                <!--<label class="col-sm-2 control-label">状态</label>-->
+                                <!--<div class="col-sm-4" >-->
+                                    <!--<label class="radio-inline">-->
+                                        <!--<input type="radio" name="state" ng-value="1" ng-model="groupList.state" > 启用-->
+                                    <!--</label>-->
+                                    <!--<label class="radio-inline">-->
+                                        <!--<input type="radio" name="state" ng-value="0" ng-model="groupList.state" > 停用-->
+                                    <!--</label>-->
+                                <!--</div>-->
+                                <!--<label class="col-sm-2 control-label">修改时间</label>-->
+                                <!--<div class="col-sm-4" style="padding-top: 7px">-->
+                                    <!--{{groupList.updateTime}}-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="form-group">-->
+                                <!--<label class="col-sm-2 control-label">备注</label>-->
+                                <!--<div class="col-sm-7">-->
+                                    <!--<textarea class="form-control" name="remark" ng-model="groupList.remark" rows="3"></textarea>-->
+                                <!--</div>-->
+                                <!--<button type="submit" class="btn btn-primary" ng-disabled="myGroupForm.$invalid">保存</button>-->
+                            <!--</div>-->
+                        <!--</form>-->
+                    </div>
+                </div>
+                <!-- 组织-用户 -->
+                <div class="panel panel-default" >
+                    <div class="panel-heading clearfix">
+                        <b>组织 - 用户</b>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-hover table-bordered table-striped table-condensed">
+                            <tr>
+                                <td style="width: 14%">登录名</td>
+                                <td style="width: 12%">真实姓名</td>
+                                <td style="width: 6%">性别</td>
+                                <td style="width: 12%">手机号</td>
+                                <td style="width: 6%">状态</td>
+                                <td style="width: 20%">创建时间</td>
+                            </tr>
+                            <tr ng-repeat="groupUser in groupUsers">
+                                <td>{{groupUser.loginName}}</td>
+                                <td>{{groupUser.realName}}</td>
+                                <td>
+                                    <span ng-if="groupUser.gender==1" ng-class="{'text-danger':groupUser.gender==1}">男</span>
+                                    <span ng-if="groupUser.gender==2">女</span>
+                                </td>
+                                <td>{{groupUser.mobile}}</td>
+                                <td>
+                                    <span ng-if="groupUser.state==1">正常</span>
+                                    <span ng-if="groupUser.state==0" ng-class="{'text-danger':groupUser.state==0}">禁用</span>
+                                </td>
+                                <td>{{groupUser.createTime}}</td>
+                            </tr>
+                        </table>
+
+                        <!--分页组件-->
+                        <div paging  page-info="pageInfo"  load="load()"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 添加组织 -->
+    <div class="modal fade" id="addGroup" >
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-title "><h3>添加组织信息</h3></div>
+                </div>
+                <div class="modal-body" >
+                    <form class="form-horizontal" name="myForm" role="form" novalidate>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"><span style="color: red">*</span>名称</label>
+                            <div class="col-sm-9 input-group">
+                                <input type="text" class="form-control" ng-model="addGroup.deptName"
+                                       required placeholder="组织名称不能为空"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"><span style="color: red">*</span>序号</label>
+                            <div class="col-sm-9 input-group">
+                                <input type="number" class="form-control"
+                                       ng-model="addGroup.sortNo"
+                                       placeholder="请输入数字（1-9）"
+                                />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">状态</label>
+                            <div class="col-sm-9" >
+                                <label class="radio-inline">
+                                    <input type="radio" name="state" ng-value="1" ng-model="addGroup.state" > 启用
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="state" ng-value="0" ng-model="addGroup.state" > 停用
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">创建人</label>
+                            <div class="col-sm-9 input-group">
+                                <input type="text" class="form-control" ng-model="addGroup.creator" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">备注</label>
+                            <div class="col-sm-9 input-group">
+                                <textarea type="text" class="form-control" rows="3" ng-model="addGroup.remark"></textarea>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="groupClose" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" ng-click="add()" ng-disabled="myForm.$invalid">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 提示框 -->
+    <div class="modal fade bs-example-modal-sm" id="tipModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-title "><h4><b>提示</b></h4></div>
+                </div>
+                <div class="modal-body">
+                    <div id="tipText" style="font-size: 16px"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

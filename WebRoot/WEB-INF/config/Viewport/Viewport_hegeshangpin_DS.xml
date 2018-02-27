@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="hegeshangpin_view" Caption="商品名称" DefaultFilter="" PermissionType="CommType"  Pagging="10"
+        TableName="SQLQuery::select * | from xyy_erp_dic_shangpinjibenxinxi a where 1 = 1 
+        								AND a.dongjie = 1
+        								AND a.tingcai = 1
+										AND a.`status` = 40
+										AND a.shifouhuodong = 1 
+										@shangpin order by createTime desc"  DataSource="" Head="false" Singleton="" OrderBy="">
+        <Parameters>
+            <Parameter Key="shangpin" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(shangpin==null | shangpin=="",""," and a.mixCondition like '%"+shangpin+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <!-- <Parameter Key="shangpinmingcheng" Type="String">
+                <Where>
+             <![CDATA[
+					m.if(shangpinmingcheng==null | shangpinmingcheng=="" ,""," and shangpinmingcheng like '%"+shangpinmingcheng+"%'")
+	            ]]> 
+                </Where>
+            </Parameter> -->
+            <!-- <Parameter Key="shangpintiaoma" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(shangpintiaoma==null | shangpintiaoma=="",""," and shangpintiaoma = '"+shangpintiaoma+"'")
+	            ]]>
+                </Where>
+            </Parameter> -->
+            <!-- <Parameter Key="shengchanchangjia" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(shengchanchangjia==null | shengchanchangjia=="" ,""," and shengchanchangjia like '%"+shengchanchangjia+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="zhujima" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(zhujima==null | zhujima=="" ,""," and zhujima like '%"+zhujima+"%'")
+	            ]]>
+                </Where>
+            </Parameter> -->
+        </Parameters>
+    </DataTable>
+</DataSet>

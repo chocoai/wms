@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BillEdge Name="销售订单-支付核单" Key="xiaoshoudingdan_zhifuhedan_zfhd001" Version="1.0.0" Code="zfhd001" Caption="销售订单-支付核单" SourceBillKey="xiaoshoudingdan" TargetBillKey="zhifuhedan">
+	<BillEdgeController>
+		<AutoSaveController CtrType="AutoSave" />
+		<DisplayController CtrType="GoList" />
+		<MultiConvertCtrl CtrType="Forbid" />
+		<BackWriteController CtrType="Save" />
+	</BillEdgeController>
+	<Description />
+	<BillTransformEdge>
+		<BillHeadTransformEdge>
+			<TargetBillField Key="danjubianhao" Category="property" />
+			<TargetBillField Key="kehubianhao" Category="property"><![CDATA[=kehubianhao]]></TargetBillField>
+			<TargetBillField Key="kehumingcheng" Category="property"><![CDATA[=kehumingcheng]]></TargetBillField>
+			<TargetBillField Key="jiesuanfangshi" Category="property"><![CDATA[=jiesuanfangshi]]></TargetBillField>
+			<TargetBillField Key="tihuofangshi" Category="property"><![CDATA[=tihuofangshi]]></TargetBillField>
+			<TargetBillField Key="lianxiren" Category="property"><![CDATA[=lianxiren]]></TargetBillField>
+			<TargetBillField Key="lianxidianhua" Category="property" />
+			<TargetBillField Key="yjshsj" Category="property"><![CDATA[=yjshsj]]></TargetBillField>
+			<TargetBillField Key="yjdhsj" Category="property"><![CDATA[=yjdhsj]]></TargetBillField>
+			<TargetBillField Key="beizhu" Category="property"><![CDATA[=beizhu]]></TargetBillField>
+			<TargetBillField Key="kaipiaoriqi" Category="property" />
+			<TargetBillField Key="kaipiaoyuan" Category="property" />
+		</BillHeadTransformEdge>
+		<BillBodyTransformEdge>
+			<BillBodyEdge targetDltKey="zhifuhedan_details">
+				<BillDtlEdge sourceDltKey="xiaoshoudingdan_details">
+					<TargetBillField Key="shangpinbianhao" Category="property"><![CDATA[=shangpinbianhao]]></TargetBillField>
+					<TargetBillField Key="shangpinmingcheng" Category="property"><![CDATA[=shangpinmingcheng]]></TargetBillField>
+					<TargetBillField Key="guige" Category="property"><![CDATA[=guige]]></TargetBillField>
+					<TargetBillField Key="danwei" Category="property"><![CDATA[=danwei]]></TargetBillField>
+					<TargetBillField Key="shengchanchangjia" Category="property"><![CDATA[=shengchanchangjia]]></TargetBillField>
+					<TargetBillField Key="pihao" Category="property" />
+					<TargetBillField Key="shengchanriqi" Category="property"><![CDATA[=shengchanriqi]]></TargetBillField>
+					<TargetBillField Key="youxiaoqizhi" Category="property"><![CDATA[=youxiaoqizhi]]></TargetBillField>
+					<TargetBillField Key="kekaishuliang" Category="property"><![CDATA[=kekaishuliang]]></TargetBillField>
+					<TargetBillField Key="shuliang" Category="property"><![CDATA[=shuliang]]></TargetBillField>
+					<TargetBillField Key="hanshuijia" Category="property"><![CDATA[=hanshuijia]]></TargetBillField>
+					<TargetBillField Key="sjhsj" Category="property" />
+					<TargetBillField Key="hanshuijine" Category="property"><![CDATA[=hanshuijine]]></TargetBillField>
+					<TargetBillField Key="sjhsje" Category="property" />
+					<TargetBillField Key="shuie" Category="property"><![CDATA[=shuie]]></TargetBillField>
+					<TargetBillField Key="shuilv" Category="property"><![CDATA[=shuilv]]></TargetBillField>
+					<TargetBillField Key="pizhunwenhao" Category="property"><![CDATA[=pizhunwenhao]]></TargetBillField>
+					<TargetBillField Key="chandi" Category="property"><![CDATA[=chandi]]></TargetBillField>
+					<TargetBillField Key="beizhu" Category="property"><![CDATA[=beizhu]]></TargetBillField>
+				</BillDtlEdge>
+			</BillBodyEdge>
+		</BillBodyTransformEdge>
+	</BillTransformEdge>
+	<BillGroupJoinEdge>
+		<BillHeadGroupJoinEdge>
+			<GroupFileds GroupType="field" />
+			<JoinFileds />
+		</BillHeadGroupJoinEdge>
+		<BillBodyGroupJoinEdge>
+			<TargetSubBillGroupJoinEdges>
+				<TargetSubBillGroupJoinEdge Key="zhifuhedan_details">
+					<GroupFileds GroupType="field" />
+					<JoinFileds />
+				</TargetSubBillGroupJoinEdge>
+			</TargetSubBillGroupJoinEdges>
+		</BillBodyGroupJoinEdge>
+	</BillGroupJoinEdge>
+	<BillBackWriteEdge>
+		<BillHeadBackWriteEdge />
+		<BillBodyBackWriteEdge />
+	</BillBackWriteEdge>
+	<DataFilterEdge>
+		<SourceBillHeadFilterEdge>
+			<Filter />
+		</SourceBillHeadFilterEdge>
+		<SourceBillBodyFilterEdge />
+	</DataFilterEdge>
+	<BillEdgeHook />
+	<RuleFilterEdge>
+		<RuleHeadFilterEdge>
+			<Filter />
+		</RuleHeadFilterEdge>
+		<RuleBodyFilterEdge />
+	</RuleFilterEdge>
+</BillEdge>
+

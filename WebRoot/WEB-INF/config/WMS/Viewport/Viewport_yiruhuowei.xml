@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BillViewMeta Key="yiruhuowei" Caption="工具栏" Version="">
+	<Parameters>
+		<Parameter Key="t1" Type="String" Scope="Global">
+			<DefaultValue>=o.orderNo()</DefaultValue>
+			<Where></Where>
+		</Parameter>
+	</Parameters>
+	
+	
+	<BillBody UserAgent="web">
+		<BillBodyMeta>
+			<BillUIPanel Layout="flex" Key="yiruhuowei_tools" Caption="工具栏" RowGap="7" ColGap="10"
+                             ColWidth="repeat(8,auto) 1fr" S="">
+			     <BillUIGridPanel Key="yiruhuowei_grid">
+                    <BillUIRowPanel>
+						<BillUIColPanel Width="4">
+							<BillUIWidget Key="kqlbbh" Caption="库区类别"
+										  DataTableKey="yiruhuowei_view" ParameterKey="kqlbbh"
+										  EnabledWhen="True" WidgetType="BillUISelect"
+										  Src="bill/selectSrc?type=kuqutype">
+								<Init Type="javascript/angular" Runat="client">
+									<![CDATA[
+												this.loadDataSource();
+										]]>
+								</Init>
+							</BillUIWidget>
+						</BillUIColPanel>
+						<BillUIColPanel Width="4">
+							<BillUIWidget Key="huoweibianhao" Caption="货位编号"
+										  DataTableKey="yiruhuowei_view" ParameterKey="huoweibianhao"
+										  EnabledWhen="True" WidgetType="BillUIString" >
+							</BillUIWidget>
+						</BillUIColPanel>
+                        <BillUIColPanel Width="2">
+                            <BillUIWidget Caption="查询" Key="search"
+                                EnabledWhen="True"
+                                Icon="glyphicon glyphicon-send" WidgetType="BillUIButton">
+                                <Triggers>
+                                    <Trigger Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                        	this.search("yiruhuowei_view");
+                                 			]]>
+                                    </Trigger>
+                                </Triggers>
+                            </BillUIWidget>
+                        </BillUIColPanel>
+                    </BillUIRowPanel>
+			         <BillUIRowPanel>
+						 <BillUIColPanel Width="12">
+							 <BillUIPanel Layout="flex" Key="dictionary_tools">
+					
+								 <BillUIGrid Key="grid0" OptMode="View"   RowId="" DataTableKey="yiruhuowei_view">
+								 <GridHeads>
+				
+									 <GridHead Col="huoweibianhao" Caption="移入货位" enableEdit="True"
+											   Width="150px">
+										 <BillUIWidget Key="huoweibianhao" WidgetType="BillUIString"/>
+									 </GridHead>
+									 <GridHead Col="huoweiID" Caption="移入货位id" enableEdit="True" Show="false"
+											   Width="150px">
+										 <BillUIWidget Key="huoweiID" WidgetType="BillUIString"/>
+									 </GridHead>
+									 <GridHead Col="kuqubianhao" Caption="移入库区" enableEdit="True"
+											   Width="150px">
+										 <BillUIWidget Key="kuqubianhao" WidgetType="BillUIString"/>
+									 </GridHead>
+									 <!--<GridHead Col="kqlbmc" Caption="移入库区类别"
+											   enableEdit="True" Width="120px">
+										 <BillUIWidget Key="kqlbmc" WidgetType="BillUIString" />
+									 </GridHead>-->
+									 <GridHead Col="kqlbbh" Caption="移入库区类别"
+											   enableEdit="True" Width="120px">
+										 <BillUIWidget Key="kqlbbh" WidgetType="BillUIInteger" >
+											 <Formatters>
+												 <Formatter>
+													 <![CDATA[
+                                                [{'type':'kuqutype'}]
+                                            ]]>
+												 </Formatter>
+											 </Formatters>
+										 </BillUIWidget>
+									 </GridHead>
+								 </GridHeads>
+							 </BillUIGrid>
+							 </BillUIPanel>
+
+						 </BillUIColPanel>
+			         </BillUIRowPanel>
+			         
+			     </BillUIGridPanel>
+             </BillUIPanel>
+		</BillBodyMeta>
+	</BillBody>
+	
+</BillViewMeta>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<BillViewMeta Key="caigoutuibujiakaipiaodan" Caption="采购退补价开票单" Version="">
+	<BillBody UserAgent="web">
+		<BillBodyMeta>
+			<BillUIPanel Layout="flex" Key="dictionary_tools" Caption="采购退补价开票单"  S="">
+			     <BillUIGridPanel Key="caigoutuibujiakaipiaodan_grid">
+			         <BillUIRowPanel>
+						 <BillUIColPanel Width="12">
+							 <BillUIPanel Layout="flex" Key="dictionary_tools">
+								 <BillUIGrid Key="grid0" OptMode="View" SelectMode="Multi" DataTableKey="caigoutuibujiakaipiaodan_view">
+								 	<GridHeads>
+		                                <GridHead Col="danjubianhao" Caption="单据编号" enableEdit="True"
+			                                      Width="150px">
+			                                <BillUIWidget Key="danjubianhao" WidgetType="BillUIString"/>
+			                            </GridHead>
+			                            <GridHead Col="kaipiaoriqi" Caption="开票日期" enableEdit="True" Width="150px">
+			                                <BillUIWidget Key="kaipiaoriqi" WidgetType="BillUIDateTime"/>
+			                            </GridHead>
+			                            <GridHead Col="kaipiaoyuan" Caption="开票员" enableEdit="True" Width="120px">
+			                                <BillUIWidget Key="kaipiaoyuan" WidgetType="BillUIString"/>
+			                            </GridHead>
+			                            <GridHead Col="gysbh" Caption="供应商编号" enableEdit="True" Width="100px">
+			                                <BillUIWidget Key="gysbh" WidgetType="BillUIString"/>
+			                            </GridHead>
+			                            <GridHead Col="gysmc" Caption="供应商名称" enableEdit="True" Width="160px">
+			                                <BillUIWidget Key="gysmc" WidgetType="BillUIString">
+			                                </BillUIWidget>
+			                            </GridHead>
+										<GridHead Col="caigouyuan" Caption="采购员" enableEdit="True" Width="80px">
+			                                <BillUIWidget Key="caigouyuan" WidgetType="BillUIString"/>
+			                            </GridHead>
+			                            <GridHead Col="beizhu" Caption="备注" enableEdit="True" Width="160px">
+			                                <BillUIWidget Key="beizhu" WidgetType="BillUIString"/>
+			                            </GridHead>
+                            		</GridHeads>
+							 	</BillUIGrid>
+							 </BillUIPanel>
+
+						 </BillUIColPanel>
+			         </BillUIRowPanel>
+			         
+			     </BillUIGridPanel>
+             </BillUIPanel>
+		</BillBodyMeta>
+	</BillBody>
+	
+</BillViewMeta>

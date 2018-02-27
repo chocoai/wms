@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BillViewMeta Key="peisongxianlu" Caption="工具栏" Version="">
+	
+	<BillBody UserAgent="web">
+		<BillBodyMeta>
+			<BillUIPanel Layout="flex" Key="peisongxianlu_tools" Caption="工具栏" RowGap="7" ColGap="10"
+                             ColWidth="repeat(8,auto) 1fr" S="">
+			     <BillUIGridPanel Key="peisongxianlu_grid">
+                    <BillUIRowPanel>
+                        <BillUIColPanel Width="4">
+                            <BillUIWidget Caption="线路编号" Key="xianlubianhao"
+                                EnabledWhen="True"   ParameterKey="xianlubianhao"
+                                DataTableKey="peisongxianlu_view"
+                                WidgetType="BillUIString">
+                            </BillUIWidget>
+                        </BillUIColPanel>
+                        <BillUIColPanel Width="2">
+                            <BillUIWidget Caption="查询" Key="search"
+                                EnabledWhen="True"
+                                Icon="glyphicon glyphicon-send" WidgetType="BillUIButton">
+                                <Triggers>
+                                    <Trigger Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                        	this.search("peisongxianlu_view");
+                                 			]]>
+                                    </Trigger>
+                                </Triggers>
+                            </BillUIWidget>
+
+                        </BillUIColPanel>
+                    </BillUIRowPanel>
+			         <BillUIRowPanel>
+						 <BillUIColPanel Width="12">
+							 <BillUIPanel Layout="flex" Key="dictionary_tools">
+								 <BillUIGrid Key="grid0" OptMode="View"   RowId="" DataTableKey="peisongxianlu_view">
+								 <GridHeads >
+									 <GridHead Col="xianlubianhao" Caption="线路编号" enableEdit="True"
+											   Width="150px">
+										 <BillUIWidget Key="xianlubianhao" WidgetType="BillUIString"/>
+									 </GridHead>
+									 <GridHead Col="xianlumingcheng" Caption="线路名称" enableEdit="True"
+											   Width="120px">
+										 <BillUIWidget Key="xianlumingcheng" WidgetType="BillUIString"/>
+									 </GridHead>
+									 <GridHead Col="ID" Caption="线路id" enableEdit="True"
+											   Width="120px" Show="false">
+										 <BillUIWidget Key="ID" WidgetType="BillUIString"/>
+									 </GridHead>
+								 </GridHeads>
+							 </BillUIGrid>
+							 </BillUIPanel>
+
+						 </BillUIColPanel>
+			         </BillUIRowPanel>
+			         
+			     </BillUIGridPanel>
+             </BillUIPanel>
+		</BillBodyMeta>
+	</BillBody>
+	
+</BillViewMeta>

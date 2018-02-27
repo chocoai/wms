@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">   
+    <DataTable Key="zhifufangshi" BillType="Dictionary"  Caption="支付方式" DefaultFilter="" TableName="Table::xyy_erp_dic_zhifufangshi" DataSource="" Head="true">
+        <Field FieldKey="zffsbh" FieldName="支付方式编号" FieldType="Varchar" Comment="支付方式编号"/>
+        <Field FieldKey="zffsmc" FieldName="支付方式名称" FieldType="Varchar" Comment="支付方式名称"/>
+        <Field FieldKey="caiwukemu" FieldName="财务科目" FieldType="Varchar" Comment="财务科目"/>
+        <Field FieldKey="zijinzhanghu" FieldName="资金账户" FieldType="Varchar" Comment="资金账户"/>
+        <Field FieldKey="chuangjianren" FieldName="创建人" FieldType="Varchar" Comment="创建人"/>
+        <Field FieldKey="chuangjianshijian" FieldName="创建时间" FieldType="Date" Comment="创建时间"/>
+        <Field FieldKey="shifouhuodong" FieldName="是否活动" FieldType="Int" DefaultValue="1"  Comment="操作：0.否 1.是"/>
+    </DataTable>
+</DataSet>

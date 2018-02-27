@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="jxqypyj" Caption="近效期预警叙事薄" DefaultFilter="" PermissionType="CommType" Pagging="10"
+               TableName="SQLQuery::
+SELECT
+	*
+	|
+FROM
+	(
+		SELECT
+		    cq.cangkumingchen,
+			a.shangpinbianhao,
+			a.orgId,
+			a.shangpinmingcheng,
+			a.guige,
+			a.danwei,
+			a.dbzsl,
+			a.pizhunwenhao,
+			a.shengchanchangjia,
+			h.huoweibianhao,
+			t.pihao,
+			t.shengchanriqi,
+			t.youxiaoqizhi,
+			kc.kucunshuliang,
+			DATEDIFF(t.youxiaoqizhi, SYSDATE()) AS shixiaotianshu
+		FROM
+			xyy_wms_bill_shangpinpihaohuoweikucun kc
+		LEFT JOIN xyy_wms_dic_shangpinpihao t ON kc.pihaoId = t.pihaoId
+		LEFT JOIN xyy_wms_dic_shangpinziliao a ON kc.shangpinId = a.goodsid
+		LEFT JOIN xyy_wms_dic_huoweiziliaoweihu h ON kc.huoweiId = h.ID
+		LEFT JOIN xyy_wms_dic_cangkuziliao cq ON cq.id = h.cangkuID
+		WHERE
+			t.youxiaoqizhi BETWEEN SYSDATE()
+		AND date_add(
+			SYSDATE(),
+			INTERVAL (
+				SELECT
+					config_value
+				FROM
+					tb_sys_config
+			) MONTH
+		) AND kc.kucunshuliang &gt; 0 OR t.youxiaoqizhi &lt; SYSDATE()
+	)  AS w
+WHERE 1=1 @shangpinmingcheng @cangkumingchen @shixiaotianshu @orgId ORDER BY shixiaotianshu ASC"  DataSource="" Head="false">
+        <Parameters>
+            <Parameter Key="shangpinmingcheng" Type="String">
+                <Where>
+                    <![CDATA[
+					    m.if(shangpinmingcheng==null | shangpinmingcheng=="" ,""," and w.shangpinmingcheng like '%"+shangpinmingcheng+"%'")
+	                ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="cangkumingchen" Type="String">
+                <Where>
+                    <![CDATA[
+					    m.if(cangkumingchen==null | cangkumingchen=="" ,""," and w.cangkumingchen like '%"+cangkumingchen+"%'")
+	                ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="shixiaotianshu" Type="Integer">
+                <Where>
+                    <![CDATA[
+					     m.if(shixiaotianshu==null| shixiaotianshu=="" ,""," and w.shixiaotianshu<="+shixiaotianshu+"")
+	                ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="orgId" Type="String">
+                <Where>
+                    <![CDATA[
+					    m.if(orgId==null | orgId=="" ,""," and w.orgId = '"+orgId+"'")
+	                ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

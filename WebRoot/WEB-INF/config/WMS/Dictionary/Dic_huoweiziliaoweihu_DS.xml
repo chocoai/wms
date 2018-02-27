@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="huoweiziliaoweihu" BillType="Dictionary" Caption="货位资料" DefaultFilter=""
+     TableName="Table::xyy_wms_dic_huoweiziliaoweihu" DataSource="" Head="true">
+        
+        <Field FieldKey="cangkuID" FieldName="仓库ID" FieldType="Varchar" Comment="仓库ID" />
+		<Field FieldKey="kuquId" FieldName="库区ID" FieldType="Varchar" Comment="库区ID"/>		
+        <Field FieldKey="huoweibianhao" FieldName="货位编号" FieldType="Varchar"  Comment="货位编号"/> 
+        <Field FieldKey="zhuangtai" FieldName="状态" FieldType="Int"  Comment="状态（36货位可使用， 37货位正在使用中）"/>
+        <Field FieldKey="shifousuoding" FieldName="是否锁定" FieldType="Int"  Comment="是否绑定逻辑区（0未绑定， 1绑定）"/>
+        
+        <Field FieldKey="xiangdao" FieldName="巷道" FieldType="Varchar"  Comment="巷道"/>
+        <Field FieldKey="pai" FieldName="排" FieldType="Varchar"  Comment="排"/>
+        <Field FieldKey="ceng" FieldName="层" FieldType="Varchar"  Comment="层"/>
+        <Field FieldKey="lie" FieldName="列" FieldType="Varchar"  Comment="列"/>
+        <Field FieldKey="huoweiqiyong" FieldName="启用" FieldType="Int" DefaultValue="1" Comment="是否启用：  0.否  1.是"/>
+        
+        <Field FieldKey="huoweimiaoshu" FieldName="货位描述" FieldType="Varchar"  Comment="货位描述"/>
+        <Field FieldKey="chang" FieldName="长" FieldType="Decimal" DefaultValue="0.0"  Comment="长" Bound="14,2" />
+        <Field FieldKey="kuan" FieldName="宽" FieldType="Decimal" DefaultValue="0.0" Comment="宽" Bound="14,2" />
+        <Field FieldKey="gao" FieldName="高" FieldType="Decimal" DefaultValue="0.0"  Comment="高" Bound="14,2" />
+        <Field FieldKey="tiji" FieldName="体积" FieldType="Decimal" DefaultValue="0.0"  Comment="体积" Bound="14,2 "/>
+        <Field FieldKey="liyonglv" FieldName="利用率" FieldType="Varchar"  Comment="利用率"/>
+        <Field FieldKey="X" FieldName="坐标X" FieldType="Varchar"  Comment="坐标X"/>
+        <Field FieldKey="Y" FieldName="坐标Y" FieldType="Varchar"  Comment="坐标Y"/>
+        <Field FieldKey="Z" FieldName="坐标Z" FieldType="Varchar"  Comment="坐标Z"/>
+        <Field FieldKey="chengzhong" FieldName="承重" FieldType="Varchar"   Comment="承重"/>
+        
+        <Field FieldKey="huoweileixing" FieldName="货位类型" FieldType="Int"  Comment="货位类型（1-隔板货架，2-流利货架，3-立体货架，4-地堆）"/>
+        <Field FieldKey="cunchufenlei" FieldName="存储分类" FieldType="Int"  Comment="存储分类（1-整散合一，2-整散分开）"/>
+        <Field FieldKey="cunchutiaojian" FieldName="存储条件" FieldType="Int"  Comment="存储条件（1-阴凉，2-冷藏，3-常温）"/>
+        <Field FieldKey="ABC" FieldName="ABC属性" FieldType="Int"  Comment="ABC属性（1-A，2-B，3-C）"/>
+        <Field FieldKey="chengzairongqi" FieldName="承载容器" FieldType="Int"  Comment="承载容器（3-周转箱，2-无，4-托盘）"/>
+        <Field FieldKey="chailingfenzu" FieldName="拆零分组" FieldType="Int"  Comment="拆零分组"/>
+        <Field FieldKey="pinleishangxian" FieldName="品类上限" FieldType="Int"  Comment="品类上限"/>
+        <Field FieldKey="picishangxian" FieldName="批次上限" FieldType="Int"   Comment="批次上限"/>
+        <Field FieldKey="lujingxulie" FieldName="路径序列" FieldType="Int"  Comment="路径序列"  />
+        
+        
+    </DataTable>
+
+
+</DataSet>

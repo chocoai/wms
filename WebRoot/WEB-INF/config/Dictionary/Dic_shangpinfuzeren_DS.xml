@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="shangpinfuzerenhead" BillType="Dictionary"  Caption="商品负责人" DefaultFilter=""  TableName="Table::xyy_erp_dic_fuzerenHead" DataSource="" Head="true">
+        <!--<Field FieldKey="zuhao" FieldName="组号" FieldType="Varchar" DefaultValue="='FZ'+o.orderNo()" Comment="组号"/>-->
+    </DataTable>
+    <DataTable Key="shangpinfuzeren" BillType="Dictionary"  Caption="商品负责人" DefaultFilter="ID"  TableName="Table::xyy_erp_dic_shangpinfuzeren" DataSource="" Head="false">
+        <Field FieldKey="goodsid" FieldName="商品ID" FieldType="Varchar"  Comment="商品ID" Bound="20"/>
+
+        <Field FieldKey="shangpinbianhao" FieldName="商品编号" FieldType="Varchar"  Comment="商品编号"/>
+		<Field FieldKey="shangpinmingcheng" FieldName="商品名称" FieldType="Varchar"  Comment="商品名称"/>
+        <Field FieldKey="guige" FieldName="规格/型号" FieldType="Varchar" Comment="规格/型号"/>
+        <Field FieldKey="danwei" FieldName="单位" FieldType="Int" Comment="单位"/>
+        <Field FieldKey="shengchanchangjia" FieldName="生产厂家" FieldType="Varchar" Comment="生产厂家"/>
+        <Field FieldKey="chandi" FieldName="产地" FieldType="Varchar" Comment="产地"/>
+        <Field FieldKey="pizhunwenhao" FieldName="批准文号" FieldType="Varchar" Comment="批准文号"/>
+        <Field FieldKey="mixCondition" FieldName="混合查询" FieldType="Varchar" Comment="混合查询"/>
+
+        <Field FieldKey="caigouyuan" FieldName="采购员" FieldType="Varchar" Comment="采购员"/>
+        <Field FieldKey="jihuayuan" FieldName="计划员" FieldType="Varchar" Comment="计划员"/>
+        <Field FieldKey="shangwujingli" FieldName="商务经理" FieldType="Varchar" Comment="商务经理"/>
+    </DataTable>
+</DataSet>

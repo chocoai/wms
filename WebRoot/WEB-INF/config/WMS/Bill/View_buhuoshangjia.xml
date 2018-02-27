@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BillFormMeta Key="buhuoshangjia" Version="1.0.0" BillType="Bills"
+	Caption="补货上架单叙事薄">
+	<BillBody>
+		<BillBodyMeta UserAgent="web">
+			<BillUIPanel Layout="flex" FlexDirection="column" Width="100%"
+				Key="mainContainer" Caption="补货上架单叙事薄" S="">
+				<BillUIPanel Layout="flex" Key="toolbox" Caption="工具栏">
+					<!--<BillUIWidget Key="box" WidgetType="BillUIView" Src="toolbillsboxCG">
+					</BillUIWidget>-->
+					<BillUIWidget Key="add" Caption="新增" Left="1" Top="1"
+								  Width="1" Height="1" EnabledWhen="True" Icon="glyphicon glyphicon-plus-sign"
+								  WidgetType="BillUIButton">
+						<Triggers>
+							<Trigger Type="javascript/angular" Runat="client">
+								<![CDATA[
+										@$this.add();
+						        ]]>
+							</Trigger>
+						</Triggers>
+					</BillUIWidget>
+				<!--	<BillUIWidget Key="del" Caption="删除" EnabledWhen="True"
+						Icon="glyphicon glyphicon-trash" WidgetType="BillUIButton" S="btn btn-danger">
+						<Triggers>
+							<Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+									 var sos = getSos('buhuoshangjia');
+									 if(sos.length==0){
+							            alert("请选择需要删除记录");
+							            return;
+							         }else{
+							             for(var i=0;i<sos.length;i++){
+							                 if(sos[i].status!=1){
+							                     alert("【录入状态】的单据可以删除！");
+							                     return;
+							                 }
+							             }
+							         }
+							         @$this.delete();
+                      		]]>
+							</Trigger>
+						</Triggers>
+					</BillUIWidget>-->
+				</BillUIPanel>
+
+				<BillUIPanel Layout="flex" Key="bills_tools" Caption="查询面板"
+							 S="panel panel-default publicPanel">
+					<BillUIGridPanel Device="sm" key="boxtool">
+						<BillUIRowPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="danjubianhao" ParameterKey="danjubianhao"
+											  DataTableKey="buhuoshangjia" Caption="单据编号" EnabledWhen="True"
+											  Icon="glyphicon glyphicon-send" WidgetType="BillUIString">
+								</BillUIWidget>
+							</BillUIColPanel>
+
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="zhidanriqi" Caption="制单日期"
+											  ParameterKey="zhidanriqi" DataTableKey="buhuoshangjia"
+											  EnabledWhen="True" WidgetType="BillUIDateTime">
+
+								</BillUIWidget>
+							</BillUIColPanel>
+
+							<BillUIColPanel Width="3">
+								<BillUIWidget Caption="查询" Key="search"
+											  EnabledWhen="True" Icon="glyphicon glyphicon-send"
+											  WidgetType="BillUIButton">
+									<Triggers>
+										<Trigger Type="javascript/angular" Runat="client">
+											<![CDATA[
+						                                    @$this.__load("buhuoshangjia");
+							                            ]]>
+										</Trigger>
+									</Triggers>
+								</BillUIWidget>
+								<BillUIWidget Caption="重置" Key="cancel"
+											  EnabledWhen="True" Icon="glyphicon glyphicon-send"
+											  WidgetType="BillUIButton">
+									<Triggers>
+										<Trigger Type="javascript/angular" Runat="client">
+											<![CDATA[
+
+						                                  	 @danjubianhao.setValue(" ");
+						                                  	 @zhidanriqi.setValue(" ");
+						                                  	  @$this.__load();
+
+							                            ]]>
+										</Trigger>
+									</Triggers>
+								</BillUIWidget>
+
+							</BillUIColPanel>
+						</BillUIRowPanel>
+					</BillUIGridPanel>
+				</BillUIPanel>
+
+				<BillUIPanel Layout="tab" Key="bills_tabs" Caption="查询展示列" S="panel  panel-primary  publicPanel">
+					<BillUIGrid Key="grid0" SelectMode="Single" OptMode="View"
+						DataTableKey="buhuoshangjia">
+					<!--	<RowCheckRule>
+                            <![CDATA[
+                                        this.status<10,success,warning
+                                    ]]>
+						</RowCheckRule>-->
+						<DoubleClickHandlers>
+							<DoubleClickHandler>
+                                <![CDATA[
+                                    var shangpin=this.row;
+                                    window.location.href='/bill/view/bill?billKey=buhuoshangjia&BillID='+shangpin.BillID+'&allDisabled=true';
+
+                                ]]>
+							</DoubleClickHandler>
+						</DoubleClickHandlers>
+
+						<GridHeads>
+							<GridHead Col="danjubianhao" Caption="单据编号" Width="80px">
+								<BillUIWidget Key="danjubianhao" WidgetType="BillUIString" />
+							</GridHead>
+							<GridHead Col="zhidanriqi" Caption="制单日期" Width="80px">
+								<BillUIWidget Key="zhidanriqi" WidgetType="BillUIString" />
+							</GridHead>
+							<GridHead Col="zhidanren" Caption="制单人" Width="80px">
+								<BillUIWidget Key="zhidanren" WidgetType="BillUIString" />
+							</GridHead>
+							<GridHead Col="cangku" Caption="仓库" Width="80px">
+								<BillUIWidget Key="cangku" WidgetType="BillUIString" />
+							</GridHead>
+							<GridHead Col="xiajiayuan" Caption="下架员" Width="80px">
+								<BillUIWidget Key="xiajiayuan" WidgetType="BillUIString" />
+							</GridHead>
+							<GridHead Col="shangjiayuan" Caption="上架员" Width="80px">
+								<BillUIWidget Key="shangjiayuan" WidgetType="BillUIString" />
+							</GridHead>
+						<!--	<GridHead Col="zhuangtai" Caption="状态" Width="80px">
+								<BillUIWidget Key="zhuangtai" Disable="true"
+									WidgetType="BillUIInteger" />
+							</GridHead>-->
+						</GridHeads>
+					</BillUIGrid>
+				</BillUIPanel>
+			</BillUIPanel>
+		</BillBodyMeta>
+	</BillBody>
+	<BillHeadMeta>
+		<!-- <RuleKeys> <RuleKey Type="PULL" PullType="DETAILS"> buhuoshangjia_quehuodengjidan_qhdjd 
+			</RuleKey> <RuleKey Type="PULL" PullType="DETAILS"> caigouxuqiufenxi_buhuoshangjia_XQFX001 
+			</RuleKey> </RuleKeys> -->
+	</BillHeadMeta>
+</BillFormMeta>
+

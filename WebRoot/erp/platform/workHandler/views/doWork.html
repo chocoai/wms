@@ -1,0 +1,312 @@
+<div class="toolbox" ng-controller="xyy.workflow.wftoolBoxCtr">
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<span class="navbar-brand" ng-if="handle =='true'">工作处理器</span>
+				<span class="navbar-brand" ng-if="handle =='false'">工作查看器</span>
+			</div>
+			<div class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li ng-class="{'active':viewStatus==1}" ng-if=" handle=='true'"><a
+						style="cursor: pointer"
+						ng-click="setViewStatus(1);operatorForm();">操作表单</a></li>
+					<li ng-class="{'active':viewStatus==12}"><a
+						style="cursor: pointer" ng-click="setViewStatus(12);dataForms();">数据表单</a>
+					</li>
+
+					<li ng-class="{'active':viewStatus==2}" ng-if=" handle=='true' && ( viewStatus==1 || viewStatus==2 ) && activityController.canSave ==1"><a
+						style="cursor: pointer" ng-click="setViewStatus(2);save();">保存</a>
+					</li>
+					<li ng-class="{'active':viewStatus==3}" ng-if=" handle=='true' && ( viewStatus==1 || viewStatus==2 ) && activityController.canSubmit ==1"><a
+						style="cursor: pointer" ng-click="setViewStatus(3);submit();">提交</a>
+					</li>
+					<li ng-class="{'active':viewStatus==4}" ng-if=" handle=='true' && activityController.canTransfer ==1"><a
+						style="cursor: pointer" ng-click="setViewStatus(4);transfor();">移交</a>
+					</li>
+					<li ng-class="{'active':viewStatus==5}" ng-if=" handle=='true' && activityController.canEnd ==1"><a
+						style="cursor: pointer" ng-click="setViewStatus(5);refuse();">否单</a></li>
+					<li ng-class="{'active':viewStatus==7}" ng-if=" handle=='true' && activityController.canBack==1"><a
+						style="cursor: pointer" ng-click="setViewStatus(7);back();">回退</a>
+					</li>
+					<li ng-class="{'active':viewStatus==8}" ng-if=" handle=='true' && activityController.canOrder ==1"><a
+						style="cursor: pointer" ng-click="setViewStatus(8);appointment();">预约</a>
+					</li>
+					<li ng-class="{'active':viewStatus==9}"><a
+						style="cursor: pointer" id="showCanvas"
+						ng-if="activityController.canShape ==1"
+						ng-click="setViewStatus(9);showCanvas()">流程图</a></li>
+					<li ng-class="{'active':viewStatus==10}" ng-if="activityController.canViewAttach ==1"><a id="workflowFileBbtn"
+						style="cursor: pointer" ng-click="setViewStatus(10);workflowFile()">流程附件</a></li>
+					<li ng-class="{'active':viewStatus==11}" ng-if="activityController.canViewLog ==1"><a
+						style="cursor: pointer" ng-click="setViewStatus(11);workflowLog()">流程日志</a></li>
+
+					<li ng-class="{'active':viewStatus==13}"><a
+							style="cursor: pointer" ng-click="setViewStatus(13);workflowExamine()">审核日志</a></li>
+
+					<li class="dropdown" ng-if="handle=='true' && (activityController.canViewSubProcess ==1 || activityController.canSuspend ==1 || activityController.canResume ==1)">
+						<a style="cursor: pointer"
+						class="dropdown-toggle" data-toggle="dropdown" role="button"
+						aria-haspopup="true" aria-expanded="false"> 更多操作 <span
+							class="caret"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li ng-if="activityController.canViewSubProcess ==1"><a style="cursor: pointer" ng-click="childProcess()">子流程</a></li>
+							<li ng-if="activityController.canSuspend ==1"><a style="cursor: pointer" ng-click="suspendBtn()">挂起</a></li>
+							<li ng-if="activityController.canResume ==1"><a style="cursor: pointer" ng-click="recoveryBtn()">恢复</a></li>
+						</ul>
+					</li>
+
+					<li><a style="cursor: pointer" onclick="javascript:window.history.go(-1);" >返回</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div class="content">
+		<div  class="doWorkWrap"   id="viewTpl" ng-if="viewStatus==9||viewStatus==10||viewStatus==11||viewStatus==5 ||viewStatus==13"></div>
+		<!-- 操作表单容器 -->
+		<div class="doWorkWrap" id="operatorFormDiv" ng-show="handle =='true'"  >
+			  <div class="panel panel-primary">
+                <div class="panel-heading">审核</div>
+                <div class="panel-body">
+                    <form class="form-horizontal" style="margin: 0">
+                        <div class="form-group">
+                            <label class="col-sm-1 control-label">
+								<span class="text-error">*</span>
+								审核结果</label>
+                            <div class="col-sm-2">
+                                <select ng-model="shenhe.shenhejieguo" class="form-control" required  >
+									<option value="1">通过</option>
+									<option value="0">不通过</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-1 control-label">
+								<span class="text-error">*</span>
+								审核意见</label>
+                            <div class="col-sm-6">
+								<textarea class="form-control" required ng-model="shenhe.shenheyijian" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-1 control-label">备注</label>
+                            <div class="col-sm-6">
+                                <textarea type="text" class="form-control" ng-model="shenhe.beizhu" rows="5"></textarea>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+			<!--<div id="operatorForm" ng-if="handle =='true'"  billwfoperatorform task-instance="{{taskInstanceId}}"></div>-->
+		</div>
+
+		<!-- 数据表单容器 -->
+		<div class="doWorkWrap"  id="dataFormDiv">
+			<div id="dataForm" billwfdataforms task-instance="{{taskInstanceId}}"></div>
+		</div>
+		<!--移交容器-->
+		<div class="doWorkWrap" id="transfer">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								选择部门
+							</div>
+							<div class="panel-body">
+								<img src="../../../../lib/images/1_open.png">
+								<div ng-model="d" broadcast-name="transferTree" xyyztree multiselect="" treeoptions="treeoptions" treemodel="treedata" class="ztree"  id="tree" key="tree" ></div>
+							</div>
+						</div>
+					</div>
+					<!---->
+					<div class="col-sm-9">
+						<div class="panel panel-default transfer">
+							<div class="panel-heading">
+								选择用户
+								<div class="pull-right btn-group">
+									<button id="menuBtn" class="btn btn-success btn-xs"
+											ng-click="addTransfer()">确定</button>
+								</div>
+							</div>
+							<div class="panel-body transfer-body">
+										<div class="form-group">
+				                            <div class="col-sm-3">
+				                                <input type="text" class="form-control" placeholder="用户名或手机号" ng-model="searchName" style="width: 226px;">
+				                            </div>
+				                        </div>
+				                        <div>
+				                            <button id="searchBtn" class="btn btn-success btn-sm" ng-click="searchTransfer()" style="margin-left: 80px;">查询</button>
+				                        </div>
+<!-- 										<div> -->
+<!-- 											<input  class="form-control" type="text" ng-model="searchName" style="width: 226px;"> -->
+<!-- 											<button id="searchBtn" class="btn btn-success btn-sm" ng-click="searchTransfer()">查询</button> -->
+<!-- 										</div> -->
+								<div class="member clearfix col-sm-9">
+										<li ng-repeat="user in dUsers" ng-class="{ 'curr':user.id==selection}">
+										<!--<li ng-repeat="user in dUsers" ng-class="{ 'curr':user.isChecked==true}">-->
+											<label>
+												<span class="realName" >{{user.realName}}</span>
+												<!--<input type="checkbox"    ng-model="dUsers[$index].isChecked">-->
+												<input type="radio" ng-value="user" ng-checked="user.id==selection"  name="dUsers"  ng-click="setSelection(user)">
+											</label>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+	<!--弹窗区域  -->
+		<!--提交选择转移线-->
+		<div class="modal" tabindex="-1" id="choose-rule">
+			<div class="modal-dialog transfer">
+				<div class="modal-content">
+					<div class="modal-header">选择转移规则</div>
+
+						<div class="modal-body clearfix transfer-body" style="margin: 0;">
+							<label ng-class="{'active':x.id==transitionSelection}" ng-repeat="x in ruleLists">
+                                {{x.name}}
+								<input type="radio" name="choose-rule"  ng-checked="x.id==transitionSelection"  ng-click="ruleSelection(x)" >
+							</label>
+						</div>
+
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+							<button type="button" class="btn btn-primary" ng-click="ruleFun()" >提交</button>
+						</div>
+
+				</div>
+			</div>
+		</div>
+
+		<!--否单-->
+    <div class="modal" tabindex="-1" id="refuse-box">
+        <div class="modal-dialog transfer">
+            <div class="modal-content">
+            <div class="modal-header">否单理由</div>
+            <form role="form" name="refuseform">
+            	<div class="modal-body clearfix transfer-body" style="margin: 0;">
+	                <textarea type="text" class="form-control" rows="3" ng-model="refuseform.reason"
+							  placeholder="请输入否单理由（必填）" required></textarea>
+	            </div>
+
+	            <div class="modal-footer">
+	                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+	                <button type="button" class="btn btn-primary" ng-click="refuseFun()" ng-disabled="refuseform.$invalid">提交</button>
+	            </div>
+            </form>
+            </div>
+        </div>
+    </div>
+
+    <!--退回-->
+    <div class="modal" tabindex="-1" id="return-box">
+        <div class="modal-dialog transfer">
+            <div class="modal-content">
+	            <div class="modal-header">回退</div>
+	            <form role="form" name="returnform">
+	            	<div class="modal-body clearfix transfer-body" style="margin: 0;">
+		                <div id="canBackList" class="member cf" style="margin: 10px 0 0;">
+		                    <div class="clearfix">
+		                        <div class="fl" style="line-height: 40px; width: 5em;">回退节点：</div>
+		                        <div class="fl" style="width: 290px;">
+									<select class="form-control" ng-model="returnform.backName"
+											ng-options="name for name in backList" required></select>
+		                        </div>
+		                    </div>
+		                </div>
+		                <div class="clearfix">
+		                    <div class="fl" style="line-height: 40px; width: 5em;">回退理由：</div>
+		                    <div class="fl" style="width: 480px;">
+					<textarea type="text" class="form-control" ng-model="returnform.reason"
+		                                  placeholder="请输入回退理由（必填）" required></textarea>
+		                    </div>
+		                </div>
+		            </div>
+
+		            <div class="modal-footer">
+		                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+		                <button type="button" class="btn btn-primary" ng-click="returnFun()" ng-disabled="returnform.$invalid">提交</button>
+		            </div>
+	            </form>
+            </div>
+        </div>
+    </div>
+
+    <!--预约-->
+    <div class="modal" tabindex="-1" id="order-box">
+        <div class="modal-dialog transfer">
+            <div class="modal-content">
+            <div class="modal-header">预约</div>
+            <form role="form" name="orderform">
+	            <div class="modal-body clearfix transfer-body" style="margin: 0;">
+	                <div class="clearfix">
+	                    <div class="fl" style="line-height: 40px; width: 5em;">预约理由：</div>
+	                    <div class="fl" style="width: 480px;">
+						<textarea class="form-control" ng-model="orderform.reason"
+	                                  placeholder="请输入预约理由（必填）" required></textarea>
+	                    </div>
+	                </div>
+	                <div class="clearfix" style="margin-top: 20px;">
+	                    <div class="fl" style="line-height: 40px; width: 5em;">预约时间：</div>
+	                    <div class="fl" style="width: 480px;">
+							<input class="form-control"  ng-model="orderform.time" billuidatetime data-data-format="yyyy-mm-dd hh:mm:ss" type="text"  required/>
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="modal-footer">
+	                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+	                <button type="button" class="btn btn-primary" ng-click="orderFun()" ng-disabled="orderform.$invalid">提交</button>
+	            </div>
+	        </form>
+            </div>
+        </div>
+    </div>
+
+    <!--挂起-->
+    <div class="modal" tabindex="-1" id="suspend-box">
+        <div class="modal-dialog transfer">
+            <div class="modal-content">
+            <div class="modal-header">挂起理由</div>
+            <form role="form" name="suspendform">
+            	<div class="modal-body clearfix transfer-body" style="margin: 0;">
+	                <textarea class="form-control" ng-model="suspendform.reason"
+							  placeholder="请输入挂起理由（必填）" required></textarea>
+	            </div>
+
+	            <div class="modal-footer">
+	                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+	                <button type="button" class="btn btn-primary" ng-click="suspendFun()" ng-disabled="suspendform.$invalid">提交</button>
+	            </div>
+            </form>
+            </div>
+        </div>
+    </div>
+
+    <!--恢复-->
+    <div class="modal" tabindex="-1" id="recovery-box">
+        <div class="modal-dialog transfer">
+            <div class="modal-content">
+            <div class="modal-header">恢复</div>
+           	<div class="modal-body clearfix transfer-body" style="margin: 0;">
+                <div class="clearfix">
+                    <div class="fl" style="line-height: 40px; width: 5em;">确认恢复？</div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" ng-click="recoveryFun()" >确认</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>

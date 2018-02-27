@@ -1,0 +1,122 @@
+@import url(reset.css);
+.minWidth {
+  min-width: 1000px; }
+
+.nowrap * {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; }
+
+.tab-content {
+  border: 1px solid #ddd;
+  border-top: none;
+  padding: 10px; }
+  .tab-content li {
+    line-height: 1.5; }
+
+.header {
+  height: 45px;
+  line-height: 45px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  background: #3a95de;
+  color: #fff;
+  padding: 0 20px;
+  box-shadow: 0 3px 5px #ccc;
+  z-index: 99; }
+  .header .logo {
+    font-size: 26px;
+    height: 45px; }
+  .header .nav li {
+    float: left;
+    position: static; }
+    .header .nav li a {
+      color: #fff;
+      padding: 0 20px; }
+      .header .nav li a:hover, .header .nav li a.curr {
+        background: #66ade5; }
+        .header .nav li a:hover .subNav, .header .nav li a.curr .subNav {
+          display: block; }
+      .header .nav li a i {
+        font-size: 18px; }
+    .header .nav li .subNav {
+      position: absolute;
+      background: #66ade5;
+      left: 0;
+      right: 0;
+      width: 100%;
+      top: 45px;
+      z-index: 999;
+      display: none; }
+      .header .nav li .subNav li {
+        float: none; }
+        .header .nav li .subNav li ul > li {
+          float: left; }
+
+.has-header {
+  margin-top: 65px; }
+
+.myWorkbench a {
+  float: left;
+  width: 100px;
+  text-align: center;
+  margin: 10px 20px; }
+.myWorkbench ins {
+  font-family: 'iconfont';
+  display: block;
+  margin: auto;
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+  text-align: center;
+  border-radius: 50%;
+  color: #66ade5;
+  background-color: #f0f0f0;
+  font-size: 40px;
+  margin-bottom: 15px; }
+
+.list .item-avatar {
+  padding: 15px 0 0 100px;
+  position: relative;
+  min-height: 100px; }
+  .list .item-avatar > img:first-child {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%; }
+  .list .item-avatar h2 {
+    color: #3a95de; }
+  .list .item-avatar p {
+    margin: 10px 0; }
+    .list .item-avatar p:last-child {
+      color: #999; }
+
+@media screen and (max-width: 750px) {
+  .header .nav {
+    display: none; }
+    .header .nav li {
+      float: none; }
+
+  .myWorkbench a {
+    width: 4em; }
+    .myWorkbench a ins {
+      font-size: 20px;
+      height: 40px;
+      width: 40px;
+      line-height: 40px; } }
+.isMobile {
+  display: none; }
+
+@media screen and (max-width: 700px) {
+  .isPC {
+    display: none; }
+
+  .isMobile {
+    width: auto;
+    display: block; } }
+
+/*# sourceMappingURL=style.css.map */

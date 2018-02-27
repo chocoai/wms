@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="yhpz" Caption="养护商品查询" DefaultFilter="" PermissionType="CommType"  Pagging="100"
+        TableName="SQLQuery::select * | from (
+        SELECT
+	x.kucunshuliang AS shuliang,
+	y.*
+FROM
+	xyy_erp_bill_shangpinpihaokucun x,
+	(
+		SELECT
+			a.goodsId as goodsid,
+			b.rowID,
+			a.shangpinbianhao,
+			a.shangpinmingcheng,
+			a.guige,
+			a.danwei,
+			a.dbzsl as baozhuangshuliang,
+			a.pizhunwenhao,
+			a.chandi,
+			a.shengchanchangjia,
+			a.jixing,
+			b.pihao,
+			b.pihaoId,
+			b.shengchanriqi,
+			b.youxiaoqizhi
+		FROM
+			xyy_erp_dic_yanghupinzhong a,
+			xyy_erp_dic_shangpinpihao b
+		WHERE
+		1=1 
+			@yanghuleixing 
+		AND a.goodsid = b.goodsId
+
+	) y
+WHERE
+	x.pihaoId = y.pihaoId
+        
+       ) z
+        where 1 = 1  @shangpinmingcheng @shangpinbianhao @shengchanchangjia  "  DataSource="" Head="false" Singleton="" OrderBy="">
+        <Parameters>
+            <Parameter Key="yanghuleixing" Type="Integer">
+                <Where>
+                    <![CDATA[
+					m.if(yanghuleixing==null | yanghuleixing=="",""," and a.yanghuleixing = "+yanghuleixing+" and case "+yanghuleixing+" when 1 then   a.shenhezhuangtai=1 else 1=1 end ")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="shangpinbianhao" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(shangpinbianhao==null | shangpinbianhao=="",""," and z.shangpinbianhao = '"+shangpinbianhao+"'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="shangpinmingcheng" Type="String">
+                <Where>
+             <![CDATA[
+					m.if(shangpinmingcheng==null | shangpinmingcheng=="" ,""," and z.shangpinmingcheng like '%"+shangpinmingcheng+"%'")
+	            ]]> 
+                </Where>
+            </Parameter>
+            <Parameter Key="shengchanchangjia" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(shengchanchangjia==null | shengchanchangjia=="" ,""," and z.shengchanchangjia like '%"+shengchanchangjia+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

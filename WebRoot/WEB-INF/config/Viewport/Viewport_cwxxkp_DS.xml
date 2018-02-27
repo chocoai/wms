@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="cwxxkp_view" Caption="销项开票" DefaultFilter="" PermissionType="PrivateType"  Pagging="100"
+        TableName="SQLQuery::
+		        SELECT * | from xyy_erp_bill_migratexiaoxiangfapiao
+					where fapiaozhuangtai = 0 and shifouyinyong=0
+		              @kaishishijian @jiesushijian @kehubianhao @kehumingcheng @danjubianhao order by createTime asc"
+        DataSource="" Head="false" Singleton="" OrderBy="">
+        <Parameters>
+            <Parameter Key="kehubianhao" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(kehubianhao==null | kehubianhao=="" ,""," and kehubianhao like '%"+kehubianhao+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="kehumingcheng" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(kehumingcheng==null | kehumingcheng=="",""," and kehumingcheng like '%"+kehumingcheng+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="danjubianhao" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(danjubianhao==null | danjubianhao=="" ,""," and danjubianhao like '%"+danjubianhao+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="kaishishijian" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(kaishishijian==null | kaishishijian=="" ,""," and DATE_FORMAT(kaipiaoriqi,'%Y-%m-%d') >= DATE_FORMAT('"+kaishishijian+"','%Y-%m-%d')")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="jiesushijian" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(jiesushijian==null | jiesushijian=="" ,""," and DATE_FORMAT(kaipiaoriqi,'%Y-%m-%d') <= DATE_FORMAT('"+jiesushijian+"','%Y-%m-%d')")
+	            ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="sp2kc" Caption="商品名称" DefaultFilter="" PermissionType="CommType"  Pagging="10"
+        TableName="SQLQuery::select * | from (SELECT a.shangpinbianhao,a.shangpinmingcheng,a.guige,a.danwei,a.goodsid,a.shengchanchangjia,b.kexiaoshuliang,b.chengbendanjia,a.xiaoxiangshuilv,a.pizhunwenhao,a.chandi
+        FROM xyy_erp_bill_shangpinzongkucun  b, xyy_erp_dic_shangpinjibenxinxi a
+		WHERE b.shangpinId = a.goodsid @shangpin @tingcai @dongjie @shifouhuodong and b.kexiaoshuliang > 0) x
+        where 1 = 1    "  DataSource="" Head="false" Singleton="" OrderBy="">
+        <Parameters>
+            <Parameter Key="dongjie" Type="Integer">
+                <Where>
+                    <![CDATA[
+					m.if(dongjie==null ,""," and a.dongjie = "+dongjie+"")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="tingcai" Type="Integer">
+                <Where>
+                    <![CDATA[
+					m.if(tingcai==null ,""," and a.tingcai = "+dongjie+"")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="shifouhuodong" Type="Integer">
+                <Where>
+                    <![CDATA[
+					m.if(shifouhuodong==null ,""," and a.shifouhuodong = "+shifouhuodong+"")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="shangpin" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(shangpin==null | shangpin=="",""," and a.mixCondition like '%"+shangpin+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

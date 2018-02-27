@@ -1,0 +1,42 @@
+<div class="panel panel-default">
+    <div class="panel-heading">Hook配置</div>
+    <div class="panel-body">
+        <!--<ul class="nav nav-tabs" role="tablist">-->
+        <!--<li role="presentation" class="active"><a href="#hoodOpt" aria-controls="home" role="tab" data-toggle="tab">Hook配置</a>-->
+        <!--</li>-->
+        <!--</ul>-->
+        <div role="tabpanel" class="tab-pane active " id="hoodOpt">
+            <table class="table table-hover table-bordered ">
+                <thead>
+                <th colspan="2">
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-success btn-sm" ng-click="createListenerHandler();">
+                            新增
+                        </button>
+                        <button type="button" class="btn btn-default btn-sm" ng-if="isDelete"
+                                ng-click="removeListenerHandler();">删除
+                        </button>
+                    </div>
+                </th>
+                </thead>
+                <tbody id="htoby">
+                <tr ng-repeat="row in HeadTableHook track by $index" ng-click="selectedRowHandler(row)" >
+                    <td class="form-inline">
+                        <select class="form-control" ng-model="row.listenerType" ng-change="listenerTypeHandler(row, $index)" ng-options="m.value as m.name for m in listenerType" required>
+                        </select>
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" ng-model="row.classPath" index="{{$index}}" ensure-exist="classPath" name="classPath"
+                               style="width: 500px;" placeholder="例如:com.xyy.edge.listener.XyyBillConvertListener" required/>
+                        <span class="error" ng-show="form.classPath.$error.exist{{$index}}"
+                              style="color:red">自定义监听器不存在</span>
+                        <span class="right" ng-show="form.classPath.$error.ok{{$index}}"
+                              style="color:green">OK</span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

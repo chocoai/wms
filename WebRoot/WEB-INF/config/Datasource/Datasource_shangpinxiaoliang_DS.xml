@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="shangpinxiaoliang" Caption="商品销量图表" DefaultFilter="" Pagging="10"
+               TableName="SQLQuery::select * | FROM chart_test where 1 = 1 " DataSource="" Head="false">
+    </DataTable>
+</DataSet>

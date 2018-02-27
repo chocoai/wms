@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+ <!-- 流程引擎配置文件 -->
+ <config>
+     <!-- 
+     	默认的流程开始事件hook
+     	
+      -->
+   	 <default-process-start-event-listener class="com.xyy.workflow.exe.DefaultProcessStartListener" />
+   	 <!-- 默认流程结束事件hook -->
+   	 <default-process-end-event-listener  class="com.xyy.workflow.exe.DefaultProcessEndListener" /> 
+   	 <!-- 默认的活动事件开始hook -->
+   	 <default-activity-start-event-listener  class="com.xyy.workflow.exe.DefaultActivityStartListener" />
+   	 <!-- 默认的活动结束事件hook -->
+   	 <default-activity-end-event-listener class="com.xyy.workflow.exe.DefaultActivityEndListener" />
+   	 <!-- 默认的任务分配器 -->
+   	 <default-task-assignment-handler  class="com.xyy.workflow.exe.DefaultTaskAssignment" />
+   	 <!-- 默认模板路径 -->	 
+   	 <default-template-dir dir="/template" />
+   	 <activities>
+   	    <activity name="start" node-process="com.xyy.workflow.exe.WFStart"/>
+        <activity name="decision" node-process="com.xyy.workflow.exe.WFDecision" />
+        <activity name="fork" node-process="com.xyy.workflow.exe.WFFork" />
+        <activity name="join" node-process="com.xyy.workflow.exe.WFJoin"/>
+        <activity name="end" node-process="com.xyy.workflow.exe.WFEnd"/>
+        <activity name="task" node-process="com.xyy.workflow.exe.WFTask"/>
+        <activity name="meeting" node-process="com.xyy.workflow.exe.WFMeeting"/>        
+        <activity name="subprocess" node-process="com.xyy.workflow.exe.WFSubProcess"/>
+        <activity name="associationprocess" node-process="com.xyy.workflow.exe.WFAssociationProcess"/> 
+        <activity name="dockprocess" node-process="com.xyy.workflow.exe.WFDockProcess"/> 
+        <activity name="java" node-process="com.xyy.workflow.exe.WFJavaProcess"/> 
+   	 </activities>     
+</config>
+ 

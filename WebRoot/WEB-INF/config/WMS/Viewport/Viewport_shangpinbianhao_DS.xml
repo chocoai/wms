@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="shangpinbianhao_view" Caption="商品编号" DefaultFilter="" PermissionType="CommType" Pagging="6"
+        TableName="SQLQuery::
+    SELECT
+    l.shangpinbianhao,
+    l.shangpinmingcheng,
+	l.guige,
+	l.danwei,
+	l.shengchanchangjia,
+	l.pizhunwenhao,
+	l.dbzsl,
+	l.goodsid,
+	l.rowID
+	|
+	FROM
+	xyy_wms_dic_shangpinziliao l
+	inner join xyy_wms_bill_shangpinzongkucun k
+	on l.goodsid=k.shangpinId and l.orgId=k.orgId
+   WHERE
+   1=1 and k.kucunshuliang>0
+   @shangpinbianhao @shangpinmingcheng @zhujima @orgId"  DataSource="" Head="false">
+        <Parameters> 
+            <Parameter Key="shangpinbianhao" Type="String">
+                <Where>
+                <![CDATA[
+					m.if(shangpinbianhao==null | shangpinbianhao=="" ,""," and shangpinbianhao like '%"+shangpinbianhao+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="orgId" Type="String" >
+                <Where>
+                    <![CDATA[
+							m.if(orgId==null | danjubianhao=="" ," "," and l.orgId like '%"+orgId+"%'")
+			            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="zhujima" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(zhujima==null | zhujima=="" ,""," and l.zhujima like '%"+zhujima+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="shangpinmingcheng" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(shangpinmingcheng==null | shangpinmingcheng=="" ,""," and shangpinmingcheng like '%"+shangpinmingcheng+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

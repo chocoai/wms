@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BillFormMeta Key="shangpinfenleixinxi" Version="1.0.0" BillType="Dictionary" Caption="商品分类信息">
+    <BillBody>
+        <BillBodyMeta UserAgent="web">
+            <BillUIPanel Layout="flex" FlexDirection="column" Width="100%" Key="mainContainer" Caption="商品分类信息" S="">
+                <BillUIPanel Layout="flex" Key="dictionary_tools" Caption="工具栏" >
+                    <BillUIWidget Key="box" WidgetType="BillUIView" Src="tooldicbox">
+                    </BillUIWidget>
+                </BillUIPanel>
+                <BillUIGridPanel Device="sm" Key="h2">
+                    <BillUIRowPanel>
+                        <BillUIColPanel Width="2" Caption="树">
+                            <BillUIPanel Layout="flex" Key="dictionary_tree" Caption="商品分类信息"
+                                         S="panel publicPanel panel-info">
+                                <BillUIWidget Key="tree" DataTableKey="shangpinfenleixinxi" DataTableColumn="tree"
+                                              EnabledWhen="True" WidgetType="BillUITree">
+                                    <Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                       this.treeoptions.edit.enable=true;
+                                    ]]>
+                                    </Init>
+                                    <Triggers>
+                                        <Trigger Type="javascript/angular" Runat="client">
+                                            <![CDATA[
+                                            @box.@add.setEnable();
+                                    		@box.@del.setEnable();
+                                    		@box.@edit.setEnable();
+                                    		@box.@submit.setDisable();
+                                    		@box.@cancel.setDisable();
+                                    		var sel=this.tree.getSelectedNodes();
+                                    		if(sel.length==1){
+                                    			@$this.click(sel);
+                                    		}
+                                        ]]>
+                                        </Trigger>
+                                    </Triggers>
+                                </BillUIWidget>
+                            </BillUIPanel>
+
+                        </BillUIColPanel>
+
+                        <BillUIColPanel Width="10">
+                            <BillUIPanel Key="dictionary_tree" Layout="flex" Caption="字段明细"
+                                         S="panel publicPanel panel-info">
+                                <BillUIGridPanel Device="sm" Key="h3">
+                                    <BillUIRowPanel>
+                                        <BillUIColPanel Width="3">
+                                            <BillUIWidget Key="zhujima" Caption="助记码："
+                                                          DataTableKey="shangpinfenleixinxi" DataTableColumn="zhujima" EnabledWhen="True"
+                                                          WidgetType="BillUIString">
+                                            </BillUIWidget>
+                                        </BillUIColPanel>
+                                        <BillUIColPanel Width="3">
+                                            <BillUIWidget Key="code" Caption="代码："
+                                                          DataTableKey="shangpinfenleixinxi" DataTableColumn="code" EnabledWhen="True"
+                                                          WidgetType="BillUIString">
+                                            </BillUIWidget>
+                                        </BillUIColPanel>
+                                        <BillUIColPanel Width="3">
+                                            <BillUIWidget Key="name" Caption="字典名称："
+                                                          DataTableKey="shangpinfenleixinxi" DataTableColumn="name" EnabledWhen="True"
+                                                          WidgetType="BillUIString">
+                                            </BillUIWidget>
+                                        </BillUIColPanel>
+                                        <BillUIColPanel Width="3">
+                                            <BillUIWidget Key="nodeType" Caption="节点类型："
+                                                          DataTableKey="shangpinfenleixinxi" EnabledWhen="True" DataTableColumn="nodeType"
+                                                          WidgetType="BillUISelect" Src="bill/selectSrc?type=nodeType">
+                                                <Init Type="javascript/angular" Runat="client">
+                                                    <![CDATA[
+                                           			 this.loadDataSource();
+                                    			]]>
+                                                </Init>
+                                            </BillUIWidget>
+                                        </BillUIColPanel>
+                                    </BillUIRowPanel>
+                                    <BillUIRowPanel>
+                                    	<BillUIColPanel Width="3">
+											<BillUIWidget Key="status" Caption="节点状态："
+														  DataTableKey="shangpinfenleixinxi" EnabledWhen="True" DataTableColumn="status"
+														  WidgetType="BillUISelect" Src="bill/selectSrc?type=nodeStatus">
+												<Init Type="javascript/angular" Runat="client">
+													<![CDATA[
+                                           			 this.loadDataSource();
+                                    			]]>
+												</Init>
+											</BillUIWidget>
+										</BillUIColPanel>
+                                        <BillUIColPanel Width="3">
+                                            <BillUIWidget Key="shangpinbianhao" Caption="商品编号："
+                                                          DataTableKey="shangpinfenleixinxi" DataTableColumn="shangpinbianhao"
+                                                          EnabledWhen="True"
+                                                          WidgetType="BillUIString">
+                                            </BillUIWidget>
+                                        </BillUIColPanel>
+                                        <BillUIColPanel Width="3">
+                                            <BillUIWidget Key="pinleimingcheng" Caption="商品名称：" DataTableKey="shangpinfenleixinxi"
+                                                          DataTableColumn="pinleimingcheng" EnabledWhen="True"
+                                                          WidgetType="BillUIString">
+                                            </BillUIWidget>
+                                        </BillUIColPanel>
+                                        
+                                    </BillUIRowPanel>
+                                    <BillUIRowPanel>
+                                    	<BillUIColPanel Width="3">
+                                            <BillUIWidget Key="pinleibianhao" Caption="品类编号："
+                                                          DataTableKey="shangpinfenleixinxi" DataTableColumn="pinleibianhao"
+                                                          EnabledWhen="True"
+                                                          WidgetType="BillUIString">
+                                            </BillUIWidget>
+                                        </BillUIColPanel>
+                                        <BillUIColPanel Width="9">
+                                            <BillUIWidget Key="shuoming" Caption="说明："
+                                                          DataTableKey="shangpinfenleixinxi" DataTableColumn="shuoming"
+                                                          EnabledWhen="True"
+                                                          WidgetType="BillUIString">
+                                            </BillUIWidget>
+                                        </BillUIColPanel>
+                                    </BillUIRowPanel>
+                                    <!-- 结束 -->
+                                </BillUIGridPanel>
+                            </BillUIPanel>
+                        </BillUIColPanel>
+                    </BillUIRowPanel>
+                </BillUIGridPanel>
+            </BillUIPanel>
+        </BillBodyMeta>
+    </BillBody>
+    <BillHeadMeta>
+    </BillHeadMeta>
+</BillFormMeta>
+

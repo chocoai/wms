@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BillFormMeta Key="zhiliangfujian" Version="1.0.0"
+              BillType="Bill" Caption="质量复检单">
+    <BillBody>
+        <BillBodyMeta UserAgent="web">
+            <BillUIPanel Layout="flex" FlexDirection="column" Width="100%"
+                         Key="mainContainer" Caption="质量复检单" S="">
+                <BillUIPanel Layout="flex" Key="toolbox" Caption="工具栏">
+                    <BillUIWidget Key="box" WidgetType="BillUIView" Src="toolbase">
+                    </BillUIWidget>
+                    <BillUIWidget Key="save" Caption="保存" EnabledWhen="True"
+                                  Icon="glyphicon glyphicon-floppy-disk" WidgetType="BillUIButton">
+                        <Init Type="javascript/angular" Runat="client">
+                            <![CDATA[
+							setHide('gridAdd');
+							]]>
+                        </Init>
+                        <Triggers>
+                            <Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+                                  var cos=getDataset("zhiliangfujian_details").cos;
+                            for(var i=0;i<cos.length;i++){
+                              var fujianjielun = window.$body.zhiliangfujian_details.cos[i].fujianjielun;
+                              var fujianjielun = window.$body.zhiliangfujian_details.cos[i].fujianjielun;
+                              var indexrow=i+1;
+                              if(fujianjielun==0){
+                                     alert("请填写完成所有商品的复检结论");
+                                     return;
+                              }if(fujianjielun==2){
+                                    alert("第"+indexrow+"行复检结论不合格,请填写处理原因");
+                                    return;
+                              }
+                            }
+
+                            @$this.save('bills',{
+                                        before:{
+                                           setStatus:[47]
+                                        }
+                                    });
+                     		]]>
+                            </Trigger>
+                        </Triggers>
+                    </BillUIWidget>
+                </BillUIPanel>
+
+                <BillUIPanel Layout="flex" Key="mainContainer_head"
+                             Caption="质量复检单" S="panel panel-success publicPanel">
+                    <BillUIGridPanel Key="zhiliangfujian">
+                        <BillUIRowPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="dingdanriqi" Caption="订单日期"
+                                              Disable="true" DataTableKey="zhiliangfujian" DataTableColumn="dingdanriqi"
+                                              Required="required" EnabledWhen="True" WidgetType="BillUIDateTime">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="dingdanbianhao" Caption="订单编号"
+                                              Disable="true" DataTableKey="zhiliangfujian"
+                                              DataTableColumn="dingdanbianhao"
+                                              EnabledWhen="True" WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="dingdanleixing" Caption="订单类型"
+                                              Disable="true" DataTableKey="zhiliangfujian"
+                                              DataTableColumn="dingdanleixing"
+                                              Required="required" EnabledWhen="True" WidgetType="BillUISelect"
+                                              Src="/bill/selectSrc?type=dingdanleixing">
+                                    <Init Type="javascript/angular" Runat="client"> <![CDATA[ this.loadDataSource();
+										]]>
+                                    </Init>
+
+                                </BillUIWidget>
+                            </BillUIColPanel>
+
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="fujianren" Caption="复检人"
+                                              DataTableKey="rukuyanshou" DataTableColumn="fujianren"
+                                              Required="required" EnabledWhen="True" WidgetType="BillUIPopupWindow"
+                                              ViewSize="lg" Src="zhiyuan">
+                                    <!-- 获取系统登录用户名 -->
+                                    <Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                            	var r = this.getRealName();
+												 @fujianren.setValue(r);
+                                            	var orgId=this.getOrgId();
+                                                this.setEnvModel({deptName:'质管部'},{orgId:orgId});
+	                                        ]]>
+                                    </Init>
+                                    <Triggers>
+                                        <Trigger>
+                                            <![CDATA[
+                                                    var zhiyuan=this.rows[0];
+                                                    this.setValue(zhiyuan.realName);
+                                                    @bumenmingcheng.setValue(zhiyuan.deptName);
+                                                ]]>
+                                        </Trigger>
+                                    </Triggers>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="huozhubianhao" Caption="货主编号"
+                                              DataTableKey="zhiliangfujian" DataTableColumn="huozhubianhao"
+                                              EnabledWhen="True" Disable="true" WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="huozhumingcheng" Caption="货主名称"
+                                              DataTableKey="zhiliangfujian" DataTableColumn="huozhumingcheng"
+                                              EnabledWhen="True" Disable="true" WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="danweibianhao" Caption="单位编号"
+                                              Disable="true" DataTableKey="zhiliangfujian"
+                                              DataTableColumn="danweibianhao"
+                                              EnabledWhen="True" WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="danweimingcheng" Caption="单位名称"
+                                              Disable="true" DataTableKey="zhiliangfujian"
+                                              DataTableColumn="danweimingcheng"
+                                              EnabledWhen="True" WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                        </BillUIRowPanel>
+                    </BillUIGridPanel>
+                </BillUIPanel>
+
+
+                <BillUIPanel Layout="tab" Key="mainContainer_tab"
+                             Caption="质量复检明细" S="panel  panel-primary  publicPanel">
+                    <BillUIGrid Key="zhiliangfujian_details" Left="1" Top="1"
+                                Width="1" Height="1" OptMode="Edit" DataTableKey="zhiliangfujian_details">
+                        <GridHeads>
+                            <GridHead Col="shangpinbianhao" Caption="商品编号"
+                                      enableEdit="True" Width="100px">
+                                <BillUIWidget Key="shangpinbianhao" WidgetType="BillUIString"
+                                              Disable="true"/>
+                            </GridHead>
+                            <GridHead Col="shangpinmingcheng" Caption="商品名称"
+                                      enableEdit="True" Width="120px">
+                                <BillUIWidget Key="shangpinmingcheng" WidgetType="BillUIString"
+                                              Disable="true"/>
+                            </GridHead>
+                            <GridHead Col="shangpinguige" Caption="商品规格" enableEdit="True"
+                                      Width="50px">
+                                <BillUIWidget Key="shangpinguige" WidgetType="BillUIString"
+                                              Disable="true"/>
+                            </GridHead>
+                            <GridHead Col="baozhuangdanwei" Caption="包装单位"
+                                      enableEdit="True" Width="50px">
+                                <BillUIWidget Key="baozhuangdanwei" WidgetType="BillUIString"
+                                              Disable="true">
+                                    <Formatters>
+                                        <Formatter>
+                                            <![CDATA[
+									            [{'url':'/bill/selectSrc','type':'baozhuangdanwei'}]
+									        ]]>
+                                        </Formatter>
+                                    </Formatters>
+                                </BillUIWidget>
+                            </GridHead>
+                            <GridHead Col="baozhuangshuliang" Caption="包装数量"
+                                      enableEdit="True" Width="50px">
+                                <BillUIWidget Key="baozhuangshuliang" WidgetType="BillUIInteger"
+                                              Disable="true">
+                                </BillUIWidget>
+                            </GridHead>
+                            <GridHead Col="pizhunwenhao" Caption="批准文号" enableEdit="True"
+                                      Width="120px">
+                                <BillUIWidget Key="pizhunwenhao" WidgetType="BillUIString"
+                                              Disable="true"/>
+                            </GridHead>
+
+                            <GridHead Col="shengchanchangjia" Caption="生产厂家"
+                                      enableEdit="True" Width="220px">
+                                <BillUIWidget Key="shengchanchangjia" WidgetType="BillUIString"
+                                              Disable="true"/>
+                            </GridHead>
+                            <GridHead Col="huowei" Caption="货位" enableEdit="True"
+                                      Width="50px">
+                                <BillUIWidget Key="huowei" WidgetType="BillUIString" Disable="true">
+                                </BillUIWidget>
+                            </GridHead>
+                            <GridHead Col="pihao" Caption="批号" enableEdit="True"
+                                      Width="80px">
+                                <BillUIWidget Key="pihao" WidgetType="BillUIString"
+                                              Disable="true"/>
+                            </GridHead>
+                            <GridHead Col="shuliang" Caption="数量" enableEdit="True"
+                                      Width="50px">
+                                <BillUIWidget Key="shuliang" WidgetType="BillUIString" Disable="true">
+                                </BillUIWidget>
+                            </GridHead>
+                            <GridHead Col="shenheyijian" Caption="审核意见" enableEdit="True"
+                                      Width="100px">
+                                <BillUIWidget Key="shenheyijian" WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </GridHead>
+
+                            <GridHead Col="fujianjielun" Caption="复检结论" enableEdit="True"
+                                      Width="100px">
+                                <BillUIWidget Key="fujianjielun" WidgetType="BillUISelect">
+                                    <Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+		                                  			this.loadDataSource();
+		                                  		]]>
+                                    </Init>
+                                    <Properties>
+                                        <Property Name="datasource" Type="internal">
+                                            [
+                                           {name:"合格",value:1},{name:"不合格",value:2}
+                                            ]
+                                        </Property>
+                                    </Properties>
+                                    <Formatters>
+                                        <Formatter>
+                                            <![CDATA[
+									            [{'url':'/bill/selectSrc','type':'yanshoupingding'}]
+									        ]]>
+                                        </Formatter>
+                                    </Formatters>
+                                </BillUIWidget>
+                            </GridHead>
+                            <GridHead Col="chuliyuanyin" Caption="处理原因" enableEdit="True"
+                                      Width="100px">
+                                <BillUIWidget Key="chuliyuanyin" WidgetType="BillUISelect"
+                                              Src="bill/selectSrc?type=yanshoupingdingyuanyin">
+                                    <Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+		                                  			this.loadDataSource();
+		                                  		]]>
+                                    </Init>
+                                    <Formatters>
+                                        <Formatter>
+                                            <![CDATA[
+									            [{'url':'/bill/selectSrc','type':'yanshoupingdingyuanyin'}]
+									        ]]>
+                                        </Formatter>
+                                    </Formatters>
+                                </BillUIWidget>
+                            </GridHead>
+                        </GridHeads>
+                    </BillUIGrid>
+                </BillUIPanel>
+            </BillUIPanel>
+        </BillBodyMeta>
+    </BillBody>
+
+    <BillHeadMeta>
+        <BillStatusCollection>
+            <Status Default="true" Code="1">录入</Status>
+            <Status Code="20">正式</Status>
+            <Status Code="40">审核通过</Status>
+        </BillStatusCollection>
+        <BillEventCollection>
+            <Event Type="PreSave" Processor="com.xyy.wms.handler.biz.BillZhiLiangFuJianPreHandler"/>
+            <Event Type="PostSave"
+                   Processor="com.xyy.wms.handler.biz.BillZhiLiangFuJianPostHandler"/>
+        </BillEventCollection>
+    </BillHeadMeta>
+</BillFormMeta>
+

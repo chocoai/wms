@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="cangkuziliao" BillType="Dictionary" Caption="仓库资料" DefaultFilter="" TableName="Table::xyy_wms_dic_cangkuziliao" DataSource="" Head="true">
+        <Field FieldKey="zhuzhimingchen" FieldName="组织名称" FieldType="Varchar" Comment="组织名称"/>
+        <Field FieldKey="cangkubianhao" FieldName="仓库编号" FieldType="Varchar" Comment="仓库编号" />
+        <Field FieldKey="cangkumingchen" FieldName="仓库名称" FieldType="Varchar" Comment="仓库名称"/>
+ 		<Field FieldKey="shengbianhao" FieldName="省编号" FieldType="Varchar" Comment="省编号"/>
+        <Field FieldKey="shibianhao" FieldName="市编号" FieldType="Varchar" Comment="市编号"/>       
+        <Field FieldKey="qubianhao" FieldName="区编号" FieldType="Varchar" Comment="区编号"/>
+         <Field FieldKey="sheng" FieldName="省" FieldType="Int" Comment="省"/>
+        <Field FieldKey="shi" FieldName="市" FieldType="Int" Comment="市"/>
+        <Field FieldKey="qu" FieldName="区" FieldType="Int" Comment="区"/> 
+        <Field FieldKey="xiangxidizhi" FieldName="详细地址" FieldType="Varchar" Comment="详细地址"/>
+         <Field FieldKey="fzrbh" FieldName="负责人编号" FieldType="Varchar" Comment="负责人编号"/>       
+        <Field FieldKey="fuzheren" FieldName="负责人" FieldType="Varchar" Comment="负责人"/>
+         <Field FieldKey="dianhua" FieldName="电话" FieldType="Varchar" Comment="电话"/>       
+        <Field FieldKey="cangkumiashu" FieldName="仓库描述" FieldType="Varchar" Comment="仓库描述"/>
+         <Field FieldKey="qiyong" FieldName="启用" FieldType="Int" DefaultValue="1" Comment="启用"/>
+         <Field FieldKey="status" FieldName="状态" FieldType="Int" Comment="状态" />
+         
+         
+    </DataTable>
+    
+</DataSet>

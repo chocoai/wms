@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="chukuwaifuhenei_view" Caption="出库外复核" DefaultFilter="" PermissionType="PrivateType"  Pagging="100"
+        TableName="SQLQuery:: 
+        SELECT *
+               |
+				FROM
+					xyy_wms_bill_chukuneifuhe
+				WHERE
+					1 = 1
+              @dingdanbianhao
+              ORDER BY createTime DESC"  
+        
+        DataSource="" Head="false" Singleton="" OrderBy="">
+        <Parameters>
+           <Parameter Key="dingdanbianhao" Type="String"> 
+                <Where>
+                    <![CDATA[
+					m.if(dingdanbianhao==null | dingdanbianhao=="",""," and dingdanbianhao like '%"+dingdanbianhao+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+           
+        </Parameters>
+    </DataTable>
+</DataSet>

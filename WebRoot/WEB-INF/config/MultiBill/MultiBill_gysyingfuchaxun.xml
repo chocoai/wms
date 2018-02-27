@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BillFormMeta Key="gysyingfuchaxun" Version="1.0.0" BillType="MultiBill" Caption="供货商应付">
+    <BillBody> 
+        <BillBodyMeta UserAgent="web">
+            <BillUIPanel Layout="flex" FlexDirection="column" Width="100%" Key="mainContainer" Caption="供货商应付查询" S="">
+
+                <BillUIPanel Layout="flex" Key="tools" Caption="查询面板" S="panel panel-default publicPanel">
+                    <BillUIGridPanel Device="sm" key="boxtool">
+                        <BillUIRowPanel>
+                            <BillUIColPanel Width="2">
+                                <BillUIWidget Key="kaishiriqi" ParameterKey="kaishiriqi"
+                                              DataTableKey="gysyingfuchaxun"  Caption="开始日期" DateFormat="yyyy-mm-dd"
+                                              EnabledWhen="True" Icon="glyphicon glyphicon-send" WidgetType="BillUIDateTime">
+                                    <Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+												var t=this.formatDate(new Date());
+                                                	this.setValue(t);
+										]]>
+                                    </Init>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="2">
+                                <BillUIWidget Key="jiezhiriqi" ParameterKey="jiezhiriqi"
+                                              DataTableKey="gysyingfuchaxun"  Caption="截止日期" DateFormat="yyyy-mm-dd"
+                                              EnabledWhen="True" Icon="glyphicon glyphicon-send" WidgetType="BillUIDateTime">
+                                    <Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+												var t=this.formatDate(new Date());
+                                                	this.setValue(t);
+										]]>
+                                    </Init>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="gysbh" ParameterKey="gysbh"
+                                              DataTableKey="gysyingfuchaxun"  Caption="供应商编号"
+                                              EnabledWhen="True" Icon="glyphicon glyphicon-send" WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="4">
+                                <BillUIWidget Key="gysmc" ParameterKey="gysmc"
+                                              DataTableKey="gysyingfuchaxun"  Caption="供应商名称"
+                                              EnabledWhen="True" Icon="glyphicon glyphicon-send" WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="1">
+                                <BillUIWidget Caption="查询" Key="search"
+                                              EnabledWhen="True"
+                                              Icon="glyphicon glyphicon-send" WidgetType="BillUIButton">
+                                    <Triggers>
+                                        <Trigger Type="javascript/angular" Runat="client">
+                                            <![CDATA[
+                                    @$this.__load("gysyingfuchaxun");
+	                            ]]>
+                                        </Trigger>
+                                    </Triggers>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                        </BillUIRowPanel>
+                    </BillUIGridPanel>
+                </BillUIPanel>
+                <BillUIGrid Key="grid0" OptMode="View" DataTableKey="gysyingfuchaxun">
+                    <GridHeads>
+                        <GridHead Col="gysbh" Caption="供货商编号" enableEdit="True" Width="180px">
+                            <BillUIWidget Key="gysbh" WidgetType="BillUIString"/>
+                        </GridHead>
+                        <GridHead Col="gysmc" Caption="供货商名称" enableEdit="True" Width="180px">
+                            <BillUIWidget Key="gysmc" WidgetType="BillUIString"/>
+                        </GridHead>
+                        <GridHead Col="qichu" Caption="期初余额" enableEdit="True" Align="right" Width="80px">
+                            <BillUIWidget Key="qichu" WidgetType="BillUIDecimal"/>
+                        </GridHead>
+                        <GridHead Col="caigoujine" Caption=" 采购金额" enableEdit="True" Align="right" Width="80px">
+                            <BillUIWidget Key="caigoujine" WidgetType="BillUIDecimal"/>
+                        </GridHead>
+                        <GridHead Col="fukuanjine" Caption="付款金额" enableEdit="True" Align="right" Width="80px">
+                            <BillUIWidget Key="fukuanjine" WidgetType="BillUIDecimal"/>
+                        </GridHead>
+                        <GridHead Col="yue" Caption="余额" enableEdit="True" Align="right" Width="80px">
+                            <BillUIWidget Key="yue" WidgetType="BillUIDecimal"/>
+                        </GridHead>
+                    </GridHeads>
+                </BillUIGrid>
+        </BillUIPanel>
+        </BillBodyMeta>
+    </BillBody>
+    <BillHeadMeta>
+    	
+    </BillHeadMeta>
+</BillFormMeta>

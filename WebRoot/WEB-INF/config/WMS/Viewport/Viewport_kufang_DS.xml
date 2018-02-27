@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="kufang_view" Caption="库房名称" DefaultFilter="" Pagging="30"
+        TableName="SQLQuery::select * | from xyy_wms_dic_kuqujibenxinxi where 1 = 1 and kqlbbh=2    @kuqumingcheng"  DataSource="" Head="false" Singleton="" OrderBy="">
+        <Parameters> 
+            <Parameter Key="kuqumingcheng" Type="String">
+                <DefaultValue></DefaultValue>
+                <Where>
+             <![CDATA[
+					m.if(kuqumingcheng==null | kuqumingcheng=="" ,""," and name like '%"+kuqumingcheng+"%'")
+	            ]]> 
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

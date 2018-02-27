@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BillFormMeta Key="bocizhixingweihu" Version="1.0.0" BillType="Dictionary"
+	Caption="波次执行规则维护">
+	<BillBody>
+		<BillBodyMeta UserAgent="web">
+			<BillUIPanel Layout="flex" FlexDirection="column" Width="100%"
+				Key="mainContainer" Caption="波次执行规则维护" S="">
+				<BillUIPanel Layout="flex" Key="toolbox" Caption="工具栏">
+					<!--属性 colPush 向右推 colPull 向左拉 colOffset 左边距 -->
+
+					<BillUIWidget Key="save" Caption="保存" EnabledWhen="True"
+						Icon="glyphicon glyphicon-floppy-disk" WidgetType="BillUIButton">
+						<Triggers>
+							<Trigger Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                  setStatus(40);
+                                  @$this.save();
+	                            ]]>
+							</Trigger>
+						</Triggers>
+					</BillUIWidget>
+					<BillUIWidget Key="goback" Caption="返回" EnabledWhen="True"
+						Icon="glyphicon glyphicon-align-left" WidgetType="BillUIButton" S="btn btn-danger">
+						<Triggers>
+							<Trigger Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                  @$this.$reBack();
+	                            ]]>
+							</Trigger>
+						</Triggers>
+					</BillUIWidget>
+				</BillUIPanel>
+
+
+
+				<BillUIPanel Layout="flex" Key="bills_tools" Caption="规则面板"
+					S="panel panel-default publicPanel">
+					<BillUIGridPanel Device="sm" key="boxtool">
+						<BillUIRowPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="guizebianhao" 
+									DataTableKey="bocizhixingweihu" Caption="规则编号" EnabledWhen="True" Required="Required"
+									Disable="true" WidgetType="BillUIString" DataTableColumn="guizebianhao">
+								</BillUIWidget>
+							</BillUIColPanel>
+							      <BillUIColPanel Width="3">
+                                            <BillUIWidget Key="cangkubianhao"  DataTableKey="bocizhixingweihu" 
+									Caption="仓库编号" DataTableColumn="cangkubianhao"
+									Disable="true" EnabledWhen="True" WidgetType="BillUIPopupWindow" ViewSize="lg"
+                                                  Src="cangku">
+                                        <Init Type="javascript/angular" Runat="client">
+                                            <![CDATA[
+                                            	var orgId=this.getOrgId();
+	                                        ]]>
+                                        </Init>
+                                        <Triggers>
+                                            <Trigger>
+                                                <![CDATA[
+                                                    var cangku=this.rows[0];     
+                                                    this.setValue(cangku.cangkubianhao);
+                                                    @cangkuID.setValue(cangku.ID);
+                                                    @cangkumingcheng.setValue(cangku.cangkumingchen);
+                                                ]]>
+                                            </Trigger>
+                                        </Triggers>
+								</BillUIWidget>
+                                        </BillUIColPanel>
+                              <BillUIColPanel Width="3">
+								<BillUIWidget Key="cangkumingcheng"  
+									Caption="仓库" DataTableKey="bocizhixingweihu" DataTableColumn="cangkumingcheng"
+									Disable="true" EnabledWhen="True" WidgetType="BillUIString">
+								</BillUIWidget>
+							</BillUIColPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="qiyong" 
+									DataTableKey="bocizhixingweihu" Caption="是否启用" EnabledWhen="True"
+									WidgetType="BillUISelect" DataTableColumn="qiyong" Src="bill/selectSrc?type=bool">
+									<Init Type="javascript/angular" Runat="client">
+		                                        <![CDATA[
+														this.loadDataSource();
+												]]>
+											</Init>
+								</BillUIWidget>
+							</BillUIColPanel>
+						</BillUIRowPanel>
+							<BillUIRowPanel>
+						<BillUIColPanel Width="6">
+								<BillUIWidget Key="guizemiaoshu" 
+									DataTableKey="bocizhixingweihu" Caption="规则描述" EnabledWhen="True"
+									WidgetType="BillUITextArea" DataTableColumn="guizemiaoshu">
+								</BillUIWidget>
+							</BillUIColPanel>
+					  </BillUIRowPanel>
+					</BillUIGridPanel>
+				</BillUIPanel>
+
+
+
+				<BillUIPanel Layout="flex" Key="bills_tools" Caption="集货位规则"
+					S="panel panel-default publicPanel">
+					<BillUIGridPanel Device="sm" key="boxtool">
+						<BillUIRowPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="jhwbztj" 
+									DataTableKey="bocizhixingweihu" Caption="集货标准件体积(cm³)" EnabledWhen="True" Required="Required"
+									WidgetType="BillUIString" DataTableColumn="jhwbztj">
+									 <CheckRules> 
+									 <CheckRule> 
+										        <![CDATA[
+										              {"type":"builtin","rule":/^\+?[1-9]\d*$/,"msg":"请输入非零数字"}
+										        ]]>
+										    	</CheckRule>
+										    	</CheckRules>
+								</BillUIWidget>
+							</BillUIColPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="sfqyjhwgl" 
+									DataTableKey="bocizhixingweihu" Caption="启用集货位管理" EnabledWhen="True"
+									WidgetType="BillUISelect" DataTableColumn="sfqyjhwgl" Src="bill/selectSrc?type=bool">
+									<Init Type="javascript/angular" Runat="client">
+		                                        <![CDATA[
+														this.loadDataSource();
+												]]>
+											</Init>
+								</BillUIWidget>
+							</BillUIColPanel>
+
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="tyjhw"
+									DataTableKey="bocizhixingweihu" Caption="允许同一集货位" EnabledWhen="True" Required="Required"
+									Icon="glyphicon glyphicon-send" WidgetType="BillUISelect" Src="bill/selectSrc?type=wmsyxtyjhw"
+									DataTableColumn="tyjhw">
+										<Init Type="javascript/angular" Runat="client">
+		                                        <![CDATA[
+														this.loadDataSource();
+												]]>
+											</Init>
+								</BillUIWidget>
+							</BillUIColPanel>
+						</BillUIRowPanel>
+						<BillUIRowPanel>
+							<BillUIColPanel Width="12">
+									
+										<BillUIWidget Key="jhwpplx"
+									 DataTableKey="bocizhixingweihu" Required="required"
+									Caption="分组条件" EnabledWhen="True" WidgetType="BillUICheckbox"
+									DataTableColumn="jhwpplx" S="checkboxWrap">
+									<Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                          this.loadDataSource("bill/selectSrc?type=bocijihuaweihu");
+                                 	]]>
+									</Init>
+									<Triggers>
+										<Trigger Type="javascript/angular" Runat="client">
+											<![CDATA[
+											setHeadValue("jhwpplx",this.selection.join(","));
+	                            		]]>
+										</Trigger>
+									</Triggers>
+								</BillUIWidget>
+							</BillUIColPanel>
+						</BillUIRowPanel>
+					</BillUIGridPanel>
+				</BillUIPanel>
+				
+				<BillUIPanel Layout="flex" Key="bills_tools" Caption="任务打包规则"
+					S="panel panel-default publicPanel">
+					<BillUIGridPanel Device="sm" key="boxtool">
+							<BillUIRowPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="clbzxtj" Required="Required"
+									DataTableKey="bocizhixingweihu" Caption="拆零标准箱体积(cm³)" 
+									WidgetType="BillUIString" DataTableColumn="clbzxtj">
+									 <CheckRules> 
+									 <CheckRule>
+										        <![CDATA[
+										              {"type":"builtin","rule":/^\+?[1-9]\d*$/,"msg":"请输入非零数字"}
+										        ]]>
+										    	</CheckRule>
+										    	</CheckRules>
+								</BillUIWidget>
+							</BillUIColPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="zjbzxtj" Required="Required"
+									DataTableKey="bocizhixingweihu" Caption="整件标准箱体积(cm³)" 
+									WidgetType="BillUIString" DataTableColumn="zjbzxtj">
+									 <CheckRules> 
+									 <CheckRule>
+										        <![CDATA[
+										              {"type":"builtin","rule":/^\+?[0-9]\d*$/,"msg":"请输入数字"}
+										        ]]>
+										    	</CheckRule>
+										    	</CheckRules>
+								</BillUIWidget>
+							</BillUIColPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="dpdcsqsx" Required="Required"
+									DataTableKey="bocizhixingweihu" Caption="单品单次索取上限(件)" 
+									WidgetType="BillUIString" DataTableColumn="dpdcsqsx">
+									 <CheckRules> 
+									 <CheckRule>
+										        <![CDATA[
+										              {"type":"builtin","rule":/^\+?[0-9]\d*$/,"msg":"请输入数字"}
+										        ]]>
+										    	</CheckRule>
+										    	</CheckRules>
+								</BillUIWidget>
+							</BillUIColPanel>
+							<BillUIColPanel Width="0"  >
+								<BillUIWidget Key="cangkuID"  
+									Caption="" DataTableKey="bocizhixingweihu" DataTableColumn="cangkuID"
+									Disable="true" EnabledWhen="True" WidgetType="BillUIString" ViewSize="lg" >
+                                     <Init Type="javascript/angular" Runat="client">
+                                            <![CDATA[
+                                            	this.setHide();
+	                                        ]]>
+                                        </Init>         
+								</BillUIWidget>
+							</BillUIColPanel>
+						</BillUIRowPanel>
+					</BillUIGridPanel>
+				</BillUIPanel>
+			</BillUIPanel>
+		</BillBodyMeta>
+	</BillBody>
+
+	<BillHeadMeta>
+
+		<BillEventCollection>
+				<Event Type="PreSave" Processor="com.xyy.wms.basicData.biz.WaveExePreEvent" />
+		</BillEventCollection>
+
+	</BillHeadMeta>
+</BillFormMeta>
+

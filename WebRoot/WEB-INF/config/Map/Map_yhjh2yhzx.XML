@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Map Key="yhjh2yhzx" Caption="养护计划-养护执行"
+    SrcDataObjectKey="yanghujihua" 
+    SrcDataType="Bill"  
+    TgtDataObjectKey="yanghuzhixing" 
+    TgtDataType="Bill"  
+    MaxPushValue="100"
+     MinPushValue="0"
+     TgtSave="false">
+    <TargetTableCollection>
+   <TargetTable Key="yanghuzhixing" SrcTableKey="yanghujihua">
+            <Field FieldKey="yanghuleixing">
+                <![CDATA[
+                         =yanghuleixing
+                  ]]>
+            </Field>
+            
+        </TargetTable>
+    <TargetTable Key="yanghuzhixing_details" SrcTableKey="yanghujihua_details">
+            <Field FieldKey="goodsid">
+                <![CDATA[
+                         =goodsid
+                  ]]>
+            </Field>
+            <Field FieldKey="shangpinbianhao">
+                <![CDATA[
+                     =shangpinbianhao
+              ]]>
+            </Field>
+            <Field FieldKey="shangpinmingcheng">
+                <![CDATA[
+                     =shangpinmingcheng
+              ]]>
+            </Field>
+			<Field FieldKey="danwei">
+                <![CDATA[
+                     =danwei
+              ]]>
+            </Field>
+			<Field FieldKey="guige">
+                <![CDATA[
+                     =guige
+              ]]>
+            </Field>
+            <Field FieldKey="baozhuangshuliang">
+                <![CDATA[
+                     =baozhuangshuliang
+              ]]>
+            </Field>
+            <Field FieldKey="pizhunwenhao">
+                <![CDATA[
+                     =pizhunwenhao
+              ]]>
+            </Field>
+            <Field FieldKey="shengchanchangjia">
+                <![CDATA[
+                     =shengchanchangjia
+              ]]>
+            </Field>
+            <Field FieldKey="chandi">
+                <![CDATA[
+                     =chandi
+              ]]>
+            </Field>
+            <Field FieldKey="jixing">
+                <![CDATA[
+                     =jixing
+              ]]>
+            </Field>
+            <Field FieldKey="pihao">
+                <![CDATA[
+                     =pihao
+              ]]>
+            </Field>
+            <Field FieldKey="chandi">
+                <![CDATA[
+                     =chandi
+              ]]>
+            </Field>
+            <Field FieldKey="shengchanriqi">
+                <![CDATA[
+                     =shengchanriqi
+              ]]>
+            </Field>
+            <Field FieldKey="youxiaoqizhi">
+                <![CDATA[
+                     =youxiaoqizhi
+              ]]>
+            </Field>
+            <Field FieldKey="shuliang">
+                <![CDATA[
+                     =shuliang
+              ]]>
+            </Field>
+        </TargetTable>
+    </TargetTableCollection>
+    <FeedBackCollection>
+        <FeedbackObject TableKey="yanghuzhixing" BillStatus="20">
+            <Condition>               
+            </Condition>
+            <FeedbackTableCollection>
+            <FeedbackTable Key="shifouzhixing" TableKey="xyy_erp_bill_yanghujihua">
+                <FeedbackField FieldKey="shifouzhixing"  FeedFieldKey=""  OpSign="Assign">
+                    <![CDATA[
+                    	1
+                    ]]>
+                </FeedbackField>
+            </FeedbackTable>
+            </FeedbackTableCollection>
+           </FeedbackObject>
+    </FeedBackCollection>
+    
+    
+
+</Map>

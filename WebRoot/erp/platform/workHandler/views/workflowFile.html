@@ -1,0 +1,49 @@
+<form id="uploadForm" onsubmit="return false">
+    <input type="hidden" value="${pid!}" name="pid">
+    <input type="hidden" value="${tid!}" name="tid">
+    <input type="hidden" value="${userId!}" name="userId">
+    <table class="table table-bordered">
+        <tr>
+            <th>选择附件</th>
+            <th>操作</th>
+        </tr>
+        <tr>
+            <td>
+            	<input type="file" id="attach" name="attach" multiple="true" accept="image/*,.xls,.xlsx,.doc,.docx,.ppt,.pptx,.txt,.pdf,.wps,.et,.dps" onchange="upload();">
+               	<span style="display: none; color:red" id="error"></span>
+            </td>
+            <td>
+                <button class="btn btn-sm btn-success" id="attachBtn" onclick="loadFile()" disabled>一键上传</button>
+            </td>
+        </tr>
+    </table>
+</form>
+<div>
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a aria-controls="processFile" role="tab" data-toggle="tab">流程附件</a></li>
+    </ul>
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="processFile">
+            <div class="panel  panel-default fileList">
+                <div class="panel-body">
+                    <ul class="attachList">
+                        <#list  attachList as attach>
+                            <li>
+                                <a href="${attach.url!}" title="${attach.name!}" target="_blank">
+                                    <img src="${attach.url!}" alt="${attach.name!}"/>
+                                </a>
+                                <#if userId==attach.userId><span class="del" onclick="del(${attach.id!})">&times;</span></#if>
+                            </li>
+                        </#list>
+                    </ul>
+                    <#if attachList?size=0>
+                        <div class="noData attachList">暂无流程附件</div>
+                    </#if>
+                </div>
+
+            </div>
+
+    	</div>
+    </div>
+</div>
+<script src="/lib/js/fileupload.js"></script>

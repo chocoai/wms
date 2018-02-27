@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BillEdge Name="养护计划单-养护检查单" Key="yanghujihuadan_yanghujianchadan_yhjhd2" Version="1.0.0" Code="yhjhd2" SourceBillKey="yanghujihuadan" TargetBillKey="yanghujianchadan" Caption="养护计划单-养护检查单">
+	<BillEdgeController>
+		<AutoSaveController CtrType="NoSave" />
+		<DisplayController CtrType="NoGo" />
+		<MultiConvertCtrl CtrType="AllowAndWarning" />
+		<BackWriteController CtrType="Save" />
+	</BillEdgeController>
+	<Description />
+	<BillTransformEdge>
+		<BillHeadTransformEdge>
+			<TargetBillField Key="danjubianhao" Category="property" />
+			<TargetBillField Key="yanghuriqi" Category="property" />
+			<TargetBillField Key="yanghuleixing" Category="property" />
+			<TargetBillField Key="yanghubeizhu" Category="property" />
+		</BillHeadTransformEdge>
+		<BillBodyTransformEdge>
+			<BillBodyEdge targetDltKey="yanghujianchadan_details">
+				<BillDtlEdge sourceDltKey="yanghujihuadan_details">
+					<TargetBillField Key="shangpinbianhao" Category="property"><![CDATA[=yanghujihuadan_details.shangpinbianhao]]></TargetBillField>
+					<TargetBillField Key="shangpinmingcheng" Category="property"><![CDATA[=yanghujihuadan_details.shangpinmingcheng]]></TargetBillField>
+					<TargetBillField Key="yanghushuliang" Category="property" />
+					<TargetBillField Key="yhbhgsl" Category="property" />
+					<TargetBillField Key="guige" Category="property"><![CDATA[=yanghujihuadan_details.shangpinguige]]></TargetBillField>
+					<TargetBillField Key="baozhuangshuliang" Category="property" />
+					<TargetBillField Key="danwei" Category="property"><![CDATA[=yanghujihuadan_details.danwei]]></TargetBillField>
+					<TargetBillField Key="kucunshuliang" Category="property" />
+					<TargetBillField Key="shengchanchangjia" Category="property"><![CDATA[=yanghujihuadan_details.shengchanchangjia]]></TargetBillField>
+					<TargetBillField Key="xianshihuowei" Category="property" />
+					<TargetBillField Key="pihao" Category="property"><![CDATA[=yanghujihuadan_details.pihao]]></TargetBillField>
+					<TargetBillField Key="shengchanriqi" Category="property"><![CDATA[=yanghujihuadan_details.shengchanriqi]]></TargetBillField>
+					<TargetBillField Key="youxiaoqizhi" Category="property"><![CDATA[=yanghujihuadan_details.youxiaoqizhi]]></TargetBillField>
+					<TargetBillField Key="yanghujielun" Category="property" />
+					<TargetBillField Key="fanduo" Category="property" />
+					<TargetBillField Key="waiguan" Category="property" />
+					<TargetBillField Key="chushi" Category="property" />
+					<TargetBillField Key="jiashi" Category="property" />
+					<TargetBillField Key="shengwen" Category="property" />
+					<TargetBillField Key="jiangwen" Category="property" />
+					<TargetBillField Key="tongfeng" Category="property" />
+					<TargetBillField Key="chuchen" Category="property" />
+					<TargetBillField Key="chuliyijian" Category="property" />
+					<TargetBillField Key="yhscrq" Category="property"><![CDATA[=yanghujihuadan_details.yanghuriqi]]></TargetBillField>
+					<TargetBillField Key="beizhu" Category="property" />
+				</BillDtlEdge>
+			</BillBodyEdge>
+		</BillBodyTransformEdge>
+	</BillTransformEdge>
+	<BillGroupJoinEdge>
+		<BillHeadGroupJoinEdge>
+			<GroupFileds GroupType="field" />
+			<JoinFileds />
+		</BillHeadGroupJoinEdge>
+		<BillBodyGroupJoinEdge>
+			<TargetSubBillGroupJoinEdges>
+				<TargetSubBillGroupJoinEdge Key="yanghujianchadan_details">
+					<GroupFileds GroupType="field" />
+					<JoinFileds />
+				</TargetSubBillGroupJoinEdge>
+			</TargetSubBillGroupJoinEdges>
+		</BillBodyGroupJoinEdge>
+	</BillGroupJoinEdge>
+	<BillBackWriteEdge>
+		<BillHeadBackWriteEdge />
+		<BillBodyBackWriteEdge />
+	</BillBackWriteEdge>
+	<DataFilterEdge>
+		<SourceBillHeadFilterEdge>
+			<Filter />
+		</SourceBillHeadFilterEdge>
+		<SourceBillBodyFilterEdge />
+	</DataFilterEdge>
+	<RuleFilterEdge>
+		<RuleHeadFilterEdge>
+			<Filter />
+		</RuleHeadFilterEdge>
+		<RuleBodyFilterEdge />
+	</RuleFilterEdge>
+	<BillEdgeHook />
+</BillEdge>
+

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+	<DataTable Key="bcgzwh" Caption="波次计划维护叙事薄" DefaultFilter=""
+		Pagging="10"
+		TableName="SQLQuery::select * | from xyy_erp_bill_bcgzwh where 1=1 and status != -1 @guizebianhao    ORDER BY createTime DESC"
+		DataSource="" Head="false">
+		<Parameters>
+			<Parameter Key="guizebianhao" Type="String">
+				<Where>
+                <![CDATA[
+					m.if(guizebianhao==null | guizebianhao=="" ," "," and guizebianhao like '%"+guizebianhao+"%'")
+	            ]]>
+				</Where>
+			</Parameter>
+		</Parameters>
+	</DataTable>
+</DataSet>

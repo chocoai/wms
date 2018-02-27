@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="queryzhudongbuhuo" Caption="" DefaultFilter="" Pagging="5" PermissionType="CommType"
+               TableName="SQLQuery::
+					SELECT
+					   *
+					   |
+					FROM
+						xyy_wms_bill_zhudongbuhuo
+					 where zhuangtai=28  @kaishiriqi @jiezhiriqi @kufang @danjubianhao @shangpinmingcheng @zhidanren @beizhu @orgId
+					  ORDER BY createTime DESC	 "
+               DataSource="" Head="false">
+        <Parameters>
+            <Parameter Key="danjubianhao" Type="String">
+                <Where>
+                    <![CDATA[
+							m.if(danjubianhao==null | danjubianhao=="" ," "," and danjubianhao like '%"+danjubianhao+"%'")
+			            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="kaishiriqi" Type="Datetime">
+                <Where>
+                    <![CDATA[
+							m.if(kaishiriqi==null | kaishiriqi=="" ,""," and DATE_FORMAT(zhidanriqi,'%Y-%m-%d') >= DATE_FORMAT('"+kaishiriqi+"','%Y-%m-%d')")
+			            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="jiezhiriqi" Type="Datetime">
+                <Where>
+                    <![CDATA[
+							m.if(jiezhiriqi==null | jiezhiriqi=="" ,""," and DATE_FORMAT(zhidanriqi,'%Y-%m-%d') <= DATE_FORMAT('"+jiezhiriqi+"','%Y-%m-%d')")
+			            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="kufang" Type="String">
+                <Where>
+                    <![CDATA[
+							m.if(kufang==null | kufang=="" ," "," and kufang like '%"+kufang+"%'")
+			            ]]>
+                </Where>
+            </Parameter>
+
+            <Parameter Key="shangpinmingcheng" Type="String">
+                <Where>
+                    <![CDATA[
+							m.if(shangpinmingcheng==null | shangpinmingcheng=="" ," "," and shangpinmingcheng like '%"+shangpinmingcheng+"%'")
+			            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="zhidanren" Type="String">
+                <Where>
+                    <![CDATA[
+							m.if(zhidanren==null | zhidanren=="" ," "," and zhidanren like '%"+zhidanren+"%'")
+			            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="beizhu" Type="String">
+                <Where>
+                    <![CDATA[
+							m.if(beizhu==null | beizhu=="" ," "," and beizhu like '%"+beizhu+"%'")
+			            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="orgId" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(orgId==null | orgId=="" ,""," and orgId = '"+orgId+"'")
+	            ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+    <DataTable Key="queryzhudongbuhuo_details" Caption="采购 订单明细视图" DefaultFilter="" PermissionType="CommType"
+               Pagging="10"
+               TableName="SQLQuery::select * | from xyy_wms_bill_zhudongbuhuo_details where 1!=1" DataSource=""
+               Head="false" Singleton="" OrderBy="">
+    </DataTable>
+</DataSet>

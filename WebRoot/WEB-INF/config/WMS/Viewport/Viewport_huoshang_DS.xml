@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="huoshang_view" Caption="货商名称" DefaultFilter="" Pagging="10"
+        TableName="SQLQuery::select * | from xyy_erp_dic_gongyingshangjibenxinxi where 1 = 1 @tingcai @status @shifouhuodong @gys @dongjie order by createTime desc"  PermissionType="CommType"  DataSource="" Head="false" Singleton="" OrderBy="">
+        <Parameters>
+            <Parameter Key="tingcai" Type="Integer">
+                <Where>
+                    <![CDATA[
+					m.if(tingcai==null ,""," and tingcai = "+tingcai+"")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="gys" Type="String">
+                <Where>
+                <![CDATA[
+                    m.if(gys==null | gys=="" ,""," and mixCondition like '%"+gys+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="dongjie" Type="Integer">
+                <Where>
+                    <![CDATA[
+					m.if(dongjie==null ,""," and dongjie = "+dongjie+"")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="shifouhuodong" Type="Integer">
+                <Where>
+                    <![CDATA[
+					m.if(shifouhuodong==null ,""," and shifouhuodong = "+shifouhuodong+"")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="status" Type="Integer">
+                <Where>
+                    <![CDATA[
+					m.if(status==null ,""," and status = "+status+"")
+	            ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

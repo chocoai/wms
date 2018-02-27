@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="xiaoshoushoukuanduizhang_view" Caption="销售收款" DefaultFilter="" PermissionType="CommType"  Pagging="10"
+        TableName="SQLQuery::  select * |from xyy_erp_bill_xiaoshoushoukuanduizhangdan a left join xyy_erp_bill_xiaoshoushoukuanduizhangdan_details b on a.BillID=b.BillID 
+        where a.status = 20 and b.sffkyy=0 and b.jiesuanzhuangtai=0 @kehubianhao @kehumingcheng @kaishishijian @jiesushijian order by b.createTime asc "  DataSource="" Head="false" Singleton="" OrderBy="">
+        <Parameters>
+        	<Parameter Key="kehubianhao" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(kehubianhao==null | kehubianhao=="",""," and b.kehubianhao = '"+kehubianhao+"'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="kehumingcheng" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(kehumingcheng==null | kehumingcheng=="",""," and b.kehumingcheng = '"+kehumingcheng+"'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="kaishishijian" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(kaishishijian==null | kaishishijian=="" ,""," and DATE_FORMAT(b.createTime,'%Y-%m-%d') >= DATE_FORMAT('"+kaishishijian+"','%Y-%m-%d')")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="jiesushijian" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(jiesushijian==null | jiesushijian=="" ,""," and DATE_FORMAT(b.createTime,'%Y-%m-%d') <= DATE_FORMAT('"+jiesushijian+"','%Y-%m-%d')")
+	            ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="caigoufukuanchonghong" BillType="Bill" Caption="采购付款冲红" DefaultFilter="" TableName="Table::xyy_erp_bill_caigoufukuanchonghong" DataSource="" Head="true">
+        <!--
+             单据编号	varchar	规则：CGFKCH+年月日时分秒+3位随机码, 例如：CGFKCH20160426112240764
+        -->
+        <Field FieldKey="danjubianhao" FieldName="单据编号" FieldType="Varchar" Tramsfor="false" Bound="50" DefaultValue="='CGFKCH'+o.orderNo()" Comment="单据编号"/>
+        <Field FieldKey="kaipiaoriqi" FieldName="开票日期" FieldType="Date" Tramsfor="false" Comment="开票日期"/>
+        <Field FieldKey="kaipiaoyuan" FieldName="开票员" FieldType="Varchar" Comment="开票员"/>
+        <Field FieldKey="yuandanbianhao" FieldName="原单编号" FieldType="Varchar" Comment="原单编号"/>
+        <Field FieldKey="gysbh" FieldName="供应商编号" FieldType="Varchar" Comment="供应商编号"/>
+        <Field FieldKey="gysmc" FieldName="供应商名称" FieldType="Varchar" Comment="供应商名称"/> 
+        <Field FieldKey="yewuyuan" FieldName="业务员" FieldType="Varchar" Tramsfor="false" Comment="业务员"/>
+        <Field FieldKey="jszje" FieldName="结算总金额" FieldType="Decimal" DefaultValue="0.0000" Bound="14,2"  Comment="结算总金额" />
+       	<Field FieldKey="beizhu" FieldName="备注" FieldType="Varchar" Tramsfor="false" Comment="备注"/>
+    </DataTable>
+    
+    <DataTable Key="caigoufukuanchonghong_details" BillType="Bill"  Caption="付款明细" DefaultFilter="BillID" Pagging="5" TableName="Table::xyy_erp_bill_caigoufukuanchonghong_details" DataSource="" Head="false">
+        <Field FieldKey="zffsbh" FieldName="支付方式编号" FieldType="Varchar"  Comment="支付方式编号"/>
+        <Field FieldKey="zffsmc" FieldName="支付方式名称" FieldType="Varchar"  Comment="支付方式名称"/>
+        <Field FieldKey="jiesuanjine" FieldName="结算金额" FieldType="Decimal" DefaultValue="0.0000" Bound="14,2"  Comment="结算金额" />
+        <Field FieldKey="beizhu" FieldName="备注" FieldType="Varchar"  Comment="备注"/>
+    </DataTable> 
+
+</DataSet>

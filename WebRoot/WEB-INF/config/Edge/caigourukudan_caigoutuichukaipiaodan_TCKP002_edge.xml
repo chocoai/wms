@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BillEdge Name="采购入库单-采购退出开票单" Key="caigourukudan_caigoutuichukaipiaodan_TCKP002" Version="1.0.0" Code="TCKP002" Caption="采购入库单-采购退出开票单" SourceBillKey="caigourukudan" TargetBillKey="caigoutuichukaipiaodan">
+	<Description />
+	<DataFilterEdge>
+		<SourceBillHeadFilterEdge>
+			<Filter />
+		</SourceBillHeadFilterEdge>
+		<SourceBillBodyFilterEdge />
+	</DataFilterEdge>
+	<RuleFilterEdge>
+		<RuleHeadFilterEdge>
+			<Filter />
+		</RuleHeadFilterEdge>
+		<RuleBodyFilterEdge />
+	</RuleFilterEdge>
+	<BillEdgeController>
+		<MultiConvertCtrl CtrType="AllowAndWarning" />
+		<AutoSaveController CtrType="NoSave" />
+		<DisplayController CtrType="NoGo" />
+		<BackWriteController CtrType="Save" />
+	</BillEdgeController>
+	<BillTransformEdge>
+		<BillHeadTransformEdge>
+			<TargetBillField Key="caigouyuan" Category="property" />
+			<TargetBillField Key="gysbh" Category="property" />
+			<TargetBillField Key="gysmc" Category="property" />
+			<TargetBillField Key="lianxiren" Category="property" />
+			<TargetBillField Key="lxrdh" Category="property" />
+			<TargetBillField Key="shouhuodizhi" Category="property" />
+			<TargetBillField Key="kaipiaoriqi" Category="property" />
+			<TargetBillField Key="kaipiaoyuan" Category="property" />
+		</BillHeadTransformEdge>
+		<BillBodyTransformEdge>
+			<BillBodyEdge targetDltKey="caigoutuichukaipiaodan_details">
+				<BillDtlEdge sourceDltKey="caigourukudan_details">
+					<TargetBillField Key="shangpinbianhao" Category="property"><![CDATA[=caigourukudan_details.shangpinbianhao]]></TargetBillField>
+					<TargetBillField Key="shangpinmingcheng" Category="property"><![CDATA[=caigourukudan_details.shangpinmingcheng]]></TargetBillField>
+					<TargetBillField Key="guige" Category="property"><![CDATA[=caigourukudan_details.guige]]></TargetBillField>
+					<TargetBillField Key="danwei" Category="property"><![CDATA[=caigourukudan_details.danwei]]></TargetBillField>
+					<TargetBillField Key="shengchanchangjia" Category="property" ><![CDATA[=caigourukudan_details.shengchanchangjia]]></TargetBillField>
+					<TargetBillField Key="kufang" Category="property" ><![CDATA[=caigourukudan_details.kufang]]></TargetBillField>
+					<TargetBillField Key="pihao" Category="property" ><![CDATA[=caigourukudan_details.pihao]]></TargetBillField>
+					<TargetBillField Key="shengchanriqi" Category="property" ><![CDATA[=caigourukudan_details.shengchanriqi]]></TargetBillField>
+					<TargetBillField Key="youxiaoqizhi" Category="property" ><![CDATA[=caigourukudan_details.youxiaoqizhi]]></TargetBillField>
+					<TargetBillField Key="shuliang" Category="property" ><![CDATA[=caigourukudan_details.shuliang]]></TargetBillField>
+					<TargetBillField Key="yuandanshuliang" Category="property" />
+					<TargetBillField Key="hanshuijia" Category="property" />
+					<TargetBillField Key="hanshuijine" Category="property" />
+					<TargetBillField Key="shuilv" Category="property" ><![CDATA[=caigourukudan_details.shuilv]]></TargetBillField>
+					<TargetBillField Key="koulv" Category="property" ><![CDATA[=caigourukudan_details.koulv]]></TargetBillField>
+					<TargetBillField Key="pizhunwenhao" Category="property" ><![CDATA[=caigourukudan_details.pizhunwenhao]]></TargetBillField>
+					<TargetBillField Key="chandi" Category="property" ><![CDATA[=caigourukudan_details.chandi]]></TargetBillField>
+					<TargetBillField Key="beizhu" Category="property" />
+				</BillDtlEdge>
+			</BillBodyEdge>
+		</BillBodyTransformEdge>
+	</BillTransformEdge>
+	<BillGroupJoinEdge>
+		<BillHeadGroupJoinEdge>
+			<GroupFileds GroupType="field" />
+			<JoinFileds />
+		</BillHeadGroupJoinEdge>
+		<BillBodyGroupJoinEdge>
+			<TargetSubBillGroupJoinEdges>
+				<TargetSubBillGroupJoinEdge Key="caigoutuichukaipiaodan_details">
+					<GroupFileds GroupType="field" />
+					<JoinFileds />
+				</TargetSubBillGroupJoinEdge>
+			</TargetSubBillGroupJoinEdges>
+		</BillBodyGroupJoinEdge>
+	</BillGroupJoinEdge>
+	<BillBackWriteEdge>
+		<BillHeadBackWriteEdge />
+		<BillBodyBackWriteEdge />
+	</BillBackWriteEdge>
+	<BillEdgeHook />
+</BillEdge>
+

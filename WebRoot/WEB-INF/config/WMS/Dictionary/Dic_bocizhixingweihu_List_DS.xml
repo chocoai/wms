@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="bocizhixingweihu" Caption="波次执行维护叙事薄" DefaultFilter="" Pagging="10"
+               TableName="SQLQuery::select t.*,t1.cangkumingchen ckmc | from xyy_wms_dic_bocizhixingweihu t left join xyy_wms_dic_cangkuziliao t1 on t.cangkuID=t1.ID where 1=1 and t.status != -1 @guizebianhao ORDER BY t.createTime DESC" DataSource="" Head="false">
+        <Parameters> 
+            <Parameter Key="guizebianhao" Type="String">
+                <Where>
+                <![CDATA[
+					m.if(guizebianhao==null | guizebianhao=="" ," "," and t.guizebianhao like '%"+guizebianhao+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

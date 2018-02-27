@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="spphhwkc" Caption="商品批号货位库存叙事薄" DefaultFilter="" PermissionType="CommType" Pagging="10"
+               TableName="SQLQuery::
+        SELECT
+        DISTINCT(h.huoweibianhao),
+        c.cangkumingchen,
+        g.shangpinbianhao,
+        g.shangpinmingcheng,
+        g.guige,
+        g.danwei,
+        g.dbzsl,
+        g.pizhunwenhao,
+        g.shengchanchangjia,
+        k.kuqumingcheng,
+        s.kucunshuliang AS shuliang,
+        s.zhiliangzhuangtai,
+        s.rowID,
+        p.pihao,
+        p.shengchanriqi,
+        p.youxiaoqizhi,
+        (s.kucunshuliang-s.kucunshuliang%g.dbzsl)/g.dbzsl AS kucunjianshu,
+        s.kucunshuliang%g.dbzsl AS kclss,
+        v.a as rukuyuzhan,
+        v.b as chukuyukou,
+        v.c as buruyuzhan,
+        v.d as buchuyukou,
+        v.e as yiruyuzhan,
+        v.f as yichuyukou,
+        v.g as yujisunyi
+        |
+        FROM
+        xyy_wms_bill_shangpinpihaohuoweikucun s
+        left JOIN
+        view_kucunyuzhanyukou v
+        on v.goodsid1=s.shangpinId and v.pihaoId1=s.pihaoId and v.huoweiId1=s.huoweiId and v.orgId1=s.orgId
+        inner JOIN xyy_wms_dic_huoweiziliaoweihu h on s.huoweiId=h.ID and h.orgId=s.orgId
+        inner JOIN xyy_wms_dic_kuqujibenxinxi k on h.kuquId =k.ID and h.orgId=k.orgId
+        inner JOIN xyy_wms_dic_cangkuziliao c ON k.cangkuID = c.ID and c.orgId=k.orgId
+        inner JOIN xyy_wms_dic_shangpinziliao g ON s.shangpinId = g.goodsid and s.orgId=g.orgId
+        inner JOIN xyy_wms_dic_shangpinpihao p ON s.pihaoId=p.pihaoId and s.orgId=p.orgId
+        WHERE
+        1=1 @shangpinbianhao @shangpinmingcheng @zhujima @cangkumingchen @huoweibianhao @kuqumingcheng @orgId" DataSource="" Head="false">
+        <Parameters>
+            <Parameter Key="shangpinbianhao" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(shangpinbianhao==null | shangpinbianhao=="" ,""," and shangpinbianhao like '%"+shangpinbianhao+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="orgId" Type="String" >
+                <Where>
+                    <![CDATA[
+							m.if(orgId==null | danjubianhao=="" ," "," and s.orgId like '%"+orgId+"%'")
+			            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="shangpinmingcheng" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(shangpinmingcheng==null | shangpinmingcheng=="" ,""," and shangpinmingcheng like '%"+shangpinmingcheng+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="orgId" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(orgId==null | orgId=="" ,""," and o.orgId = '"+orgId+"'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="zhujima" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(zhujima==null | zhujima=="" ,""," and g.zhujima like '%"+zhujima+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="cangkumingchen" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(cangkumingcheng==null | cangkumingcheng=="" ,""," and c.cangkumingchen = '"+cangkumingcheng+"'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="huoweibianhao" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(huoweibianhao==null | huoweibianhao=="" ,""," and h.huoweibianhao = '"+huoweibianhao+"'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="kuqumingcheng" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(kuqumingcheng==null | kuqumingcheng=="" ,""," and k.kuqumingcheng = '"+kuqumingcheng+"'")
+	            ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

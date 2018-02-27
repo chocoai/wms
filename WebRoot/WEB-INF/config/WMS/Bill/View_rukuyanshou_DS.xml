@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+	<DataTable Key="rukuyanshou" Caption="入库验收叙事薄" DefaultFilter=""
+		Pagging="10"
+		TableName="SQLQuery::select distinct a.* | from xyy_wms_bill_rukuyanshou a,xyy_wms_bill_rukuyanshou_details b where 1 = 1 and a.billid = b.billid @shangpinmingcheng @dingdanbianhao @dingdanleixing @yanshouzhuangtai @danweimingcheng @danweibianhao order by a.createTime desc "
+		DataSource="" Head="false">
+		<Parameters>
+			<Parameter Key="dingdanbianhao" Type="String">
+				<Where>
+                <![CDATA[
+					m.if(dingdanbianhao==null | dingdanbianhao=="" ,""," and a.dingdanbianhao like '%"+dingdanbianhao+"%'")
+	            ]]>
+				</Where>
+			</Parameter>
+			<Parameter Key="dingdanleixing" Type="String">
+				<Where>
+                <![CDATA[
+					m.if(dingdanleixing==null | dingdanleixing=="" ,""," and a.dingdanleixing like '%"+dingdanleixing+"%'")
+                ]]>
+				</Where>
+			</Parameter>
+			<Parameter Key="yanshouzhuangtai" Type="Integer">
+				<Where>
+                <![CDATA[
+                	m.if(yanshouzhuangtai==null," "," and a.yanshouzhuangtai="+yanshouzhuangtai+"")
+				]]>
+				</Where>
+			</Parameter>
+			<Parameter Key="danweimingcheng" Type="String">
+				<Where>
+                <![CDATA[
+					m.if(danweimingcheng==null | danweimingcheng=="" ,""," and danweimingcheng like '%"+danweimingcheng+"%'")
+                ]]>
+				</Where>
+			</Parameter>
+			<Parameter Key="danweibianhao" Type="String">
+				<Where>
+                <![CDATA[
+					m.if(danweibianhao==null | danweibianhao=="" ,""," and danweibianhao like '%"+danweibianhao+"%'")
+                ]]>
+				</Where>
+			</Parameter>
+			<Parameter Key="shangpinmingcheng" Type="String">
+				<Where>
+                <![CDATA[
+					m.if(shangpinmingcheng==null | shangpinmingcheng=="" ,""," and shangpinmingcheng like '%"+shangpinmingcheng+"%'")
+                ]]>
+				</Where>
+			</Parameter>
+		</Parameters>
+	</DataTable>
+</DataSet>

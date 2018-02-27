@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+	<DataTable Key="pandianjihua" Caption="盘点计划单" DefaultFilter=""
+		Pagging="10"
+		TableName="SQLQuery::select * | from xyy_wms_bill_pandianjihua where 1=1 @danjubianhao @zhidanriqi  @zhidanren 
+               @kaishiriqi @cangkumingcheng  @xiangdao @jiezhiriqi  ORDER BY createTime DESC"
+		DataSource="" Head="false">
+		<Parameters>
+			<Parameter Key="zhidanren" Type="String">
+				<Where>
+                <![CDATA[
+					m.if(zhidanren==null | zhidanren=="" ," "," and zhidanren like '%"+zhidanren+"%'")
+	            ]]>
+				</Where>
+			</Parameter>
+			<Parameter Key="danjubianhao" Type="String">
+				<Where>
+                <![CDATA[
+					m.if(danjubianhao==null | danjubianhao=="" ," "," and danjubianhao like '%"+danjubianhao+"%'")
+	            ]]>
+				</Where>
+			</Parameter>
+			<Parameter Key="zhidanriqi" Type="DateTime">
+				<Where>
+                <![CDATA[
+					m.if(zhidanriqi==null | zhidanriqi=="" ," "," and zhidanriqi like '%"+zhidanriqi+"%'")
+	            ]]>
+				</Where>
+			</Parameter>
+			<Parameter Key="kaishiriqi" Type="DateTime">
+				<Where>
+                <![CDATA[
+					m.if(kaishiriqi==null | kaishiriqi=="" ," "," and kaishiriqi like '%"+kaishiriqi+"%'")
+	            ]]>
+				</Where>
+			</Parameter>
+			<Parameter Key="xiangdao" Type="String">
+				<Where>
+                <![CDATA[
+					m.if(xiangdao==null | xiangdao=="" ," "," and xiangdao like '%"+xiangdao+"%'")
+	            ]]>
+				</Where>
+			</Parameter>
+			<Parameter Key="jiezhiriqi" Type="DateTime">
+				<Where>
+                <![CDATA[
+					m.if(jiezhiriqi==null | jiezhiriqi=="" ," "," and jiezhiriqi like '%"+jiezhiriqi+"%'")
+	            ]]>
+				</Where>
+			</Parameter>
+		</Parameters>
+	</DataTable>
+</DataSet>

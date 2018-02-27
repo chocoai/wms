@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Map Key="zdbhhead2bhsjhead" Caption="主动补货单上引"
+     SrcDataObjectKey="zhudongbuhuo"
+     SrcDataType="Bill"
+     TgtDataObjectKey="buhuoshangjia"
+     TgtDataType="Bill"
+     MaxPushValue="100"
+     MinPushValue="0">
+    <TargetTableCollection>
+
+        <TargetTable Key="buhuoshangjia" SrcTableKey="zhudongbuhuo">
+            <Field FieldKey="danjubianhao">
+                <![CDATA[
+                     =danjubianhao
+              ]]>
+            </Field>
+            <Field FieldKey="zhidanriqi">
+                <![CDATA[
+                     =zhidanriqi
+              ]]>
+            </Field>
+            <Field FieldKey="zhidanren">
+                <![CDATA[
+                     =zhidanren
+              ]]>
+            </Field>
+
+            <Field FieldKey="cangku">
+                <![CDATA[
+                     =kufang
+              ]]>
+            </Field>
+            <Field FieldKey="cangkubianhao">
+                <![CDATA[
+                     =cangkubianhao
+              ]]>
+            </Field>
+            <Field FieldKey="shangjiayuan">
+                <![CDATA[
+                     =zhidanren
+              ]]>
+            </Field>
+            <Field FieldKey="xiajiayuan">
+                <![CDATA[
+                     =zhidanren
+              ]]>
+            </Field>
+        </TargetTable>
+
+    </TargetTableCollection>
+    <FeedBackCollection>
+        <FeedbackObject TableKey="buhuoshangjia" BillStatus="20">
+            <FeedbackTableCollection>
+               <!-- <FeedbackTable Key="tempzhudongbuhuo" TableKey="xyy_wms_bill_zhudongbuhuo">
+                    <FeedbackField FieldKey="zhuangtai" FeedFieldKey="" OpSign="Assign">
+                        <![CDATA[
+	                		=26
+	                	]]>
+                    </FeedbackField>
+                </FeedbackTable>-->
+            </FeedbackTableCollection>
+        </FeedbackObject>
+    </FeedBackCollection>
+</Map>
+
+
+
+

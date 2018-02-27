@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="caigourukudan" Caption="采购入库单" DefaultFilter="" Pagging="5" BillType="MultiBill"
+               TableName="SQLQuery::select * | from xyy_erp_bill_caigourukudan_details  where 1 = 1
+               and BillID IN (SELECT BillID FROM xyy_erp_bill_caigourukudan WHERE `status` = 40)
+               and shifoutiqu = 0
+               and ketuishuliang > 0
+               
+                " DataSource="" Head="false">
+        <Parameters>
+
+        </Parameters>
+    </DataTable>
+</DataSet>

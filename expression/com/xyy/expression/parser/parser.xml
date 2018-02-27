@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parser>
+
+    <!-- 操作符配置 -->
+
+    <operator
+        name="+"
+        priority="100" />
+
+    <operator
+        name="-"
+        priority="100" />
+
+    <operator
+        name="*"
+        priority="105" />
+
+    <operator
+        name="/"
+        priority="105" />
+
+    <operator
+        name="%"
+        priority="105" />
+
+    <operator
+        name="&lt;"
+        priority="150" />
+    <!-- 小于 -->
+
+    <operator
+        name="&lt;="
+        priority="150" />
+    <!-- 小于等于 -->
+
+    <operator
+        name=">"
+        priority="150" />
+    <!-- 大于 -->
+
+    <operator
+        name=">="
+        priority="150" />
+    <!-- 大于等于 -->
+
+    <operator
+        name="=="
+        priority="150" />
+    <!-- 等于 -->
+
+    <operator
+        name="!="
+        priority="150" />
+    <!-- 不等于 -->
+
+    <operator
+        name="&amp;"
+        priority="130" />
+
+    <operator
+        name="|"
+        priority="130" />
+    <!-- 逻辑或 -->
+
+    <operator
+        name="!"
+        priority="140" />
+    <!-- 逻辑非 -->
+
+    <operator
+        name="like"
+        priority="90" />
+    <!-- 逻辑非 -->
+
+    <operator
+        name="("
+        priority="9" />
+
+    <operator
+        name=")"
+        priority="8" />
+    <!-- 逗号运算符，只在函数域内起作用 -->
+
+    <operator
+        name=","
+        priority="7" />
+
+</parser>

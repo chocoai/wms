@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BillEdge Name="养护计划单-养护检查单" Key="yanghujihuadan_yanghujianchadan_yhjhd-yhjcd001" Version="1.0.0" Code="yhjhd-yhjcd001" Caption="养护计划单-养护检查单" SourceBillKey="yanghujihuadan" TargetBillKey="yanghujianchadan">
+	<Description />
+	<BillEdgeController>
+		<AutoSaveController CtrType="NoSave" />
+		<DisplayController CtrType="NoGo" />
+		<MultiConvertCtrl CtrType="AllowAndWarning" />
+		<BackWriteController CtrType="Save" />
+	</BillEdgeController>
+	<BillEdgeHook />
+	<BillTransformEdge>
+		<BillHeadTransformEdge>
+			<TargetBillField Key="danjubianhao" Category="property" />
+			<TargetBillField Key="yanghuriqi" Category="property" />
+			<TargetBillField Key="yanghuleixing" Category="property" />
+			<TargetBillField Key="yanghubeizhu" Category="property" />
+		</BillHeadTransformEdge>
+		<BillBodyTransformEdge>
+			<BillBodyEdge targetDltKey="yanghujianchadan_details">
+				<BillDtlEdge sourceDltKey="">
+					<TargetBillField Key="shagnpinbianhao" Category="property" />
+					<TargetBillField Key="shangpinmingcheng" Category="property" />
+					<TargetBillField Key="yanghushuliang" Category="property" />
+					<TargetBillField Key="yhbhgsl" Category="property" />
+					<TargetBillField Key="guige" Category="property" />
+					<TargetBillField Key="baozhuangshuliang" Category="property" />
+					<TargetBillField Key="danwei" Category="property" />
+					<TargetBillField Key="kucunshuliang" Category="property" />
+					<TargetBillField Key="shengchanchangjia" Category="property" />
+					<TargetBillField Key="xianshihuowei" Category="property" />
+					<TargetBillField Key="pihao" Category="property" />
+					<TargetBillField Key="shengchanriqi" Category="property" />
+					<TargetBillField Key="youxiaoqizhi" Category="property" />
+					<TargetBillField Key="yanghujielun" Category="property" />
+					<TargetBillField Key="fanduo" Category="property" />
+					<TargetBillField Key="waiguan" Category="property" />
+					<TargetBillField Key="chushi" Category="property" />
+					<TargetBillField Key="jiashi" Category="property" />
+					<TargetBillField Key="shengwen" Category="property" />
+					<TargetBillField Key="jiangwen" Category="property" />
+					<TargetBillField Key="tongfeng" Category="property" />
+					<TargetBillField Key="chuchen" Category="property" />
+					<TargetBillField Key="chuliyijian" Category="property" />
+					<TargetBillField Key="yhscrq" Category="property" />
+					<TargetBillField Key="beizhu" Category="property" />
+				</BillDtlEdge>
+			</BillBodyEdge>
+		</BillBodyTransformEdge>
+	</BillTransformEdge>
+	<BillGroupJoinEdge>
+		<BillHeadGroupJoinEdge>
+			<GroupFileds GroupType="field" />
+			<JoinFileds />
+		</BillHeadGroupJoinEdge>
+		<BillBodyGroupJoinEdge>
+			<TargetSubBillGroupJoinEdges>
+				<TargetSubBillGroupJoinEdge>
+					<GroupFileds GroupType="field" />
+					<JoinFileds />
+				</TargetSubBillGroupJoinEdge>
+			</TargetSubBillGroupJoinEdges>
+		</BillBodyGroupJoinEdge>
+	</BillGroupJoinEdge>
+	<BillBackWriteEdge>
+		<BillHeadBackWriteEdge />
+		<BillBodyBackWriteEdge />
+	</BillBackWriteEdge>
+	<DataFilterEdge>
+		<SourceBillHeadFilterEdge>
+			<Filter />
+		</SourceBillHeadFilterEdge>
+		<SourceBillBodyFilterEdge />
+	</DataFilterEdge>
+	<RuleFilterEdge>
+		<RuleHeadFilterEdge>
+			<Filter />
+		</RuleHeadFilterEdge>
+		<RuleBodyFilterEdge />
+	</RuleFilterEdge>
+</BillEdge>
+

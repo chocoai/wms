@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="caigourukudan" Caption="采购入库单特殊上引视图" DefaultFilter="" PermissionType="CommType"  Pagging="10"
+        TableName="SQLQuery::select * | from xyy_erp_bill_caigourukudan where 1=1 and status = 20 @shifoutiqu @danjubianhao @gys "  DataSource="" Head="false" Singleton="" OrderBy="">
+        <Parameters>
+            <Parameter Key="shifoutiqu" Type="Integer">
+                <Where>
+                    <![CDATA[
+					m.if(shifoutiqu==null ,""," and shifoutiqu = "+shifoutiqu+"")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="danjubianhao" Type="String">
+                <Where>
+                <![CDATA[
+					m.if(danjubianhao==null | danjubianhao=="" ," "," and danjubianhao like '%"+danjubianhao+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="gys" Type="String" >
+                <Where>
+                <![CDATA[
+					m.if(gys==null | gys=="",""," and mixCondition like '%"+gys+"%'")
+                ]]>
+                </Where>
+            </Parameter>
+            
+        </Parameters>
+    </DataTable>
+    <DataTable Key="caigourukudan_details" Caption="采购入库单明细视图" DefaultFilter="" PermissionType="CommType"  Pagging="10"
+               TableName="SQLQuery::select * | from xyy_erp_bill_caigourukudan_details where 1!=1 @shifoutiqu"  DataSource="" Head="false" Singleton="" OrderBy="">
+        <Parameter Key="shifoutiqu" Type="Integer">
+            <Where>
+                <![CDATA[
+					m.if(shifoutiqu==null ,""," and shifoutiqu = "+shifoutiqu+"")
+	            ]]>
+            </Where>
+        </Parameter>
+    </DataTable>
+</DataSet>

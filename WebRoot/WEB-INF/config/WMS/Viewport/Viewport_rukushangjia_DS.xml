@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="rukushangjia_view" Caption="入库上架单" DefaultFilter="" PermissionType="PrivateType"  Pagging="10"
+        TableName="SQLQuery:: 
+        SELECT *
+               |
+				FROM
+					xyy_wms_bill_rukushangjiadan
+				WHERE
+					1 = 1
+			 and zhuangtai!=1
+             @dingdanbianhao
+             ORDER BY createTime DESC"  
+        
+        DataSource="" Head="false" Singleton="" OrderBy="">
+        <Parameters>
+           <Parameter Key="dingdanbianhao" Type="String"> 
+                <Where>
+                    <![CDATA[
+					m.if(dingdanbianhao==null | dingdanbianhao=="",""," and dingdanbianhao like '%"+dingdanbianhao+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+           
+        </Parameters>
+    </DataTable>
+    
+    <DataTable Key="rukushangjiadan_details1" Caption="上架单明细" DefaultFilter="" PermissionType="PrivateType"  Pagging="100"
+        TableName="SQLQuery:: 
+        SELECT *
+               |
+				FROM
+					xyy_wms_bill_rukushangjiadan_details
+				where  BillID is null
+              ORDER BY createTime DESC"  
+        
+        DataSource="" Head="false" Singleton="" OrderBy="">
+        <Parameters>
+           <Parameter Key="danjubianhao" Type="String"> 
+                <Where>
+                    <![CDATA[
+					m.if( BillID is null)
+	            ]]>
+                </Where>
+            </Parameter>
+           
+        </Parameters>
+    </DataTable>
+</DataSet>

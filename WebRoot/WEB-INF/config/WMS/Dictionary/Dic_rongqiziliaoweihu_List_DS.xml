@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="rongqiziliaoweihu" Caption="仓库资料" DefaultFilter="" Pagging="20"
+               TableName="SQLQuery::select r.*,c.cangkumingchen,c.cangkubianhao | from xyy_wms_dic_rqzlwh r left join xyy_wms_dic_cangkuziliao c on r.cangkuID=c.ID where 1=1 @cangkubianhao  @cangkumingchen @rongqibianhao @rongqileixing @shifouqiyong ORDER BY r.rongqibianhao ASC" DataSource="" Head="false">
+        <Parameters> 
+            <Parameter Key="cangkubianhao" Type="String">
+                <Where>
+                <![CDATA[
+					m.if(cangkubianhao==null | cangkubianhao=="" ," "," and c.cangkubianhao like '%"+cangkubianhao+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="cangkumingchen" Type="String" >
+                <Where>
+                <![CDATA[
+					m.if(cangkumingchen==null | cangkumingchen==" " ," "," and c.cangkumingchen like '%"+cangkumingchen+"%'")
+                ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="rongqibianhao" Type="String" >
+                <Where>
+                <![CDATA[
+					m.if(rongqibianhao==null | rongqibianhao==" " ," "," and rongqibianhao like '%"+rongqibianhao+"%'")
+                ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="rongqileixing" Type="Integer" >
+                <Where>
+                <![CDATA[
+                	m.if(rongqileixing==null," "," and rongqileixing="+rongqileixing+"")
+				]]> 
+                </Where>
+            </Parameter>
+            <Parameter Key="shifouqiyong" Type="Integer" >
+                <Where>
+                <![CDATA[
+                	m.if(shifouqiyong==null," "," and shifouqiyong="+shifouqiyong+"")
+				]]> 
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

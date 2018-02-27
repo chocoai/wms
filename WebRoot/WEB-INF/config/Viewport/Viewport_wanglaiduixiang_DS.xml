@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="wanglaiduixiang" Caption="往来对象" DefaultFilter="" Pagging="10"
+        TableName="WebService::com.xyy.bill.inf.WangLaiDuiXiangService"  
+        PermissionType="CommType"  DataSource="" Head="false">
+        <Parameters>
+            <Parameter Key="objectId" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(objectId==null | objectId=="" ," "," and objectId like '%"+objectId+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="objectName" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(objectName==null | objectName=="" ," "," and objectName like '%"+objectName+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

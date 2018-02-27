@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+	<DataTable Key="yjbgd" Caption="药检报告单" DefaultFilter=""
+		Pagging="10"
+		TableName="SQLQuery::select * | from xyy_wms_bill_yjbgd where 1=1 @shangpinbianhao @shangpinmingcheng @pihao
+                 ORDER BY createTime DESC"
+		DataSource="" Head="false">
+		<Parameters>
+			<Parameter Key="shangpinbianhao" Type="String">
+				<Where>
+                <![CDATA[
+					m.if(shangpinbianhao==null | shangpinbianhao=="" ," "," and shangpinbianhao like '%"+shangpinbianhao+"%'")
+	            ]]>
+				</Where>
+			</Parameter>
+			<Parameter Key="shangpinmingcheng" Type="String">
+				<Where>
+					<![CDATA[
+					m.if(shangpinmingcheng==null | shangpinmingcheng=="" ," "," and shangpinmingcheng like '%"+shangpinmingcheng+"%'")
+	            ]]>
+				</Where>
+			</Parameter>
+			<Parameter Key="pihao" Type="String">
+				<Where>
+					<![CDATA[
+					m.if(pihao==null | pihao=="" ," "," and pihao like '%"+pihao+"%'")
+	            ]]>
+				</Where>
+			</Parameter>
+
+		</Parameters>
+	</DataTable>
+</DataSet>

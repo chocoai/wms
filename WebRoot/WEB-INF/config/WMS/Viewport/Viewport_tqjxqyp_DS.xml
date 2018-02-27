@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="tqjxqyp_view" Caption="提取近效期药品" DefaultFilter="" PermissionType="CommType" Pagging="10"
+               TableName="SQLQuery::
+SELECT
+	a.shangpinbianhao,
+	a.shangpinmingcheng,
+	a.guige,
+	a.danwei,
+	a.dbzsl,
+	a.chandi,
+	a.jixing,
+	a.pizhunwenhao,
+	a.shengchanchangjia,
+	h.huoweibianhao,
+	t.pihao,
+	t.shengchanriqi,
+	t.youxiaoqizhi,
+	kc.kucunshuliang,
+	h.rowID
+    |
+FROM
+	xyy_wms_bill_shangpinpihaohuoweikucun kc
+LEFT JOIN xyy_wms_dic_shangpinpihao t ON kc.pihaoId = t.pihaoId and kc.orgId=t.orgId
+LEFT JOIN xyy_wms_dic_shangpinziliao a ON kc.shangpinId = a.goodsid and kc.orgId=a.orgId
+LEFT JOIN xyy_wms_dic_huoweiziliaoweihu h ON kc.huoweiId = h.ID and kc.orgId=h.orgId
+WHERE
+	t.youxiaoqizhi BETWEEN SYSDATE()
+AND date_add(SYSDATE(), interval (SELECT config_value from tb_sys_config) MONTH) AND kc.kucunshuliang &gt; 0 OR t.youxiaoqizhi &lt; SYSDATE()
+
+   @shangpinbianhao @shangpinmingcheng @zhujima @orgId"  DataSource="" Head="false">
+        <Parameters>
+            <Parameter Key="shangpinbianhao" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(shangpinbianhao==null | shangpinbianhao=="" ,""," and shangpinbianhao like '%"+shangpinbianhao+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="orgId" Type="String" >
+                <Where>
+                    <![CDATA[
+							m.if(orgId==null | danjubianhao=="" ," "," and a.orgId like '%"+orgId+"%'")
+			            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="shangpinmingcheng" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(shangpinmingcheng==null | shangpinmingcheng=="" ,""," and shangpinmingcheng like '%"+shangpinmingcheng+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="orgId" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(orgId==null | orgId=="" ,""," and a.orgId = '"+orgId+"'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="zhujima" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(zhujima==null | zhujima=="" ,""," and a.zhujima like '%"+zhujima+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

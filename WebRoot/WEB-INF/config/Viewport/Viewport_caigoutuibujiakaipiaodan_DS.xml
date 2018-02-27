@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="caigoutuibujiakaipiaodan" Caption="采购退补价开票上引视图" DefaultFilter="" PermissionType="CommType"  Pagging="10"
+        TableName="SQLQuery::select * | from xyy_erp_bill_caigoutuibujiakaipiaodan where 1=1 and status = 40 @shifoutiqu ORDER BY createTime  "  DataSource="" Head="false" Singleton="" OrderBy="">
+        <Parameters>
+            <Parameter Key="shifoutiqu" Type="Integer">
+                <Where>
+                    <![CDATA[
+					m.if(shifoutiqu==null ,""," and shifoutiqu = "+shifoutiqu+"")
+	            ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+    <DataTable Key="caigoutuibujiakaipiaodan_details" Caption="采购退补价开票明细视图" DefaultFilter="" PermissionType="CommType"  Pagging="10"
+               TableName="SQLQuery::select * | from xyy_erp_bill_caigoutuibujiakaipiaodan_details where 1!=1 @shifoutiqu"  DataSource="" Head="false" Singleton="" OrderBy="">
+        <Parameter Key="shifoutiqu" Type="Integer">
+            <Where>
+                <![CDATA[
+					m.if(shifoutiqu==null ,""," and shifoutiqu = "+shifoutiqu+"")
+	            ]]>
+            </Where>
+        </Parameter>
+    </DataTable>
+</DataSet>

@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html ng-app="workflow">
+<head>
+    <meta charset="UTF-8">
+    <title>流程设计平台</title>
+    <script type="text/javascript" src="/lib/js/workflow/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/lib/css/workflow/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/lib/css/css.css">
+    <script type="text/javascript" src="/lib/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/lib/js/workflow/angular.js"></script>
+    <script type="text/javascript" src="/lib/js/workflow/canvas/extends.js"></script>
+    <script type="text/javascript" src="/lib/js/workflow/canvas/core.js"></script>
+    <script type="text/javascript" src="/lib/js/workflow/jquery.contextmenu.r2.js"></script>
+    <script type="text/javascript" src="/lib/js/workflow/canvas/workflowController.js"></script>
+    <script type="text/javascript" src="/lib/js/workflow/canvas/workflowService.js"></script>
+    <script type="text/javascript" src="/Shared/SharedDirective.js"></script>
+    <script type="text/javascript" src="/Shared/SharedService.js"></script>
+    <script type="text/javascript" src="/Shared/myDirective.js"></script>
+    <script type="text/javascript" src="/lib/js/workflow/fileUpload.js"></script>
+    <script type="text/javascript" src="/lib/js/custom.js"></script>
+
+
+    <script type="text/javascript" src="/lib/js/JsDecoder.js"></script>
+    <script type="text/javascript" src="/lib/js/util.js"></script>
+    <style>
+
+
+        .header {
+            height: 60px;
+            box-shadow: 0 0 10px #ccc;
+        }
+
+        .header .left {
+            float: left;
+            padding-left: 30px;
+            line-height: 60px;
+            font-size: 24px;
+            color: #455963;
+        }
+
+        .header .right {
+            float: right;
+            padding: 12px 30px 0 0;
+        }
+
+        /* .header .right button{border:none;background:#008cf0;color:#fff;padding:10px 20px;} */
+        .main {
+            position: relative;
+        }
+
+        .toolBar {
+            width: 200px;
+            min-height: 100%;
+            position: absolute;
+            left: 0;
+            background-image: none !important;
+        }
+
+        .toolBar:after {
+            content: '';
+            border: 10px solid transparent;
+            border-bottom-color: #fff;
+            position: absolute;
+            top: -30px;
+            left: 200px;
+        }
+
+        .toolBar .iconWrap {
+            margin: auto;
+        }
+
+        .toolBar span {
+            cursor: pointer;
+            display: block;
+            width: auto;
+            height: 32px;
+            line-height: 32px;
+            padding: 10px 20px;
+            box-sizing: initial;
+        }
+
+        .toolBar span img {
+            width: 28px;
+            height: 28px;
+            padding-right: 5px;
+            box-sizing: initial;
+        }
+
+        .toolBar span i {
+            font-size: 20px;
+        }
+
+        .canvas {
+            position: absolute;
+            right: 400px;
+            left: 200px;
+            bottom: 0px;
+            height: 100%;
+        }
+
+        .canvas canvas {
+            border: 1px solid #EDEDED;
+        }
+
+        .am-panel-bd {
+            min-height: 400px;
+        }
+
+        #showNameSpan {
+            margin-left: 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<!--工具箱-->
+<div class="header clearfix">
+    <div class="left">流程设计平台<span id="showNameSpan"></span></div>
+    <div class="right">
+        <button onclick="javascript:history.back(-1);"
+                class="btn btn-warning radius btn-sm">返回
+        </button>
+        <button class="btn btn-success radius btn-sm" onclick="saveProcessDesign()">保存</button>
+    </div>
+</div>
+<div class="main">
+    <div class="toolBar" id="toolbox">
+        <div class="iconWrap clearfix">
+				<span title="移动工具" onclick="workflow.setOperatorMode(1);"><img
+                        src="/lib/images/yidong.png">选择工具</span> <span title="开始节点"
+                                                                       onclick="workflow.setOperatorMode(9);"><img
+                src="/lib/images/kaishi.png">开始节点</span> <span title="任务节点"
+                                                               onclick="workflow.setOperatorMode(2);"><img
+                src="/lib/images/renwu.png">任务节点</span>
+            <!-- <span title="状态节点" onclick="workflow.setOperatorMode(3);"><img src="/images/zhuangtai.png">状态节点</span> -->
+            <span title="会签节点"
+                  onclick="workflow.setOperatorMode(4);"><img
+                    src="/lib/images/huiqian.png">会签节点</span> <span title="决策节点"
+                                                                    onclick="workflow.setOperatorMode(5);"><img
+                src="/lib/images/juece.png">决策节点</span> <span title="并行节点"
+                                                              onclick="workflow.setOperatorMode(6);"><img
+                src="/lib/images/bingxing.png">并行节点</span> <span title="合并节点"
+                                                                 onclick="workflow.setOperatorMode(7);"><img
+                src="/lib/images/hebing.png">合并节点</span> <span title="子流程节点"
+                                                               onclick="workflow.setOperatorMode(8);"><img
+                src="/lib/images/ziliucheng.png">子流程节点</span>
+            <span title="关联流程节点"
+                  onclick="workflow.setOperatorMode(13);"><img
+                    src="/lib/images/ziliucheng.png">关联流程节点</span> <span title="结束节点"
+                                                                         onclick="workflow.setOperatorMode(10);"><img
+                src="/lib/images/jieshu.png">结束节点</span> <span title="连接线工具"
+                                                               onclick="workflow.setOperatorMode(11);"><img
+                src="/lib/images/lianjie.png">连接线工具</span>
+            <span title="连接线工具"
+                  onclick="workflow.setOperatorMode(15);"><img
+                    src="/lib/images/lianjie.png">JAVA节点</span>
+
+        </div>
+        <div id="g2" style="position: relative;"></div>
+    </div>
+    <div id="mycanvas" class="canvas"></div>
+
+
+</div>
+
+
+<!--
+    转移属性设置控制器
+-->
+<div ng-controller="workflow.myLineControler">
+    <!--转移属性设置面板-->
+    <div class="modal fade" tabindex="-1" id="linkedline" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header clearfix">
+                    <h4 class="modal-title pull-left">转移属性设置</h4>
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-primary  btn-sm"   ng-click="saveLine()"  data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">保存</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    转移名称：<input ng-model='line.name'>
+                    <br>
+                    转移标签：<input ng-model='line.labelName'>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!--
+    活动属性设置控制器
+-->
+<div ng-controller="workflow.activityDefController">
+    <!--右键菜单的源-->
+    <div class="contextMenu" id="mymenu">
+        <ul>
+            <li id="edit" ng-click="suxingclick()">属性</li>
+            <li id="brokenLine">折线</li>
+            <li id="quadratic">贝兹曲线</li>
+            <li id="del">删除</li>
+        </ul>
+    </div>
+
+    <div class="modal fade bs-example-modal-lg" tabindex="-1" id="activityDef" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header  clearfix">
+                    <h4 class="modal-title pull-left">活动属性设置</h4>
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-primary btn-sm" ng-click="saveActivityDef()">保存</button>
+                        <button type="button" class="btn btn-sm btn-warning " style="margin-left:5px;" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">关闭</span>
+                        </button>
+                    </div>
+
+                </div>
+                <div class="modal-body">
+                    <ul class="nav nav-tabs nav-justified" role="tablist">
+                        <li role="presentation" class="active">
+                            <a href="/#activity" role="tab" data-toggle="tab">活动定义</a></li>
+                        <li role="presentation">
+                            <a href="/#controller" role="tab" data-toggle="tab">活动控制器</a></li>
+
+                        <li role="presentation">
+                            <a href="/#event" role="tab" data-toggle="tab">活动事件</a></li>
+
+                        <li role="presentation">
+                            <a href="/#user" role="tab" data-toggle="tab">活动用户定义</a></li>
+                        <li><a href="/#activityform" role="tab" data-toggle="tab">活动表单</a></li>
+                    </ul>
+                    <div class="tab-content"  style="height: 450px;overflow: auto;">
+                        <div role="tabpanel" class="tab-pane active" id="activity">
+                            <form name="activitysForm">
+                                <div ng-include="'/Views/_activitydefinition.html'"></div>
+                            </form>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="controller">
+                            <form name="activitysForm2">
+                                <div ng-include="'/Views/_activitycontroller.html'"></div>
+                            </form>
+                        </div>
+
+                        <div role="tabpanel" class="tab-pane" id="event">
+                            <div ng-include="'/Views/_eventdefinition.html'"></div>
+                        </div>
+
+                        <div role="tabpanel" class="tab-pane" id="user">
+                            <div ng-include="'/Views/_processuser.html'"></div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="activityform">
+                            <div ng-include="'/Views/_activityform.html'"></div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--活动属性设置面板-->
+
+    <div ng-include="'/Views/_processPopup.html'"></div>
+</div>
+
+
+<div ng-controller="workflow.processControler">
+    <div class="modal fade bs-example-modal-lg" tabindex="-1" id="processDef" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header clearfix">
+                    <h4 class="modal-title pull-left">流程属性设置</h4>
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-primary btn-sm"  ng-click="updateProcess()">保存</button>
+                        <button type="button" class="btn btn-sm btn-warning " style="margin-left:5px;" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">关闭</span>
+                        </button>
+                    </div>
+
+
+
+                </div>
+                <div class="modal-body">
+                    <ul class="nav nav-tabs nav-justified" role="tablist">
+                        <li role="presentation" class="active">
+                            <a href="/#home" role="tab" data-toggle="tab">流程定义</a></li>
+                        <li role="presentation">
+                            <a href="/#profile" role="tab" data-toggle="tab">流程表单</a></li>
+                    </ul>
+                    <div class="tab-content" style="height: 450px;overflow: auto;">
+                        <div role="tabpanel" class="tab-pane active" id="home">
+                            <form name="processAddForm" id="processAddForm">
+                                <div ng-include="'/Views/_processdefinition.html'"></div>
+                            </form>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="profile">
+                            <div ng-include="'/Views/_processform.html'"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div ng-include="'/Views/_processControlerPopup.html'"></div>
+
+
+</div>
+
+
+<script>
+
+    /*
+     流程图形引擎基础环境构建
+     */
+    workflow.mount(document.getElementById('mycanvas'), "myworkflow", 1000, 1000);
+    workflow.render();
+    workflow.setOperatorMode(1);//默认选择模式
+    workflow.designMode = true;
+
+    workflow.loadProcess(localStorage.getItem("pdName"), localStorage.getItem("pdVersion"));
+
+    var pdName = localStorage.getItem("pdName");
+    var pdVersion = localStorage.getItem("pdVersion");
+    $("#showNameSpan").html("——流程名=" + pdName + ";版本号=" + pdVersion + "");
+
+    /*
+     所有class为demo1的span标签都会绑定此右键菜单
+     图形界面上下文菜单相关
+     */
+    $('#mycanvas')
+        .contextMenu(
+            'mymenu',
+            {
+                bindings: {
+                    'edit': function (item) {
+                        if (!workflow.selected) {
+                            //alert("当前选择的为流程对象，请打开流程对象属性面板【"+workflow.processName+"::"+workflow.pdId+"】");
+                            $("#processDef").modal();
+                        } else if (workflow.selected.__getType() == "workflow.line") {
+                            //alert("当前选择的为转移对象，请打开转移对象属性面板,转移对象ID为：【"+workflow.cid2oid[workflow.selected.__getCID()]+"】");
+                            $("#linkedline").modal();
+                        } else {
+                            //alert("当前选择的为活动定义对象，请打开活动定义对象属性面板,活动定义对象ID为：【"+workflow.cid2oid[workflow.selected.__getCID()]+"】");
+                            $("#activityDef").modal();
+                        }
+                    },
+                    'del': function (item) {
+                        workflow.removeSelectedObject();
+                    },
+                    'brokenLine': function (item) {
+                        if (workflow.selected.__getType() == "workflow.line") {
+                            workflow.selected.drawType = 1;
+                            workflow.render();
+                        }
+                    },
+                    'quadratic': function (item) {
+//									debugger;
+                        if (workflow.selected.__getType() == "workflow.line") {
+                            workflow.selected.drawType = 2;
+                            workflow.render();
+                        }
+                    }
+                }
+            });
+
+
+    function saveProcessDesign() {
+        workflow.saveProcess();
+    }
+
+
+</script>
+</body>
+</html>

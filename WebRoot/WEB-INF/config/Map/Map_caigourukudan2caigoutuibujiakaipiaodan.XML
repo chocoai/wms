@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Map Key="caigourukudan2caigoutuibujiakaipiaodan" Caption="采购入库单转采购退补价开票单" 
+    SrcDataObjectKey="caigourukudan" 
+    SrcDataType="Bill"  
+    TgtDataObjectKey="caigoutuibujiakaipiaodan" 
+    TgtDataType="Bill"  
+    MaxPushValue="100"
+     MinPushValue="0">
+    <TargetTableCollection>
+   
+    	<TargetTable Key="caigoutuibujiakaipiaodan_details" SrcTableKey="caigourukudan_details">
+            <Field FieldKey="shangpinbianhao">
+                <![CDATA[
+                     =shangpinbianhao
+              ]]>
+            </Field>
+            <Field FieldKey="shangpinmingcheng">
+                <![CDATA[
+                     =shangpinmingcheng
+              ]]>
+            </Field>
+            <Field FieldKey="guige">
+                <![CDATA[
+                     =guige
+              ]]>
+            </Field>
+			<Field FieldKey="danwei">
+                <![CDATA[
+                     =danwei
+              ]]>
+            </Field>
+            <Field FieldKey="shengchanchangjia">
+                <![CDATA[
+                     =shengchanchangjia
+              ]]>
+            </Field>
+            <Field FieldKey="pihao">
+                <![CDATA[
+                     =pihao
+              ]]>
+            </Field>
+            
+            <Field FieldKey="shengchanriqi">
+                <![CDATA[
+                     =shengchanriqi
+              ]]>
+            </Field>
+            <Field FieldKey="youxiaoqizhi">
+                <![CDATA[
+                     =youxiaoqizhi
+              ]]>
+            </Field>
+            <Field FieldKey="shuliang">
+                <![CDATA[
+                     =shuliang
+              ]]>
+            </Field>
+            <Field FieldKey="yuanhanshuijia">
+                <![CDATA[
+                     =hanshuijia
+              ]]>
+            </Field>
+            <Field FieldKey="ketuishuliang">
+                <![CDATA[
+                     =batchStock.getKunCunShuLiang(kucunzhuangtai,shangpinbianhao,pihao)
+              ]]>
+            </Field>
+            <Field FieldKey="yixiaoshuliang">
+                <![CDATA[
+                     =batchStock.getYxsl(shuliang,kucunzhuangtai,shangpinbianhao,pihao)
+              ]]>
+            </Field>
+            <Field FieldKey="weixiaoshuliang">
+                <![CDATA[
+                    =batchStock.getWxsl(shuliang,kucunzhuangtai,shangpinbianhao,pihao)
+              ]]>
+            </Field>
+            
+            
+            <Field FieldKey="koulv">
+                <![CDATA[
+                    =koulv
+              ]]>
+            </Field>
+			<Field FieldKey="shuilv">
+                <![CDATA[
+                     =goods.getJinxiangshuilv(shangpinbianhao)
+              ]]>
+            </Field>          
+			
+			<Field FieldKey="pizhunwenhao">
+                <![CDATA[
+                     =pizhunwenhao
+              ]]>
+            </Field>
+			<Field FieldKey="chandi">
+                <![CDATA[
+                     =chandi
+              ]]>
+            </Field>
+			<Field FieldKey="BillID">
+                <![CDATA[
+                     =_.BillID
+              ]]>
+            </Field>
+        </TargetTable>
+    </TargetTableCollection>
+</Map>

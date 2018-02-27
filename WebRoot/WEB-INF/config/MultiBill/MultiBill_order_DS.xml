@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="multiBill" Caption="多样式表单" DefaultFilter="" Pagging="2"
+               TableName="SQLQuery::select * | from xyy_erp_order where 1 = 1 @orderNo @mobile @payType" DataSource="" Head="false">
+        <Parameters>
+            <Parameter Key="orderNo" Type="String">
+                <DefaultValue></DefaultValue>
+                <Where>
+                <![CDATA[
+					m.if(orderNo==null | orderNo=="" ,""," and orderNo like '%"+orderNo+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="mobile" Type="String" >
+                <DefaultValue></DefaultValue>
+                <Where>
+                <![CDATA[
+					m.if(mobile==null  | mobile=="" ,""," and mobile='"+mobile+"'")
+                ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="payType" Type="Integer" >
+            	<DefaultValue>0</DefaultValue>
+                <Where>
+                <![CDATA[
+                	m.if(payType==0 | payType==null | payType=="",""," and payType="+payType+"")
+				]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

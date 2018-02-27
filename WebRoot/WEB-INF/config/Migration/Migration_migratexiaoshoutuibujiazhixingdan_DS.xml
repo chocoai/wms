@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="migratexiaoxiangfapiao"  Caption="销售出库单" DefaultFilter="" TableName="Table::xyy_erp_bill_migratexiaoxiangfapiao" DataSource="">
+        <!--
+             单据编号	varchar	规则：YBM+年月日时分秒+3位随机码, 例如：YBM20160426112240764
+        -->
+        <Field FieldKey="danjubianhao" FieldName="单据编号" FieldType="Varchar" Bound="50" DefaultValue="='CG'+o.orderNo()" Comment="单据编号"/>
+        <Field FieldKey="kaipiaoriqi" FieldName="开票日期" FieldType="Date" Comment="开票日期" Tramsfor="false"/>
+
+        <Field FieldKey="yxsdh" FieldName="销售单据编号" FieldType="Varchar" Comment="销售单据编号"/>
+        <Field FieldKey="ydsdh" FieldName="电商单据编号" FieldType="Varchar" Comment="电商单据编号"/>
+        <Field FieldKey="lianxidizhi" FieldName="联系地址" FieldType="Varchar" Comment="联系地址"/>
+        <Field FieldKey="jiesuanfangshi" FieldName="结算方式" FieldType="Int" DefaultValue="0" Comment="结算方式"/>
+        <Field FieldKey="hanshuijine" FieldName="含税金额" FieldType="Decimal" DefaultValue="0.0"  Bound="14,2"  Comment="含税金额"/>
+        <Field FieldKey="jine" FieldName="金额" FieldType="Decimal" DefaultValue="0.0"  Bound="14,2"  Comment="金额"/>
+        <Field FieldKey="shuie" FieldName="税额" FieldType="Decimal" DefaultValue="0.0"  Bound="14,2"   Comment="税额"/>
+        <Field FieldKey="chengbenjine" FieldName="成本金额" FieldType="Decimal"  Bound="14,2"  DefaultValue="0.0" Comment="成本金额"/>
+        <Field FieldKey="maoli" FieldName="毛利" FieldType="Decimal"  Bound="14,2"  DefaultValue="0.0" Comment="毛利"/>
+        <Field FieldKey="beizhu" FieldName="备注" FieldType="Varchar" Comment="备注"/>
+
+        <Field FieldKey="kehubianhao" FieldName="客户编号" FieldType="Varchar" Comment="客户编号"/>
+        <Field FieldKey="kehumingcheng" FieldName="客户名称" FieldType="Varchar" Comment="客户名称"/>
+        <Field FieldKey="kaipiaoyuan" FieldName="开票员" FieldType="Varchar" Comment="开票员" Tramsfor="false"/>
+        <Field FieldKey="yewuyuan" FieldName="业务员" FieldType="Varchar" Comment="业务员"/>
+        <Field FieldKey="ydzje" FieldName="原单总金额" FieldType="Decimal"  Bound="14,2"  DefaultValue="0.0000" Comment="原单总金额"/>
+        <Field FieldKey="ykpje" FieldName="已开票金额" FieldType="Decimal"  Bound="14,2"  DefaultValue="0.0000" Comment="已开票金额"/>
+        <Field FieldKey="wkpje" FieldName="未开票金额" FieldType="Decimal"  Bound="14,2"  DefaultValue="0.0000" Comment="未开票金额"/>
+        <Field FieldKey="yjsje" FieldName="已结算金额" FieldType="Decimal"  Bound="14,2"  DefaultValue="0.0000" Comment="未结算金额"/>
+        <Field FieldKey="wjsje" FieldName="未结算金额" FieldType="Decimal"  Bound="14,2"  DefaultValue="0.0000" Comment="未结算金额"/>
+
+        <Field FieldKey="zhaiyao" FieldName="摘要" FieldType="Varchar" Tramsfor="false" Comment="摘要"/>
+        <Field FieldKey="danjuleixin" FieldName="单据类型" FieldType="Int" Tramsfor="false" Comment="单据类型 1.销售出库单 2.销售退回单 单 3.销售退补价单"/>
+        <Field FieldKey="fapiaozhuangtai" FieldName="发票状态" FieldType="Int" Tramsfor="false" Comment="发票状态  0.发票未完成  1.发票已完成  "/>
+        <Field FieldKey="jiesuanzhuangtai" FieldName="结算状态" FieldType="Int" Tramsfor="false" Comment="结算状态  0.未完成  1.已完成  "/>
+        <Field FieldKey="shifouyinyong" FieldName="是否发票引用" FieldType="Int" Tramsfor="false" Comment="是否发票引用  0.否  1.是  "/>
+        <Field FieldKey="sffkyy" FieldName="是否付款引用" FieldType="Int" Tramsfor="false" Comment="是否付款引用  0.否  1.是  "/>
+    </DataTable>
+
+    <DataTable Key="migratexiaoxiangfapiao_details"   Caption="商品明细"  Pagging="5" TableName="Table::xyy_erp_bill_migratexiaoxiangfapiao_details" DataSource="">
+        <Field FieldKey="danjubianhao" FieldName="单据编号" FieldType="Varchar"  Comment="单据编号"/>
+        <Field FieldKey="kaipiaoriqi" FieldName="开票日期" FieldType="Date" Comment="开票日期" Tramsfor="false"/>
+        <Field FieldKey="kaipiaoyuan" FieldName="开票员" FieldType="Varchar" Comment="开票员" Tramsfor="false"/>
+        <Field FieldKey="kehubianhao" FieldName="客户编号" FieldType="Varchar" Comment="客户编号"/>
+        <Field FieldKey="kehumingcheng" FieldName="客户名称" FieldType="Varchar" Comment="客户名称"/>
+        <Field FieldKey="shangpinbianhao" FieldName="商品编号" FieldType="Varchar"  Comment="商品编号"/>
+        <Field FieldKey="shangpinmingcheng" FieldName="商品名称" FieldType="Varchar"  Comment="商品名称"/>
+        <Field FieldKey="guige" FieldName="规格" FieldType="Varchar"  Comment="规格"/>
+        <Field FieldKey="danwei" FieldName="单位" FieldType="Varchar"  Comment="单位"/>
+        <Field FieldKey="shengchanchangjia" FieldName="生产厂家" FieldType="Varchar" Comment="生产厂家"/>
+        <Field FieldKey="yuandanshuliang" FieldName="原单数量" FieldType="Int" DefaultValue="0"  Comment="原单数量"/>
+        <Field FieldKey="ykpsl" FieldName="已开票数量" FieldType="Int" DefaultValue="0" Tramsfor="false"  Comment="已开票数量"/>
+        <Field FieldKey="wkpsl" FieldName="未开票数量" FieldType="Int" DefaultValue="0" Tramsfor="false"  Comment="未开票数量"/>
+        <Field FieldKey="hanshuijine" FieldName="含税金额" FieldType="Decimal" Bound="14,2" DefaultValue="0.00" Comment="含税金额"/>
+        <Field FieldKey="hanshuijia" FieldName="含税价" FieldType="Decimal" Bound="14,3" DefaultValue="0.00"  Comment="含税价"/>
+        <Field FieldKey="ykpje" FieldName="已开票金额" FieldType="Decimal" DefaultValue="0.0000" Bound="14,2"  Comment="已开票金额"/>
+        <Field FieldKey="shuilv" FieldName="税率" FieldType="Decimal" DefaultValue="17.00"   Bound="14,2"  Comment="税率"/>
+
+        <Field FieldKey="danjia" FieldName="单价" FieldType="Decimal" DefaultValue="0.0" Bound="14,6"  Comment="单价"/>
+        <Field FieldKey="jine" FieldName="金额" FieldType="Decimal" DefaultValue="0.0" Bound="14,2"  Comment="金额"/>
+        <Field FieldKey="chengbendanjia" FieldName="成本单价" FieldType="Decimal" DefaultValue="0.0" Bound="14,6" Comment="成本单价"/>
+        <Field FieldKey="chengbenjine" FieldName="成本金额" FieldType="Decimal" DefaultValue="0.0" Bound="14,2" Comment="成本金额"/>
+        <Field FieldKey="shuie" FieldName="税额" FieldType="Decimal" DefaultValue="0.0" Bound="14,2" Comment="税额"/>
+        <Field FieldKey="maoli" FieldName="毛利" FieldType="Decimal" DefaultValue="0.0" Bound="14,2" Comment="毛利"/>
+        <Field FieldKey="yuanhanshuijia" FieldName="原含税价" Bound="14,3" FieldType="Decimal" DefaultValue="0.0"  Comment="原含税价"/>
+        <Field FieldKey="xinhanshuijia" FieldName="新含税价" Bound="14,3" FieldType="Decimal" DefaultValue="0.0"  Comment="新含税价"/>
+        <Field FieldKey="pihao" FieldName="批号" FieldType="Varchar" Comment="批号"/>
+        <Field FieldKey="shengchanriqi" FieldName="生产日期" FieldType="Date"  Comment="生产日期"/> 
+        <Field FieldKey="youxiaoqizhi" FieldName="有效期至" FieldType="Date"  Comment="有效期至"/>
+
+        <Field FieldKey="pizhunwenhao" FieldName="批准文号" FieldType="Varchar"  Comment="批准文号"/>
+        <Field FieldKey="chandi" FieldName="产地" FieldType="Varchar"  Comment="产地"/>
+        <Field FieldKey="beizhu" FieldName="备注" FieldType="Varchar"  Comment="备注" Tramsfor="false"/>
+        <Field FieldKey="shifouyinyong" FieldName="是否引用" FieldType="Int" Tramsfor="false" Comment="是否引用  0.否  1.是  "/>
+        <Field FieldKey="fapiaozhuangtai" FieldName="发票状态" FieldType="Int" Tramsfor="false" Comment="发票状态  0.发票未完成  1.发票已完成  "/>
+        <Field FieldKey="jiesuanzhuangtai" FieldName="结算状态" FieldType="Int" Tramsfor="false" Comment="结算状态  0.未完成  1.已完成  "/>
+    </DataTable> 
+</DataSet>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+
+	<DataTable Key="ljqhwgxwh" BillType="Dictionary" Caption="逻辑区资料维护"
+		DefaultFilter="" TableName="Table::xyy_wms_dic_ljqhwgxwh" DataSource=""
+		Head="true">
+		<Field FieldKey="ljqmc" FieldName="逻辑区名称" FieldType="Varchar"
+			Comment="逻辑区名称" />
+		<Field FieldKey="ljqbh" FieldName="逻辑区编号" FieldType="Varchar"
+			Comment="逻辑区编号"/>
+
+		<Field FieldKey="cangkuID" FieldName="cangkuID" FieldType="Varchar"
+			   Comment="cangkuID" />
+		<Field FieldKey="shifouqiyong" FieldName="是否启用" FieldType="Int" DefaultValue="1" Comment="是否启用"/>
+	</DataTable>
+	<DataTable Key="ljqhwgxwh_list" BillType="Dictionary"  Caption="逻辑—货位" DefaultFilter="ID" TableName="Table::xyy_wms_dic_ljqhwgxwh_list" DataSource="" Head="false">
+        <Field FieldKey="huoweibianhao" FieldName="货位编号" FieldType="Varchar" Comment="货位编号 " />
+		<Field FieldKey="kuqubianhao" FieldName="库区编号" FieldType="Varchar" Comment="库区编号 " />
+		<Field FieldKey="kuqumingcheng" FieldName="库区名称" FieldType="Varchar" Comment="库区名称 " />
+    </DataTable> 
+
+</DataSet>

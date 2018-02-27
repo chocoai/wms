@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="zhixiangguige" BillType="Dictionary" Caption="纸箱规格" DefaultFilter="" TableName="Table::xyy_wms_dic_zhixiangguige" DataSource="" Head="true">
+        <Field FieldKey="cangkubianhao" FieldName="仓库编号" FieldType="Varchar" Comment="仓库编号" />
+        <Field FieldKey="cangkumingchen" FieldName="仓库名称" FieldType="Varchar" Comment="仓库名称"/>
+        <Field FieldKey="cangkuID" FieldName="仓库ID" FieldType="Varchar" Comment="仓库ID" />
+        <Field FieldKey="zhixiangguigesize" FieldName="纸箱规格" FieldType="Int" DefaultValue="1"   Comment="纸箱规格"/> 
+        <Field FieldKey="zhixiangtiji" FieldName="纸箱体积" FieldType="Decimal"  Comment="纸箱体积"/>
+        <Field FieldKey="liyonglv" FieldName="利用率" FieldType="Varchar" DefaultValue="1.00" Comment="利用率"/>
+        <Field FieldKey="qiyong" FieldName="启用" FieldType="Int" DefaultValue="1" Comment="启用"  />
+    </DataTable>
+</DataSet>

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BillFormMeta Key="gongyingshangmingpian" Version="1.0.0" BillType="Dictionary" Caption="供应商名片">
+    <BillBody>
+        <BillBodyMeta UserAgent="web">
+            <BillUIPanel Layout="flex" FlexDirection="column" Width="100%" Key="mainContainer" Caption="供应商名片" S="">
+                <BillUIPanel Layout="flex" Key="dictionary_tools" Caption="工具栏" >
+					<BillUIWidget Key="save" Caption="保存"
+								  EnabledWhen="True"
+								  Icon="glyphicon glyphicon-floppy-saved" WidgetType="BillUIButton">
+						<Triggers>
+							<Trigger Type="javascript/angular" Runat="client">
+								<![CDATA[
+									setStatus(40);
+									@$this.save();
+	                                  ]]>
+							</Trigger>
+						</Triggers>
+					</BillUIWidget>
+					<BillUIWidget Key="goback" Caption="返回"
+								  DataTableKey="gonghuoshangxiaoqizhengzhao" DataTableColumn="delete" EnabledWhen="True"
+								  Icon="glyphicon glyphicon-remove-circle" WidgetType="BillUIButton" S="btn btn-danger ">
+						<Triggers>
+							<Trigger Type="javascript/angular" Runat="client">
+								<![CDATA[
+                                        	@$this.$reBack();
+	                            		]]>
+							</Trigger>
+						</Triggers>
+					</BillUIWidget>
+                </BillUIPanel>
+				<BillUIPanel Key="dictionary_tree" Layout="flex" Caption="字段明细"
+							 S="">
+					<BillUIGridPanel Device="sm" Key="h3">
+						<BillUIRowPanel>
+							<BillUIColPanel Width="8">
+								<BillUIWidget Key="mingcheng" Caption="名称"
+											  DataTableKey="gongyingshangmingpian" DataTableColumn="mingcheng"
+											  EnabledWhen="True" Required="Required"
+											  WidgetType="BillUIString">
+								</BillUIWidget>
+							</BillUIColPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="jibie" Caption="级别" DataTableKey="gongyingshangmingpian"
+											  DataTableColumn="jibie" EnabledWhen="True" Required="Required"
+											  WidgetType="BillUISelect">
+									<Init Type="javascript/angular" Runat="client">
+										<![CDATA[
+                                                this.loadDataSource();
+                                        ]]>
+									</Init>
+									<Properties>
+										<Property Name="datasource" Type="internal">[{name:"一级",value:1},{name:"二级",value:2},{name:"商业",value:3},{name:"省代",value:4}]</Property>
+									</Properties>
+								</BillUIWidget>
+							</BillUIColPanel>
+						</BillUIRowPanel>
+						<BillUIRowPanel>
+							<BillUIColPanel Width="4">
+								<BillUIWidget Key="lianxiren" Caption="联系人" Required="Required"
+											  DataTableKey="gongyingshangmingpian" DataTableColumn="lianxiren"
+											  EnabledWhen="True"
+											  WidgetType="BillUIString">
+								</BillUIWidget>
+							</BillUIColPanel>
+							<BillUIColPanel Width="4">
+								<BillUIWidget Key="dianhua" Caption="电话" Required="Required"
+											  DataTableKey="gongyingshangmingpian" DataTableColumn="dianhua"
+											  EnabledWhen="True"
+											  WidgetType="BillUIString">
+								</BillUIWidget>
+							</BillUIColPanel>
+						</BillUIRowPanel>
+
+						<BillUIRowPanel>
+							<BillUIColPanel Width="4">
+								<BillUIWidget Key="sqjlxm" Caption="省区经理姓名" Required="Required"
+											  DataTableKey="gongyingshangmingpian" DataTableColumn="sqjlxm"
+											  EnabledWhen="True"
+											  WidgetType="BillUIString">
+								</BillUIWidget>
+							</BillUIColPanel>
+							<BillUIColPanel Width="4">
+								<BillUIWidget Key="sqjldh" Caption="省区经理电话" Required="Required"
+											  DataTableKey="gongyingshangmingpian" DataTableColumn="sqjldh"
+											  EnabledWhen="True"
+											  WidgetType="BillUIString">
+								</BillUIWidget>
+							</BillUIColPanel>
+						</BillUIRowPanel>
+						<BillUIRowPanel>
+							<BillUIColPanel Width="8">
+								<BillUIWidget Key="dizhi" Caption="地址" Required="Required"
+											  DataTableKey="gongyingshangmingpian" DataTableColumn="dizhi"
+											  EnabledWhen="True"
+											  WidgetType="BillUIString" >
+								</BillUIWidget>
+							</BillUIColPanel>
+						</BillUIRowPanel>
+					</BillUIGridPanel>
+				</BillUIPanel>
+				<BillUIPanel Layout="tab"  Key="mainContainer_tab" Caption="关联品种"
+							 S="panel  panel-primary  publicPanel">
+					<BillUIPanel Layout="grid" Key="one"
+								 Caption="关联品种">
+						<BillUIGrid Key="grid0" OptMode="Edit" DataTableKey="gongyingshangmingpian_shangpin">
+							<GridHeads>
+								<GridHead Col="shangpinbianhao" Caption="商品编号" enableEdit="True" Width="100px">
+									<BillUIWidget Key="shangpinbianhao" WidgetType="BillUIPopupWindow" ViewSize="lg"
+												  Disable="true" Src="shangpin">
+										<Init Type="javascript/angular" Runat="client">
+											<![CDATA[
+                                                @shangpinbianhao.setEnvModel({shifouhuodong:1});
+                                                @shangpinbianhao.setEnvModel({status:40});
+	                                        ]]>
+										</Init>
+										<Triggers>
+											<Trigger>
+												<![CDATA[
+                                                    var shangpin=this.rows[0];
+                                                    this.setValue(shangpin.shangpinbianhao);
+                                                    @shangpinmingcheng.setValue(shangpin.shangpinmingcheng);
+                                                    @guige.setValue(shangpin.guige);
+                                                    var co=window.$body.gongyingshangmingpian_shangpin.co;
+                                                    co.goodsid=shangpin.goodsid;
+
+                                                    @shengchanchangjia.setValue(shangpin.shengchanchangjia);
+                                                    @zhujima.setValue(shangpin.zhujima);
+                                                    @zbzsl.setValue(shangpin.zbzsl);
+                                                    @dbzsl.setValue(shangpin.dbzsl);
+                                        ]]>
+											</Trigger>
+										</Triggers>
+									</BillUIWidget>
+								</GridHead>
+								<GridHead Col="shangpinmingcheng" Caption="商品名称" enableEdit="True" Width="150px">
+									<BillUIWidget Key="shangpinmingcheng"  WidgetType="BillUIString" Disable="true" >
+									</BillUIWidget>
+								</GridHead>
+								<GridHead Col="guige" Caption="商品规格" enableEdit="True" Width="80px">
+									<BillUIWidget Key="guige" Disable="true" WidgetType="BillUIString"/>
+								</GridHead>
+
+								<GridHead Col="shengchanchangjia" Caption="生产厂家" enableEdit="True" Width="180px">
+									<BillUIWidget Key="shengchanchangjia" Disable="true" WidgetType="BillUIString"/>
+								</GridHead>
+
+								<GridHead Col="danpinfanli" Caption="单品返利"  enableEdit="True" Width="100px">
+									<BillUIWidget Key="danpinfanli" Disable="true" WidgetType="BillUIString"/>
+								</GridHead>
+								<GridHead Col="pinzhongdengji" Caption="品种等级" enableEdit="True" Width="80px">
+									<BillUIWidget Key="pinzhongdengji" Disable="true" WidgetType="BillUIString"/>
+								</GridHead>
+
+								<GridHead Col="zhujima" Caption="助记码"  enableEdit="True" Width="100px">
+									<BillUIWidget Key="zhujima" Disable="true" WidgetType="BillUIString"/>
+								</GridHead>
+								<GridHead Col="zbzsl" Caption="中包装数量" enableEdit="True" Width="80px">
+									<BillUIWidget Key="zbzsl" Disable="true" WidgetType="BillUIInteger"/>
+								</GridHead>
+
+								<GridHead Col="dbzsl" Caption="件包装数量" enableEdit="True" Width="80px">
+									<BillUIWidget Key="dbzsl" Disable="true" WidgetType="BillUIInteger"/>
+								</GridHead>
+
+							</GridHeads>
+						</BillUIGrid>
+					</BillUIPanel>
+
+				</BillUIPanel>
+			</BillUIPanel>
+        </BillBodyMeta>
+    </BillBody>
+    <BillHeadMeta>
+    </BillHeadMeta>
+</BillFormMeta>
+

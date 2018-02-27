@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<computer>
+    <handler
+        name="variant_comp"
+        type="com.xyy.expression.computer.VariantComp" />
+
+    <handler
+        name="string_comp"
+        type="com.xyy.expression.computer.StringComp" />
+
+    <handler
+        name="int_comp"
+        type="com.xyy.expression.computer.IntComp" />
+
+    <handler
+        name="float_comp"
+        type="com.xyy.expression.computer.FloatComp" />
+
+    <handler
+        name="rem_comp"
+        type="com.xyy.expression.computer.RemComp" />
+
+    <handler
+        name="fun_comp"
+        type="com.xyy.expression.computer.FunComp" />
+
+    <handler
+        name="comma_comp"
+        type="com.xyy.expression.computer.CommaComp" />
+
+    <handler
+        name="add_comp"
+        type="com.xyy.expression.computer.AddComp" />
+
+    <handler
+        name="subtract_comp"
+        type="com.xyy.expression.computer.SubtractComp" />
+
+    <handler
+        name="multiply_comp"
+        type="com.xyy.expression.computer.MultiplyComp" />
+
+    <handler
+        name="division_comp"
+        type="com.xyy.expression.computer.DivisionComp" />
+
+    <handler
+        name="mod_comp"
+        type="com.xyy.expression.computer.ModComp" />
+
+    <handler
+        name="and_comp"
+        type="com.xyy.expression.computer.AndComp" />
+
+    <handler
+        name="or_comp"
+        type="com.xyy.expression.computer.OrComp" />
+
+    <handler
+        name="not_comp"
+        type="com.xyy.expression.computer.NotComp" />
+
+    <handler
+        name="equal_comp"
+        type="com.xyy.expression.computer.EqualComp" />
+
+    <handler
+        name="notEqual_comp"
+        type="com.xyy.expression.computer.NotEqualComp" />
+
+    <handler
+        name="greaterThan_comp"
+        type="com.xyy.expression.computer.GreaterThanComp" />
+
+    <handler
+        name="greaterEqual_comp"
+        type="com.xyy.expression.computer.GreaterEqualComp" />
+
+    <handler
+        name="lessThan_comp"
+        type="com.xyy.expression.computer.LessThanComp" />
+
+    <handler
+        name="lessEqual_comp"
+        type="com.xyy.expression.computer.LessEqualComp" />
+
+</computer>

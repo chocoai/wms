@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="shangpinPC_view" Caption="商品名称" DefaultFilter="" PermissionType="CommType"  Pagging="10"
+        TableName="SQLQuery::select b.*,a.orgId,a.kucunshuliang,c.pihao,a.pihaoID,
+        c.shengchanriqi,
+	    c.youxiaoqizhi | from
+        xyy_wms_bill_shangpinpihaohuoweikucun a,
+	    xyy_wms_dic_shangpinziliao b,
+        xyy_wms_dic_shangpinpihao c
+	    where a.shangpinId = b.goodsid
+        and c.pihaoId= a.pihaoId and b.dongjie=1  and b.status=40 @shangpinbianhao  @pihao @orgID  @kucunzhuangtai  order by a.createTime desc"  DataSource="" Head="false" Singleton="" OrderBy="">
+        <Parameters>
+           
+            <Parameter Key="pihao" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(pihao==null | pihao=="",""," and c.pihao like '%"+pihao+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="shangpinbianhao" Type="String">
+                <Where>
+             <![CDATA[
+					m.if(shangpinbianhao==null | shangpinbianhao=="" ,""," and b.mixCondition like '%"+shangpinbianhao+"%' ")
+	            ]]> 
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BillViewMeta Key="toolcaiwuboxs" Caption="工具栏" Version="">
+
+    <BillBody UserAgent="web">
+        <BillBodyMeta>
+            <BillUIPanel Layout="flex" Key="dictionary_tools" Caption="工具栏"  >
+                <BillUIGridPanel Device="sm" key="toolcaiwuboxs">
+                    <!--Devie   xs,sm,md,lg-->
+                    <BillUIRowPanel S="toolBox">
+                        <BillUIColPanel Width="12">
+                            <!--属性 colPush 向右推  colPull 向左拉 colOffset 左边距-->
+                            <BillUIWidget Key="save" Caption="保存"
+                                           EnabledWhen="True"
+                                          Icon="glyphicon glyphicon-floppy-disk" WidgetType="BillUIButton">
+                                <Triggers>
+                                    <Trigger Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                    @$this.save();
+	                            ]]>
+                                    </Trigger>
+                                </Triggers>
+                            </BillUIWidget>
+                            <BillUIWidget Key="submit" Caption="提交"
+                                          EnabledWhen="True"
+                                          Icon="glyphicon glyphicon-floppy-saved" WidgetType="BillUIButton">
+                                <Triggers>
+                                    <Trigger Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                         @$this.submit();
+	                                  ]]>
+                                    </Trigger>
+                                </Triggers>
+                            </BillUIWidget>
+                            <BillUIWidget Key="goback" Caption="返回"
+                                          EnabledWhen="True"
+                                          Icon="glyphicon glyphicon-align-left" WidgetType="BillUIButton" S="btn btn-danger">
+                                <Triggers>
+                                    <Trigger Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                        @$this.return();
+	                            ]]>
+                                    </Trigger>
+                                </Triggers>
+                            </BillUIWidget>
+                            <BillUIWidget Key="print" Caption="打印"
+                                          EnabledWhen="True"  Disable="true"
+                                          Icon="glyphicon glyphicon-print" WidgetType="BillUIButton">
+                                <Triggers>
+                                    <Trigger Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+
+	                            ]]>
+                                    </Trigger>
+                                </Triggers>
+                            </BillUIWidget>
+                            <BillUIWidget Key="prePrint" Caption="打印预览" Disable="true"
+                                          EnabledWhen="True"
+                                          Icon="glyphicon glyphicon-camera" WidgetType="BillUIButton">
+                                <Triggers>
+                                    <Trigger Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+
+	                            ]]>
+                                    </Trigger>
+                                </Triggers>
+                            </BillUIWidget>
+                            <!-- <BillUIWidget Key="process" Caption="审核流程"
+                                          EnabledWhen="True" 
+                                          Icon="glyphicon glyphicon-exclamation-sign" WidgetType="BillUIButton">
+                                <Triggers>
+                                    <Trigger Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+												@$this.process();
+	                            		]]>
+                                    </Trigger>
+                                </Triggers>
+                            </BillUIWidget>
+                             -->
+                            <BillUIWidget Key="pull" Caption="上引单据" AuxiliaryDir="shangyin" Src="/bill/fetchSourceBillForFullConvert?billKey="
+                                          EnabledWhen="True"
+                                          Icon="glyphicon glyphicon-magnet" WidgetType="BillUIButtonGroup">
+                            </BillUIWidget>
+                        </BillUIColPanel>
+                    </BillUIRowPanel>
+                </BillUIGridPanel>
+            </BillUIPanel>
+        </BillBodyMeta>
+    </BillBody>
+
+</BillViewMeta>

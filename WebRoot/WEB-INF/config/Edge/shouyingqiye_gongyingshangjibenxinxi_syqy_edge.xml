@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BillEdge Name="首营企业单-企业基本信息单" Key="shouyingqiye_gongyingshangjibenxinxi_syqy" Version="1.0.0" Code="syqy" Caption="首营企业单-企业基本信息单" SourceBillKey="shouyingqiye" TargetBillKey="gongyingshangjibenxinxi">
+	<Description />
+	<BillEdgeController>
+		<AutoSaveController CtrType="AutoSave" />
+		<DisplayController CtrType="NoGo" />
+		<MultiConvertCtrl CtrType="Forbid" />
+		<BackWriteController CtrType="Save" />
+	</BillEdgeController>
+	<BillEdgeHook />
+	<BillTransformEdge>
+		<BillHeadTransformEdge>
+			<TargetBillField  Key="shenpizhuangtai" Category="property"><![CDATA[=status]]></TargetBillField>
+	        <TargetBillField  Key="gysbh" Category="property"><![CDATA[=gysbh]]></TargetBillField>
+	        <TargetBillField  Key="gysmc" Category="property"><![CDATA[=gysmc]]></TargetBillField>
+	        <TargetBillField  Key="qiyeleibie" Category="property"><![CDATA[=qiyeleixing]]></TargetBillField>
+			<TargetBillField  Key="lianxidizhi" Category="property"><![CDATA[=dizhi]]></TargetBillField>
+			<TargetBillField  Key="zlfzr" Category="property"><![CDATA[=zlfzr]]></TargetBillField>
+			<TargetBillField  Key="farendaibiao" Category="property"><![CDATA[=farendaibiao]]></TargetBillField>
+	 		<TargetBillField  Key="youzhengbianma" Category="property"><![CDATA[=youzhengbianma]]></TargetBillField>
+			<TargetBillField  Key="chuanzhen" Category="property"><![CDATA[=chuanzhen]]></TargetBillField>
+			<TargetBillField  Key="dianhua" Category="property"><![CDATA[=dianhua]]></TargetBillField>
+			<TargetBillField  Key="dianziyouxiang" Category="property"><![CDATA[=dianziyouxiang]]></TargetBillField>
+			<TargetBillField  Key="qiyewangzhan" Category="property"><![CDATA[=zhuyedizhi]]></TargetBillField>
+			<TargetBillField  Key="lianxiren" Category="property"><![CDATA[=lianxiren]]></TargetBillField>
+			<TargetBillField  Key="shengfen" Category="property"><![CDATA[=suozaishengfen]]></TargetBillField>
+	        <TargetBillField  Key="kaihuyinhang" Category="property"><![CDATA[=kaihuyinhang]]></TargetBillField>
+	        <TargetBillField  Key="yinhangzhanghao" Category="property"><![CDATA[=yinhangzhanghao]]></TargetBillField>
+	        <TargetBillField  Key="kaihuhuming" Category="property"><![CDATA[=kaihuhuming]]></TargetBillField>
+	        <TargetBillField  Key="swdjh" Category="property"><![CDATA[=swdjh]]></TargetBillField>
+	        <TargetBillField  Key="yingyezhizhao" Category="property"><![CDATA[=yingyezhizhao]]></TargetBillField>
+	        <TargetBillField  Key="fazhengjiguan" Category="property"><![CDATA[=fazhengjiguan]]></TargetBillField>
+	        <TargetBillField  Key="jingyingfangshi" Category="property"><![CDATA[=jingyingfangshi]]></TargetBillField>
+	        <TargetBillField  Key="zhucezijin" Category="property"><![CDATA[=zhucezijin]]></TargetBillField>
+	        <TargetBillField  Key="zhuceriqi" Category="property"><![CDATA[=zhuceriqi]]></TargetBillField>
+	        <TargetBillField  Key="yyzzhyxq" Category="property"><![CDATA[=youxiaoqizhi1]]></TargetBillField>
+	        <TargetBillField  Key="zzjgdmz" Category="property"><![CDATA[=zzjgdm]]></TargetBillField>
+	        <TargetBillField  Key="fazhengriqi" Category="property"><![CDATA[=fazhengriqi]]></TargetBillField>
+	        <TargetBillField  Key="zzjgyxq" Category="property"><![CDATA[=youxiaoqizhi2]]></TargetBillField>
+	        <TargetBillField  Key="jingyingfanwei" Category="property"><![CDATA[=jingyingfanwei]]></TargetBillField>
+	        <TargetBillField  Key="cangkudizhi" Category="property"><![CDATA[=cangkudizhi]]></TargetBillField>
+	        <TargetBillField  Key="qiyejieshao" Category="property"><![CDATA[=qiyejieshao]]></TargetBillField>
+	        <TargetBillField  Key="beizhu" Category="property"><![CDATA[=beizhu]]></TargetBillField>
+		</BillHeadTransformEdge>
+		<BillBodyTransformEdge>
+			<BillBodyEdge targetDltKey="gongyingshang_zhiliangrenzheng">
+				<BillDtlEdge sourceDltKey="zhiliangzhengzhaoxinxi">
+					<TargetBillField Key="zhengshumingcheng" Category="property"><![CDATA[=zhengshuleixing]]></TargetBillField>
+			        <TargetBillField Key="zhengshubianhao" Category="property"><![CDATA[=zhengshubianhao]]></TargetBillField>
+			        <TargetBillField Key="fazhengjiguan" Category="property"><![CDATA[=fazhengjiguan]]></TargetBillField>
+			        <TargetBillField Key="fazhengriqi" Category="property"><![CDATA[=fazhengriqi]]></TargetBillField>
+			        <TargetBillField Key="youxiaoqizhi" Category="property"><![CDATA[=youxiaoqizhi]]></TargetBillField>
+			        <TargetBillField Key="xukeleixing" Category="property"><![CDATA[=xukeleixing]]></TargetBillField>
+				</BillDtlEdge>
+			</BillBodyEdge>
+		</BillBodyTransformEdge>
+	</BillTransformEdge>
+	<BillGroupJoinEdge>
+		<BillHeadGroupJoinEdge>
+			<GroupFileds GroupType="field" />
+			<JoinFileds />
+		</BillHeadGroupJoinEdge>
+		<BillBodyGroupJoinEdge>
+			<TargetSubBillGroupJoinEdges>
+				<TargetSubBillGroupJoinEdge Key="">
+					<GroupFileds GroupType="field" />
+					<JoinFileds />
+				</TargetSubBillGroupJoinEdge>
+			</TargetSubBillGroupJoinEdges>
+		</BillBodyGroupJoinEdge>
+	</BillGroupJoinEdge>
+	<BillBackWriteEdge>
+		<BillHeadBackWriteEdge />
+		<BillBodyBackWriteEdge />
+	</BillBackWriteEdge>
+	<DataFilterEdge>
+		<SourceBillBodyFilterEdge />
+		<SourceBillHeadFilterEdge>
+			<Filter />
+		</SourceBillHeadFilterEdge>
+	</DataFilterEdge>
+	<RuleFilterEdge>
+		<RuleHeadFilterEdge>
+			<Filter />
+		</RuleHeadFilterEdge>
+		<RuleBodyFilterEdge />
+	</RuleFilterEdge>
+</BillEdge>
+

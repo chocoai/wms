@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+	<DataTable Key="cyhkcl" Caption="差异回库处理单" DefaultFilter=""
+		Pagging="10"
+		TableName="SQLQuery::
+		SELECT
+		  l.shangpinbianhao,
+		  l.shangpinmingcheng,
+		  l.guige,
+		  l.danwei,
+		  l.pizhunwenhao,
+		  l.shengchanchangjia,
+		  h.huoweibianhao,
+		  p.pihao,
+		  p.shengchanriqi,
+		  p.youxiaoqizhi,
+		  k.kucunshuliang,
+		  n.orgCode,
+		  n.rowID
+		  |
+		FROM
+		xyy_wms_bill_chukuneifuhe_details n
+		INNER JOIN xyy_wms_dic_shangpinziliao l ON n.goodsid = l.goodsid
+		INNER JOIN xyy_wms_dic_shangpinpihao p ON l.goodsid = p.goodsId
+		INNER JOIN xyy_wms_bill_shangpinpihaohuoweikucun k  ON p.ID = k.pihaoId and k.huoweiId=n.huoweiID
+		INNER JOIN xyy_wms_dic_huoweiziliaoweihu h ON n.huoweiId = h.ID
+        where 1=1  @shangpinbianhao @shangpinmingcheng
+                 "
+		DataSource="" Head="false">
+		<Parameters>
+			<Parameter Key="shangpinbianhao" Type="String">
+				<Where>
+                <![CDATA[
+					m.if(shangpinbianhao==null | shangpinbianhao=="" ," "," and l.shangpinbianhao like '%"+shangpinbianhao+"%'")
+	            ]]>
+				</Where>
+			</Parameter>
+			<Parameter Key="shangpinmingcheng" Type="String">
+				<Where>
+					<![CDATA[
+					m.if(shangpinmingcheng==null | shangpinmingcheng=="" ," "," and l.shangpinmingcheng like '%"+shangpinmingcheng+"%'")
+	            ]]>
+				</Where>
+			</Parameter>
+
+		</Parameters>
+	</DataTable>
+</DataSet>

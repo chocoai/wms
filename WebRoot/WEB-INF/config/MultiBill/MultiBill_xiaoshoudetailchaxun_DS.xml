@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="xiaoshoudetailchaxun" Caption="销售明细万能查询" DefaultFilter="" Pagging="50" PermissionType="CommType" BillType="MultiBill"
+               TableName="WebService::com.xyy.bill.inf.XiaoShouDetailChaXunService" DataSource="" Head="false">
+        <Parameters>
+			<Parameter Key="danjubianhao" Type="String">
+                <Where>
+                <![CDATA[
+					m.if(danjubianhao==null | danjubianhao=="" ,""," and danjubianhao like '%"+danjubianhao+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="danjuleixing" Type="String">
+                <DefaultValue>",1,2,3,"</DefaultValue>
+                <Where>
+                <![CDATA[
+					m.if(danjuleixing==null | danjuleixing=="" ," and 1!=1 "," and danjuleixing in ('"+danjuleixing+"')")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="startTime" Type="String">
+                <DefaultValue>=d.firstdayofmonth()</DefaultValue>
+                <Where>
+                    <![CDATA[
+					m.if(startTime==null | startTime=="" ,""," and DATE_FORMAT(startTime,'%Y-%m-%d %H-%i-%s') <= DATE_FORMAT(createTime,'%Y-%m-%d %H-%i-%s')")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="endTime" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(endTime==null | endTime=="" ,""," and and DATE_FORMAT(endTime,'%Y-%m-%d %H-%i-%s') >= DATE_FORMAT(createTime,'%Y-%m-%d %H-%i-%s')")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="kaipiaoyuan" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if("kaipiaoyuan"==null | "kaipiaoyuan"=="" ,""," and "kaipiaoyuan" like '%"+"kaipiaoyuan"+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="kehumingcheng" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(kehumingcheng==null | kehumingcheng=="" ,""," and kehumingcheng like '%"+kehumingcheng+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="yxsdh" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(yxsdh==null | yxsdh=="" ,""," and yxsdh like '%"+yxsdh+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="ydsdh" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(ydsdh==null | ydsdh=="" ,""," and ydsdh like '%"+ydsdh+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="shangpinmingcheng" Type="String" >
+                <Where>
+                <![CDATA[
+					m.if(shangpinmingcheng==null | shangpinmingcheng=="" ,""," and shangpinmingcheng like '%"+shangpinmingcheng+"%'")
+                ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="yewuyuan" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if("yewuyuan"==null | "yewuyuan"=="" ,""," and "yewuyuan" like '%"+"yewuyuan"+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+    
+</DataSet>

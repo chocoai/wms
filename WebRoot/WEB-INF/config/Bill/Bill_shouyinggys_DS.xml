@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="shouyinggys"  BillType="Bill" Caption="首营供应商" DefaultFilter="" TableName="Table::xyy_erp_bill_shouyinggys" DataSource="" Head="true">
+        <Field FieldKey="danjubianhao" FieldName="单据编号" FieldType="Varchar" DefaultValue="='GYS'+o.orderNo()" Comment="单据编号"/>
+ 
+        <Field FieldKey="kaipiaoriqi" FieldName="开票日期" FieldType="Date" Tramsfor="false" Comment="开票日期"/>
+        <Field FieldKey="kaipiaoyuan" FieldName="开票员" FieldType="Varchar" Comment="开票员"/>
+        <Field FieldKey="gysbh" FieldName="供应商编号" FieldType="Varchar" MixCondition="true" Comment="供应商编号"/>
+        <Field FieldKey="gysmc" FieldName="供应商名称" FieldType="Varchar" MixCondition="true" Comment="供应商名称"/>
+        <Field FieldKey="farendaibiao" FieldName="法人代表" FieldType="Varchar" Comment="法人代表"/>
+        <Field FieldKey="qiyeleixing" FieldName="企业类型" DefaultValue="2" FieldType="Int" Comment="企业类型"/>
+        <Field FieldKey="dizhi" FieldName="地址" FieldType="Varchar" Comment="地址"/>
+
+        <Field FieldKey="lianxiren" FieldName="联系人" FieldType="Varchar" Comment="联系人"/>
+        <Field FieldKey="dianhua" FieldName="电话" FieldType="Varchar" Comment="电话"/>
+        <Field FieldKey="zhengjianhaoma" FieldName="证件号码" FieldType="Varchar" Comment="证件号码"/>
+
+        <Field FieldKey="jingyingfanwei" FieldName="经营范围（营业执照）" FieldType="Text" Comment="经营范围（营业执照）"/>
+        <Field FieldKey="fanweiName" FieldName="经营范围中文" FieldType="Text" Comment="经营范围中文"/>
+        <Field FieldKey="yingyezhizhao" FieldName="营业执照" FieldType="Varchar" Comment="营业执照"/>
+        <Field FieldKey="fazhengjiguan" FieldName="发证机关" FieldType="Varchar" Comment="发证机关"/>
+        <Field FieldKey="zhuceriqi" FieldName="注册日期" FieldType="Date" Comment="注册日期"/>
+        <Field FieldKey="yxqzfs" FieldName="有效期至方式" FieldType="Int"  Comment="有效期至方式"/>
+        <Field FieldKey="zcyxq" FieldName="有效期至" FieldType="Date" Comment="注册有效期至"/>
+ 
+        <Field FieldKey="sfszhy" FieldName="是否三证合一" FieldType="Int" Comment="是否三证合一"/>
+        <Field FieldKey="kaihuyinhang" FieldName="开户银行" FieldType="Varchar" Comment="开户银行"/>
+        <Field FieldKey="yinhangzhanghao" FieldName="银行账号" FieldType="Varchar" Comment="银行账号"/>
+        <Field FieldKey="kaihuhuming" FieldName="开户户名" FieldType="Varchar" Comment="开户户名"/>
+        <Field FieldKey="zzjgdmz" FieldName="组织机构代码证" FieldType="Varchar" Comment="组织机构代码证"/>
+        <Field FieldKey="fazhengriqi" FieldName="发证日期" FieldType="Varchar" Comment="发证日期"/>
+        <Field FieldKey="fzyxq" FieldName="有效期至" FieldType="Varchar" Comment="发证有效期"/>
+        <Field FieldKey="shuihao" FieldName="税务登记证号" FieldType="Varchar" Comment="税务登记证号"/>
+        <Field FieldKey="swfzjg" FieldName="发证机关" FieldType="Varchar" Comment="发证机关"/>
+        <Field FieldKey="caigouyuan" FieldName="采购员" FieldType="Varchar" Comment="采购员"/>
+
+        <Field FieldKey="suppliersid" FieldName="供应商ID" FieldType="Varchar" Comment="供应商ID" Bound="20"/>
+        <Field FieldKey="zhujima" FieldName="助记码" FieldType="Varchar" MixCondition="true" Comment="助记码"/>
+        <Field FieldKey="xukeleixing" FieldName="许可类型" FieldType="Int" Comment="许可类型"/>
+        <Field FieldKey="shouquanfanwei" FieldName="授权范围" FieldType="Varchar" Comment="授权范围"/>
+        <Field FieldKey="fujian" FieldName="上传附件" FieldType="Text" Comment="上传附件"/>
+
+    </DataTable>
+    
+    <DataTable Key="zhiliangzhengzhaoxinxi" BillType="Bill"  Caption="质量证照信息" DefaultFilter="ID" Pagging="100" TableName="Table::xyy_erp_bill_gys_zhiliangzhengzhaoxinxi" DataSource="" Head="false">
+        <Field FieldKey="zhengshuleixing" FieldName="证书类型" FieldType="Int" Comment="1药品生产许可证 2质量保证协议 3税务登记证 4GMP证书 5药品经营许可证  6GSP证书 7医疗执业许可证 8卫生许可证 9食品经营许可证 10食品流通许可证 11医疗器械许可证 12第二类医疗器械经营备案凭证"/>
+        <Field FieldKey="zhengshubianhao" FieldName="证书编号" FieldType="Varchar" Comment="证书编号"/>
+        <Field FieldKey="fazhengjiguan" FieldName="发证机关" FieldType="Varchar" Comment="发证机关"/>
+        <Field FieldKey="fazhengriqi" FieldName="发证日期" FieldType="Varchar" Comment="发证日期"/>
+        <Field FieldKey="youxiaoqizhi" FieldName="有效期至" FieldType="Varchar" Comment="有效期至"/>
+    </DataTable>
+
+    <DataTable Key="gongyingshang_weituoren" BillType="Dictionary"  Caption="供应商委托人" DefaultFilter="ID" Pagging="100" TableName="Table::xyy_erp_bill_gongyingshang_weituoren" DataSource="" Head="false">
+        <Field FieldKey="xingming" FieldName="姓名" FieldType="Varchar" Comment="姓名"/>
+        <Field FieldKey="xingbie" FieldName="性别" FieldType="Int" Comment="性别"/>
+        <Field FieldKey="dianhua" FieldName="电话" FieldType="Varchar" Comment="电话"/>
+        <Field FieldKey="zhengjianhaoma" FieldName="证件号码" FieldType="Varchar" Comment="证件号码"/>
+        <Field FieldKey="dizhi" FieldName="地址" FieldType="Varchar" Comment="地址"/>
+        <Field FieldKey="wtryxqfs" FieldName="委托人有效期方式" FieldType="Int" Comment="委托人有效期方式"/>
+        <Field FieldKey="wtryxq" FieldName="委托人有效期" FieldType="Varchar" Comment="委托人有效期"/>
+        <Field FieldKey="wtsbh" FieldName="委托书编号" FieldType="Varchar" Comment="委托书编号"/>
+        <Field FieldKey="sfzlxr" FieldName="是否主联系人" FieldType="Int" Comment="是否主联系人"/>
+    </DataTable>
+</DataSet>
+

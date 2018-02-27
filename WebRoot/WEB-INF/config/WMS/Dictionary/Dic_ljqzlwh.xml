@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BillFormMeta Key="ljqzlwh" Version="1.0.0" BillType="Dictionary"
+	Caption="采购订单">
+	<BillBody>
+		<BillBodyMeta UserAgent="web">
+			<BillUIPanel Layout="flex" FlexDirection="column" Width="100%"
+				Key="mainContainer" Caption="逻辑区资料" S="">
+				<BillUIPanel Layout="flex" Key="toolbox" Caption="工具栏">
+					<!--属性 colPush 向右推 colPull 向左拉 colOffset 左边距 -->
+					<BillUIWidget Key="save" Caption="保存" EnabledWhen="True"
+						Icon="glyphicon glyphicon-floppy-disk" WidgetType="BillUIButton">
+						<Triggers>
+							<Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+                                	@$this.save('bills',{
+                                        before:{
+                                           setStatus:[20]
+                                        }
+                                    });
+	                            ]]>
+							</Trigger>
+						</Triggers>
+					</BillUIWidget>
+
+					<BillUIWidget Key="goback" Caption="返回" EnabledWhen="True"
+						Icon="glyphicon glyphicon-remove-circle" WidgetType="BillUIButton"
+						S="btn btn-danger ">
+						<Triggers>
+							<Trigger Type="javascript/angular" Runat="client">
+								<![CDATA[
+                                        	@$this.$reBack();
+	                            		]]>
+							</Trigger>
+						</Triggers>
+					</BillUIWidget>
+				</BillUIPanel>
+				<BillUIPanel Layout="flex" Key="mainContainer_head"
+					>
+					<BillUIGridPanel Key="ljqzlwh">
+						<BillUIRowPanel>
+
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="cangkumingchen" Caption="仓库" DataTableColumn="cangkumingchen"
+											  DataTableKey="cangkuziliao"
+											  EnabledWhen="True" WidgetType="BillUIPopupWindow" Src="cangku"
+											  Disable="true" Required="required" >
+									<Init Type="javascript/angular" Runat="client">
+										<![CDATA[
+                                                var t=@cangkuID.getValue();
+                                                t.then(function(data){
+                                                if(data)
+                                                {
+                                                	var cangkuxinxin = callRemoteMethod('/wmsCangku/route/cangku',{cangkuID:data}, true, 'POST');
+                                            	    console.log("cangkuxinxin",cangkuxinxin);
+                                            	    @cangkumingchen.setValue(cangkuxinxin.cangkumingchen);
+									                 }
+                                                })
+	                                        ]]>
+									</Init>
+									<Triggers>
+										<Trigger>
+											<![CDATA[
+                                                    var cangku=this.rows[0];
+                                                    this.setValue(cangku.cangkumingchen);
+                                                    @cangkuID.setValue(cangku.ID);
+                                                    var cangkumingchen = cangku.cangkumingchen;
+                                                    setEnv({cangkumingchen:cangkumingchen});
+
+                                                ]]>
+										</Trigger>
+									</Triggers>
+
+								</BillUIWidget>
+							</BillUIColPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="ljqbh" Caption="逻辑区编号"
+									DataTableKey="ljqzlwh" DataTableColumn="ljqbh" EnabledWhen="True"
+									Required="required" WidgetType="BillUIString">
+								</BillUIWidget>
+							</BillUIColPanel>
+							-<BillUIColPanel Width="3">
+								<BillUIWidget Key="ljqmc" Caption="逻辑区名称"
+									DataTableKey="ljqzlwh" DataTableColumn="ljqmc" EnabledWhen="True"
+									Required="required" WidgetType="BillUIString">
+								</BillUIWidget>
+							</BillUIColPanel>
+						
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="shifouqiyong" Caption="是否启用"
+									DataTableKey="ljqzlwh" DataTableColumn="shifouqiyong"
+									EnabledWhen="True" Required="required" WidgetType="BillUISelect"
+									Src="bill/getDataStatus?type=bool">
+									<Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                          this.loadDataSource();
+                                 	    ]]>
+									</Init>
+								</BillUIWidget>
+							</BillUIColPanel>
+						</BillUIRowPanel>
+						<BillUIRowPanel>
+							<BillUIColPanel Width="6">
+								<BillUIWidget Key="ljqms" Caption="逻辑区描述"
+									DataTableKey="ljqzlwh" DataTableColumn="ljqms" EnabledWhen="True"
+									WidgetType="BillUITextArea">
+								</BillUIWidget>
+							</BillUIColPanel>
+							<BillUIColPanel Width="4" >
+								<BillUIWidget Key="cangkuID"
+											  Caption="" DataTableKey="ljqzlwh" DataTableColumn="cangkuID"
+											  Disable="true" EnabledWhen="True" WidgetType="BillUIString" ViewSize="lg" >
+									<Init Type="javascript/angular" Runat="client">
+										<![CDATA[
+                                            	this.setHide();
+	                                        ]]>
+									</Init>
+								</BillUIWidget>
+							</BillUIColPanel>
+						</BillUIRowPanel>
+					</BillUIGridPanel>
+				</BillUIPanel>
+
+			</BillUIPanel>	
+		</BillBodyMeta>
+
+	</BillBody>
+
+	<BillHeadMeta>
+		<BillEventCollection>
+			<Event Type="PreSave" Processor="com.xyy.wms.handler.biz.DicLjqzlwhPreHandler" />
+
+		</BillEventCollection>
+	</BillHeadMeta>
+
+</BillFormMeta>
+

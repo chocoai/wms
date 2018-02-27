@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Print Key="renyuanxinxi" Caption="人员信息"  TargetKey="renyuanxinxi"  TargetType="DATASET">
+    <PrintHead>
+        <PageSetting PageSize="210,297" PageNumber="false" PageOrient="Ver" PageMargin="5,5,5,5"  HeaderAndFooterSetting="Normal" MaxLayoutRowCount="40" />
+        <PageOutputMode Mode="MultiBillPerPage"  BillHorCount="3" BollVerCount="1" />  
+        <StyleCollection>
+
+             <Style Key="body" Type="Tag">
+                <Font Size="14" Family="宋体" Italic="fasle" Weight="200"></Font>
+                 <Css>
+                     <![CDATA[
+                          box-sizing: border-box;position: relative;
+                     ]]>
+                 </Css>
+            </Style>
+            <Style Key="pageNumber" Type="Class">
+                 <Font Size="14" Family="宋体" Italic="fasle" Weight="200" ></Font>
+                 <Css>
+                     <![CDATA[
+                          position:absolute;bottom:20px;right:5mm;
+                     ]]>
+                 </Css>
+            </Style>
+
+            <Style Key="td" Type="Tag" Padding="5px 2px"></Style>
+
+             <Style Key="title"  BackgroundColor="#ccc">
+                <Font Size="18" Family="宋体" Italic="fasle" Weight="700" ></Font>
+            </Style>
+
+             <Style Key="printTitle">
+                <Font Size="20" Family="宋体" Italic="fasle" Weight="700" ></Font>
+                <Borders>
+                    <Border Dir="Bottom" LineSize="1" LineColor="#333" LineStyle="solid"/>
+                </Borders>
+                 <Css>
+                     <![CDATA[
+                            letter-spacing: 20px;
+                     ]]>
+                 </Css>
+            </Style>
+
+             <Style Key="imgCss" Align="Right">
+                <Borders>
+                    <Border Dir="Bottom" LineSize="1" LineColor="#333" LineStyle="solid"/>
+                </Borders>
+            </Style>
+            <Style Key="imgCss img">
+                 <Css>
+                     <![CDATA[
+                              width: 50%;
+                     ]]>
+                 </Css>
+            </Style>
+
+			 <Style Key="datasetTable td" Type="Class">
+                 <Css>
+                     <![CDATA[
+                          padding:5px;
+                     ]]>
+                 </Css>
+            </Style>
+
+
+            <Style Key="head" Type="Class" Padding="2px">
+                <Font Size="14" Family="宋体" Italic="fasle" Weight="200" ></Font>
+                <Borders>
+                    <Border Dir="All" LineSize="1" LineColor="gray" LineStyle="dashed"/>
+                </Borders>
+                <Css>
+                    <![CDATA[
+                              border-collapse:collapse;
+                     ]]>
+                </Css>
+            </Style>
+
+            <Style Key="data" Type="Class" Padding="2px">
+                <Borders>
+                    <Border Dir="All" LineSize="1" LineColor="gray" LineStyle="dashed"/>
+                </Borders>
+                <Css>
+                    <![CDATA[
+                        border-collapse:collapse;
+                    ]]>
+                </Css>
+            </Style>
+            <Style Key="data td" Type="Class">
+                <Font Size="12" Family="宋体" Italic="fasle" Weight="200" ></Font>
+                <Borders>
+                    <Border Dir="All" LineSize="1" LineColor="gray" LineStyle="solid"/>
+                </Borders>
+            </Style>
+
+            <Style Key="tableTitle td" Type="Class" Padding="2px">
+                <Font Size="12" Family="宋体" Italic="fasle" Weight="200" ></Font>
+                <Css>
+                    <![CDATA[
+                        height:10mm !important;
+                    ]]>
+                </Css>
+            </Style>
+
+        </StyleCollection>
+    </PrintHead>
+    <PrintBody>
+        <PrintBlock  Area="DtlData" Rows="1,1" Cols="18,18,18" S="data" DataTableKey=""  >
+            <Row R="1" RowType="Header"  S="title tableTitle">
+                <Col C="1" RS="1" CS="1" ColType="Title" S="col" Align="Center">序号</Col>
+                <Col C="2" RS="1" CS="1" ColType="Title" S="col" Align="Center">名称</Col>
+                <Col C="3" RS="1" CS="1" ColType="Title" S="col" Align="Center">创建时间</Col>
+            </Row>
+            <Row R="2" RowType="Data"  S="">
+                <Col C="1" RS="1" CS="1" ColType="DataCol" S="col" DataCol="sortNo" Align="Center"></Col>
+                <Col C="2" RS="1" CS="1" ColType="DataCol" S="col" DataCol="realName" Align="Center"></Col>
+                <Col C="3" RS="1" CS="1" ColType="DataCol" S="col" DataCol="createTime" Align="Center"></Col>
+            </Row>
+        </PrintBlock>
+    </PrintBody>
+</Print>

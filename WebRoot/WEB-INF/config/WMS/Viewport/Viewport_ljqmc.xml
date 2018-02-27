@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BillViewMeta Key="ljqmc" Caption="工具栏" Version="">
+
+	<BillBody UserAgent="web">
+		<BillBodyMeta>
+			<BillUIPanel Layout="flex" Key="ljqmc_tools" Caption="工具栏"
+				RowGap="7" ColGap="10" ColWidth="repeat(8,auto) 1fr" S="">
+				<BillUIGridPanel Key="ljqmc_grid">
+					<BillUIRowPanel>
+						<BillUIColPanel Width="4">
+							<BillUIWidget Caption="逻辑区名称" Key="cancel"
+								EnabledWhen="True" ParameterKey="ljqmc" DataTableKey="ljqmc_view"
+								WidgetType="BillUIString">
+							</BillUIWidget>
+						</BillUIColPanel>
+						<BillUIColPanel Width="2">
+							<BillUIWidget Caption="查询" Key="search" EnabledWhen="True"
+								Icon="glyphicon glyphicon-send" WidgetType="BillUIButton">
+								<Triggers>
+									<Trigger Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                        	this.search("ljqmc_view");
+                                 			]]>
+									</Trigger>
+								</Triggers>
+							</BillUIWidget>
+
+						</BillUIColPanel>
+					</BillUIRowPanel>
+					<BillUIRowPanel>
+						<BillUIColPanel Width="12">
+							<BillUIPanel Layout="flex" Key="dictionary_tools">
+								<!-- 操作模式： View|Edit View==>多选：checkbox 单选:单击行方式 RowId===>行标识，通过行行标识来 -->
+								<BillUIGrid Key="grid0" OptMode="View" RowId=""
+									DataTableKey="ljqmc_view">
+									<GridHeads>
+										<GridHead Col="ljqmc" Caption="逻辑区名称" enableEdit="True"
+											Width="150px">
+											<BillUIWidget Key="ljqmc" WidgetType="BillUIString" />
+										</GridHead>
+										<GridHead Col="ljqbh" Caption="逻辑区编号" enableEdit="True"
+											Width="120px">
+											<BillUIWidget Key="ljqbh" WidgetType="BillUIString" />
+										</GridHead>
+
+									</GridHeads>
+								</BillUIGrid>
+							</BillUIPanel>
+
+						</BillUIColPanel>
+					</BillUIRowPanel>
+
+				</BillUIGridPanel>
+			</BillUIPanel>
+		</BillBodyMeta>
+	</BillBody>
+
+</BillViewMeta>

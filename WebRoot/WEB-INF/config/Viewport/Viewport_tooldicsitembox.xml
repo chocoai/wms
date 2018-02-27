@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BillViewMeta Key="box" Caption="工具栏" Version="">
+
+    <BillBody UserAgent="web">
+        <BillBodyMeta>
+            <BillUIPanel Layout="flex" Key="dictionary_tools" Caption="工具栏"  >
+                <BillUIGridPanel Device="sm" key="boxtool">
+                    <!--Devie   xs,sm,md,lg-->
+                    <BillUIRowPanel S="toolBox">
+                        <BillUIColPanel Width="12">
+                            <!--属性 colPush 向右推 colPull 向左拉 colOffset 左边距 -->
+                            <BillUIWidget Key="submit" Caption="保存"
+                                          DataTableKey="gonghuoshangxiaoqizhengzhao" colOffset="" DataTableColumn="update"
+                                          EnabledWhen="True" Icon="glyphicon glyphicon-floppy-disk"
+                                          WidgetType="BillUIButton">
+                                          <Triggers>
+			                                    <Trigger Type="javascript/angular" Runat="client">
+			                                        <![CDATA[
+			                                        	
+			                                        	@$this.save();
+				                            		]]>
+			                                    </Trigger>
+                               			  </Triggers>
+                            </BillUIWidget>
+                            <BillUIWidget Key="submit" Caption="提交"
+                                          EnabledWhen="True"
+                                          Icon="glyphicon glyphicon-floppy-saved" WidgetType="BillUIButton">
+                                <Triggers>
+                                    <Trigger Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                         @$this.submit();
+	                                  ]]>
+                                    </Trigger>
+                                </Triggers>
+                            </BillUIWidget>
+                            <BillUIWidget Key="goback" Caption="返回"
+                                          DataTableKey="gonghuoshangxiaoqizhengzhao" DataTableColumn="delete" EnabledWhen="True"
+                                          Icon="glyphicon glyphicon-remove-circle" WidgetType="BillUIButton" S="btn btn-danger ">
+                                <Triggers>
+                                    <Trigger Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                        	@$this.$reBack();
+	                            		]]>
+                                    </Trigger>
+                                </Triggers>
+                            </BillUIWidget>
+                        </BillUIColPanel>
+                    </BillUIRowPanel>
+                </BillUIGridPanel>
+            </BillUIPanel>
+        </BillBodyMeta>
+    </BillBody>
+
+</BillViewMeta>

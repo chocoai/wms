@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="zhifufangshi" Caption="支付方式列表" DefaultFilter="" Pagging="10" PermissionType="CommType"
+               TableName="SQLQuery::select * | from xyy_erp_dic_zhifufangshi where 1 = 1 and shifouhuodong=1  @zffsbh @zffsmc order by createTime desc" DataSource="" Head="false">
+        <Parameters>  
+            <Parameter Key="zffsbh" Type="String">
+                <Where>
+                <![CDATA[
+					m.if(zffsbh==null | zffsbh=="" ,""," and zffsbh like '%"+zffsbh+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="zffsmc" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(zffsmc==null | zffsmc=="" ,""," and zffsmc like '%"+zffsmc+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="CDTFax" basedir="." default="all">
+    <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+	<!-- 使用eclipse jdt进行编译，而不使用JDK编译 -->
+	<path id="classpath">
+		<fileset dir="./WebRoot/WEB-INF/lib">
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
+	
+	<!--发布目录初始化-->
+	<target name="prepare" description="prepare ">
+	 			<delete dir="dist/tmp" />
+                <mkdir dir="dist/tmp" />
+                 <delete dir="dist/release" />
+                <mkdir dir="dist/release" />
+                 <delete dir="dist/war" />
+                <mkdir dir="dist/war" />           
+	</target>
+
+	<!--编译,编译的文件放到dist/tmp目录上-->
+	<target name="compile">
+		<delete dir="dist/tmp" />
+		<mkdir dir="dist/tmp" />
+		<javac includes="com/xyy/**/*.*" destdir="dist/tmp" 
+			classpathref="classpath" encoding="UTF-8" verbose="true" source="1.8"
+			target="1.8" includeantruntime="on" >
+			<src path="src" />
+			<src path="wms" />
+			<src path="Bill" />
+			<src path="workflow" />
+			<src path="Edge" />
+			<src path="expression" />
+		</javac>
+	</target>
+
+	
+    <!--打包-->
+	<target name="package">
+		<delete dir="dist/release" />
+		<mkdir dir="dist/release" />
+		
+		<!--复制网站内容文件-->
+		<copy todir="dist/release">
+			<fileset dir="WebRoot" excludes="/WEB-INF/classes/**/*.class"></fileset>
+		</copy>
+		
+		
+		<!--复制编译的类文件-->
+		<copy todir="dist/release/WEB-INF/classes">
+			<fileset dir="dist/tmp"></fileset>
+		</copy>
+		
+		<!--打包-->
+		<delete file="dist/war/XYYWms.war" />
+		<war warfile="dist/war/XYYWms.war" includes="**/*.*"
+			excludes="WEB-INF/lib/jetty-all-9.3.0.RC1-uber.jar" webxml="dist/release/WEB-INF/web.xml"
+			update="true" basedir="dist/release" />
+	</target>
+
+	<target name="all" depends="prepare,compile,package">
+	</target>
+	
+	
+
+</project>
+

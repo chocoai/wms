@@ -1,0 +1,86 @@
+<div ng-controller="myApp.systemManagement.select">
+	<div class="row">
+		<div class="col-sm-12">
+			<!--子系统-->
+			<div class="panel panel-default">
+				<div class="panel-heading clearfix">
+					<div class="pull-left">下拉框管理</div>
+					<div class="pull-right btn-group">
+						<button class="btn btn-success btn-sm"
+							ng-click="add()">新增</button>
+					</div>
+				</div>
+				<div class="panel-body">
+					<form class="form-inline">
+						<div class="form-group">
+							<label for="exampleInputName2">下拉框类型</label>
+							<input type="text" class="form-control" ng-model="searchType" id="exampleInputName2" >
+						</div>
+						<button type="button" class="btn btn-primary btn-sm" ng-click="search()">查询</button>
+						<button type="button" class="btn btn-default btn-sm" ng-click="reset()">清空</button>
+					</form>
+					<br><br>
+
+					<table class="table table-hover table-bordered table-striped table-condensed">
+						<thead>
+							<tr>
+								<th style="width: 2%">序号</th>
+								<th style="width: 2%">下拉框类型</th>
+								<th style="width: 10%">下拉框Key</th>
+								<th style="width: 10%">下拉框Value</th>
+								<th style="width: 10%">操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="select in selectList">
+								<td>{{$index+1}}</td>
+								<td>{{select.type}}</td>
+								<td>{{select.key}}</td>
+								<td>{{select.value}}</td>
+								<td>
+									<button class="btn btn-primary btn-sm" ng-click="edit(select.id)">编辑</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<div paging page-info="pageInfo" load="load()"/>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="modal fade" id="myModule2" tabindex="-1" role="dialog"
+		 aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" >下拉框编辑</h4>
+				</div>
+				<div class="modal-body">
+					<form role="form" name="form">
+						<div class="form-group">
+							<label>下拉框类型</label> <input type="text" class="form-control"
+													   ng-model="select.type" required>
+						</div>
+						<div class="form-group">
+							<label>下拉框Key</label> <input type="number" class="form-control"
+													  ng-model="select.key" required>
+						</div>
+						<div class="form-group">
+							<label>下拉框Value</label>
+							<input type="text" class="form-control" ng-model="select.value" required>
+							</input>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary"
+							ng-click="save()">保存</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>

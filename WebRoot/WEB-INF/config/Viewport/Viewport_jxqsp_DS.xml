@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="jxqsp" Caption="近效期商品查询" DefaultFilter="" PermissionType="CommType"  Pagging="100"
+        TableName="SQLQuery::select * | from (SELECT
+	b.goodsId as goodsid,
+	b.rowID,
+	COUNT(a.goodsId),
+	b.shangpinbianhao,
+b.shangpinmingcheng,
+b.guige,
+b.danwei,
+b.dbzsl as baozhuangshuliang,
+b.pizhunwenhao,
+b.chandi,
+b.shengchanchangjia,
+b.jixing
+
+FROM
+	xyy_erp_dic_shangpinpihao a,
+	xyy_erp_dic_yanghupinzhong b
+WHERE
+	to_days(a.youxiaoqizhi) - to_days(now()) &lt;= 180
+and a.goodsId = b.goodsid and b.yanghuleixing =0
+GROUP BY
+	a.goodsId) x
+        where 1 = 1  @shangpinmingcheng @shangpinbianhao @shengchanchangjia  "  DataSource="" Head="false" Singleton="" OrderBy="">
+        <Parameters>
+            
+            <Parameter Key="shangpinbianhao" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(shangpinbianhao==null | shangpinbianhao=="",""," and x.shangpinbianhao = '"+shangpinbianhao+"'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="shangpinmingcheng" Type="String">
+                <Where>
+             <![CDATA[
+					m.if(shangpinmingcheng==null | shangpinmingcheng=="" ,""," and x.shangpinmingcheng like '%"+shangpinmingcheng+"%'")
+	            ]]> 
+                </Where>
+            </Parameter>
+            <Parameter Key="shengchanchangjia" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(shengchanchangjia==null | shengchanchangjia=="" ,""," and x.shengchanchangjia like '%"+shengchanchangjia+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="gongyingshangCG_view" Caption="货商名称" DefaultFilter="" Pagging="10"
+        TableName="SQLQuery::select * | from xyy_erp_dic_gongyingshangjibenxinxi where 1 = 1 and status = 40 and shifouhuodong=1  @gysmc @gysbh @dongjie order by createTime desc"  PermissionType="CommType"  DataSource="" Head="false" Singleton="" OrderBy="">
+        <Parameters> 
+            <Parameter Key="gysmc" Type="String">
+                <Where>
+                <![CDATA[
+                    m.if(gysmc==null | gysmc=="" ,""," and gysmc like '%"+gysmc+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="gysbh" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(gysbh==null | gysbh=="",""," and gysbh = '"+gysbh+"'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="dongjie" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(dongjie==null ,""," and dongjie = "+dongjie+"")
+	            ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

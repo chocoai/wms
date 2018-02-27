@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BillFormMeta Key="yjbgd" Version="1.0.0" BillType="Bill"
+              Caption="药检报告单">
+    <BillBody>
+        <BillBodyMeta UserAgent="web">
+            <!--<BillUIPanel Layout="flex" FlexDirection="column" Width="100%"
+                         Key="mainContainer" Caption="移库开票单" S="">-->
+            <BillUIPanel Layout="flex" FlexDirection="column" Width="100%" Key="mainContainer" Caption="业务订单" S="">
+                <BillUIPanel Layout="flex" Key="toolbox" Caption="工具栏">
+
+                    <BillUIWidget Key="save" Caption="保存" EnabledWhen="True"
+                                  Icon="glyphicon glyphicon-floppy-disk" WidgetType="BillUIButton">
+                        <Triggers>
+                            <Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+                                   @$this.save('bills',{
+                                        before:{
+                                           setStatus:[1]
+                                        }
+                                    });
+	                            ]]>
+                            </Trigger>
+                        </Triggers>
+                    </BillUIWidget>
+                    <BillUIWidget Key="goback" Caption="返回" EnabledWhen="True"
+                                  Icon="glyphicon glyphicon-align-left" WidgetType="BillUIButton" S="btn btn-danger">
+                        <Triggers>
+                            <Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+                                   @$this.return();
+	                            ]]>
+                            </Trigger>
+                        </Triggers>
+                    </BillUIWidget>
+                </BillUIPanel>
+                <BillUIPanel Layout="flex" Key="mainContainer_head"
+                             Caption="药检报告单" S="">
+                    <BillUIGridPanel Key="yjbgd">
+
+
+                        <BillUIRowPanel>
+
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="shangpinbianhao" Caption="商品编号" WidgetType="BillUIPopupWindow"
+                                              DataTableKey="yjbgd" DataTableColumn="shangpinbianhao"
+                                              Disable="true" Src="shangpinbianhao">
+                                    <Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                                var orgId=this.getOrgId();
+                                                this.setEnvModel({orgId:orgId});
+
+	                                        ]]>
+                                    </Init>
+                                    <Triggers>
+                                        <Trigger>
+                                            <![CDATA[
+                                                    var shangpinbianhao=this.rows[0];
+                                                    console.log("shangpinbianhao:", shangpinbianhao);
+                                                    this.setValue(shangpinbianhao.shangpinbianhao);
+                                                    @guige.setValue(shangpinbianhao.guige);
+                                                    @shangpinmingcheng.setValue(shangpinbianhao.shangpinmingcheng);
+                                                    @danwei.setValue(shangpinbianhao.shadowObj.danwei);
+                                                    console.log(shangpinbianhao.danwei);
+                                                    @shengchanchangjia.setValue(shangpinbianhao.shengchanchangjia);
+                                                    @pizhunwenhao.setValue(shangpinbianhao.pizhunwenhao);
+                                                    @goodsid.setValue(shangpinbianhao.goodsid);
+                                                    @dbzsl.setValue(shangpinbianhao.dbzsl);
+                                                    @pihao.setValue("");
+                                                    @pihaoId.setValue("");
+                                        ]]>
+                                        </Trigger>
+                                    </Triggers>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                        </BillUIRowPanel>
+                        <BillUIRowPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="pizhunwenhao" Caption="批准文号" WidgetType="BillUIString" Disable="true"
+                                              DataTableKey="yjbgd" DataTableColumn="pizhunwenhao"/>
+                            </BillUIColPanel>
+                        </BillUIRowPanel>
+                        <BillUIRowPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="shangpinmingcheng" Caption="商品名称" Disable="true" DataTableKey="yjbgd"
+                                              DataTableColumn="shangpinmingcheng"
+                                              WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                        </BillUIRowPanel>
+                        <BillUIRowPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="goodsid" Caption="商品ID" DataTableKey="yjbgd" Disable="true"
+                                              DataTableColumn="goodsid" WidgetType="BillUIString"/>
+                            </BillUIColPanel>
+                        </BillUIRowPanel>
+
+                        <BillUIRowPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="guige" Caption="规格" Disable="true" DataTableKey="yjbgd"
+                                              DataTableColumn="guige"
+                                              WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                        </BillUIRowPanel>
+                        <BillUIRowPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="dbzsl" Caption="包装数量" Disable="true" DataTableKey="yjbgd"
+                                              DataTableColumn="dbzsl"
+                                              WidgetType="BillUIDecimal">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                        </BillUIRowPanel>
+                        <BillUIRowPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="danwei" Caption="单位" Disable="true" DataTableKey="yjbgd"
+                                              DataTableColumn="danwei"
+                                              WidgetType="BillUIString" >
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                        </BillUIRowPanel>
+                        <BillUIRowPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="shengchanchangjia" Caption="生产厂家" Disable="true" DataTableKey="yjbgd"
+                                              DataTableColumn="shengchanchangjia"
+                                              WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                        </BillUIRowPanel>
+                        <BillUIRowPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="pihao" Caption="批号" Disable="true"
+                                              WidgetType="BillUIPopupWindow" Src="pihao" DataTableKey="yjbgd"
+                                              DataTableColumn="pihao">
+                                    <Init Type="javascript/angular" Runat="client"> <![CDATA[ var
+                                        orgId=this.getOrgId(); this.setEnvModel({orgId:orgId}); ]]> </Init>
+                                    <OnClickHandlers>
+                                        <OnClickHandler>
+                                            <![CDATA[
+                                                var goodsid = @goodsid.getValue();
+                                                console.log("goodsid",goodsid);
+                                                goodsid.then(function(value) {
+                                                    setEnv({goodsid: value});
+                                                })
+											]]>
+                                        </OnClickHandler>
+                                    </OnClickHandlers>
+                                    <Triggers>
+                                        <Trigger>
+                                            <![CDATA[
+                                                    var pihao=this.rows[0];
+                                                    console.log("pihao",pihao);
+                                                    this.setValue(pihao.pihao);
+                                                    @pihaoId.setValue(pihao.pihaoId);
+                                        ]]>
+                                        </Trigger>
+                                    </Triggers>
+
+                                </BillUIWidget>
+                            </BillUIColPanel>
+
+                        </BillUIRowPanel>
+                        <BillUIRowPanel>
+                            <BillUIColPanel Width="3" >
+                                <BillUIWidget Key="pihaoId" Caption="批号ID" Disable="true" DataTableKey="yjbgd"
+                                              DataTableColumn="pihaoId"
+                                              WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                        </BillUIRowPanel>
+                        <BillUIRowPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="fujian" DataTableColumn="fujian" WidgetType="BillUIAttachment"
+                                              EnabledWhen="True" DataTableKey="yjbgd"/>
+                            </BillUIColPanel>
+                        </BillUIRowPanel>
+                    </BillUIGridPanel>
+                </BillUIPanel>
+            </BillUIPanel>
+        </BillBodyMeta>
+
+    </BillBody>
+
+    <BillHeadMeta>
+        <BillStatusCollection>
+            <Status Default="true" Code="1">录入</Status>
+            <Status Code="20">正式</Status>
+            <Status Code="40">审核通过</Status>
+        </BillStatusCollection>
+        <BillEventCollection>
+            <Event Type="PreSave" Processor="com.xyy.wms.handler.biz.YjbgdPreHandler"/>
+        </BillEventCollection>
+    </BillHeadMeta>
+
+</BillFormMeta>

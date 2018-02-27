@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="fenjianhuadaoziliao" BillType="Dictionary" Caption="分拣滑道资料" DefaultFilter="" TableName="Table::xyy_wms_dic_fenjianhuadaoziliao" DataSource="" Head="true">
+        <!--
+             单据编号	varchar	规则：YBM+年月日时分秒+3位随机码, 例如：YBM20160426112240764
+        -->
+        <Field FieldKey="cangkumingcheng" FieldName="仓库名称" FieldType="Varchar"  Comment="仓库名称"/>
+        <Field FieldKey="cangkubianhao" FieldName="仓库编号" FieldType="Varchar"  Comment="仓库编号"/>
+        <Field FieldKey="fjhdlx" FieldName="分拣滑道类型" FieldType="Int" Comment="滑道类型:1销售出库、2采购退出、3自提、4异常剔除口"/>
+        <Field FieldKey="fjhdbh" FieldName="分拣滑道编号" FieldType="Varchar"  Comment="分拣滑道编号"/>
+        <Field FieldKey="zhgxsj" FieldName="最后更新时间" FieldType="Date" Comment="最后更新时间"/>
+        <Field FieldKey="shifouqiyong" FieldName="是否启用" FieldType="Int" DefaultValue="1" Comment="是否启用:1是、0否"/>
+        <Field FieldKey="beizhu" FieldName="备注" FieldType="Varchar"  Comment="备注"/>
+        <Field FieldKey="cangkuID" FieldName="仓库ID" FieldType="Varchar" Comment="仓库ID" />
+    </DataTable>
+
+</DataSet>

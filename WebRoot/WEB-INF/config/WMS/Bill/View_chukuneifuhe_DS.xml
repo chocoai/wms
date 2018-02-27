@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+	<DataTable Key="chukuneifuhe" Caption="出库内复核叙事薄"
+		DefaultFilter="" Pagging="10"
+		TableName="SQLQuery::select * | from xyy_wms_bill_chukuneifuhe where 1=1 and status != -1 @status @dingdanbianhao @zancunqu @xianlumingcheng   ORDER BY createTime DESC"
+		DataSource="" Head="false">
+		<Parameters>
+			<Parameter Key="dingdanbianhao" Type="String">
+				<Where>
+                <![CDATA[
+					m.if(dingdanbianhao==null | dingdanbianhao=="" ," "," and dingdanbianhao like '%"+dingdanbianhao+"%'")
+	            ]]>
+				</Where>
+			</Parameter>
+			<Parameter Key="zancunqu" Type="String">
+				<Where>
+                <![CDATA[
+					m.if(zancunqu==null | zancunqu==" " ," "," and zancunqu like '%"+zancunqu+"%'")
+                ]]>
+				</Where>
+			</Parameter>
+			<Parameter Key="status" Type="Integer">
+				<Where>
+                    <![CDATA[
+					   	m.if(status==null,""," and status="+status+"")
+	                ]]>
+				</Where>
+			</Parameter>
+		</Parameters>
+	</DataTable>
+</DataSet>

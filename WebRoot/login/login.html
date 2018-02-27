@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="myApp.LoginMent" >
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer" content="webkit|ie-stand">
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+	<title>小药药ERP管理系统</title>
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/iconfont.css">
+	<script src="../lib/js/jquery.min.js"></script>
+
+	<script type="text/javascript" src="../lib/js/angular.min.js"></script>
+
+	<script src="js/controller/LoginController.js"></script>
+
+</head>
+<body>
+<div ng-controller="myApp.LoginMent.login">
+	<div class="login-banner">
+		<h2 class="logo"></h2>
+	</div>
+	<div class="login-box">
+    <h1>ERP管理系统</h1>
+
+		<div class="box-con tran">
+		<form name="loginForm" class="form-horizontal"  >
+			<div class="login-con f-l">
+				<div class="form-group">
+					<input id="username" ng-model="user.username" ng-blur="Org()"  type="text" placeholder="登录名或手机号" ng-keyup="checkUsername()"  maxlength="11" autocomplete="off"/>
+                    <span class="error-notic" >{{error.mobile}}</span>
+				</div>
+				<div class="form-group">
+					<input type="password" ng-model="user.password" placeholder="密码" id="password" ng-keyup="checkPSW()"   autocomplete="off">
+                    <span class="error-notic" >{{error.pwd}}</span>
+				</div>
+				<div class="form-group">
+					<select ng-model="user.orgId" ng-options="x.id as x.orgName for x in organization" class="signup-form ">
+						<!--<option ng-repeat="x in organization" ng-value="x.id" ng-bind="x.orgName"></option>-->
+						<option value="">请选择机构</option>
+					</select>
+				</div>
+                <div class="form-group">
+              	  <input id="authCode" name="authCode" ng-model="user.authCode" type="text" placeholder="验证码" maxlength="4" style="width:190px;float:left;" autocomplete="off">
+                  <span class="error-notic" >{{error.authCode}}</span>
+                  <img  class="verCode" src="/authimg" onclick="this.src='/authimg?rnd=' + Math.random();">
+                </div>
+				<div class="form-group">
+					<button type="button"  ng-click="validata()" class="tran pr "  ng-disabled="!organization || organization =='' || !user.orgId || user.orgId==''" ng-class="{'disabled':!organization || organization ==''|| !user.orgId  || user.orgId==''}">
+						<span  class="tran" >登录</span>
+					</button>
+				</div>				
+			</div>
+		 </form>
+			<!-- 登录 -->
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BillViewMeta Key="renyuan" Caption="工具栏" Version="">
+	<Parameters>
+		<Parameter Key="t1" Type="String" Scope="Global">
+			<DefaultValue>=o.orderNo()</DefaultValue>
+			<Where></Where>
+		</Parameter>
+	</Parameters>
+	<BillBody UserAgent="web">
+		<BillBodyMeta>
+			<BillUIPanel Layout="flex" Key="renyuan_tools" Caption="工具栏" RowGap="7" ColGap="10"
+                             ColWidth="repeat(8,auto) 1fr" S="">
+			     <BillUIGridPanel Key="renyuan_grid">
+                    <BillUIRowPanel>
+                        <BillUIColPanel Width="4">
+                            <BillUIWidget Caption="名称" Key="cancel"
+                                EnabledWhen="True"   ParameterKey="realName"
+                                DataTableKey="renyuan_view"
+                                WidgetType="BillUIString">
+                            </BillUIWidget>
+                        </BillUIColPanel>
+						<!--<BillUIColPanel Width="4">-->
+							<!--<BillUIWidget Caption="部门" Key="cancel"-->
+										  <!--EnabledWhen="True"   ParameterKey="deptName"-->
+										  <!--DataTableKey="renyuan_view"-->
+										  <!--WidgetType="BillUIString">-->
+							<!--</BillUIWidget>-->
+						<!--</BillUIColPanel>-->
+                        <BillUIColPanel Width="2">
+                            <BillUIWidget Caption="查询" Key="search"
+                                EnabledWhen="True"
+                                Icon="glyphicon glyphicon-send" WidgetType="BillUIButton">
+                                <Triggers>
+                                    <Trigger Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                        	this.search("renyuan_view");
+                                 			]]>
+                                    </Trigger>
+                                </Triggers>
+                            </BillUIWidget>
+
+                        </BillUIColPanel>
+                    </BillUIRowPanel>
+			         <BillUIRowPanel>
+						 <BillUIColPanel Width="12">
+							 <BillUIPanel Layout="flex" Key="dictionary_tools">
+								 <!--
+								 	操作模式：
+								 		View|Edit
+								 		View==>多选：checkbox
+								 		      单选:单击行方式
+								 		 RowId===>行标识，通过行行标识来
+
+								 -->
+								 <BillUIGrid Key="grid0" OptMode="View"   RowId="" DataTableKey="renyuan_view">
+								 <GridHeads>
+									 <GridHead Col="realName" Caption="人员名称" enableEdit="True"
+											   Width="150px">
+										 <BillUIWidget Key="realName" WidgetType="BillUIString"/>
+									 </GridHead>
+									 <GridHead Col="deptName" Caption="部门名称" enableEdit="True"
+											   Width="120px">
+										 <BillUIWidget Key="deptName" WidgetType="BillUIString"/>
+									 </GridHead>
+								 </GridHeads>
+							 </BillUIGrid>
+							 </BillUIPanel>
+
+						 </BillUIColPanel>
+			         </BillUIRowPanel>
+			         
+			     </BillUIGridPanel>
+             </BillUIPanel>
+		</BillBodyMeta>
+	</BillBody>
+	
+</BillViewMeta>

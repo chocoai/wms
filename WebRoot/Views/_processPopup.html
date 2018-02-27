@@ -1,0 +1,518 @@
+
+<!----新增活动表单信息弹窗--->
+<div class="modal fade" id="my-modal-addActivityform">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">新增活动表单</h4>
+            </div>
+            <div class="modal-body">
+                <form name='addActivityformForm'>
+                    <table class="table  table-striped table-hover">
+                        <tr>
+                            <td width="120">表单引用：</td>
+                            <td>
+                                <input type="text" ng-model="currNode.filter" placeholder="过滤表单" alt="过滤表单">
+                                <select name="formId" ng-model="addActivityform.formId"
+                                        ng-options="activityform.id as activityform.formTitle for activityform in currentRow.activityforms  | filter:currNode.filter"
+                                        required></select>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <span ng-show="addActivityformForm.formId.$error.required  && !addActivityformForm.formId.$pristine"
+                                      class="text-danger">请选择表单引用</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>是否为主表单：</td>
+                            <td>
+                                <select ng-model="addActivityform.canMainForm" name="canMainForm" required>
+                                    <option value="0">否</option>
+                                    <option value="1">是</option>
+                                </select>
+                                <span ng-show="addActivityformForm.canMainForm.$error.required  && !addActivityformForm.canMainForm.$pristine"
+                                      class="text-danger">请选择是否为主表单</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>是否为单态表单：</td>
+                            <td>
+                                <select ng-model="addActivityform.canSingle" name="canSingle" required>
+                                    <option value="0">否</option>
+                                    <option value="1">是</option>
+                                </select>
+                                <span ng-show="addActivityformForm.canSingle.$error.required  && !addActivityformForm.canSingle.$pristine"
+                                      class="text-danger">请选择是否为单态表单</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>无数据显示方式：</td>
+                            <td>
+                                <select ng-model="addActivityform.showType" name="showType" required>
+                                    <option value="0">隐藏</option>
+                                    <option value="1">新建</option>
+                                </select>
+                                <span ng-show="addActivityformForm.showType.$error.required  && !addActivityformForm.showType.$pristine"
+                                      class="text-danger">请选择无数据显示方式</span>
+                            </td>
+                        </tr>
+<!--                         <tr> -->
+<!--                             <td>许可类型：</td> -->
+<!--                             <td> -->
+<!--                                 <select ng-model="addActivityform.permisisionType" name="permisisionType" required> -->
+<!--                                     <option value="0">乐观许可</option> -->
+<!--                                     <option value="1">悲观许可</option> -->
+<!--                                 </select> -->
+<!--                                 <span ng-show="addActivityformForm.permisisionType.$error.required  && !addActivityformForm.permisisionType.$pristine" -->
+<!--                                       class="text-danger">请选择许可类型</span> -->
+<!--                             </td> -->
+<!--                         </tr> -->
+<!--                         <tr> -->
+<!--                             <td>排除字段：</td> -->
+<!--                             <td> -->
+<!--                                 <input type="text" maxlength="1000" ng-model="addActivityform.excludeFields"> -->
+<!--                             </td> -->
+<!--                         </tr> -->
+                        <tr>
+                            <td>必填字段：</td>
+                            <td>
+                            <textarea rows="3" cols="35" maxlength="1000"
+                                      ng-model="addActivityform.requireField"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td>排序号：</td>
+                            <td>
+                                <input type="number" maxlength="5" ng-model="addActivityform.sortNumber">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <button class="btn btn-primary" ng-click="addActivityformInfo()"
+                                        ng-disabled="addActivityformForm.$invalid">提交
+                                </button>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!----修改活动表单信息弹窗-->
+<div class="modal" id="my-modal-editActivityform">
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">修改活动表单</h4>
+        </div>
+        <div class="modal-body">
+            <form name='editActivityformForm'>
+                <table class="table  table-striped table-hover">
+                    <tr>
+                        <td width="120">表单引用：</td>
+                        <td>
+                            <input type="text" ng-model="currNode.filter" placeholder="过滤表单" alt="过滤表单">
+
+                            <select name="formId" ng-model="editActivityform.formId"
+                                    ng-options="activityform.id as activityform.formTitle for activityform in currentRow.activityforms  | filter:currNode.filter"
+                                    required></select>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <span ng-show="editActivityformForm.formId.$error.required  && !editActivityformForm.formId.$pristine"
+                                  class="text-danger">请选择表单引用</span>
+                            <input type="hidden" name="id" ng-model="editActivityform.id">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>是否为主表单：</td>
+                        <td>
+                            <select ng-model="editActivityform.canMainForm" name="canMainForm" required>
+                                <option value="0">否</option>
+                                <option value="1">是</option>
+                            </select>
+                            <span ng-show="editActivityformForm.canMainForm.$error.required  && !editActivityformForm.canMainForm.$pristine"
+                                  class="text-danger">请选择是否为主表单</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>是否为单态表单：</td>
+                        <td>
+                            <select ng-model="editActivityform.canSingle" name="canSingle" required>
+                                <option value="0">否</option>
+                                <option value="1">是</option>
+                            </select>
+                            <span ng-show="editActivityformForm.canSingle.$error.required  && !editActivityformForm.canSingle.$pristine"
+                                  class="text-danger">请选择是否为单态表单</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>无数据显示方式：</td>
+                        <td>
+                            <select ng-model="editActivityform.showType" name="showType" required>
+                                <option value="0">隐藏</option>
+                                <option value="1">新建</option>
+                            </select>
+                            <span ng-show="editActivityformForm.showType.$error.required  && !editActivityformForm.showType.$pristine"
+                                  class="text-danger">请选择无数据显示方式</span>
+                        </td>
+                    </tr>
+<!--                     <tr> -->
+<!--                         <td>许可类型：</td> -->
+<!--                         <td> -->
+<!--                             <select ng-model="editActivityform.permisisionType" name="permisisionType" required> -->
+<!--                                 <option value="0">乐观许可</option> -->
+<!--                                 <option value="1">悲观许可</option> -->
+<!--                             </select> -->
+<!--                             <span ng-show="editActivityformForm.permisisionType.$error.required  && !editActivityformForm.permisisionType.$pristine" -->
+<!--                                   class="text-danger">请选择许可类型</span> -->
+<!--                         </td> -->
+<!--                     </tr> -->
+<!--                     <tr> -->
+<!--                         <td>排除字段：</td> -->
+<!--                         <td> -->
+<!--                             <input type="text" maxlength="1000" ng-model="editActivityform.excludeFields"> -->
+<!--                         </td> -->
+<!--                     </tr> -->
+                    <tr>
+                        <td>必填字段：</td>
+                        <td>
+                            <textarea rows="3" cols="35" maxlength="1000"
+                                      ng-model="editActivityform.requireField"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td>排序号：</td>
+                        <td>
+                            <input type="number" maxlength="5" ng-model="editActivityform.sortNumber">
+                            <input type="hidden" id="afindexHidden">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <button class="btn btn-primary" ng-click="editActivityformInfo()"
+                                    ng-disabled="editActivityformForm.$invalid">提交
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+    </div>
+</div>
+
+
+<!--活动用户定义-->
+<!----新增弹窗--->
+<div class="modal fade" tabindex="-1" id="my-popup-addProcessuser" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">新增活动用户</h4>
+            </div>
+            <div class="modal-body">
+                <form name='addProcessuserForm'>
+                    <table class="table  table-striped table-hover" >
+                        <tr>
+                            <td width="120">用户类型：</td>
+                            <td>
+                                <select ng-model="addProcessuser.type" name="type" required>
+                                    <option value="0">执行用户</option>
+                                    <option value="1">代理用户</option>
+                                    <option value="2">抄送用户</option>
+                                    <option value="3">督办用户</option>
+                                </select>
+                                <span ng-show="addProcessuserForm.type.$error.required" class="text-danger">请选择用户类型</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>用户类别：</td>
+                            <td>
+                                <select ng-model="addProcessuser.category" name="category" required>
+                                    <option value="0">用户id</option>
+                                    <option value="1">角色</option>
+                                    <option value="2">分组</option>
+                                    <option value="3">部门</option>
+                                    <option value="4">岗位</option>
+                                </select>
+                                <span ng-show="addProcessuserForm.category.$error.required" class="text-danger">请选择用户类别</span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>按用户：</td>
+                            <td ng-if="addProcessuser.category==0">
+                                <div radiogroup  check-model="addProcessuser.uid"  action="membersList"  key="id" value="realName" fields="realName,memberAccount" heads="成员姓名,成员账号"  searchs="姓名,realName;账号,memberAccount" ></div>
+                            </td>
+
+                            <td ng-if="addProcessuser.category==1">
+                                <div radiogroup  check-model="addProcessuser.uid"  action="roleList"  key="id" value="roleName" fields="roleName,remark" heads="角色名称,备注"></div>
+                            </td>
+
+                            <td ng-if="addProcessuser.category==2">
+                                <div radiogroup  check-model="addProcessuser.uid"  action="groupList"  key="id" value="groupName" fields="groupName,remark" heads="分组名称,备注"></div>
+                            </td>
+
+                            <td ng-if="addProcessuser.category==3">
+                                <div radiogroup  check-model="addProcessuser.uid"  action="deptList"  key="id" value="deptName" fields="deptName,remark" heads="部门名称,备注"></div>
+                            </td>
+
+                            <td ng-if="addProcessuser.category==4">
+                                <div radiogroup  check-model="addProcessuser.uid"  action="stationList"  key="id" value="stationName" fields="stationName,remark" heads="岗位名称,备注"></div>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button class="btn btn-primary" ng-click="addProcessuserInfo()" ng-disabled="addProcessuserForm.$invalid">提交</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!----修改弹窗--->
+<div class="modal fade" tabindex="-1" id="my-popup-editProcessuser" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">修改活动用户</h4>
+            </div>
+            <div class="modal-body">
+                <form name='editProcessuserForm'>
+                    <table class="table  table-striped table-hover" >
+                        <tr>
+                            <td width="120">用户类型：</td>
+                            <td>
+                                <select ng-model="editProcessuser.type" name="type" required>
+                                    <option value="0">执行用户</option>
+                                    <option value="1">代理用户</option>
+                                    <option value="2">抄送用户</option>
+                                    <option value="3">督办用户</option>
+                                </select>
+                                <span ng-show="editProcessuserForm.type.$error.required" class="text-danger">请选择用户类型</span>
+                                <input type="hidden" name="id" ng-model="editProcessuser.id" >
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>用户类别：</td>
+                            <td>
+                                <select ng-model="editProcessuser.category" name="category" required>
+                                    <option value="0">用户id</option>
+                                    <option value="1">角色</option>
+                                    <option value="2">分组</option>
+                                    <option value="3">部门</option>
+                                    <option value="4">岗位</option>
+                                </select>
+                                <span ng-show="editProcessuserForm.category.$error.required" class="text-danger">请选择用户类别</span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>按用户：</td>
+                            <td ng-if="editProcessuser.category==0">
+                                <div radiogroup  check-model="editProcessuser.uid"  action="membersList"  key="id" value="realName" fields="realName,memberAccount" heads="成员姓名,成员账号"  searchs="姓名,realName;账号,memberAccount" ></div>
+                            </td>
+
+                            <td ng-if="editProcessuser.category==1">
+                                <div radiogroup  check-model="editProcessuser.uid"  action="roleList"  key="id" value="roleName" fields="roleName,remark" heads="角色名称,备注"></div>
+                            </td>
+
+                            <td ng-if="editProcessuser.category==2">
+                                <div radiogroup  check-model="editProcessuser.uid"  action="groupList"  key="id" value="groupName" fields="groupName,remark" heads="分组名称,备注"></div>
+                            </td>
+
+                            <td ng-if="editProcessuser.category==3">
+                                <div radiogroup  check-model="editProcessuser.uid"  action="deptList"  key="id" value="deptName" fields="deptName,remark" heads="部门名称,备注"></div>
+                            </td>
+
+                            <td ng-if="editProcessuser.category==4">
+                                <div radiogroup  check-model="editProcessuser.uid"  action="stationList"  key="id" value="stationName" fields="stationName,remark" heads="岗位名称,备注"></div>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <input type="hidden" id="puindexHidden" >
+                <button class="btn btn-primary" ng-click="editProcessuserInfo()" ng-disabled="editProcessuserForm.$invalid">提交</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--活动事件-->
+<!----新增弹窗--->
+<div class="modal fade" tabindex="-1" id="my-popup-addEvent" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">新增活动事件</h4>
+            </div>
+            <div class="modal-body">
+                <form name='addEvent'>
+                    <table class="table  table-striped table-hover" >
+<!--                         <tr> -->
+<!--                             <td width="120">事件标题：</td> -->
+<!--                             <td> -->
+<!--                                 <input type="text" ng-model="addEventdefinition.title" name="title" required> -->
+<!--                                 <span ng-show="addEvent.title.$error.required" class="text-danger">请输入事件标题</span> -->
+<!--                             </td> -->
+<!--                         </tr> -->
+                        <tr>
+                            <td>事件类别：</td>
+                            <td>
+                                <select ng-model="addEventdefinition.category" name="category" required>
+                                    <option value="0">开始事件</option>
+                                    <option value="1">结束事件</option>
+                                </select>
+                                <span ng-show="addEvent.category.$error.required" class="text-danger">请选择事件类别</span>
+                            </td>
+                        </tr>
+                        <tr style="display: none">
+                        	<td>
+                        		<!-- 活动事件添加设置默认为活动事件类型 -->
+                            	<input ng-model="addEventdefinition.type" ng-init="addEventdefinition.type='1'" type="text" name= "type">
+                        	</td>
+                        </tr>
+<!--                         <tr> -->
+<!-- 	                        <td>事件类型：</td> -->
+<!-- 	                        <td> -->
+<!-- 	                            <select ng-model="addEventdefinition.type" name="type" required> -->
+<!-- 	                                 <option value="0">流程事件</option> -->
+<!-- 	                                <option value="1">活动事件</option> -->
+<!-- 	                            </select> -->
+<!-- 	                            <span ng-show="addEvent.type.$error.required" class="text-danger">请选择事件类型</span> -->
+<!-- 	                        </td> -->
+<!-- 	                    </tr> -->
+<!-- 	                    <tr> -->
+<!-- 	                        <td>事件类名称：</td> -->
+<!-- 	                        <td> -->
+<!-- 	                            <input type="text" ng-model="addEventdefinition.clazz" name="clazz" required> -->
+<!-- 	                            <span ng-show="addEvent.clazz.$error.required" class="text-danger">请输入事件类名称</span> -->
+<!-- 	                        </td> -->
+<!-- 	                    </tr> -->
+	                    <tr class="am-danger">
+			                <td>接口类型：</td>
+			                <td>
+			                	<select ng-model="addEventdefinition.interfaceType" name="interfaceType" required>
+                                    <option value="1">Java类型</option>
+                                    <option value="2">JS类型</option>
+                                </select>
+			                	<span ng-show="addEvent.interfaceType.$error.required" class="text-danger">请选择接口类别</span>
+			                </td>
+			            </tr>
+	                    
+	                    <tr>
+	                        <td>事件定义：</td>
+	                        <td ng-show="addEventdefinition.interfaceType != '2'">
+	                            <input type="text" ng-model="addEventdefinition.clazz" name="clazz" >
+	                        </td>
+	                        <td ng-show="addEventdefinition.interfaceType == '2'">
+	                        	<textarea  rows="3" cols="35" ng-model="addEventdefinition.jsExpr"></textarea>
+	                        </td>
+	                    </tr>
+	                        
+                        <tr>
+                            <td>事件描述：</td>
+                            <td>
+                                <textarea  rows="3" cols="35" ng-model="addEventdefinition.desc"></textarea></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button class="btn btn-primary" ng-click="addEventInfo()" ng-disabled="addEvent.$invalid">提交</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!----修改弹窗--->
+<div class="modal fade" tabindex="-1" id="my-popup-editEvent" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">修改活动事件</h4>
+            </div>
+            <div class="modal-body">
+                <form name='editEvent'>
+                    <table class="table  table-striped table-hover" >
+                        <tr>
+                            <td>事件类别：</td>
+                            <td>
+                            	
+                                <select ng-model="editEventdefinition.category" name="category" required>
+                                    <option value="0">开始事件</option>
+                                    <option value="1">结束事件</option>
+                                </select>
+                                <span ng-show="editEvent.category.$error.required" class="text-danger">请选择事件类别</span>
+                            </td>
+                        </tr>
+                        <tr style="display: none">
+                        	<td>
+                        		<!-- 活动事件修改设置默认为活动事件类型 -->
+                            	<input ng-model="editEventdefinition.type" ng-init="editEventdefinition.type='1'" type="text" name= "type">
+                        	</td>
+                        </tr>
+<!--                         <tr> -->
+<!-- 	                        <td>事件类型：</td> -->
+<!-- 	                        <td> -->
+<!-- 	                            <select ng-model="editEventdefinition.type" name="type" required> -->
+<!--  	                                <option value="0">流程事件</option> --> 
+<!-- 	                                <option value="1">活动事件</option> -->
+<!-- 	                            </select> -->
+<!-- 	                            <span ng-show="editEvent.type.$error.required" class="text-danger">请选择事件类型</span> -->
+<!-- 	                        </td> -->
+<!-- 	                    </tr> -->
+<!-- 	                    <tr> -->
+<!-- 	                        <td>事件类名称：</td> -->
+<!-- 	                        <td> -->
+<!-- 	                            <input type="text" ng-model="editEventdefinition.clazz" name="clazz" required> -->
+<!-- 	                            <span ng-show="editEvent.clazz.$error.required" class="text-danger">请输入事件类名称</span> -->
+<!-- 	                        </td> -->
+<!-- 	                    </tr> -->
+	                    <tr class="am-danger">
+			                <td>接口类型：</td>
+			                <td>
+			                	<select ng-model="editEventdefinition.interfaceType" name="interfaceType" required>
+	                                <option value="1">Java类型</option>
+	                                <option value="2">JS类型</option>
+	                            </select>
+				                <span ng-show="editEvent.interfaceType.$error.required" class="text-danger">请选择接口类别</span>
+			                </td>
+			            </tr>
+	                    <tr>
+	                        <td>事件定义：</td>
+	                        <td ng-show="editEventdefinition.interfaceType != '2'">
+	                            <input type="text" ng-model="editEventdefinition.clazz" name="clazz" >
+	                        </td>
+	                        <td ng-show="editEventdefinition.interfaceType == '2'">
+	                        	<textarea  rows="3" cols="35" ng-model="editEventdefinition.jsExpr"></textarea>
+	                        </td>
+	                    </tr>
+                        <tr>
+                            <td>事件描述：</td>
+                            <td>
+                                <textarea  rows="3" cols="35" ng-model="editEventdefinition.desc"></textarea>
+                                <input type="hidden" id="edindexHidden"  >
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button class="btn btn-primary" ng-click="editEventInfo()" ng-disabled="editEvent.$invalid">提交</button>
+            </div>
+        </div>
+    </div>
+</div>
+    

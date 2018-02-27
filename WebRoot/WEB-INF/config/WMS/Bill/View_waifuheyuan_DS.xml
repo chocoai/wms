@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="waifuheyuan" Caption="外复核员考核统计叙事薄" DefaultFilter="" PermissionType="CommType" Pagging="10"
+               TableName="SQLQuery::
+SELECT
+	c.cangkumingchen,
+	a.orgId,
+	a.zhiyuanmingcheng,
+	a.jianshu,
+	a.shuliang,
+	a.tiaomushu,
+	a.pinguishu
+	|
+FROM
+	(
+		SELECT
+			k.cangkuID,
+			k.orgId,
+			sum(d.zhengjianshu) AS jianshu,
+			sum(d.shuliang) AS shuliang,
+			COUNT(d.BillDtlID) AS tiaomushu,
+			d.caozuoren AS zhiyuanmingcheng,
+			COUNT(
+				DISTINCT (d.shangpinmingcheng)
+			) AS pinguishu,
+			d.shangpinmingcheng
+		FROM
+			xyy_wms_dic_huoweiziliaoweihu k
+		JOIN xyy_wms_bill_chukuwaifuhe_details d ON k.huoweibianhao = d.xiajiahuoweibianhao AND k.orgId = d.orgId @kaishiriqi @jiezhiriqi GROUP BY caozuoren
+	) AS a
+ JOIN xyy_wms_dic_cangkuziliao c ON a.cangkuid = c.ID AND a.orgId = c.orgId
+WHERE
+	1=1 @zhiyuanmingcheng @cangkumingchen @orgId "  DataSource="" Head="false">
+        <Parameters>
+            <Parameter Key="zhiyuanmingcheng" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(zhiyuanmingcheng==null | zhiyuanmingcheng=="" ,""," and zhiyuanmingcheng like '%"+zhiyuanmingcheng+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+
+            <Parameter Key="kaishiriqi" Type="String">
+                <Where>
+                    <![CDATA[
+						m.if(kaishiriqi==null,""," and DATE_FORMAT(d.createTime,'%Y-%m-%d') >= DATE_FORMAT('"+kaishiriqi+"','%Y-%m-%d')")
+	                ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="jiezhiriqi" Type="String">
+                <Where>
+                    <![CDATA[
+					   	m.if(jiezhiriqi==null,""," and DATE_FORMAT(d.createTime,'%Y-%m-%d') <= DATE_FORMAT('"+jiezhiriqi+"','%Y-%m-%d')")
+	                ]]>
+                </Where>
+            </Parameter>
+
+            <Parameter Key="cangkumingchen" Type="String">
+                <Where>
+                    <![CDATA[
+					    m.if(cangkumingchen==null | cangkumingchen=="" ," "," and cangkumingchen like '%"+cangkumingchen+"%'")
+	                ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="orgId" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(orgId==null | orgId=="" ,""," and a.orgId = '"+orgId+"'")
+	            ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

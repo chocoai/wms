@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="gongyingshangmingpian" BillType="Dictionary"  Caption="供应商名片" DefaultFilter=""  TableName="Table::xyy_erp_dic_gongyingshangmingpian" DataSource="" Head="true">
+        <Field FieldKey="mingcheng" FieldName="名称" FieldType="Varchar"  Comment="名称"/>
+        <Field FieldKey="jibie" FieldName="级别" FieldType="Int" DefaultValue="1"  Comment="级别:1 一级 2 二级 3 商业 4 省代"/>
+        <Field FieldKey="lianxiren" FieldName="联系人" FieldType="Varchar" Comment="联系人"/>
+        <Field FieldKey="dianhua" FieldName="电话" FieldType="Varchar" Comment="电话"/>
+        <Field FieldKey="sqjlxm" FieldName="省区经理姓名" FieldType="Varchar" Comment="省区经理姓名"/>
+        <Field FieldKey="sqjldh" FieldName="省区经理电话" FieldType="Varchar" Comment="省区经理电话"/>
+        <Field FieldKey="dizhi" FieldName="地址" FieldType="Varchar" Comment="地址"/>
+    </DataTable>
+    <DataTable Key="gongyingshangmingpian_shangpin" BillType="Dictionary"  Caption="供应商名片关联商品" DefaultFilter="ID"  TableName="Table::xyy_erp_dic_gongyingshangmingpian_shangpin" DataSource="" Head="false">
+        <Field FieldKey="goodsid" FieldName="商品ID" FieldType="Varchar"  Comment="商品ID" Bound="20"/>
+        <Field FieldKey="shangpinbianhao" FieldName="商品编号" FieldType="Varchar"  Comment="商品编号"/>
+		<Field FieldKey="shangpinmingcheng" FieldName="商品名称" FieldType="Varchar"  Comment="商品名称"/>
+        <Field FieldKey="guige" FieldName="商品规格" FieldType="Varchar" Comment="商品规格"/>
+        <Field FieldKey="shengchanchangjia" FieldName="生产厂家" FieldType="Varchar" Comment="生产厂家"/>
+
+        <Field FieldKey="danpinfanli" FieldName="单品返利" FieldType="Varchar" Comment="单品返利"/>
+        <Field FieldKey="pinzhongdengji" FieldName="品种等级" FieldType="Varchar" Comment="品种等级"/>
+
+        <Field FieldKey="zhujima" FieldName="助记码" FieldType="Varchar" Comment="助记码"/>
+        <Field FieldKey="zbzsl" FieldName="中包装数量" FieldType="Int" Comment="中包装数量"/>
+        <Field FieldKey="dbzsl" FieldName="件包装数量" FieldType="Int" Comment="件包装数量"/>
+    </DataTable>
+</DataSet>

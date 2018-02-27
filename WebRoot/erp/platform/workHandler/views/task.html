@@ -1,0 +1,43 @@
+<div ng-controller="xyy.workflow.taskCtrl">
+
+<div class="am-card" ng-repeat="taskInstance in taskInstanceList" ng-if="taskInstanceList.length>0">
+  <div class="am-card-header">
+    <div >
+        流程名称：<span class="text-primary">{{taskInstance.pdName}}</span>
+        &emsp;     |       &emsp;
+        当前节点：<span class="text-primary">{{taskInstance.adName}}</span>&emsp;
+        <label class="badge badge-success" ng-switch="taskInstance.status">
+		  <span ng-switch-when="0">待受理</span>
+		  <span ng-switch-when="1">在途</span>
+		  <span ng-switch-when="2">已完成</span>
+		  <span ng-switch-when="3">挂起</span>
+		  <span ng-switch-when="4">否单</span>
+		  <span ng-switch-when="5">回退</span>
+		  <span ng-switch-when="6">已取回</span>
+		  <span ng-switch-when="7">预约</span>
+		  <span ng-switch-default>未知状态</span>
+        </label>
+    </div>
+  </div>
+  <div class="am-card-body">
+    <ul>
+        <li>任务编号：{{taskInstance.taskNumber}}</li>
+        <li>任务开始时间：{{taskInstance.createTime}}</li>
+        <li ng-repeat= "field in taskInstance.extFields track by $index">{{field.field}}</li>
+    </ul>
+  </div>
+  <div class="am-card-footer clearfix">
+
+    <div class="btn-group pull-left" style="margin-top:5px;margin-right:20px;">
+        <button ng-if="taskInstance.status == 0" type="button" class="btn btn-xs btn-success radius" ng-click="shouli(taskInstance.id)">受理</button>
+        <button ng-if="taskInstance.status == 1 || taskInstance.status == 7" type="button" class="btn btn-xs btn-primary radius" ng-click="chuli(taskInstance.id)">处理</button>
+        <button ng-if="taskInstance.status == 1" type="button" class="btn btn-xs btn-danger radius" ng-click="jiesuo(taskInstance.id)">解锁</button>
+        <button ng-if="taskInstance.status == 3" type="button" class="btn btn-xs btn-primary radius" ng-click="recovery(taskInstance.id)">恢复</button>
+        <button type="button" class="btn btn-xs btn-primary radius" ng-click="chakan(taskInstance.id)">查看</button>
+    </div>
+  </div>
+</div>
+<div class="noData" ng-if="taskInstanceList.length<= 0 ">暂无数据！</div>
+<!--分页组件-->
+<div paging page-info="pageInfo" load="load()"/>
+</div>

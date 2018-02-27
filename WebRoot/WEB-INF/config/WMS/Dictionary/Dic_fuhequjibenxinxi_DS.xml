@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="fuhequjibenxinxi" BillType="Dictionary"  Caption="复核区基本信息" DefaultFilter=""  TableName="Table::xyy_wms_dic_fuhequjibenxinxi" DataSource="" Head="true">
+       <Field FieldKey="cangkuID" FieldName="仓库Id" FieldType="Varchar"  Comment="仓库Id"/> 
+       <Field FieldKey="cangkubianhao" FieldName="仓库编号" FieldType="Varchar"  Comment="仓库编号"/> 
+        <Field FieldKey="cangkumingcheng" FieldName="仓库名称" FieldType="Varchar"  Comment="仓库名称"/>
+		<Field FieldKey="fhqbh" FieldName="复核区编号" FieldType="Varchar"  Comment="复核区编号"/>
+        <Field FieldKey="fhqmc" FieldName="复核区名称" FieldType="Varchar" Comment="复核区名称"/>
+        <Field FieldKey="fhwbh" FieldName="复核位编号" FieldType="Varchar" Comment="复核位编号"/>
+        <Field FieldKey="huadaohao" FieldName="滑道号" FieldType="Int" Comment="滑道号"/>
+        <Field FieldKey="qishizuhao" FieldName="起始组号" FieldType="Int" Comment="起始组号"/> 
+        <Field FieldKey="zuhao" FieldName="组号" FieldType="Int" Comment="组号"/>
+        <Field FieldKey="zongzizuhao" FieldName="终止组号" FieldType="Int" Comment="终止组号"/>
+        <Field FieldKey="qishicenghao" FieldName="起始层号" FieldType="Int" Comment="起始层号"/>
+        <Field FieldKey="cenghao" FieldName="层号" FieldType="Int" Comment="层号"/>
+        <Field FieldKey="zhongzicenghao" FieldName="终止层号" FieldType="Int" Comment="终止层号"/>
+        <Field FieldKey="qishileihao" FieldName="起始列号" FieldType="Int" Comment="起始列号"/>  
+         <Field FieldKey="liehao" FieldName="列号" FieldType="Int" Comment="列号"/>
+        <Field FieldKey="zongziliehao" FieldName="终止列号" FieldType="Int" Comment="终止列号"/>
+        <Field FieldKey="shifouqiyong" FieldName="是否启用" FieldType="Int" Comment="是否启用" DefaultValue="1" />
+        <Field FieldKey="beizhu" FieldName="备注" FieldType="Varchar" Comment="备注"/>
+        <Field FieldKey="shifousuoding" FieldName="是否锁定" FieldType="Int"  Comment="是否锁定(0,已释放1,锁定中)" DefaultValue="0" />
+    </DataTable>
+</DataSet>

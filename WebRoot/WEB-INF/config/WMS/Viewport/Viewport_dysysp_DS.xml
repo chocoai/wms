@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="dysysp" Caption="当月首营商品查询" DefaultFilter="" PermissionType="CommType"  Pagging="100"
+               TableName="SQLQuery::
+     SELECT
+        s.shangpinbianhao,
+        s.shangpinmingcheng,
+        s.guige,
+        s.danwei,
+        s.dbzsl,
+        s.chand
+        i,
+        s.jixing,
+        s.pizhunwenhao,
+        s.shengchanchangjia,
+        h.huoweibianhao,
+        p.pihao,
+        p.shengchanriqi,
+        p.youxiaoqizhi,
+        k.kucunshuliang,
+        s.rowID
+     |
+     from  xyy_wms_bill_shangpinpihaohuoweikucun k
+     LEFT JOIN xyy_wms_dic_shangpinziliao s on
+     s.goodsid=k.shangpinId and s.orgId=k.orgId
+     left join xyy_wms_dic_shangpinpihao p
+     on p.ID=k.pihaoId and p.orgId=k.orgId
+     left join xyy_wms_dic_huoweiziliaoweihu h
+     on h.ID=k.huoweiId and h.orgId=k.orgId
+     where s.createTime>=DATE_ADD(curdate(),interval -day(curdate())+1 day) and k.kucunshuliang!=0
+     @shangpinbianhao @zhujima @orgId"  DataSource="" Head="false" Singleton="" OrderBy="">
+        <Parameters>
+            <Parameter Key="orgId" Type="String" >
+                <Where>
+                    <![CDATA[
+							m.if(orgId==null | danjubianhao=="" ," "," and s.orgId like '%"+orgId+"%'")
+			            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="shangpinbianhao" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(shangpinbianhao==null | shangpinbianhao=="",""," and s.shangpinbianhao = '"+shangpinbianhao+"'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="zhujima" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(zhujima==null | zhujima=="" ,""," and s.zhujima like '%"+zhujima+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

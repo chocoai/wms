@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BillFormMeta Key="shangpinfuzeren" Version="1.0.0" BillType="Dics" Caption="商品负责人">
+    <BillBody>
+        <BillBodyMeta UserAgent="web">
+            <BillUIPanel Layout="flex" FlexDirection="column" Width="100%" Key="mainContainer" Caption="商品负责人" S="">
+                <BillUIPanel Layout="flex" Key="dictionary_tools" Caption="工具栏" >
+                    <BillUIWidget Key="submit" Caption="保存"
+                                  EnabledWhen="True"
+                                  Icon="glyphicon glyphicon-floppy-saved" WidgetType="BillUIButton">
+                        <Triggers>
+                            <Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+                                        var cos=getDataset("shangpinfuzeren").cos;
+                                        for(var i=0;i<cos.length;i++){
+                                            for(var j=i+1;j<cos.length;j++){
+                                                if(cos[i].goodsid==cos[j].goodsid){
+                                                    alert('商品负责人有重复数据,请检查！');
+                                                    return;
+                                                }
+                                            }
+                                        }
+                                        @$this.save();
+	                                  ]]>
+                            </Trigger>
+                        </Triggers>
+                    </BillUIWidget>
+                    <BillUIWidget Key="goback" Caption="返回"
+                                  DataTableKey="gonghuoshangxiaoqizhengzhao" DataTableColumn="delete" EnabledWhen="True"
+                                  Icon="glyphicon glyphicon-remove-circle" WidgetType="BillUIButton" S="btn btn-danger ">
+                        <Triggers>
+                            <Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+                                        	@$this.$reBack();
+	                            		]]>
+                            </Trigger>
+                        </Triggers>
+                    </BillUIWidget>
+                    <BillUIWidget Key="code" Caption=""
+                                  DataTableKey="shangpinfuzerenhead" DataTableColumn="code"
+                                  EnabledWhen="True" Disable="true" S="setHide"
+                                  WidgetType="BillUILabel">
+                    </BillUIWidget>
+                </BillUIPanel>
+                <BillUIPanel Layout="flex" Key="four" Caption="商品负责人"  S="panel  panel-primary  publicPanel">
+                    <BillUIPanel Layout="grid" Key="one"
+                                 Caption="证照信息">
+                        <BillUIGrid Key="grid0" OptMode="Edit" DataTableKey="shangpinfuzeren">
+                            <GridHeads>
+                                <GridHead Col="shangpinbianhao" Caption="商品编号" enableEdit="True" Width="100px">
+                                    <BillUIWidget Key="shangpinbianhao" WidgetType="BillUIPopupWindow" ViewSize="lg"
+                                                  Disable="true" Src="spfzr">
+                                        <Init Type="javascript/angular" Runat="client">
+                                            <![CDATA[
+                                                @shangpinbianhao.setEnvModel({shifouhuodong:1});
+                                                @shangpinbianhao.setEnvModel({status:40});
+	                                        ]]>
+                                        </Init>
+                                        <Triggers>
+                                            <Trigger>
+                                                <![CDATA[
+                                                    var shangpin=this.rows[0];
+                                                    this.setValue(shangpin.shangpinbianhao);
+                                                    @shangpinmingcheng.setValue(shangpin.shangpinmingcheng);
+                                                    @guige.setValue(shangpin.guige);
+                                                    @danwei.setValue(shangpin.danwei);
+                                                    var co=window.$body.shangpinfuzeren.co;
+                                                    co.goodsid=shangpin.goodsid;
+                                                    co.mixCondition=shangpin.mixCondition;
+
+                                                    @pizhunwenhao.setValue(shangpin.pizhunwenhao);
+                                                    @shengchanchangjia.setValue(shangpin.shengchanchangjia);
+                                                    @chandi.setValue(shangpin.chandi);
+                                        ]]>
+                                            </Trigger>
+                                        </Triggers>
+                                    </BillUIWidget>
+                                </GridHead>
+                                <GridHead Col="shangpinmingcheng" Caption="商品名称" enableEdit="True" Width="150px">
+                                    <BillUIWidget Key="shangpinmingcheng"  WidgetType="BillUIString" Disable="true" >
+                                    </BillUIWidget>
+                                </GridHead>
+                                <GridHead Col="guige" Caption="规格" enableEdit="True" Width="80px">
+                                    <BillUIWidget Key="guige" Disable="true" WidgetType="BillUIString"/>
+                                </GridHead>
+
+                                <GridHead Col="danwei" Caption="单位"  enableEdit="True" Width="50px">
+                                    <BillUIWidget Key="danwei" Disable="true" WidgetType="BillUISelect" Src="bill/selectSrc?type=baozhuangdanwei">
+                                        <Init Type="javascript/angular" Runat="client">
+                                            <![CDATA[
+                                                         this.loadDataSource();
+                                                        ]]>
+                                        </Init>
+                                        <Formatters>
+                                            <Formatter>
+                                                <![CDATA[
+					                                          [{'type':'baozhuangdanwei'}]
+					                                       ]]>
+                                            </Formatter>
+                                        </Formatters>
+                                    </BillUIWidget>
+                                </GridHead>
+                                <GridHead Col="shengchanchangjia" Caption="生产厂家" enableEdit="True" Width="180px">
+                                    <BillUIWidget Key="shengchanchangjia" Disable="true" WidgetType="BillUIString"/>
+                                </GridHead>
+                                <GridHead Col="pizhunwenhao" Caption="批准文号"  enableEdit="True" Width="100px">
+                                    <BillUIWidget Key="pizhunwenhao" Disable="true" WidgetType="BillUIString"/>
+                                </GridHead>
+                                <GridHead Col="chandi" Caption="产地" enableEdit="True" Width="80px">
+                                    <BillUIWidget Key="chandi" Disable="true" WidgetType="BillUIString"/>
+                                </GridHead>
+
+                                <GridHead Col="caigouyuan" Caption="采购员" enableEdit="True" Width="80px">
+                                    <BillUIWidget Key="caigouyuan" WidgetType="BillUIPopupWindow" ViewSize="lg"
+                                                  Disable="true" Src="renyuan">
+                                        <Init Type="javascript/angular" Runat="client">
+                                            <![CDATA[
+                                        	var orgId=this.getOrgId();
+                                            this.setEnvModel({deptName:'采购部'},{orgId:orgId});
+                                        ]]>
+                                        </Init>
+                                        <Triggers>
+                                            <Trigger>
+                                                <![CDATA[
+                                                var caigouyuan=this.rows[0];
+	                                            this.setValue(caigouyuan.realName);
+                                        ]]>
+                                            </Trigger>
+                                        </Triggers>
+                                    </BillUIWidget>
+                                </GridHead>
+
+                                <GridHead Col="shangwujingli" Caption="商务经理" enableEdit="True" Width="80px">
+                                    <BillUIWidget Key="shangwujingli" WidgetType="BillUIPopupWindow" ViewSize="lg"
+                                                  Disable="true" Src="renyuan">
+                                        <Init Type="javascript/angular" Runat="client">
+                                            <![CDATA[
+                                        	var orgId=this.getOrgId();
+                                            this.setEnvModel({deptName:'采购部'},{orgId:orgId});
+                                        ]]>
+                                        </Init>
+                                        <Triggers>
+                                            <Trigger>
+                                                <![CDATA[
+                                                var caigouyuan=this.rows[0];
+	                                            this.setValue(caigouyuan.realName);
+                                        ]]>
+                                            </Trigger>
+                                        </Triggers>
+                                    </BillUIWidget>
+                                </GridHead>
+
+                                <GridHead Col="jihuayuan" Caption="计划员" enableEdit="True" Width="80px">
+                                    <BillUIWidget Key="jihuayuan" WidgetType="BillUIPopupWindow" ViewSize="lg"
+                                                  Disable="true" Src="renyuan">
+                                        <Init Type="javascript/angular" Runat="client">
+                                            <![CDATA[
+                                        	var orgId=this.getOrgId();
+                                            this.setEnvModel({deptName:'采购部'},{orgId:orgId});
+                                        ]]>
+                                        </Init>
+                                        <Triggers>
+                                            <Trigger>
+                                                <![CDATA[
+                                                var caigouyuan=this.rows[0];
+	                                            this.setValue(caigouyuan.realName);
+                                        ]]>
+                                            </Trigger>
+                                        </Triggers>
+                                    </BillUIWidget>
+                                </GridHead>
+
+                            </GridHeads>
+                        </BillUIGrid>
+                    </BillUIPanel>
+                </BillUIPanel>
+            </BillUIPanel>
+        </BillBodyMeta>
+    </BillBody>
+    <BillHeadMeta>
+    </BillHeadMeta>
+</BillFormMeta>
+

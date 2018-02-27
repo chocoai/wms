@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    设置打印模版
+    Key:打印模版key
+    Caption:打印标题    
+    TargetKey:需要打印的目标对向
+-->
+<Print Key="" Caption=""  TargetKey="targetKey"  TargetType="BILL|DIC|DATASET">
+    <!-- 
+        打印头部信息设置
+        （1）表头区域设置
+        （2）明细数据区设置
+        （3）表尾区域设置
+             表头表尾打印设置：
+                 1.只在第一页打印表头，最后一页打印表尾；
+                 2.在每一页打印表头和表尾；
+                 3.在每一页打印表头，最后一页打印表尾；
+             是否打印页码：
+             数据区打印设置：每页固定打印8行（最后一页按实际情况输出，小计行在最后一行，共计9行）
+        （4）纸张设置
+                打印纸张设置
+                模式一：一页（多页）纸打印一个单据
+                模式二：一页纸打印多张单据（如价格标签）                
+        （5）边距设置
+              纸张边设置
+        （6) 样式设计        
+        （7）打印引用的单据：对什么单据做打印
+        （8）打印模式：批量打印，单一打印                               
+    -->
+    <PrintHead>
+        <!-- 
+                                  打印纸张设置
+               PageSize:width,height，单位：mm
+               PageMargin:left,top,right,bottom
+               PageNumber:是否打印页码
+               MaxLayoutRowCount:页面最大的布局行数
+        -->
+        <PageSetting PageSize="width,height" PageOrient="Hor|Ver" PageMargin="left,top,right,bottom" PageNumber="true|false" HeaderAndFooterSetting="Normal|PerPage|HeadPerPage|HeadPerPageWithoutLast" MaxLayoutRowCount="" BackgroundColor="" />
+        <!-- 
+                               页面输出模式设置
+            Mode页面输出模式：BillPerPage单据输出模式，每个页（或多页）输出一张单据;
+                              MultiBillPerPage一个页面输出多个单据;
+                              BillHorCount：一个页面输出多个单据时水平方向计数;
+                              BillVerCount：一个页面输出多个单据是垂直方向计数;
+        -->
+        <PageOutputMode Mode="BillPerPage|MultiBillPerPage"  BillHorCount="" BollVerCount="" />  
+        <!-- 
+          	 样式表设置
+        -->
+        <StyleCollection>
+            <!-- 
+                	样式设置
+                	背景颜色
+            -->
+            <Style Key=""  BackgroundColor="" Padding="" Type="Class|Tag">
+                <!-- 
+                                                          字体样式
+                    Size:字体大小
+                    Family:字体
+                    Italic:是否斜体
+                    Weight:字体粗度
+                -->
+                <Font Size="" Family="" Italic="true|fasle" Weight="" Color=""></Font>
+                <!-- 
+                    边框属性
+                    border-left:1px solid red
+                -->
+                <Borders>
+                    <!-- 边框设置 -->
+                    <Border Dir="Left|Top|Right|Bottom|All" LineSize="" LineColor="" LineStyle=""/>
+                </Borders>
+            </Style>
+        </StyleCollection>
+    </PrintHead>
+    
+    <!-- 
+         打印体内容设计
+    -->
+    <PrintBody>
+        <!-- 
+               打印区域设计，每个打印区域为一个Block快区域
+               Area:Block所属的区域：Head头部区域，Footer表尾区域，DtlData:明细数据区域
+               Rows:行空间布局，如："23.3,24.4,25.5,...."表示行高度为："23.3,24.4,25.5..."，单位mm
+               Cols:列控件布局，如："80,80,100,200,..."标识列控件布局为"80,80,100,200,..."单位mm
+               S:这个区域的默认样式:
+               DataRowCountPerPage:每页数据行技术（每页数据行是固定的，表格一般有表头区，表体区，数据区,小计区,表尾区（表尾区可以放置小计行，总计行等））
+        -->
+        <PrintBlock  Area="Header|Footer|DtlData" Layout="Grid" Rows="" Cols="" S="" DataTableKey="tableKey"  DataRowCountPerPage="" >
+                <!-- 
+                                                     定义列的集合
+                    R：列所属的行
+                    C：列所属的列
+                    RS:跨行
+                    CS：跨列
+                    Row行类型       
+                           Row包含：表头行 
+                            Row:明细行：数据明细，可以扩张
+                            Row:小计行
+                            Row:汇总行
+                    ColType:列类型,包含如下类型
+                    Title,DataCol,Image,Formula,Subtotal,Total,
+                         （1）"Title"：标题列
+                                    标题列的值为固定值
+                         （3）"DataCol"：数据列
+                                    绑定数据集中某一列
+                         （4）"Image"：图片列
+                                     <1>图片来源：固定图片
+                                     <2>根据数据显示图片
+                                     <3>二维码（或一维码）
+                         （5）"Formula":公式列
+                                     <4>列中的值来源与公式
+                         （6）"Subtotal":小计列
+                                    <5>小计值：汇总每一页的值
+                         （7）"Total":总结列
+                                    <6>汇总值：汇总所有的值
+
+                    S:单元格样式：
+                                 width:宽
+                                 height：高
+                                 border：边框：左，右，上，下
+                                 font：字体：字体，字号
+                                 align：对齐方式：左，右，中
+                     DataCol:绑定的数据列
+                -->
+                <Row R="1" RowType="Header|Data|Footer"  S="">
+                    <!-- 
+                        标题行，忽略DataCol
+                    -->
+                    <Col C="1" RS="1" CS="1" ColType="Title" DataCol="" S="" Align="left|center|right">标题</Col>
+                   <!-- 
+                        当前DataTable下的数据列
+                   -->  
+                    <Col C="1" RS="1" CS="1" ColType="DataCol" DataCol="colName" Align="left|center|right"></Col>
+                    
+                    <!-- 
+                        当前表头中的数据列
+                    -->  
+                    <Col C="1" RS="1" CS="1" ColType="DataCol" DataCol="_.colName" ></Col>
+                    
+                    <!-- 
+                        图片数据列  
+                        ImageSource定义图片数据的来源：
+                            Col：图片数据来源与列中定义值
+                            Formual:图片数据来源与公式执行的返回值(也可能是常量)
+                         ImageType:图片类型
+                            嵌入页面的URL或Base64编码
+                                              
+                    -->
+                    <Col C="1" RS="1" CS="1" ColType="Image" DataCol="colName"  ImageSource="Col|Formual" ImageType="URL|Base64"></Col>                    
+                    <!-- 
+                           公式数据列
+                    -->
+                    <Col C="1" RS="1" CS="1" ColType="Formula" DataCol="">
+                        <![CDATA[
+                                公式定义
+                                "="开头的为公式
+                                非"="开头为常量
+                               "_"可以寻址表头的数据
+                        ]]>
+                    </Col>
+                    <!-- 
+                        对当前打印页中的数据做小计
+                    -->
+                    <Col C="1" RS="1" CS="1" ColType="Subtotal" DataCol="colName" GatherType="Sum|Avg|Min|Max" ></Col>
+                    <!-- 
+                        对当前打印页中的数据列做汇总
+                    -->
+                    <Col C="1" RS="1" CS="1" ColType="Total" DataCol="colName"  GatherType="Sum|Avg|Min|Max" ></Col>
+                    <!-- 
+                        对DataTableKey中的数据列做汇总
+                        DataFormat:数据格式：
+                            日期时间的格式
+                            数据格式
+                            公式的格式化值
+                    -->
+                    <Col C="1" RS="1" CS="1" ColType="Total" DataCol="colName" DataTableKey="" GatherType="sum|avg|min|max" DataFormat="YYYY-mm-dd HH:mm:ss|*.**"></Col>
+                    <Col/>
+                    <Col/>       
+                </Row>
+                <Row/>
+                <Row/>
+        </PrintBlock>
+    </PrintBody>
+</Print>

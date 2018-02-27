@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BillUIPanel Layout="grid"  Key="mainContainer_head" Caption="线上订单"  S="panel panel-primary publicPanel"  RowGap="5" ColGap="10"  ColWidth="300px 300px 300px  300px 1fr 1fr"  >
+     <BillUIWidget Left="1" Top="1" Width="5"   WidgetType="BillUIView" Src="order1head" Key="myview3"></BillUIWidget>  
+     <BillUIWidget Left="1" Top="2" Width="5"    WidgetType="BillUIView" Src="order1body" Key="myview4"></BillUIWidget> 
+ 
+</BillUIPanel>

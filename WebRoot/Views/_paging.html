@@ -1,0 +1,13 @@
+<!--分页组件<div class="cf" ng-show="pageInfo.totalCount>pageInfo.pageSize">-->
+<div class="clearfix" ng-show="pageInfo.totalCount>pageInfo.pageSize">
+    <div class="pull-left" style="line-height: 33px;">共 {{pageInfo.totalCount}} 条记录</div>
+    <div class="pull-right">
+        <ul class="pagination" style="margin:0;">
+            <li ng-class="{'disabled':pageInfo.pageIndex===1}" ng-click="prePage()"><a>«</a></li>
+            <li ng-repeat="item in pageInfo.pageItems track by $index" ng-class="{'active':pageInfo.pageIndex==item}" ng-if="item<=pageInfo.pageCount" ng-click="currentPage(item)" ><a>{{item}}</a></li>
+            <li ng-class="{'disabled':pageInfo.pageIndex===pageInfo.pageCount}" ng-click="nextPage()" style="margin-right: 5px;"><a style="border-radius: 0 4px 4px 0;">»</a></li>
+            跳转到<li>
+            <input type="number" style="width:4em;border:1px solid #ddd;" id="toPageIndex" >页 <button class="btn  btn-primary btn-sm" ng-click="toPage()">确定</button> </li>
+        </ul>
+    </div>
+</div>

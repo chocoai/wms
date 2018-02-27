@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BillUIPanel Layout="grid"  Key="mainContainer_head" Caption="线上订单"  S="panel panel-primary publicPanel"  RowGap="5" ColGap="10"  ColWidth="300px 300px 300px  300px 1fr 1fr"  >
+    
+    <BillUIGrid    Key="grid01"   Left="1" Top="5" Width="8" Height="1" OptMode="Edit" DataTableKey="order2">				
+        <GridHeads>
+            
+            <GridHead Col="goodsName" Caption="商品名称" enableEdit="True" Width="80px">
+                <BillUIWidget Key="goodsName"  WidgetType="BillUIString" />
+            </GridHead>
+            <GridHead Col="productName" Caption="生产厂家" enableEdit="True" Width="80px">
+                <BillUIWidget Key="productName"  WidgetType="BillUIString" />
+            </GridHead>
+            <GridHead Col="spec" Caption="规格" enableEdit="True" Width="100px">
+                <BillUIWidget Key="spec"  WidgetType="BillUIString" />
+            </GridHead>
+            <GridHead Col="price" Caption="商品单价" enableEdit="True" Width="100px">
+                <BillUIWidget Key="price"  WidgetType="BillUIDecimal" />
+            </GridHead>
+            <GridHead Col="amount" Caption="商品数量" enableEdit="True" Width="100px">
+                <BillUIWidget Key="amount"  WidgetType="BillUIDecimal" />
+            </GridHead>
+            <GridHead Col="saleType" Caption="销售类型" enableEdit="True" Width="100px">
+                <BillUIWidget Key="saleType"  WidgetType="BillUIDateTime" />
+            </GridHead>
+            <GridHead Col="status" Caption="状态" enableEdit="True" Width="100px">
+                <BillUIWidget Key="dtl_status"  WidgetType="BillUIString" />
+            </GridHead>
+            <GridHead Col="remark" Caption="备注说明" enableEdit="True" Width="100px">
+                <BillUIWidget Key="dtl_remark"  WidgetType="BillUIString" />
+            </GridHead>
+            
+        </GridHeads>                               
+    </BillUIGrid>
+    
+</BillUIPanel>

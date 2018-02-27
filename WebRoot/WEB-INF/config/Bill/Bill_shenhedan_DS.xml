@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="shenhedan" BillType="Bill" Caption="审核单" DefaultFilter="" TableName="Table::xyy_erp_bill_shenhedan" DataSource="" Head="true">
+        <Field FieldKey="shenheyijian" FieldName="审核意见" FieldType="Varchar"  Comment="审核意见"/>
+        <Field FieldKey="shenhejieguo" FieldName="审核结果" FieldType="Int" Comment="审核结果"/>
+    </DataTable>
+    
+</DataSet>

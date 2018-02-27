@@ -1,0 +1,24 @@
+
+<table class="table table-hover" style="background-color:white;">
+   <tr><td width="130"><span style="color: red">*</span>类别名称</td><td>
+		<input type="text" name="name" ng-model="currentRow.processTypeDefinition.name" maxlength="100" required>&nbsp;&nbsp;&nbsp;&nbsp;
+		<span ng-show="ptdAddForm.name.$error.required && !ptdAddForm.name.$pristine" class="text-danger" >请输入类别名称</span>
+	</td></tr>
+   
+   <tr><td>父节点：</td><td>
+		 <select name="parentId" ng-model="currentRow.processTypeDefinition.parentId" ng-options="ptd.id as ptd.name for ptd in currentRow.ptds" >
+		     <!--  <option value="">---请选择---</option> -->
+		 </select>
+	</td></tr>
+   
+   <tr><td>描述</td><td>
+		<textarea rows="8" cols="50" ng-model="currentRow.processTypeDefinition.desc"/>
+	</td></tr>
+</table>
+
+
+
+
+
+
+

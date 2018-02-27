@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BillFormMeta Key="fenjianhuadaoziliao" Version="1.0.0" BillType="Dics" Caption="分拣滑道维护叙事薄">
+    <BillBody>
+        <BillBodyMeta UserAgent="web">
+            <BillUIPanel Layout="flex" FlexDirection="column" Width="100%" Key="mainContainer" Caption="分拣滑道维护叙事薄"
+                         S=""> 
+                <BillUIPanel Layout="flex" Key="dictionary_tools" Caption="工具栏" >
+                    <BillUIWidget Key="add" Caption="新增"
+                                  Left="1" Top="1" Width="1" Height="1" EnabledWhen="True"
+                                  Icon="glyphicon glyphicon-plus-sign" WidgetType="BillUIButton">
+                        <Triggers>
+                            <Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+										@$this.$add();
+						        ]]>
+                            </Trigger>
+                        </Triggers>
+                    </BillUIWidget>
+                    <BillUIWidget Key="edit" Caption="编辑"
+                                  Left="2" Top="1" Width="1" Height="1" EnabledWhen="True"
+                                  Icon="glyphicon glyphicon-edit" WidgetType="BillUIButton">
+                        <Triggers>
+                            <Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+                                           @$this.$edit();
+	                            ]]>
+                            </Trigger>
+                        </Triggers>
+                    </BillUIWidget>
+                </BillUIPanel>
+                <BillUIPanel Layout="flex" Key="bills_tools" Caption="查询面板"
+                             S="panel panel-default publicPanel">
+                    <BillUIGridPanel Device="sm" key="boxtool">
+                        <BillUIRowPanel>
+                            <BillUIColPanel Width="4">
+                                <BillUIWidget Key="cangkubianhao"
+                                              Caption="仓库编号"  ParameterKey="cangkubianhao" DataTableKey="fenjianhuadaoziliao"
+                                              Disable="true" EnabledWhen="True" WidgetType="BillUIPopupWindow" ViewSize="lg"
+                                              Src="cangku">
+                                    <Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                            	var orgId=this.getOrgId();
+	                                        ]]>
+                                    </Init>
+                                    <Triggers>
+                                        <Trigger>
+                                            <![CDATA[
+                                                    var cangku=this.rows[0];
+                                                    this.setValue(cangku.cangkubianhao);
+                                                     @cangkumingcheng.setValue(cangku.cangkumingchen);
+                                                ]]>
+                                        </Trigger>
+                                    </Triggers>
+                                </BillUIWidget>
+                            <!--    <BillUIWidget Key="cangkuID"
+                                              Caption="" DataTableKey="fenjianhuadaoziliao"  ParameterKey="cangkuID"
+                                              Disable="true" EnabledWhen="True" WidgetType="BillUIString" ViewSize="lg" >
+                                    <Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                            	this.setHide();
+	                                        ]]>
+                                    </Init>
+                                </BillUIWidget>-->
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="4">
+                                <BillUIWidget Key="cangkumingcheng" ParameterKey="cangkumingcheng"
+                                              DataTableKey="fenjianhuadaoziliao" Disable="true"
+                                              Caption="仓库"
+                                              EnabledWhen="True"
+                                              WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+
+                            <BillUIColPanel Width="4">
+                                <BillUIWidget Key="fjhdbh" ParameterKey="fjhdbh"
+                                              DataTableKey="fenjianhuadaoziliao"
+                                              Caption="分拣滑道编号"
+                                              EnabledWhen="True"
+                                              Icon="glyphicon glyphicon-send" WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+
+
+                            <BillUIColPanel Width="4">
+                                <BillUIWidget Key="fjhdlx" ParameterKey="fjhdlx"
+                                              DataTableKey="fenjianhuadaoziliao" Caption="分拣滑道类型" EnabledWhen="True"
+                                              Icon="glyphicon glyphicon-send" WidgetType="BillUISelect" 
+                                              Src="bill/getDataStatus?type=fjhdlx">
+                                    <Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                          this.loadDataSource();
+                                 	]]> 
+                                    </Init>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+
+                            <BillUIColPanel Width="4">
+                                <BillUIWidget Key="shifouqiyong" ParameterKey="shifouqiyong"
+                                              DataTableKey="fenjianhuadaoziliao" Caption="是否启用" EnabledWhen="True"
+                                              Icon="glyphicon glyphicon-send" WidgetType="BillUISelect"
+                                              Src="bill/getDataStatus?type=bool">
+                                    <Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                          this.loadDataSource();
+                                 	]]>
+                                    </Init>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="4">
+                                <BillUIWidget Caption="查询" Key="search"
+                                              EnabledWhen="True" Icon="glyphicon glyphicon-send" WidgetType="BillUIButton">
+                                    <Triggers>
+                                        <Trigger Type="javascript/angular" Runat="client">
+                                            <![CDATA[
+                                    @$this.__loadDics("fenjianhuadaoziliao");
+	                            ]]>
+                                        </Trigger>
+                                    </Triggers>
+                                </BillUIWidget>
+
+                                <BillUIWidget Caption="重置" Key="cancel"
+                                              EnabledWhen="True" Icon="glyphicon glyphicon-send" WidgetType="BillUIButton">
+                                    <Triggers>
+                                        <Trigger Type="javascript/angular" Runat="client">
+                                            <![CDATA[
+			                                      @$this.__loadDics();
+			 	                            ]]>
+                                        </Trigger>
+                                    </Triggers>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+
+                        </BillUIRowPanel>
+                    </BillUIGridPanel>
+                </BillUIPanel>
+                <BillUIPanel Layout="tab" Key="bills_tabs" Caption="查询展示列" S="panel  panel-primary  publicPanel">
+                    <BillUIGrid Key="grid0" SelectMode="Multi" OptMode="View" DataTableKey="fenjianhuadaoziliao">
+                        <DoubleClickHandlers>
+                            <DoubleClickHandler>
+                                <![CDATA[
+                                    var fenjianhuadao=this.row;
+                                    window.location.href='/bill/view/dics-item?billKey=fenjianhuadaoziliao&ID='+fenjianhuadao.ID+'&allDisabled=true';
+                                ]]>
+                            </DoubleClickHandler>
+                        </DoubleClickHandlers>
+                        <GridHeads>
+                            <GridHead Col="cangkubianhao" Caption="仓库编号" enableEdit="True" Width="180px">
+                                <BillUIWidget Key="cangkubianhao" WidgetType="BillUIString"/>
+                            </GridHead>
+                            <GridHead Col="cangkumingcheng" Caption="仓库" enableEdit="True" Width="180px">
+                                <BillUIWidget Key="cangkumingcheng" WidgetType="BillUIString"/>
+                            </GridHead>
+                        	<GridHead Col="fjhdbh" Caption="分拣滑道编号" enableEdit="True" Width="180px">
+                                <BillUIWidget Key="fjhdbh" WidgetType="BillUIString"/>
+                            </GridHead>
+                            <GridHead Col="fjhdlx" Caption="分拣滑道类型" enableEdit="True" Width="150px">
+                                <BillUIWidget Key="fjhdlx" WidgetType="BillUIInteger">
+                                <Formatters>
+                                    <Formatter>
+                                        <![CDATA[
+                                                [{'type':'fjhdlx'}]
+                                            ]]>
+                                    </Formatter>
+                                </Formatters>
+                                </BillUIWidget>
+                            </GridHead>
+                            <GridHead Col="shifouqiyong" Caption="是否启用" enableEdit="True" Width="120px">
+                                <BillUIWidget Key="shifouqiyong" WidgetType="BillUIInteger">
+                                    <Formatters>
+                                        <Formatter>
+                                            <![CDATA[
+                                                [{'type':'bool'}]
+                                            ]]>
+                                        </Formatter>
+                                    </Formatters>
+                                </BillUIWidget>
+                            </GridHead>
+                            <GridHead Col="zhgxsj" Caption="最后更新时间" enableEdit="True" Width="80px">
+                                <BillUIWidget Key="zhgxsj" WidgetType="BillUIDateTime" />
+                                    
+                            </GridHead>
+                            <GridHead Col="beizhu" Caption="备注" enableEdit="True" Width="160px">
+                                <BillUIWidget Key="beizhu" WidgetType="BillUIString"/>
+                            </GridHead>
+                        </GridHeads>
+                    </BillUIGrid>
+                </BillUIPanel>
+            </BillUIPanel>
+        </BillBodyMeta>
+    </BillBody>
+    <BillHeadMeta> 
+    	<!-- <RuleKeys>
+            <RuleKey Type="PULL" PullType="DETAILS">
+                fenjianhuadaoziliao_quehuodengjidan_qhdjd
+            </RuleKey>
+            <RuleKey Type="PULL" PullType="DETAILS">
+                caigouxuqiufenxi_fenjianhuadaoziliao_XQFX001
+            </RuleKey>
+        </RuleKeys> -->
+    </BillHeadMeta>
+</BillFormMeta>
+

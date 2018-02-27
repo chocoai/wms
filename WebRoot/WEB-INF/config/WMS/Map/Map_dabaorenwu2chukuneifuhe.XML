@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Map Key="dabaorenwu2chukuneifuhe" Caption="打包任务上引"
+     SrcDataObjectKey="zhengjianjianxuan"
+     SrcDataType="Bill"
+     TgtDataObjectKey="chukuneifuhe"
+     TgtDataType="Bill"
+     MaxPushValue="100"
+     MinPushValue="0">
+    <TargetTableCollection>
+
+        <TargetTable Key="chukuneifuhe" SrcTableKey="zhengjianjianxuan">
+            <Field FieldKey="dingdanbianhao">
+                <![CDATA[
+                     =dingdanbianhao
+              ]]>
+            </Field>
+            <Field FieldKey="rongqihao">
+                <![CDATA[
+                     =rongqihao
+              ]]>
+            </Field>
+            <Field FieldKey="fuhetai">
+                <![CDATA[
+                     =fuhetai
+              ]]>
+            </Field>
+            <Field FieldKey="cangkubianhao">
+                <![CDATA[
+                     =cangkubianhao
+              ]]>
+            </Field>
+            <Field FieldKey="fhqbh">
+                <![CDATA[
+                     =fhqbh
+              ]]>
+            </Field>
+            <Field FieldKey="weifuherongqi">
+                <![CDATA[
+                     =weifuherongqi
+              ]]>
+            </Field>
+            <Field FieldKey="tihuofangshi">
+                <![CDATA[
+                     =tihuofangshi
+              ]]>
+            </Field>
+            <Field FieldKey="zancunqu">
+                <![CDATA[
+                     =zancunqu
+              ]]>
+            </Field>
+            <Field FieldKey="xianlumingcheng">
+                <![CDATA[
+                     =xianlumingcheng
+              ]]>
+            </Field>
+            <Field FieldKey="kehubeizhu">
+                <![CDATA[
+                     =kehubeizhu
+              ]]>
+            </Field>
+            <Field FieldKey="kehumingcheng">
+                <![CDATA[
+                     =kehumingcheng
+              ]]>
+            </Field>
+            <Field FieldKey="czrmc">
+                <![CDATA[
+                     =czrmc
+              ]]>
+            </Field>
+            <Field FieldKey="zhixiangguige">
+                <![CDATA[
+                     =zhixiangguige
+              ]]>
+            </Field>
+            <Field FieldKey="neifuhedanhao">
+                <![CDATA[
+                     =taskCode
+              ]]>
+            </Field>
+        </TargetTable>
+
+        <TargetTable Key="chukuneifuhe_details" SrcTableKey="zhengjianjianxuan_details">
+            <Field FieldKey="dingdanbianhao">
+                <![CDATA[
+                     =dingdanbianhao
+              ]]>
+            </Field>
+            <Field FieldKey="jihuashuliang">
+                <![CDATA[
+                     =shuliang
+              ]]>
+            </Field>
+            <Field FieldKey="shangpingpihao">
+                <![CDATA[
+                     =shangpingpihao
+              ]]>
+            </Field>
+            <Field FieldKey="shangpinbianhao">
+                <![CDATA[
+                     =shangpinbianhao
+              ]]>
+            </Field>
+            <Field FieldKey="shangpinmingcheng">
+                <![CDATA[
+                     =shangpinmingcheng
+              ]]>
+            </Field>
+            <Field FieldKey="shengchanchangjia">
+                <![CDATA[
+                     =shengchanchangjia
+              	]]>
+            </Field>
+            <Field FieldKey="guige">
+                <![CDATA[
+                     =guige
+              ]]>
+            </Field>
+            <Field FieldKey="shuliang">
+                <![CDATA[
+                     =shuliang
+              ]]>
+            </Field>
+            <Field FieldKey="danwei">
+                <![CDATA[
+                     =danwei
+              ]]>
+            </Field>
+
+            <Field FieldKey="pihao">
+                <![CDATA[
+                     =pihao
+              ]]>
+            </Field>
+            <Field FieldKey="shengchanriqi">
+                <![CDATA[
+                     =shengchanriqi
+              ]]>
+            </Field>
+            <Field FieldKey="youxiaoqizhi">
+                <![CDATA[
+                     =youxiaoqizhi
+              ]]>
+            </Field>
+            <Field FieldKey="chacuoyuanyin">
+                <![CDATA[
+                     =chacuoyuanyin
+              ]]>
+            </Field>
+            <Field FieldKey="pizhunwenhao">
+                <![CDATA[
+                     =pizhunwenhao
+              ]]>
+            </Field>
+            <Field FieldKey="goodsid">
+                <![CDATA[
+                     =goodsid
+              ]]>
+            </Field>
+            <Field FieldKey="xiajiahuoweibianhao">
+                <![CDATA[
+                     =xiajiahuoweibianhao
+              ]]>
+            </Field>
+            <Field FieldKey="shangpingpihaosn">
+                <![CDATA[
+                     =shangpingpihaosn
+              ]]>
+            </Field>
+            <Field FieldKey="huoweiID">
+                <![CDATA[
+                     =xiajiahuowei
+              ]]>
+            </Field>
+        </TargetTable>
+    </TargetTableCollection>
+    <FeedBackCollection>
+
+    </FeedBackCollection>
+</Map>
+
+
+   
+

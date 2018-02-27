@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="xiaoshoudingdanM" Caption="销售订单明细" DefaultFilter="" Pagging="5" BillType="MultiBill"
+               TableName="SQLQuery::select * | from xyy_erp_bill_xiaoshoudingdan_details  where 1 = 1 " DataSource="" Head="false">
+        <Parameters>
+            <!--<Parameter Key="payType" Type="Integer" >-->
+            	<!--<DefaultValue>0</DefaultValue>-->
+                <!--<Where>-->
+                <!--<![CDATA[-->
+                	<!--m.if(payType==0 | payType==null | payType=="",""," and payType="+payType+"")-->
+				<!--]]>-->
+                <!--</Where>-->
+            <!--</Parameter>-->
+        </Parameters>
+    </DataTable>
+</DataSet>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BillFormMeta Key="kehuyingshouchaxun" Version="1.0.0" BillType="MultiBill" Caption="客户应收">
+    <BillBody> 
+        <BillBodyMeta UserAgent="web">
+            <BillUIPanel Layout="flex" FlexDirection="column" Width="100%" Key="mainContainer" Caption="客户应收查询" S="">
+
+                <BillUIPanel Layout="flex" Key="tools" Caption="查询面板" S="panel panel-default publicPanel">
+                    <BillUIGridPanel Device="sm" key="boxtool">
+                        <BillUIRowPanel>
+                            <BillUIColPanel Width="2">
+                                <BillUIWidget Key="kaishiriqi" ParameterKey="kaishiriqi"
+                                              DataTableKey="kehuyingshouchaxun"  Caption="开始日期"
+                                              EnabledWhen="True" Icon="glyphicon glyphicon-send" WidgetType="BillUIDateTime">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="2">
+                                <BillUIWidget Key="jiezhiriqi" ParameterKey="jiezhiriqi"
+                                              DataTableKey="kehuyingshouchaxun"  Caption="截止日期"
+                                              EnabledWhen="True" Icon="glyphicon glyphicon-send" WidgetType="BillUIDateTime">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="kehubianhao" ParameterKey="kehubianhao"
+                                              DataTableKey="kehuyingshouchaxun"  Caption="客户编号"
+                                              EnabledWhen="True" Icon="glyphicon glyphicon-send" WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="4">
+                                <BillUIWidget Key="kehumingcheng" ParameterKey="kehumingcheng"
+                                              DataTableKey="kehuyingshouchaxun"  Caption="客户名称"
+                                              EnabledWhen="True" Icon="glyphicon glyphicon-send" WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="1">
+                                <BillUIWidget Caption="查询" Key="search"
+                                              EnabledWhen="True"
+                                              Icon="glyphicon glyphicon-send" WidgetType="BillUIButton">
+                                    <Triggers>
+                                        <Trigger Type="javascript/angular" Runat="client">
+                                            <![CDATA[
+                                    @$this.__load("kehuyingshouchaxun");
+	                            ]]>
+                                        </Trigger>
+                                    </Triggers>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                        </BillUIRowPanel>
+                    </BillUIGridPanel>
+                </BillUIPanel>
+                <BillUIGrid Key="grid0" OptMode="View" DataTableKey="kehuyingshouchaxun">
+                    <GridHeads>
+                        <GridHead Col="kehubianhao" Caption="客户编号" enableEdit="True" Width="180px">
+                            <BillUIWidget Key="kehubianhao" WidgetType="BillUIString"/>
+                        </GridHead>
+                        <GridHead Col="kehumingcheng" Caption="客户名称" enableEdit="True" Width="180px">
+                            <BillUIWidget Key="kehumingcheng" WidgetType="BillUIString"/>
+                        </GridHead>
+                        <GridHead Col="qichu" Caption="期初余额" enableEdit="True" Align="right" Width="80px">
+                            <BillUIWidget Key="qichu" WidgetType="BillUIDecimal"/>
+                        </GridHead>
+                        <GridHead Col="xiaoshoujine" Caption=" 销售金额" enableEdit="True" Align="right" Width="80px">
+                            <BillUIWidget Key="xiaoshoujine" WidgetType="BillUIDecimal"/>
+                        </GridHead>
+                        <GridHead Col="shoukuanjine" Caption="收款金额" enableEdit="True" Align="right" Width="80px">
+                            <BillUIWidget Key="shoukuanjine" WidgetType="BillUIDecimal"/>
+                        </GridHead>
+                        <GridHead Col="yue" Caption="余额" enableEdit="True" Align="right" Width="80px">
+                            <BillUIWidget Key="yue" WidgetType="BillUIDecimal"/>
+                        </GridHead>
+                    </GridHeads>
+                </BillUIGrid>
+        </BillUIPanel>
+        </BillBodyMeta>
+    </BillBody>
+    <BillHeadMeta>
+    	
+    </BillHeadMeta>
+</BillFormMeta>

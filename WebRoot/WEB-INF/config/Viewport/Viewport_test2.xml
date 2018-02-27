@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BillUIPanel S="panel panel-success publicPanel"  Layout="grid"  RowHeight="1fr 1fr 1fr"  Key="searchBox" Caption="采购申请单123" ColWidth="1fr 1fr 1fr ">
+			<BillUIWidget Key="w_shengqingdengji" Caption="view2_申请等级"  DataTableKey="table9" DataTableColumn="shengqingdengji"  K="name" V="value" Src=""
+								  TabIndex="1" Left="2" Top="4" Width="1" Height="1" EnabledWhen="True" WidgetType="BillUISelect">
+						<Triggers>
+							<Trigger Type="javascript/angular" Runat="client">
+								<![CDATA[
+										@w_shengqingdengji2.loadDataSource();
+								]]>
+							</Trigger>
+						</Triggers>
+						<Init Type="javascript/angular" Runat="client">
+							<![CDATA[
+									this.loadDataSource();
+							]]>
+						</Init>
+						<Properties>
+							<Property Name="datasource" Type="internal">[{name:"一般",value:"1"},{name:"暂缓",value:"2"},{name:"加急",value:"3"},{name:"特急",value:"4"}]</Property>
+						</Properties>
+					</BillUIWidget>
+					
+		<!-- 
+				一般，暂缓，加急，特急
+		-->
+		<BillUIWidget Key="w_shengqingdengji2" Caption="view2_申请等级2"  DataTableKey="table9" DataTableColumn="shengqingdengji2"  K="name" V="value" Src=""
+						TabIndex="1" Left="2" Top="5" Width="1" Height="1" EnabledWhen="True" WidgetType="BillUISelect">
+						<Triggers>
+							<Trigger Type="javascript/angular" Runat="client">
+								<![CDATA[
+										var promise=@w_shengqingdengji.getValue();
+										promise.then(function(data){
+											alert(data);
+										});
+										@w_shengqingdengji2.loadDataSource();
+										this.loadDataSource();
+								]]>
+							</Trigger>
+						</Triggers>
+						<Init Type="javascript/angular" Runat="client">
+							<![CDATA[
+							  	
+							]]>
+						</Init>
+						<Properties>
+							<Property Name="datasource" Type="internal">[{name:"一般2",value:"1"},{name:"暂缓2",value:"2"},{name:"加急3",value:"3"},{name:"特急3",value:"4"}]</Property>
+						</Properties>
+					</BillUIWidget>	
+</BillUIPanel>
+				
+		
+

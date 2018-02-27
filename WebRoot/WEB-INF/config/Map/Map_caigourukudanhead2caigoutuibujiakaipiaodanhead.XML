@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Map Key="caigourukudanhead2caigoutuibujiakaipiaodanhead" Caption="采购入库单转采购退补价开票单" 
+    SrcDataObjectKey="caigourukudan" 
+    SrcDataType="Bill"  
+    TgtDataObjectKey="caigoutuibujiakaipiaodan" 
+    TgtDataType="Bill"  
+    MaxPushValue="100"
+     MinPushValue="0">
+    <TargetTableCollection>
+    	<TargetTable Key="caigoutuibujiakaipiaodan" SrcTableKey="caigourukudan">
+            <Field FieldKey="caigouyuan">
+                <![CDATA[
+                     =caigouyuan
+              ]]>
+            </Field>
+            <Field FieldKey="gysbh">
+                <![CDATA[
+                     =gysbh
+              ]]>
+            </Field>
+            <Field FieldKey="gysmc">
+                <![CDATA[
+                     =gysmc
+              ]]>
+            </Field>
+            <Field FieldKey="lianxiren">
+                <![CDATA[
+                     =supplier.getLianXiRen(gysbh)
+              	]]>
+            </Field>
+            <Field FieldKey="dianhua">
+                <![CDATA[
+                     =supplier.getDianHua(gysbh)
+              	]]>
+            </Field>
+            <Field FieldKey="sjdjbh">
+                <![CDATA[
+                     =danjubianhao
+              ]]>
+            </Field>
+        </TargetTable>
+    </TargetTableCollection>
+</Map>

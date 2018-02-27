@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="shangpinpihaokucun" Caption="商品批号库存查询叙事薄" DefaultFilter="" PermissionType="CommType" Pagging="10"
+               TableName="SQLQuery::
+ SELECT
+	c.cangkumingchen,
+	c.orgId,
+	g.shangpinbianhao,
+	g.shangpinmingcheng,
+	g.guige,
+	g.danwei,
+	g.dbzsl,
+	g.pizhunwenhao,
+	g.shengchanchangjia,
+	p.pihao,
+	p.shengchanriqi,
+	p.youxiaoqizhi,
+	(
+		s.kucunshuliang - s.kucunshuliang % g.dbzsl
+	) / g.dbzsl AS kucunjianshu,
+	(s.kucunshuliang % g.dbzsl) AS kclss,
+	s.kucunshuliang,
+	v.a AS rukuyuzhan,
+	v.b AS chukuyukou,
+	v.c AS buruyuzhan,
+	v.d AS buchuyukou,
+	v.e AS yiruyuzhan,
+	v.f AS yichuyukou,
+	v.g AS yujisunyi
+	|
+FROM
+	xyy_wms_bill_shangpinpihaokucun s
+LEFT JOIN view_phkucunyuzhanyukou v ON v.goodsid1 = s.shangpinId AND v.orgId1 = s.orgId
+AND v.pihaoId1 = s.pihaoId
+JOIN xyy_wms_dic_shangpinpihao p ON s.pihaoId = p.pihaoId AND s.orgId = p.orgId
+JOIN xyy_wms_dic_cangkuziliao c ON s.cangkuId = c.ID AND s.orgId = c.orgId
+JOIN xyy_wms_dic_shangpinziliao g ON s.shangpinId = g.goodsid AND s.orgId = g.orgId
+WHERE
+	1=1 @shangpinbianhao @shangpinmingcheng @zhujima @orgId" DataSource="" Head="false">
+        <Parameters>
+            <Parameter Key="shangpinbianhao" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(shangpinbianhao==null | shangpinbianhao=="" ,""," and shangpinbianhao like '%"+shangpinbianhao+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="shangpinmingcheng" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(shangpinmingcheng==null | shangpinmingcheng=="" ,""," and shangpinmingcheng like '%"+shangpinmingcheng+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="zhujima" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(zhujima==null | zhujima=="" ,""," and g.zhujima like '%"+zhujima+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="orgId" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(orgId==null | orgId=="" ,""," and c.orgId = '"+orgId+"'")
+	            ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

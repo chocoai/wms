@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BillFormMeta Key="peisongxianlu" Version="1.0.0"
+	BillType="Dictionary" Caption="配送线路">
+	<BillBody>
+		<BillBodyMeta UserAgent="web">
+			<BillUIPanel Layout="flex" FlexDirection="column" Width="100%"
+				Key="mainContainer" Caption="配送线路" S="">
+				<BillUIPanel Layout="flex" Key="dictionary_tools" Caption="工具栏">
+					<!--属性 colPush 向右推 colPull 向左拉 colOffset 左边距 -->
+					
+					<BillUIWidget Key="save" Caption="保存" EnabledWhen="True"
+						Icon="glyphicon glyphicon-floppy-disk" WidgetType="BillUIButton">
+						<Triggers>
+							<Trigger Type="javascript/angular" Runat="client">
+								<![CDATA[
+                                     @$this.save('bills',{
+                                        before:{
+                                           setStatus:[40]
+                                        }
+                                     });
+	                            ]]>
+							</Trigger>
+						</Triggers>
+
+					</BillUIWidget>
+					<BillUIWidget Key="goback" Caption="返回"
+								  EnabledWhen="True"
+								  Icon="glyphicon glyphicon-align-left" WidgetType="BillUIButton" S="btn btn-danger">
+						<Triggers>
+							<Trigger Type="javascript/angular" Runat="client">
+								<![CDATA[
+                                       @$this.$reBack();
+	                                    ]]>
+							</Trigger>
+						</Triggers>
+					</BillUIWidget>
+				</BillUIPanel>
+				<BillUIPanel Layout="flex" Key="mainContainer_head"
+					Caption="配送线路资料" S="panel panel-success publicPanel">
+					<BillUIGridPanel Key="peisongxianlu">
+
+						<BillUIRowPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="xianlubianhao" Caption="线路编号"
+									DataTableKey="peisongxianlu" DataTableColumn="xianlubianhao"
+									EnabledWhen="True" Required="required"  WidgetType="BillUIString">
+								</BillUIWidget>
+
+							</BillUIColPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="xianlumingcheng" Caption="线路名称"
+											  DataTableKey="peisongxianlu" DataTableColumn="xianlumingcheng"
+											  EnabledWhen="True" Required="required" WidgetType="BillUIString">
+
+								</BillUIWidget>
+							</BillUIColPanel>
+
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="xlyxj" Caption="线路优先级"
+									DataTableKey="peisongxianlu" DataTableColumn="xlyxj"
+									EnabledWhen="True" Required="required" WidgetType="BillUIInteger">
+									<CheckRules>
+										<CheckRule>
+											<![CDATA[
+												             {"type":"builtin","rule":"/^[1-9]\d*|0$/ ","msg":"请填写正确信息"}
+												        ]]>
+										</CheckRule>
+									</CheckRules>
+								</BillUIWidget>
+							</BillUIColPanel>
+					</BillUIRowPanel>
+					</BillUIGridPanel>
+				</BillUIPanel>
+			</BillUIPanel>
+		</BillBodyMeta>
+	</BillBody>
+
+	<BillHeadMeta>
+		<BillEventCollection>
+			<Event Type="PreSave" Processor="com.xyy.wms.handler.biz.DicpeisongxianluPreHandler" />
+		</BillEventCollection>
+	</BillHeadMeta>
+</BillFormMeta>
+

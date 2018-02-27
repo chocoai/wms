@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BillFormMeta Key="wmscaigourukudan" Version="1.0.0" BillType="MultiBill" Caption="wms采购入库单">
+    <BillBody>
+        <BillBodyMeta UserAgent="web">
+            <BillUIPanel Layout="flex" FlexDirection="column" Width="100%" Key="mainContainer" Caption="" S="">
+            	
+                <BillUIPanel Layout="tab" Key="mainContainer_tab" Caption="wms采购入库单"
+                             S="panel  panel-primary  publicPanel">
+                    
+                    <BillUIPanel Layout="flex" Key="mainContainer_details1" Caption="wms采购入库单"
+                                 ColWidth="1fr">
+                        <BillUIGrid Key="grid0" SelectMode="Multi" OptMode="View" DataTableKey="quehuodengjidan">
+                            <GridHeads>
+                                <GridHead Col="DJBH" Caption="单位编号" enableEdit="True" Width="140px">
+                                    <BillUIWidget Key="DJBH" WidgetType="BillUIString">
+                                    </BillUIWidget>
+                                </GridHead>
+                                <GridHead Col="DWBH" Caption="单位内码" enableEdit="True" Width="140px">
+                                    <BillUIWidget Key="DWBH" WidgetType="BillUIString">
+                                    </BillUIWidget>
+                                </GridHead>
+                                <GridHead Col="RQ" Caption="日期" enableEdit="True" Width="120px">
+                                    <BillUIWidget Key="RQ" WidgetType="BillUIString"/>
+                                </GridHead>
+                            </GridHeads>
+                        </BillUIGrid>
+                    </BillUIPanel>
+                </BillUIPanel>
+            </BillUIPanel>
+        </BillBodyMeta>
+    </BillBody>
+    <BillHeadMeta>
+<!--     	<RuleKeys> -->
+<!--             <RuleKey Type="PULL" PullType="MULTI"> -->
+<!--                 caigoudingdan_quehuodengjidan_qhdjd -->
+<!--             </RuleKey> -->
+<!--         </RuleKeys> -->
+    </BillHeadMeta>
+</BillFormMeta>

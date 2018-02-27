@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="yanghuzhixing" Caption="养护执行叙事薄" DefaultFilter="" Pagging="20"
+               TableName="SQLQuery::select * | from xyy_erp_bill_yanghuzhixing where 1 = 1 @status @yanghuyuan @bumen @yanghuleixing @danjubianhao ORDER BY createTime DESC" DataSource="" Head="false">
+        <Parameters>
+            <Parameter Key="yanghuyuan" Type="String">
+                <Where>
+                <![CDATA[
+					m.if(yanghuyuan==null | yanghuyuan=="" ,""," and yanghuyuan like '%"+yanghuyuan+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="bumen" Type="String">
+                <Where>
+                <![CDATA[
+					m.if(bumen==null | bumen=="" ,""," and bumen like '%"+bumen+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="yanghuleixing" Type="Integer" >
+                <Where>
+                <![CDATA[
+                	m.if(yanghuleixing==null,""," and yanghuleixing="+yanghuleixing+"")
+				]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="danjubianhao" Type="String">
+                <Where>
+                <![CDATA[
+					m.if(danjubianhao==null | danjubianhao=="" ,""," and danjubianhao like '%"+danjubianhao+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="status" Type="Integer" >
+                <Where>
+                <![CDATA[
+                	m.if(status==null,""," and status="+status+"")
+				]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

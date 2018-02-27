@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BillEdge Name="收货验收单-采购入库单" Key="shouhuoyanshoudan_caigourukudan_CGRK0001" Version="1.0.0" Code="CGRK0001" SourceBillKey="shouhuoyanshoudan" TargetBillKey="caigourukudan" Caption="收货验收单-采购入库单">
+	<Description />
+	<BillEdgeController>
+		<AutoSaveController CtrType="NoSave" />
+		<DisplayController CtrType="GoEditor" />
+		<MultiConvertCtrl CtrType="AllowAndWarning" />
+		<BackWriteController CtrType="Save" />
+	</BillEdgeController>
+	<BillTransformEdge>
+		<BillHeadTransformEdge>
+			<TargetBillField Key="danjubianhao" Category="property"><![CDATA[='RK'+o.orderNo()]]></TargetBillField>
+			<TargetBillField Key="caigouyuan" Category="property" />
+			<TargetBillField Key="gysbh" Category="property"><![CDATA[=huoshangbianhao]]></TargetBillField>
+			<TargetBillField Key="gysmc" Category="property"><![CDATA[=huoshangmingcheng]]></TargetBillField>
+			<TargetBillField Key="jiesuanfangshi" Category="property" />
+			<TargetBillField Key="sfyfk" Category="property" />
+			<TargetBillField Key="songhuofangshi" Category="property"><![CDATA[=daohuofangshi]]></TargetBillField>
+			<TargetBillField Key="songhuodanwei" Category="property" />
+			<TargetBillField Key="yunshugongju" Category="property" />
+			<TargetBillField Key="caigoubianhao" Category="property"><![CDATA[=caigoubianhao]]></TargetBillField>
+			<TargetBillField Key="storeID" Category="property"><![CDATA[=storeID]]></TargetBillField>
+			<TargetBillField Key="storeName" Category="property"><![CDATA[=storeName]]></TargetBillField>
+		</BillHeadTransformEdge>
+		<BillBodyTransformEdge>
+			<BillBodyEdge targetDltKey="caigourukudan_details">
+				<BillDtlEdge sourceDltKey="shouhuoyanshoudan_details">
+					<TargetBillField Key="shangpinbianhao" Category="property"><![CDATA[=shangpinbianhao]]></TargetBillField>
+					<TargetBillField Key="shangpinmingcheng" Category="property"><![CDATA[=shangpinmingcheng]]></TargetBillField>
+					<TargetBillField Key="guige" Category="property"><![CDATA[=guige]]></TargetBillField>
+					<TargetBillField Key="danwei" Category="property" />
+					<TargetBillField Key="shengchanchangjia" Category="property"><![CDATA[=shengchanchangjia]]></TargetBillField>
+					<TargetBillField Key="pihao" Category="property" />
+					<TargetBillField Key="shuliang" Category="property"><![CDATA[=yanshoushuliang]]></TargetBillField>
+					<TargetBillField Key="hanshuijia" Category="property" />
+					<TargetBillField Key="hanshuijine" Category="property" />
+					<TargetBillField Key="hscbj" Category="property" />
+					<TargetBillField Key="koulv" Category="property" />
+					<TargetBillField Key="shuilv" Category="property" />
+					<TargetBillField Key="pizhunwenhao" Category="property" />
+					<TargetBillField Key="chandi" Category="property" />
+					<TargetBillField Key="beizhu" Category="property" />
+					<TargetBillField Key="storeID" Category="property"><![CDATA[=storeID]]></TargetBillField>
+					<TargetBillField Key="storeName" Category="property"><![CDATA[=storeName]]></TargetBillField>
+				</BillDtlEdge>
+			</BillBodyEdge>
+		</BillBodyTransformEdge>
+	</BillTransformEdge>
+	<BillGroupJoinEdge>
+		<BillHeadGroupJoinEdge>
+			<GroupFileds GroupType="field" />
+			<JoinFileds />
+		</BillHeadGroupJoinEdge>
+		<BillBodyGroupJoinEdge>
+			<TargetSubBillGroupJoinEdges>
+				<TargetSubBillGroupJoinEdge Key="caigourukudan_details">
+					<GroupFileds GroupType="field" />
+					<JoinFileds />
+				</TargetSubBillGroupJoinEdge>
+			</TargetSubBillGroupJoinEdges>
+		</BillBodyGroupJoinEdge>
+	</BillGroupJoinEdge>
+	<BillBackWriteEdge>
+		<BillHeadBackWriteEdge />
+		<BillBodyBackWriteEdge />
+	</BillBackWriteEdge>
+	<DataFilterEdge>
+		<SourceBillHeadFilterEdge>
+			<Filter />
+		</SourceBillHeadFilterEdge>
+		<SourceBillBodyFilterEdge />
+	</DataFilterEdge>
+	<RuleFilterEdge>
+		<RuleHeadFilterEdge>
+			<Filter />
+		</RuleHeadFilterEdge>
+		<RuleBodyFilterEdge />
+	</RuleFilterEdge>
+	<BillEdgeHook />
+</BillEdge>
+

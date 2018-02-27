@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+	<DataTable Key="caigoudingdanchaxun" Caption="采购订单叙事薄" DefaultFilter=""
+		Pagging="10"
+		TableName="SQLQuery::select * | from xyy_wms_bill_caigoudingdan where 1 = 1 @danjubianhao @status order by createTime desc "
+		DataSource="" Head="false">
+		<Parameters>
+			<Parameter Key="danjubianhao" Type="String">
+				<Where>
+                <![CDATA[
+					m.if(danjubianhao==null | danjubianhao=="" ,""," and danjubianhao like '%"+danjubianhao+"%'")
+	            ]]>
+	            
+				</Where>
+			</Parameter>
+			
+		</Parameters>
+	</DataTable>
+	
+	<DataTable Key="caigoudingdan_details1" Caption="采购订单"
+	DefaultFilter="" PermissionType="PrivateType" Pagging="100"
+	TableName="SQLQuery:: 
+       SELECT
+	a.*,dbzsl |
+FROM
+	xyy_erp_bill_caigoudingdan_details a,
+	xyy_wms_dic_shangpinziliao b
+WHERE a.shangpinbianhao=b.shangpinbianhao and BillID is null
+              ORDER BY createTime DESC
+             "
+	DataSource="" Head="false" Singleton="" OrderBy="">
+		<Parameters>
+			<Parameter Key="danjubianhao" Type="String">
+				<Where>
+                    <![CDATA[
+					m.if( BillID is null)
+	            ]]>
+				</Where>
+			</Parameter>
+
+
+		</Parameters>
+	</DataTable>
+	
+</DataSet>

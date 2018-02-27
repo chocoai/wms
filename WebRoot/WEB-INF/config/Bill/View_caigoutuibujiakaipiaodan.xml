@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BillFormMeta Key="caigoutuibujiakaipiaodan" Version="1.0.0" BillType="Bills" Caption="采购退补价开票单叙事薄">
+    <BillBody>
+        <BillBodyMeta UserAgent="web">
+            <BillUIPanel Layout="flex" FlexDirection="column" Width="100%" Key="mainContainer" Caption="采购退补价开票单叙事薄"
+                         S="">
+                <BillUIPanel Layout="flex" Key="toolbox" Caption="工具栏" >
+                    <BillUIWidget Key="box" WidgetType="BillUIView" Src="toolbillsboxCG">
+                    </BillUIWidget>
+                     <BillUIWidget Key="del" Caption="删除"
+                                   EnabledWhen="True"
+                                   Icon="glyphicon glyphicon-trash" WidgetType="BillUIButton" S="btn btn-danger">
+                         <Triggers>
+                             <Trigger Type="javascript/angular" Runat="client">
+                                 <![CDATA[
+									 var sos = getSos('caigoutuibujiakaipiaodan');
+									 if(sos.length==0){
+							            alert("请选择需要删除记录");
+							            return;
+							         }else{
+							             for(var i=0;i<sos.length;i++){
+							                 if(sos[i].status!=1){
+							                     alert("【录入状态】的单据可以删除！");
+							                     return;
+							                 }
+							             }
+							         }
+							         @$this.delete();
+                      		]]>
+                             </Trigger>
+                         </Triggers>
+                     </BillUIWidget>
+                </BillUIPanel>
+                <BillUIPanel Layout="flex" Key="bills_tools" Caption="查询面板"
+                             S="panel panel-default publicPanel">
+                    <BillUIGridPanel Device="sm" key="boxtool">
+                        <BillUIRowPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="danjubianhao" ParameterKey="danjubianhao"
+                                              DataTableKey="caigoutuibujiakaipiaodan"
+                                              Caption="单据编号"
+                                              EnabledWhen="True"
+                                              Icon="glyphicon glyphicon-send" WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="6">
+                                <BillUIWidget Key="gysmc" ParameterKey="gysmc"
+                                              DataTableKey="caigoutuibujiakaipiaodan"
+                                              Caption="供应商名称"
+                                              EnabledWhen="True"
+                                              Icon="glyphicon glyphicon-send" WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="status" ParameterKey="status"
+                                              DataTableKey="caigoutuibujiakaipiaodan" Caption="状态"
+                                              EnabledWhen="True" 
+                                              Src="bill/getDataStatus?type=caigoutuibujiakaipiaodan"
+                                              Icon="glyphicon glyphicon-send" WidgetType="BillUISelect">
+                                    <Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                         this.loadDataSource();
+                                 		]]>
+                                    </Init>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                             <BillUIColPanel Width="3">
+                                <BillUIWidget Key="sjdjbh" ParameterKey="sjdjbh"
+                                              DataTableKey="caigoutuibujiakaipiaodan"
+                                              Caption="上级单据编号"
+                                              EnabledWhen="True"
+                                              Icon="glyphicon glyphicon-send" WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Caption="取消" Key="cancel"
+                                              EnabledWhen="True"
+                                              Icon="glyphicon glyphicon-send" WidgetType="BillUIButton">
+                                    <Triggers>
+                                        <Trigger Type="javascript/angular" Runat="client">
+                                            <![CDATA[
+                                     @danjubianhao.setValue("");
+                                     @kehumingcheng.setValue("");
+                                     @status.setValue("");
+                                     @sjdjbh.setValue("");
+                                     @$this.__load();
+	                            ]]>
+                                        </Trigger>
+                                    </Triggers>
+                                </BillUIWidget>
+                                <BillUIWidget Caption="查询" Key="search"
+                                              EnabledWhen="True"
+                                              Icon="glyphicon glyphicon-send" WidgetType="BillUIButton">
+                                    <Triggers>
+                                        <Trigger Type="javascript/angular" Runat="client">
+                                            <![CDATA[
+                                    @$this.__load("caigoutuibujiakaipiaodan");
+	                            ]]>
+                                        </Trigger>
+                                    </Triggers>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                        </BillUIRowPanel>
+                    </BillUIGridPanel>
+                </BillUIPanel>
+                <BillUIPanel Layout="tab" Key="bills_tabs" Caption="查询展示列"
+                             S="panel  panel-primary  publicPanel">
+                    <BillUIGrid Key="grid0" SelectMode="Multi" OptMode="View" DataTableKey="caigoutuibujiakaipiaodan">
+                    <RowCheckRule>
+                            <![CDATA[
+                                        this.status<10,success,warning
+                                    ]]>
+                        </RowCheckRule>
+                        <DoubleClickHandlers>
+                            <DoubleClickHandler>
+                                <![CDATA[
+                                    var shangpin=this.row;
+                                    window.location.href='/bill/view/bill?billKey=caigoutuibujiakaipiaodan&BillID='+shangpin.BillID+'&allDisabled=true';
+
+                                ]]>
+                            </DoubleClickHandler>
+                        </DoubleClickHandlers>
+                        <GridHeads>
+                            <GridHead Col="danjubianhao" Caption="单据编号" enableEdit="True"
+                                      Width="150px">
+                                <BillUIWidget Key="danjubianhao" WidgetType="BillUIString"/>
+                            </GridHead>
+                            <GridHead Col="kaipiaoriqi" Caption="开票日期" enableEdit="True" Width="150px">
+                                <BillUIWidget Key="kaipiaoriqi" WidgetType="BillUIDateTime"/>
+                            </GridHead>
+                            <GridHead Col="kaipiaoyuan" Caption="开票员" enableEdit="True" Width="120px">
+                                <BillUIWidget Key="kaipiaoyuan" WidgetType="BillUIString"/>
+                            </GridHead>
+                            <GridHead Col="gysbh" Caption="供应商编号" enableEdit="True" Width="100px">
+                                <BillUIWidget Key="gysbh" WidgetType="BillUIString"/>
+                            </GridHead>
+                            <GridHead Col="gysmc" Caption="供应商名称" enableEdit="True" Width="160px">
+                                <BillUIWidget Key="gysmc" WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </GridHead>
+							<GridHead Col="caigouyuan" Caption="采购员" enableEdit="True" Width="80px">
+                                <BillUIWidget Key="caigouyuan" WidgetType="BillUIString"/>
+                            </GridHead>
+                            <GridHead Col="status" Caption="状态" enableEdit="True" Width="80px">
+                                <BillUIWidget Key="status" WidgetType="BillUIInteger">
+                                    <Formatters>
+                                        <Formatter>
+                                            <![CDATA[
+                                            [{'url':'/bill/getDataStatus','type':'caigoutuibujiakaipiaodan'}]
+                                            ]]>
+                                        </Formatter>
+                                    </Formatters>
+                                </BillUIWidget>
+                            </GridHead>
+                            <GridHead Col="beizhu" Caption="备注" enableEdit="True" Width="160px">
+                                <BillUIWidget Key="beizhu" WidgetType="BillUIString"/>
+                            </GridHead>
+                        </GridHeads>
+                    </BillUIGrid>
+                </BillUIPanel>
+            </BillUIPanel>
+        </BillBodyMeta>
+    </BillBody>
+    <BillHeadMeta>
+    	<RuleKeys>
+            <RuleKey Type="PULL" PullType="BILL">
+                caigourukudan_caigoutuibujiakaipiaodan_TBKP001
+            </RuleKey>
+        </RuleKeys>
+    </BillHeadMeta>
+</BillFormMeta>
+

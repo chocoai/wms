@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BillFormMeta Key="caigoutueichukaipiaodan" Version="1.0.0"
+              BillType="Bills" Caption="采购退出查询">
+    <BillBody>
+        <BillBodyMeta UserAgent="web">
+            <BillUIPanel Layout="flex" FlexDirection="column" Width="100%"
+                         Key="mainContainer" Caption="采购退出查询" S="">
+                <BillUIPanel Layout="flex" Key="toolbox" Caption="工具栏">
+                    <BillUIWidget Key="downloadExcel" Caption="导出"
+                                  EnabledWhen="True" FileName="采购退出导出"
+                                  Icon="glyphicon glyphicon-save-file" WidgetType="BillUIButton">
+                        <Init Type="javascript/angular" Runat="client">
+                            <![CDATA[
+                                            this.setEnable();
+										]]>
+                        </Init>
+                        <Triggers>
+                            <Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+                                 @$this.downloadExcel("caigoutueichukaipiaodan_view");
+	                            ]]>
+                            </Trigger>
+                        </Triggers>
+                        <ExportSheets>
+                            <ExportSheet SheetName="采购退出开票单汇总" TitleName="" DataTableKey="caigoutueichukaipiaodan_view">
+                                <ExportColumns>
+                                    <ExportColumn Caption="订单编号" DataTableColumn="danjubianhao"/>
+                                    <ExportColumn Caption="订单日期" DataTableColumn="kaipiaoriqi"/>
+                                    <ExportColumn Caption="供应商编号" DataTableColumn="gysbh"/>
+                                    <ExportColumn Caption="供应商名称" DataTableColumn="gysmc"/>
+                                    <ExportColumn Caption="开票员" DataTableColumn="kaipiaoyuan"/>
+                                    <ExportColumn Caption="联系人" DataTableColumn="lianxiren"/>
+                                    <ExportColumn Caption="备注" DataTableColumn="beizhu"/>
+                                </ExportColumns>
+                            </ExportSheet>
+                            <ExportSheet SheetName="采购退出开票单明细" TitleName="" DataTableKey="caigoutueichukaipiaodan_details1">
+                                <ExportColumns>
+                                    <ExportColumn Caption="商品编号" DataTableColumn="shangpinbianhao"/>
+                                    <ExportColumn Caption="商品名称" DataTableColumn="shangpinmingcheng"/>
+                                    <ExportColumn Caption="商品规格" DataTableColumn="guige"/>
+                                    <ExportColumn Caption="包装单位" DataTableColumn="danwei" Type="Dic">
+                                        <![CDATA[
+                                          {'url':'select','type':'baozhuangdanwei'}
+                                        ]]>
+                                    </ExportColumn>
+                                    <ExportColumn Caption="批准文号" DataTableColumn="pizhunwenhao"/>
+                                    <ExportColumn Caption="生产厂家" DataTableColumn="shengchanchangjia"/>
+                                     <ExportColumn Caption="生产日期" DataTableColumn="shengchanriqi"/>
+                                     <ExportColumn Caption="有效期至" DataTableColumn="youxiaoqizhi"/>
+                                    <ExportColumn Caption="数量" DataTableColumn="shuliang"/>
+                                      <ExportColumn Caption="批号" DataTableColumn="pihao"/>
+                                    <ExportColumn Caption="含税价" DataTableColumn="hanshuijia"/>
+                                    <ExportColumn Caption="含税金额" DataTableColumn="hanshuijine"/>
+                                     <ExportColumn Caption="退出原因" DataTableColumn="tuichuyuanyin"/>
+                                    <ExportColumn Caption="备注" DataTableColumn="beizhu"/>
+                                </ExportColumns>
+                            </ExportSheet>
+                        </ExportSheets>
+                    </BillUIWidget>
+                </BillUIPanel>
+                <BillUIPanel Layout="flex" Key="bills_tools" Caption="查询面板"
+                             S="panel panel-default publicPanel">
+                    <BillUIGridPanel Device="sm" key="boxtool">
+                        <BillUIRowPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="kaishiriqi" ParameterKey="kaishiriqi"
+                                              DataTableKey="caigoutueichukaipiaodan_view" Caption="开始日期" EnabledWhen="True"
+                                              Icon="glyphicon glyphicon-send" WidgetType="BillUIDateTime">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="jiezhiriqi" ParameterKey="jiezhiriqi"
+                                              DataTableKey="caigoutueichukaipiaodan_view" Caption="截止日期" EnabledWhen="True"
+                                              Icon="glyphicon glyphicon-send" WidgetType="BillUIDateTime">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                 <BillUIWidget Key="gysmc" ParameterKey="gysmc"
+                                              DataTableKey="caigoutueichukaipiaodan_view" Caption="供应商名称" EnabledWhen="True"
+                                              Icon="glyphicon glyphicon-send" WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="danjubianhao" ParameterKey="danjubianhao"
+                                              DataTableKey="caigoutueichukaipiaodan_view" Caption="订单编号" EnabledWhen="True"
+                                              Icon="glyphicon glyphicon-send" WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <!-- <BillUIColPanel Width="3">
+                                <BillUIWidget Key="shangpinmingcheng" ParameterKey="shangpinmingcheng"
+                                              DataTableKey="caigoutueichukaipiaodan_view" Caption="商品名称" EnabledWhen="True"
+                                              Icon="glyphicon glyphicon-send" WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </BillUIColPanel> -->
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Caption="查询" Key="search"
+                                              EnabledWhen="True" Icon="glyphicon glyphicon-send"
+                                              WidgetType="BillUIButton">
+                                    <Triggers>
+                                        <Trigger Type="javascript/angular" Runat="client">
+                                            <![CDATA[
+                                        	this.search("caigoutueichukaipiaodan_view");
+                                 			]]>
+                                        </Trigger>
+                                    </Triggers>
+                                </BillUIWidget>
+                                <BillUIWidget Caption="重置" Key="cancel"
+                                              EnabledWhen="True" Icon="glyphicon glyphicon-send"
+                                              WidgetType="BillUIButton">
+                                    <Triggers>
+                                        <Trigger Type="javascript/angular" Runat="client">
+                                            <![CDATA[
+						                                     @$this.__load();
+							                            ]]>
+                                        </Trigger>
+                                    </Triggers>
+                                </BillUIWidget>
+
+                            </BillUIColPanel>
+                        </BillUIRowPanel>
+                    </BillUIGridPanel>
+                </BillUIPanel>
+
+
+                <BillUIPanel Layout="tab" Key="bills_tabs" Caption="开票单汇总"
+                             S="panel  panel-primary  publicPanel">
+                    <BillUIGrid Key="grid0" OptMode="View" SelectMode="Multi"
+                                DataTableKey="caigoutueichukaipiaodan_view">
+                        <OnClickHandlers>
+                            <OnClickHandler>
+                                <![CDATA[
+							var cos=this.row;
+							var list = callRemoteMethod('/spe/route/query-xiaotuidingdandetails', {BillID:cos.BillID,table:'xyy_wms_bill_caigoutuichukaipiaodan_details'}, true, 'POST');
+							insertRows("caigoutueichukaipiaodan_details1", list, true);
+							       @caigoutueichukaipiaodan_details1.allSelect();
+							       if(window.$body['caigoutueichukaipiaodan_details1']){
+											 		var tem_sos = window.$body['caigoutueichukaipiaodan_details1'].sos;
+											 		if(tem_sos && tem_sos.length > 0){
+											 			tem_sos.forEach(function(value){
+											 				@caigoutueichukaipiaodan_details1.cancelSelect(value);
+											 			});
+											 		}
+											 	}
+											]]>
+                            </OnClickHandler>
+                        </OnClickHandlers>
+
+
+                        <GridHeads>
+                            <GridHead Col="kaipiaoriqi" Caption="订单日期"
+                                      enableEdit="True" Width="100px">
+                                <BillUIWidget Key="kaipiaoriqi" WidgetType="BillUIString"/>
+                            </GridHead>
+                            <GridHead Col="danjubianhao" Caption="订单编号"
+                                      enableEdit="True" Width="150px">
+                                <BillUIWidget Key="danjubianhao" WidgetType="BillUIString"/>
+                            </GridHead>
+                            <GridHead Col="gysbh" Caption="供应商编号"
+                                      enableEdit="True" Width="120px">
+                                <BillUIWidget Key="gysbh" WidgetType="BillUIString"/>
+                            </GridHead>
+                            <GridHead Col="gysmc" Caption="供应商名称"
+                                      enableEdit="True" Width="220px">
+                                <BillUIWidget Key="gysmc" WidgetType="BillUIString"/>
+                            </GridHead>
+                            <GridHead Col="kaipiaoyuan" Caption="开票员"
+                                      enableEdit="True" Width="100px">
+                                <BillUIWidget Key="kaipiaoyuan" WidgetType="BillUIString"/>
+                            </GridHead>
+                             <GridHead Col="lianxiren" Caption="联系人"
+                                      enableEdit="True" Width="100px">
+                                <BillUIWidget Key="lianxiren" WidgetType="BillUIString"/>
+                            </GridHead>
+                            <GridHead Col="beizhu" Caption="备注" enableEdit="True"
+                                      Width="200px">
+                                <BillUIWidget Key="beizhu" WidgetType="BillUIString"/>
+                            </GridHead>
+                        </GridHeads>
+                    </BillUIGrid>
+                </BillUIPanel>
+
+
+                <BillUIPanel Layout="tab" Key="bills_tabs1" Caption="开票单明细"
+                             S="panel  panel-primary  publicPanel">
+                    <BillUIGrid Key="caigoutueichukaipiaodan_details1" OptMode="View" SelectMode="Multi"
+                                DataTableKey="caigoutueichukaipiaodan_details1">
+                        <GridHeads>
+                            <GridHead Col="shangpinbianhao" Caption="商品编号"
+                                      enableEdit="True" Width="150px">
+                                <BillUIWidget Key="shangpinbianhao" Disable="true"
+                                              WidgetType="BillUIString"/>
+                            </GridHead>
+                            <GridHead Col="shangpinmingcheng" Caption="商品名称"
+                                      enableEdit="True" Width="220px">
+                                <BillUIWidget Key="shangpinmingcheng" Disable="true"
+                                              WidgetType="BillUIString"/>
+                            </GridHead>
+                            <GridHead Col="guige" Caption="商品规格" enableEdit="True"
+                                      Width="150px">
+                                <BillUIWidget Key="guige" Disable="true"
+                                              WidgetType="BillUIString"/>
+                            </GridHead>
+                            <GridHead Col="danwei" Caption="包装单位" enableEdit="True"
+                                      Width="30px">
+                                <BillUIWidget Key="danwei" Disable="true"
+                                              WidgetType="BillUIString">
+                                    <Formatters>
+                                        <Formatter>
+                                            <![CDATA[
+                                                [{'type':'baozhuangdanwei'}]
+                                            ]]>
+                                        </Formatter>
+                                    </Formatters>
+                                </BillUIWidget>
+                            </GridHead>
+                            <GridHead Col="pizhunwenhao" Caption="批准文号"
+                                      enableEdit="True" Width="180px">
+                                <BillUIWidget Key="pizhunwenhao" Disable="true"
+                                              WidgetType="BillUIString"/>
+                            </GridHead>
+                            <GridHead Col="shengchanriqi" Caption="生产日期"
+                                      enableEdit="True" Width="150px">
+                                <BillUIWidget Key="shengchanriqi" Disable="true"
+                                              WidgetType="BillUIString"/>
+                            </GridHead>
+                            <GridHead Col="youxiaoqizhi" Caption="有效期至"
+                                      enableEdit="True" Width="150px">
+                                <BillUIWidget Key="youxiaoqizhi" Disable="true"
+                                              WidgetType="BillUIString"/>
+                            </GridHead>
+
+                            <GridHead Col="shengchanchangjia" Caption="生产厂家"
+                                      enableEdit="True" Width="220px">
+                                <BillUIWidget Key="shengchanchangjia" Disable="true"
+                                              WidgetType="BillUIString"/>
+                            </GridHead>
+
+
+                            <GridHead Col="shuliang" Caption="数量" enableEdit="True"
+                                      Width="80px">
+                                <BillUIWidget Key="shuliang" WidgetType="BillUIExpression">
+                                </BillUIWidget>
+                            </GridHead>
+                             <GridHead Col="pihao" Caption="批号" enableEdit="True"
+                                      Width="80px">
+                                <BillUIWidget Key="pihao" WidgetType="BillUIExpression">
+                                </BillUIWidget>
+                            </GridHead>
+
+                            <GridHead Col="hanshuijia" Caption="含税价"
+                                      enableEdit="True" Width="80px">
+                                <BillUIWidget Key="hanshuijia" WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </GridHead>
+                            <GridHead Col="hanshuijine" Caption="含税金额"
+                                      enableEdit="True" Width="80px">
+                                <BillUIWidget Key="hanshuijine" WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </GridHead>
+                             <GridHead Col="tuichuyuanyin" Caption="退出原因"
+                                      enableEdit="True" Width="220px">
+                                <BillUIWidget Key="tuichuyuanyin" WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </GridHead>
+                             <GridHead Col="beizhu" Caption="备注"
+                                      enableEdit="True" Width="220px">
+                                <BillUIWidget Key="beizhu" WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </GridHead>
+                            
+                        </GridHeads>
+                    </BillUIGrid>
+                </BillUIPanel>
+            </BillUIPanel>
+        </BillBodyMeta>
+    </BillBody>
+    <BillHeadMeta>
+    </BillHeadMeta>
+</BillFormMeta>

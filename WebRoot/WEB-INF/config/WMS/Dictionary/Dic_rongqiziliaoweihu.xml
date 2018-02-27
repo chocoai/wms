@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BillFormMeta Key="rongqiziliaoweihu" Version="1.0.0"
+	BillType="Dictionary" Caption="采购订单">
+	<BillBody>
+		<BillBodyMeta UserAgent="web">
+			<BillUIPanel Layout="flex" FlexDirection="column" Width="100%"
+				Key="mainContainer" Caption="采购订单" S="">
+				<BillUIPanel Layout="flex" Key="toolbox" Caption="工具栏">
+					<!--属性 colPush 向右推 colPull 向左拉 colOffset 左边距 -->
+					<BillUIWidget Key="save" Caption="保存" EnabledWhen="True"
+						Icon="glyphicon glyphicon-floppy-disk" WidgetType="BillUIButton">
+						<Triggers>
+							<Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+                                	@$this.save('bills',{
+                                        before:{
+                                           setStatus:[20]
+                                        }
+                                    });
+	                            ]]>
+							</Trigger>
+						</Triggers>
+					</BillUIWidget>
+
+					<BillUIWidget Key="goback" Caption="返回" EnabledWhen="True"
+						Icon="glyphicon glyphicon-remove-circle" WidgetType="BillUIButton"
+						S="btn btn-danger ">
+						<Triggers>
+							<Trigger Type="javascript/angular" Runat="client">
+								<![CDATA[
+                                        	@$this.$reBack();
+	                            		]]>
+							</Trigger>
+						</Triggers>
+					</BillUIWidget>
+				</BillUIPanel>
+				<BillUIPanel Layout="flex" Key="mainContainer_head"
+					Caption="基本属性" S="panel panel-success publicPanel">
+					<BillUIGridPanel Key="rongqiziliaoweihu">
+
+						<BillUIRowPanel>
+							<BillUIColPanel Width="4">
+								<BillUIWidget Key="cangkumingchen" Caption="仓库" DataTableColumn="cangkumingchen"
+											  DataTableKey="cangkuziliao"
+											  EnabledWhen="True" WidgetType="BillUIPopupWindow" Src="cangku"
+											  Disable="true" Required="required" >
+									<Init Type="javascript/angular" Runat="client">
+										<![CDATA[
+                                                var t=@cangkuID.getValue();
+                                                console.log("t",t);
+                                                t.then(function(data){
+                                                if(data)
+                                                {
+                                                	var cangkuxinxin = callRemoteMethod('/wmsCangku/route/cangku',{cangkuID:data}, true, 'POST');
+                                            	    console.log("cangkuxinxin",cangkuxinxin);
+                                            	    @cangkumingchen.setValue(cangkuxinxin.cangkumingchen);
+									                 }
+                                                })
+	                                        ]]>
+									</Init>
+									<Triggers>
+										<Trigger>
+											<![CDATA[
+                                                    var cangku=this.rows[0];
+                                                    this.setValue(cangku.cangkumingchen);
+                                                    @cangkuID.setValue(cangku.ID);
+                                                    var cangkumingchen = cangku.cangkumingchen;
+                                                    setEnv({cangkumingchen:cangkumingchen});
+
+                                                ]]>
+										</Trigger>
+									</Triggers>
+
+								</BillUIWidget>
+							</BillUIColPanel>
+
+
+							<BillUIColPanel Width="4">
+								<BillUIWidget Key="rongqibianhao" Caption="容器编号"
+									Required="required" DataTableKey="rongqiziliaoweihu"
+									DataTableColumn="rongqibianhao" EnabledWhen="True" WidgetType="BillUIString">
+								</BillUIWidget>
+							</BillUIColPanel>
+							<BillUIColPanel Width="4">
+								<BillUIWidget Key="rongqileixing" Caption="容器类型"
+									DataTableKey="rongqiziliaoweihu" DataTableColumn="rongqileixing"
+									EnabledWhen="True" Required="required" WidgetType="BillUISelect"
+									Src="bill/getDataStatus?type=rongqileixing">
+									<Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                          this.loadDataSource();
+                                 	    ]]>
+									</Init>
+								</BillUIWidget>
+							</BillUIColPanel>
+
+							<BillUIColPanel Width="4">
+								<BillUIWidget Key="chang" Caption="长(cm)"
+									DataTableKey="rongqiziliaoweihu" DataTableColumn="chang"
+									Required="required" EnabledWhen="True" WidgetType="BillUIDecimal"
+									DefaultValue="0.00">
+
+									<CheckRules>
+										<CheckRule>
+												        <![CDATA[
+												             {"type":"builtin","rule":"/^[0-9]+(\\.[0-9]{1,2})?$/","msg":"请填写正确信息"}
+												        ]]>
+										</CheckRule>
+									</CheckRules>
+
+									<Triggers>
+										<Trigger Type="javascript/angular" Runat="client">
+                                            <![CDATA[
+                                                var chang = @chang.getValue();
+                                                var kuan = @kuan.getValue();
+                                                var gao = @gao.getValue();
+                                                Promise.all([chang,kuan,gao]).then(function (results) {
+                                                   @tiji.setValue(results[0]*results[1]*results[2]);
+                                                }).catch(function(r){
+                                                });
+				                            ]]>
+										</Trigger>
+									</Triggers>
+								</BillUIWidget>
+							</BillUIColPanel>
+
+
+							<BillUIColPanel Width="4">
+								<BillUIWidget Key="kuan" Caption="宽(cm)"
+									DataTableKey="rongqiziliaoweihu" Required="required"
+									DataTableColumn="kuan" EnabledWhen="True" WidgetType="BillUIDecimal">
+									<CheckRules>
+										<CheckRule>
+												        <![CDATA[
+												             {"type":"builtin","rule":"/^[0-9]+(\\.[0-9]{1,2})?$/","msg":"请填写正确信息"}
+												        ]]>
+										</CheckRule>
+									</CheckRules>
+
+									<Triggers>
+										<Trigger Type="javascript/angular" Runat="client">
+                                            <![CDATA[
+                                                var chang = @chang.getValue();
+                                                var kuan = @kuan.getValue();
+                                                var gao = @gao.getValue();
+                                                Promise.all([chang,kuan,gao]).then(function (results) {
+                                                   @tiji.setValue(results[0]*results[1]*results[2]);
+                                                }).catch(function(r){
+                                                });
+				                            ]]>
+										</Trigger>
+									</Triggers>
+								</BillUIWidget>
+							</BillUIColPanel>
+							<BillUIColPanel Width="4">
+								<BillUIWidget Key="gao" Caption="高(cm)"
+									DataTableKey="rongqiziliaoweihu" DataTableColumn="gao"
+									Required="required" EnabledWhen="True" WidgetType="BillUIDecimal">
+									<CheckRules>
+										<CheckRule>
+												        <![CDATA[
+												             {"type":"builtin","rule":"/^[0-9]+(\\.[0-9]{1,2})?$/","msg":"请填写正确信息"}
+												        ]]>
+										</CheckRule>
+									</CheckRules>
+
+									<Triggers>
+										<Trigger Type="javascript/angular" Runat="client">
+                                            <![CDATA[
+                                                var chang = @chang.getValue();
+                                                var kuan = @kuan.getValue();
+                                                var gao = @gao.getValue();
+                                                Promise.all([chang,kuan,gao]).then(function (results) {
+                                                   @tiji.setValue(results[0]*results[1]*results[2]);
+                                                }).catch(function(r){
+                                                });
+				                            ]]>
+										</Trigger>
+									</Triggers>
+
+								</BillUIWidget>
+							</BillUIColPanel>
+							<BillUIColPanel Width="4">
+								<BillUIWidget Key="tiji" Caption="体积(cm³)" Required="required"
+									DataTableKey="rongqiziliaoweihu" DataTableColumn="tiji"
+									EnabledWhen="True" Disable="true" WidgetType="BillUIDecimal">
+								</BillUIWidget>
+
+
+							</BillUIColPanel>
+
+							<BillUIColPanel Width="4">
+								<BillUIWidget Key="shifouqiyong" Caption="是否启用"
+									DataTableKey="rongqiziliaoweihu" DataTableColumn="shifouqiyong"
+									EnabledWhen="True" Required="required" WidgetType="BillUISelect"
+									Src="bill/selectSrc?type=bool">
+									<Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                          this.loadDataSource();
+                                 	    ]]>
+									</Init>
+								</BillUIWidget>
+							</BillUIColPanel>
+							<BillUIColPanel Width="4">
+								<BillUIWidget Key="shifousuoding" Caption="是否锁定" Disable="True"
+									DataTableKey="rongqiziliaoweihu" DataTableColumn="shifousuoding"
+									EnabledWhen="True" Required="required" WidgetType="BillUISelect"
+									Src="bill/getDataStatus?type=bool">
+									<Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                          this.loadDataSource();
+                                 	    ]]>
+									</Init>
+								</BillUIWidget>
+							</BillUIColPanel>
+							<BillUIColPanel Width="8">
+								<BillUIWidget Key="beizhu" Caption="备注"
+                                      DataTableKey="rongqiziliaoweihu" DataTableColumn="beizhu"
+                                      EnabledWhen="True" WidgetType="BillUITextArea">
+								</BillUIWidget>
+							</BillUIColPanel>
+							<BillUIColPanel Width="4" >
+								<BillUIWidget Key="cangkuID"
+											  Caption="" DataTableKey="rongqiziliaoweihu" DataTableColumn="cangkuID"
+											  Disable="true" EnabledWhen="True" WidgetType="BillUIString" ViewSize="lg" >
+									<Init Type="javascript/angular" Runat="client">
+										<![CDATA[
+                                            	this.setHide();
+	                                        ]]>
+									</Init>
+								</BillUIWidget>
+							</BillUIColPanel>
+						</BillUIRowPanel>
+
+					</BillUIGridPanel>
+				</BillUIPanel>
+				<BillUIPanel Layout="flex" Key="mainContainer_head"
+					Caption="控制属性" S="panel panel-success publicPanel">
+					<BillUIGridPanel Key="rongqiziliaoweihu">
+						<BillUIRowPanel>
+							<BillUIColPanel Width="4">
+								<BillUIWidget Key="tijixianzhi" Caption="体积限制(cm³)"
+									DataTableKey="rongqiziliaoweihu" DataTableColumn="tijixianzhi"
+									EnabledWhen="True" WidgetType="BillUIDecimal">
+									<Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                       				var a="1.00";
+                                                	this.setValue("0.00");
+                                        	
+										]]>
+									</Init>
+								</BillUIWidget>
+							</BillUIColPanel>
+							<BillUIColPanel Width="4">
+								<BillUIWidget Key="zhongliangxianzhi" Caption="重量限制(kg)"
+											  DataTableKey="rongqiziliaoweihu"
+									DataTableColumn="zhongliangxianzhi" EnabledWhen="True"
+									WidgetType="BillUIDecimal">
+									<Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                       				var a="1.00";
+                                                	this.setValue("0.00");
+                                        	
+										]]>
+									</Init>
+								</BillUIWidget>
+							</BillUIColPanel>
+							<BillUIColPanel Width="4">
+								<BillUIWidget Key="shuliangxianzhi" Caption="数量限制"
+									DataTableKey="rongqiziliaoweihu" DataTableColumn="shuliangxianzhi"
+									EnabledWhen="True"  WidgetType="BillUIDecimal">
+									<Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                       				var a="1.00";
+                                                	this.setValue("0.00");
+                                        	
+										]]>
+									</Init>
+								</BillUIWidget>
+							</BillUIColPanel>
+							<BillUIColPanel Width="4">
+								<BillUIWidget Key="fdrjsx" Caption="浮动容积上限"
+									DataTableKey="rongqiziliaoweihu" DataTableColumn="fdrjsx"
+											  EnabledWhen="True" WidgetType="BillUIDecimal">
+									<Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                       				var a="1.00";
+                                                	this.setValue("1.00");
+                                        	
+										]]>
+									</Init>
+								</BillUIWidget>
+							</BillUIColPanel>
+						</BillUIRowPanel>
+					</BillUIGridPanel>
+				</BillUIPanel>
+			</BillUIPanel>
+		</BillBodyMeta>
+
+	</BillBody>
+
+	<BillHeadMeta>
+		<BillEventCollection>
+			<Event Type="PreSave" Processor="com.xyy.wms.handler.biz.DicRqzlwhPreHandler" />
+
+		</BillEventCollection>
+	</BillHeadMeta>
+
+</BillFormMeta>
+

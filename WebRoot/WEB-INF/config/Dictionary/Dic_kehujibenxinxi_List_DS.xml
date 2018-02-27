@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="kehujibenxinxi" Caption="客户基本信息列表" DefaultFilter="" Pagging="20"  PermissionType="CommType"
+               TableName="SQLQuery::select * | from xyy_erp_dic_kehujibenxinxi where 1 = 1 and shifouhuodong=1 @kehu @status order by createTime desc" DataSource="" Head="false">
+        <Parameters>
+            <Parameter Key="status" Type="Integer">
+                <Where>
+                    <![CDATA[
+						m.if(status==null," "," and status="+status+"")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="kehu" Type="String">
+                <Where>
+                    <![CDATA[
+                        m.if(kehu==null | kehu=="" ,""," and mixCondition like '%"+kehu+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

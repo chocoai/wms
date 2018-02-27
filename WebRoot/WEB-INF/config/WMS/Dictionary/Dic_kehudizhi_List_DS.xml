@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="kehudizhi" Caption="客户地址叙事薄" DefaultFilter="" Pagging="10"
+               TableName="SQLQuery::select * | from xyy_wms_dic_kehudizhi where  1=1 @kehubianhao  @kehumingcheng  ORDER BY createTime DESC" DataSource="" Head="false">
+        <Parameters> 
+            <Parameter Key="kehubianhao" Type="String">
+                <Where>
+                <![CDATA[
+					m.if(kehubianhao==null | kehubianhao=="" ," "," and kehubianhao like '%"+kehubianhao+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="kehumingcheng" Type="String" >
+                <Where>
+                <![CDATA[
+					m.if(kehumingcheng==null | kehumingcheng==" " ," "," and kehumingcheng like '%"+kehumingcheng+"%'")
+                ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

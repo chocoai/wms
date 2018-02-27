@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html ng-app="myModule">
+<head>
+    <script src="//cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//cdn.bootcss.com/angular.js/1.5.10/angular.min.js"></script>
+    <script>
+        // 模块的$controllerProvider,用来动态注册controller
+        var  controllerProvider = null;
+        // 创建一个模块,并记录$controllerProvider
+        var myModule = angular.module('myModule', [], function($controllerProvider) {
+            controllerProvider = $controllerProvider;
+        });
+
+        myModule.controller("controller1", function controller1($scope)
+        {
+            $scope.add = function(){
+                var elementId="T"+new Date().getTime();
+
+                $("#div1").append("<div id='"+elementId+"' ng-controller='div1_ctr2'>dynamicly add {{count}}</div>");
+                var script="$scope.count=Math.random();";
+                var fun= new Function('$scope', script)
+                registerController(elementId, "div1_ctr2", fun);
+            }
+        });
+        function registerController(elementId, controllerName, func){
+            controllerProvider.register(controllerName, func);
+           $("#"+elementId).injector().invoke(function($compile, $rootScope) {
+                    $compile($("#"+elementId))($rootScope);
+           });
+        }
+
+    </script>
+</head>
+<body>
+<div id="div1" ng-controller="controller1">
+    <input type="button" value="dynamic" ng-click="add();">
+</div>
+</body>
+</html>

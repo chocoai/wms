@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+	<DataTable Key="jianhuoyuan" Caption="拣货员考核统计"
+		DefaultFilter="" Pagging="20"
+		TableName="SQLQuery::
+SELECT
+	t1.tiaomushu,
+	t1.jianshu,
+	t1.shuliang,
+	t1.caozuoren,
+	t1.orgCode,
+	t2.pinguishu,
+	t2.czrmc zhiyuanmingcheng,
+	t2.startDate,
+	t2.querenshijian,
+	t3.cangkumingcheng |
+FROM
+	(
+		SELECT
+			count(1) tiaomushu,
+			sum(shijianjianshu) jianshu,
+			sum(shijianshuliang) shuliang,
+			caozuoren,
+			orgCode
+		FROM
+			xyy_wms_bill_dabaorenwu_details t
+		WHERE
+			caozuoren IS NOT NULL
+		AND caozuoren != ''
+		GROUP BY
+			caozuoren
+	) t1 LEFT JOIN 
+	(
+		SELECT
+			sum(pinguishu) pinguishu,
+			czrmc,
+			caozuoren,
+			querenshijian,
+			startDate
+			
+		FROM
+			xyy_wms_bill_dabaorenwu
+		WHERE
+			czrmc IS NOT NULL
+		AND czrmc != ''
+		GROUP BY
+			czrmc
+	) t2 
+ON
+	t1.caozuoren = t2.czrmc
+LEFT JOIN xyy_wms_dic_kqzyqxwh t3 on t3.gonghao = t2.caozuoren
+where 1=1 @cangkumingcheng @zhiyuanmingcheng @kaishiriqi @jiezhiriqi
+ GROUP BY t1.caozuoren"
+		DataSource="" Head="false">
+		<Parameters>                                     
+			<Parameter Key="kaishiriqi" Type="String">
+				<Where>
+					<![CDATA[
+						m.if(kaishiriqi==null,""," and DATE_FORMAT(t2.startDate,'%Y-%m-%d') >= DATE_FORMAT('"+kaishiriqi+"','%Y-%m-%d')")
+	                ]]>
+				</Where>
+			</Parameter>
+			<Parameter Key="jiezhiriqi" Type="String">
+				<Where>
+					<![CDATA[
+					   	m.if(jiezhiriqi==null,""," and DATE_FORMAT(t2.querenshijian,'%Y-%m-%d') <= DATE_FORMAT('"+jiezhiriqi+"','%Y-%m-%d')")
+	                ]]>
+				</Where>
+			</Parameter>
+			<Parameter Key="cangkumingcheng" Type="String">
+				<Where>
+					<![CDATA[
+					    m.if(cangkumingcheng==null | cangkumingcheng=="" ," "," and t3.cangkumingcheng like '%"+cangkumingcheng+"%'")
+	                ]]>
+				</Where>
+			</Parameter>
+			<Parameter Key="zhiyuanmingcheng" Type="String">
+				<Where>
+					<![CDATA[
+					    m.if(zhiyuanmingcheng==null | zhiyuanmingcheng=="" ," "," and t3.zhiyuanmingcheng like '%"+zhiyuanmingcheng+"%'")
+	                ]]>
+				</Where>
+			</Parameter>
+		</Parameters>
+	</DataTable>
+
+</DataSet>

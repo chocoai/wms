@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="spzycx" Caption="商品账页查询叙事薄" DefaultFilter="" PermissionType="CommType" Pagging="10"
+               TableName="SQLQuery::
+    SELECT
+	c.cangkumingchen,
+	g.shangpinbianhao,
+	g.shangpinmingcheng,
+	g.guige,
+	g.danwei,
+	g.dbzsl,
+  s.spzjy,
+  s.spphjy,
+  s.spphhwjy,
+  s.rukushuliang,
+  s.chukushuliang,
+  s.zhidanriqi as createTime,
+  s.danjubianhao,
+  s.zhaiyao,
+	g.pizhunwenhao,
+	g.shengchanchangjia,
+  k.kuqumingcheng,
+  h.huoweibianhao,
+  p.pihao
+  |
+FROM
+	xyy_wms_bill_shangpinzhangye s
+inner JOIN xyy_wms_dic_huoweiziliaoweihu h on s.huoweiId=h.ID and h.orgId=s.orgId
+inner JOIN xyy_wms_dic_shangpinziliao g ON s.shangpinId = g.goodsid and g.orgId=s.orgId
+inner JOIN xyy_wms_dic_kuqujibenxinxi k on h.kuquId =k.ID and h.orgId=k.orgId
+inner JOIN xyy_wms_dic_cangkuziliao c ON k.cangkuID = c.ID and h.orgId=c.orgId
+inner JOIN xyy_wms_dic_shangpinpihao p ON s.pihaoId=p.pihaoId and s.shangpinId=p.goodsId and p.orgId=s.orgId
+WHERE
+	1=1 @shangpinmingcheng @cangkumingchen @huoweibianhao @kaishiriqi @jiezhiriqi @zhujima @danjubianhao @pihao @orgId"  DataSource="" Head="false">
+        <Parameters>
+            <Parameter Key="orgId" Type="String" >
+                <Where>
+                    <![CDATA[
+							m.if(orgId==null | danjubianhao=="" ," "," and s.orgId like '%"+orgId+"%'")
+			            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="danjubianhao" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(danjubianhao==null | danjubianhao=="" ," "," and danjubianhao like '%"+danjubianhao+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="kaishiriqi" Type="String">
+                <Where>
+                    <![CDATA[
+                	m.if(kaishiriqi==null,""," and DATE_FORMAT(zhidanriqi,'%Y-%m-%d') >= DATE_FORMAT('"+kaishiriqi+"','%Y-%m-%d')")
+				]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="jiezhiriqi" Type="String">
+                <Where>
+                    <![CDATA[
+                	m.if(jiezhiriqi==null,""," and DATE_FORMAT(zhidanriqi,'%Y-%m-%d') <= DATE_FORMAT('"+jiezhiriqi+"','%Y-%m-%d')")
+				]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="shangpinmingcheng" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(shangpinmingcheng==null | shangpinmingcheng=="" ,""," and g.shangpinmingcheng like '%"+shangpinmingcheng+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="pihao" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(pihao==null | shangpinmingcheng=="" ,""," and p.pihao like '%"+pihao+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+
+            <Parameter Key="cangkumingchen" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(cangkumingcheng==null | cangkumingcheng=="" ,""," and c.cangkumingchen = '"+cangkumingcheng+"'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="huoweibianhao" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(huoweibianhao==null | huoweibianhao=="" ,""," and h.huoweibianhao = '"+huoweibianhao+"'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="zhujima" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(zhujima==null | zhujima=="" ,""," and g.zhujima like '%"+zhujima+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<BillViewMeta Key="jingyingfanwei" Caption="经营范围" Version="">
+	<Parameters>
+		<Parameter Key="type" Type="String" Scope="Global">
+			<DefaultValue>shangpinleibie</DefaultValue>
+			<Where></Where>
+		</Parameter> 
+	</Parameters>
+	<BillBody UserAgent="web">
+		<BillBodyMeta>
+			<BillUIPanel Layout="flex" Key="dictionary_tools" Caption="经营范围"  S="">
+			     <BillUIGridPanel Key="jingyingfanwei_grid">
+                    <BillUIRowPanel>
+                        <BillUIColPanel Width="8">
+                            <BillUIWidget Caption="名称" Key="cancel"
+                                EnabledWhen="True"   ParameterKey="value"
+                                DataTableKey="jingyingfanwei_view"
+                                WidgetType="BillUIString">
+                            </BillUIWidget>
+                        </BillUIColPanel>
+
+                        <BillUIColPanel Width="2">
+                            <BillUIWidget Caption="查询" Key="search"
+                                EnabledWhen="True"
+                                Icon="glyphicon glyphicon-send" WidgetType="BillUIButton">
+                                <Triggers>
+                                    <Trigger Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                        	this.search("jingyingfanwei_view");
+                                 			]]>
+                                    </Trigger>
+                                </Triggers>
+                            </BillUIWidget>
+                        </BillUIColPanel>
+                    </BillUIRowPanel>	
+			         <BillUIRowPanel>
+						 <BillUIColPanel Width="12">
+							 <BillUIPanel Layout="flex" Key="dictionary_tools">
+								 <BillUIGrid Key="grid0" SelectMode="Multi" OptMode="View"  DataTableKey="jingyingfanwei_view">
+								 <GridHeads>
+									 <GridHead Col="key" Caption="字典值" Width="150px">
+										 <BillUIWidget Key="key" WidgetType="BillUIString"/>
+									 </GridHead>
+									 <GridHead Col="value" Caption="字典名" Width="150px">
+										 <BillUIWidget Key="value" WidgetType="BillUIString"/>
+									 </GridHead>
+								 </GridHeads>
+							 </BillUIGrid>
+							 </BillUIPanel>
+						 </BillUIColPanel>
+			         </BillUIRowPanel>
+			     </BillUIGridPanel>
+             </BillUIPanel>
+		</BillBodyMeta>
+	</BillBody>
+</BillViewMeta>

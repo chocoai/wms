@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="shangpin_view" Caption="商品名称" DefaultFilter="" PermissionType="CommType"  Pagging="10"
+        TableName="SQLQuery::select * | from xyy_erp_dic_shangpinjibenxinxi where 1 = 1  @tingcai @shangpin @dongjie @shifouhuodong @status  order by createTime desc"  DataSource="" Head="false" Singleton="" OrderBy="">
+        <Parameters>
+            <Parameter Key="dongjie" Type="Integer">
+                <Where>
+                    <![CDATA[
+					m.if(dongjie==null ,""," and dongjie = "+dongjie+"")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="tingcai" Type="Integer">
+                <Where>
+                    <![CDATA[
+					m.if(tingcai==null ,""," and tingcai = "+tingcai+"")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="shifouhuodong" Type="Integer">
+                <Where>
+                    <![CDATA[
+					m.if(shifouhuodong==null ,""," and shifouhuodong = "+shifouhuodong+"")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="status" Type="Integer">
+                <Where>
+                    <![CDATA[
+					m.if(status==null ,""," and status = "+status+"")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="shangpin" Type="String">
+                <Where>
+             <![CDATA[
+					m.if(shangpin==null | shangpin=="" ,""," and mixCondition like '%"+shangpin+"%'")
+	            ]]> 
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

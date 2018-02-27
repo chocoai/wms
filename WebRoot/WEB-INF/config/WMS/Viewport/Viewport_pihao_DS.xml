@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+	<DataTable Key="pihao_view" Caption="批号" DefaultFilter=""
+		PermissionType="CommType" Pagging="6"
+		TableName="SQLQuery::
+    SELECT
+    p.pihao,
+    p.pihaoId,
+    p.shengchanriqi,
+    p.youxiaoqizhi,
+    k.huoweibianhao,
+    q.kuqubianhao,
+    q.kqlbmc,
+    q.kqlbbh,
+    k.ID,
+    c.kucunshuliang
+	|
+	FROM
+	xyy_wms_dic_shangpinziliao z inner join
+	xyy_wms_dic_shangpinpihao p 
+	on z.goodsid=p.goodsid and z.orgId=p.orgId
+	inner join
+	xyy_wms_bill_shangpinpihaohuoweikucun c
+	on p.pihaoId=c.pihaoId AND p.goodsid=c.shangpinid and p.orgId=c.orgId
+	inner join xyy_wms_dic_huoweiziliaoweihu k
+	on c.huoweiId=k.ID and c.orgId=k.orgId
+	inner join xyy_wms_dic_kuqujibenxinxi q
+	on k.kuquId=q.ID and q.orgId=k.orgId
+    WHERE
+	1=1
+    @goodsid @orgId"
+		DataSource="" Head="false">
+		<Parameters>
+			<Parameter Key="goodsid" Type="String">
+				<Where>
+                <![CDATA[
+					m.if(goodsid==null | goodsid=="" ,""," and z.goodsid like '%"+goodsid+"%'")
+	            ]]>
+				</Where>
+			</Parameter>
+			<Parameter Key="orgId" Type="String" >
+				<Where>
+					<![CDATA[
+							m.if(orgId==null | danjubianhao=="" ," "," and p.orgId like '%"+orgId+"%'")
+			            ]]>
+				</Where>
+			</Parameter>
+		</Parameters>
+	</DataTable>
+</DataSet>

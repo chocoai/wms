@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BillViewMeta Key="toolbox2" Caption="供应商名片" Version="">
+	<Parameters>
+		<Parameter Key="t1" Type="String" Scope="Global">
+			<DefaultValue></DefaultValue>
+			<Where></Where>
+		</Parameter>
+	</Parameters>
+	<BillBody UserAgent="web">
+		<BillBodyMeta>
+			<BillUIPanel Layout="flex" Key="dictionary_tools" Caption="供应商名片"  S="">
+			     <BillUIGridPanel Key="gongyingshangmingpian_grid">
+                    <BillUIRowPanel>
+                        <BillUIColPanel Width="5">
+                            <BillUIWidget Caption="供应商名片" Key="cancel"
+                                EnabledWhen="True"   ParameterKey="mingpian"
+                                DataTableKey="gongyingshangmingpian_view"
+                                WidgetType="BillUIString">
+                            </BillUIWidget>
+                          
+                        </BillUIColPanel>
+                        <BillUIColPanel Width="2">
+                            <BillUIWidget Caption="查询" Key="search"
+                                EnabledWhen="True"
+                                Icon="glyphicon glyphicon-send" WidgetType="BillUIButton">
+                                <Triggers>
+                                    <Trigger Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                        	this.search("gongyingshangmingpian_view");
+                                 			]]>
+                                    </Trigger>
+                                </Triggers>
+                            </BillUIWidget>
+                            
+                        </BillUIColPanel>
+                    </BillUIRowPanel>	
+			         <BillUIRowPanel>
+						 <BillUIColPanel Width="12">
+							 <BillUIPanel Layout="flex" Key="dictionary_tools">
+								 <!--
+								 	操作模式：
+								 		View|Edit
+								 		View==>多选：checkbox
+								 		      单选:单击行方式
+								 		 RowId===>行标识，通过行行标识来
+
+								 -->
+								 <BillUIGrid Key="grid0" OptMode="View"   RowId="" DataTableKey="gongyingshangmingpian_view">
+								 <GridHeads>
+									 <GridHead Col="mingcheng" Caption="名称" enableEdit="True" >
+							<BillUIWidget Key="mingcheng" WidgetType="BillUIString" />
+						</GridHead>
+						<GridHead Col="jibie" Caption="级别" enableEdit="True">
+							<BillUIWidget Key="jibie" WidgetType="BillUIInteger">
+								<Formatters>
+									<Formatter>
+										<![CDATA[
+													[{'url':[{name:'一级',value:1},{name:'二级',value:2},{name:'商业',value:3},{name:'省代',value:4}],'type':'jibie','local':'true'}]
+												]]>
+									</Formatter>
+								</Formatters></BillUIWidget>
+						</GridHead>
+						<GridHead Col="lianxiren" Caption="联系人" enableEdit="True" >
+							<BillUIWidget Key="lianxiren" WidgetType="BillUIString" />
+						</GridHead>
+						<GridHead Col="dianhua" Caption="电话" enableEdit="True">
+							<BillUIWidget Key="dianhua" WidgetType="BillUIString"/>
+						</GridHead>
+
+						<GridHead Col="sqjlxm" Caption="省区经理姓名" enableEdit="True" >
+							<BillUIWidget Key="sqjlxm" WidgetType="BillUIString" />
+						</GridHead>
+						<GridHead Col="sqjldh" Caption="省区经理电话" enableEdit="True">
+							<BillUIWidget Key="sqjldh" WidgetType="BillUIString"/>
+						</GridHead>
+						<GridHead Col="dizhi" Caption="地址" enableEdit="True" >
+							<BillUIWidget Key="dizhi" WidgetType="BillUIString" />
+						</GridHead>
+								 </GridHeads>
+							 </BillUIGrid>
+							 </BillUIPanel>
+
+						 </BillUIColPanel>
+			         </BillUIRowPanel>
+			         
+			     </BillUIGridPanel>
+             </BillUIPanel>
+		</BillBodyMeta>
+	</BillBody>
+	
+</BillViewMeta>

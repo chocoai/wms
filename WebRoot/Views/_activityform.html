@@ -1,0 +1,68 @@
+<div class="panel panel-default">
+    <div class="panel-heading vertical-align clearfix">
+        <div class="fl" style="margin-top: 10px;">活动表单信息</div>
+        <div class="fr">
+            <button class="btn-success btn-sm radius btn"   data-toggle="modal"  data-target="#my-modal-addActivityform">新增
+            </button>
+        </div>
+    </div>
+    <div class="panel-body scrollable-horizontal">
+        <table class="table table-bordered table-hover">
+            <thead>
+            <tr>
+                <th style="width:9em;">引用表单名称</th>
+                <th style="width:4em;">是否为主表单</th>
+                <th style="width:4em;">是否为单态表单</th>
+                <th style="width:4em;">无数据显示方式</th>
+<!--                 <th style="width:6em;">许可类型</th> -->
+<!--                 <th>排除字段</th> -->
+                <th>必填字段</th>
+                <th style="width:5em;">排序号</th>
+                <th style="width:6em;">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="form in po.activityform">
+                <td>
+                    <span class="text-danger">{{form.formName}}</span>
+                </td>
+                <td>
+                    <span ng-if="form.canMainForm==0">否</span>
+                    <span ng-if="form.canMainForm==1">是</span>
+                </td>
+                <td>
+                    <span ng-if="form.canSingle==0">否</span>
+                    <span ng-if="form.canSingle==1">是</span>
+                </td>
+                <td>
+                    <span ng-if="form.showType==0">隐藏</span>
+                    <span ng-if="form.showType==1">新建</span>
+                </td>
+<!--                 <td> -->
+<!--                     <span ng-if="form.permisisionType==0">乐观许可</span> -->
+<!--                     <span ng-if="form.permisisionType==1">悲观许可</span> -->
+<!--                 </td> -->
+<!--                 <td> -->
+<!--                     <span>{{form.excludeFields}}</span> -->
+<!--                 </td> -->
+                <td>
+                    <span>{{form.requireField}}</span>
+                </td>
+                <td>
+                    <span>{{form.sortNumber}}</span>
+                </td>
+                <td>
+                    <!-- <button class="btn-success btn-xs radius btn" data-modal="{target: '#my-modal-editActivityform'}" >修改</button> -->
+                    <button type="button" class="btn btn-warning btn-xs" ng-click="afedit(form,$index)">修改
+                    </button>
+                    <button type="button" class="btn btn-warning btn-xs" ng-click="afdelete(form,$index)">删除
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BillViewMeta Key="toolbox2" Caption="货商" Version="">
+	<BillBody UserAgent="web">
+		<BillBodyMeta>
+			<BillUIPanel Layout="flex" Key="dictionary_tools" Caption="货商"  S="">
+			     <BillUIGridPanel Key="wanglaiduixiang">
+                    <BillUIRowPanel>
+                        <BillUIColPanel Width="6">
+								<BillUIWidget Key="objectId" ParameterKey="objectId"
+									DataTableKey="wanglaiduixiang" WidgetType="BillUIString"
+									Caption="对象">
+									<Triggers>
+										<Trigger Type="javascript/angular" Runat="client">
+                                            <![CDATA[
+                                            	var objectId = this.getValue();
+					                            setEnv({objectId:objectId});       
+	                                        ]]>
+										</Trigger>
+									</Triggers>
+								</BillUIWidget>
+						</BillUIColPanel>
+						
+
+                        <BillUIColPanel Width="3">
+                            <BillUIWidget Caption="查询" Key="search"
+                                EnabledWhen="True"
+                                Icon="glyphicon glyphicon-send" WidgetType="BillUIButton">
+                                <Triggers>
+                                    <Trigger Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                        	this.search("wanglaiduixiang");
+                                 			]]>
+                                    </Trigger>
+                                </Triggers>
+                            </BillUIWidget>
+                            
+                        </BillUIColPanel>
+                    </BillUIRowPanel>	
+			         <BillUIRowPanel>
+						 <BillUIColPanel Width="12">
+							 <BillUIPanel Layout="flex" Key="dictionary_tools">
+								 <BillUIGrid Key="grid0" OptMode="View"   RowId="" DataTableKey="wanglaiduixiang">
+								 <GridHeads>
+									 <GridHead Col="objectId" Caption="对象编号" enableEdit="True"
+											   Width="150px">
+										 <BillUIWidget Key="objectId" WidgetType="BillUIString"/>
+									 </GridHead>
+									 <GridHead Col="objectName" Caption="对象名称" enableEdit="True"
+											   Width="150px">
+										 <BillUIWidget Key="objectName" WidgetType="BillUIString"/>
+									 </GridHead>
+									 <GridHead Col="zhaiyao" Caption="类型" enableEdit="True"
+											   Width="150px">
+										 <BillUIWidget Key="zhaiyao" WidgetType="BillUIString"/>
+									 </GridHead>
+								 </GridHeads>
+							 </BillUIGrid>
+							 </BillUIPanel>
+
+						 </BillUIColPanel>
+			         </BillUIRowPanel>
+			         
+			     </BillUIGridPanel>
+             </BillUIPanel>
+		</BillBodyMeta>
+	</BillBody>
+	
+</BillViewMeta>

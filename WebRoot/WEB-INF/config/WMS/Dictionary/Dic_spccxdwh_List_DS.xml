@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="spccxdwh" Caption="商品存储限定维护叙事薄" DefaultFilter="" Pagging="10"
+               TableName="SQLQuery::select a.* ,b.guige shangpinguige, b.shangpinmingcheng,b.shengchanchangjia | FROM xyy_wms_dic_spccxdwh a INNER JOIN xyy_wms_dic_shangpinziliao b ON a.shangpinbianhao = b.shangpinbianhao
+               WHERE 1=1  @shangpinbianhao  @shangpinmingcheng ORDER BY a.createTime DESC" DataSource="" Head="false">
+               
+        
+        <Parameters>
+            <Parameter Key="shangpinbianhao" Type="String" >
+                <Where>
+                    <![CDATA[
+					    m.if(shangpinbianhao==null | shangpinbianhao=="" ," "," and a.shangpinbianhao like '%"+shangpinbianhao+"%'")
+	                ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="shangpinmingcheng" Type="String" >
+                <Where>
+                    <![CDATA[
+					    m.if(shangpinmingcheng==null | shangpinmingcheng=="" ," "," and b.shangpinmingcheng like '%"+shangpinmingcheng+"%'")
+	                ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+       
+
+    </DataTable>
+</DataSet>

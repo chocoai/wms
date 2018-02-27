@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BillFormMeta Key="shangpinyuekucun" Version="1.0.0" BillType="MultiBill" Caption="每月库存">
+    <BillBody> 
+        <BillBodyMeta UserAgent="web">
+            <BillUIPanel Layout="flex" FlexDirection="column" Width="100%" Key="mainContainer" Caption="每月库存查询" S="">
+
+                <BillUIPanel Layout="flex" Key="tools" Caption="查询面板" S="panel panel-default publicPanel">
+                    <BillUIGridPanel Device="sm" key="boxtool">
+                        <BillUIRowPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="shangpinbianhao" ParameterKey="shangpinbianhao"  DataTableKey="shangpinyuekucun"
+                                              WidgetType="BillUIPopupWindow" Caption="商品编号" ViewSize="lg"
+                                              Disable="true" Src="shangpin">
+                                    <Triggers>
+                                        <Trigger>
+                                            <![CDATA[
+                                                    var shangpin=this.rows[0];
+                                                    $this.setValue(shangpin.shangpinbianhao);
+                                                    @shangpinmingcheng.setValue(shangpin.shangpinmingcheng);
+                                                    @shangpinmingcheng.setEnvModel({shangpinmingcheng:shangpin.shangpinmingcheng});
+                                                    @shangpinbianhao.setEnvModel({shangpinbianhao:shangpin.shangpinbianhao});
+                                        ]]>
+                                        </Trigger>
+                                    </Triggers>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="shangpinmingcheng" ParameterKey="shangpinmingcheng"
+                                              DataTableKey="shangpinyuekucun" WidgetType="BillUIPopupWindow" Caption="商品名称" ViewSize="lg"
+                                              Disable="true" Src="shangpin">
+                                    <Triggers>
+                                        <Trigger>
+                                            <![CDATA[
+                                                    var shangpin=this.rows[0];
+                                                    this.setValue(shangpin.shangpinmingcheng);
+                                                    @shangpinbianhao.setValue(shangpin.shangpinbianhao);
+                                                    @shangpinmingcheng.setEnvModel({shangpinmingcheng:shangpin.shangpinmingcheng});
+                                                    @shangpinbianhao.setEnvModel({shangpinbianhao:shangpin.shangpinbianhao});
+                                        ]]>
+                                        </Trigger>
+                                    </Triggers>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+
+                            <BillUIColPanel Width="2">
+                                <BillUIWidget Key="yuefen" Caption="查询月份：" DataTableKey="shangpinyuekucun"
+                                              ParameterKey="yuefen" EnabledWhen="True"
+                                              WidgetType="BillUISelect">
+                                    <Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                         this.loadDataSource();
+                                 ]]>
+                                    </Init>
+                                    <Properties>
+                                        <Property Name="datasource" Type="internal">[{name:"四月",value:4},{name:"五月",value:5}]
+                                        </Property>
+                                    </Properties>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+
+                            <BillUIColPanel Width="2">
+                                <BillUIWidget Caption="取消" Key="cancel"
+                                              EnabledWhen="True"
+                                              Icon="glyphicon glyphicon-send" WidgetType="BillUIButton">
+                                    <Triggers>
+                                        <Trigger Type="javascript/angular" Runat="client">
+                                            <![CDATA[
+                                             @shangpinbianhao.setValue("");
+                                             @shangpinmingcheng.setValue("");
+                                             @yuefen.setValue("");
+                                             @$this.__load();
+                                        ]]>
+                                        </Trigger>
+                                    </Triggers>
+                                </BillUIWidget>
+                                <BillUIWidget Caption="查询" Key="search"
+                                              EnabledWhen="True"
+                                              Icon="glyphicon glyphicon-send" WidgetType="BillUIButton">
+                                    <Triggers>
+                                        <Trigger Type="javascript/angular" Runat="client">
+                                            <![CDATA[
+                                    @$this.__load("shangpinyuekucun");
+	                            ]]>
+                                        </Trigger>
+                                    </Triggers>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                        </BillUIRowPanel>
+                    </BillUIGridPanel>
+                </BillUIPanel>
+                <BillUIGrid Key="grid0" OptMode="View" DataTableKey="shangpinyuekucun">
+                    <GridHeads>
+                        <GridHead Col="shangpinbianhao" Caption="商品编号" enableEdit="True" Width="100px">
+                            <BillUIWidget Key="shangpinbianhao" WidgetType="BillUIString"/>
+                        </GridHead>
+                        <GridHead Col="shangpinmingcheng" Caption="商品名称" enableEdit="True" Width="120px">
+                            <BillUIWidget Key="shangpinmingcheng" WidgetType="BillUIString"/>
+                        </GridHead>
+                        <GridHead Col="guige" Caption="规格" enableEdit="True" Width="60px">
+                            <BillUIWidget Key="guige" WidgetType="BillUIString"/>
+                        </GridHead>
+                        <GridHead Col="danwei" Caption="单位" enableEdit="True" Width="40px">
+                            <BillUIWidget Key="danwei" WidgetType="BillUIString"/>
+                        </GridHead>
+                        <GridHead Col="shengchanchangjia" Caption="生产厂家" enableEdit="True" Width="100px">
+                            <BillUIWidget Key="shengchanchangjia" WidgetType="BillUIString"/>
+                        </GridHead>
+
+                        <GridHead Col="yuefen" Caption="月份" enableEdit="True" Width="15px">
+                            <BillUIWidget Key="yuefen" WidgetType="BillUIString"/>
+                        </GridHead>
+                        <GridHead Col="pizhunwenhao" Caption="批准文号" enableEdit="True" Width="100px">
+                            <BillUIWidget Key="pizhunwenhao" WidgetType="BillUIString"/>
+                        </GridHead>
+                        <GridHead Col="yuechukucun" Caption="月初库存" enableEdit="True" Width="60px">
+                            <BillUIWidget Key="yuechukucun" WidgetType="BillUIInteger"/>
+                        </GridHead>
+                        <GridHead Col="yuemokucun" Caption="月末库存" enableEdit="True" Width="60px">
+                            <BillUIWidget Key="yuemokucun" WidgetType="BillUIInteger"/>
+                        </GridHead>
+                    </GridHeads>
+                </BillUIGrid>
+        </BillUIPanel>
+        </BillBodyMeta>
+    </BillBody>
+    <BillHeadMeta>
+    	
+    </BillHeadMeta>
+</BillFormMeta>

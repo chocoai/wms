@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="kuquhuowei_view" Caption="逻辑区域查询" DefaultFilter="" PermissionType="CommType"  Pagging="30"
+        TableName="SQLQuery::SELECT
+	a.huoweibianhao huoweibianhao,
+	b.kuqumingcheng kuqumingcheng
+	|
+FROM
+	xyy_wms_dic_huoweiziliaoweihu a
+INNER JOIN xyy_wms_dic_kuqujibenxinxi b ON a.kuquId = b.ID @huoweibianhao @kuqumingcheng"
+              
+           DataSource="" Head="false" Singleton="" OrderBy="">
+           
+           <Parameters> 
+            <Parameter Key="huoweibianhao" Type="String">
+                <Where>
+                <![CDATA[
+					m.if(huoweibianhao==null | huoweibianhao=="" ," "," and a.huoweibianhao like '%"+huoweibianhao+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="kuqumingcheng" Type="String">
+                <Where>
+                <![CDATA[
+					m.if(kuqumingcheng==null | kuqumingcheng=="" ," "," and b.kuqumingcheng like '%"+kuqumingcheng+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+         </Parameters>
+    </DataTable>
+</DataSet>

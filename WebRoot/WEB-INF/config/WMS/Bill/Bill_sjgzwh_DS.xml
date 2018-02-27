@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+	<DataTable Key="sjgzwh" BillType="Bill" Caption="上架规则维护"
+		DefaultFilter="" TableName="Table::xyy_wms_bill_sjgzwh" DataSource=""
+		Head="true">
+		<Field FieldKey="guizebianhao" FieldName="规则编号" FieldType="Varchar"
+			Comment="规则编号" />
+		<Field FieldKey="guizemiaoshu" FieldName="规则描述" FieldType="Varchar"
+			Comment="规则描述" />
+		<Field FieldKey="cangkuID" FieldName="仓库ID" FieldType="Varchar" Comment="仓库ID" />
+		<Field FieldKey="huozhumingcheng" FieldName="货主名称" FieldType="Varchar"
+			Comment="货主名称" />
+		<Field FieldKey="dingdanleixing" FieldName="订单类型" FieldType="Int"
+			Comment="订单类型(1-空进空出，2-越库，3-调账，4-采购入库)" />
+		<Field FieldKey="shangpinleibie" FieldName="商品类别" FieldType="Int"
+			Comment="商品类别" />
+		<Field FieldKey="jixing" FieldName="剂型" FieldType="Int"
+			Comment="剂型" />
+		<Field FieldKey="shangpincunchuxianding" FieldName="商品存储限定"
+			FieldType="Int" Comment="商品存储限定" />
+		<Field FieldKey="zhijianjielun" FieldName="质检结论" FieldType="Varchar"
+			Comment="质检结论" />
+		<Field FieldKey="huoweileixing" FieldName="货位类型" FieldType="Int"
+			Comment="货位类型（1-隔板货架，2-流利货架，3-立体货架，4-地堆）" />
+		<Field FieldKey="cunchutiaojian" FieldName="温控条件" FieldType="Int"
+			Comment="存储条件（1-阴凉，2-冷藏，3-常温）" />
+		<Field FieldKey="huoweixianzhitiaojian" FieldName="货位限制条件"
+			FieldType="Varchar" Comment="货位限制条件" />
+		<Field FieldKey="hwxztj" FieldName="货位限制条件(中文)"
+			FieldType="Varchar" Comment="货位限制条件" />
+		<Field FieldKey="hfspgsxz" FieldName="混放商品个数限制" FieldType="Varchar"
+			Comment="混放商品个数限制" />
+		<Field FieldKey="hfspgsxz" FieldName="混放商品个数限制" FieldType="Varchar"
+			Comment="混放商品个数限制" />
+		<Field FieldKey="hfpcgsxz" FieldName="混放批次个数限制" FieldType="Varchar"
+			Comment="混放批次个数限制" />
+		<Field FieldKey="kongjianxianzhitiaojian" FieldName="空间限制条件"
+			FieldType="Varchar" Comment="空间限制条件" />
+		<Field FieldKey="kjxztj" FieldName="空间限制条件(中文)"
+			FieldType="Varchar" Comment="空间限制条件(中文)" />
+
+
+	</DataTable>
+</DataSet>

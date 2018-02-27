@@ -1,0 +1,134 @@
+@charset "UTF-8";
+@import url(reset.css);
+body {
+  overflow-x: hidden; }
+
+.minWidth {
+  min-width: 1000px; }
+
+.nowrap * {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; }
+
+.tab-content {
+  border: 1px solid #ddd;
+  border-top: none;
+  padding: 10px; }
+  .tab-content li {
+    line-height: 1.5; }
+
+/* 左侧栏固定宽度，右侧自适应 */
+.grail {
+  zoom: 1;
+  overflow: auto; }
+
+.grail .grail_aside {
+  background-color: rgba(255, 255, 255, 0.88);
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 325px;
+  box-shadow: 0 0 15px #666; }
+  .grail .grail_aside .tools span {
+    display: inline-block;
+    margin: 5px;
+    background-color: #f0f0f0;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer; }
+    .grail .grail_aside .tools span i {
+      font-size: 20px; }
+  .grail .grail_aside .form-horizontal {
+    padding-bottom: 30px; }
+  .grail .grail_aside .row {
+    margin-top: 10px; }
+
+.grail .grail_main {
+  width: 100%;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  overflow: auto; }
+
+.optionControl .form-group {
+  margin-bottom: 5px; }
+  .optionControl .form-group .form-control {
+    height: 30px;
+    padding: 3px 12px; }
+.optionControl label {
+  font-weight: normal; }
+.optionControl .form-horizontal .control-label {
+  padding-top: 3px; }
+.optionControl fieldset {
+  border: 1px solid #ccc;
+  margin-top: -8px;
+  margin-right: 10px; }
+  .optionControl fieldset legend {
+    font-size: 14px;
+    width: auto;
+    padding: 0 10px;
+    border-bottom: 0; }
+
+#nprogress {
+  pointer-events: auto;
+  position: relative;
+  z-index: 99; }
+  #nprogress .modal-backdrop {
+    background: rgba(0, 0, 0, 0.5); }
+  #nprogress .bar {
+    background: #29d;
+    position: fixed;
+    z-index: 1031;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px; }
+  #nprogress .peg {
+    display: block;
+    position: absolute;
+    right: 0px;
+    width: 100px;
+    height: 100%;
+    box-shadow: 0 0 10px #29d, 0 0 5px #29d;
+    opacity: 1.0;
+    transform: rotate(3deg) translate(0px, -4px); }
+  #nprogress .spinner {
+    display: block;
+    position: fixed;
+    z-index: 1031;
+    top: 50%;
+    right: 50%;
+    transform: translate(-50%, -50%); }
+  #nprogress .spinner-icon {
+    width: 48px;
+    height: 48px;
+    box-sizing: border-box;
+    border: solid 2px transparent;
+    border-top-color: #29d;
+    border-left-color: #29d;
+    border-radius: 50%;
+    animation: nprogress-spinner 500ms linear infinite; }
+
+.nprogress-custom-parent {
+  overflow: hidden;
+  position: relative; }
+
+.nprogress-custom-parent #nprogress .spinner,
+.nprogress-custom-parent #nprogress .bar {
+  position: absolute; }
+
+@-webkit-keyframes nprogress-spinner {
+  0% {
+    -webkit-transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(360deg); } }
+@keyframes nprogress-spinner {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(360deg); } }
+
+/*# sourceMappingURL=formDesign.css.map */

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Map Key="cgfk2cgfkch" Caption="采购付款计划迁移"
+    SrcDataObjectKey="caigoufukuandan"
+    SrcDataType="Bill"  
+    TgtDataObjectKey="caigoufukuanchonghong"
+    TgtDataType="Bill"  
+    MaxPushValue="100"
+     MinPushValue="0">
+    <TargetTableCollection>
+     
+    <TargetTable Key="caigoufukuanchonghong" SrcTableKey="caigoufukuandan">
+            <Field FieldKey="yuandanbianhao">
+                <![CDATA[
+                     =danjubianhao
+              ]]>
+            </Field>
+            <Field FieldKey="gysbh">
+                <![CDATA[
+                     =gysbh
+              ]]>
+            </Field>
+			<Field FieldKey="gysmc">
+                <![CDATA[
+                     =gysmc
+              ]]>
+            </Field>
+            <Field FieldKey="yewuyuan">
+                <![CDATA[
+                     =yewuyuan
+              ]]>
+            </Field>
+            <Field FieldKey="jszje">
+                <![CDATA[
+                     =0-jszje
+              ]]>
+            </Field>
+        </TargetTable>
+        
+        <TargetTable Key="caigoufukuanchonghong_details" SrcTableKey="caigoufukuandan_details1">
+            <Field FieldKey="zffsbh">
+                <![CDATA[
+                     =zffsbh
+              ]]>
+            </Field>
+            <Field FieldKey="zffsmc">
+                <![CDATA[
+                     =zffsmc
+              ]]>
+            </Field>
+			<Field FieldKey="jiesuanjine">
+                <![CDATA[
+                     =0-jiesuanjine
+              ]]>
+            </Field>
+            <Field FieldKey="beizhu">
+                <![CDATA[
+                         =beizhu
+                  ]]>
+            </Field>
+        </TargetTable>
+        
+    </TargetTableCollection>
+    
+    <FeedBackCollection>
+       
+        <FeedbackObject TableKey="caigoufukuanchonghong" BillStatus="20">
+           <FeedbackTableCollection>
+              <FeedbackTable Key="cgfkqr" TableKey="xyy_erp_bill_caigoufukuandan">
+                <FeedbackField FieldKey="shifouchonghong"  FeedFieldKey=""  OpSign="Assign">
+                    <![CDATA[
+                        1
+                    ]]>
+                </FeedbackField>
+            </FeedbackTable>               
+           </FeedbackTableCollection>
+        </FeedbackObject>
+        <FeedbackObject TableKey="caigoufukuanchonghong" BillStatus="20">
+           <FeedbackTableCollection>
+              <FeedbackTable Key="cgfkchqxjs" TableKey="xyy_erp_bill_caigoufukuanjihuadan">
+                <FeedbackField FieldKey="jiesuanzhuangtai"  FeedFieldKey=""  OpSign="Assign">
+                    <![CDATA[
+                        0
+                    ]]>
+                </FeedbackField>
+                <FeedbackField FieldKey="shifoufukuan"  FeedFieldKey=""  OpSign="Assign">
+                    <![CDATA[
+                        0
+                    ]]>
+                </FeedbackField>
+            </FeedbackTable>               
+           </FeedbackTableCollection>
+        </FeedbackObject>
+    </FeedBackCollection>
+    
+</Map>

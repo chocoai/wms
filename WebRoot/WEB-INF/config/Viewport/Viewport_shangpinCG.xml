@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<BillViewMeta Key="hegeshangpin" Caption="商品" Version="">
+	<Parameters>
+		<Parameter Key="t1" Type="String" Scope="Global">
+			<DefaultValue></DefaultValue>
+			<Where></Where>
+		</Parameter> 
+	</Parameters>
+	<BillBody UserAgent="web">
+		<BillBodyMeta>
+			<BillUIPanel Layout="flex" Key="dictionary_tools" Caption="商品"  S="">
+			     <BillUIGridPanel Key="shangpin_grid">
+                    <BillUIRowPanel>
+                        <BillUIColPanel Width="6">
+                            <BillUIWidget Caption="日期" Key="startTime"
+                                EnabledWhen="True"   ParameterKey="startTime"
+                                DataTableKey="shangpinCG"
+                                WidgetType="BillUIDateTime">
+                            </BillUIWidget>
+                        </BillUIColPanel>
+						<BillUIColPanel Width="6">
+							<BillUIWidget Caption="至" Key="endTime"
+										  EnabledWhen="True"   ParameterKey="endTime"
+										  DataTableKey="shangpinCG"
+										  WidgetType="BillUIDateTime">
+							</BillUIWidget>
+						</BillUIColPanel>
+						</BillUIRowPanel>
+						<BillUIRowPanel>
+						<BillUIColPanel Width="6">
+								 <BillUIWidget Caption="供应商" Key="gysmc"
+											   EnabledWhen="True"   ParameterKey="gysmc"
+											   DataTableKey="shangpinCG"
+											   WidgetType="BillUIString">
+								 </BillUIWidget>
+						</BillUIColPanel>
+                        <BillUIColPanel Width="3">
+                            <BillUIWidget Caption="查询" Key="search"
+                                EnabledWhen="True"
+                                Icon="glyphicon glyphicon-send" WidgetType="BillUIButton">
+                                <Triggers>
+                                    <Trigger Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                        	this.search("shangpinCG");
+                                 			]]>
+                                    </Trigger>
+                                </Triggers>
+                            </BillUIWidget>
+                        </BillUIColPanel>
+                    </BillUIRowPanel>
+			         <BillUIRowPanel>
+						 <BillUIColPanel Width="12">
+							 <BillUIPanel Layout="flex" Key="dictionary_tools">
+								 <BillUIGrid Key="grid0" OptMode="View" selectMode="single" DataTableKey="shangpinCG">
+								 <GridHeads>
+									 <GridHead Col="danjubianhao" Caption="单据编号" Width="150px">
+										 <BillUIWidget Key="danjubianhao" WidgetType="BillUIString"/>
+									 </GridHead>
+									 <GridHead Col="kaipiaoriqi" Caption="日期" Width="150px">
+										 <BillUIWidget Key="kaipiaoriqi" WidgetType="BillUIString"/>
+									 </GridHead>
+									 <GridHead Col="gysmc" Caption="供应商名称"
+											   Width="120px">
+										 <BillUIWidget Key="gysmc" WidgetType="BillUIString"/>
+									 </GridHead>
+									 <GridHead Col="shangpinbianhao" Caption="商品编号"
+											   Width="120px">
+										 <BillUIWidget Key="shangpinbianhao" WidgetType="BillUIString"/>
+									 </GridHead>
+									 <GridHead Col="shangpinmingcheng" Caption="商品名称"
+											   Width="120px">
+										 <BillUIWidget Key="shangpinmingcheng" WidgetType="BillUIString"/>
+									 </GridHead>
+									 <GridHead Col="hanshuijia" Caption="含税价"  Width="120px">
+										 <BillUIWidget Key="hanshuijia" WidgetType="BillUIString"/>
+									 </GridHead>
+									 <GridHead Col="shuliang" Caption="数量" Width="120px">
+										 <BillUIWidget Key="shuliang" WidgetType="BillUIString"/>
+									 </GridHead>
+									 <GridHead Col="hanshuijine" Caption="含税金额"  Width="120px">
+									 	<BillUIWidget Key="hanshuijine" WidgetType="BillUIString"/>
+								 	 </GridHead>
+								 </GridHeads>
+							 </BillUIGrid>
+							 </BillUIPanel>
+
+						 </BillUIColPanel>
+			         </BillUIRowPanel>
+			         
+			     </BillUIGridPanel>
+             </BillUIPanel>
+		</BillBodyMeta>
+	</BillBody>
+	
+</BillViewMeta>

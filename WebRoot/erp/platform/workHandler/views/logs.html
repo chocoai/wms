@@ -1,0 +1,117 @@
+    	 <#--
+        	taskNumber,taskName,taskTaskTime,taskExecutor，taskSendTimer,taskEndTime,taskInstance.status,taskTotalTime,taskRemark
+        -->
+             <div class="pcOrMobile">
+                 <div class="isPC">
+                     <table class="table table-bordered table-striped table-hover">
+                         <tr>
+                             <th width="225">任务编号</th>
+                             <th width="120">任务名称</th>
+                             <th width="165">任务执行人</th>
+                             <th width="165">开始时间</th>
+                             <th width="165">受理时间</th>
+                             <th width="165">结束时间</th>
+                             <th width="100">任务状态</th>
+                             <th width="165">任务时长</th>
+                         </tr>
+                         <#list taskList as  taskInstance>
+                             <tr>
+
+                                 <td>${taskInstance.taskNumber!}</td>
+                                 <td>${taskInstance.adName!}</td>
+                                 <td>${taskInstance.executorName!}</td>
+                                 <td>${taskInstance.sendTimer!}</td>
+                                 <td>${taskInstance.takeTime!}</td>
+                                 <td>${taskInstance.endTime!}</td>
+                                 <th>
+                                     <#if taskInstance.status==0>
+                                         <span>待受理</span>
+                                         <#elseif taskInstance.status==1>
+                                             <span>执行中</span>
+                                             <#elseif taskInstance.status==2>
+                                                 <span>已完成</span>
+                                                 <#elseif taskInstance.status==3>
+                                                     <span>挂起</span>
+                                                     <#elseif taskInstance.status==4>
+                                                         <span>已否单</span>
+                                                         <span>否单理由：${taskInstance.remark!}</span>
+                                                         <#elseif taskInstance.status==5>
+                                                             <span>已回退</span>
+                                                             <span>回退理由：${taskInstance.remark!}</span>
+                                                             <#elseif taskInstance.status==6>
+                                                                 <span>已取回</span>
+                                                                 <#elseif taskInstance.status==7>
+                                                                     <span>已预约</span>
+                                     </#if>
+                                 </th>
+                                 <td>${taskInstance.totalTime} 分钟</td>
+
+                             </tr>
+                         </#list>
+                     </table>
+                 </div>
+
+                 <!---->
+                 <div class="isMobile">
+                     <#list taskList as  taskInstance>
+                     <div class="list card">
+                         <ul>
+                             <li class="item">
+                                 <span class="left">任务编号</span>
+                                 <span class="item-note">${taskInstance.taskNumber!}</span>
+                             </li>
+                             <li class="item">
+                                 <span class="left">任务名称</span>
+                                 <span class="item-note">${taskInstance.adName!}</span>
+                             </li>
+                             <li class="item">
+                                 <span class="left">任务执行人</span>
+                                 <span class="item-note">${taskInstance.executorName!}</span>
+                             </li>
+                             <li class="item">
+                                 <span class="left">开始时间</span>
+                                 <span class="item-note">${taskInstance.sendTimer!}</span>
+                             </li>
+                             <li class="item">
+                                 <span class="left">受理时间</span>
+                                 <span class="item-note">${taskInstance.takeTime!}</span>
+                             </li>
+                             <li class="item">
+                                 <span class="left">结束时间</span>
+                                 <span class="item-note">${taskInstance.endTime!}</span>
+                             </li>
+                             <li class="item">
+                                 <span class="left">任务状态</span>
+                                 <span class="item-note">
+                                      <#if taskInstance.status==0>
+                                         <span>待受理</span>
+                                         <#elseif taskInstance.status==1>
+                                             <span>执行中</span>
+                                             <#elseif taskInstance.status==2>
+                                                 <span>已完成</span>
+                                                 <#elseif taskInstance.status==3>
+                                                     <span>挂起</span>
+                                                     <#elseif taskInstance.status==4>
+                                                         <span>已否单</span>
+                                                         <span>否单理由：${taskInstance.remark!}</span>
+                                                         <#elseif taskInstance.status==5>
+                                                             <span>已回退</span>
+                                                             <span>回退理由：${taskInstance.remark!}</span>
+                                                             <#elseif taskInstance.status==6>
+                                                                 <span>已取回</span>
+                                                                 <#elseif taskInstance.status==7>
+                                                                     <span>已预约</span>
+                                     </#if>
+                                 </span>
+                             </li>
+                             <li class="item">
+                                 <span class="left">任务时长</span>
+                                 <span class="item-note">${taskInstance.totalTime!}分钟</span>
+                             </li>
+
+                         </ul>
+                     </div>
+                     </#list>
+                 </div>
+
+             </div>

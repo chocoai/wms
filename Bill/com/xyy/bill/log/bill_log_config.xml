@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!-- 单据日志系统配置 -->
+<Config>
+	<BillLog LogType="BillOptLog" LogTable="tb_system_bill_log"
+		SharingCount="30">
+		<CreateSQL>
+ 	        <![CDATA[
+			CREATE TABLE `${TableName}` (
+			  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+			  `BillID` varchar(36) DEFAULT NULL,
+			  `BillType` int(11) DEFAULT NULL COMMENT '单据类型，0：单据，1：字典',
+			  `status` int(11) DEFAULT NULL COMMENT '单据状态',
+			  `head` longtext COMMENT '单据头不数据',
+			  `body` longtext,
+			  `createtime` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '创建时间',
+			  `longtime` bigint(20) DEFAULT NULL COMMENT '时间戳',
+			  `user` text COMMENT '用户信息',
+			  PRIMARY KEY (`id`),
+			  KEY `billid` (`BillID`) USING HASH
+			) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+ 	        
+ 	        ]]>
+ 
+		</CreateSQL>
+	</BillLog>
+	<BillLog LogType="BillFeedbackLog" LogTable="tb_system_bill_feedbacklog"
+		SharingCount="10">
+		<CreateSQL>
+ 	              <![CDATA[
+ 	        	
+ 	        
+ 	        ]]>
+		</CreateSQL>
+	</BillLog>
+	<BillLog LogType="BillMigrationLog" LogTable="tb_system_bill_migrationlog"
+		SharingCount="30">
+		 <CreateSQL>
+ 	        <![CDATA[
+ 	       CREATE TABLE `${TableName}` (
+				  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+				  `sourceID` varchar(64) DEFAULT NULL COMMENT '源表ID',
+				  `sourceTableKey` varchar(128) DEFAULT NULL COMMENT '迁移Key',
+				  `doSql` text COMMENT '正向迁移SQL',
+				  `doParams` text COMMENT '正向迁移参数',
+				  `undoSql` text COMMENT '反向迁移SQL',
+				  `undoParams` text COMMENT '反向迁移参数',
+				  `variable` text COMMENT '变化量',
+				  `createtime` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+				  `longtime` bigint(20) DEFAULT NULL,
+				  `user` text COMMENT '用户信息',
+				  PRIMARY KEY (`id`),
+				  KEY `index` (`sourceID`,`sourceTableKey`) USING BTREE
+				) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+ 	        ]]>
+ 	    </CreateSQL>
+	</BillLog>
+	<BillLog LogType="BillMigrationFailLog" LogTable="tb_system_bill_migrationFaillog"
+		SharingCount="30">
+		 <CreateSQL>
+ 	        <![CDATA[
+ 	       CREATE TABLE `${TableName}` (
+				  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+				  `sourceID` varchar(64) DEFAULT NULL COMMENT '源表ID',
+				  `sourceKey` varchar(128) DEFAULT NULL COMMENT '源表Key',
+				  `createtime` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+				  PRIMARY KEY (`id`),
+				  KEY `index` (`sourceID`) USING BTREE
+				) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+ 	        ]]>
+ 	    </CreateSQL>
+	</BillLog>
+	
+</Config>

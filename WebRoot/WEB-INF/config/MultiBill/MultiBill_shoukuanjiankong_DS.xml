@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="shoukuanjiankong" Caption="收款监控" DefaultFilter="" Pagging="10" SqlType="GroupSql"
+               TableName="SQLQuery::SELECT | shouyinyuan, SUM(yingshoujine) as yingshoujine,SUM(shishoujine) as shishoujine,SUM(xianjinjine) as shishouxianjin,SUM(yibaojine) as yibaojine,SUM(youhui) as youhui
+                FROM xyy_erp_bill_lingshoukaidan where 1 = 1 @kaishiriqi @jieshuriqi GROUP BY shouyinyuan  ORDER BY riqi desc" DataSource="" Head="false">
+        <Parameters>
+            <Parameter Key="kaishiriqi" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(kaishiriqi==null | kaishiriqi=="" ," "," and riqi >= '"+kaishiriqi+"'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="jieshuriqi" Type="String" >
+                <Where>
+                    <![CDATA[
+					m.if(jieshuriqi==null | jieshuriqi=="" ,""," and riqi <= '"+jieshuriqi+"'")
+                ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

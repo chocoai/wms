@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BillFormMeta Key="kehudongjiejiedongshenqing" Version="1.0.0" BillType="Bill" Caption="客户冻结/解冻">
+    <BillBody> 
+        <BillBodyMeta UserAgent="web">
+            <BillUIPanel Layout="flex" FlexDirection="column" Width="100%" Key="mainContainer" Caption="业务订单" S="">
+                <BillUIPanel Layout="flex" Key="toolbox" Caption="工具栏" >
+                    <BillUIWidget Key="save" Caption="保存"
+                                  EnabledWhen="True"
+                                  Icon="glyphicon glyphicon-floppy-disk" WidgetType="BillUIButton">
+                        <Triggers>
+                            <Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+                                    if(getStatus()==20){
+                                        	alert("单据已经提交，不能编辑");
+                                        }else{
+	                                         setStatus(1);
+                                             @$this.save();
+                                         }
+	                            ]]>
+                            </Trigger>
+                        </Triggers>
+                    </BillUIWidget>
+                    <BillUIWidget Key="submit" Caption="提交"
+                                  EnabledWhen="True"
+                                  Icon="glyphicon glyphicon-floppy-saved" WidgetType="BillUIButton">
+                        <Triggers>
+                            <Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+                                           if(getStatus()==20){
+                                        	alert("单据已经提交，不能编辑");
+                                        }else{
+	                                         @$this.save('bills',{
+                                                     before:{
+                                                        setStatus:[20]
+                                                     }
+                                                     });
+                                         }
+	                                  ]]>
+                            </Trigger>
+                        </Triggers>
+                    </BillUIWidget>
+                    <BillUIWidget Key="goback" Caption="返回"
+                                  EnabledWhen="True"
+                                  Icon="glyphicon glyphicon-align-left" WidgetType="BillUIButton" S="btn btn-danger">
+                        <Triggers>
+                            <Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+                                        @$this.return();
+	                            ]]>
+                            </Trigger>
+                        </Triggers>
+                    </BillUIWidget>
+                    <BillUIWidget Key="process" Caption="审核流程"
+                                  EnabledWhen="True" S="btn btn-primary setHide"
+                                  Icon="glyphicon glyphicon-exclamation-sign" WidgetType="BillUIButton">
+                        <Init Type="javascript/angular" Runat="client">
+                            <![CDATA[
+                                            var status=getStatus();
+                                            if(status>=20){
+                                                this.setShow();
+                                            }
+										]]>
+                        </Init>
+                        <Triggers>
+                            <Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+												  this.setEnvModel({piID:getHeadValue("piID")});
+												@$this.process();
+	                            		]]>
+                            </Trigger>
+                        </Triggers>
+                    </BillUIWidget>
+                </BillUIPanel>
+                <BillUIPanel Layout="flex" Key="mainContainer_head" Caption="客户冻结/解冻" S="">
+                    <BillUIGridPanel Key="kehudongjiejiedongshenqing">
+                        <BillUIRowPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="danjubianhao" Caption="单据编号：" DataTableKey="kehudongjiejiedongshenqing"
+                                              DataTableColumn="danjubianhao" EnabledWhen="True" Disable="true"
+                                              WidgetType="BillUIString"/>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="shenqingxingzhi" Caption="申请性质" DataTableKey="kehudongjiejiedongshenqing"
+                                              DataTableColumn="shenqingxingzhi"
+                                              Src="bill/selectSrc?type=dongjie"
+                                              EnabledWhen="True" Icon="glyphicon glyphicon-send" WidgetType="BillUISelect">
+                                    <Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+			                                         this.loadDataSource();
+			                                 ]]>
+                                    </Init>
+                                    <Triggers>
+                                        <Trigger>
+                                            <![CDATA[
+                                                    var shenqingxingzhi=this.getValue();
+                                                    if(shenqingxingzhi==0){
+                                                        @kehubianhao.setEnvModel({dongjie:1});
+                                                    }else{
+                                                        @kehubianhao.setEnvModel({dongjie:0});
+                                                    }
+                                                ]]>
+                                        </Trigger>
+                                    </Triggers>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="6">
+                                <BillUIWidget Key="beizhu" Caption="备注" DataTableKey="kehudongjiejiedongshenqing"
+                                              DataTableColumn="beizhu"
+                                              EnabledWhen="True"
+                                              WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                        </BillUIRowPanel>
+                    </BillUIGridPanel>
+                </BillUIPanel>
+                <!--<BillUIPanel Layout="tab" Key="mainContainer_tab" Caption="客户冻结/解冻明细"-->
+                             <!--S="panel  panel-primary  publicPanel">-->
+                    <BillUIPanel Layout="flex" Key="mainContainer_details1" Caption="客户冻结/解冻明细" RowGap="1" ColGap="1"
+                                 ColWidth="1fr">
+                        <BillUIGrid Key="kehudongjiejiedongshenqing_details" OptMode="Edit"
+                                    DataTableKey="kehudongjiejiedongshenqing_details">
+                            <GridHeads>
+                                <GridHead Col="kehubianhao" Caption="客户编号" enableEdit="True" Width="100px">
+                                    <BillUIWidget Key="kehubianhao" WidgetType="BillUIPopupWindow" ViewSize="lg"
+                                                  Disable="true" Src="kehu">
+                                        <Init Type="javascript/angular" Runat="client">
+                                            <![CDATA[
+                                                var shenqingxingzhi=getHeadValue('shenqingxingzhi');;
+                                                @kehubianhao.setEnvModel({shifouhuodong:1});
+                                                @kehubianhao.setEnvModel({status:40});
+                                                if(shenqingxingzhi==0){
+                                                    @kehubianhao.setEnvModel({dongjie:1});
+                                                }else{
+                                                    @kehubianhao.setEnvModel({dongjie:0});
+                                                }
+	                                        ]]>
+                                        </Init>
+                                        <Triggers>
+                                            <Trigger>
+                                                <![CDATA[
+                                                    var kehu=this.rows[0];
+                                                    this.setValue(kehu.kehubianhao);
+                                                    @kehumingcheng.setValue(kehu.kehumingcheng);
+                                                    @lianxiren.setValue(kehu.lianxiren);
+                                                    @dizhi.setValue(kehu.dizhi);
+                                                    @dianhua.setValue(kehu.dianhua);
+
+                                                    @yewuyuan.setValue(kehu.yewuyuan);
+                                                ]]>
+                                            </Trigger>
+                                        </Triggers>
+                                    </BillUIWidget>
+                                </GridHead>
+                                <GridHead Col="kehumingcheng" Caption="客户名称" enableEdit="True" Width="150px">
+                                    <BillUIWidget Key="kehumingcheng"  WidgetType="BillUIString" AuxiliaryDir="zhujima">
+                                        <Init Type="javascript/angular" Runat="client">
+                                            <![CDATA[
+                                                var vv=getDataset("kehudongjiejiedongshenqing_details").co.kehumingcheng;
+                                                if(vv!=''){
+                                                    window.setTimeout(function(){
+                                                        setDisabled("kehumingcheng");
+                                                    },1);
+                                                };
+	                                        ]]>
+                                        </Init>
+                                        <Triggers>
+                                            <Trigger>
+                                                <![CDATA[
+                                                    var kehu=this.row;
+                                                    this.setValue(kehu.kehumingcheng);
+                                                    @kehubianhao.setValue(kehu.kehubianhao);
+                                                    @lianxiren.setValue(kehu.lianxiren);
+                                                    @dizhi.setValue(kehu.dizhi);
+                                                    @dianhua.setValue(kehu.dianhua);
+
+                                                    @yewuyuan.setValue(kehu.yewuyuan);
+                                                this.setDisable();
+                                            ]]>
+                                            </Trigger>
+                                        </Triggers>
+                                        <Properties>
+                                            <Property Name="dataTable" Type="internal">
+                                                "kehujibenxinxi"
+                                            </Property>
+                                        </Properties>
+                                    </BillUIWidget>
+                                </GridHead>
+                                <GridHead Col="lianxiren" Caption="联系人" enableEdit="True" Width="100px">
+                                    <BillUIWidget Key="lianxiren" Disable="true" WidgetType="BillUIString"/>
+                                </GridHead>
+                                <GridHead Col="dizhi" Caption="地址" enableEdit="True" Width="180px">
+                                    <BillUIWidget Key="dizhi" Disable="true" WidgetType="BillUIString"/>
+                                </GridHead>
+
+                                <GridHead Col="dianhua" Caption="电话" enableEdit="True" Width="100px">
+                                    <BillUIWidget Key="dianhua" Disable="true" WidgetType="BillUIInteger"/>
+                                </GridHead>
+
+                                <GridHead Col="yewuyuan" Caption="业务员" enableEdit="True" Width="100px">
+                                    <BillUIWidget Key="yewuyuan" Disable="true" WidgetType="BillUIString"/>
+                                </GridHead>
+                                <GridHead Col="yuanying" Caption="原因" enableEdit="True" Width="100px">
+                                    <BillUIWidget Key="yuanying" WidgetType="BillUIString"/>
+                                </GridHead>
+                                <GridHead Col="beizhu" Caption="备注" enableEdit="True" Width="100px">
+                                    <BillUIWidget Key="beizhu" WidgetType="BillUIString"/>
+                                </GridHead>
+                            </GridHeads>
+                        </BillUIGrid>
+                    </BillUIPanel>
+                <!--</BillUIPanel>-->
+
+            </BillUIPanel>
+        </BillBodyMeta>
+
+    </BillBody>
+
+    <BillHeadMeta>
+        <BillStatusCollection>
+            <Status Default="true" Code="1">录入</Status>
+            <Status Code="20">正式</Status>
+            <Status Code="40">审核通过</Status>
+        </BillStatusCollection>
+        <ProcessCollection>
+            <Process Name="冻结/解冻">
+                <![CDATA[
+                        status==20
+                ]]>
+            </Process>
+        </ProcessCollection>
+    </BillHeadMeta>
+</BillFormMeta>
+

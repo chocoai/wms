@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Map Key="xsdd2zfhd" Caption="销售订单-支付核单" 
+    SrcDataObjectKey="xiaoshoudingdan" 
+    SrcDataType="Bill"  
+    TgtDataObjectKey="zhifuhedan" 
+    TgtDataType="Bill"  
+    MaxPushValue="100"
+     MinPushValue="0"
+     TgtSave="true">
+    <TargetTableCollection>
+        <TargetTable Key="zhifuhedan" SrcTableKey="xiaoshoudingdan">
+            <Field FieldKey="kehubianhao">
+                <![CDATA[
+                     =kehubianhao
+              ]]>
+            </Field>
+            <Field FieldKey="danjubianhao">
+                <![CDATA[
+                     ='ZFHD'+o.orderNo()
+              ]]>
+            </Field>
+            <Field FieldKey="kehumingcheng">
+                <![CDATA[
+                     =kehumingcheng
+              ]]>
+            </Field>
+            <Field FieldKey="jiesuanfangshi">
+                <![CDATA[
+                     =jiesuanfangshi
+              ]]>
+            </Field>
+
+			<Field FieldKey="lianxiren">
+                <![CDATA[
+                     =lianxiren
+              ]]>
+			</Field>
+            <Field FieldKey="orgId">
+                <![CDATA[
+                     =orgId
+              ]]>
+            </Field>
+            <Field FieldKey="orgCode">
+                <![CDATA[
+                     =orgCode
+              ]]>
+            </Field>
+            <Field FieldKey="shifouzhifu">
+                <![CDATA[
+                     =0
+              ]]>
+            </Field>
+            <Field FieldKey="yxsddbh">
+                <![CDATA[
+                     =danjubianhao
+              ]]>
+            </Field>
+            <Field FieldKey="status">
+                <![CDATA[
+                     =20
+              ]]>
+            </Field>
+            <Field FieldKey="beizhu">
+                <![CDATA[
+                     =beizhu
+              ]]>
+            </Field>
+            <Field FieldKey="dingdanzonge">
+                <![CDATA[
+                     =dingdanzonge
+              ]]>
+            </Field>
+            <Field FieldKey="youhuijine">
+                <![CDATA[
+                     =youhuijine
+              ]]>
+            </Field>
+            <Field FieldKey="hanshuijine">
+                <![CDATA[
+                     =hanshuijine
+              ]]>
+            </Field>
+    </TargetTable>
+
+    </TargetTableCollection>
+    
+    
+    
+
+</Map>

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BillFormMeta Key="bcgzwh" Version="1.0.0" BillType="Bill"
+	Caption="波次计划维护">
+	<BillBody>
+		<BillBodyMeta UserAgent="web">
+			<BillUIPanel Layout="flex" FlexDirection="column" Width="100%"
+				Key="mainContainer" Caption="波次计划维护" S="">
+				<BillUIPanel Layout="flex" Key="toolbox" Caption="工具栏">
+					<!--属性 colPush 向右推 colPull 向左拉 colOffset 左边距 -->
+
+					<BillUIWidget Key="save" Caption="保存" EnabledWhen="True"
+						Icon="glyphicon glyphicon-floppy-disk" WidgetType="BillUIButton">
+						<Triggers>
+							<Trigger Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                    setStatus(40);
+                                    @$this.save();
+	                            ]]>
+							</Trigger>
+						</Triggers>
+					</BillUIWidget>
+					<BillUIWidget Key="goback" Caption="返回" EnabledWhen="True"
+						Icon="glyphicon glyphicon-align-left" WidgetType="BillUIButton" S="btn btn-danger">
+						<Triggers>
+							<Trigger Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                   @$this.return();
+	                            ]]>
+							</Trigger>
+						</Triggers>
+					</BillUIWidget>
+				</BillUIPanel>
+
+
+
+				<BillUIPanel Layout="flex" Key="bills_tools" Caption="查询面板"
+					S="panel panel-default publicPanel">
+					<BillUIGridPanel Device="sm" key="boxtool">
+						<BillUIRowPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="guizebianhao" ParameterKey="guizebianhao"
+									DataTableKey="bcgzwh" Caption="规则编号" EnabledWhen="True"
+									Disable="true" WidgetType="BillUIString" DataTableColumn="guizebianhao">
+								</BillUIWidget>
+							</BillUIColPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="cangkubianhao" ParameterKey="cangkubianhao"
+									DataTableKey="bcgzwh" Caption="仓库编号" EnabledWhen="True"
+									WidgetType="BillUIString" Disable="true" DataTableColumn="cangkubianhao">
+								</BillUIWidget>
+							</BillUIColPanel>
+						</BillUIRowPanel>
+
+
+						<BillUIRowPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="guizemiaoshu" ParameterKey="guizemiaoshu"
+									DataTableKey="bcgzwh" Caption="规则描述" EnabledWhen="True"
+									WidgetType="BillUIString" DataTableColumn="guizemiaoshu">
+								</BillUIWidget>
+							</BillUIColPanel>
+
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="bocishu" ParameterKey="bocishu"
+									DataTableKey="bcgzwh" Caption="波次数" EnabledWhen="True"
+									Icon="glyphicon glyphicon-send" WidgetType="BillUIString"
+									DataTableColumn="bocishu">
+								</BillUIWidget>
+							</BillUIColPanel>
+						</BillUIRowPanel>
+					</BillUIGridPanel>
+				</BillUIPanel>
+
+
+
+				<BillUIPanel Layout="flex" Key="bills_tools" Caption="限制条件"
+					S="panel panel-default publicPanel">
+					<BillUIGridPanel Device="sm" key="boxtool">
+						<BillUIRowPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="ddssx" ParameterKey="ddssx"
+									DataTableKey="bcgzwh" Caption="订单数上限:" EnabledWhen="True"
+									WidgetType="BillUIString" DataTableColumn="ddssx">
+
+								</BillUIWidget>
+							</BillUIColPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="ddsxx" ParameterKey="ddsxx"
+									DataTableKey="bcgzwh" Caption="订单数下限:" EnabledWhen="True"
+									WidgetType="BillUIString" DataTableColumn="ddsxx">
+
+								</BillUIWidget>
+							</BillUIColPanel>
+
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="zcddsj" ParameterKey="zcddsj"
+									DataTableKey="bcgzwh" Caption="最长等待时间(分):" EnabledWhen="True"
+									Icon="glyphicon glyphicon-send" WidgetType="BillUIString"
+									DataTableColumn="zcddsj">
+
+								</BillUIWidget>
+							</BillUIColPanel>
+						</BillUIRowPanel>
+					</BillUIGridPanel>
+				</BillUIPanel>
+
+				<BillUIPanel Layout="flex" Key="bills_tools" Caption="分组条件"
+					S="panel panel-default publicPanel">
+					<BillUIGridPanel Device="sm" key="boxtool">
+						<BillUIRowPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="tiaojianfenzu" ParameterKey="tiaojianfenzu"
+									DataTableKey="bcgzwh" Caption="波次分组条件" EnabledWhen="True"
+									WidgetType="BillUICheckbox" Src="bill/selectSrc?type=fenzutiaojain"
+									DataTableColumn="tiaojianfenzu">
+									<Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                          this.loadDataSource();
+                                 	]]>
+									</Init>
+								</BillUIWidget>
+							</BillUIColPanel>
+						</BillUIRowPanel>
+					</BillUIGridPanel>
+				</BillUIPanel>
+			</BillUIPanel>
+		</BillBodyMeta>
+	</BillBody>
+
+	<BillHeadMeta>
+		<BillStatusCollection>
+			<Status Default="true" Code="1">录入</Status>
+			<Status Code="20">正式</Status>
+			<Status Code="40">审核通过</Status>
+		</BillStatusCollection>
+		<ProcessCollection>
+			<Process Name="波次计划维护">
+                <![CDATA[
+                        status==20
+                ]]>
+			</Process>
+		</ProcessCollection>
+
+		<BillEventCollection>
+		</BillEventCollection>
+
+	</BillHeadMeta>
+</BillFormMeta>
+

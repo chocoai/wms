@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8'?>
+<DataManager Period='60'><!-- 代表一个DataManager类的实例，单例的 -->
+	<!-- 
+		 Source:数据源，
+		 target:目标数据库 都只有erp/wms两种配置，
+		 SourceTableName：数据源表名 
+		 TargetTableName：目标表明
+		 TargetPrimayKey：主键, 
+		 Coloums需要同步的字段如果是全表所有字段为'@all'如果仅仅有几个字段需要回写为'',在coloum标签里写需要同步的字段名，同一个同步任务需要配两次
+		 Condition：同步条件，目前只能将值写死 例 Condition='and coloum1 = "23"'
+	-->
+	<!-- xml文件生成器 ： com.xyy.erp.platform.dataDockingSE.util.XmlMaker.java-->
+	<!--<Table SourceTableName='xyy_erp_dic_shangpinjibenxinxi' TargetTableName='xyy_wms_dic_shangpinziliao' Source='erp' Target='wms' TargetPrimayKey='BillID' Coloums='@all'>-->
+	<!--&lt;!&ndash; 代表一个TableManager实例，此对象的创建是在RunTimeAnn的createTableManager方法，如果需要在Table节点加入属性，在TableManager里加入一个同名成员变量，set方法上加注解@Xml(type="attr") &ndash;&gt;-->
+		<!--&lt;!&ndash; <Coloum>coloum1</Coloum> &ndash;&gt;-->
+		<!--&lt;!&ndash; <Coloum>coloum2</Coloum> &ndash;&gt;-->
+		<!--&lt;!&ndash; <Coloum>coloum3</Coloum> &ndash;&gt;-->
+	<!--</Table>-->
+	<!--<Table SourceTableName='xyy_wms_dic_shangpinziliao' TargetTableName='xyy_erp_dic_shangpinjibenxinxi' Source='wms' Target='erp' TargetPrimayKey='BillID' Coloums='@all' Condition='and 1=1'>-->
+	<!--</Table>-->
+
+	<Table SourceTableName='xyy_wms_dic_shangpinziliao' TargetTableName='xyy_erp_dic_shangpinjibenxinxi' Source='wms' Target='erp' TargetPrimayKey='ID' Coloums='@all' >
+	</Table>
+	<Table SourceTableName='xyy_erp_dic_shangpinjibenxinxi' TargetTableName='xyy_wms_dic_shangpinziliao' Source='erp' Target='wms' TargetPrimayKey='ID' Coloums='@all' >
+	</Table>
+	<Table SourceTableName='xyy_wms_dic_shangpinpihao' TargetTableName='xyy_erp_dic_shangpinpihao' Source='wms' Target='erp' TargetPrimayKey='ID' Coloums='@all'>
+	</Table>
+	<Table SourceTableName='xyy_erp_dic_shangpinpihao' TargetTableName='xyy_wms_dic_shangpinpihao' Source='erp' Target='wms' TargetPrimayKey='ID' Coloums='@all' >
+	</Table>
+	<Table SourceTableName='xyy_wms_dic_gongyingshangjibenxinxi' TargetTableName='xyy_erp_dic_gongyingshangjibenxinxi' Source='wms' Target='erp' TargetPrimayKey='ID' Coloums='@all'>
+	</Table>
+	<Table SourceTableName='xyy_erp_dic_gongyingshangjibenxinxi' TargetTableName='xyy_wms_dic_gongyingshangjibenxinxi' Source='erp' Target='wms' TargetPrimayKey='ID' Coloums='@all'>
+	</Table>
+	<Table SourceTableName='xyy_wms_dic_kehudizhi' TargetTableName='xyy_erp_dic_kehujibenxinxi' Source='wms' Target='erp' TargetPrimayKey='ID' Coloums='@all'>
+	</Table>
+	<Table SourceTableName='xyy_erp_dic_kehujibenxinxi' TargetTableName='xyy_wms_dic_kehudizhi' Source='erp' Target='wms' TargetPrimayKey='ID' Coloums='@all'>
+	</Table>
+</DataManager>

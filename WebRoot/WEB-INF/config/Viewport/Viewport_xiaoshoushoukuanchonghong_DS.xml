@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="xiaoshoushoukuanchonghong_view" Caption="销售收款单" DefaultFilter="" PermissionType="CommType"  Pagging="10"
+        TableName="SQLQuery:: select * ,'销售收款单' as zhaiyao|from  xyy_erp_bill_xiaoshoushoukuandan where shifouchonghong=0 and status =20 and gouduifangshi=1 @khbh @khmc @kaishishijian @jiesushijian order by createTime asc"  DataSource="" Head="false" Singleton="" OrderBy="">
+        <Parameters>
+            <Parameter Key="khbh" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(khbh==null | khbh=="" ,""," and kehubianhao like '%"+khbh+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="khmc" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(khmc==null | khmc=="",""," and kehumingcheng = '"+khmc+"'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="kaishishijian" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(kaishishijian==null | kaishishijian=="" ,""," and DATE_FORMAT(kaipiaoriqi,'%Y-%m-%d') >= DATE_FORMAT('"+kaishishijian+"','%Y-%m-%d')")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="jiesushijian" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(jiesushijian==null | jiesushijian=="" ,""," and DATE_FORMAT(kaipiaoriqi,'%Y-%m-%d') <= DATE_FORMAT('"+jiesushijian+"','%Y-%m-%d')")
+	            ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

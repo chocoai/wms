@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="kehurixiaoliangtongji" Caption="多样式表单" DefaultFilter="" Pagging="10"
+               TableName="SQLQuery::SELECT
+                        b.name as yaodianmingchen,
+                        c.name as yaopinmingchen,
+                        a.num as xiaoshouzongjia,
+                        a.xiaoshoujiage as xiaoshoujiage,
+                        a.xiaoshoushijian as xiaoshoushijian
+                   | FROM
+                        (
+                            SELECT
+                                yaodianId,
+                                shangpinId,
+                                xiaoshoujiage,
+                                xiaoshoushijian,
+                                sum(xiaoshouzongjia) AS num
+
+                            FROM
+                                xyy_erp_kehuxiaoliangtongji
+                            WHERE
+                                DATE_FORMAT(xiaoshoushijian,'%y-%m-%d')  &gt;= DATE_FORMAT(@xiaoshoushijian,'%y-%m-%d')
+                            AND DATE_FORMAT(xiaoshoushijian,'%y-%m-%d')  &lt;= DATE_FORMAT(@xiaoshoushijian,'%y-%m-%d')
+                            GROUP BY
+                                yaodianId,
+                                shangpinId
+                        ) a
+                        LEFT JOIN xyy_erp_dic_kehujibenxinxi b on b.ID = a.yaodianId
+                        LEFT JOIN xyy_erp_dic_shangpinjibenxinxi c ON c.ID = a.shangpinId
+                    WHERE
+                        a.yaodianId = b.ID
+                    AND a.shangpinId = c.ID
+                    ORDER BY a.num DESC
+                    LIMIT 0 , 10
+                @yaodianmingchen " DataSource="" Head="false">
+        <Parameters>
+            <Parameter Key="yaodianmingchen" Type="String">
+                <DefaultValue></DefaultValue>
+                <Where>
+                    <![CDATA[
+                        m.if(yaodianmingchen==null | yaodianmingchen=="" ,""," and b.name like '%"+yaodianmingchen+"%'")
+                    ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="xiaoshoushijian" Type="String" >
+                <DefaultValue></DefaultValue>
+                <Where>
+                    <![CDATA[
+                        m.if(xiaoshoushijian==null  | xiaoshoushijian=="" ,"SYSDATE()",xiaoshoushijian)
+                    ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

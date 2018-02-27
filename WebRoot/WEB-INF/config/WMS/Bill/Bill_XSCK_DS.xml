@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+	<DataTable Key="XSCK" BillType="Bill" Caption="入库验收单"
+		DefaultFilter="" TableName="Table::INT_WMS_XSCK_BILL"
+		DataSource="" Head="true">
+		<Field FieldKey="DJBH" FieldName="单据编号" FieldType="Varchar"
+			Comment="单据编号（销售订单编号）" />
+		<Field FieldKey="DWBH" FieldName="单位内码" FieldType="Varchar"
+			Comment="单位内码" />
+		<Field FieldKey="RQ" FieldName="日期" FieldType="Date"
+			   Comment="日期" />
+		<Field FieldKey="YWY" FieldName="业务员" FieldType="Varchar"
+			Comment="业务员" />
+		<Field FieldKey="THFS" FieldName="提货方式" FieldType="Varchar"
+			Comment="提货方式" />
+		<Field FieldKey="beizhu" FieldName="备注" FieldType="Varchar"
+			   Comment="备注" />
+		<Field FieldKey="ddlx" FieldName="订单类型" FieldType="Varchar"
+			Comment="订单类型" />
+		<Field FieldKey="yzid" FieldName="业主内码" FieldType="Varchar"
+			Comment="业主内码" />
+		<Field FieldKey="DJ_SORT" FieldName="单据行号" FieldType="Int"
+			   Comment="单据行号" />
+		<Field FieldKey="SPID" FieldName="商品内码" FieldType="Varchar"
+			Comment="商品内码" />
+		<Field FieldKey="SL" FieldName="数量" FieldType="Varchar"
+			Comment="数量" />
+		<Field FieldKey="SL" FieldName="数量" FieldType="Decimal" DefaultValue="0.0"  Comment="数量" Bound="14,2"/>
+		<Field FieldKey="JS" FieldName="件数" FieldType="Decimal" DefaultValue="0.0" Comment="件数" Bound="14,2"/>
+		<Field FieldKey="LSS" FieldName="零散数" FieldType="Decimal" DefaultValue="0.0"  Comment="零散数" Bound="14,2"/>
+		<Field FieldKey="PH" FieldName="批号" FieldType="Varchar"
+			Comment="批号" />
+		<Field FieldKey="lastmodifytime" FieldName="上传单据时间" FieldType="Varchar"
+			Comment="上传单据时间" />
+		<Field FieldKey="RQ_SC" FieldName="生产日期" FieldType="Varchar"
+			Comment="生产日期" />
+		<Field FieldKey="YXQZ" FieldName="有效期至" FieldType="Varchar"
+			Comment="有效期至" />
+		<Field FieldKey="recnum"  FieldName="" FieldType="Int"
+			Comment="" />
+		<Field FieldKey="ZCQMC" FieldName="暂存区名称" FieldType="Varchar"
+			   Comment="暂存区名称" />
+		<Field FieldKey="ZXS" FieldName="总箱数" FieldType="Varchar"
+			   Comment="总箱数" />
+		<Field FieldKey="FUHR" FieldName="复核人" FieldType="Varchar"
+			   Comment="复核人" />
+		<Field FieldKey="BILLSN"  FieldName="原单据行号（销售订单行号）" FieldType="Int"
+			   Comment="原单据行号（销售订单行号）"  />
+		<Field FieldKey="is_zx" FieldName="是否迁移"  DefaultValue="0" FieldType="Int"
+			   Comment="状态"  />
+
+	</DataTable>
+
+
+
+</DataSet>

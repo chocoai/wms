@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<BillViewMeta Key="hegeshangpin" Caption="商品" Version="">
+	<Parameters>
+		<Parameter Key="t1" Type="String" Scope="Global">
+			<DefaultValue></DefaultValue>
+			<Where></Where>
+		</Parameter> 
+	</Parameters>
+	<BillBody UserAgent="web">
+		<BillBodyMeta>
+			<BillUIPanel Layout="flex" Key="dictionary_tools" Caption="商品"  S="">
+			     <BillUIGridPanel Key="shangpin_grid">
+                    <BillUIRowPanel>
+                        <BillUIColPanel Width="6">
+                            <BillUIWidget Caption="商品" Key="cancel"
+                                EnabledWhen="True"   ParameterKey="shangpin"
+                                DataTableKey="hegeshangpinTBJ"
+                                WidgetType="BillUIString">
+                            </BillUIWidget>
+                        </BillUIColPanel>
+                        <BillUIColPanel Width="3">
+                            <BillUIWidget Caption="查询" Key="search"
+                                EnabledWhen="True"
+                                Icon="glyphicon glyphicon-send" WidgetType="BillUIButton">
+                                <Triggers>
+                                    <Trigger Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                        	this.search("hegeshangpinTBJ");
+                                 			]]>
+                                    </Trigger>
+                                </Triggers>
+                            </BillUIWidget>
+                        </BillUIColPanel>
+                    </BillUIRowPanel>
+					<!--  <BillUIRowPanel>
+							 <BillUIColPanel Width="4">
+								 <BillUIWidget Caption="商品条码" Key="cancel"
+											   EnabledWhen="True"   ParameterKey="shangpintiaoma"
+											   DataTableKey="hegeshangpinTBJ"
+											   WidgetType="BillUIString">
+								 </BillUIWidget>
+							 </BillUIColPanel>
+							 
+							 <BillUIColPanel Width="4">
+								<BillUIWidget Caption="商品价格" Key="cancel"
+											  EnabledWhen="True"   ParameterKey="lingshoujia"
+											  DataTableKey="hegeshangpinTBJ"
+											  WidgetType="BillUIDecimal">
+								</BillUIWidget>
+							</BillUIColPanel>
+					 </BillUIRowPanel> -->
+			         <BillUIRowPanel>
+						 <BillUIColPanel Width="12">
+							 <BillUIPanel Layout="flex" Key="dictionary_tools">
+								 <BillUIGrid Key="grid0" OptMode="View" selectMode="single" DataTableKey="hegeshangpinTBJ">
+								 <GridHeads>
+									 <GridHead Col="shangpinbianhao" Caption="商品编号" Width="150px">
+										 <BillUIWidget Key="shangpinbianhao" WidgetType="BillUIString"/>
+									 </GridHead>
+									 <GridHead Col="shangpinmingcheng" Caption="商品名称"
+											   Width="120px">
+										 <BillUIWidget Key="shangpinmingcheng" WidgetType="BillUIString"/>
+									 </GridHead>
+									 <GridHead Col="guige" Caption="规格"  Width="120px">
+										 <BillUIWidget Key="guige" WidgetType="BillUIString"/>
+									 </GridHead>
+									  <GridHead Col="danwei" Caption="单位" enableEdit="True" Width="80px">
+		                                <BillUIWidget Key="danwei" WidgetType="BillUIInteger" Disable="true">
+		                                    <Formatters>
+		                                        <Formatter>
+		                                            <![CDATA[
+		                                                [{'type':'baozhuangdanwei'}]
+		                                            ]]>
+		                                        </Formatter>
+		                                    </Formatters>
+		                                </BillUIWidget>
+		                            </GridHead>
+									 <GridHead Col="shengchanchangjia" Caption="生产厂家" Width="120px">
+										 <BillUIWidget Key="shengchanchangjia" WidgetType="BillUIString"/>
+									 </GridHead>
+									 <GridHead Col="pizhunwenhao" Caption="批准文号"  Width="120px">
+										 <BillUIWidget Key="pizhunwenhao" WidgetType="BillUIString"/>
+									 </GridHead>
+									 <GridHead Col="chandi" Caption="产地"  Width="120px">
+									 	<BillUIWidget Key="chandi" WidgetType="BillUIString"/>
+								 	 </GridHead>
+								 </GridHeads>
+							 </BillUIGrid>
+							 </BillUIPanel>
+						 </BillUIColPanel>
+			         </BillUIRowPanel>
+			         
+			     </BillUIGridPanel>
+             </BillUIPanel>
+		</BillBodyMeta>
+	</BillBody>
+	
+</BillViewMeta>

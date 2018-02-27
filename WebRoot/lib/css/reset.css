@@ -1,0 +1,47 @@
+@charset "utf-8";
+/* CSS Document */
+html { color: #444; background: #fff; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+body, div, span, a, del, img, small, strong, sub, sup, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, code, form, fieldset, label, legend, input, button, textarea, table, caption, tbody, tfoot, thead, tr, th, td { margin: 0; padding: 0; }
+html, body { font: 400 14px proxima-nova,"Hiragino Sans GB","Wenquanyi Micro Hei","WenQuanYi Micro Hei Mono","WenQuanYi Zen Hei","WenQuanYi Zen Hei","Microsoft YaHei","Apple LiGothic Medium",SimHei,"ST Heiti","WenQuanYi Zen Hei Sharp"; font-smooth:always;-webkit-font-smoothing: antialiased;font-smoothing: antialiased;-webkit-text-stroke: 1px transparent;}
+pre{font-family:  proxima-nova,"Hiragino Sans GB","Wenquanyi Micro Hei","WenQuanYi Micro Hei Mono","WenQuanYi Zen Hei","WenQuanYi Zen Hei","Microsoft YaHei","Apple LiGothic Medium",SimHei,"ST Heiti","WenQuanYi Zen Hei Sharp"; font-smooth:always;-webkit-font-smoothing: antialiased;font-smoothing: antialiased;-webkit-text-stroke: 1px transparent;}
+input, button, textarea { font: 400 14px/1 Helvetica, Arial, Tahoma, 'WenQuanYi Micro Hei', 'Microsoft YaHei', 'Hiragino Sans GB','黑体', sans-serif; color: #666;}
+/* button, select, textarea { font-size: 100%; }使得表单元素在 ie 下能继承字体大小 */
+/*input[type="text"], input[type="password"] { font-size: 100%; }*/
+input{width: auto;}
+table { border-spacing: 0; border-collapse: collapse;}
+fieldset, img { border: 0; }
+img { -ms-interpolation-mode: bicubic; vertical-align: middle; }
+del { text-decoration: line-through; }
+address, caption, cite, code, dfn, em, th, var { font-style: normal; font-weight: 400; }
+ul, ol, li { list-style: none; }
+a{color: #2b81dc;}
+a:hover,a:focus { text-decoration: none; }
+ins, a { text-decoration: none; outline: none; }
+a:focus,:focus { outline: none; }
+small { font-size: 12px; }
+b{font-weight: normal;}
+blockquote{border-left: 6px solid #247fdf;padding-left: 10px; color: #247fdf;font-size: 16px;margin: 20px 0;position:relative;}
+blockquote em{position:absolute; background:#247fdf;color:#fff;right:-30px; top:-10px; padding:5px 8px;border-radius:2px;font-size:12px;}
+
+
+input, textarea,select { outline: none; -webkit-apperence:none; vertical-align: middle;}
+textarea { resize: vertical; line-height: 20px; border-radius: 5px; padding:8px 10px;border: 1px solid #999;}
+.clearfix:before, .clearfix:after { content: ""; display: table; }
+.clearfix:after { clear: both }
+.clearfix { zoom: 1; *clear:both;
+}
+i{font-style: normal;font-family: 'iconfont';}
+input[type="checkbox"]{vertical-align: inherit}
+.mir { letter-spacing : -1000em; text-indent : -999em; overflow : hidden; }
+/* Just for Opera, but hide from MacIE */
+/*\*/html>body .mir { letter-spacing : normal; text-indent : -999em; overflow : hidden; }
+/* End of hack */
+
+@font-face {
+    font-family: 'iconfont';  /* project id 275059 */
+    src: url('//at.alicdn.com/t/font_r359bgy8q0azto6r.eot');
+    src: url('//at.alicdn.com/t/font_r359bgy8q0azto6r.eot?#iefix') format('embedded-opentype'),
+    url('//at.alicdn.com/t/font_r359bgy8q0azto6r.woff') format('woff'),
+    url('//at.alicdn.com/t/font_r359bgy8q0azto6r.ttf') format('truetype'),
+    url('//at.alicdn.com/t/font_r359bgy8q0azto6r.svg#iconfont') format('svg');
+}

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BillFormMeta Key="zhifufangshi" Version="1.0.0" BillType="Dics" Caption="支付方式管理">
+    <BillBody>
+        <BillBodyMeta UserAgent="web">
+            <BillUIPanel Layout="flex" FlexDirection="column" Width="100%" Key="mainContainer" Caption="支付方式管理" S="">
+                <BillUIPanel Layout="flex" Key="dictionary_tools" Caption="工具栏" >
+                    <BillUIWidget Key="submit" Caption="保存"
+                                  DataTableKey="gonghuoshangxiaoqizhengzhao" colOffset="" DataTableColumn="update"
+                                  EnabledWhen="True" Icon="glyphicon glyphicon-floppy-disk"
+                                  WidgetType="BillUIButton">
+                        <Triggers>
+                            <Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+                                                        setStatus(40);
+			                                        	@$this.save();
+				                            		]]>
+                            </Trigger>
+                        </Triggers>
+                    </BillUIWidget>
+                    <BillUIWidget Key="goback" Caption="返回"
+                                  DataTableKey="gonghuoshangxiaoqizhengzhao" DataTableColumn="delete" EnabledWhen="True"
+                                  Icon="glyphicon glyphicon-remove-circle" WidgetType="BillUIButton" S="btn btn-danger ">
+                        <Triggers>
+                            <Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+                                        	@$this.$reBack();
+	                            		]]>
+                            </Trigger>
+                        </Triggers>
+                    </BillUIWidget>
+                </BillUIPanel>
+            	<BillUIPanel Layout="tab" Key="mainContainer_tab" Caption="支付方式管理"
+                         S="">
+                <BillUIPanel Layout="flex" Key="one" Caption="支付方式管理">
+                    <BillUIGridPanel Device="sm" Key="h1">
+                       <BillUIRowPanel>
+                                        <BillUIColPanel Width="3">
+                                            <BillUIWidget Key="zffsbh" Caption="支付方式编号："
+                                                          DataTableKey="zhifufangshi" DataTableColumn="zffsbh"
+                                                          EnabledWhen="True"
+                                                          WidgetType="BillUIString">
+                                            </BillUIWidget>
+                                        </BillUIColPanel>
+                                        <BillUIColPanel Width="3">
+                                            <BillUIWidget Key="zffsmc" Caption="支付方式名称：" DataTableKey="zhifufangshi"
+                                                          DataTableColumn="zffsmc" EnabledWhen="True"
+                                                          WidgetType="BillUIString">
+                                            </BillUIWidget>
+                                        </BillUIColPanel>
+                                        <BillUIColPanel Width="3">
+                                            <BillUIWidget Key="caiwukemu" Caption="财务科目：" DataTableKey="zhifufangshi"
+                                                          DataTableColumn="caiwukemu" EnabledWhen="True"
+                                                          WidgetType="BillUIString">
+                                            </BillUIWidget>
+                                        </BillUIColPanel>
+                                    </BillUIRowPanel>
+
+                                    <BillUIRowPanel>
+                                        <BillUIColPanel Width="3">
+                                            <BillUIWidget Key="zijinzhanghu" Caption="资金账户："
+                                                          DataTableKey="zhifufangshi" DataTableColumn="zijinzhanghu"
+                                                          EnabledWhen="True"
+                                                          WidgetType="BillUIString">
+                                            </BillUIWidget>
+                                        </BillUIColPanel>
+                                        <BillUIColPanel Width="3">
+                                            <BillUIWidget Key="chuangjianren" Caption="创建人："
+                                                          DataTableKey="zhifufangshi" DataTableColumn="chuangjianren"
+                                                          EnabledWhen="True"
+                                                          WidgetType="BillUIString">
+                                            </BillUIWidget>
+                                        </BillUIColPanel>
+                                        <BillUIColPanel Width="3">
+                                            <BillUIWidget Key="chuangjianshijian" Caption="创建时间："
+                                                          DataTableKey="zhifufangshi" DataTableColumn="chuangjianshijian"
+                                                          EnabledWhen="True" WidgetType="BillUIDateTime">
+                                                <Init Type="javascript/angular" Runat="client">
+                                                    <![CDATA[
+                                    				]]>
+                                                </Init>
+                                            </BillUIWidget>
+                                        </BillUIColPanel>
+                                    </BillUIRowPanel>
+                    </BillUIGridPanel>
+                </BillUIPanel>
+            </BillUIPanel>
+            </BillUIPanel>
+        </BillBodyMeta>
+    </BillBody>
+    <BillHeadMeta>
+    </BillHeadMeta>
+</BillFormMeta>

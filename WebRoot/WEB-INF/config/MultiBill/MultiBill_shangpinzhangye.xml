@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BillFormMeta Key="shangpinzhangye" Version="1.0.0" BillType="MultiBill" Caption="商品帐页">
+    <BillBody> 
+        <BillBodyMeta UserAgent="web">
+            <BillUIPanel Layout="flex" FlexDirection="column" Width="100%" Key="mainContainer" Caption="商品帐页查询" S="">
+                <BillUIPanel Layout="flex" Key="tools" Caption="查询面板" S="panel panel-default publicPanel">
+                    <BillUIGridPanel Device="sm" key="boxtool">
+                        <BillUIRowPanel>
+                            <BillUIColPanel Width="3">
+                                    <BillUIWidget Key="shangpinbianhao"  ParameterKey="shangpinbianhao" Caption="商品编号"
+                                                  WidgetType="BillUIPopupWindow" ViewSize="lg"  DataTableKey="shangpinzhangye"
+                                                  EnabledWhen="True" Icon="glyphicon glyphicon-send" Disable="true" Src="shangpin">
+                                        <Init Type="javascript/angular" Runat="client">
+                                            <![CDATA[
+                                                @shangpinbianhao.setEnvModel({shifouhuodong:1});
+                                                @shangpinbianhao.setEnvModel({status:40});
+	                                        ]]>
+                                        </Init>
+                                        <Triggers>
+                                            <Trigger>
+                                                <![CDATA[
+                                                    var shangpin=this.rows[0];
+                                                    this.setValue(shangpin.shangpinbianhao);
+                                                    @shangpinmingcheng.setValue(shangpin.shangpinmingcheng);
+                                        ]]>
+                                            </Trigger>
+                                        </Triggers>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="shangpinmingcheng" ParameterKey="shangpinmingcheng"
+                                              DataTableKey="shangpinzhangye"  Caption="商品名称" Disable="true"
+                                              EnabledWhen="True" Icon="glyphicon glyphicon-send" WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+
+                            <BillUIColPanel Width="4">
+                                <BillUIWidget Caption="查询" Key="search"
+                                              EnabledWhen="True"
+                                              Icon="glyphicon glyphicon-send" WidgetType="BillUIButton">
+                                    <Triggers>
+                                        <Trigger Type="javascript/angular" Runat="client">
+                                            <![CDATA[
+                                            var bianhao=window.$body.shangpinzhangye.params.shangpinbianhao;
+                                            var name=window.$body.shangpinzhangye.params.shangpinmingcheng;
+                                            if(!bianhao&&!name){
+                                                alert('查询条件不能为空！！！');
+                                            }else{
+                                                @$this.__load("shangpinzhangye");
+                                            }
+	                            ]]>
+                                        </Trigger>
+                                    </Triggers>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                        </BillUIRowPanel>
+                    </BillUIGridPanel>
+                </BillUIPanel>
+                <BillUIGrid Key="grid0" OptMode="View" DataTableKey="shangpinzhangye">
+                    <GridHeads>
+                        <GridHead Col="danjubianhao" Caption="单据编号" enableEdit="True" Width="180px">
+                            <BillUIWidget Key="danjubianhao" WidgetType="BillUIString"/>
+                        </GridHead>
+                        <GridHead Col="shangpinbianhao" Caption="商品编号" enableEdit="True" Width="80px">
+                            <BillUIWidget Key="shangpinbianhao" WidgetType="BillUIString"/>
+                        </GridHead>
+                        <GridHead Col="shangpinmingcheng" Caption="商品名称" enableEdit="True" Width="120px">
+                            <BillUIWidget Key="shangpinmingcheng" WidgetType="BillUIString"/>
+                        </GridHead>
+                        <GridHead Col="kaipiaoriqi" Caption="日期" enableEdit="True" Width="80px">
+                            <BillUIWidget Key="kaipiaoriqi" WidgetType="BillUIDateTime"/>
+                        </GridHead>
+                        <GridHead Col="kaipiaoyuan" Caption="开票员" enableEdit="True" Width="80px">
+                            <BillUIWidget Key="kaipiaoyuan" WidgetType="BillUIDateTime"/>
+                        </GridHead>
+                        <GridHead Col="zhaiyao" Caption="摘要" enableEdit="True" Width="120px">
+                            <BillUIWidget Key="zhaiyao" WidgetType="BillUIString"/>
+                        </GridHead>
+                        <GridHead Col="rukushuliang" Caption="入库数量" enableEdit="True" Align="right" Width="60px">
+                            <BillUIWidget Key="rukushuliang" WidgetType="BillUIDecimal"/>
+                        </GridHead>
+                        <GridHead Col="rkhsj" Caption="入库含税价" enableEdit="True" Align="right" Width="60px">
+                            <BillUIWidget Key="rkhsj" WidgetType="BillUIDecimal"/>
+                        </GridHead>
+                        <GridHead Col="rkdj" Caption="入库单价" enableEdit="True" Align="right" Width="60px">
+                            <BillUIWidget Key="rkdj" WidgetType="BillUIDecimal"/>
+                        </GridHead>
+                        <GridHead Col="rkhsje" Caption="入库含税金额" enableEdit="True" Align="right" Width="60px">
+                            <BillUIWidget Key="rkhsje" WidgetType="BillUIDecimal"/>
+                        </GridHead>
+                        <GridHead Col="rkdje" Caption="入库金额" enableEdit="True" Align="right" Width="60px">
+                            <BillUIWidget Key="rkdje" WidgetType="BillUIDecimal"/>
+                        </GridHead>
+                        <GridHead Col="chukushuliang" Caption="出库数量" enableEdit="True" Align="right" Width="60px">
+                            <BillUIWidget Key="chukushuliang" WidgetType="BillUIDecimal"/>
+                        </GridHead>
+
+                        <GridHead Col="ckhsj" Caption="出库含税价" enableEdit="True" Align="right" Width="60px">
+                            <BillUIWidget Key="ckhsj" WidgetType="BillUIDecimal"/>
+                        </GridHead>
+                        <GridHead Col="ckdj" Caption="出库单价" enableEdit="True" Align="right" Width="60px">
+                            <BillUIWidget Key="ckdj" WidgetType="BillUIDecimal"/>
+                        </GridHead>
+                        <GridHead Col="ckhsje" Caption="出库含税金额" enableEdit="True" Align="right" Width="60px">
+                            <BillUIWidget Key="ckhsje" WidgetType="BillUIDecimal"/>
+                        </GridHead>
+                        <GridHead Col="ckdje" Caption="出库金额" enableEdit="True" Align="right" Width="60px">
+                            <BillUIWidget Key="ckdje" WidgetType="BillUIDecimal"/>
+                        </GridHead>
+                        <GridHead Col="kucunshuliang" Caption="库存数量" enableEdit="True" Align="right" Width="60px">
+                            <BillUIWidget Key="kucunshuliang" WidgetType="BillUIDecimal"/>
+                        </GridHead>
+                        <GridHead Col="kchsj" Caption="成本单价" enableEdit="True" Align="right" Width="60px">
+                            <BillUIWidget Key="kchsj" WidgetType="BillUIDecimal"/>
+                        </GridHead>
+                        <!--<GridHead Col="kcdj" Caption="库存单价" enableEdit="True" Align="right" Width="60px">-->
+                            <!--<BillUIWidget Key="kcdj" WidgetType="BillUIDecimal"/>-->
+                        <!--</GridHead>-->
+                        <GridHead Col="kchsje" Caption="成本金额" enableEdit="True" Align="right" Width="60px">
+                            <BillUIWidget Key="kchsje" WidgetType="BillUIDecimal"/>
+                        </GridHead>
+                        <!--<GridHead Col="kcdje" Caption="库存金额" enableEdit="True" Align="right" Width="60px">-->
+                            <!--<BillUIWidget Key="kcdje" WidgetType="BillUIDecimal"/>-->
+                        <!--</GridHead>-->
+                        <GridHead Col="shangpinshuilv" Caption="税率" enableEdit="True" Align="right" Width="60px">
+                            <BillUIWidget Key="shangpinshuilv" WidgetType="BillUIDecimal"/>
+                        </GridHead>
+                        <GridHead Col="beizhu" Caption="备注" enableEdit="True" Width="100px">
+                            <BillUIWidget Key="beizhu" WidgetType="BillUIDecimal"/>
+                        </GridHead>
+                    </GridHeads>
+                </BillUIGrid>
+        </BillUIPanel>
+        </BillBodyMeta>
+    </BillBody>
+    <BillHeadMeta>
+    	
+    </BillHeadMeta>
+</BillFormMeta>

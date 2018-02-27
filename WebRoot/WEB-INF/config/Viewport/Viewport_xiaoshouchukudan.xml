@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<BillViewMeta Key="xiaoshouchukudan" Caption="出库单上引视图" Version="">
+	<BillBody UserAgent="web">
+		<BillBodyMeta>
+			<BillUIPanel Layout="flex" Key="dictionary_to" Caption="出库单"  S="">
+			<BillUIPanel Layout="flex" Key="dictionary_tools1" Caption="出库单"  S="">
+			     <BillUIGridPanel Key="kehu_grid">
+			         <BillUIRowPanel>
+						 <BillUIColPanel Width="12">
+							 <BillUIPanel Layout="flex" Key="dictionary_tools">
+								 <BillUIGrid Key="grid0" OptMode="View" SelectMode="Single" DataTableKey="xiaoshouchukudan">
+									 <OnClickHandlers>
+										 <OnClickHandler>
+											 <![CDATA[
+												var cos=this.row;
+
+												getDetailsByHead('xyy_erp_bill_xiaoshouchukudan_details',cos,'xiaoshouchukudan_details');
+											]]>
+										 </OnClickHandler>
+									 </OnClickHandlers>
+
+									 <GridHeads>
+								 	 <GridHead Col="danjubianhao" Caption="出库单号" Width="80px">
+										 <BillUIWidget Key="danjubianhao" WidgetType="BillUIString"/>
+									 </GridHead>
+									 <GridHead Col="kehubianhao" Caption="客户编号" Width="150px">
+										 <BillUIWidget Key="kehubianhao" WidgetType="BillUIString"/>
+									 </GridHead>
+									 <GridHead Col="kehumingcheng" Caption="客户名称" Width="120px">
+										 <BillUIWidget Key="kehumingcheng" WidgetType="BillUIString"/>
+									 </GridHead>
+									 <GridHead Col="jiesuanfangshi" Caption="结算方式" Width="80px">
+										 <BillUIWidget Key="jiesuanfangshi"
+													   WidgetType="BillUIInteger">
+											 <Formatters>
+												 <Formatter>
+													 <![CDATA[
+                                                [{'type':'jiesuanfangshi'}]
+                                            ]]>
+												 </Formatter>
+											 </Formatters>
+										 </BillUIWidget>
+									 </GridHead>
+									 <GridHead Col="lianxiren" Caption="联系人" Width="120px">
+										 <BillUIWidget Key="lianxiren" WidgetType="BillUIString"/>
+									 </GridHead>
+									 <GridHead Col="lianxidizhi" Caption="联系地址" Width="120px">
+										 <BillUIWidget Key="lianxidizhi" WidgetType="BillUIString"/>
+									 </GridHead>
+									 <GridHead Col="sjdjbh" Caption="上级单据编号" Width="80px">
+										 <BillUIWidget Key="sjdjbh" WidgetType="BillUIString"/>
+									 </GridHead>
+									 <GridHead Col="beizhu" Caption="备注" Width="120px">
+										 <BillUIWidget Key="beizhu" WidgetType="BillUIString"/>
+									 </GridHead>
+								 </GridHeads>
+							 	 </BillUIGrid>
+							 </BillUIPanel>
+						 </BillUIColPanel>
+			         </BillUIRowPanel>
+			     </BillUIGridPanel>
+             </BillUIPanel>
+			<BillUIPanel Layout="flex" Key="dictionary_tools2" Caption="出库单明细"  S="">
+				<BillUIGridPanel Key="kehu_grid2">
+					<BillUIRowPanel>
+						<BillUIColPanel Width="12">
+							<BillUIPanel Layout="flex" Key="dictionary_tools">
+								<BillUIGrid Key="grid0" OptMode="View" SelectMode="Multi" DataTableKey="xiaoshouchukudan_details">
+									<GridHeads>
+										<GridHead Col="danjubianhao" Caption="出库单号" Width="80px">
+											<BillUIWidget Key="danjubianhao" WidgetType="BillUIString"/>
+										</GridHead>
+										<GridHead Col="shangpinbianhao" Caption="商品编号" Width="150px">
+											<BillUIWidget Key="shangpinbianhao" WidgetType="BillUIString"/>
+										</GridHead>
+										<GridHead Col="shangpinmingcheng" Caption="商品名称" Width="120px">
+											<BillUIWidget Key="shangpinmingcheng" WidgetType="BillUIString"/>
+										</GridHead>
+										<GridHead Col="guige" Caption="规格" Width="120px">
+											<BillUIWidget Key="guige" WidgetType="BillUIString"/>
+										</GridHead>
+										<GridHead Col="danwei" Caption="单位" Width="120px">
+											<BillUIWidget Key="danwei" WidgetType="BillUIString">
+												<Formatters>
+													<Formatter>
+														<![CDATA[
+                                                [{'type':'baozhuangdanwei'}]
+                                            ]]>
+													</Formatter>
+												</Formatters>
+											</BillUIWidget>
+										</GridHead>
+										<GridHead Col="shengchanchangjia" Caption="生产厂家" Width="120px">
+										<BillUIWidget Key="shengchanchangjia" WidgetType="BillUIString"/>
+										</GridHead>
+										<GridHead Col="shuliang" Caption="数量" Width="120px">
+										<BillUIWidget Key="shuliang" WidgetType="BillUIInteger"/>
+										</GridHead>
+										<GridHead Col="yituishuliang" Caption="已退数量" Width="120px">
+											<BillUIWidget Key="yituishuliang" WidgetType="BillUIInteger"/>
+										</GridHead>
+										<GridHead Col="hanshuijia" Caption="含税价" Width="120px">
+											<BillUIWidget Key="hanshuijia" WidgetType="BillUIDecimal"/>
+										</GridHead>
+										<GridHead Col="hanshuijine" Caption="含税金额" Width="120px">
+											<BillUIWidget Key="hanshuijine" WidgetType="BillUIDecimal"/>
+										</GridHead>
+										<GridHead Col="pihao" Caption="批号" Width="120px">
+											<BillUIWidget Key="pihao" WidgetType="BillUIString"/>
+										</GridHead>
+										<GridHead Col="shengchanriqi" Caption="生产日期" Width="80px">
+											<BillUIWidget Key="shengchanriqi" WidgetType="BillUIDateTime"/>
+										</GridHead>
+										<GridHead Col="youxiaoqizhi" Caption="有效期至" Width="120px">
+											<BillUIWidget Key="youxiaoqizhi" WidgetType="BillUIDateTime"/>
+										</GridHead>
+									</GridHeads>
+								</BillUIGrid>
+							</BillUIPanel>
+						</BillUIColPanel>
+					</BillUIRowPanel>
+				</BillUIGridPanel>
+			</BillUIPanel>
+			</BillUIPanel>
+		</BillBodyMeta>
+	</BillBody>
+	
+</BillViewMeta>

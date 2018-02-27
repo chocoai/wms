@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+	<DataTable Key="yiruhuowei_view" Caption="批号" DefaultFilter=""
+		PermissionType="CommType" Pagging="6"
+		TableName="SQLQuery::
+		SELECT
+		o.huoweibianhao,
+		o.kuqubianhao,
+		o.kqlbmc,
+		o.kqlbbh
+		|
+		from
+		(
+		SELECT
+			h.huoweibianhao,
+			k.kuqubianhao,
+			k.kqlbmc,
+			k.kqlbbh
+			from
+			xyy_wms_dic_huoweiziliaoweihu h
+			inner JOIN xyy_wms_dic_kuqujibenxinxi k
+			ON h.kuquId=k.ID
+			where 1=1
+			@kqlbbh @huoweibianhao) o"
+		DataSource="" Head="false">
+		<Parameters>
+			<Parameter Key="kqlbbh" Type="String">
+			<Where>
+				<![CDATA[
+					m.if(kqlbbh==null | kqlbbh=="" ,""," and k.kqlbbh like '%"+kqlbbh+"%'")
+	            ]]>
+			</Where>
+		</Parameter>
+			<Parameter Key="huoweibianhao" Type="String">
+				<Where>
+					<![CDATA[
+					m.if(huoweibianhao==null | huoweibianhao=="" ,""," and h.huoweibianhao like '%"+huoweibianhao+"%'")
+	            ]]>
+				</Where>
+			</Parameter>
+		</Parameters>
+	</DataTable>
+</DataSet>

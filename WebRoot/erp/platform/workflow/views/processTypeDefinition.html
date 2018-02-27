@@ -1,0 +1,112 @@
+<div ng-controller="myApp.OperationManagement.processTypeDefinition">
+    <div class="panel panel-primary">
+        <div class="panel-heading"><h3 class="panel-title"> 流程类别管理</h3></div>
+    </div>
+    <div class="row">
+        <!-- group tree -->
+        <div class="col-sm-3">
+            <div class="panel panel-default">
+                <div class="panel-heading clearfix">
+                    <div class="pull-left"><b>流程类别
+
+                    </b></div>
+                    <div class="pull-right">
+                        <button class="btn btn-primary btn-sm" ng-click="gcadd()">添加</button>
+
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <img src="/lib/images/1_open.png">
+                    <treecontrol class="tree-classic" tree-model="dataForTheTree"  expanded-nodes="expandedNodes" options="treeOptions" on-selection="buttonClick(node)"  selected-node="selectedNodes">
+                        {{node.name}}
+                    </treecontrol>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-9">
+            <div class="panel panel-default">
+                <div class="panel-heading clearfix">
+                    <div class="pull-left"><b>流程类别</b></div>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-bordered table-hover table-condensed">
+                        <thead>
+                        <tr>
+                            <th>类别名称</th>
+                            <th>父节点类别名称</th>
+                            <th>描述</th>
+                            <th>创建时间</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="row in rows">
+                            <td>{{row.name}}</td>
+                            <td>{{row.parentName}}</td>
+                            <td>{{row.desc}}</td>
+                            <td>{{row.createTime}}</td>
+                            <td>
+                                <button type="button" class="btn btn-primary btn-sm" ng-click="gcedit(row)">修改</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div paging page-info="pageInfo" load="load()"/>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading clearfix">
+                    <div class="pull-left"><b>流程设计</b></div>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-hover table-bordered table-striped table-condensed">
+                        <thead>
+                        <tr>
+                            <th>流程名称</th>
+                            <!-- <th>流程类别id</th> -->
+                            <th>流程类别名称</th>
+                            <th>流程版本</th>
+                            <th>流程描述</th>
+                            <th>创建时间</th>
+                            <th>状态</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="mrow in mrows">
+                            <td>{{mrow.name}}</td>
+                            <!-- <td>{{mrow.tid}}</td> -->
+                            <td>{{mrow.tidName}}</td>
+                            <td>{{mrow.version}}</td>
+                            <td>{{mrow.desc}}</td>
+                            <td>{{mrow.createTime}}</td>
+                            <td><label ng-if="mrow.status==1">草稿状态</label><label ng-if="mrow.status==2">发布状态</label></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div paging page-info="pageInfo2" load="load()"/>
+                </div>
+            </div>
+        </div>
+        </div>
+
+
+    <div class="modal fade" id="myModal" >
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-title "><h3>保存</h3></div>
+                </div>
+                <div class="modal-body" >
+                    <form class="form-horizontal" id="ptdAddForm" name="ptdAddForm" role="form" novalidate>
+                        <div ng-include="'/Views/_processTypeDefinition.html'"></div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button"  class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" ng-click="saveptd()" ng-disabled="ptdAddForm.$invalid">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

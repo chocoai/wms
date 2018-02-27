@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="kucuntongjifenxi" Caption="库存统计与分析" DefaultFilter="" Pagging="10" BillType="MultiBill"
+               TableName="SQLQuery::SELECT * | FROM xyy_erp_dic_shangpinkucunxinxi a,xyy_erp_dic_kehujibenxinxi b, xyy_erp_dic_shangpinjibenxinxi c 
+WHERE a.storeID = b.ID AND a.storeID = c.storeID @kehumingcheng" DataSource="" Head="false">
+        <Parameters>
+            <Parameter Key="kehumingcheng" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(b.kehumingcheng==null | b.kehumingcheng=="" ," "," and b.kehumingcheng like '%"+kehumingcheng+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

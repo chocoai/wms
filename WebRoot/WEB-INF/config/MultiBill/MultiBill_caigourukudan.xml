@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BillFormMeta Key="caigourukudan" Version="1.0.0" BillType="MultiBill" Caption="采购入库单明细">
+    <BillBody>
+        <BillBodyMeta UserAgent="web">
+            <BillUIPanel Layout="flex" FlexDirection="column" Width="100%" Key="mainContainer" Caption="" S="">
+                <BillUIPanel Layout="tab" Key="mainContainer_tab" Caption="采购入库单"
+                             S="panel  panel-primary  publicPanel">
+                    <BillUIPanel Layout="flex" Key="mainContainer_details1" Caption="采购入库单"
+                                 ColWidth="1fr">
+                        <BillUIGrid Key="caigourukudan_details1" Left="1" Top="1" Width="1" Height="1" SelectMode="Multi"
+                                    OptMode="View" DataTableKey="caigourukudan">
+                            <Triggers>
+                                <Trigger Type="javascript/angular" Runat="client">
+                                    <![CDATA[
+                                              var total=this.sum("yanshourukudan_details","shuliang");
+                                              @total.setValue(total);
+	                                 ]]>
+                                </Trigger>
+                            </Triggers>
+                            <RowCheckRule>
+                                <![CDATA[
+                                        this.shuliang<=10,success,warning
+                                    ]]>
+                            </RowCheckRule>
+                            <GridHeads>
+                                <GridHead Col="shangpinbianhao" Caption="商品编号" enableEdit="True" Width="80px">
+                                    <BillUIWidget Key="shangpinbianhao" WidgetType="BillUIPopupWindow" ViewSize="normal"
+                                                  Disable="true" Src="shangpin">
+                                        <Init Type="javascript/angular" Runat="client">
+                                            <![CDATA[
+                                                var gystt=@huoshangmingcheng.getValue();
+                                                gystt.then(function(data){
+                                                    this.setEnvModel({gysxx:data});
+                                                })
+                                            ]]>
+                                        </Init>
+                                        <Triggers>
+                                            <Trigger>
+                                                <![CDATA[
+                                                    var shangpin=this.rows[0];
+                                                    this.setValue(shangpin.shangpinbianhao);
+                                                    @shangpinmingcheng.setValue(shangpin.shangpinmingcheng);
+                                                    @shangpinguige.setValue(shangpin.guige);
+
+                                                    @danwei.setValue(shangpin.danwei);
+                                                    @hanshuijia.setValue(shangpin.hanshuijinjia);
+                                                    @zuidijinjia.setValue(shangpin.biaozhunjinjia);
+                                                    @shuilv.setValue(shangpin.jinxiangshuilv);
+
+                                                    @lingshoujia.setValue(shangpin.lingshoujia);
+                                                    @lingsanjianshu.setValue(shangpin.xbzsl);
+                                                    @zuigaojinjia.setValue(shangpin.hanshuijinjia);
+
+                                                    @pizhunwenhao.setValue(shangpin.pizhunwenhao);
+                                                    @shengchanchangjia.setValue(shangpin.shengchanchangjia);
+                                                    @shangpinchandi.setValue(shangpin.chandi);
+                                                    @jbzsl.setValue(shangpin.dbzsl);
+                                                    @pzwhyxq.setValue(shangpin.youxiaoqizhi);
+
+                                                    @sydjbh.setValue(shangpin.sydjbh);
+                                                    @dongjie.setValue(shangpin.dongjie);
+                                                    var koulv=@zhengdankoulv.getValue();
+                                                    koulv.then(function(d){
+                                                        @koulv.setValue(d);
+                                                    },function(e){
+                                                     console.log(e);
+                                                    })
+
+                                        ]]>
+                                            </Trigger>
+                                        </Triggers>
+                                    </BillUIWidget>
+                                </GridHead>
+                                <GridHead Col="shangpinmingcheng" Caption="商品名称" enableEdit="True" Width="80px">
+                                    <BillUIWidget Key="shangpinmingcheng" WidgetType="BillUIString"
+                                                  AuxiliaryDir="zhujima">
+                                        <Triggers>
+                                            <Trigger>
+                                                <![CDATA[
+                                                var shangpin=this.row;
+                                                this.setValue(shangpin.shangpinmingcheng);
+                                                @shangpinguige.setValue(shangpin.shangpinguige);
+
+                                                @shangpinbianhao.setValue(shangpin.shangpinbianhao);
+                                                @beizhu.setValue(shangpin.beizhu);
+
+                                                @shangpinmingcheng.setValue(shangpin.shangpinmingcheng);
+                                                @shangpinguige.setValue(shangpin.guige);
+
+                                                @danwei.setValue(shangpin.danwei);
+                                                @hanshuijia.setValue(shangpin.hanshuijinjia);
+                                                @zuidijinjia.setValue(shangpin.biaozhunjinjia);
+                                                @shuilv.setValue(shangpin.jinxiangshuilv);
+
+                                                @lingshoujia.setValue(shangpin.lingshoujia);
+                                                @lingsanjianshu.setValue(shangpin.xbzsl);
+                                                @zuigaojinjia.setValue(shangpin.hanshuijinjia);
+
+                                                @pizhunwenhao.setValue(shangpin.pizhunwenhao);
+                                                @shengchanchangjia.setValue(shangpin.shengchanchangjia);
+                                                @shangpinchandi.setValue(shangpin.chandi);
+                                                @jbzsl.setValue(shangpin.dbzsl);
+                                                @pzwhyxq.setValue(shangpin.youxiaoqizhi);
+
+                                                @sydjbh.setValue(shangpin.sydjbh);
+                                                @dongjie.setValue(shangpin.dongjie);
+                                                var koulv=@zhengdankoulv.getValue();
+                                                koulv.then(function(d){
+                                                    @koulv.setValue(d);
+                                                },function(e){
+                                                 console.log(e);
+                                                })
+
+                                            ]]>
+                                            </Trigger>
+                                        </Triggers>
+                                        <Properties>
+                                            <Property Name="dataTable" Type="internal">
+                                                "shangpinjibenxinxi"
+                                            </Property>
+                                        </Properties>
+                                    </BillUIWidget>
+                                </GridHead>
+                                <GridHead Col="guige" Caption="规格" enableEdit="True" Width="80px">
+                                    <BillUIWidget Key="guige" Disable="true"  WidgetType="BillUIString"/>
+                                </GridHead>
+                                <GridHead Col="danwei" Caption="单位" enableEdit="True" Width="100px">
+                                    <BillUIWidget Key="danwei" Disable="true"  WidgetType="BillUIString"/>
+                                </GridHead>
+                                <GridHead Col="shengchanchangjia" Caption="生产厂家" enableEdit="True" Width="80px">
+                                    <BillUIWidget Key="shengchanchangjia" WidgetType="BillUIString"/>
+                                </GridHead>
+                                <GridHead Col="pihao" Caption="批号" enableEdit="True" Width="80px">
+                                    <BillUIWidget Key="pihao" Disable="true"  WidgetType="BillUIString"/>
+                                </GridHead>
+                                <GridHead Col="shengchanriqi" Caption="生产日期" enableEdit="True" Width="80px">
+                                    <BillUIWidget Key="shengchanriqi" Disable="true"  WidgetType="BillUIDateTime"/>
+                                </GridHead>
+                                <GridHead Col="youxiaoqizhi" Caption="有效期至" enableEdit="True" Width="80px">
+                                    <BillUIWidget Key="youxiaoqizhi" Disable="true"  WidgetType="BillUIDateTime"/>
+                                </GridHead>
+                                <GridHead Col="shuliang" Caption="数量" enableEdit="True" Width="100px">
+                                    <BillUIWidget Key="shuliang" WidgetType="BillUIDecimal"/>
+                                </GridHead>
+                                <GridHead Col="hanshuijia" Caption="含税价" enableEdit="True" Width="100px">
+                                    <BillUIWidget Key="hanshuijia" WidgetType="BillUIDecimal"/>
+                                </GridHead>
+                                <GridHead Col="hanshuijine" Caption="含税金额" enableEdit="True" Width="100px">
+                                    <BillUIExpression Key="hanshuijine" S="exprInput" Disable="true">
+                                        <![CDATA[
+				                        =#caigourukudan_details.shuliang*#caigourukudan_details.hanshuijia
+									   ]]>
+                                    </BillUIExpression>
+                                </GridHead>
+<!--                                 <GridHead Col="hscbj" Caption="核算成本价" enableEdit="True" Width="100px"> -->
+<!--                                     <BillUIWidget Key="hscbj"  WidgetType="BillUIDecimal" /> -->
+<!--                                 </GridHead> -->
+                                <GridHead Col="koulv" Caption="扣率" enableEdit="True" Width="100px">
+                                    <BillUIWidget Key="koulv" WidgetType="BillUIDecimal"/>
+                                </GridHead>
+                                <GridHead Col="shuilv" Caption="税率" enableEdit="True" Width="100px">
+                                    <BillUIWidget Key="shuilv" Disable="true"  WidgetType="BillUIDecimal"/>
+                                </GridHead>
+                                <GridHead Col="pizhunwenhao" Caption="批准文号" enableEdit="True" Width="80px">
+                                    <BillUIWidget Key="pizhunwenhao" Disable="true"  WidgetType="BillUIString"/>
+                                </GridHead>
+                                <GridHead Col="chandi" Caption="产地" enableEdit="True" Width="80px">
+                                    <BillUIWidget Key="chandi" WidgetType="BillUIString"/>
+                                </GridHead>
+                                <GridHead Col="beizhu" Caption="备注" enableEdit="True" Width="80px">
+                                    <BillUIWidget Key="beizhu" WidgetType="BillUIString"/>
+                                </GridHead>
+                            </GridHeads>
+                        </BillUIGrid>
+                    </BillUIPanel>
+                </BillUIPanel>
+            </BillUIPanel>
+        </BillBodyMeta>
+    </BillBody>
+    <BillHeadMeta>
+
+    </BillHeadMeta>
+</BillFormMeta>

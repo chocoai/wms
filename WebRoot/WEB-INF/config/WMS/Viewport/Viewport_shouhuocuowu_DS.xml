@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="shouhuocuowu_view" Caption="上架单" DefaultFilter="" PermissionType="PrivateType"  Pagging="10"
+        TableName="SQLQuery:: 
+        SELECT *
+               |
+				FROM
+					xyy_wms_bill_rukushangjiadan
+				WHERE
+					1 = 1
+			  and zhuangtai!=1
+              @dingdanbianhao @kaishiriqi @jiezhiriqi @kufang 
+              ORDER BY createTime DESC"  
+        
+        DataSource="" Head="false" Singleton="" OrderBy="">
+        <Parameters>
+           <Parameter Key="kaishiriqi" Type="String">
+				<Where>
+		                <![CDATA[
+							m.if(kaishiriqi==null | kaishiriqi=="" ,""," and DATE_FORMAT(dingdanriqi,'%Y-%m-%d') >= DATE_FORMAT('"+kaishiriqi+"','%Y-%m-%d')")
+			            ]]>
+				</Where>
+			</Parameter>
+			<Parameter Key="jiezhiriqi" Type="String">
+				<Where>
+		                <![CDATA[
+							m.if(jiezhiriqi==null | jiezhiriqi=="" ,""," and DATE_FORMAT(dingdanriqi,'%Y-%m-%d') <= DATE_FORMAT('"+jiezhiriqi+"','%Y-%m-%d')")
+			            ]]>
+				</Where>
+			</Parameter>
+            <Parameter Key="kufang" Type="String"> 
+                <Where>
+                    <![CDATA[
+					m.if(kufang==null | kufang=="",""," and kufang like '%"+kufang+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="dingdanbianhao" Type="String"> 
+                <Where>
+                    <![CDATA[
+					m.if(dingdanbianhao==null | dingdanbianhao=="",""," and dingdanbianhao like '%"+dingdanbianhao+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="shangpinmingcheng" Type="String"> 
+                <Where>
+                    <![CDATA[
+					m.if(shangpinmingcheng==null | shangpinmingcheng=="",""," and shangpinmingcheng like '%"+shangpinmingcheng+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+    
+    <DataTable Key="shouhuocuowu_details1" Caption="上架明细单" DefaultFilter="" PermissionType="PrivateType"  Pagging="100"
+        TableName="SQLQuery:: 
+        SELECT *
+               |
+				FROM
+					xyy_wms_bill_rukushangjia_details
+				where  BillID is null
+              ORDER BY createTime DESC"  
+        
+        DataSource="" Head="false" Singleton="" OrderBy="">
+        <Parameters>
+           <Parameter Key="danjubianhao" Type="String"> 
+                <Where>
+                    <![CDATA[
+					m.if( BillID is null)
+	            ]]>
+                </Where>
+            </Parameter>
+           
+        </Parameters>
+    </DataTable>
+</DataSet>

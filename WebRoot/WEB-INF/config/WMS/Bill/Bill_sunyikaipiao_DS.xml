@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="sunyikaipiao" BillType="Bill" Caption="损溢开票单" DefaultFilter="" TableName="Table::xyy_wms_bill_sunyikaipiao" DataSource="" Head="true">
+        <!--
+             单据编号	varchar	规则：YBM+年月日时分秒+3位随机码, 例如：YBM20160426112240764
+        -->
+        <Field FieldKey="danjubianhao" FieldName="单据编号" FieldType="Varchar" Bound="50" DefaultValue="='SYKP'+o.orderNo()" Comment="单据编号"/>
+        <Field FieldKey="zhidanriqi" FieldName="制单日期" FieldType="Date" Comment="制单日期"/>
+        <Field FieldKey="zhidanren" FieldName="制单人" FieldType="Varchar" Comment="制单人"/>
+        <Field FieldKey="kufang" FieldName="库房" FieldType="Varchar" Comment="库房"/>
+        <Field FieldKey="cangkubianhao" FieldName="仓库编号" FieldType="Varchar" Comment="仓库编号"/>
+        <Field FieldKey="beizhu" FieldName="备注"  FieldType="Varchar" Comment="备注"/>
+        <Field FieldKey="sunyileixing" FieldName="损溢类型" FieldType="Int" Comment="损溢类型"/>
+        <Field FieldKey="zhuangtai" FieldName="状态" FieldType="Int" DefaultValue="1" Comment="状态" />
+    </DataTable>
+
+    <DataTable Key="sunyikaipiao_details" BillType="Bill"  Caption="损溢单明细" DefaultFilter="BillID" Pagging="100" TableName="Table::xyy_wms_bill_sunyikaipiao_details" DataSource="" Head="false">
+        <Field FieldKey="danjubianhao" FieldName="单据编号" FieldType="Varchar" Bound="50" DefaultValue="='SYKP'+o.orderNo()" Comment="单据编号"/>
+        <Field FieldKey="huozhu" FieldName="货主" FieldType="Varchar" Comment="货主"/>
+        <Field FieldKey="kuqu" FieldName="库区" FieldType="Varchar"  Comment="库区"/>
+        <Field FieldKey="kqlbbh" FieldName="库区类别编号" FieldType="Int"  Comment="库区类别编号"/>
+        <Field FieldKey="huowei" FieldName="货位" FieldType="Varchar" Comment="货位"/>
+        <Field FieldKey="shangpinbianhao" FieldName="商品编号" FieldType="Varchar"   Comment="商品编号" />
+        <Field FieldKey="shangpinmingcheng" FieldName="商品名称" FieldType="Varchar" Comment="商品名称" />
+        <Field FieldKey="goodsid" FieldName="商品ID" FieldType="Varchar" Comment="商品ID" />
+        <Field FieldKey="guige" FieldName="规格" FieldType="Varchar" Comment="规格"/>
+        <Field FieldKey="danwei" FieldName="单位" FieldType="Int" Comment="单位" />
+        <Field FieldKey="shengchanchangjia" FieldName="生产厂家" FieldType="Varchar" Comment="生产厂家" />
+        <Field FieldKey="pihao" FieldName="批号" FieldType="Varchar" Comment="批号" />
+        <Field FieldKey="pihaoId" FieldName="批号Id" FieldType="Varchar" Comment="批号Id" />
+        <Field FieldKey="shengchanriqi" FieldName="生产日期" FieldType="Date" Comment="生产日期" />
+        <Field FieldKey="youxiaoqizhi" FieldName="有效期至" FieldType="Date" Comment="有效期至" />
+        <Field FieldKey="dbzsl" FieldName="大包装数量" FieldType="Decimal" Comment="大包装数量"/>
+        <Field FieldKey="kucunshuliang" FieldName="库存数量" FieldType="Decimal" Comment="库存数量"/>
+        <Field FieldKey="kczjs" FieldName="库存整件数" FieldType="Decimal" Comment="库存整件数" />
+        <Field FieldKey="kclss" FieldName="库存零散数" FieldType="Decimal" Comment="库存零散数" />
+        <Field FieldKey="shijishuliang" FieldName="实际数量" FieldType="Decimal"  Comment="实际数量"/>
+        <Field FieldKey="sjzjs" FieldName="实际整件数" FieldType="Decimal"  Comment="实际整件数"/>
+        <Field FieldKey="sjlss" FieldName="实际零散数" FieldType="Decimal"  Comment="实际零散数"/>
+        <Field FieldKey="sunyishuliang" FieldName="损溢数量" FieldType="Decimal"  Comment="损溢数量"/>
+        <Field FieldKey="syzjs" FieldName="损溢整件数" FieldType="Decimal"  Comment="损溢整件数"/>
+        <Field FieldKey="sylss" FieldName="损溢零散数" FieldType="Decimal"  Comment="损溢零散数"/>
+        <Field FieldKey="sunyiyuanyin" FieldName="损溢原因" FieldType="Varchar"  Comment="损溢原因"/>
+        <Field FieldKey="pizhunwenhao" FieldName="批准文号" FieldType="Varchar"  Comment="批准文号"/>
+    </DataTable>
+</DataSet>

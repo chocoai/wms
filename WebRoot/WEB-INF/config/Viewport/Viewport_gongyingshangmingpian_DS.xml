@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="gongyingshangmingpian_view" Caption="供应商名片" DefaultFilter="" Pagging="10"
+        TableName="SQLQuery::select * | from xyy_erp_dic_gongyingshangmingpian where 1=1 @mingpian order by createTime desc"  PermissionType="CommType"  DataSource="" Head="false" Singleton="" OrderBy="">
+        <Parameters> 
+            <Parameter Key="mingpian" Type="String">
+                <Where>
+                <![CDATA[
+                    m.if(mingpian==null | mingpian=="" ,""," and mingcheng like '%"+mingpian+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

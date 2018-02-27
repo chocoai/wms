@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="huowei_view" Caption="批号" DefaultFilter="" PermissionType="CommType" Pagging="6"
+               TableName="SQLQuery::
+    SELECT
+    h.huoweibianhao,
+    k.kuqubianhao,
+    k.kuqumingcheng,
+    h.rowID
+	|
+	FROM
+	xyy_wms_dic_huoweiziliaoweihu h left join xyy_wms_dic_kuqujibenxinxi k
+	on h.kuquId=k.ID
+    WHERE
+	1=1 and h.shifousuoding=0
+    @huoweibianhao @kuqumingcheng order by xiangdao,pai,ceng,lie
+    "   DataSource="" Head="false">
+        <Parameters>
+            <Parameter Key="huoweibianhao" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(huoweibianhao==null | huoweibianhao=="" ,""," and huoweibianhao like '%"+huoweibianhao+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="kuqumingcheng" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(kuqumingcheng==null | kuqumingcheng=="" ,""," and k.kuqumingcheng like '%"+kuqumingcheng+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

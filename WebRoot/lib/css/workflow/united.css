@@ -1,0 +1,7 @@
+.tab-ul{border-bottom:1px solid #D44413;}
+.tab-ul li.curr{background:#D44413;}
+/*canvas画布*/
+.am-topbar-inverse{    background-color: #F8F8F8; border-color: #dddddd;color:#666}
+.am-topbar-inverse .am-topbar-nav > li > a,.am-topbar-inverse .am-topbar-nav > li > a:hover{color:#666;}
+.am-topbar-inverse .am-topbar-nav > li.am-active > a, .am-topbar-inverse .am-topbar-nav > li.am-active > a:hover, .am-topbar-inverse .am-topbar-nav > li.am-active > a:focus{color:#666;}
+.am-card:hover{ border-color: #D44413;}

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+	<DataTable Key="pandianjihua" BillType="Bill" Caption="盘点计划"
+		DefaultFilter="" TableName="Table::xyy_wms_bill_pandianjihua"
+		DataSource="" Head="true">
+		<!-- 单据编号 varchar 规则：YBM+年月日时分秒+3位随机码, 例如：YBM20160426112240764 -->
+		<Field FieldKey="danjubianhao" FieldName="单据编号" FieldType="Varchar"
+			DefaultValue="='PDJH'+o.orderNo()" Comment="单据编号" />
+
+		<Field FieldKey="zhidanriqi" FieldName="制单日期" FieldType="Date"
+			Comment="制单日期" />
+		<Field FieldKey="zhidanren" FieldName="制单人" FieldType="Varchar"
+			Comment="制单人" />
+		<Field FieldKey="kaishiriqi" FieldName="开始日期" FieldType="Date"
+			Comment="开始日期" />
+		<Field FieldKey="cangkumingcheng" FieldName="仓库名称" FieldType="Varchar"
+			Bound="50" Comment="仓库名称" />
+		<Field FieldKey="cangkubianhao" FieldName="仓库编号" FieldType="Varchar"
+			   Bound="50" Comment="仓库编号" />
+		<Field FieldKey="kuqu" FieldName="库区" FieldType="Varchar"
+			Comment="库区" />
+		<Field FieldKey="kuqumingcheng" FieldName="库区" FieldType="Varchar"
+			   Comment="库区名称" />
+		<Field FieldKey="xiangdao" FieldName="巷道" FieldType="Varchar"
+			Comment="巷道" />
+		<Field FieldKey="jiezhiriqi" FieldName="截止日期" FieldType="Date"
+			Comment="截止日期" />
+		<Field FieldKey="pandianleixing" FieldName="盘点类型" FieldType="Int"
+			Comment="盘点类型" />
+		<Field FieldKey="pandianfangshi" FieldName="盘点方式" FieldType="Int"
+			Comment="盘点方式" />
+		<Field FieldKey="beizhu" FieldName="备注" FieldType="Varchar"
+			Comment="备注" />
+	    <Field FieldKey="zhuangtai" FieldName="状态" FieldType="Int" DefaultValue="1"
+			Comment="狀態" />
+	</DataTable>
+
+
+	<DataTable Key="pandianjihua_details" BillType="Bill"
+		Caption="盘点计划明细" DefaultFilter="BillID"
+		TableName="Table::xyy_wms_bill_pandianjihua_details" DataSource=""
+		Head="false">
+		<Field FieldKey="danjubianhao" FieldName="单据编号" FieldType="Varchar"
+			DefaultValue="='PDJH'+o.orderNo()" Comment="单据编号" />
+		<Field FieldKey="huozhu" FieldName="货主" FieldType="Varchar"
+			Comment="商品编号" />
+		<Field FieldKey="kuqubianhao" FieldName="库区" FieldType="Varchar"
+			Comment="库区" />
+		<Field FieldKey="huoweibianhao" FieldName="货位" FieldType="Varchar"
+			Comment="货位" />
+		<Field FieldKey="shangpinbianhao" FieldName="商品编号" FieldType="Varchar"
+			Comment="商品编号" />
+		<Field FieldKey="shangpinmingcheng" FieldName="商品名称" FieldType="Varchar"
+			Comment="商品名称" />
+		<Field FieldKey="guige" FieldName="规格" FieldType="Varchar"
+			Comment="规格" />
+		<Field FieldKey="dbzsl" FieldName="大包装数量" FieldType="Decimal"
+			   Comment="大包装数量" />
+		<Field FieldKey="danwei" FieldName="单位" FieldType="Int"
+			Comment="单位" />
+		<Field FieldKey="shengchanchangjia" FieldName="生产厂家" FieldType="Varchar"
+			Comment="生产厂家" />
+		<Field FieldKey="pihao" FieldName="批号" FieldType="Varchar"
+			Comment="批号" />
+		<Field FieldKey="pihaoId" FieldName="批号ID" FieldType="Varchar"
+			   Comment="批号" />
+		<Field FieldKey="shengchanriqi" FieldName="生产日期" FieldType="Date"
+			Comment="生产日期" />
+		<Field FieldKey="youxiaoqizhi" FieldName="有效期至" FieldType="Date"
+			Comment="有效期至" />
+		<Field FieldKey="kucunshuliang" FieldName="库存数量" FieldType="Decimal" Bound="14,2"
+			Comment="库存数量" />
+		<Field FieldKey="kucunzhengjianshu" FieldName="库存整件数" FieldType="Decimal" Bound="14,2"
+			Comment="库存整件数" />
+		<Field FieldKey="kucunlingsanshu" FieldName="库存零件数" FieldType="Decimal" Bound="14,2"
+			Comment="库存零件数" />
+		<Field FieldKey="pizhunwenhao" FieldName="批准文号" FieldType="Varchar"
+			Comment="批准文号" />
+	</DataTable>
+</DataSet>

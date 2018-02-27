@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+	<DataTable Key="zhiliangfujian" Caption="质量复检叙事薄" DefaultFilter=""
+			   Pagging="20"
+			   TableName="SQLQuery::select * | from xyy_wms_bill_zhiliangfujian where status = 1   @kaishiriqi @jiezhiriqi @taskType   "
+			   DataSource="" Head="false">
+		<Parameters>
+
+			<Parameter Key="taskType" Type="String">
+				<Where>
+					<![CDATA[
+					m.if(taskType==null | taskType=="" ,""," and a.taskType like '%"+taskType+"%'")
+	            ]]>
+				</Where>
+			</Parameter>
+			<Parameter Key="kaishiriqi" Type="String">
+				<Where>
+					<![CDATA[
+                	m.if(kaishiriqi==null,""," and DATE_FORMAT(dingdanriqi,'%Y-%m-%d') >= DATE_FORMAT('"+kaishiriqi+"','%Y-%m-%d')")
+				]]>
+				</Where>
+			</Parameter>
+			<Parameter Key="jiezhiriqi" Type="String">
+				<Where>
+					<![CDATA[
+                	m.if(jiezhiriqi==null,""," and DATE_FORMAT(dingdanriqi,'%Y-%m-%d') <= DATE_FORMAT('"+jiezhiriqi+"','%Y-%m-%d')")
+				]]>
+				</Where>
+			</Parameter>
+		</Parameters>
+	</DataTable>
+</DataSet>

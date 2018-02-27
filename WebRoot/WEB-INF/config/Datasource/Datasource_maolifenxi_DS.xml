@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="yuemaolifenxi" Caption="月毛利分析" DefaultFilter="" Pagging="10"
+               TableName="SQLQuery::SELECT DATE_FORMAT(a.createTime,'%Y-%m') as months,
+               			SUM(a.sshjje) as sshjje,a.storeName,
+						SUM(a.yshjje) as yshjje,SUM(a.yshjje)/1.5 as chengbenjine,
+						SUM(a.yshjje)*0.5 AS maoli
+					  | FROM xyy_erp_bill_lingshoukaidan_details a
+						WHERE 1=1
+						GROUP BY months,a.storeName order by months desc" DataSource="" Head="false">
+        <Parameters>
+            <Parameter Key="yaodianmingchen" Type="String">
+                <DefaultValue></DefaultValue>
+                <Where>
+                    <![CDATA[
+                        m.if(yaodianmingchen==null | yaodianmingchen=="" ,""," and b.name like '%"+yaodianmingchen+"%'")
+                    ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="xiaoshoushijian" Type="String" >
+                <DefaultValue></DefaultValue>
+                <Where>
+                    <![CDATA[
+                        m.if(xiaoshoushijian==null  | xiaoshoushijian=="" ,"SYSDATE()",xiaoshoushijian)
+                    ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+    
+    <DataTable Key="zhoumaolifenxi" Caption="周毛利分析" DefaultFilter="" Pagging="10"
+               TableName="SQLQuery::SELECT CONCAT_WS('','第',DATE_FORMAT(a.createTime, '%u'),'周') as weeks,
+               			SUM(a.sshjje) as sshjje,a.storeName,
+						SUM(a.yshjje) as yshjje,SUM(a.yshjje)/1.5 as chengbenjine,
+						SUM(a.yshjje)*0.5 AS maoli
+					  | FROM xyy_erp_bill_lingshoukaidan_details a
+						WHERE 1=1
+						GROUP BY weeks,a.storeName order by weeks desc limit 0,5" DataSource="" Head="false">
+        <Parameters>
+            <Parameter Key="yaodianmingchen" Type="String">
+                <DefaultValue></DefaultValue>
+                <Where>
+                    <![CDATA[
+                        m.if(yaodianmingchen==null | yaodianmingchen=="" ,""," and b.name like '%"+yaodianmingchen+"%'")
+                    ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="xiaoshoushijian" Type="String" >
+                <DefaultValue></DefaultValue>
+                <Where>
+                    <![CDATA[
+                        m.if(xiaoshoushijian==null  | xiaoshoushijian=="" ,"SYSDATE()",xiaoshoushijian)
+                    ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+    
+    <DataTable Key="rimaolifenxi" Caption="日毛利分析" DefaultFilter="" Pagging="10"
+               TableName="SQLQuery::SELECT DATE_FORMAT(a.createTime,'%Y-%m-%d') as days,
+               			SUM(a.sshjje) as sshjje,a.storeName,
+						SUM(a.yshjje) as yshjje,SUM(a.yshjje)/1.5 as chengbenjine,
+						SUM(a.yshjje)*0.5 AS maoli
+					  | FROM xyy_erp_bill_lingshoukaidan_details a
+						WHERE 1=1
+						GROUP BY days,a.storeName order by days desc limit 0,7" DataSource="" Head="false">
+        <Parameters>
+            <Parameter Key="yaodianmingchen" Type="String">
+                <DefaultValue></DefaultValue>
+                <Where>
+                    <![CDATA[
+                        m.if(yaodianmingchen==null | yaodianmingchen=="" ,""," and b.name like '%"+yaodianmingchen+"%'")
+                    ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="xiaoshoushijian" Type="String" >
+                <DefaultValue></DefaultValue>
+                <Where>
+                    <![CDATA[
+                        m.if(xiaoshoushijian==null  | xiaoshoushijian=="" ,"SYSDATE()",xiaoshoushijian)
+                    ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

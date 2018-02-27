@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="caigoufukuanjihuadan" Caption="采购付款单叙事薄" DefaultFilter="" Pagging="10"
+               TableName="SQLQuery::select * | from xyy_erp_bill_caigoufukuanjihuadan where status>0 and createTime &lt;now() @danjubianhao  @gysbh @gysmc ORDER BY createTime DESC" DataSource="" Head="false">
+        <Parameters> 
+            <Parameter Key="danjubianhao" Type="String">
+                <Where>
+                <![CDATA[
+					m.if(danjubianhao==null | danjubianhao=="" ," "," and danjubianhao like '%"+danjubianhao+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="gysbh" Type="String" >
+                <DefaultValue></DefaultValue>
+                <Where>
+                <![CDATA[
+					m.if(gysbh==null | gysbh==" " ," "," and gysbh like '%"+gysbh+"%'")
+                ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="gysmc" Type="String" >
+                <DefaultValue></DefaultValue>
+                <Where>
+                <![CDATA[
+					m.if(gysmc==null | gysmc==" " ," "," and gysmc like '%"+gysmc+"%'")
+                ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

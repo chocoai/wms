@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="kucunyujing" Caption="库存预警" DefaultFilter="" Pagging="10" BillType="MultiBill"
+               TableName="SQLQuery::SELECT k.*,s.anquankucun | FROM xyy_erp_dic_shangpinkucunxinxi k,xyy_erp_dic_shangpinjibenxinxi s where k.shangpinbianhao=s.shangpinbianhao and k.kucunshuliang &lt;=s.anquankucun @shangpinbianhao  @shangpinmingcheng @shengchanchangjia" DataSource="" Head="false">
+        <Parameters>
+            <Parameter Key="shangpinbianhao" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(shangpinbianhao==null | shangpinbianhao=="" ,""," and k.shangpinbianhao like '%"+shangpinbianhao+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+
+            <Parameter Key="shangpinmingcheng" Type="String" >
+                <Where>
+                    <![CDATA[
+					m.if(shangpinmingcheng==null  | shangpinmingcheng=="" ,""," and k.shangpinmingcheng like '%"+shangpinmingcheng+"%'")
+                ]]>
+                </Where>
+            </Parameter>
+
+            <Parameter Key="shengchanchangjia" Type="String" >
+                <Where>
+                    <![CDATA[
+					m.if(shengchanchangjia==null  | shengchanchangjia=="" ,""," and k.shengchanchangjia like '%"+shengchanchangjia+"%'")
+                ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="caigouxuqiufenxi" BillType="Bill" Caption="采购需求分析" DefaultFilter="" TableName="Table::xyy_erp_bill_caigouxuqiufenxi" DataSource="" Head="true">
+        <!-- 
+             单据编号	varchar	规则：YBM+年月日时分秒+3位随机码, 例如：YBM20160426112240764 
+        -->
+        <Field FieldKey="danjubianhao" FieldName="单据编号" FieldType="Varchar" Tramsfor="false" Bound="50" DefaultValue="='CGXQ'+o.orderNo()" Comment="单据编号"/>
+        <Field FieldKey="beizhu" FieldName="备注" FieldType="Varchar" Tramsfor="false" Comment="备注"/>
+		<Field FieldKey="kaipiaoriqi" FieldName="开票日期" FieldType="Date" Comment="开票日期"/>
+		<Field FieldKey="kaipiaoyuan" FieldName="开票员" FieldType="Varchar" Comment="开票员"/>
+<!--         <Field FieldKey="gysmc" FieldName="供应商名称" FieldType="Varchar" Comment="供应商名称"/> -->
+<!--         <Field FieldKey="sccjmc" FieldName="生产厂家名称" FieldType="Varchar" Comment="生产厂家名称"/> -->
+<!--         <Field FieldKey="shangpinmingcheng" FieldName="商品名称" FieldType="Varchar" Comment="商品名称"/> -->
+    </DataTable>
+
+    <DataTable Key="caigouxuqiufenxi_details" BillType="Bill"  Caption="采购订单明细" DefaultFilter="BillID" Pagging="5" TableName="Table::xyy_erp_bill_caigouxuqiufenxi_details" DataSource="" Head="false">
+        <Field FieldKey="shangpinbianhao" FieldName="商品编号" FieldType="Varchar"  Comment="商品编号"/>
+        <Field FieldKey="shangpinmingcheng" FieldName="商品名称" FieldType="Varchar"  Comment="商品名称"/>
+        <Field FieldKey="guige" FieldName="规格" FieldType="Varchar"  Comment="规格"/>
+        <Field FieldKey="danwei" FieldName="单位" FieldType="Varchar"  Comment="单位"/>
+        <Field FieldKey="shengchanchangjia" FieldName="生产厂家" FieldType="Varchar" Comment="生产厂家"/>
+        <Field FieldKey="kucunshuliang" FieldName="库存数量" FieldType="Int" DefaultValue="0"  Comment="库存数量"/>
+        <Field FieldKey="shangyuexiaoliang" FieldName="上月销量" FieldType="Int" DefaultValue="0"  Comment="上月销量"/>
+        <Field FieldKey="benyuexiaoliang" FieldName="本月销量" FieldType="Int" DefaultValue="0"  Comment="本月销量"/>
+        <Field FieldKey="zaitushuliang" FieldName="在途数量" FieldType="Int" DefaultValue="0"  Comment="在途数量"/>
+        <Field FieldKey="tuijianshuliang" FieldName="推荐数量" FieldType="Int" DefaultValue="0"  Comment="推荐数量"/>
+        <Field FieldKey="shuliang" FieldName="数量" FieldType="Int" DefaultValue="0"  Comment="数量"/>
+        <Field FieldKey="gysbh" FieldName="供应商编号" FieldType="Varchar"  Comment="供应商编号"/>
+        <Field FieldKey="gysmc" FieldName="供应商名称" FieldType="Varchar"  Comment="供应商名称"/>
+        <Field FieldKey="pizhunwenhao" FieldName="批准文号" FieldType="Varchar"  Comment="批准文号"/>
+        <Field FieldKey="chandi" FieldName="产地" FieldType="Varchar"  Comment="产地"/>
+        <Field FieldKey="beizhu" FieldName="备注" FieldType="Varchar"  Comment="备注"/>
+        
+        
+        <Field FieldKey="hanshuijia" FieldName="含税价" FieldType="Decimal" DefaultValue="0.00"  Comment="含税价"/>
+        <Field FieldKey="hanshuijine" FieldName="含税金额" FieldType="Decimal" DefaultValue="0.0000" Comment="含税金额" Bound="4"/>
+        <Field FieldKey="hscbj" FieldName="核算成本价" FieldType="Decimal" DefaultValue="0.00" Comment="核算成本价"/>
+        <Field FieldKey="zuidijinjia" FieldName="最低进价" FieldType="Decimal" DefaultValue="0.00" Comment="最低进价"/>
+        <Field FieldKey="zuigaojinjia" FieldName="最高进价" FieldType="Decimal" DefaultValue="0.00" Comment="最高进价"/>
+        <Field FieldKey="zuihoujinjia" FieldName="最后进价" FieldType="Decimal" DefaultValue="0.00" Comment="最后进价"/>
+        <Field FieldKey="hscbj" FieldName="最后进货单位" FieldType="Varchar" Comment="最后进货单位"/>
+        <Field FieldKey="koulv" FieldName="扣率" FieldType="Decimal" DefaultValue="0.0"  Comment="扣率"/>
+        <Field FieldKey="shuilv" FieldName="税率" FieldType="Decimal" DefaultValue="0.0"  Comment="税率"/>
+        
+        
+<!--         <Field FieldKey="llqhsl" FieldName="理论缺货数量" FieldType="Int" DefaultValue="0"  Comment="理论缺货数量"/> -->
+<!--         <Field FieldKey="ysccgjhsl" FieldName="已生成采购计划数量" FieldType="Int" DefaultValue="0"  Comment="已生成采购计划数量"/> -->
+<!--         <Field FieldKey="lldhsl" FieldName="理论订货数量" FieldType="Int" DefaultValue="0"  Comment="理论订货数量"/> -->
+<!--         <Field FieldKey="sjdhsl" FieldName="实际订货数量" FieldType="Int" DefaultValue="0"  Comment="实际订货数量"/> -->
+    </DataTable> 
+</DataSet>

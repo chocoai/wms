@@ -1,0 +1,74 @@
+<!-- <?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="caigourukudan" BillType="Bill" Caption="采购入库单" DefaultFilter="" TableName="Table::INT_WMS_CGRK_BILL" DataSource="" Head="true">
+        <Field FieldKey="djbh" FieldName="单据编号" FieldType="Varchar" Bound="50"  DefaultValue="='RK'+o.orderNo()" Comment="单据编号"/>
+		<Field FieldKey="dwbh" FieldName="单位内码" FieldType="Varchar" Comment="单位内码" />
+		<Field FieldKey="rq" FieldName="日期" FieldType="Date" Comment="日期" />
+		<Field FieldKey="cgy" FieldName="采购员" FieldType="Varchar" Comment="开票员" />
+        <Field FieldKey="shy" FieldName="收货员" FieldType="Varchar" Comment="采购员"/>
+        <Field FieldKey="zjy" FieldName="质检员" FieldType="Varchar" Comment="质检员" />
+        <Field FieldKey="czy" FieldName="操作员" FieldType="Varchar" Comment="操作员"   />
+        <Field FieldKey="djbh_sj" FieldName="原采购订单编号" FieldType="Int" DefaultValue="1" Comment="原采购订单编号"/>
+        <Field FieldKey="rktype" FieldName="入库类型" FieldType="Int" Comment="入库类型"/>
+        <Field FieldKey="yzid" FieldName="业主内码" FieldType="Varchar" Comment="业主内码"/>
+        <Field FieldKey="dj_sort" FieldName="单据行号" FieldType="Int"  Comment="单据行号"/>
+        <Field FieldKey="spid" FieldName="商品内码" FieldType="Varchar"  Comment="商品内码"/>  
+        <Field FieldKey="sl" FieldName="数量" FieldType="Decimal" DefaultValue="0.00" Bound="14,2" Comment="数量"/>
+        <Field FieldKey="js" FieldName="件数" FieldType="Decimal" DefaultValue="0.00" Bound="14,2" Comment="件数"/>
+        <Field FieldKey="lss" FieldName="零散数" FieldType="Decimal" DefaultValue="0.00" Bound="14,2" Comment="零散数"/>
+        <Field FieldKey="ph" FieldName="批号" FieldType="Varchar"  Comment="批号 "/>
+        <Field FieldKey="rq_sc" FieldName="生产日期" FieldType="Date"  Comment="生产日期"/>
+        <Field FieldKey="yxqz" FieldName="有效期至" FieldType="Date" Comment="有效期至"/>
+        <Field FieldKey="cgdd_sort" FieldName="采购订单行号" FieldType="Int" Comment="采购订单行号"/>
+        <Field FieldKey="yspd" FieldName="验收评定" FieldType="Int" DefaultValue="0"  Comment="验收评定"/>
+        <Field FieldKey="lastmodifytime" FieldName="上传单据时间" FieldType="Date" Comment="上传单据时间"/>
+        <Field FieldKey="is_zx" FieldName="状态回写" FieldType="Int" DefaultValue="0"  Comment="状态回写" />
+        <Field FieldKey="recnum" FieldName="" FieldType="Int" DefaultValue="0"  Comment="" />
+    </DataTable>
+    
+    <DataTable Key="" BillType="Bill" Caption="销售退回入库单" DefaultFilter="" TableName="Table::INT_WMS_XSTH_BILL" DataSource="" Head="true">
+        <Field FieldKey="djbh" FieldName="单据编号" FieldType="Varchar" Bound="50"  DefaultValue="='RK'+o.orderNo()" Comment="单据编号"/>
+		<Field FieldKey="dwbh" FieldName="单位内码" FieldType="Varchar" Comment="单位内码" />
+		<Field FieldKey="rq" FieldName="日期" FieldType="Date" Comment="日期" />
+		<Field FieldKey="ywy" FieldName="业务员" FieldType="Varchar" Comment="开票员" />
+        <Field FieldKey="zjy" FieldName="质检员" FieldType="Varchar" Comment="质检员" />
+        <Field FieldKey="thlb" FieldName="退货类别" FieldType="Varchar" Comment="操作员"   />
+        <Field FieldKey="yzid" FieldName="业主内码" FieldType="Varchar" Comment="业主内码"/>
+        <Field FieldKey="dj_sort" FieldName="单据行号" FieldType="Int"  Comment="单据行号"/>
+        <Field FieldKey="spid" FieldName="商品内码" FieldType="Varchar"  Comment="商品内码"/>  
+        <Field FieldKey="sl" FieldName="数量" FieldType="Decimal" DefaultValue="0.00" Bound="14,2" Comment="数量"/>
+        <Field FieldKey="js" FieldName="件数" FieldType="Decimal" DefaultValue="0.00" Bound="14,2" Comment="件数"/>
+        <Field FieldKey="lss" FieldName="零散数" FieldType="Decimal" DefaultValue="0.00" Bound="14,2" Comment="零散数"/>
+        <Field FieldKey="ph" FieldName="批号" FieldType="Varchar"  Comment="批号 "/>
+        <Field FieldKey="rq_sc" FieldName="生产日期" FieldType="Date"  Comment="生产日期"/>
+        <Field FieldKey="yxqz" FieldName="有效期至" FieldType="Date" Comment="有效期至"/>
+        <Field FieldKey="yspd" FieldName="验收评定" FieldType="Int" DefaultValue="0"  Comment="验收评定"/>
+        <Field FieldKey="lastmodifytime" FieldName="上传单据时间" FieldType="Date" Comment="上传单据时间"/>
+        <Field FieldKey="is_zx" FieldName="状态回写" FieldType="Int" DefaultValue="0"  Comment="状态回写" />
+        <Field FieldKey="bmid" FieldName="" FieldType="Varchar" DefaultValue="0"  Comment="" />
+    </DataTable>
+    
+    <DataTable Key="" BillType="Bill" Caption="采购退出单" DefaultFilter="" TableName="Table::INT_WMS_GJTC_BILL" DataSource="" Head="true">
+        <Field FieldKey="djbh" FieldName="单据编号" FieldType="Varchar" Bound="50"  DefaultValue="='RK'+o.orderNo()" Comment="单据编号"/>
+		<Field FieldKey="dwbh" FieldName="单位内码" FieldType="Varchar" Comment="单位内码" />
+		<Field FieldKey="rq" FieldName="日期" FieldType="Date" Comment="日期" />
+		<Field FieldKey="thy" FieldName="退货员" FieldType="Varchar" Comment="开票员" />
+        <Field FieldKey="cgy" FieldName="采购员" FieldType="Varchar" Comment="质检员" />
+        <Field FieldKey="yzid" FieldName="业主内码" FieldType="Varchar" Comment="业主内码"/>
+        <Field FieldKey="dj_sort" FieldName="单据行号" FieldType="Int"  Comment="单据行号"/>
+        <Field FieldKey="spid" FieldName="商品内码" FieldType="Varchar"  Comment="商品内码"/>  
+        <Field FieldKey="sl" FieldName="数量" FieldType="Decimal" DefaultValue="0.00" Bound="14,2" Comment="数量"/>
+        <Field FieldKey="js" FieldName="件数" FieldType="Decimal" DefaultValue="0.00" Bound="14,2" Comment="件数"/>
+        <Field FieldKey="lss" FieldName="零散数" FieldType="Decimal" DefaultValue="0.00" Bound="14,2" Comment="零散数"/>
+        <Field FieldKey="ph" FieldName="批号" FieldType="Varchar"  Comment="批号 "/>
+        <Field FieldKey="rq_sc" FieldName="生产日期" FieldType="Date"  Comment="生产日期"/>
+        <Field FieldKey="yxqz" FieldName="有效期至" FieldType="Date" Comment="有效期至"/>
+        <Field FieldKey="kczt" FieldName="库存状态" FieldType="Varchar" Comment="库存状态"/>
+        <Field FieldKey="lastmodifytime" FieldName="上传单据时间" FieldType="Date" Comment="上传单据时间"/>
+        <Field FieldKey="is_zx" FieldName="状态" FieldType="Int" DefaultValue="0"  Comment="状态" />
+        <Field FieldKey="billsn" FieldName="" FieldType="Int" DefaultValue="0"  Comment="" />
+    </DataTable>
+    
+    
+</DataSet>
+ -->

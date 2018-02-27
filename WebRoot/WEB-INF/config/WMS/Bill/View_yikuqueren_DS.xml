@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="yikuqueren" Caption="移库确认单" DefaultFilter="" Pagging="10"
+               TableName="SQLQuery::select * | from xyy_wms_bill_yikuqueren where 1=1 @danjubianhao @zhidanriqi @shangjiayuan @xiajiayuan ORDER BY createTime DESC" DataSource="" Head="false">
+        <Parameters> 
+            <Parameter Key="danjubianhao" Type="String">
+                <Where>
+                <![CDATA[
+					m.if(danjubianhao==null | danjubianhao=="" ," "," and danjubianhao like '%"+danjubianhao+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="zhidanriqi" Type="DateTime">
+                <Where>
+                <![CDATA[
+					m.if(zhidanriqi==null | zhidanriqi=="" ," "," and zhidanriqi like '%"+zhidanriqi+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="shangjiayuan" Type="String">
+                <Where>
+                <![CDATA[
+					m.if(shangjiayuan==null | shangjiayuan=="" ," "," and shangjiayuan like '%"+shangjiayuan+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="xiajiayuan" Type="String">
+                <Where>
+                <![CDATA[
+					m.if(xiajiayuan==null | xiajiayuan=="" ," "," and xiajiayuan like '%"+xiajiayuan+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

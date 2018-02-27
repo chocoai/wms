@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+	<DataTable Key="rukushouhuo" BillType="Bill" Caption="入库收货单"
+		DefaultFilter="" TableName="Table::xyy_wms_bill_rukushouhuo"
+		DataSource="" Head="true">
+
+		<Field FieldKey="dingdanriqi" FieldName="订单日期" FieldType="Date"
+			Comment="订单日期" />
+		<Field FieldKey="dingdanbianhao" FieldName="订单编号" FieldType="Varchar"
+			Comment="订单编号" />
+			
+		<Field FieldKey="dingdanleixing" FieldName="订单类型" FieldType="Int"
+			Comment="订单类型" />
+		<Field FieldKey="huozhumingcheng" FieldName="货主名称" FieldType="Varchar"
+			Comment="货主名称" />
+		<Field FieldKey="huozhubianhao" FieldName="货主编号" FieldType="Varchar"
+			Comment="货主编号" />
+		<Field FieldKey="danweibianhao" FieldName="单位编号" FieldType="Varchar"
+			Comment="单位编号" />
+		<Field FieldKey="danweimingcheng" FieldName="单位名称" FieldType="Varchar"
+			Comment="单位名称" />
+		<Field FieldKey="kufang" FieldName="库房" FieldType="Varchar"
+			Comment="库房" />
+		<Field FieldKey="cangkubianhao" FieldName="仓库编号" FieldType="Varchar"
+			Comment="仓库编号" />	
+		<Field FieldKey="bumenmingcheng" FieldName="部门名称" FieldType="Varchar"
+			Comment="部门名称" />
+		<Field FieldKey="caigouyuan" FieldName="采购员" FieldType="Varchar"
+			Comment="采购员" />
+		<Field FieldKey="shouhuoyuan" FieldName="收货员" FieldType="Varchar"
+			Comment="收货员" />
+		<Field FieldKey="wenkongfangshi" FieldName="温控方式" FieldType="Int"
+			Comment="温控方式" />
+		<Field FieldKey="qiyunshijian" FieldName="启运时间" FieldType="Date"
+			Comment="启运时间" />
+		<Field FieldKey="daohuoshijian" FieldName="到货时间" FieldType="Date"
+			Comment="到货时间" />
+		<Field FieldKey="yunshuwendu" FieldName="运输温度" FieldType="Varchar"
+			Comment="运输温度" />
+		<Field FieldKey="daohuowendu" FieldName="到货温度" FieldType="Varchar"
+			Comment="到货温度" />
+		<Field FieldKey="beizhu" FieldName="备注" FieldType="Varchar"
+			Comment="备注" />
+		<Field FieldKey="yewubianhao" FieldName="业务编号" FieldType="Varchar"
+			Comment="业务编号"/>
+		<Field FieldKey="rukudanID" FieldName="入库单的ID" FieldType="Varchar"
+			Comment="入库单的ID"/>	
+		<Field FieldKey="yanshouzhuangtai" FieldName="验收状态" FieldType="Int"
+			Comment="验收状态（0-未验收；1-部分验收；2-验收完成）" />
+	</DataTable>
+
+	<DataTable Key="rukushouhuo_details" BillType="Bill" Caption="商品明细"
+		DefaultFilter="BillID" TableName="Table::xyy_wms_bill_rukushouhuo_details"
+		DataSource="" Head="false">
+		<Field FieldKey="yewubianhao" FieldName="业务编号" FieldType="Varchar"
+			Comment="业务编号"/>
+		<Field FieldKey="shangpinbianhao" FieldName="商品编号" FieldType="Varchar"
+			Comment="商品编号" />
+		<Field FieldKey="shangpinmingcheng" FieldName="商品名称" FieldType="Varchar"
+			Comment="商品名称" />
+		<Field FieldKey="shangpinguige" FieldName="商品规格" FieldType="Varchar"
+			Comment="商品规格" />
+		<Field FieldKey="baozhuangdanwei" FieldName="包装单位" FieldType="Int"
+			Comment="包装单位" />
+		<Field FieldKey="baozhuangshuliang" FieldName="包装数量" FieldType="Decimal" DefaultValue="0.0"
+			Comment="包装数量" />
+		<Field FieldKey="pizhunwenhao" FieldName="批准文号" FieldType="Varchar"
+			Comment="批准文号" />
+		<Field FieldKey="shengchanchangjia" FieldName="生产厂家" FieldType="Varchar"
+			Comment="生产厂家" />
+		<Field FieldKey="zhengjianshu" FieldName="整件数" FieldType="Decimal" DefaultValue="0.0" Comment="整件数" />
+		<Field FieldKey="lingsanshu" FieldName="零散数" FieldType="Decimal" DefaultValue="0.0" Comment="零散数" />
+		<Field FieldKey="caigoushuliang" FieldName="采购数量" FieldType="Decimal" DefaultValue="0.0" Comment="采购单的数量" />
+		<Field FieldKey="shuliang" FieldName="数量" FieldType="Decimal" DefaultValue="0.0" Comment="收货的数量" />
+		<Field FieldKey="shouhuojielun" FieldName="收货结论" FieldType="Int" Comment="收货结论" />
+		<Field FieldKey="pihao" FieldName="批号" FieldType="Varchar"
+			Comment="批号" />
+		<Field FieldKey="shengchanriqi" FieldName="生产日期" FieldType="Date"
+			Comment="生产日期" />
+		<Field FieldKey="youxiaoqizhi" FieldName="有效期至" FieldType="Date"
+			Comment="有效期至" />
+		<Field FieldKey="rongqibianhao" FieldName="容器编号" FieldType="Varchar"
+			Comment="容器编号" />
+		<Field FieldKey="hanshuijia" FieldName="含税价" Bound="14,3"
+			FieldType="Decimal" DefaultValue="0.0" Comment="含税价" />
+		<Field FieldKey="hanshuijine" FieldName="含税金额" Bound="14,3"
+			FieldType="Decimal" DefaultValue="0.0" Comment="含税金额" />
+		<Field FieldKey="beizhu" FieldName="备注" FieldType="Varchar"
+			Comment="备注" />
+		<Field FieldKey="yanshoushuliang" FieldName="验收数量" FieldType="Decimal"
+			Comment="验收数量" />
+		<Field FieldKey="rukuID" FieldName="采购订单明细的id" FieldType="Varchar"
+			Comment="采购订单明细的id" />	
+		<Field FieldKey="yanshouzhuangtai" FieldName="验收状态" FieldType="Int" DefaultValue="0"
+			Comment="验收状态（0-未验收，1-已验收）" />
+	</DataTable>
+
+
+</DataSet>

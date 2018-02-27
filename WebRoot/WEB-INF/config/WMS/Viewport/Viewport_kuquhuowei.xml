@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BillViewMeta Key="kuquhuowei" Caption="工具栏" Version="">
+	<Parameters>
+		<Parameter Key="t1" Type="String" Scope="Global">
+			<DefaultValue>=o.orderNo()</DefaultValue>
+			<Where></Where>
+		</Parameter>
+	</Parameters>
+
+
+	<BillBody UserAgent="web">
+		<BillBodyMeta>
+			<BillUIPanel Layout="flex" Key="kuquhuowei_tools" Caption="工具栏"
+				RowGap="7" ColGap="10" ColWidth="repeat(8,auto) 1fr" S="">
+				<BillUIGridPanel Key="kuquhuowei_grid">
+					<BillUIRowPanel>
+
+						 <BillUIColPanel Width="4">
+							<BillUIWidget Caption="货位编号" Key="cancel"
+								EnabledWhen="True" ParameterKey="huoweibianhao" DataTableKey="kuquhuowei_view"
+								WidgetType="BillUIString">
+							</BillUIWidget>
+						</BillUIColPanel>
+						 <BillUIColPanel Width="4">
+							<BillUIWidget Caption="库区名称" Key="cancel"
+								EnabledWhen="True" ParameterKey="kuqumingcheng" DataTableKey="kuquhuowei_view"
+								WidgetType="BillUIString">
+							</BillUIWidget>
+						</BillUIColPanel>
+						
+						<BillUIColPanel Width="2">
+							<BillUIWidget Caption="查询" Key="search" EnabledWhen="True"
+								Icon="glyphicon glyphicon-send" WidgetType="BillUIButton">
+								<Triggers>
+									<Trigger Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                        	this.search("kuquhuowei_view");
+                                 			]]>
+									</Trigger>
+								</Triggers>
+							</BillUIWidget>
+
+						</BillUIColPanel> -->
+					</BillUIRowPanel>
+					<BillUIRowPanel>
+						<BillUIColPanel Width="12">
+							<BillUIPanel Layout="flex" Key="dictionary_tools">
+
+								<BillUIGrid Key="grid0" OptMode="View" RowId=""
+									DataTableKey="kuquhuowei_view">
+									<GridHeads>
+
+										<GridHead Col="huoweibianhao" Caption="货位编号" enableEdit="True"
+											Width="150px">
+											<BillUIWidget Key="huoweibianhao" WidgetType="BillUIString" />
+										</GridHead>
+										<GridHead Col="kuqumingcheng" Caption="库区名称" enableEdit="True"
+											Width="150px">
+											<BillUIWidget Key="kuqumingcheng" WidgetType="BillUIString" />
+										</GridHead>
+										
+
+									</GridHeads>
+								</BillUIGrid>
+							</BillUIPanel>
+
+						</BillUIColPanel>
+					</BillUIRowPanel>
+
+				</BillUIGridPanel>
+			</BillUIPanel>
+		</BillBodyMeta>
+	</BillBody>
+
+</BillViewMeta>

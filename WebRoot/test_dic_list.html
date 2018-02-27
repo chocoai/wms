@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="cn" ng-app="xyyerp">
+<head>
+    <base href="/"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>商品基本信息列表</title>
+    <link rel='stylesheet' href='../lib/css/bootstrap.css'>
+    <link rel='stylesheet' href='../lib/css/css.css'>
+    <script src="//cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//cdn.bootcss.com/angular.js/1.5.10/angular.min.js"></script>
+    <script src="/lib/js/util.js"></script>
+    <script src="//cdn.bootcss.com/angular-ui-bootstrap/2.4.0/ui-bootstrap-tpls.min.js"></script>
+    <script src="/Shared/myDirective.js"></script>
+    <script src="/Shared/SharedService.js"></script>
+    <script src="/lib/js/dictionary.js"></script>
+    <style></style>
+    <script>
+        var main = angular.module('xyyerp', ['myApp.myDirective']);
+        main.run(function ($rootScope, $interval) {
+            if (!$rootScope._model) {
+                $rootScope._model = new $Model();
+            }
+            if (!$rootScope._env) {
+                $rootScope._env = new $Env();
+            }
+        });
+
+        main.controller('xyyerp.mainCtle5e028b60b3a4bde975f6672fb43fb95', function ($scope, $http, $interval, $rootScope, $compile, $q) {
+            $scope._model = new $Model($rootScope._model);
+            $scope._env = new $Model($rootScope._env);
+            clone({"billkey": "shangpinjibenxinxi", "ua": "WEB"}, $scope._env);
+            clone({billtype: 'Dics'}, $scope._env);
+            $scope.renderId = 'd053ba21efa34c9ab7c43194e5bcaad4';
+            $scope.$http = $http;
+            $scope.$q = $q;
+            $scope.$interval = $interval;
+            $scope._$$controller$$ = '_$$controller$$';
+            $scope.$compile = $compile;
+            $scope.checkRuleLists = [];
+            mixer(ERPDic, $scope);
+            $scope.dicsInit();
+        });
+
+    </script>
+</head>
+<body>
+<div billuitemplate></div>
+<div zhujimatemplate></div>
+<div ng-controller="xyyerp.mainCtle5e028b60b3a4bde975f6672fb43fb95" Version="1.0.0" BillType="Dics" Caption="商品基本信息列表"
+     Key="shangpinjibenxinxi" id="shangpinjibenxinxi">
+    <div user-agent="web">
+        <div Caption="商品基本信息列表" style="flex-direction:column;display:flex;">
+            <div Caption="工具栏" id="toolbox" style="flex-direction:column;display:flex;flex-basis:1;">
+                <div billuiview src="tooldicsbox" renderId="d053ba21efa34c9ab7c43194e5bcaad4" key="box"
+                     style="flex-basis:1;"></div>
+            </div>
+            <div class="panel panel-default publicPanel" Caption="查询面板" id="bills_tools"
+                 style="flex-direction:column;display:flex;flex-basis:1;">
+                <div class="row">
+                    <div class="col-sm-3 ">
+                        <div class="input-group"><span class="input-group-addon">商品名称</span><input
+                                ng-model="$shangpinjibenxinxi.params.shangpinmingcheng" billuistring
+                                renderId="d053ba21efa34c9ab7c43194e5bcaad4" key="shangpinmingcheng" title="商品名称" null
+                                type="text" class="form-control"></div>
+                    </div>
+                    <div class="col-sm-3 ">
+                        <button triggers="WyJAJHRoaXMuX19sb2FkRGljcyhcInNoYW5ncGluamliZW54aW54aVwiKTsiXQ==" billuibutton
+                                renderId="d053ba21efa34c9ab7c43194e5bcaad4" key="search" class="btn btn-primary"><i
+                                class="glyphicon glyphicon-send"></i>查询
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel  panel-primary  publicPanel" Caption="查询展示列" id="bills_tabs" style="flex-basis:1;">
+            <ul role="tablist" class="nav nav-tabs"></ul>
+            <div class="tab-content">
+                <div heads="W3siY29sIjoic2hhbmdwaW5iaWFuaGFvIiwid2lkZ2V0IjoiUEdScGRpQmpiR0Z6Y3owaWFXNXdkWFF0WjNKdmRYQWlJRDQ4YVc1d2RYUWdibWN0Ylc5a1pXdzlJbDlmSkdSZmJXOWtaV3drWDE4aUlDQmlhV3hzZFdsemRISnBibWNnSUhKbGJtUmxja2xrUFNKa01EVXpZbUV5TVdWbVlUTTBZemxoWWpkak5ETXhPVFJsTldKallXRmtOQ0lnSUd0bGVUMGljMmhoYm1kd2FXNWlhV0Z1YUdGdklpQWdkR2wwYkdVZ0lHNTFiR3dnSUhSNWNHVTlJblJsZUhRaUlDQmpiR0Z6Y3owaVptOXliUzFqYjI1MGNtOXNJaUErUEM5a2FYWSsiLCJ3aWR0aCI6IjEwMHB4IiwiY2FwdGlvbiI6IuWVhuWTgee8luWPtyIsIm9yZGVyIjowfSx7ImNvbCI6InNoYW5ncGlubWluZ2NoZW5nIiwid2lkZ2V0IjoiUEdScGRpQmpiR0Z6Y3owaWFXNXdkWFF0WjNKdmRYQWlJRDQ4YVc1d2RYUWdibWN0Ylc5a1pXdzlJbDlmSkdSZmJXOWtaV3drWDE4aUlDQmlhV3hzZFdsemRISnBibWNnSUhKbGJtUmxja2xrUFNKa01EVXpZbUV5TVdWbVlUTTBZemxoWWpkak5ETXhPVFJsTldKallXRmtOQ0lnSUd0bGVUMGljMmhoYm1kd2FXNXRhVzVuWTJobGJtY2lJQ0IwYVhSc1pTQWdiblZzYkNBZ2RIbHdaVDBpZEdWNGRDSWdJR05zWVhOelBTSm1iM0p0TFdOdmJuUnliMndpSUQ0OEwyUnBkajQ9Iiwid2lkdGgiOiIxNTBweCIsImNhcHRpb24iOiLllYblk4HlkI3np7AiLCJvcmRlciI6MH0seyJjb2wiOiJzaGFuZ3Bpbmd1aWdlIiwid2lkZ2V0IjoiUEdScGRpQmpiR0Z6Y3owaWFXNXdkWFF0WjNKdmRYQWlJRDQ4YVc1d2RYUWdibWN0Ylc5a1pXdzlJbDlmSkdSZmJXOWtaV3drWDE4aUlDQmlhV3hzZFdsemRISnBibWNnSUhKbGJtUmxja2xrUFNKa01EVXpZbUV5TVdWbVlUTTBZemxoWWpkak5ETXhPVFJsTldKallXRmtOQ0lnSUd0bGVUMGljMmhoYm1kd2FXNW5kV2xuWlNJZ0lIUnBkR3hsSUNCdWRXeHNJQ0IwZVhCbFBTSjBaWGgwSWlBZ1kyeGhjM005SW1admNtMHRZMjl1ZEhKdmJDSWdQand2WkdsMlBnPT0iLCJ3aWR0aCI6IjgwcHgiLCJjYXB0aW9uIjoi5ZWG5ZOB6KeE5qC8Iiwib3JkZXIiOjB9LHsiY29sIjoic2hlbmdjaGFuY2hhbmdqaWEiLCJ3aWRnZXQiOiJQR1JwZGlCamJHRnpjejBpYVc1d2RYUXRaM0p2ZFhBaUlENDhhVzV3ZFhRZ2JtY3RiVzlrWld3OUlsOWZKR1JmYlc5a1pXd2tYMThpSUNCaWFXeHNkV2x6ZEhKcGJtY2dJSEpsYm1SbGNrbGtQU0prTURVelltRXlNV1ZtWVRNMFl6bGhZamRqTkRNeE9UUmxOV0pqWVdGa05DSWdJR3RsZVQwaWMyaGxibWRqYUdGdVkyaGhibWRxYVdFaUlDQjBhWFJzWlNBZ2JuVnNiQ0FnZEhsd1pUMGlkR1Y0ZENJZ0lHTnNZWE56UFNKbWIzSnRMV052Ym5SeWIyd2lJRDQ4TDJScGRqND0iLCJ3aWR0aCI6IjE1MHB4IiwiY2FwdGlvbiI6IueUn+S6p+WOguWutiIsIm9yZGVyIjowfV0="
+                     billuigrid renderId="d053ba21efa34c9ab7c43194e5bcaad4" key="grid0" row-id
+                     table-key="shangpinjibenxinxi" select-mode="multi" opt-mode="view"></div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

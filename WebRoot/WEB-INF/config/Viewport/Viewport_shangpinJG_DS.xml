@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="shangpinJG_view" Caption="商品名称" DefaultFilter="" PermissionType="CommType"  Pagging="10"
+        TableName="SQLQuery::select b.*,a.orgId,a.kucunzhuangtai | from xyy_erp_bill_shangpinzongkucun a,
+	xyy_erp_dic_shangpinjibenxinxi b
+	 where a.shangpinID = b.goodsid and b.dongjie=1 and b.shifouhuodong=1 and b.status=40 @shangpin  @shengchanchangjia @orgID  @kucunzhuangtai  order by a.createTime desc"  DataSource="" Head="false" Singleton="" OrderBy="">
+        <Parameters>
+            <Parameter Key="kucunzhuangtai" Type="Integer">
+                <Where>
+                    <![CDATA[
+					m.if(kucunzhuangtai==null ,""," and a.kucunzhuangtai = "+kucunzhuangtai+"")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="orgID" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(orgID==null ,""," and a.orgId = '"+orgID+"'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="shangpin" Type="String">
+                <Where>
+             <![CDATA[
+					m.if(shangpin==null | shangpin=="" ,""," and b.mixCondition like '%"+shangpin+"%'")
+	            ]]> 
+                </Where>
+            </Parameter>
+            <Parameter Key="shengchanchangjia" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(shengchanchangjia==null | shengchanchangjia=="" ,""," and b.shengchanchangjia like '%"+shengchanchangjia+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

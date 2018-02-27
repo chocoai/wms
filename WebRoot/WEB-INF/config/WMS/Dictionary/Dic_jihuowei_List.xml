@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BillFormMeta Key="jihuowei" Version="1.0.0" BillType="Dics"
+	Caption="集货位资料维护">
+	<BillBody>
+		<BillBodyMeta UserAgent="web">
+			<BillUIPanel Layout="flex" FlexDirection="column" Width="100%"
+				Key="mainContainer" Caption="集货位资料维护" S="">
+
+				<BillUIPanel Layout="flex" Key="toolbox" Caption="工具栏">
+
+					<BillUIWidget Key="add" Caption="新增" Left="1" Top="1"
+						Width="1" Height="1" EnabledWhen="True" Icon="glyphicon glyphicon-plus-sign"
+						WidgetType="BillUIButton">
+						<Triggers>
+							<Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+										@$this.$add();
+						        ]]>
+							</Trigger>
+						</Triggers>
+					</BillUIWidget>
+
+					<BillUIWidget Key="edit" Caption="编辑" Left="2" Top="1"
+						Width="1" Height="1" EnabledWhen="True" Icon="glyphicon glyphicon-edit"
+						WidgetType="BillUIButton">
+						<Triggers>
+							<Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+                                        var sos = getSos('jihuowei');
+                                        if(sos.length == 0 || sos.length > 1){
+                                            alert("请选择一条记录");
+							                return;
+                                        }
+                                        @$this.$edit();
+	                            ]]>
+							</Trigger>
+						</Triggers>
+					</BillUIWidget>
+					<BillUIWidget Key="downloadExcel" Caption="导出"
+						EnabledWhen="True" FileName="货位资料导出" Icon="glyphicon glyphicon-save-file"
+						WidgetType="BillUIButton">
+
+						<Init Type="javascript/angular" Runat="client">
+							<![CDATA[
+                                            this.setEnable();
+										]]>
+						</Init>
+						<Triggers>
+							<Trigger Type="javascript/angular" Runat="client">
+								<![CDATA[
+                                 @$this.downloadExcel('jihuowei');
+	                            ]]>
+							</Trigger>
+						</Triggers>
+						<ExportSheets>
+							<ExportSheet SheetName="集货位资料信息" TitleName=""
+								DataTableKey="jihuowei">
+								<ExportColumns>
+									<ExportColumn Caption="仓库编号" DataTableColumn="cangkubianhao" />
+									<ExportColumn Caption="仓库" DataTableColumn="cangkumingchen" />
+									<ExportColumn Caption="集货位编号" DataTableColumn="jihuoweibianhao" />
+									<ExportColumn Caption="集货位类型" DataTableColumn="jihuoweileixing" Type="Dic">
+										<![CDATA[
+			                                          {'url':'select','type':'jihuoweileixing'}
+			                                        ]]>
+									</ExportColumn>
+									<ExportColumn Caption="业务类型" DataTableColumn="yewuleixing" Type="Dic">
+										<![CDATA[
+			                                          {'url':'select','type':'jihuoweiyewuleixing'}
+			                                        ]]>
+									</ExportColumn>
+									
+									<ExportColumn Caption="提货方式" DataTableColumn="tihuofangshi" Type="Dic">
+										<![CDATA[
+			                                          {'url':'select','type':'tihuofangshi'}
+			                                        ]]>
+									</ExportColumn>
+									<ExportColumn Caption="线路名称" DataTableColumn="xianlumingcheng" />
+									<ExportColumn Caption="巷道" DataTableColumn="xiangdao" />
+									<ExportColumn Caption="排" DataTableColumn="pai" />
+									<ExportColumn Caption="层" DataTableColumn="ceng" />
+									<ExportColumn Caption="列" DataTableColumn="lie" />
+									<ExportColumn Caption="列" DataTableColumn="qiyong" Type="Dic">
+										<![CDATA[
+			                                          {'url':'select','type':'bool'}
+			                                        ]]>
+									</ExportColumn>
+									<ExportColumn Caption="是否启用" DataTableColumn="shifousuoding" Type="Dic">
+												<![CDATA[
+			                                          {'url':'select','type':'bool'}
+			                                        ]]>
+									</ExportColumn>
+								</ExportColumns>
+							</ExportSheet>
+						</ExportSheets>
+					</BillUIWidget>
+
+					<!-- <BillUIWidget Key="del" Caption="删除" EnabledWhen="True"
+						Icon="glyphicon glyphicon-trash" WidgetType="BillUIButton" S="btn btn-danger">
+						<Triggers>
+							<Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+							          this.setEnvModel({dtlDel:'true'});
+							         @$this.$del();
+                      		]]>
+							</Trigger>
+						</Triggers>
+					</BillUIWidget> -->
+				</BillUIPanel>
+				<BillUIPanel Layout="flex" Key="bills_tools" Caption="查询面板"
+					S="panel panel-default publicPanel">
+					<BillUIGridPanel Device="sm" key="boxtool">
+						<BillUIRowPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="cangkubianhao" Caption="仓库编号"
+									Disable="true" EnabledWhen="True" WidgetType="BillUIPopupWindow"
+									ViewSize="lg" ParameterKey="cangkubianhao" DataTableKey="jihuowei"
+									Src="cangku">
+									
+									<Triggers>
+										<Trigger>
+                                                <![CDATA[
+                                                    var cangku=this.rows[0];     
+                                                    this.setValue(cangku.cangkubianhao);
+                                                    @cangkuID.setValue(cangku.ID);
+                                                    @cangkumingchen.setValue(cangku.cangkumingchen);
+                                                ]]>
+										</Trigger>
+									</Triggers>
+								</BillUIWidget>
+							</BillUIColPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="cangkumingchen" Caption="仓库"
+									Disable="true" ParameterKey="cangkumingchen" DataTableKey="jihuowei"
+									EnabledWhen="True" WidgetType="BillUIString">
+								</BillUIWidget>
+							</BillUIColPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="jihuoweibianhao" ParameterKey="jihuoweibianhao"
+									DataTableKey="jihuowei" Caption="集货位编号" EnabledWhen="True"
+									Icon="glyphicon glyphicon-send" WidgetType="BillUIString">
+								</BillUIWidget>
+							</BillUIColPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="jihuoweileixing" Caption="集货位类型"
+									ParameterKey="jihuoweileixing" DataTableKey="jihuowei"
+									EnabledWhen="True" WidgetType="BillUISelect"
+									Src="bill/selectSrc?type=jihuoweileixing">
+									<Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+			                                         this.loadDataSource();
+			                                 ]]>
+									</Init>
+								</BillUIWidget>
+							</BillUIColPanel>
+						</BillUIRowPanel>
+
+						<BillUIRowPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="xiangdao" ParameterKey="xiangdao"
+									DataTableKey="jihuowei" Caption="巷道" EnabledWhen="True"
+									Icon="glyphicon glyphicon-send" WidgetType="BillUIString">
+								</BillUIWidget>
+							</BillUIColPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="pai" ParameterKey="pai"
+									DataTableKey="jihuowei" Caption="排" EnabledWhen="True"
+									Icon="glyphicon glyphicon-send" WidgetType="BillUIString">
+								</BillUIWidget>
+							</BillUIColPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="ceng" ParameterKey="ceng"
+									DataTableKey="jihuowei" Caption="层" EnabledWhen="True"
+									Icon="glyphicon glyphicon-send" WidgetType="BillUIString">
+								</BillUIWidget>
+							</BillUIColPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="lie" ParameterKey="lie"
+									DataTableKey="jihuowei" Caption="列" EnabledWhen="True"
+									Icon="glyphicon glyphicon-send" WidgetType="BillUIString">
+								</BillUIWidget>
+							</BillUIColPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="tihuofangshi" Caption="提货方式"
+									ParameterKey="tihuofangshi" DataTableKey="jihuowei"
+									EnabledWhen="True" WidgetType="BillUISelect"
+									Src="bill/selectSrc?type=tihuofangshi">
+									<Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+			                                         this.loadDataSource();
+			                                 ]]>
+									</Init>
+								</BillUIWidget>
+							</BillUIColPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="yewuleixing" Caption="业务类型"
+									ParameterKey="yewuleixing" DataTableKey="jihuowei" EnabledWhen="True"
+									WidgetType="BillUISelect" Src="bill/selectSrc?type=jihuoweiyewuleixing">
+									<Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+			                                         this.loadDataSource();
+			                                 ]]>
+									</Init>
+								</BillUIWidget>
+							</BillUIColPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="xianlubianhao" Caption="线路编号"
+									Disable="true" EnabledWhen="True" WidgetType="BillUIPopupWindow"
+									ViewSize="lg" ParameterKey="xianlubianhao" DataTableKey="jihuowei"
+									Src="peisongxianlu">
+									<Init Type="javascript/angular" Runat="client">
+                                            <![CDATA[
+                                            	var orgId=this.getOrgId();
+	                                        ]]>
+									</Init>
+									<Triggers>
+										<Trigger>
+                                                <![CDATA[
+                                                    var peisongxianlu=this.rows[0];     
+                                                    this.setValue(peisongxianlu.xianlubianhao);
+                                                    @luxianid.setValue(peisongxianlu.ID);
+                                                ]]>
+										</Trigger>
+									</Triggers>
+								</BillUIWidget>
+							</BillUIColPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="qiyong" Caption="是否启用"
+									ParameterKey="qiyong" DataTableKey="jihuowei"
+									EnabledWhen="True" WidgetType="BillUISelect" Src="bill/selectSrc?type=bool">
+									<Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+			                                         this.loadDataSource();
+			                                 ]]>
+									</Init>
+								</BillUIWidget>
+							</BillUIColPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Caption="查询" Key="search"
+									EnabledWhen="True" Icon="glyphicon glyphicon-send" WidgetType="BillUIButton">
+									<Triggers>
+										<Trigger Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                            @$this.__loadDics("jihuowei");
+                                            console.log("window.body",window.$body);
+	                                    ]]>
+										</Trigger>
+									</Triggers>
+								</BillUIWidget>
+								<BillUIWidget Caption="重置" Key="cancel"
+									EnabledWhen="True" Icon="glyphicon glyphicon-send" WidgetType="BillUIButton">
+									<Triggers>
+										<Trigger Type="javascript/angular" Runat="client">
+                                            <![CDATA[
+			                                       @$this.__loadDics();
+			 	                            ]]>
+										</Trigger>
+									</Triggers>
+								</BillUIWidget>
+							</BillUIColPanel>
+						</BillUIRowPanel>
+					</BillUIGridPanel>
+				</BillUIPanel>
+
+
+				<BillUIPanel Layout="tab" Key="bills_tabs" Caption="查询展示列"
+				S="panel  panel-primary  publicPanel">
+					<BillUIGrid Key="grid0" OptMode="View" SelectMode="Multi"
+						DataTableKey="jihuowei">
+						<DoubleClickHandlers>
+							<DoubleClickHandler>
+                                <![CDATA[
+                                    var shangpin=this.row;
+                                    window.location.href='/bill/view/dics-item?billKey=jihuowei&ID='+shangpin.ID+'&allDisabled=true';
+
+                                ]]>
+							</DoubleClickHandler>
+						</DoubleClickHandlers>
+
+						<GridHeads>
+							<GridHead Col="cangkubianhao" Caption="仓库编号" Disable="true">
+								<BillUIWidget Key="cangkubianhao" WidgetType="BillUIString" />
+							</GridHead>
+							<GridHead Col="cangkumingchen" Caption="仓库" Disable="true">
+								<BillUIWidget Key="cangkumingchen" WidgetType="BillUIString" />
+							</GridHead>
+							<GridHead Col="jihuoweibianhao" Caption="集货位编号" Disable="true">
+								<BillUIWidget Key="jihuoweibianhao" WidgetType="BillUIString" />
+							</GridHead>
+							<GridHead Col="jihuoweileixing" Caption="集货位类型" Disable="true">
+								<BillUIWidget Key="jihuoweileixing" WidgetType="BillUIInteger">
+									<Formatters>
+										<Formatter>
+									        <![CDATA[
+									            [{'url':'/bill/selectSrc','type':'jihuoweileixing'}]
+									        ]]>
+										</Formatter>
+									</Formatters>
+								</BillUIWidget>
+							</GridHead>
+
+							<GridHead Col="yewuleixing" Caption="业务类型" Disable="true">
+								<BillUIWidget Key="yewuleixing" WidgetType="BillUIInteger">
+									<Formatters>
+										<Formatter>
+									        <![CDATA[
+									            [{'url':'/bill/selectSrc','type':'jihuoweiyewuleixing'}]
+									        ]]>
+										</Formatter>
+									</Formatters>
+								</BillUIWidget>
+							</GridHead>
+							<GridHead Col="tihuofangshi" Caption="提货方式" Disable="true">
+								<BillUIWidget Key="tihuofangshi" WidgetType="BillUIInteger">
+									<Formatters>
+										<Formatter>
+									        <![CDATA[
+									            [{'url':'/bill/selectSrc','type':'tihuofangshi'}]
+									        ]]>
+										</Formatter>
+									</Formatters>
+								</BillUIWidget>
+							</GridHead>
+							<GridHead Col="xianlumingcheng" Caption="配送线路" Disable="true">
+								<BillUIWidget Key="xianlumingcheng" WidgetType="BillUIString">
+								</BillUIWidget>
+							</GridHead>
+
+
+
+							<GridHead Col="xiangdao" Caption="巷道">
+								<BillUIWidget Key="xiangdao" WidgetType="BillUIString" />
+							</GridHead>
+							<GridHead Col="pai" Caption="排">
+								<BillUIWidget Key="pai" WidgetType="BillUIString" />
+							</GridHead>
+							<GridHead Col="ceng" Caption="层">
+								<BillUIWidget Key="ceng" WidgetType="BillUIString" />
+							</GridHead>
+							<GridHead Col="lie" Caption="列">
+								<BillUIWidget Key="lie" WidgetType="BillUIString" />
+							</GridHead>
+							<GridHead Col="qiyong" Caption="是否启用">
+								<BillUIWidget Key="qiyong" WidgetType="BillUIInteger">
+									<Formatters>
+										<Formatter>
+									        <![CDATA[
+									            [{'url':'/bill/selectSrc','type':'bool'}]
+									        ]]>
+										</Formatter>
+									</Formatters>
+								</BillUIWidget>
+							</GridHead>
+							<GridHead Col="shifousuoding" Caption="是否锁定">
+								<BillUIWidget Key="shifousuoding" WidgetType="BillUIInteger">
+									<Formatters>
+										<Formatter>
+									        <![CDATA[
+									            [{'url':'/bill/selectSrc','type':'bool'}]
+									        ]]>
+										</Formatter>
+									</Formatters>
+								</BillUIWidget>
+							</GridHead>
+						</GridHeads>
+					</BillUIGrid>
+				</BillUIPanel>
+
+			</BillUIPanel>
+		</BillBodyMeta>
+	</BillBody>
+	<BillHeadMeta>
+	</BillHeadMeta>
+</BillFormMeta>
+

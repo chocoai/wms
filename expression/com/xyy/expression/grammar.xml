@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammars>
+
+    <!-- 字符文法寂义 -->
+    <grammar
+        name="stringGrammars"
+        preProcess="true"
+        priority="100"
+        symPrefix="$1$"
+        tokenType="TOKEN_TYPE_STRING" >
+        <pattern>
+            <![CDATA[
+				\"[^\"]*\"|\'[^\']*\'
+			]]>
+        </pattern>
+    </grammar>
+
+
+    <!-- 函数 文法义 -->
+    <grammar
+        name="funGrammars"
+        preProcess="true"
+        priority="95"
+        symPrefix="$2$"
+        tokenType="TOKEN_TYPE_FUN" >
+
+        <pattern>
+            <![CDATA[
+				[a-zA-Z_$][\w_]*(\.[\w_]+)*\(
+			]]>
+        </pattern>
+    </grammar>
+
+    <!-- 变量方法定义 -->
+
+    <grammar
+        name="varGrammars"
+        preProcess="true"
+        priority="90"
+        symPrefix="$3$"
+        tokenType="TOKEN_TYPE_VAR" >
+
+        <!-- 识别普通变量 -->
+
+        <pattern>
+            <![CDATA[
+	 				[a-zA-Z_][\w_]*(\.[\w_]+)*
+			]]>
+        </pattern>
+    </grammar>
+
+    <!-- 浮点数文法定义 -->
+
+    <grammar
+        name="floatGrammars"
+        preProcess="true"
+        priority="85"
+        symPrefix="$4$"
+        tokenType="TOKEN_TYPE_FLOAT" >
+
+        <pattern>
+            <![CDATA[
+				[^$]\d+\.\d+|^\d+\.\d+ 			]]>
+        </pattern>
+    </grammar>
+
+    <!-- 整形数文法定义 -->
+
+    <grammar
+        name="intGrammars"
+        preProcess="true"
+        priority="80"
+        symPrefix="$5$"
+        tokenType="TOKEN_TYPE_INT" >
+
+        <pattern>
+            <![CDATA[
+				[^$]\d+|^\d+			]]>
+        </pattern>
+    </grammar>
+
+    <!-- 操作符文法定义 -->
+
+    <grammar
+        name="opeGrammars"
+        preProcess="true"
+        priority="75"
+        symPrefix="$6$"
+        tokenType="TOKEN_TYPE_OPE" >
+
+        <pattern>
+            <![CDATA[
+				[+*/&|-]|>=|<=|==|!=|<|>|!|%|,|\(|\)			]]>
+        </pattern>
+
+        <pattern>
+            <![CDATA[
+				\blike\b
+			]]>
+        </pattern>
+    </grammar>
+
+</grammars>

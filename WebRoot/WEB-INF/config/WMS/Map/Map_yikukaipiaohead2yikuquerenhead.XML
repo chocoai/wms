@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Map Key="yikukaipiaohead2yikuquerenhead" Caption="移库开票上引"
+     SrcDataObjectKey="yikukaipiao"
+     SrcDataType="Bill"
+     TgtDataObjectKey="yikuqueren"
+     TgtDataType="Bill"
+     MaxPushValue="100"
+     MinPushValue="0">
+    <TargetTableCollection>
+
+        <TargetTable Key="yikuqueren" SrcTableKey="yikukaipiao">
+            <Field FieldKey="danjubianhao">
+                <![CDATA[
+                     =danjubianhao
+              ]]>
+            </Field>
+            <Field FieldKey="zhidanren">
+                <![CDATA[
+                     =shangjiayuan
+              ]]>
+            </Field>
+            <Field FieldKey="cangkumingcheng">
+                <![CDATA[
+                     =cangkumingcheng
+              ]]>
+            </Field>
+            <Field FieldKey="cangkubianhao">
+                <![CDATA[
+                     =cangkubianhao
+              ]]>
+            </Field>
+        </TargetTable>
+
+    </TargetTableCollection>
+    <FeedBackCollection>
+        <FeedbackObject TableKey="yikuqueren" BillStatus="47">
+            <FeedbackTableCollection>
+                <FeedbackTable Key="tempyikukaipiao" TableKey="xyy_wms_bill_yikukaipiao">
+                    <FeedbackField FieldKey="zhuangtai" FeedFieldKey="" OpSign="Assign">
+                        <![CDATA[
+	                		=2
+	                	]]>
+                    </FeedbackField>
+                </FeedbackTable>
+            </FeedbackTableCollection>
+        </FeedbackObject>
+
+    </FeedBackCollection>
+</Map>
+
+
+   
+

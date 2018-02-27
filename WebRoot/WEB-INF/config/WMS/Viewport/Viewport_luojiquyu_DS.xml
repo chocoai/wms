@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="luojiquyu_view" Caption="逻辑区域查询" DefaultFilter="" PermissionType="CommType"  Pagging="100"
+        TableName="SQLQuery::select 
+         *
+         |
+          from
+           xyy_wms_dic_ljqzlwh where shifouqiyong='1'"   
+           DataSource="" Head="false" Singleton="" OrderBy="">
+    </DataTable>
+</DataSet>

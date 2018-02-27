@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="kuqujibenxinxi" Caption="库区基本信息列表" DefaultFilter="" Pagging="10" 
+               TableName="SQLQuery::select a.*,b.cangkubianhao,b.cangkumingchen | FROM xyy_wms_dic_kuqujibenxinxi a left join xyy_wms_dic_cangkuziliao b on a.cangkuID = b.ID WHERE 1=1  @kuqubianhao  @kuqumingcheng @cangkubianhao @cangkumingchen @qiyong ORDER BY b.cangkubianhao,a.kuqubianhao, a.createTime DESC" DataSource="" Head="false">
+        <Parameters>
+            <Parameter Key="kuqubianhao" Type="String" >
+                <Where>
+                    <![CDATA[
+					    m.if(kuqubianhao==null | kuqubianhao=="" ," "," and kuqubianhao like '%"+kuqubianhao+"%'")
+	                ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="kuqumingcheng" Type="String" >
+                <Where>
+                <![CDATA[
+                	  m.if(kuqumingcheng==null | kuqumingcheng=="" ," "," and kuqumingcheng like '%"+kuqumingcheng+"%'")
+				]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="cangkumingchen" Type="String" >
+                <Where>
+                <![CDATA[
+                	  m.if(cangkumingchen==null | cangkumingchen=="" ," "," and cangkumingchen like '%"+cangkumingchen+"%'")
+				]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="cangkubianhao" Type="String" >
+                <Where>
+                <![CDATA[
+                	  m.if(cangkubianhao==null | cangkubianhao=="" ," "," and cangkubianhao like '%"+cangkubianhao+"%'")
+				]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="qiyong" Type="Integer" >
+                <Where>
+                <![CDATA[
+                	 	m.if(qiyong==null," "," and a.qiyong="+qiyong+"")
+				]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

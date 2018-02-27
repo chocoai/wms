@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+	<DataTable Key="rukupihao_view" Caption="批号" DefaultFilter=""
+		PermissionType="CommType" Pagging="6"
+		TableName="SQLQuery::
+    SELECT
+    z.dbzsl,
+    p.pihao,
+    P.pihaoId,
+    p.shengchanriqi,
+    p.youxiaoqizhi
+	|
+	FROM
+	xyy_wms_dic_shangpinziliao z INNER JOIN 
+	xyy_wms_dic_shangpinpihao p 
+	on z.goodsid=p.goodsid
+    WHERE
+	1=1
+	and p.pihao != ''
+    @shangpinbianhao"
+		DataSource="" Head="false">
+		<Parameters>
+			<Parameter Key="shangpinbianhao" Type="String">
+				<Where>
+                <![CDATA[
+					m.if(shangpinbianhao==null | shangpinbianhao=="" ,""," and shangpinbianhao like '%"+shangpinbianhao+"%'")
+	            ]]>
+				</Where>
+			</Parameter>
+		</Parameters>
+	</DataTable>
+</DataSet>

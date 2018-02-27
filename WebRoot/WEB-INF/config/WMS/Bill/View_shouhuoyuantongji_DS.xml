@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="shouhuoyuantongji" Caption="收货员考核统计" DefaultFilter="" PermissionType="CommType" Pagging="10"
+               TableName="SQLQuery::
+			select * | from view_shouhuoyuan 
+		WHERE
+			
+			1=1   @kufang @kaishiriqi @jiezhiriqi @shouhuoyuan GROUP BY shouhuoyuan"  DataSource="" Head="false">
+        <Parameters>
+			<Parameter Key="kufang" Type="String">
+				<Where>
+                <![CDATA[
+					m.if(kufang==null | kufang=="" ,""," and k.kufang like '%"+kufang+"%'")
+                ]]>
+				</Where>
+			</Parameter>
+			<Parameter Key="shouhuoyuan" Type="String">
+				<Where>
+                <![CDATA[
+					m.if(shouhuoyuan==null | shouhuoyuan=="" ,""," and k.shouhuoyuan like '%"+shouhuoyuan+"%'")
+                ]]>
+				</Where>
+			</Parameter>
+			<!-- <Parameter Key="dingdanriqi" Type="String">
+				<Where>
+                <![CDATA[
+					m.if(dingdanriqi==null | dingdanriqi=="" ,""," and k.dingdanriqi like '%"+dingdanriqi+"%'")
+                ]]>
+				</Where>
+			</Parameter> -->
+			<Parameter Key="kaishiriqi" Type="String">
+				<Where>
+                <![CDATA[
+                	m.if(kaishiriqi==null,""," and DATE_FORMAT(k.dingdanriqi,'%Y-%m-%d') >= DATE_FORMAT('"+kaishiriqi+"','%Y-%m-%d')")
+				]]>
+				</Where>
+			</Parameter>
+			<Parameter Key="jiezhiriqi" Type="String">
+				<Where>
+                <![CDATA[
+                	m.if(jiezhiriqi==null,""," and DATE_FORMAT(k.dingdanriqi,'%Y-%m-%d') <= DATE_FORMAT('"+jiezhiriqi+"','%Y-%m-%d')")
+				]]>
+				</Where>
+			</Parameter>
+		</Parameters>
+    </DataTable>
+</DataSet>

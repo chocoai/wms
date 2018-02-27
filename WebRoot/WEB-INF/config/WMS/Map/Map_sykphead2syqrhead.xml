@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Map Key="sykphead2syqrhead" Caption="损溢开票单上引"
+     SrcDataObjectKey="sunyikaipiao"
+     SrcDataType="Bill"
+     TgtDataObjectKey="sunyiqueren"
+     TgtDataType="Bill"
+     MaxPushValue="100"
+     MinPushValue="0">
+    <TargetTableCollection>
+
+        <TargetTable Key="sunyiqueren" SrcTableKey="sunyikaipiao">
+            <Field FieldKey="danjubianhao">
+                <![CDATA[
+                     =danjubianhao
+              ]]>
+            </Field>
+            <Field FieldKey="zhidanriqi">
+                <![CDATA[
+                     =zhidanriqi
+              ]]>
+            </Field>
+            <Field FieldKey="zhidanren">
+                <![CDATA[
+                     =zhidanren
+              ]]>
+            </Field>
+
+            <Field FieldKey="kufang">
+                <![CDATA[
+                     =kufang
+              ]]>
+            </Field>
+            <Field FieldKey="cangkubianhao">
+                <![CDATA[
+                     =cangkubianhao
+              ]]>
+            </Field>
+        </TargetTable>
+
+    </TargetTableCollection>
+    <FeedBackCollection>
+        <FeedbackObject TableKey="sunyiqueren" BillStatus="47">
+            <FeedbackTableCollection>
+                <FeedbackTable Key="tempsunyikaipiao" TableKey="xyy_wms_bill_sunyikaipiao">
+                    <FeedbackField FieldKey="zhuangtai" FeedFieldKey="" OpSign="Assign">
+                        <![CDATA[
+	                		=2
+	                	]]>
+                    </FeedbackField>
+                </FeedbackTable>
+            </FeedbackTableCollection>
+        </FeedbackObject>
+
+    </FeedBackCollection>
+</Map>
+
+
+
+

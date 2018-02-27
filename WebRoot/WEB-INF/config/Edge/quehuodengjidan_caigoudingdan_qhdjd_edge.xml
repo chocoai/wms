@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BillEdge Name="缺货登记单-采购订单" Key="quehuodengjidan_caigoudingdan_qhdjd" Version="1.0.0" Code="qhdjd" Caption="缺货登记单-采购订单" SourceBillKey="quehuodengjidan" TargetBillKey="caigoudingdan">
+	<Description />
+	<BillEdgeController>
+		<MultiConvertCtrl CtrType="AllowAndWarning" />
+		<AutoSaveController CtrType="NoSave" />
+		<DisplayController CtrType="GoEditor" />
+		<BackWriteController CtrType="Save" />
+	</BillEdgeController>
+	<BillEdgeHook />
+	<BillTransformEdge>
+		<BillHeadTransformEdge>
+			<TargetBillField Key="danjubianhao" Category="property"><![CDATA[='CG+'o.orderNo()]]></TargetBillField>
+			<TargetBillField Key="caigouyuan" Category="property" />
+			<TargetBillField Key="gysbh" Category="property" />
+			<TargetBillField Key="gysmc" Category="property" />
+			<TargetBillField Key="jiesuanfangshi" Category="property" />
+			<TargetBillField Key="sfyfk" Category="property" />
+			<TargetBillField Key="songhuofangshi" Category="property" />
+			<TargetBillField Key="qidongshijian" Category="property" />
+			<TargetBillField Key="daohuoshijian" Category="property" />
+			<TargetBillField Key="yunshugongju" Category="property" />
+			<TargetBillField Key="kaipiaoyuan" Category="property" />
+		</BillHeadTransformEdge>
+		<BillBodyTransformEdge>
+			<BillBodyEdge targetDltKey="caigoudingdan_details">
+				<BillDtlEdge sourceDltKey="quehuodengjidan_details">
+					<TargetBillField Key="shangpinbianhao" Category="property"><![CDATA[=shangpinbianhao]]></TargetBillField>
+					<TargetBillField Key="shangpinmingcheng" Category="property"><![CDATA[=shangpinmingcheng]]></TargetBillField>
+					<TargetBillField Key="guige" Category="property"><![CDATA[=guige]]></TargetBillField>
+					<TargetBillField Key="danwei" Category="property"><![CDATA[=danwei]]></TargetBillField>
+					<TargetBillField Key="shengchanchangjia" Category="property"><![CDATA[=shengchanchangjia]]></TargetBillField>
+					<TargetBillField Key="shuliang" Category="property"><![CDATA[=quehuoshuliang]]></TargetBillField>
+					<TargetBillField Key="hanshuijia" Category="property" />
+					<TargetBillField Key="hanshuijine" Category="property" />
+					<TargetBillField Key="hscbj" Category="property" />
+					<TargetBillField Key="zuidijinjia" Category="property" />
+					<TargetBillField Key="zuigaojinjia" Category="property" />
+					<TargetBillField Key="zuihoujinjia" Category="property" />
+					<TargetBillField Key="hscbj" Category="property" />
+					<TargetBillField Key="shuilv" Category="property"><![CDATA[=jinxiangshuilv]]></TargetBillField>
+					<TargetBillField Key="koulv" Category="property"><![CDATA[=100]]></TargetBillField>
+					<TargetBillField Key="pizhunwenhao" Category="property"><![CDATA[=pizhunwenhao]]></TargetBillField>
+					<TargetBillField Key="chandi" Category="property"><![CDATA[=chandi]]></TargetBillField>
+					<TargetBillField Key="beizhu" Category="property" />
+				</BillDtlEdge>
+			</BillBodyEdge>
+		</BillBodyTransformEdge>
+	</BillTransformEdge>
+	<BillGroupJoinEdge>
+		<BillHeadGroupJoinEdge>
+			<GroupFileds GroupType="field" />
+			<JoinFileds />
+		</BillHeadGroupJoinEdge>
+		<BillBodyGroupJoinEdge>
+			<TargetSubBillGroupJoinEdges>
+				<TargetSubBillGroupJoinEdge Key="caigoudingdan_details">
+					<GroupFileds GroupType="field" />
+					<JoinFileds />
+				</TargetSubBillGroupJoinEdge>
+			</TargetSubBillGroupJoinEdges>
+		</BillBodyGroupJoinEdge>
+	</BillGroupJoinEdge>
+	<BillBackWriteEdge>
+		<BillHeadBackWriteEdge>
+			<BackWriteRule Type="Rule">
+				<ConditionExp><![CDATA[quehuodengjidan.quehuodengjidan.state>0]]></ConditionExp>
+				<RuleExpr><![CDATA[quehuodengjidan.quehuodengjidan.shifoutiqu:=1]]></RuleExpr>
+			</BackWriteRule>
+		</BillHeadBackWriteEdge>
+		<BillBodyBackWriteEdge />
+	</BillBackWriteEdge>
+	<DataFilterEdge>
+		<SourceBillHeadFilterEdge>
+			<Filter />
+		</SourceBillHeadFilterEdge>
+		<SourceBillBodyFilterEdge />
+	</DataFilterEdge>
+	<RuleFilterEdge>
+		<RuleHeadFilterEdge>
+			<Filter />
+		</RuleHeadFilterEdge>
+		<RuleBodyFilterEdge />
+	</RuleFilterEdge>
+</BillEdge>
+

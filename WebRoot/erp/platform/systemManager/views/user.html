@@ -1,0 +1,442 @@
+<div ng-controller="myApp.systemManagement.userCtrl">
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="panel panel-default">
+                <div class="panel-heading clearfix">
+                    <div class="pull-left">
+                     	角色信息
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <treecontrol class="tree-classic"
+                                 tree-model="dataForTheTree"
+                                 expanded-nodes="expandedNodes"
+                                 options="treeOptions"
+                                 on-selection="buttonClick(node,selected)"
+                                 selected-node="selected">
+                        {{node.name}}
+                    </treecontrol>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-9">
+            <div class="panel panel-default">
+                <div class="panel-heading">搜索栏</div>
+                <div class="panel-body">
+                    <form class="form-inline" role="form">
+                        <div class="form-group">
+                            <label for="loginName" class="col-sm-4 control-label">登录名称</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" id="loginName" placeholder="loginName"
+                                       ng-model="searchObj.loginName">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="mobile" class="col-sm-3 control-label">手机号</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" id="mobile" placeholder="mobile"
+                                       ng-model="searchObj.mobile">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-5 control-label">状态</label>
+                            <div class="col-sm-3">
+                                <select class="form-control" ng-model="searchObj.state">
+                                    <option value="1">正常</option>
+                                    <option value="0">禁用</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div style="float: right;">
+                            <button type="reset" class="btn btn-primary btn-sm" ng-click="reset()">清 空</button>
+                            <button type="submit" class="btn btn-primary btn-sm" ng-click="search()">查 询</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="panel panel-default">	
+                <div class="panel-heading clearfix">
+                    <div class="pull-left">
+                        用户信息
+                    </div>
+                    <div class="pull-right btn-group">
+                        <button class="btn btn-success btn-sm" ng-click="add()">新增</button>
+                        <button class="btn btn-primary btn-sm" ng-click="showEditDialog()">编辑</button>
+                        <!--<button class="btn btn-danger btn-sm" ng-click="delete()">删除</button>-->
+                        <button class="btn btn-primary btn-sm" ng-click="assignRole()">设置角色</button>
+                        <button class="btn btn-primary btn-sm" ng-click="assignGroup()">设置组织</button>
+                        <button class="btn btn-primary btn-sm" ng-click="assignStation()">设置岗位</button>
+                        <button class="btn btn-primary btn-sm" ng-click="assignOrg()">设置机构</button>
+                        <button class="btn btn-primary btn-sm" ng-click="assignData()">数据授权</button>
+                    </div>
+                </div>
+                <div class="panel-body">
+
+                    <table class="table table-bordered table-hover table-condensed table-striped">
+                        <tr>
+                            <th style="width:2%"><input type="checkbox" class="checkbox" ng-click="checkAll($event)"
+                                                        ng-checked="isSelectedAll()"/></th>
+                            <!-- <th style="width:5%">序号</th> -->
+                            <th style="width:10%">登录名</th>
+                            <th style="width:10%">真实姓名</th>
+                            <th style="width:10%">性别</th>
+                            <th style="width:10%">手机号</th>
+                            <th style="width:10%">Email</th>
+                            <th style="width:10%">状态</th>
+                            <th style="width:10%">创建时间</th>
+                        </tr>
+                        <tr ng-repeat="item in users" ng-class="getSelectedClass(item)" ng-click="clickRow(item,$event)">
+                            <td><input type="checkbox" name="selectedArr" ng-checked="isSelected(item)"
+                                       ng-click="updateSelection($event, item)"/></td>
+                            <!-- <td>{{item.id}}</td> -->
+                            <td>{{item.loginName}}</td>
+                            <td>{{item.realName}}</td>
+                            <td>
+                                <span ng-if="item.gender==1" ng-class="{'text-danger':item.gender==1}">男</span>
+                                <span ng-if="item.gender==2">女</span>
+                            </td>
+                            <td>{{item.mobile}}</td>
+                            <td>{{item.email}}</td>
+                            <td>
+                                <label ng-if="item.state==1" style="color: green;">正常</label>
+                                <p ng-if="item.state==0" style="color: red;">禁用</p>
+                            </td>
+                            <td>{{item.updateTime}}</td>
+                        </tr>
+                    </table>
+                    <!--分页组件-->
+                    <div paging page-info="pageInfo" load="load()"/>
+                </div>
+            </div>
+
+            <!--   用户编辑窗口begin  -->
+            <div class="modal fade" id="userModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span
+                                    aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title">用户信息</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form role="form" name="form">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>真实姓名</label>
+                                            <input type="text" ng-pattern="/^[\u4e00-\u9fa5]{2,5}$/" class="form-control" ng-model="selected.realName"  required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>登录名称</label>
+                                            <input type="text" class="form-control" ng-model="selected.loginName" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>手机号</label>
+                                            <input type="text" ng-pattern="/^1[3|4|5|7|8]\d{9}$/" class="form-control" ng-model="selected.mobile" >
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>email</label>
+                                            <input type="text" ng-pattern="/^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/" class="form-control" ng-model="selected.email" >
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>性别</label>
+                                            <select class="form-control" ng-model="currentSex.value"
+                                                    ng-options="s.value as s.name for s in sexArr"
+                                                    ng-change="changeSex(currentSex.value, 'update')" required>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>状态</label>
+                                            <select class="form-control" ng-model="currentState.value"
+                                                    ng-options="s.value as s.name for s in stateArr"
+                                                    ng-change="changeState(currentState.value, 'update')" required>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>排序号</label>
+                                            <input type="number" class="form-control" ng-model="selected.sortNo" >
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+		                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+		                            <button type="button" class="btn btn-primary" ng-click="update()" ng-disabled="form.$invalid">保存</button>
+		                        </div>
+                            </form>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+            <!--   用户编辑窗口end  -->
+
+
+            <!--   用户新增窗口begin  -->
+            <div class="modal fade" id="createModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span
+                                    aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title">用户信息</h4>
+                        </div>
+                        <div class="modal-body">
+                        	<form role="form" name="form1">
+	                            <div class="row">
+	                                <div class="col-sm-6">
+	                                    <div class="form-group">
+	                                        <label>真实姓名</label>
+	                                        <input type="text" ng-pattern="/^[\u4e00-\u9fa5]{2,5}$/" class="form-control" ng-model="createUser.realName" required>
+	                                    </div>
+	                                </div>
+	                                <div class="col-sm-6">
+	                                    <div class="form-group">
+	                                        <label>登录名称</label>
+	                                        <input type="text" class="form-control" ng-model="createUser.loginName" required>
+	                                    </div>
+	                                </div>
+	                            </div>
+	
+	                            <div class="row">
+	                                <div class="col-sm-6">
+	                                    <div class="form-group">
+	                                        <label>手机号</label>
+	                                        <input type="text" ng-pattern="/^1[3|4|5|7|8]\d{9}$/" class="form-control" ng-model="createUser.mobile">
+	                                    </div>
+	                                </div>
+	                                <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>email</label>
+                                            <input type="text" ng-pattern="/^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/" class="form-control" ng-model="createUser.email">
+                                            </select>
+                                        </div>
+	                                </div>
+	                            </div>
+	
+	                            <div class="row">
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>性别</label>
+                                            <select class="form-control" ng-model="currentSex.value"
+                                                    ng-options="s.value as s.name for s in sexArr"
+                                                    ng-change="changeSex(currentSex.value, 'save')" required>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label>状态</label>
+                                            <select class="form-control" ng-model="currentState.value"
+                                                    ng-options="s.value as s.name for s in stateArr"
+                                                    ng-change="changeState(currentState.value, 'save')" required>
+                                            </select>
+                                        </div>
+                                    </div>
+	                                <div class="col-sm-6">
+	                                    <div class="form-group">
+	                                        <label>排序号</label>
+	                                        <input type="number" class="form-control" ng-model="createUser.sortNo" >
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </div>
+	                        <div class="modal-footer">
+	                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+	                            <button type="button" class="btn btn-primary" ng-click="save()" ng-disabled="form1.$invalid">保存</button>
+	                        </div>
+                         </form>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+            <!--   用户新增窗口end  -->
+
+        </div>
+    </div>
+
+    <!-- 公共提示框 -->
+    <div class="modal fade bs-example-modal-sm" id="tipModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span
+                            aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">提示</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="tipModalLab"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+
+    <!-- 设置角色树 -->
+    <div class="modal fade bs-example-modal-sm" id="roleModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span
+                            aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">设置角色</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="panel-body">
+                        <treecontrol class="tree-classic"
+                                     tree-model="relationRoleTree"
+                                     expanded-nodes="expandedNodes"
+                                     options="relationTreeOptions"
+                                     on-selection="relationTreeClick(node)"
+                                     selected-nodes="selectedNodes">
+                            {{node.name}}
+                        </treecontrol>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" ng-click="saveRoleUserRelation()">保存</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+    
+    <!-- 设置组织树 -->
+    <div class="modal fade bs-example-modal-sm" id="groupModal" tabindex="-1"  role="dialog">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span
+                            aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">设置组织</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="panel-body">
+                        <treecontrol class="tree-classic"
+                                     tree-model="relationGroupTree"
+                                     expanded-nodes="expandedNodes1"
+                                     options="treeOptions1"
+                                     on-selection="buttonClick1(node)"
+                                     selected-node="node1">
+                            {{node.name}}
+                        </treecontrol>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" ng-click="saveGroupUserRelation()">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 设置岗位树 -->
+    <div class="modal fade bs-example-modal-sm" id="stationModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span
+                            aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">设置岗位（可多选）</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="panel-body">
+                        <treecontrol class="tree-classic"
+                                     tree-model="relationRoleTree2"
+                                     expanded-nodes="expandedNodes2"
+                                     options="treeOptions2"
+                                     on-selection="relationTreeClick2(node)"
+                                     selected-nodes="selectedNodes2">
+                            {{node.name}}
+                        </treecontrol>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" ng-click="saveStationUserRelation()">保存</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+	
+	<!-- 设置机构树 -->
+    <div class="modal fade bs-example-modal-sm" id="orgModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">设置机构</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="panel-body">
+                        <treecontrol class="tree-classic"
+                                     tree-model="orgTree"
+                                     expanded-nodes="orgExpandedNodes"
+                                     options="orgTreeOptions"
+                                     on-selection="orgTreeClick(node)"
+                                     selected-nodes="orgSelectedNodes">
+                            {{node.name}}
+                        </treecontrol>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" ng-click="saveOrgUserRelation()">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+	<!-- 设置数据授权树 -->
+    <div class="modal fade bs-example-modal-sm" id="dataModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">数据授权</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="panel-body">
+                        <treecontrol class="tree-classic"
+                                     tree-model="dataTree"
+                                     expanded-nodes="dataExpandedNodes"
+                                     options="dataTreeOptions"
+                                     on-selection="dataTreeClick(node)"
+                                     selected-nodes="dataSelectedNodes">
+                            {{node.name}}
+                        </treecontrol>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" ng-click="saveDataUserRelation()">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,116 @@
+<#macro paginate currentPage totalPage actionUrl flag urlParas="">
+
+	<div class="pagerWrap clearfix">
+	<div>
+	
+			
+			<#if (currentPage == 1)>
+				<a href="javascript:void(0)" class="disabled previous">«</a>
+			<#else>
+				<a href="javascript:void(0)"  onclick="jumpTo('${currentPage - 1}')" class="prev_page">«</a>
+			</#if>
+			
+			<#if (totalPage <= 5)>
+			    <#list 1..totalPage as i>
+			         <#if i == currentPage>
+
+			           <a href="javascript:void(0)" onclick="jumpTo('#{i}')"  class="curr">#{i}</a>
+			        <#else>
+			           <a href="javascript:void(0)" onclick="jumpTo('#{i}')" >#{i}</a>
+			        </#if>
+			   </#list>
+			<#elseif (totalPage > 5) && (currentPage <= 3)>
+			    <#list 1..5 as i>
+			       <#if i == currentPage>
+			          <a href="javascript:void(0)" onclick="jumpTo('#{i}')"  class="curr">#{i}</a>
+			        <#else>
+			          <a href="javascript:void(0)" onclick="jumpTo('#{i}')" >#{i}</a>
+			       </#if>  
+			   </#list>
+			   <a href="javascript:void(0)" onclick="jumpTo('#{totalPage}')" >…#{totalPage}</a>
+			 <#elseif (totalPage > 5) && (currentPage > 3) && (totalPage-currentPage  > 2) > 
+	           <a href="javascript:void(0)" onclick="jumpTo('1')"  >1…</a>
+	           <a href="javascript:void(0)" onclick="jumpTo('#{currentPage - 2}')"  >#{currentPage - 2}</a>
+	           <a href="javascript:void(0)" onclick="jumpTo('#{currentPage - 1}')"  >#{currentPage - 1}</a>
+	           <a href="javascript:void(0)" onclick="jumpTo('#{currentPage}')"  class="curr">#{currentPage}</a>
+	           <a href="javascript:void(0)" onclick="jumpTo('#{currentPage + 1}')"  >#{currentPage + 1}</a>
+	           <a href="javascript:void(0)" onclick="jumpTo('#{currentPage + 2}')"  >#{currentPage + 2}</a>
+	           <a href="javascript:void(0)" onclick="jumpTo('#{totalPage}')"  >…#{totalPage}</a>
+	           
+			 <#elseif (totalPage > 5) && (currentPage > 3) && (totalPage-currentPage  <= 2) > 
+               <a href="javascript:void(0)" onclick="jumpTo('1')" >1…</a>
+               <a href="javascript:void(0)" onclick="jumpTo('#{totalPage-4}')" >#{totalPage-4}</a>
+               <a href="javascript:void(0)" onclick="jumpTo('#{totalPage-3}')" >#{totalPage-3}</a>
+			  <#if (totalPage-2) == currentPage>
+			          <a href="javascript:void(0)" onclick="jumpTo('#{totalPage-2}')"  class="curr">#{totalPage-2}</a>
+			          
+			   <#else>
+			          <a href="javascript:void(0)" onclick="jumpTo('#{totalPage-2}')" >#{totalPage-2}</a>
+			    </#if>
+			   <#if (totalPage-1) == currentPage>
+			          <a href="javascript:void(0)" onclick="jumpTo('#{totalPage-1}')"  class="curr">#{totalPage-1}</a>   
+			   <#else>
+			          <a href="javascript:void(0)" onclick="jumpTo('#{totalPage-1}')" >#{totalPage-1}</a> 
+			    </#if>
+			   <#if totalPage == currentPage>
+			          <a href="javascript:void(0)" onclick="jumpTo('#{totalPage}')"  class="curr">#{totalPage}</a>
+			   <#else>
+			          <a href="javascript:void(0)" onclick="jumpTo('#{totalPage}')" >#{totalPage}</a>
+			    </#if>
+			</#if>
+			<#if (currentPage == totalPage)>
+				<a href="javascript:void(0)" class="disabled nextPage">»</a>
+			<#else>
+				<a href="javascript:void(0)" onclick="jumpTo('#{currentPage + 1}')" class="nextPage" rel="next">»</a>
+			</#if>
+			
+			<input type="hidden" value="${actionUrl}" id="actionUrl" />
+			<input type="hidden" value="${flag}" id="flag" />
+			<input type="hidden" value="${totalPage}" id="totalPage" />
+			<input type="hidden" value="${currentPage}" id="currentPage" />
+			 到第<input type="text" value="${currentPage}" id="toPage" />/${totalPage}页
+			</div>
+	</div>
+</#macro>
+
+<script>
+$(function(){
+	$('#toPage').on('input propertychange', function() {changeInput();});
+	
+	var $inp = $('input'); //所有的input元素
+	$inp.keypress(function (e) { 
+	    var key = e.which; //e.which是按键的值
+	    if (key == 13) {
+	    	var goPage= $("#toPage").val();
+	        //window.location.href=$("#actionUrl").val()+goPage;
+	    	jumpTo(goPage);
+	    }
+	});
+});
+function changeInput()
+{ 
+	 var totalNum =$("#totalPage").val();
+	 var toPage = $("#toPage").val();
+	 if(toPage=='0')
+	 {
+		 $("#toPage").val(1);
+         return; 
+	 }
+	 if(toPage=='')
+	 {
+         return; 
+	 }
+     var type = /^([1-9][0-9]*)$/;
+     var re = new RegExp(type);
+     if (toPage.match(re) == null) {
+    	 $("#toPage").val( $("#currentPage").val());
+         return;
+     }
+     if(parseInt(toPage) > parseInt(totalNum))
+     {
+    	$("#toPage").val(totalNum);
+    	 return;
+     }  
+}
+
+</script>

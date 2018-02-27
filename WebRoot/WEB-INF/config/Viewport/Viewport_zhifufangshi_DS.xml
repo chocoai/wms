@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="zhifufangshi_view" Caption="支付方式名称" DefaultFilter="" PermissionType="CommType"  Pagging="10"
+        TableName="SQLQuery::select * | from xyy_erp_dic_zhifufangshi where 1 = 1  and status=40 and shifouhuodong=1  @zffsmc @zffsbh"  DataSource="" Head="false" Singleton="" OrderBy="">
+        <Parameters>
+            <Parameter Key="zffsmc" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(zffsmc==null | zffsmc=="" ,""," and zffsmc like '%"+zffsmc+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="zffsbh" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(zffsbh==null | zffsbh=="",""," and zffsbh = '"+zffsbh+"'")
+	            ]]>
+                </Where>
+            </Parameter>
+            
+        </Parameters>
+    </DataTable>
+</DataSet>

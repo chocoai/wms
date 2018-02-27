@@ -1,0 +1,83 @@
+<div class="panel panel-default">
+	<div class="panel-heading">反写规则</div>
+	<div class="panel-body">
+		<ul class="nav nav-tabs" role="tablist">
+			<li role="presentation" class="active"><a href="#djhead" aria-
+				controls="home" role="tab" data-toggle="tab">单据头</a></li>
+			<li role="presentation"><a href="#djbody" aria-
+				controls="profile" role="tab" data-toggle="tab">单据体</a></li>
+		</ul>
+
+		<div class="tab-content">
+			<div role="tabpanel" class="tab-pane active " id="djhead">
+				<table class="table table-striped table-bordered  table-condensed">
+					<div class="pull-right">
+						<button class="btn btn-primary" type="button" ng-click="addBwRow('head')">新增
+						</button>
+						<button class="btn btn-danger" type="button" ng-click="delBwRow('head')">删除
+						</button>
+					</div>
+					<tbody id="htoby">
+						<tr class="row" ng-repeat="row in billBackWriteEdge.billHeadBackWriteEdge.backWriteRules" ng-click="selBwRow(row,$index)">
+							<td class="form-inline col-xs-2">
+                                <label >&nbsp;</label>
+                                <select ng-model="billBackWriteEdge.billHeadBackWriteEdge.backWriteRules[$index].type" class="form-control" required>
+									<option value="">选项</option>
+									<option value="Rule">规则反写</option>
+									<option value="Business">业务反写</option>
+									<option value="Delete">删除反反写</option>
+							</select></td>
+							<td class="col-xs-4">
+							 <label>反写条件</label>
+								<input type="text" style="display:block !important;width:100% !important;"
+								ng-model="billBackWriteEdge.billHeadBackWriteEdge.backWriteRules[$index].conditionExp" class="form-control" required>
+								</td>
+								<td class="col-xs-6">
+								<label >反写规则</label>
+								<input type="text" 
+								ng-model="billBackWriteEdge.billHeadBackWriteEdge.backWriteRules[$index].ruleExpr" class="form-control" required>
+                                </td>
+                                
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div role="tabpanel" class="tab-pane" id="djbody">
+					<table class="table table-striped table-bordered table-condensed">
+							<div class="pull-right">
+								<button class="btn btn-primary" type="button" ng-click="addBwRow('body')">新增
+								</button>
+								<button class="btn btn-danger" type="button" ng-click="delBwRow('body')">删除
+								</button>
+							</div>
+							<tbody>
+								<tr class="row" ng-repeat="row in billBackWriteEdge.billBodyBackWriteEdge.backWriteRules">
+									<td class="form-inline col-xs-2">
+										<label >&nbsp;</label>
+										<select class="form-control" ng-model="billBackWriteEdge.billBodyBackWriteEdge.backWriteRules[$index].type" required>
+											<option value="">选项</option>
+											<option value="Rule">规则反写</option>
+											<option value="Business">业务反写</option>
+											<option value="Delete">删除反反写</option>
+									</select></td>
+									<td class="col-xs-4">
+									<label >反写条件</label>
+									<input type="text" class="form-control" ng-click="selBwRow(row,$index)"
+										ng-model="billBackWriteEdge.billBodyBackWriteEdge.backWriteRules[$index].conditionExp"
+										style="display:block !important;width:100% !important;" required>
+										</td>
+									<td class="col-xs-6">
+									<label >反写规则</label>
+									<input type="text" class="form-control" ng-click="selBwRow(row,$index,outerIndex)"
+										ng-model="billBackWriteEdge.billBodyBackWriteEdge.backWriteRules[$index].ruleExpr"
+										style="display:block !important;width:100% !important;" required>
+										</td>
+										
+								</tr>
+							</tbody>
+						</table>
+			</div>
+		</div>
+
+	</div>
+</div>

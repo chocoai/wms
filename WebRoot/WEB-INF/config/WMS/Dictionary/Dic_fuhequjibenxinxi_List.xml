@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BillFormMeta Key="fuhequjibenxinxi" Version="1.0.0" BillType="Dictionary" Caption="复核区基本信息">
+    <BillBody>
+        <BillBodyMeta UserAgent="web">
+            <BillUIPanel Layout="flex" FlexDirection="column" Width="100%" Key="mainContainer" Caption="复核区信息列表" S="">
+				<BillUIPanel Layout="flex" Key="toolbox" Caption="工具栏" >
+                    <BillUIWidget Key="add" Caption="新增"
+                                  Left="1" Top="1" Width="1" Height="1" EnabledWhen="True"
+                                  Icon="glyphicon glyphicon-plus-sign" WidgetType="BillUIButton">
+                        <Triggers>
+                            <Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+										@$this.$add();
+						        ]]>
+                            </Trigger>
+                        </Triggers>
+                    </BillUIWidget>
+                    <BillUIWidget Key="edit" Caption="编辑"
+                                  Left="2" Top="1" Width="1" Height="1" EnabledWhen="True"
+                                  Icon="glyphicon glyphicon-edit" WidgetType="BillUIButton">
+                        <Triggers>
+                            <Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+                                            @$this.$edit();
+	                            ]]>
+                            </Trigger>
+                        </Triggers>
+                    </BillUIWidget>
+                   <BillUIWidget Key="downloadExcel" Caption="导出"
+						EnabledWhen="True" FileName="复核区资料导出" Icon="glyphicon glyphicon-save-file"
+						WidgetType="BillUIButton">
+
+						<Init Type="javascript/angular" Runat="client">
+							<![CDATA[
+                                            this.setEnable();
+										]]>
+						</Init>
+						<Triggers>
+							<Trigger Type="javascript/angular" Runat="client">
+								<![CDATA[
+                                 @$this.downloadExcel('fuhequjibenxinxi');
+	                            ]]>
+							</Trigger>
+						</Triggers>
+						<ExportSheets>
+							<ExportSheet SheetName="复核区资料" TitleName=""
+								DataTableKey="fuhequjibenxinxi">
+								<ExportColumns>
+									<ExportColumn Caption="仓库编号" DataTableColumn="cangkubianhao" />
+									<ExportColumn Caption="仓库" DataTableColumn="ckmc" />
+									<ExportColumn Caption="复核区编号" DataTableColumn="fhqbh" />
+									<ExportColumn Caption="复核区名称" DataTableColumn="fhqmc" />
+									<ExportColumn Caption="复核位编号" DataTableColumn="fhwbh" />
+									<ExportColumn Caption="滑道号" DataTableColumn="huadaohao" />
+									<ExportColumn Caption="组号" DataTableColumn="zuhao" />
+									<ExportColumn Caption="层号" DataTableColumn="cenghao" />
+									<ExportColumn Caption="列号" DataTableColumn="liehao" />
+									<ExportColumn Caption="是否启用" DataTableColumn="shifouqiyong" Type="Dic">
+												<![CDATA[
+			                                          {'url':'select','type':'bool'}
+			                                        ]]>
+									</ExportColumn>
+									<ExportColumn Caption="是否锁定" DataTableColumn="shifousuoding" Type="Dic">
+												<![CDATA[
+			                                          {'url':'select','type':'bool'}
+			                                        ]]>
+									</ExportColumn>
+									<ExportColumn Caption="备注" DataTableColumn="beizhu" />
+								</ExportColumns>
+							</ExportSheet>
+						</ExportSheets>
+					</BillUIWidget>
+				</BillUIPanel>
+                <BillUIPanel Layout="flex" Key="bills_tools" Caption="查询面板" S="panel panel-default publicPanel">
+                	<BillUIGridPanel Device="sm" key="boxtool">
+                         <BillUIRowPanel>
+                             <BillUIColPanel Width="3">
+                                    <BillUIWidget Key="cangkubianhao"  DataTableKey="fuhequjibenxinxi"  
+									Caption="仓库编号" DataTableColumn="cangkubianhao" ParameterKey="cangkubianhao"
+									Disable="true" EnabledWhen="True" WidgetType="BillUIPopupWindow" ViewSize="lg"
+                                                  Src="cangku">
+                                        <Init Type="javascript/angular" Runat="client">
+                                            <![CDATA[
+                                            	var orgId=this.getOrgId();
+	                                        ]]>
+                                        </Init>
+                                        <Triggers>
+                                            <Trigger>
+                                                <![CDATA[
+                                                    var cangku=this.rows[0];     
+                                                    this.setValue(cangku.cangkubianhao);
+                                                    @cangkuID.setValue(cangku.ID);
+                                                ]]>
+                                            </Trigger>
+                                        </Triggers>
+								</BillUIWidget>
+								<BillUIWidget Key="cangkuID"  
+									Caption="" DataTableKey="fuhequjibenxinxi"  ParameterKey="cangkuID"
+									Disable="true" EnabledWhen="True" WidgetType="BillUIString" ViewSize="lg" >
+                                     <Init Type="javascript/angular" Runat="client">
+                                            <![CDATA[
+                                            	this.setHide();
+	                                        ]]>
+                                        </Init>         
+								</BillUIWidget>
+                             </BillUIColPanel>
+                             
+                             
+                             <BillUIColPanel Width="3">
+                                 <BillUIWidget Key="fhqbh" ParameterKey="fhqbh"
+                                               DataTableKey="fuhequjibenxinxi"  Caption="复核区编号"
+                                               EnabledWhen="True" Icon="glyphicon glyphicon-send" WidgetType="BillUIString">
+                                 </BillUIWidget>
+                             </BillUIColPanel>
+                             
+                              <BillUIColPanel Width="3">
+                                 <BillUIWidget Key="fhwbh" ParameterKey="fhwbh"
+                                               DataTableKey="fuhequjibenxinxi"  Caption="复核位编号"
+                                               EnabledWhen="True" Icon="glyphicon glyphicon-send" WidgetType="BillUIString">
+                                 </BillUIWidget>
+                             </BillUIColPanel>
+                             
+                             <BillUIColPanel Width="3">
+                                 <BillUIWidget Key="huadaohao" ParameterKey="huadaohao"
+                                               DataTableKey="fuhequjibenxinxi"  Caption="滑道号"
+                                               EnabledWhen="True" Icon="glyphicon glyphicon-send" WidgetType="BillUIString">
+                                 </BillUIWidget>
+                             </BillUIColPanel>
+                             
+                              <BillUIColPanel Width="3">
+                                 <BillUIWidget Key="zuhao" ParameterKey="zuhao"
+                                               DataTableKey="fuhequjibenxinxi"  Caption="组号"
+                                               EnabledWhen="True" Icon="glyphicon glyphicon-send" WidgetType="BillUIString">
+                                 </BillUIWidget>
+                             </BillUIColPanel>
+                             
+                                   <BillUIColPanel Width="3">
+                                 <BillUIWidget Key="shifouqiyong" ParameterKey="shifouqiyong"
+                                               DataTableKey="fuhequjibenxinxi"  Caption="是否启用"
+                                               EnabledWhen="True" Icon="glyphicon glyphicon-send" WidgetType="BillUISelect" Src="bill/selectSrc?type=bool">
+                                              <Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+												this.loadDataSource();
+										]]>
+									</Init>
+                                 </BillUIWidget>
+                             </BillUIColPanel>
+
+                             <BillUIColPanel Width="3">
+                                 <BillUIWidget Caption="查询" Key="search" EnabledWhen="True"
+                                               Icon="glyphicon glyphicon-send" WidgetType="BillUIButton">
+                                     <Triggers>
+                                         <Trigger Type="javascript/angular" Runat="client">
+                                             <![CDATA[
+			                                    @$this.__loadDics("fuhequjibenxinxi");
+				                            ]]>
+                                         </Trigger>
+                                     </Triggers>
+                                 </BillUIWidget>
+                                 
+                                  <BillUIWidget Caption="重置" Key="cancel" EnabledWhen="True"
+                                               Icon="glyphicon glyphicon-send" WidgetType="BillUIButton">
+                                     <Triggers>
+                                         <Trigger Type="javascript/angular" Runat="client">
+                                             <![CDATA[
+                                                 @$this.__loadDics();
+                                                  @cangkubianhao.setValue("");
+                                            ]]>
+                                         </Trigger>
+                                     </Triggers>
+                                 </BillUIWidget>
+                             </BillUIColPanel>
+                         </BillUIRowPanel>
+                	</BillUIGridPanel>
+                </BillUIPanel>
+			<BillUIPanel Layout="tab" Key="bills_tabs" Caption="查询展示列"
+					S="panel  panel-primary  publicPanel">
+                    <BillUIGrid Key="grid0" SelectMode="Multi" OptMode="View" DataTableKey="fuhequjibenxinxi">
+                    <DoubleClickHandlers>
+							<DoubleClickHandler>
+                                <![CDATA[
+                                    var fuhequ=this.row;
+                                    window.location.href='/bill/view/dics-item?billKey=fuhequjibenxinxi&ID='+fuhequ.ID+'&allDisabled=false';
+                                ]]>
+							</DoubleClickHandler>
+						</DoubleClickHandlers>
+                       <GridHeads>
+                           <GridHead Col="cangkubianhao" Caption="仓库编号" enableEdit="True" Width="100px">
+                                <BillUIWidget Key="cangkubianhao" WidgetType="BillUIString"/>
+                           </GridHead> 
+                            <GridHead Col="ckmc" Caption="仓库" enableEdit="True" Width="100px">
+                                <BillUIWidget Key="ckmc" WidgetType="BillUIString"/>
+                           </GridHead> 
+                           <GridHead Col="fhqbh" Caption="复核区编号" enableEdit="True" Width="100px">
+                               <BillUIWidget Key="fhqbh" WidgetType="BillUIString"/>
+                           </GridHead> 
+                           <GridHead Col="fhqmc" Caption="复核区名称" enableEdit="True" Width="100px">
+                               <BillUIWidget Key="fhqmc" WidgetType="BillUIString"/>
+                           </GridHead>
+                           <GridHead Col="fhwbh" Caption="复核位编号" enableEdit="True" Width="100px">
+                               <BillUIWidget Key="fhwbh" WidgetType="BillUIString">
+                               </BillUIWidget>
+                           </GridHead>
+                           <GridHead Col="huadaohao" Caption="滑道号" enableEdit="True" Width="100px">
+                               <BillUIWidget Key="huadaohao" WidgetType="BillUIString"/>
+                           </GridHead>
+                           <GridHead Col="zuhao" Caption="组号" enableEdit="True" Width="100px">
+                               <BillUIWidget Key="zuhao" WidgetType="BillUIString"/>
+                           </GridHead>
+                           <GridHead Col="cenghao" Caption="层号" enableEdit="True" Width="100px">
+                               <BillUIWidget Key="cenghao" WidgetType="BillUIString"/>
+                           </GridHead>
+                           <GridHead Col="liehao" Caption="列号" enableEdit="True" Width="100px">
+                               <BillUIWidget Key="liehao" WidgetType="BillUIString"/>
+                           </GridHead>
+                           <GridHead Col="shifouqiyong" Caption="启用" enableEdit="True" Width="120px">
+								<BillUIWidget Key="shifouqiyong" WidgetType="BillUIString" >
+								<Formatters>
+                                     <Formatter>
+                                              <![CDATA[
+                                                [{'url':'/bill/selectSrc','type':'bool'}]
+                                            ]]>
+                                        </Formatter>
+                                  </Formatters>
+								</BillUIWidget>
+							</GridHead>
+							 <GridHead Col="shifousuoding" Caption="锁定" enableEdit="True" Width="120px">
+								<BillUIWidget Key="shifousuoding" WidgetType="BillUIString" >
+								<Formatters>
+                                     <Formatter>
+                                              <![CDATA[
+                                                [{'url':'/bill/selectSrc','type':'bool'}]
+                                            ]]>
+                                        </Formatter>
+                                  </Formatters>
+								</BillUIWidget>
+							</GridHead>
+                           <GridHead Col="beizhu" Caption="备注" enableEdit="True" Width="100px">
+                               <BillUIWidget Key="beizhu" WidgetType="BillUIString"/>
+                           </GridHead>
+                       </GridHeads>
+                    </BillUIGrid>
+          </BillUIPanel>  
+            </BillUIPanel>
+        </BillBodyMeta>
+    </BillBody>
+    <BillHeadMeta>
+    	
+    </BillHeadMeta>
+</BillFormMeta>
+

@@ -1,0 +1,181 @@
+
+<div ng-controller="myApp.systemManagement.stationCtrl">
+
+    <div class="row">
+        <!-- 岗位树 -->
+        <div class="col-sm-3">
+            <div class="panel panel-default">
+                <div class="panel-heading clearfix">
+                    <div class="pull-left"><b>岗位管理</b></div>
+                    <div class="pull-right">
+                        <button class="btn btn-success btn-sm" ng-click="addStation()">新增</button>
+                        <!--<button class="btn btn-danger btn-sm" ng-click="delStation()">删除</button>-->
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <img src="../../../../lib/images/1_open.png">
+                    <treecontrol class="tree-classic"
+                                 tree-model="treedata"
+                                 expanded-nodes="expandedNodes"
+                                 options="opts"
+                                 selected-node="selected"
+                                 on-selection="buttonClick(node,selected)">
+                        {{node.name}}
+                    </treecontrol>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-9">
+            <div class="panel panel-default">
+                <!-- 岗位信息 -->
+                <div class="panel panel-default">
+                    <div class="panel-heading clearfix">
+                        <b>岗位信息</b>
+                    </div>
+                    <div class="panel-body">
+
+                        <table class="table table-hover table-bordered table-striped table-condensed">
+                            <thead>
+                            <tr>
+                                <th style="width: 10%">岗位名称</th>
+                                <th style="width: 10%">父岗位名称</th>
+                                <th style="width: 10%">创建时间</th>
+                                <th style="width: 10%">启用状态</th>
+                                <th style="width: 10%">备注</th>
+                                <th style="width: 10%">操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="mrow in mrows">
+                                <td>{{mrow.stationName}}</td>
+                                <td>{{mrow.parentName}}</td>
+                                <td>{{mrow.createTime}}</td>
+                                <td>
+                                    <span ng-if="mrow.state==1" style="color: green;">正常</span>
+                                    <span ng-if="mrow.state==0" style="color: red;">禁用</span>
+                                </td>
+                                <td>
+                                    <p ng-show="mrow.remark.length>15" title="{{mrow.remark}}">{{mrow.remark.substring(1,15)}}......</p>
+                                    <p ng-show="mrow.remark.length<15" >{{mrow.remark}}</p>
+                                </td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button class="btn btn-sm btn-primary" ng-click="editSave(mrow.id)">编辑</button>
+                                        <!--<button class="btn btn-sm btn-danger" ng-click="delStation(mrow.id)">删除</button>-->
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div paging  page-info="pageInfo2"  load="init()"/>
+                    </div>
+                </div>
+                <!-- 岗位-用户 -->
+                <div class="panel panel-default" >
+                    <div class="panel-heading clearfix">
+                        <b>岗位 - 用户</b>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-hover table-bordered table-striped table-condensed">
+                            <tr>
+                                <td style="width: 14%">登录名</td>
+                                <td style="width: 12%">真实姓名</td>
+                                <td style="width: 6%">性别</td>
+                                <td style="width: 12%">手机号</td>
+                                <td style="width: 6%">状态</td>
+                                <td style="width: 20%">创建时间</td>
+                            </tr>
+                            <tr ng-repeat="stationUser in stationUsers">
+                                <td>{{stationUser.loginName}}</td>
+                                <td>{{stationUser.realName}}</td>
+                                <td>
+                                    <span ng-if="stationUser.gender==1" ng-class="{'text-danger':stationUser.gender==1}">男</span>
+                                    <span ng-if="stationUser.gender==2">女</span>
+                                </td>
+                                <td>{{stationUser.mobile}}</td>
+                                <td>
+                                    <span ng-if="stationUser.state==1">正常</span>
+                                    <span ng-if="stationUser.state==0" ng-class="{'text-danger':stationUser.state==0}">禁用</span>
+                                </td>
+                                <td>{{stationUser.createTime}}</td>
+
+                            </tr>
+                        </table>
+
+                        <!--分页组件-->
+                        <div paging  page-info="pageInfo"  load="load()"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 添加岗位 -->
+    <div class="modal fade" id="addStation" >
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-title "><h3>添加岗位信息</h3></div>
+                </div>
+                <div class="modal-body" >
+                    <form class="form-horizontal" name="myForm" role="form" novalidate>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"><span style="color: red">*</span>岗位名称</label>
+                            <div class="col-sm-9 input-group">
+                                <input type="text" name="stationName" class="form-control" ng-model="station.stationName"
+                                       required placeholder="岗位名称不能为空"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"><span style="color: red">*</span>序号</label>
+                            <div class="col-sm-9 input-group">
+                                <input type="number" class="form-control" ng-model="station.sort" placeholder="请输入数字" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">状态</label>
+                            <div class="col-sm-9" >
+                                <label class="radio-inline">
+                                    <input type="radio" name="state" ng-value="1" ng-model="station.state"/> 启用
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="state" ng-value="0" ng-model="station.state"/> 停用
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">备注</label>
+                            <div class="col-sm-9 input-group">
+                                <textarea type="text" class="form-control" rows="3" ng-model="station.remark"></textarea>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="stationClose" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" ng-click="add()" ng-disabled="myForm.$invalid">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 提示框 -->
+    <div class="modal fade bs-example-modal-sm" id="tipModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-title "><h4><b>提示</b></h4></div>
+                </div>
+                <div class="modal-body">
+                    <div id="tipText" style="font-size: 16px"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

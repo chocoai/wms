@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BillFormMeta Key="kqzyqxwh" Version="1.0.0" BillType="Dics" Caption="客户基本信息">
+    <BillBody>
+        <BillBodyMeta UserAgent="web">
+            <BillUIPanel Layout="flex" FlexDirection="column" Width="100%" Key="mainContainer" Caption="客户基本信息" S="">
+                <BillUIPanel Layout="flex" Key="dictionary_tools" Caption="工具栏">
+                    <BillUIWidget Key="save" Caption="保存"
+                                  EnabledWhen="True"
+                                  Icon="glyphicon glyphicon-floppy-disk" WidgetType="BillUIButton">
+                        <Triggers>
+                            <Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+                                        @$this.save('bills');
+	                                  ]]>
+                            </Trigger>
+                        </Triggers>
+                        <Init Type="javascript/angular" Runat="client">
+                            <![CDATA[
+                            setHide("gridAdd");
+                            setHide("gridDel");
+                            ]]>
+                        </Init>
+                    </BillUIWidget>
+                    <BillUIWidget Key="goback" Caption="返回"
+                                  DataTableKey="gonghuoshangxiaoqizhengzhao" DataTableColumn="delete" EnabledWhen="True"
+                                  Icon="glyphicon glyphicon-remove-circle" WidgetType="BillUIButton"
+                                  S="btn btn-danger ">
+                        <Triggers>
+                            <Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+                                        	@$this.$reBack();
+	                            		]]>
+                            </Trigger>
+                        </Triggers>
+                    </BillUIWidget>
+                    
+                </BillUIPanel>
+                <BillUIPanel Layout="tab" Key="mainContainer_tab"
+                             Caption="客户地址明细">
+
+                    <BillUIGrid Key="kqzyqxwh" OptMode="Edit"
+                                SelectMode="Single" DataTableKey="kqzyqxwh">
+                        <GridHeads> 
+                            	<GridHead Col="zhiyuanmingcheng" Caption="职员名称" enableEdit="True" Width="180px">
+                                <BillUIWidget Key="zhiyuanmingcheng" WidgetType="BillUIPopupWindow" ViewSize="lg"
+                                                  Disable="true" Src="zhiyuan">
+                                        <Init Type="javascript/angular" Runat="client">
+                                            <![CDATA[
+                                            	var orgId=this.getOrgId();
+                                                this.setEnvModel({deptName:'储运部'},{orgId:orgId});
+	                                        ]]>
+                                        </Init>
+                                        <Triggers>
+                                            <Trigger>
+                                                <![CDATA[
+                                                    var zhiyuan=this.rows[0];     
+                                                    this.setValue(zhiyuan.realName);
+                                                    @gonghao.setValue(zhiyuan.userId);
+                                                ]]>
+                                            </Trigger>
+                                        </Triggers>
+                                    </BillUIWidget>
+	                            </GridHead>
+	                            <GridHead Col="gonghao" Caption="工号" enableEdit="True" Width="180px">
+                                <BillUIWidget Key="gonghao" WidgetType="BillUIString" ViewSize="lg"
+                                                  Disable="true" Src="zhiyuan">
+                                    </BillUIWidget>
+	                            </GridHead>
+	                            <GridHead Col="kuqumingcheng" Caption="库区名称" enableEdit="True" Width="180px">
+                                	<BillUIWidget Key="kuqumingcheng" WidgetType="BillUIPopupWindow" ViewSize="lg"
+                                                  Disable="true" Src="kuqu">
+                                                  <Triggers>
+                                            <Trigger>
+                                                <![CDATA[
+                                                    var changku=this.rows[0];     
+                                                    this.setValue(changku.kuqumingcheng);
+                                                    @kuqubianhao.setValue(changku.kuqubianhao);
+                                                    @cangkumingcheng.setValue(changku.cangkumingchen);
+                                                ]]>
+                                            </Trigger>
+                                        </Triggers>
+                                        
+                                	</BillUIWidget>
+	                            </GridHead>
+                                <GridHead Col="kuqubianhao" Caption="库区编号"  enableEdit="True" Width="180px">
+                                	<BillUIWidget Key="kuqubianhao" Disable="true" WidgetType="BillUIString"/>
+	                            </GridHead>
+	                            <GridHead Col="cangkumingcheng" Caption="仓库" enableEdit="True" Width="150px">
+	                                <BillUIWidget Key="cangkumingcheng" WidgetType="BillUIString" ViewSize="lg"
+                                                  Disable="true" Src="cangku">
+                                                  <Triggers>
+                                            <Trigger>
+                                                <![CDATA[
+                                                    var changku=this.rows[0];     
+                                                    this.setValue(changku.cangkumingchen);
+                                                    
+                                                ]]>
+                                            </Trigger>
+                                        </Triggers>
+                                        </BillUIWidget>
+	                            </GridHead>
+	                            <GridHead Col="zuoyeshunxu" Caption="作业顺序" enableEdit="True" Width="120px">
+	                                <BillUIWidget Key="zuoyeshunxu" WidgetType="BillUIInteger"/>
+	                            </GridHead>
+	                            <GridHead Col="shangjia" Caption="上架" enableEdit="True" Width="180px">
+                                	 <BillUIWidget Key="shangjia"
+                                              WidgetType="BillUISelect" Src="bill/selectSrc?type=shangjia">
+                                              <Init Type="javascript/angular" Runat="client">
+		                                  		<![CDATA[
+		                                  			this.loadDataSource();
+		                                  		]]>
+                                  			</Init>
+                                  			<Formatters>
+                                        			<Formatter>
+				                                            <![CDATA[
+				                                                [{'type':'shangjia'}]
+				                                            ]]>
+                                        			</Formatter>
+                                    			</Formatters>   
+                                </BillUIWidget>
+                                
+	                            </GridHead>
+	                            <GridHead Col="jianhuo" Caption="拣货" enableEdit="True" Width="180px">
+                                	 <BillUIWidget Key="jianhuo" 
+                                              WidgetType="BillUISelect" Src="bill/selectSrc?type=jianhuo">
+                                              <Init Type="javascript/angular" Runat="client">
+		                                  		<![CDATA[
+		                                  			this.loadDataSource();
+		                                  		]]>
+                                  			</Init>
+                                  			<Formatters>
+                                        			<Formatter>
+				                                            <![CDATA[
+				                                                [{'type':'jianhuo'}]
+				                                            ]]>
+                                        			</Formatter>
+                                    			</Formatters>   
+                                </BillUIWidget>
+	                            </GridHead>
+	                            <GridHead Col="buhuo" Caption="补货" enableEdit="True" Width="180px">
+                                	 <BillUIWidget Key="buhuo" 
+                                              WidgetType="BillUISelect" Src="bill/selectSrc?type=buhuo">
+                                        <Init Type="javascript/angular" Runat="client" >
+		                                  		<![CDATA[
+		                                  			this.loadDataSource();
+		                                  		]]>
+                                  			</Init>
+                                  			  <Formatters>
+                                        			<Formatter>
+				                                            <![CDATA[
+				                                                [{'type':'buhuo'}]
+				                                            ]]>
+                                        			</Formatter>
+                                    			</Formatters>    
+                                </BillUIWidget>
+	                            </GridHead>
+	                            <GridHead Col="pandian" Caption="盘点" enableEdit="True" Width="180px">
+                                	 <BillUIWidget Key="pandian" 
+                                              WidgetType="BillUISelect" Src="bill/selectSrc?type=pandian">
+                                              <Init Type="javascript/angular" Runat="client">
+		                                  		<![CDATA[
+		                                  			this.loadDataSource();
+		                                  		]]>
+                                  			</Init>
+                                  			<Formatters>
+                                        			<Formatter>
+				                                            <![CDATA[
+				                                                [{'type':'pandian'}]
+				                                            ]]>
+                                        			</Formatter>
+                                    			</Formatters>    
+                                </BillUIWidget>
+	                            </GridHead>
+                            </GridHeads>
+                    </BillUIGrid>
+
+                </BillUIPanel>
+            </BillUIPanel>
+        </BillBodyMeta>
+    </BillBody>
+    <BillHeadMeta>
+        <!-- <BillStatusCollection>
+            <Status Code="20">审核中</Status>
+            <Status Code="40" Default="true">正式</Status>
+        </BillStatusCollection> -->
+        <BillEventCollection>
+            <Event Type="PreSave" Processor="com.xyy.wms.handler.biz.DickqzyqxPreHandler"/>
+        </BillEventCollection> 
+    </BillHeadMeta>
+</BillFormMeta>
+

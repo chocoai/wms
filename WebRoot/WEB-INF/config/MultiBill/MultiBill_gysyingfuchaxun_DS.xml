@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="gysyingfuchaxun" Caption="" DefaultFilter="" Pagging="15" PermissionType="CommType"
+               TableName="SQLQuery::
+             SELECT
+	aa.gysbh,
+	aa.gysmc,
+	IFNULL(bb.yue, 0) AS qichu,
+	aa.caigoujine,
+	aa.fukuanjine,
+	IFNULL(
+		(
+			IFNULL(bb.yue, 0) + aa.caigoujine - aa.fukuanjine
+		),
+		0
+	) AS yue |
+FROM
+	(
+		SELECT
+			b.gysbh,
+			b.gysmc,
+			a.jiefang,
+			a.daifang,
+			a.kaipiaoriqi,
+			a.wlId,
+			sum(a.jiefang) AS caigoujine,
+			sum(a.daifang) AS fukuanjine
+		FROM
+			xyy_erp_bill_wanglaizhangye a,
+			xyy_erp_dic_gongyingshangjibenxinxi b
+		WHERE
+			a.wlId = b.suppliersid
+		@gysbh @gysmc
+AND kaipiaoriqi &gt;=@kaishiriqi
+
+AND kaipiaoriqi &lt;=@jiezhiriqi
+		GROUP BY
+			b.gysbh
+		ORDER BY
+			a.ID DESC
+	) AS aa
+LEFT JOIN (
+	SELECT
+		b.gysbh,
+		IFNULL(a.yue, 0) AS yue
+	FROM
+		xyy_erp_bill_wanglaizhangye a,
+		xyy_erp_dic_gongyingshangjibenxinxi b
+	WHERE
+		a.wlId = b.suppliersid
+@gysbh @gysmc
+AND kaipiaoriqi &lt;@kaishiriqi
+	ORDER BY
+		a.ID DESC
+	LIMIT 1
+) AS bb ON aa.gysbh = bb.gysbh
+" DataSource="" Head="false">
+        <Parameters>
+            <Parameter Key="kaishiriqi" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(kaishiriqi==null | kaishiriqi=="" ,"DATE_FORMAT(NOW(),'%Y-%m-%d')"," '"+kaishiriqi+"'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="jiezhiriqi" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(jiezhiriqi==null | jiezhiriqi=="" ,"DATE_FORMAT(NOW(),'%Y-%m-%d') "," '"+jiezhiriqi+"'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="gysbh" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(gysbh==null | gysbh=="" ,""," and b.gysbh like '%"+gysbh+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="gysmc" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(gysmc==null | gysmc=="" ,""," and b.gysmc like '%"+gysmc+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

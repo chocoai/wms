@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+	<DataTable Key="huoweiandkucun_view" Caption="批号" DefaultFilter=""
+		PermissionType="CommType" Pagging="6"
+		TableName="SQLQuery::
+    			SELECT
+			a.kucunshuliang,
+  			c.huoweibianhao
+  				|
+			FROM
+			xyy_wms_bill_shangpinpihaohuoweikucun a
+		INNER JOIN xyy_wms_dic_shangpinziliao b ON a.shangpinId = b.goodsid 
+		INNER JOIN xyy_wms_dic_huoweiziliaoweihu c ON a.huoweiId = c.ID 
+		INNER JOIN xyy_wms_dic_shangpinpihao d on b.goodsid  = d.goodsId AND a.pihaoId = d.pihaoId
+		@pihao @shangpinbianhao "
+	
+		DataSource="" Head="false">
+		<Parameters>
+			<Parameter Key="shangpinbianhao" Type="String">
+				<Where>
+                <![CDATA[
+					m.if(shangpinbianhao==null | shangpinbianhao=="" ,""," and b.shangpinbianhao like '%"+shangpinbianhao+"%'")
+	            ]]>
+				</Where>
+			</Parameter>
+			<Parameter Key="pihao" Type="String">
+				<Where>
+                <![CDATA[
+					m.if(pihao==null | pihao=="" ,""," and d.pihao like '%"+pihao+"%'")
+	            ]]>
+				</Where>
+			</Parameter>
+		</Parameters>
+		
+		
+	</DataTable>
+</DataSet>

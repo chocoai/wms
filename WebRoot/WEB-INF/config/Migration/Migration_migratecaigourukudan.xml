@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<DataMigration Key="migratecaigourukudan" Caption="采购入库单数据迁移" Description="采购入库单数据迁移" SrcDataObjectKey="caigourukudan" 
+TgtDataObjectKey="migratecaigourukudan" BillStatus="20">
+	 <SourceTableCollection> 
+		<SourceTable Key="caigourukudan_details2migratejinxiangkaipiao" TableKey="caigourukudan_details" IsPrimary="true" TargetTableKey="migratejinxiangkaipiao">
+				<SourceField Type="Formula" Definition="_.danjubianhao" OpSign="Assign" IsNegtive="false" GroupingPolicy="Discrete"
+				TargetFieldKey="danjubianhao"/>
+				<SourceField Type="Formula" Definition="_.kaipiaoriqi" OpSign="Assign" IsNegtive="false" GroupingPolicy="None"
+				TargetFieldKey="kaipiaoriqi"/>
+				<SourceField Type="Formula" Definition="_.gysbh" OpSign="Assign" IsNegtive="false" GroupingPolicy="Discrete"
+				TargetFieldKey="gysbh"/>
+				<SourceField Type="Formula" Definition="_.gysmc" OpSign="Assign" IsNegtive="false" GroupingPolicy="Discrete"
+				TargetFieldKey="gysmc"/>
+				<SourceField Type="Formula" Definition="_.kaipiaoyuan" OpSign="Assign" IsNegtive="false" GroupingPolicy="Discrete"
+				TargetFieldKey="kaipiaoyuan"/>
+				<SourceField Type="Formula" Definition="_.caigouyuan" OpSign="Assign" IsNegtive="false" GroupingPolicy="Discrete"
+				TargetFieldKey="caigouyuan"/>
+				
+				<SourceField Type="Field" Definition="hanshuijine" OpSign="AddValue" IsNegtive="False" GroupingPolicy="None"
+				TargetFieldKey="ydzje"/>
+				<SourceField Type="Const" Definition="0" OpSign="Assign" IsNegtive="False" GroupingPolicy="Discrete"
+				TargetFieldKey="ykpje"/>
+				<SourceField Type="Field" Definition="hanshuijine" OpSign="AddValue" IsNegtive="False" GroupingPolicy="None"
+				TargetFieldKey="wkpje"/>
+				
+				<SourceField Type="Const" Definition="0" OpSign="Assign" IsNegtive="False" GroupingPolicy="Discrete"
+				TargetFieldKey="yjsje"/>
+				<SourceField Type="Field" Definition="hanshuijine" OpSign="AddValue" IsNegtive="False" GroupingPolicy="None"
+				TargetFieldKey="wjsje"/>
+				
+				<SourceField Type="Const" Definition="采购入库单" OpSign="Assign" IsNegtive="False" GroupingPolicy="None"
+				TargetFieldKey="zhaiyao"/>
+				<SourceField Type="Const" Definition="1" OpSign="Assign" IsNegtive="False" GroupingPolicy="None"
+				TargetFieldKey="danjuleixin"/>
+				<SourceField Type="Formula" Definition="_.rowID" OpSign="Assign" IsNegtive="false" GroupingPolicy="Discrete"
+						 TargetFieldKey="rowID"/>
+				<SourceField Type="Formula" Definition="_.orgId" OpSign="Assign" IsNegtive="false" GroupingPolicy="Discrete"
+				TargetFieldKey="orgId"/>
+				<SourceField Type="Formula" Definition="_.orgCode" OpSign="Assign" IsNegtive="false" GroupingPolicy="Discrete"
+				TargetFieldKey="orgCode"/>
+				
+				
+				
+				<SourceField Type="Formula" Definition="_.zhsje" OpSign="Assign" IsNegtive="false" GroupingPolicy="Discrete"
+						 TargetFieldKey="zhsje"/>
+				<SourceField Type="Formula" Definition="_.zongjine" OpSign="Assign" IsNegtive="false" GroupingPolicy="Discrete"
+						 TargetFieldKey="zongjine"/>
+				<SourceField Type="Formula" Definition="_.zongshuie" OpSign="Assign" IsNegtive="false" GroupingPolicy="Discrete"
+						 TargetFieldKey="zongshuie"/>
+				<SourceField Type="Formula" Definition="_.beizhu" OpSign="Assign" IsNegtive="false" GroupingPolicy="None"
+						 TargetFieldKey="beizhu"/>
+		</SourceTable>
+		
+		<SourceTable Key="caigourukudan_details2migratejinxiangkaipiao_details" TableKey="caigourukudan_details" IsPrimary="false" TargetTableKey="migratejinxiangkaipiao_details">
+			<SourceField Type="Formula" Definition="_.danjubianhao" OpSign="Assign" IsNegtive="false" GroupingPolicy="Discrete"
+				TargetFieldKey="danjubianhao"/>
+				<SourceField Type="Formula" Definition="_.kaipiaoriqi" OpSign="Assign" IsNegtive="false" GroupingPolicy="Discrete"
+				TargetFieldKey="kaipiaoriqi"/>
+				<SourceField Type="Formula" Definition="_.gysbh" OpSign="Assign" IsNegtive="false" GroupingPolicy="Discrete"
+				TargetFieldKey="gysbh"/>
+				<SourceField Type="Formula" Definition="_.gysmc" OpSign="Assign" IsNegtive="false" GroupingPolicy="Discrete"
+				TargetFieldKey="gysmc"/>
+				<SourceField Type="Field" Definition="shangpinbianhao" OpSign="Assign" IsNegtive="false" GroupingPolicy="Discrete"
+				TargetFieldKey="shangpinbianhao"/>
+				<SourceField Type="Field" Definition="shangpinmingcheng" OpSign="Assign" IsNegtive="false" GroupingPolicy="Discrete"
+				TargetFieldKey="shangpinmingcheng"/>
+				<SourceField Type="Field" Definition="guige" OpSign="Assign" IsNegtive="false" GroupingPolicy="Discrete"
+				TargetFieldKey="guige"/>
+				<SourceField Type="Field" Definition="danwei" OpSign="Assign" IsNegtive="false" GroupingPolicy="Discrete"
+				TargetFieldKey="danwei"/>
+				<SourceField Type="Field" Definition="shengchanchangjia" OpSign="Assign" IsNegtive="false" GroupingPolicy="Discrete"
+				TargetFieldKey="shengchanchangjia"/>
+				<SourceField Type="Field" Definition="shuliang" OpSign="Assign" IsNegtive="false" GroupingPolicy="Discrete"
+				TargetFieldKey="yuandanshuliang"/>
+				<SourceField Type="Field" Definition="shuliang" OpSign="Assign" IsNegtive="false" GroupingPolicy="Discrete"
+				TargetFieldKey="wkpsl"/>
+				<SourceField Type="Field" Definition="hanshuijine" OpSign="Assign" IsNegtive="false" GroupingPolicy="Discrete"
+				TargetFieldKey="hanshuijine"/>
+				<SourceField Type="Field" Definition="hanshuijia" OpSign="Assign" IsNegtive="false" GroupingPolicy="Discrete"
+				TargetFieldKey="hanshuijia"/>
+				<SourceField Type="Field" Definition="danjia" OpSign="Assign" IsNegtive="false" GroupingPolicy="Discrete"
+				TargetFieldKey="danjia"/>
+				<SourceField Type="Field" Definition="jine" OpSign="Assign" IsNegtive="false" GroupingPolicy="Discrete"
+				TargetFieldKey="jine"/>
+				<SourceField Type="Field" Definition="shuie" OpSign="Assign" IsNegtive="false" GroupingPolicy="Discrete"
+				TargetFieldKey="shuie"/>
+				<SourceField Type="Field" Definition="shuilv" OpSign="Assign" IsNegtive="false" GroupingPolicy="Discrete"
+				TargetFieldKey="shuilv"/>
+				<SourceField Type="Field" Definition="pizhunwenhao" OpSign="Assign" IsNegtive="false" GroupingPolicy="Discrete"
+				TargetFieldKey="pizhunwenhao"/>
+				<SourceField Type="Field" Definition="chandi" OpSign="Assign" IsNegtive="false" GroupingPolicy="Discrete"
+				TargetFieldKey="chandi"/>
+				<SourceField Type="Field" Definition="beizhu" OpSign="Assign" IsNegtive="false" GroupingPolicy="Discrete"
+				TargetFieldKey="beizhu"/>
+
+				<SourceField Type="Field" Definition="rowID" OpSign="Assign" IsNegtive="false" GroupingPolicy="Discrete"
+						 TargetFieldKey="rowID"/>
+				<SourceField Type="Formula" Definition="_.orgId" OpSign="Assign" IsNegtive="false" GroupingPolicy="Discrete"
+				TargetFieldKey="orgId"/>
+				<SourceField Type="Formula" Definition="_.orgCode" OpSign="Assign" IsNegtive="false" GroupingPolicy="Discrete"
+				TargetFieldKey="orgCode"/>
+				
+				
+				
+				<SourceField Type="Field" Definition="pihao" OpSign="Assign" IsNegtive="false"  GroupingPolicy="Discrete"
+							 TargetFieldKey="pihao"/>
+				<SourceField Type="Field" Definition="shengchanriqi" OpSign="Assign" IsNegtive="false"  GroupingPolicy="None"
+							 TargetFieldKey="shengchanriqi"/>
+				<SourceField Type="Field" Definition="youxiaoqizhi" OpSign="Assign" IsNegtive="false"  GroupingPolicy="None"
+							 TargetFieldKey="youxiaoqizhi"/>
+				
+		</SourceTable>
+	</SourceTableCollection>
+</DataMigration>

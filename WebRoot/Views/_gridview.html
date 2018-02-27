@@ -1,0 +1,163 @@
+<div class="col-lg-12 table-responsive" style="padding: 0;border:none;">
+    <div class="" style="margin-bottom: 10px;margin-left: 0;">
+        <div class="row" style="padding: 0;margin: 0" ng-class="{'hide':tableType=='singleTable'}" >
+            <div class="col-xs-3" style="padding-left: 0;"  >
+                <div class="input-group">
+					<span class="input-group-btn">
+						<button class="btn btn-default" type="button">
+                            过滤
+                        </button>
+					</span>
+                    <input type="text" class="form-control" ng-model="filter" style="height: 33px;">
+                </div>
+            </div>
+            <!---->
+            <div class="col-xs-3" >
+                <button type="button" key="gridAdd" class="btn btn-primary" ng-click="addRow()" ng-if=" optMode=='edit' && hideAddRow=='show'">新增行</button>
+                <button type="button" key="gridDel" class="btn btn-danger" ng-click="delHook();delRow();" ng-if="optMode=='edit'">删除行</button>
+                <button  ng-if="tableType!=='singleTable'" type="button" class="btn btn-success fastEditBtn" ng-click="fastEdit()">快速导航</button>
+            </div>
+            <!--  配置排序方式 -->
+            <!--<div class="col-xs-3" ng-if="sortOpt.length>0">-->
+                   <!--<span>排序方式：</span>-->
+                <!--<label ng-repeat="x in sortOpt" class="sortType" ng-class="{'curr':sortName==x.name}" >-->
+                    <!--<span ng-click="setSortType(x,1)">{{x.name}}</span>-->
+                    <!--<i class="glyphicon glyphicon-arrow-up" ng-if="x._type==1" ng-click="setSortType(x,0)"></i>-->
+                    <!--<i class="glyphicon glyphicon-arrow-down" ng-if="x._type==0" ng-click="setSortType(x,1)"></i>-->
+                <!--</label>-->
+            <!--</div>-->
+
+            <div class="col-xs-1 shaixuan"  ng-mouseleave="sxisShow='close'" >
+                <button class="btn btn-primary" ng-mouseover="sxisShow='show'"  ng-init="sxisShow='close'">筛选列</button>
+                <div class="content" ng-show="sxisShow=='show'">
+                    <label  ng-repeat="col in _$heads | filter: {isShow:true}  track by $index" " >
+                        <input type="checkbox" ng-checked="col.isChecked==true" ng-click="delHead(col)">
+                        {{col.caption}}
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <table class="table table-bordered table-hover table-condensed">
+        <thead>
+        <tr style="font-weight: 800;background-color:lightgray;" ng-click="cancelClick()">
+            <th style="background-color: white;width: 30px;"  ng-if="tableType!=='singleTable'  "></th>
+            <th ng-if="selectMode!=='single'" style="width:5px;">
+                <input type="checkbox" ng-click="allSelect()"  ng-if="selectMode=='multi'" >
+            </th>
+            <th ng-repeat="col in _$heads  | filter: {isShow:true}  track by $index" style="width:{{col.width}}" align="{{col.align}}" ng-if="col.isHide==false" ng-drop="true" ng-drop-success="dropComplete($index,$data)" >
+               <p  ng-drag="true" ng-drag-data="col">
+                   <span  ng-click="setSortType(col,1)" style="display: inline-block;">{{col.caption}}</span>
+                   <i class="glyphicon glyphicon-arrow-up" ng-if="col._type==1" ng-click="setSortType(col,0)"></i>
+                   <i class="glyphicon glyphicon-arrow-down" ng-if="col._type==0" ng-click="setSortType(col,1)"></i>
+               </p>
+
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-if="rows.length==0">
+            <td colspan="50" align="center" colspan="{{_$heads.length+1}}" ng-if="optMode=='view'">暂无数据...</td>
+            <td  colspan="50"  align="center" colspan="{{_$heads.length}}" ng-if="optMode=='edit'">暂无数据...</td>
+        </tr>
+
+        <tr ng-repeat="row in rows | filter:filter | orderBy:sortType track by $index" ng-click="curRowSelect(row,$index);clickHook(row)"
+            ng-class="setStyle(row,$index)" ng-if="rows"  ng-dblclick="trHook(row)">
+            <td style="background-color: white;"  ng-if="tableType!=='singleTable'">{{$index+1}}</td>
+            <td ng-if="inSos(row) && selectMode!=='single'">
+                <input type="checkbox" checked ng-click="cancelSelect(row)">
+            </td>
+            <td ng-if="!inSos(row) && selectMode!=='single'">
+                <input type="checkbox" ng-click="select(row)" ng-disabled="row.isDisable">
+            </td>
+            <td ng-repeat="col in _$heads | filter: {isShow:true} " style="background-color: {{col.bgcolor}}" align="{{col.align}}" ng-if="col.isHide==false" >
+                <div ng-if="optMode=='view' || (optMode=='edit' && co!=row)" style="min-width:{{col.width}};min-height: 20px;">
+                    <span ng-if="row.shadowObj[col.col]!=='' &&  (!col.colType || col.colType!='widget')">
+                        {{row.shadowObj[col.col]}}
+                    </span>
+
+                    <span ng-if="!exitsCol(row,col.col) || (col.colType && col.colType=='widget')">
+                        <div widget="{{col.widget}}" metawidget model="row[col.col]">
+                        </div>
+                    </span>
+
+                    <i class="glyphicon glyphicon-time"  data-toggle="popover" ng-if="col.relationQuery && (!col.viewType || col.viewType=='Float')" ng-mouseenter="showHistoryInfo(col,row,$event);$event.stopPropagation();" ></i>
+                    <i class="glyphicon glyphicon-time" billuipopupwindow src="{{col.targetView}}"  ng-if="col.viewType && col.viewType=='Windows'" withoutIcon="withoutIcon" target="_blank" ng-click="showHistoryInfo(col,row,$event);$event.stopPropagation();">
+                    </i>
+                </div>
+                <div ng-if="optMode=='edit' && co==row" style="width:{{col.width}}">
+                    <div widget="{{col.widget}}" metawidget model="row[col.col]">
+                    </div>
+                    <i class="glyphicon glyphicon-time"  data-toggle="popover" ng-if="col.relationQuery && (!col.viewType || col.viewType=='Float')" ng-mouseenter="showHistoryInfo(col,row,$event);$event.stopPropagation();" ></i>
+                    <i class="glyphicon glyphicon-time" billuipopupwindow src="{{col.targetView}}"  ng-if="col.viewType && col.viewType=='Windows'" withoutIcon="withoutIcon" target="_blank" ng-click="showHistoryInfo(col,row,$event);$event.stopPropagation();">
+                    </i>
+
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+<!-- 行汇总信息 -->
+    <table class="table table-condensed">
+        <thead>
+        <tr ng-repeat="row in formulaCols" style="border: 1px solid #f0f0f0;background-color: #fdfdcd;">
+            <td style="width: 30px;display: inline-block;"  ng-if="tableType!=='singleTable'" >&nbsp;</td>
+            <td style="width: 30px;" ng-if="selectMode=='multi'" >
+                &nbsp;
+            </td>
+            <td ng-repeat="col in _$heads | filter: {isShow:true} " style="background-color: {{col.bgcolor}}"  ng-if="col.isHide==false">
+                <div style="min-width:{{col.width}};min-height: 20px;" >
+                    <span ng-if="row[col.col]!==''">
+                        {{row[col.col]}}
+                    </span>
+                </div>
+
+            </td>
+        </tr>
+        </thead>
+    </table>
+
+    <!--分页组件<div class="cf" ng-show="pageInfo.totalCount>pageInfo.pageSize">-->
+    <!--pageNumber  当前页数-->
+    <!--pageSize   一页显示多少条-->
+    <!--totalPage 总页数-->
+    <!--totalRow 总条数-->
+    <div class="clearfix" ng-if="pageInfo.totalRow>pageInfo.pageSize" style="overflow: hidden;">
+        <div class="pull-left" style="line-height: 33px;">当前 {{pageInfo.pageNumber}} / {{pageInfo.totalPage}}页，共
+            {{pageInfo.totalRow}} 条记录
+        </div>
+        <div class="pull-right">
+            <ul class="pagination" style="margin:0;">
+                <li ng-class="{'disabled':pageInfo.pageNumber===1}" ng-disabled="pageInfo.pageNumber===1"
+                    ng-click="setPage('begin')"><a>首页</a></li>
+
+                <li ng-class="{'disabled':pageInfo.pageNumber===1}" ng-disabled="pageInfo.pageNumber===1"
+                    ng-click="setPage('prev')"><a>« </a></li>
+
+                <li ng-repeat="item in pageInfo.pageItems  | limitTo:5"
+                    ng-class="{'active':pageInfo.pageNumber==item}" ng-if="item<=pageInfo.totalPage"
+                    ng-click="setPage(item)"><a>{{item}}</a></li>
+
+                <li ng-class="{'disabled':pageInfo.pageNumber===pageInfo.totalPage}" ng-click="setPage('next')"
+                    ng-disabled="pageInfo.pageNumber===pageInfo.totalPage"><a>
+                    »</a></li>
+
+                <li ng-class="{'disabled':pageInfo.pageNumber===pageInfo.totalPage}" ng-click="setPage('end')"
+                    ng-disabled="pageInfo.pageNumber===pageInfo.totalPage"><a>
+                    尾页</a></li>
+
+                <li>
+                    跳转至
+                    <input type="text" ng-model="skipPage"
+                           style="height: 31px;line-height: 33px; border: 1px solid #ddd; width: 45px;text-align: center;">
+                </li>
+                <li>
+                    <button class="btn" ng-click="setPage(skipPage)">跳转</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+</div>

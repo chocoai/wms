@@ -1,0 +1,197 @@
+<div ng-controller="myApp.systemManagement.menu">
+	<div class="row">
+		<div class="col-sm-3">
+			<!--菜单树-->
+			<div class="panel panel-default">
+				<div class="panel-heading clearfix">
+					<div class="pull-left">菜单管理</div>
+					<div class="pull-right btn-group">
+						<button id="menuBtn" class="btn btn-success btn-sm"
+							ng-click="addMenu()">新增</button>
+					</div>
+				</div>
+				<div class="panel-body">
+					<img src="/lib/images/1_open.png">
+					<treecontrol class="tree-classic" tree-model="dataForTheTree"
+						options="treeOptions" expanded-nodes="expandedNodes"
+						selected-node="selected" on-selection="buttonClick(node)">
+					{{node.name}} </treecontrol>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-9">
+			<!--菜单管理-->
+			<div class="panel panel-default">
+				<div class="panel-heading clearfix">
+					<div class="pull-left">菜单编辑</div>
+				</div>
+				<div class="panel-body">
+					<table class="table table-hover table-bordered table-striped table-condensed">
+						<thead>
+						<tr>
+							<th style="width: 10%">菜单名称</th>
+							<th style="width: 10%">功能名称</th>
+							<th style="width: 10%">状态</th>
+							<th style="width: 10%">手机状态</th>
+							<th style="width: 10%">排序</th>
+							<th style="width: 10%">手机图标</th>
+							<th style="width: 10%">备注</th>
+							<th style="width: 10%">操作</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr ng-repeat="mrow in mrows">
+							<td>{{mrow.name}}</td>
+							<td>{{mrow.operationName}}</td>
+							<td>
+								<label ng-if="mrow.state==1" style="color: green;">正常</label>
+								<p ng-if="mrow.state==0" style="color: red;">禁用</p>
+							</td>
+							<td>
+								<label ng-if="mrow.mobileState==1" style="color: green;">显示</label>
+								<p ng-if="mrow.mobileState==0" style="color: red;">隐藏</p>
+							</td>
+							<td>{{mrow.sortNo}}</td>
+							<td>
+								<label ng-if="mrow.mobileIcon==1" style="color: green;">手机图标</label>
+								<p>{{mrow.mobileIcon}}</p>
+							</td>
+							<td>
+								<p ng-show="mrow.remark.length>15" title="{{mrow.remark}}">{{mrow.remark.substring(1,15)}}......</p>
+								<p ng-show="mrow.remark.length<15" >{{mrow.remark}}</p>
+							</td>
+							<td>
+								<div class="btn-group" ng-if="mrow.parentId!=null">
+									<button class="btn btn-sm btn-primary"  ng-click="editMenu(mrow.id)">编辑</button>
+								</div>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+					<div paging  page-info="pageInfo"  load="load()"/>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div>
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+			aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="myModalLabel">编辑菜单</h4>
+					</div>
+					<div class="modal-body">
+						<form class="form-horizontal" role="form" name="newform">
+							<div class="form-group">
+								<label class="col-sm-2 control-label">菜单名称</label>
+								<div class="col-sm-4">
+									<input type="text" class="form-control"
+										ng-model="newMenu.name" required>
+								</div>
+								<label class="col-sm-2 control-label">状态</label>
+								<div class="col-sm-4">
+									<select class="form-control" ng-model="newMenu.state"
+										ng-options="s.value as s.name for s in stateList" required>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">子系统</label>
+								<div class="col-sm-4">
+									<select class="form-control" ng-model="newMenu.systemId"
+										ng-options="sys.id as sys.name for sys in systemList" required></select>
+								</div>
+								<label class="col-sm-2 control-label" ng-if="newMenu.isparent=='0'">功能名称</label>
+								<div class="col-sm-4" ng-if="newMenu.isparent=='0'">
+									<input type="text" class="form-control" ng-click="queryModuleAndOpt()" ng-disabled="newMenu.systemId==null"
+										ng-model="newMenu.operationName" required>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">父菜单</label>
+								<div class="col-sm-4">
+									<select class="form-control" ng-model="newMenu.parentId"
+										ng-disabled="newMenu.systemId==null"
+										ng-options="menu.id as menu.name for menu in parentList"
+										required></select>
+								</div>
+								<label class="col-sm-2 control-label">排序</label>
+								<div class="col-sm-4">
+									<input type="number" class="form-control"
+										ng-model="newMenu.sortNo" required>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">是否为父节点</label>
+								<div class="col-sm-4">
+									<select class="form-control" ng-model="newMenu.isparent"
+											required>
+										<option value="1">是</option>
+										<option value="0">否</option>
+									</select>
+								</div>
+								<label class="col-sm-2 control-label">手机状态</label>
+								<div class="col-sm-4">
+									<select class="form-control" ng-model="newMenu.mobileState"
+										ng-options="s.value as s.name for s in mobileStateList" required>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">手机图标</label>
+								<div class="col-sm-4">
+									<input type="text" class="form-control"
+										ng-model="newMenu.mobileIcon">
+								</div>
+								<label class="col-sm-2 control-label">备注</label>
+								<div class="col-sm-4">
+									<input type="text" class="form-control"
+										ng-model="newMenu.remark">
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+						<button type="button" class="btn btn-primary " ng-click="saveMenu()"  ng-disabled="newform.$invalid">保存</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div>
+		<!-- 设置模块功能树 -->
+		<div class="modal fade bs-example-modal-sm" id="moduleOptModal"
+			tabindex="-1" role="dialog">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">
+							<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+						</button>
+						<h4 class="modal-title">设置功能</h4>
+					</div>
+					<div class="modal-body">
+						<div class="panel-body">
+						<img src="/lib/images/1_open.png">
+							<treecontrol class="tree-classic" tree-model="DataForTheTree3"
+								expanded-nodes="expandedNodes3" options="option3"
+								on-selection="select(node)"
+								selected-node="node3"> {{node.name}} </treecontrol>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+						<button type="button" class="btn btn-primary"
+							ng-click="saveOpt()">保存</button>
+					</div>
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal-dialog -->
+		</div>
+	</div>
+
+</div>

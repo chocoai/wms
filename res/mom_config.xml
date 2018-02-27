@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+<queue>CDT_COMMON_MESSAGE_xs</queue>
+<consumer>
+	<brokerUri>failover:(tcp://192.168.1.80:61616,tcp://192.168.1.80:62616)</brokerUri>
+	<user>system</user>
+	<password>manager</password>
+	<queue_prefetch>500</queue_prefetch>
+	<worker_count>5</worker_count>
+</consumer>
+<produce>
+	<brokerUri>failover:(nio://192.168.1.80:61617,nio://192.168.1.80:62617)</brokerUri>
+	<user>system</user>
+	<password>manager</password>
+	<maxConnections>20</maxConnections>
+	<maximumActiveSessionPerConnection>300</maximumActiveSessionPerConnection>
+	<threadPoolSize>50</threadPoolSize>
+	<useAsyncSendForJMS>true</useAsyncSendForJMS>
+	<isPersistent>true</isPersistent>
+</produce>
+<MessageHandlers>
+	<handler type="weixinRemain">com.xyy.myHandler.WeiXinTaskRemaindHandler</handler>
+	<handler type="tongdun">com.xyy.myHandler.TongdunSearch</handler>
+	<handler type="msg">com.xyy.myHandler.MSGHandler</handler>
+</MessageHandlers>
+</config>

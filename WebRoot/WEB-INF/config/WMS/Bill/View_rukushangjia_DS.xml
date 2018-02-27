@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+	<DataTable Key="rukushangjia" Caption="入库上架叙事薄"
+		DefaultFilter="" Pagging="20"
+		TableName="SQLQuery::select * | from xyy_wms_bill_rukushangjia where 1 = 1 @dingdanbianhao @shangjiayuan @danweibianhao  order by createTime desc "
+		DataSource="" Head="false">
+		<Parameters>
+
+			<Parameter Key="dingdanbianhao" Type="String">
+				<Where>
+                <![CDATA[
+					m.if(dingdanbianhao==null | dingdanbianhao=="" ,""," and dingdanbianhao like '%"+dingdanbianhao+"%'")
+	            ]]>
+				</Where>
+			</Parameter>
+			<Parameter Key="shangjiayuan" Type="String">
+				<Where>
+                <![CDATA[
+					m.if(shangjiayuan==null | shangjiayuan=="" ,""," and shangjiayuan like '%"+shangjiayuan+"%'")
+	            ]]>
+				</Where>
+			</Parameter>
+			<Parameter Key="danweibianhao" Type="String">
+				<Where>
+                <![CDATA[
+					m.if(danweibianhao==null | danweibianhao=="" ,""," and danweibianhao like '%"+danweibianhao+"%'")
+	            ]]>
+				</Where>
+			</Parameter>
+
+		</Parameters>
+	</DataTable>
+</DataSet>

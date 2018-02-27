@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="dxqsp" Caption="短效期商品查询" DefaultFilter="" PermissionType="CommType" Pagging="100"
+               TableName="SQLQuery::
+        SELECT
+        s.shangpinbianhao,
+        s.shangpinmingcheng,
+        s.guige,
+        s.danwei,
+        s.chandi,
+        s.jixing,
+        s.dbzsl,
+        s.pizhunwenhao,
+        s.shengchanchangjia,
+        h.huoweibianhao,
+        p.pihao,
+        p.shengchanriqi,
+        p.youxiaoqizhi,
+        k.kucunshuliang,
+        k.ID AS rowID
+        |
+        from xyy_wms_bill_shangpinpihaohuoweikucun k
+        inner JOIN xyy_wms_dic_shangpinziliao s  on
+        k.shangpinId=s.goodsId and s.orgId=k.orgId
+        inner join  xyy_wms_dic_shangpinpihao p
+        on p.ID=k.pihaoId and p.orgId=k.orgId
+        inner join xyy_wms_dic_huoweiziliaoweihu h
+        on h.ID=k.huoweiId and h.orgId=k.orgId
+                where 1 = 1 and k.kucunshuliang!=0 @youxiaoqi @zhujima @orgId" DataSource="" Head="false" Singleton="" OrderBy="">
+        <Parameters>
+            <Parameter Key="orgId" Type="String" >
+                <Where>
+                    <![CDATA[
+							m.if(orgId==null | danjubianhao=="" ," "," and s.orgId like '%"+orgId+"%'")
+			            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="youxiaoqi" Type="Integer">
+                <Where>
+                    <![CDATA[
+					m.if(youxiaoqi==null | youxiaoqi=="",""," and s.youxiaoqi <12")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="zhujima" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(zhujima==null | zhujima=="" ,""," and s.zhujima like '%"+zhujima+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

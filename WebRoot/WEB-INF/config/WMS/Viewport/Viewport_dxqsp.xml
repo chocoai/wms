@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<BillViewMeta Key="dxqsp" Caption="短效期商品查询视图" Version="">
+	<BillBody UserAgent="web">
+		<BillBodyMeta>
+			<BillUIPanel Layout="flex" Key="dictionary_tools" Caption="短效期商品查询视图"  S="">
+			     <BillUIGridPanel Key="dxqsp_grid">
+                    <BillUIRowPanel>
+                     <!--   <BillUIColPanel Width="4">
+                            <BillUIWidget Caption="有效期" Key="cancel"
+                                EnabledWhen="True"   ParameterKey="youxiaoqi"
+                                DataTableKey="dxqsp"
+                                WidgetType="BillUIInteger">
+                            </BillUIWidget>
+                        </BillUIColPanel>-->
+						<BillUIColPanel Width="4">
+							<BillUIWidget Caption="商品助记码" Key="cancel"
+										  EnabledWhen="True" ParameterKey="zhujima" DataTableKey="dxqsp"
+										  WidgetType="BillUIString">
+							</BillUIWidget>
+						</BillUIColPanel>
+
+                        <BillUIColPanel Width="1">
+                            <BillUIWidget Caption="查询" Key="search"
+                                EnabledWhen="True"
+                                Icon="glyphicon glyphicon-send" WidgetType="BillUIButton">
+                                <Triggers>
+                                    <Trigger Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                        	this.search("dxqsp");
+                                 			]]>
+                                    </Trigger>
+                                </Triggers>
+                            </BillUIWidget>
+                        </BillUIColPanel>
+                    </BillUIRowPanel>
+			         <BillUIRowPanel>
+						 <BillUIColPanel Width="12">
+							 <BillUIPanel Layout="flex" Key="dictionary_tools">
+								 <BillUIGrid Key="grid0" OptMode="View" SelectMode="Multi" DataTableKey="dxqsp">
+									 <GridHeads>
+										 <GridHead Col="rowID" Caption="行表示"
+												   enableEdit="True" Width="150px" Show="false">
+											 <BillUIWidget Key="rowID" WidgetType="BillUIString" />
+										 </GridHead>
+										 <GridHead Col="shangpinbianhao" Caption="商品编号"
+												   enableEdit="True" Width="150px">
+											 <BillUIWidget Key="shangpinbianhao" WidgetType="BillUIString" />
+										 </GridHead>
+										 <GridHead Col="shangpinmingcheng" Caption="商品名称"
+												   enableEdit="True" Width="150px">
+											 <BillUIWidget Key="shangpinmingcheng"
+														   WidgetType="BillUIString" />
+										 </GridHead>
+										 <GridHead Col="guige" Caption="商品规格" enableEdit="True"
+												   Width="150px">
+											 <BillUIWidget Key="guige" WidgetType="BillUIString" />
+										 </GridHead>
+										 <GridHead Col="dbzsl" Caption="包装数量" enableEdit="True"
+												   Width="150px">
+											 <BillUIWidget Key="dbzsl" WidgetType="BillUIInteger" />
+										 </GridHead>
+										 <GridHead Col="danwei" Caption="单位" enableEdit="True"
+												   Width="120px">
+											 <BillUIWidget Key="danwei" WidgetType="BillUIInteger">
+												 <Formatters>
+													 <Formatter>
+														 <![CDATA[
+			                                                [{'type':'baozhuangdanwei'}]
+			                                            ]]>
+													 </Formatter>
+												 </Formatters>
+											 </BillUIWidget>
+										 </GridHead>
+										 <GridHead Col="shengchanriqi" Caption="生产日期"
+												   enableEdit="True" Width="120px">
+											 <BillUIWidget Key="shengchanriqi"
+														   WidgetType="BillUIDateTime" />
+										 </GridHead>
+										 <GridHead Col="youxiaoqizhi" Caption="有效期至"
+												   enableEdit="True" Width="120px">
+											 <BillUIWidget Key="youxiaoqizhi"
+														   WidgetType="BillUIDateTime" />
+										 </GridHead>
+										 <GridHead Col="shengchanchangjia" Caption="生产厂家"
+												   enableEdit="True" Width="120px">
+											 <BillUIWidget Key="shengchanchangjia"
+														   WidgetType="BillUIString" />
+										 </GridHead>
+										 <GridHead Col="jixing" Caption="剂型"
+												   enableEdit="True" Width="120px">
+											 <BillUIWidget Key="jixing"
+														   WidgetType="BillUISelect" Src="Bill/selectSrc?type=shangpinjixing" >
+												 <Init Type="javascript/angular" Runat="client">
+													 <![CDATA[
+			                                this.loadDataSource();
+										]]>
+												 </Init>
+
+												 <Formatters>
+													 <Formatter>
+														 <![CDATA[
+                                                [{'type':'shangpinjixing'}]
+                                            ]]>
+													 </Formatter>
+												 </Formatters>
+											 </BillUIWidget>
+										 </GridHead>
+										 <GridHead Col="pizhunwenhao" Caption="批准文号"
+												   enableEdit="True" Width="120px">
+											 <BillUIWidget Key="pizhunwenhao" WidgetType="BillUIString" />
+										 </GridHead>
+										 <GridHead Col="huoweibianhao" Caption="货位编号"
+												   enableEdit="True" Width="120px">
+											 <BillUIWidget Key="huoweibianhao" WidgetType="BillUIString" />
+										 </GridHead>
+									 </GridHeads>
+							 </BillUIGrid>
+							 </BillUIPanel>
+
+						 </BillUIColPanel>
+			         </BillUIRowPanel>
+			         
+			     </BillUIGridPanel>
+             </BillUIPanel>
+		</BillBodyMeta>
+	</BillBody>
+	
+</BillViewMeta>

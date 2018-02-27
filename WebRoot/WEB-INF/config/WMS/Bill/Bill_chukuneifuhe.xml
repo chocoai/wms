@@ -1,0 +1,876 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BillFormMeta Key="chukuneifuhe" Version="1.0.0" BillType="Bill"
+              Caption="出库内复核">
+    <BillBody>
+        <BillBodyMeta UserAgent="web">
+            <BillUIPanel Layout="flex" FlexDirection="column" Width="100%"
+                         Key="mainContainer" Caption="出库内复核" S="">
+                <BillUIPanel Layout="flex" Key="toolbox" Caption="工具栏">
+                    <BillUIWidget Key="box" WidgetType="BillUIView" Src="toolbase">
+                    </BillUIWidget>
+                    <BillUIWidget Key="save" Caption="复核" EnabledWhen="True"
+                                  Icon="glyphicon glyphicon-floppy-disk" WidgetType="BillUIButton">
+                        <Triggers>
+                            <Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+                            var cos=getDataset("chukuneifuhe_details").cos;
+                            var weifuherongqi = window.$head.weifuherongqi;
+                            var lastrows=cos.length-1;
+                            for(var i=0;i<cos.length;i++){
+                            var yifuheshuliang=window.$body.chukuneifuhe_details.cos[i].yifuheshuliang;
+                            var pinxianghao=window.$body.chukuneifuhe_details.cos[i].pinxianghao;
+                            var jihuashuliang=window.$body.chukuneifuhe_details.cos[i].jihuashuliang;
+                            var chacuoyuanyin=window.$body.chukuneifuhe_details.cos[i].chacuoyuanyin;
+                            var indexrow=i+1;
+                            if(yifuheshuliang==null||yifuheshuliang==undefined||yifuheshuliang==""){
+                                    alert("第"+indexrow+"行,请进行内复核");
+                                    return;
+                                 }else if(pinxianghao==null||pinxianghao==undefined||pinxianghao==""){
+                                    alert("第"+indexrow+"行,请输入拼箱号");
+                                    return;
+                                 }else if(yifuheshuliang!=jihuashuliang){
+                                    if(chacuoyuanyin==1){
+                                    alert("第"+indexrow+"行,已复核数量不等于计划数量,请继续复核或者填写差错原因");
+                                    return;
+                                     }else{
+                                        continue;
+                                    }
+                                 }
+                            }
+                                  @$this.save('bills',{
+                                        before:{
+                                           setStatus:[43]
+                                        }
+                                    });
+
+                            ]]>
+                            </Trigger>
+                        </Triggers>
+                    </BillUIWidget>
+
+                    <BillUIWidget Caption="重新复核" Key="cancel" EnabledWhen="True"
+                                  Icon="glyphicon glyphicon-send" WidgetType="BillUIButton">
+                        <Triggers>
+                            <Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+                                window.$body.chukuneifuhe_details.co.shijishuliang=0;
+                                window.$body.chukuneifuhe_details.co.yifuheshuliang=0;
+                                window.$body.chukuneifuhe_details.co.chonghongshuliang=0;
+                     			]]>
+                            </Trigger>
+                        </Triggers>
+                    </BillUIWidget>
+
+                    <BillUIWidget Caption="打印拼箱" Key="cancel" EnabledWhen="True"
+                                  Icon="glyphicon glyphicon-send" WidgetType="BillUIButton">
+                        <Triggers>
+                            <Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+　                              try {
+                                var dingdanbianhao=getHeadValue("dingdanbianhao");
+                                console.log(dingdanbianhao);
+                                var pinxiang = callRemoteMethod('/wmsNeiFuHe/route/neifuhepinxiangNext', {dingdanbianhao:dingdanbianhao}, true, 'POST');
+                                var index=getDataset("chukuneifuhe_details").co._$index;
+                                var cos=getDataset("chukuneifuhe_details").cos;
+
+                                var _co=window.$body.chukuneifuhe_details.co;
+                                var a;
+                                if(_co){
+                                    var _i=_co.pinxianghao;
+                                    if(_i && _i!==''){
+                                        a=_i;
+                                    }else{
+                                        a=pinxiang.num;
+                                    };
+                                    console.log(_i);
+                                }else{
+                                 var _i=_co.pinxianghao;
+                                 a=_i;
+                                };
+                                console.log(a);
+                                @pinxianghao.setValue(a);
+
+                                for(var i=index;i<cos.length;i++){
+                                   window.$body.chukuneifuhe_details.cos[i].pinxianghao=pinxiang.num;
+                                }
+　                           　} catch(err) {
+　　                          　　if(index == "SyntaxError");
+　　                           }
+
+                            var kehubeizhu= window.$head.kehubeizhu;
+                            var dingdanbianhao= window.$head.dingdanbianhao;
+                            var fuhetai= window.$head.fuhetai;
+                            var caozuoren= window.$head.caozuoren;
+                            var zancunqu= window.$head.zancunqu;
+                            var shengchanchangjia= window.$head.kehumingcheng;
+                            var pinxianghao= window.$body.chukuneifuhe_details.co.pinxianghao;
+                            var xianlumingcheng=window.$head.xianlumingcheng;
+                            var kehumingcheng=window.$head.kehumingcheng;
+
+                            var data = {kehubeizhu:kehubeizhu,dingdanbianhao:dingdanbianhao,fuhetai:fuhetai,                                                       caozuoren:caozuoren,zancunqu:zancunqu,shengchanchangjia:shengchanchangjia,pinxianghao:pinxianghao,                                      xianlumingcheng:xianlumingcheng,kehumingcheng:kehumingcheng};
+                            var res = callRemoteMethod('/wmsNeiFuHe/route/neifuhepinxiangprint',data, true, 'POST');
+                            debugger;
+                            this.print(res,false);
+
+                     			]]>
+                            </Trigger>
+                        </Triggers>
+                    </BillUIWidget>
+
+                    <BillUIWidget Key="anniuzu" Caption="容器选择"
+                                  WidgetType="BillUIButtonGroup" AuxiliaryDir="rongqixuanze">
+                        <Properties>
+                            <Property Name="容器号">
+                            </Property>
+                        </Properties>
+                        <Triggers>
+                            <Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+                                             var cos=getRows("chukuneifuhe_details");
+                                             $this.openWindow("chukuneifuhe","chukuneifuhe_view",{
+                                                    condition:"",
+                                                    cos:cos,
+                                                    ok:function(data){
+                                                    var billid=[];
+                                                     console.log(data);
+                                                     billid.push(data[0].BillID);
+                                                     var dsi=map('dabaorenwu2chukuneifuhe',3,billid);
+                                                     var head = dsi.chukuneifuhe;
+                                                     mixer(head[0],window.$head);
+                                                     var body = dsi.chukuneifuhe_details;
+                                                      for(var i =0;i<body.length;i++) {
+	                                                     body[i].yifuheshuliang=0;
+	                                                     body[i].chonghongshuliang=0;
+	                                                     body[i].chacuoyuanyin=1;
+                                                     }
+                                                     insertRows("chukuneifuhe_details",body,true);
+
+                                                    },
+                                                    cancel:function(){
+                                                        console.log("取消");
+                                                    }
+			                                    });
+	                                    ]]>
+                            </Trigger>
+                        </Triggers>
+                    </BillUIWidget>
+                </BillUIPanel>
+
+                <BillUIPanel Layout="flex" Key="mainContainer_head"
+                             Caption="出库内复核" S="panel panel-success publicPanel" RowGap="5"
+                             ColGap="10" ColWidth="300px 300px 300px  300px 1fr 1fr">
+                    <BillUIGridPanel Key="chukuneifuhe">
+                        <BillUIRowPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="rongqihao" ParameterKey="rongqihao"
+                                              DataTableKey="chukuneifuhe" DataTableColumn="rongqihao"
+                                              Caption="容器号" EnabledWhen="True" WidgetType="BillUIString">
+                                    <Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+		                                 $('[key="rongqihao"]').keydown(function(event){
+		                                        		var myEvent = event || window.event;
+		                                        		switch(myEvent.keyCode) {
+		                                        			case 13:
+		                                   var rongqihao=getHeadValue("rongqihao");
+                                           var shangpingshuju = callRemoteMethod('/wmsNeiFuHe/route/neifuherongqihao',                                                      {rongqihao:rongqihao}, true, 'POST');
+                                          if(shangpingshuju.record==null){
+                                             alert(shangpingshuju.message);
+                                          }else{
+                                          var dingdanbianhao =shangpingshuju.record.dingdanbianhao;
+                                          var rongqihao =shangpingshuju.record.rongqihao;
+                                          var fuhetai =shangpingshuju.record.fuhetai;
+                                          var cangkubianhao =shangpingshuju.record.cangkubianhao;
+                                          var fhqbh =shangpingshuju.record.fhqbh;
+                                          var weifuherongqi =shangpingshuju.record.weifuherongqi;
+                                          var tihuofangshi =shangpingshuju.record.tihuofangshi;
+                                          var zancunqu =shangpingshuju.record.zancunqu;
+                                          var xianlumingcheng =shangpingshuju.record.xianlumingcheng;
+                                          var kehubeizhu =shangpingshuju.record.kehubeizhu;
+                                          var kehumingcheng =shangpingshuju.record.kehumingcheng;
+                                          var czrmc =shangpingshuju.record.czrmc;
+                                          var zhixiangguige =shangpingshuju.record.zhixiangguige;
+                                          var neifuhedanhao =shangpingshuju.record.taskCode;
+
+
+                                          @dingdanbianhao.setValue(dingdanbianhao);
+                                          @rongqihao.setValue(rongqihao);
+                                          @fuhetai.setValue(fuhetai);
+                                          @cangkubianhao.setValue(cangkubianhao);
+                                          @fhqbh.setValue(fhqbh);
+                                          @weifuherongqi.setValue(weifuherongqi);
+                                          @tihuofangshi.setValue(tihuofangshi);
+                                          @zancunqu.setValue(zancunqu);
+                                          @xianlumingcheng.setValue(xianlumingcheng);
+                                          @kehubeizhu.setValue(kehubeizhu);
+                                          @kehumingcheng.setValue(kehumingcheng);
+                                          @czrmc.setValue(czrmc);
+                                          @zhixiangguige.setValue(zhixiangguige);
+                                          @neifuhedanhao.setValue(neifuhedanhao);
+
+                                          insertRows("chukuneifuhe_details",shangpingshuju.recordList,true);
+                                          }
+                                                         $('[key="shangpinbianhaoHead"]').focus();
+		                                        		}
+		                                        	});
+												]]>
+                                    </Init>
+
+
+                                </BillUIWidget>
+                            </BillUIColPanel>
+
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="shangpinbianhaoHead" ParameterKey="shangpinbianhao"
+                                              DataTableKey="chukuneifuhe" DataTableColumn="shangpinbianhao"
+                                              Caption="商品编号" EnabledWhen="True"
+                                              WidgetType="BillUIString">
+                                    <!--
+                                    AuxiliaryDir="zhujima"
+                                    <Properties>
+                                         <Property Name="dataTable" Type="internal">
+                                             "dabaorenwu"
+                                         </Property>
+                                     </Properties>
+                                     <Mappings>
+                                         <Mapping>
+                                             <![CDATA[
+                                                       {dataTableKey:'chukuneifuhe_details',
+                                                       data:[{tk:'xinxishangpinmingcheng',sk:'shangpinmingcheng'},
+                                                       {tk:'xinxishangpinbianhao',sk:'shangpinbianhao'},
+                                                       {tk:'xinxiguige',sk:'guige'},
+                                                       {tk:'xinxishengchanchangjia',sk:'shengchanchangjia'},
+                                                       {tk:'xinxidanwei',sk:'danwei'},
+                                                       {tk:'xinxijihuashuliang',sk:'shuliang'},
+                                                       {tk:'xinxihuowei',sk:'xiajiahuoweibianhao'},
+                                                       {tk:'xinxishangpingpihaosn',sk:'shangpingpihaosn'},
+                                                       {tk:'xinxishengchanriqi',sk:'shengchanriqi'},
+                                                       {tk:'xinxiyouxiaoqizhi',sk:'youxiaoqizhi'},
+                                                       ]}
+                                                   ]]>
+                                         </Mapping>
+                                     </Mappings>-->
+                                    <Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+		                                 $('[key="shangpinbianhaoHead"]').keydown(function(event){
+		                                        		var myEvent = event || window.event;
+		                                        		switch(myEvent.keyCode) {
+		                                        			case 13:
+                                       var dingdanbianhao=getHeadValue("dingdanbianhao");
+                                       var shangpinbianhao=getHeadValue("shangpinbianhao");
+                                       var shangpingtiaoma=getHeadValue("shangpingtiaoma");
+
+                                       var cos=getDataset("chukuneifuhe_details").cos;
+                                       var xinxishangpinbianhao=window.$head.shangpinbianhao;
+                                       var pinxiang = callRemoteMethod('/wmsNeiFuHe/route/neifuhepinxiangPre',                   {dingdanbianhao:dingdanbianhao}, true, 'POST');
+
+
+                                        for(var i=0;i<cos.length;i++){
+                                             window.$body.chukuneifuhe_details.cos[i].pinxianghao=pinxiang.num;
+                                         }
+
+                                       for(var i=0;i<cos.length;i++){
+                                        var shangpinbianhaoco=window.$body.chukuneifuhe_details.cos[i].shangpinbianhao;
+                                        if( xinxishangpinbianhao==shangpinbianhaoco){
+                                        var a= window.$body.chukuneifuhe_details.cos[i].yifuheshuliang;
+                                        var b=window.$body.chukuneifuhe_details.cos[i].chonghongshuliang;
+
+                                        if(a==null||a==undefined||a==""){
+                                           @xinxiyifuheshuliang.setValue("0");
+                                        }else{
+                                           @xinxiyifuheshuliang.setValue(a);
+                                        }
+
+                                        if(b==null||b==undefined||b==""){
+                                           @xinxichonghongshuliang.setValue("0");
+                                        }else{
+                                           @xinxichonghongshuliang.setValue(b);
+                                        }
+
+                                        var c=window.$body.chukuneifuhe_details.cos[i].chacuoyuanyin;
+                                        console.log("c...:"+c);
+
+
+                                        setHeadValue("chacuoyuanyin",parseInt(c));
+
+                                        @xinxishijishuliang.setValue("");
+                                              break;
+                                            }
+                                          }
+
+                                    var body = callRemoteMethod('/wmsNeiFuHe/route/neifuhebody',                                                                 {dingdanbianhao:dingdanbianhao,shangpinbianhao:shangpinbianhao}, true, 'POST');
+
+                                    @xinxishangpinmingcheng.setValue(body.shangpinmingcheng);
+                                    @xinxishangpinbianhao.setValue(body.shangpinbianhao);
+                                    @xinxiguige.setValue(body.guige);
+                                    @xinxidanwei.setValue(body.danwei);
+                                    @xinxishengchanchangjia.setValue(body.shengchanchangjia);
+                                    @xinxijihuashuliang.setValue(body.shuliang);
+                                    @xinxihuowei.setValue(body.xiajiahuoweibianhao);
+                                    @xinxishangpingpihaosn.setValue(body.shangpingpihaosn);
+                                    @xinxishengchanriqi.setValue(body.shengchanriqi);
+                                    @xinxiyouxiaoqizhi.setValue(body.youxiaoqizhi);
+                                    $('[key="xinxishijishuliang"]').focus();
+                                    break;
+		                                        		}
+		                                        	});
+												]]>
+                                    </Init>
+
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="weifuherongqi" ParameterKey="weifuherongqi"
+                                              DataTableKey="chukuneifuhe" DataTableColumn="weifuherongqi"
+                                              Caption="未复核容器" Disable="true"
+                                              WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="dingdanbianhao" ParameterKey="dingdanbianhao"
+                                              DataTableKey="chukuneifuhe" DataTableColumn="dingdanbianhao"
+                                              Caption="订单编号" EnabledWhen="True" Disable="true"
+                                              WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                        </BillUIRowPanel>
+
+                        <BillUIRowPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="caozuoren" ParameterKey="caozuoren"
+                                              DataTableKey="chukuneifuhe" DataTableColumn="caozuoren"
+                                              Caption="内复核人员" EnabledWhen="True" Disable="true"
+                                              WidgetType="BillUIString">
+                                    <!-- 获取系统登录用户名 -->
+                                    <Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+			                                	 var r = this.getRealName();
+												 setHeadValue("caozuoren",r);
+												 setHide('gridAdd');
+												 setHide('gridDel');
+				                                 ]]>
+                                    </Init>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="fuhetai" ParameterKey="fuhetai"
+                                              DataTableKey="chukuneifuhe" DataTableColumn="fuhetai" Caption="复核位"
+                                              EnabledWhen="True" Disable="true" WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="tihuofangshi" Caption="提货方式"
+                                              Disable="true" DataTableKey="chukuneifuhe" DataTableColumn="tihuofangshi"
+                                              EnabledWhen="True" WidgetType="BillUISelect"
+                                              Src="/bill/selectSrc?type=tihuofangshi">
+                                    <Init Type="javascript/angular" Runat="client"> <![CDATA[ this.loadDataSource();
+										]]>
+                                    </Init>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="czrmc" ParameterKey="czrmc"
+                                              DataTableKey="chukuneifuhe" DataTableColumn="czrmc" Caption="拣货员"
+                                              EnabledWhen="True" Disable="true" WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                        </BillUIRowPanel>
+
+                        <BillUIRowPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="huozumingcheng" ParameterKey="huozumingcheng"
+                                              DataTableKey="chukuneifuhe" DataTableColumn="huozumingcheng"
+                                              Caption="货主名称" EnabledWhen="True" Disable="true"
+                                              WidgetType="BillUIString">
+                                    <Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                        	@huozumingcheng.setValue("武汉小药药");
+									]]>
+                                    </Init>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="kehumingcheng" ParameterKey="kehumingcheng"
+                                              DataTableKey="chukuneifuhe" DataTableColumn="kehumingcheng"
+                                              Caption="客户名称" EnabledWhen="True" Disable="true"
+                                              WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="zancunqu" ParameterKey="zancunqu"
+                                              DataTableKey="chukuneifuhe" DataTableColumn="zancunqu" Caption="暂存区"
+                                              EnabledWhen="True" Disable="true" WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="zhixiangguige" Caption="推荐纸箱规格"
+                                              DataTableKey="chukuneifuhe" DataTableColumn="zhixiangguige"
+                                              EnabledWhen="True" Src="bill/selectSrc?type=zhixiangguigesize"
+                                              WidgetType="BillUISelect" Disable="true">
+                                    <Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+												this.loadDataSource();
+										]]>
+                                    </Init>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <!--<BillUIColPanel Width="3">
+                            <BillUIWidget Key="shangpingtiaoma" ParameterKey="shangpingtiaoma"
+                                          DataTableKey="chukuneifuhe" DataTableColumn="shangpingtiaoma"
+                                          Caption="商品条码" EnabledWhen="True"
+                                          WidgetType="BillUIString">
+                            </BillUIWidget>
+                        </BillUIColPanel>-->
+
+                            <BillUIColPanel Width="0">
+                                <BillUIWidget Key="neifuhedanhao" Caption=""
+                                              DataTableKey="chukuneifuhe" DataTableColumn="neifuhedanhao"
+                                              Disable="true" EnabledWhen="True" WidgetType="BillUIString"
+                                              ViewSize="lg">
+                                    <Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                            	this.setHide();
+	                                        ]]>
+                                    </Init>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="0">
+                                <BillUIWidget Key="xianlumingcheng" Caption=""
+                                              DataTableKey="chukuneifuhe" DataTableColumn="xianlumingcheng"
+                                              Disable="true" EnabledWhen="True" WidgetType="BillUIString"
+                                              ViewSize="lg">
+                                    <Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                            	this.setHide();
+	                                        ]]>
+                                    </Init>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="0">
+                                <BillUIWidget Key="kehubeizhu" Caption=""
+                                              DataTableKey="chukuneifuhe" DataTableColumn="kehubeizhu"
+                                              Disable="true" EnabledWhen="True" WidgetType="BillUIString"
+                                              ViewSize="lg">
+                                    <Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                            	this.setHide();
+	                                        ]]>
+                                    </Init>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                        </BillUIRowPanel>
+                    </BillUIGridPanel>
+                </BillUIPanel>
+
+
+                <BillUIPanel Layout="flex" Key="mainContainer_head"
+                             Caption="商品信息" S="panel panel-success publicPanel" RowGap="5"
+                             ColGap="10" ColWidth="300px 300px 300px  300px 1fr 1fr">
+                    <BillUIGridPanel Key="chukuneifuhe">
+                        <BillUIRowPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="xinxishangpinbianhao" ParameterKey="shangpinbianhao"
+                                              DataTableKey="chukuneifuhe" DataTableColumn="shangpinbianhao"
+                                              Disable="true" Caption="商品编号" EnabledWhen="True"
+                                              WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+
+                            <BillUIColPanel Width="6">
+                                <BillUIWidget Key="xinxishangpinmingcheng" ParameterKey="shangpinmingcheng"
+                                              DataTableKey="chukuneifuhe" DataTableColumn="shangpinmingcheng"
+                                              Disable="true" Caption="商品名称" EnabledWhen="True"
+                                              WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="xinxiguige" ParameterKey="guige"
+                                              DataTableKey="chukuneifuhe" DataTableColumn="guige" Caption="规格"
+                                              EnabledWhen="True" Disable="true" WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                        </BillUIRowPanel>
+
+                        <BillUIRowPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="xinxidanwei" ParameterKey="danwei"
+                                              DataTableKey="chukuneifuhe" DataTableColumn="danwei" Caption="单位"
+                                              Disable="true"
+                                              EnabledWhen="True" Src="bill/selectSrc?type=baozhuangdanwei"
+                                              WidgetType="BillUISelect">
+                                    <Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+												this.loadDataSource();
+										]]>
+                                    </Init>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="6">
+                                <BillUIWidget Key="xinxishengchanchangjia" ParameterKey="shengchanchangjia"
+                                              DataTableKey="chukuneifuhe" DataTableColumn="shengchanchangjia"
+                                              Caption="生产厂家" EnabledWhen="True" Disable="true"
+                                              WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="xinxihuowei" ParameterKey="huowei"
+                                              DataTableKey="chukuneifuhe" DataTableColumn="huowei" Caption="货位"
+                                              EnabledWhen="True" Disable="true" WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                        </BillUIRowPanel>
+
+                        <BillUIRowPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="xinxishijishuliang" ParameterKey="shijishuliang"
+                                              DataTableKey="chukuneifuhe" DataTableColumn="shijishuliang"
+                                              Caption="实际数量" EnabledWhen="True" WidgetType="BillUIString">
+                                    <Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                        $('[key="xinxishijishuliang"]').keydown(function(event){
+                                               var myEvent = event || window.event;
+                                               switch(myEvent.keyCode) {
+                                               case 13:
+                                               var v = window.$head.shijishuliang;
+                                               var xinxiyifuheshuliang=window.$head.yifuheshuliang;
+                                               var xinxiyifuheshuliang=parseInt(v)+ parseInt                                                                                        (xinxiyifuheshuliang);
+                                               window.$head.yifuheshuliang=xinxiyifuheshuliang;
+
+                                               var cos=getDataset("chukuneifuhe_details").cos;
+                                               var xinxishangpinbianhao=window.$head.shangpinbianhao;
+                                               var xinxishijishuliang=window.$head.shijishuliang;
+                                               var xinxichacuoyuanyin=window.$head.chacuoyuanyin;
+
+                                               var xinxiyifuheshuliang=window.$head.yifuheshuliang;
+                                               var xinxijihuashuliang=window.$head.jihuashuliang;
+
+                                               console.log("已复核数:"+xinxiyifuheshuliang);
+                                               console.log("计划数:"+xinxijihuashuliang);
+
+                                               if(xinxiyifuheshuliang>xinxijihuashuliang){
+                                                alert("已复核数量大于计划数量,请重新输入");
+                                                    for(var i=0;i<cos.length;i++){
+                                                    var shangpinbianhao=window.$body.chukuneifuhe_details.cos[i].shangpinbianhao;
+                                                    if( xinxishangpinbianhao==shangpinbianhao){
+                                                    var xinxiyifuheshuliang=window.$body.chukuneifuhe_details.cos[i].yifuheshuliang;
+                                                    window.$head.yifuheshuliang=xinxiyifuheshuliang;
+                                                    break;
+                                                    }
+                                                  }
+
+                                                window.$head.shijishuliang="";
+                                                return;
+                                               }else if(xinxiyifuheshuliang<xinxijihuashuliang){
+
+                                                var xinxichonghongshuliang=parseInt(xinxijihuashuliang)- parseInt                                                                                   (xinxiyifuheshuliang);
+                                                window.$head.chonghongshuliang=xinxichonghongshuliang;
+                                                console.log("冲红数:"+xinxichonghongshuliang);
+                                               }else if(xinxiyifuheshuliang==xinxijihuashuliang){
+                                                window.$head.chonghongshuliang=0;
+                                                console.log("冲红数:"+xinxichonghongshuliang);
+                                               }
+
+
+                                                for(var i=0;i<cos.length;i++){
+                                                    var shangpinbianhao=window.$body.chukuneifuhe_details.cos[i].shangpinbianhao;
+                                                    if( xinxishangpinbianhao==shangpinbianhao){
+                                                    var xinxiyifuheshuliang=getHeadValue("yifuheshuliang");
+                                                    window.$body.chukuneifuhe_details.cos[i].yifuheshuliang=xinxiyifuheshuliang;
+
+                                                    var xinxichonghongshuliang=getHeadValue("chonghongshuliang");
+                                                    window.$body.chukuneifuhe_details.cos[i].chonghongshuliang=xinxichonghongshuliang;
+                                                    break;
+                                                    }
+                                                  }
+
+                                        setHeadValue("shangpinbianhao"," ");
+                                        $('[key="shangpinbianhaoHead"]').focus();
+                                                        break;
+                                                }
+                                            });
+										]]>
+                                    </Init>
+
+
+                                    <!--<Triggers>
+                                        <Trigger Type="javascript/angular" Runat="client">
+                                            <![CDATA[
+                                               var v = this.getValue();
+                                               var xinxiyifuheshuliang=window.$head.yifuheshuliang;
+                                               /*var xinxiyifuheshuliang=parseInt(v)+ parseInt                                                                                        (xinxiyifuheshuliang);
+                                                 window.$head.yifuheshuliang=xinxiyifuheshuliang;
+                                               */
+                                                  window.$head.yifuheshuliang=v;
+
+                                               var cos=getDataset("chukuneifuhe_details").cos;
+                                               var xinxishangpinbianhao=window.$head.shangpinbianhao;
+                                               var xinxishijishuliang=window.$head.shijishuliang;
+                                               var xinxichacuoyuanyin=window.$head.chacuoyuanyin;
+
+                                               var xinxiyifuheshuliang=window.$head.yifuheshuliang;
+                                               var xinxijihuashuliang=window.$head.jihuashuliang;
+
+                                               console.log("已复核数:"+xinxiyifuheshuliang);
+                                               console.log("计划数:"+xinxijihuashuliang);
+
+                                               if(xinxiyifuheshuliang>xinxijihuashuliang){
+                                                alert("已复核数量大于计划数量,请重新输入");
+                                                window.$head.chonghongshuliang=0;
+                                                window.$head.shijishuliang=0;
+                                                return;
+                                               }else if(xinxiyifuheshuliang<xinxijihuashuliang){
+
+                                                var xinxichonghongshuliang=parseInt(xinxijihuashuliang)- parseInt                                                                                   (xinxiyifuheshuliang);
+                                                 window.$head.chonghongshuliang=xinxichonghongshuliang;
+                                                console.log("冲红数:"+xinxichonghongshuliang);
+                                               }else if(xinxiyifuheshuliang==xinxijihuashuliang){
+                                                window.$head.chonghongshuliang=0;
+                                                console.log("冲红数:"+xinxichonghongshuliang);
+                                               }
+
+
+                                                for(var i=0;i<cos.length;i++){
+                                                    var shangpinbianhao=window.$body.chukuneifuhe_details.cos[i].shangpinbianhao;
+                                                    if( xinxishangpinbianhao==shangpinbianhao){
+                                                    /*window.$body.chukuneifuhe_details.cos[i].shijishuliang=xinxishijishuliang;
+                                                    var xinxichacuoyuanyin=getHeadValue("chacuoyuanyin");
+                                                    window.$body.chukuneifuhe_details.cos[i].chacuoyuanyin=xinxichacuoyuanyin;
+                                                    */
+                                                    var xinxiyifuheshuliang=getHeadValue("yifuheshuliang");
+                                                    window.$body.chukuneifuhe_details.cos[i].yifuheshuliang=xinxiyifuheshuliang;
+
+                                                    var xinxichonghongshuliang=getHeadValue("chonghongshuliang");
+                                                    window.$body.chukuneifuhe_details.cos[i].chonghongshuliang=xinxichonghongshuliang;
+                                                    break;
+                                                    }
+                                                  }
+				                            ]]>
+                                        </Trigger>
+                                    </Triggers>-->
+                                </BillUIWidget>
+
+
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="xinxijihuashuliang" ParameterKey="jihuashuliang"
+                                              DataTableKey="chukuneifuhe" DataTableColumn="jihuashuliang"
+                                              Caption="计划数量" EnabledWhen="True" Disable="true"
+                                              WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="xinxiyifuheshuliang" ParameterKey="yifuheshuliang"
+                                              DataTableKey="chukuneifuhe" DataTableColumn="yifuheshuliang"
+                                              Caption="已复核数量" EnabledWhen="True" Disable="true"
+                                              WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="xinxichonghongshuliang" ParameterKey="chonghongshuliang"
+                                              DataTableKey="chukuneifuhe" DataTableColumn="chonghongshuliang"
+                                              Caption="冲红数量" EnabledWhen="True" Disable="true"
+                                              WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                        </BillUIRowPanel>
+
+                        <BillUIRowPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="xinxishangpingpihaosn" ParameterKey="shangpingpihaosn"
+                                              DataTableKey="chukuneifuhe" DataTableColumn="pihao" Caption="商品批号"
+                                              EnabledWhen="True" Disable="true" WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="xinxishengchanriqi" ParameterKey="shengchanriqi"
+                                              DataTableKey="chukuneifuhe" DataTableColumn="shengchanriqi"
+                                              Caption="生产日期" EnabledWhen="True" Disable="true"
+                                              WidgetType="BillUIDateTime">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="xinxiyouxiaoqizhi" ParameterKey="youxiaoqizhi"
+                                              DataTableKey="chukuneifuhe" DataTableColumn="youxiaoqizhi"
+                                              Caption="有效期至" EnabledWhen="True" Disable="true"
+                                              WidgetType="BillUIDateTime">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="xinxichacuoyuanyin" Caption="差错原因" ParameterKey="chacuoyuanyin"
+                                              DataTableKey="chukuneifuhe" DataTableColumn="chacuoyuanyin"
+                                              EnabledWhen="True" Src="bill/selectSrc?type=chacuoyuanyin"
+                                              WidgetType="BillUISelect">
+                                    <Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+												this.loadDataSource();
+										]]>
+                                    </Init>
+
+                                    <Triggers>
+                                        <Trigger Type="javascript/angular" Runat="client">
+                                            <![CDATA[
+                                               var cos=getDataset("chukuneifuhe_details").cos;
+                                               var xinxishangpinbianhao=window.$head.shangpinbianhao;
+
+                                            for(var i=0;i<cos.length;i++){
+                                                var shangpinbianhao=window.$body.chukuneifuhe_details.cos[i].shangpinbianhao;
+                                                if( xinxishangpinbianhao==shangpinbianhao){
+                                                var xinxichacuoyuanyin= getHeadValue("chacuoyuanyin");
+                                                console.log("差错原因:"+xinxichacuoyuanyin);
+                                                window.$body.chukuneifuhe_details.cos[i].chacuoyuanyin=parseInt(xinxichacuoyuanyin);
+                                                return;
+                                                    }
+                                                  }
+				                            ]]>
+                                        </Trigger>
+                                    </Triggers>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                        </BillUIRowPanel>
+                    </BillUIGridPanel>
+                </BillUIPanel>
+
+
+                <BillUIPanel Layout="tab" Key="mainContainer_tab"
+                             Caption="出库内复核明细" S="panel  panel-primary  publicPanel">
+
+                    <BillUIPanel Layout="flex" Key="mainContainer_details"
+                                 Caption="出库内复核明细" RowGap="1" ColGap="1" ColWidth="1fr">
+                        <BillUIGrid Key="chukuneifuhe_details" Left="1" Top="1"
+                                    Width="1" Height="1" DataTableKey="chukuneifuhe_details" OptMode="Edit">
+                            <GridHeads>
+                                <GridHead Col="pinxianghao" Caption="拼箱号" enableEdit="True"
+                                          Width="80px">
+                                    <BillUIWidget Key="pinxianghao" WidgetType="BillUIString" Disable="true">
+                                    </BillUIWidget>
+                                </GridHead>
+                                <GridHead Col="jihuashuliang" Caption="计划数量"
+                                          enableEdit="True" Width="80px">
+                                    <BillUIWidget Key="jihuashuliang" WidgetType="BillUIDecimal"
+                                                  Disable="true">
+                                    </BillUIWidget>
+                                </GridHead>
+                                <!-- <GridHead Col="shijishuliang" Caption="实际数量"
+                                           enableEdit="True" Width="80px">
+                                     <BillUIWidget Key="shijishuliang" WidgetType="BillUIDecimal" Disable="true">
+                                     </BillUIWidget>
+                                 </GridHead>-->
+                                <GridHead Col="yifuheshuliang" Caption="已复核数量"
+                                          enableEdit="True" Width="70px">
+                                    <BillUIWidget Key="yifuheshuliang" WidgetType="BillUIDecimal"
+                                                  Disable="true">
+                                    </BillUIWidget>
+                                </GridHead>
+
+                                <GridHead Col="chonghongshuliang" Caption="冲红数量" enableEdit="True"
+                                          Width="100px">
+                                    <BillUIWidget Key="chonghongshuliang" WidgetType="BillUIString"
+                                                  Disable="true">
+                                    </BillUIWidget>
+                                </GridHead>
+
+                                <GridHead Col="shangpinbianhao" Caption="商品编号"
+                                          enableEdit="True" Width="120px">
+                                    <BillUIWidget Key="shangpinbianhao" WidgetType="BillUIString"
+                                                  Disable="true"/>
+                                </GridHead>
+                                <GridHead Col="shangpinmingcheng" Caption="商品名称"
+                                          enableEdit="True" Width="170px">
+                                    <BillUIWidget Key="shangpinmingcheng" WidgetType="BillUIString"
+                                                  Disable="true"/>
+                                </GridHead>
+
+                                <GridHead Col="guige" Caption="规格" enableEdit="True"
+                                          Width="90px">
+                                    <BillUIWidget Key="guige" WidgetType="BillUIString"
+                                                  Disable="true"/>
+                                </GridHead>
+                                <GridHead Col="jihuashuliang" Caption="数量" enableEdit="True"
+                                          Width="70px">
+                                    <BillUIWidget Key="jihuashuliang" WidgetType="BillUIString"
+                                                  Disable="true"/>
+                                </GridHead>
+
+
+                                <GridHead Col="shengchanchangjia" Caption="生产厂家"
+                                          enableEdit="True" Width="120px">
+                                    <BillUIWidget Key="shengchanchangjia" WidgetType="BillUIString"
+                                                  Disable="true">
+                                    </BillUIWidget>
+                                </GridHead>
+                                <GridHead Col="shangpingpihaosn" Caption="商品批号"
+                                          enableEdit="True" Width="110px">
+                                    <BillUIWidget Key="shangpingpihaosn" WidgetType="BillUIString"
+                                                  Disable="true"/>
+                                </GridHead>
+                                <GridHead Col="shengchanriqi" Caption="生产日期"
+                                          enableEdit="True" Width="100px">
+                                    <BillUIWidget Key="shengchanriqi" WidgetType="BillUIDateTime"
+                                                  Disable="true"/>
+                                </GridHead>
+                                <GridHead Col="youxiaoqizhi" Caption="有效期至" enableEdit="True"
+                                          Width="100px">
+                                    <BillUIWidget Key="youxiaoqizhi" WidgetType="BillUIDateTime"
+                                                  Disable="true"/>
+                                </GridHead>
+
+
+                                <GridHead Col="chacuoyuanyin" Caption="差错原因"
+                                          enableEdit="True" Width="100px">
+                                    <BillUIWidget Key="chacuoyuanyin" Disable="true"
+                                                  Src="bill/selectSrc?type=chacuoyuanyin" WidgetType="BillUISelect">
+                                        <Init Type="javascript/angular" Runat="client">
+                                            <![CDATA[
+												this.loadDataSource();
+										]]>
+                                        </Init>
+                                        <Formatters>
+                                            <Formatter>
+                                                <![CDATA[
+                                                [{'type':'chacuoyuanyin'}]
+                                            ]]>
+                                            </Formatter>
+                                        </Formatters>
+                                    </BillUIWidget>
+                                </GridHead>
+                                <GridHead Col="pizhunwenhao" Caption="批准文号" enableEdit="True"
+                                          Width="100px">
+                                    <BillUIWidget Key="pizhunwenhao" WidgetType="BillUIString"
+                                                  Disable="true"/>
+                                </GridHead>
+                                <GridHead Col="huoweiID" Caption="货位id" enableEdit="True" Show="false">
+                                    <BillUIWidget Key="huoweiID" WidgetType="BillUIString"
+                                                  Disable="true"/>
+                                </GridHead>
+
+                                <GridHead Col="caozuoren" Caption="操作人" enableEdit="True" Show="false">
+                                    <BillUIWidget Key="caozuoren" WidgetType="BillUIString"
+                                                  Disable="true">
+                                        <Init Type="javascript/angular" Runat="client">
+                                            <![CDATA[
+											var r = this.getRealName();
+                                            @caozuoren.setValue(r);
+										]]>
+                                        </Init>
+                                    </BillUIWidget>
+                                </GridHead>
+
+                            </GridHeads>
+                        </BillUIGrid>
+                    </BillUIPanel>
+                </BillUIPanel>
+            </BillUIPanel>
+        </BillBodyMeta>
+    </BillBody>
+
+    <BillHeadMeta>
+        <BillEventCollection>
+            <Event Type="PreSave" Processor="com.xyy.wms.outbound.biz.ChuKuNeiFuHePreHandler"/>
+            <Event Type="PostSave" Processor="com.xyy.wms.outbound.biz.ChuKuNeiFuHePostHandler"/>
+        </BillEventCollection>
+    </BillHeadMeta>
+
+</BillFormMeta>
+

@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Print Key="xiaoshoudingdan" Caption="销售订单"  TargetKey="xiaoshoudingdan"  TargetType="BILL">
+    <PrintHead>
+        <PageSetting PageSize="210,297" PageNumber="true" PageOrient="Ver" PageMargin="5,5,5,5" ExtraAuditLog="true" HeaderAndFooterSetting="Normal" MaxLayoutRowCount="30" />
+        <PageOutputMode Mode="BillPerPage"  BillHorCount="1" BollVerCount="1" />  
+        <StyleCollection>
+
+             <Style Key="body" Type="Tag">
+                <Font Size="14" Family="宋体" Italic="fasle" Weight="200"></Font>
+                 <Css>
+                     <![CDATA[
+                          box-sizing: border-box;position: relative;
+                     ]]>
+                 </Css>
+            </Style>
+            <Style Key="pageNumber" Type="Class">
+                 <Font Size="14" Family="宋体" Italic="fasle" Weight="200" ></Font>
+                 <Css>
+                     <![CDATA[
+                          position:absolute;bottom:20px;right:5mm;
+                     ]]>
+                 </Css>
+            </Style>
+
+            <Style Key="td" Type="Tag" Padding="5px 2px"></Style>
+
+             <Style Key="title"  BackgroundColor="#ccc">
+                <Font Size="18" Family="宋体" Italic="fasle" Weight="700" ></Font>
+            </Style>
+
+            <Style Key="printTitle">
+                <Font Size="20" Family="宋体" Italic="fasle" Weight="700" ></Font>
+                <Borders>
+                    <Border Dir="Bottom" LineSize="1" LineColor="#333" LineStyle="solid"/>
+                </Borders>
+                 <Css>
+                     <![CDATA[
+                            letter-spacing: 20px;
+                     ]]>
+                 </Css>
+            </Style>
+
+             <Style Key="imgCss" Align="Right">
+                <Borders>
+                    <Border Dir="Bottom" LineSize="1" LineColor="#333" LineStyle="solid"/>
+                </Borders>
+            </Style>
+            <Style Key="imgCss img">
+                 <Css>
+                     <![CDATA[
+                              width: 50%;
+                     ]]>
+                 </Css>
+            </Style>
+
+
+
+
+            <Style Key="head" Type="Class" Padding="2px">
+                <Font Size="14" Family="宋体" Italic="fasle" Weight="200" ></Font>
+                <Borders>
+                    <Border Dir="All" LineSize="1" LineColor="gray" LineStyle="dashed"/>
+                </Borders>
+                <Css>
+                    <![CDATA[
+                              border-collapse:collapse;
+                     ]]>
+                </Css>
+            </Style>
+			
+			
+			
+			
+
+            <Style Key="data" Type="Class" Padding="2px">
+                <Borders>
+                    <Border Dir="All" LineSize="1" LineColor="gray" LineStyle="dashed"/>
+                </Borders>
+                <Css>
+                    <![CDATA[
+                        border-collapse:collapse;
+                    ]]>
+                </Css>
+            </Style>
+            <Style Key="data td" Type="Class">
+                <Font Size="12" Family="宋体" Italic="fasle" Weight="200" ></Font>
+                <Borders>
+                    <Border Dir="All" LineSize="1" LineColor="gray" LineStyle="solid"/>
+                </Borders>
+            </Style>
+
+            <Style Key="tableTitle td" Type="Class" Padding="2px">
+                <Font Size="12" Family="宋体" Italic="fasle" Weight="200" ></Font>
+                <Css>
+                    <![CDATA[
+                        height:10mm !important;
+                    ]]>
+                </Css>
+            </Style>
+			
+			<Style Key="auditLogTitle" Type="Class" Padding="2px">
+                <Font Size="16" Family="宋体" Italic="fasle" Weight="700" ></Font>
+                <Borders>
+                    <Border Dir="All" LineSize="1" LineColor="gray" LineStyle="dashed"/>
+                </Borders>
+                <Css>
+                    <![CDATA[
+                              background-color:#666;font-size:20px !important;padding:5px 0;color:#fff;
+                     ]]>
+                </Css>
+            </Style>
+
+        </StyleCollection>
+    </PrintHead>
+    <PrintBody>
+        <PrintBlock  Area="Header"  Rows="1,1,1,1,1" Cols="20,30,15,30,20,30,20,30" S="head">
+            <Row R="1"  S="">
+                <Col C="1" RS="1" CS="6" ColType="Title" S="col printTitle" Align="Center">销 售 订 单</Col>
+                <Col C="2" RS="1" CS="2" ColType="Image" S="col imgCss"  ImageSource="Formual"  Align="Right">
+                    <![CDATA[
+                           http://www.ybm100.com/images/logo_0516.png
+                    ]]>
+                </Col>
+
+            </Row>
+            <Row R="2"  S="">
+                <Col C="1" RS="1" CS="1" ColType="Title" S="col" Align="Left">单据编号：</Col>
+                <Col C="2" RS="1" CS="3" ColType="DataCol" S="col" DataCol="danjubianhao" Align="Left"></Col>
+
+
+                <Col C="5" RS="1" CS="1" ColType="Title" S="col" Align="Left">客户编号：</Col>
+                <Col C="6" RS="1" CS="1" ColType="DataCol" S="col" DataCol="kehubianhao" Align="Left"></Col>
+
+
+                <Col C="7" RS="1" CS="1" ColType="Title" S="col" Align="Left">开票日期：</Col>
+                <Col C="8" RS="1" CS="1" ColType="DataCol" S="col" DataCol="kaipiaoriqi" Align="Left"></Col>
+
+            </Row>
+
+            <Row R="3"  S="row">
+                <Col C="1" RS="1" CS="1" ColType="Title" S="col" Align="Left">客户名称：</Col>
+                <Col C="2" RS="1" CS="3" ColType="DataCol" S="col" DataCol="kehumingcheng" Align="Left"></Col>
+
+                <Col C="5" RS="1" CS="1" ColType="Title" S="col" Align="Left">联系人：</Col>
+                <Col C="6" RS="1" CS="3" ColType="DataCol" S="col" DataCol="lianxiren" Align="Left"></Col>
+
+            </Row>
+
+            <Row R="4"  S="row">
+                <Col C="1" RS="1" CS="1" ColType="Title" S="col" Align="Left">收货地址：</Col>
+                <Col C="2" RS="1" CS="3" ColType="DataCol" S="col" DataCol="shouhuodizhi" Align="Left"></Col>
+
+                <Col C="5" RS="1" CS="1" ColType="Title" S="col" Align="Left">结算方式：</Col>
+                <Col C="6" RS="1" CS="1" ColType="DataCol" S="col" DataCol="jiesuanfangshi" Align="Left"></Col>
+
+                <Col C="7" RS="1" CS="1" ColType="Title" S="col" Align="Left">提货方式：</Col>
+                <Col C="8" RS="1" CS="1" ColType="DataCol" S="col" DataCol="tihuofangshi" Align="Left"></Col>
+
+
+            </Row>
+            <Row R="5"  S="row">
+                <Col C="1" RS="1" CS="1" ColType="Title" S="col" Align="Left">预计送货时间：</Col>
+                <Col C="2" RS="1" CS="1" ColType="DataCol" S="col" DataCol="yujisonghuoshijian" Align="Left"></Col>
+
+                <Col C="3" RS="1" CS="1" ColType="Title" S="col" Align="Left">预计到货时间：</Col>
+                <Col C="4" RS="1" CS="1" ColType="DataCol" S="col" DataCol="yujidaohuoshijian" Align="Left"></Col>
+
+                <Col C="5" RS="1" CS="1" ColType="Title" S="col" Align="Left">订单总额：</Col>
+                <Col C="6" RS="1" CS="1" ColType="DataCol" S="col" DataCol="dingdanzonge" Align="Left"></Col>
+
+                <Col C="7" RS="1" CS="1" ColType="Title" S="col" Align="Left">优惠金额：</Col>
+                <Col C="8" RS="1" CS="1" ColType="DataCol" S="col" DataCol="youhuijine" Align="Left"></Col>
+            </Row>
+        </PrintBlock>
+        <PrintBlock  Area="DtlData" Rows="1,1,1,1" Cols="20,30,25,15,40,15,15,15,15" S="data" DataTableKey="xiaoshoudingdan_details"  >
+            <Row R="1" RowType="Header"  S="title tableTitle">
+                <Col C="1" RS="1" CS="1" ColType="Title" S="col" Align="Center">商品编号</Col>
+                <Col C="2" RS="1" CS="1" ColType="Title" S="col" Align="Center">商品名称</Col>
+                <Col C="3" RS="1" CS="1" ColType="Title" S="col" Align="Center">规格</Col>
+                <Col C="4" RS="1" CS="1" ColType="Title" S="col" Align="Center">单位</Col>
+                <Col C="5" RS="1" CS="1" ColType="Title" S="col" Align="Center">生产厂家</Col>
+                <Col C="6" RS="1" CS="1" ColType="Title" S="col" Align="Center">数量</Col>
+                <Col C="7" RS="1" CS="1" ColType="Title" S="col" Align="Center">含税价</Col>
+                <Col C="8" RS="1" CS="1" ColType="Title" S="col" Align="Center">含税金额</Col>
+                <Col C="9" RS="1" CS="1" ColType="Title" S="col" Align="Center">税率</Col>
+            </Row>
+            <Row R="2" RowType="Data"  S="">
+                <Col C="1" RS="1" CS="1" ColType="DataCol" S="col" DataCol="shangpinbianhao" Align="Left"></Col>
+                <Col C="2" RS="1" CS="1" ColType="DataCol" S="col" DataCol="shangpinmingcheng" Align="Left"></Col>
+                <Col C="3" RS="1" CS="1" ColType="DataCol" S="col" DataCol="guige" Align="Left"></Col>
+                <Col C="4" RS="1" CS="1" ColType="DataCol" S="col" DataCol="danwei" Align="Left"></Col>
+                <Col C="5" RS="1" CS="1" ColType="DataCol" S="col" DataCol="shengchanchangjia" Align="Left"></Col>
+                <Col C="6" RS="1" CS="1" ColType="DataCol" S="col" DataCol="shuliang" Align="Right"></Col>
+                <Col C="7" RS="1" CS="1" ColType="DataCol" S="col" DataCol="hanshuijia" Align="Right"></Col>
+                <Col C="8" RS="1" CS="1" ColType="DataCol" S="col" DataCol="hanshuijine" Align="Right"></Col>
+                <Col C="9" RS="1" CS="1" ColType="DataCol" S="col" DataCol="shuilv" Align="Right"></Col>
+            </Row>
+            <Row R="3" RowType="Footer"  S="">
+                <Col C="1" RS="1" CS="7" ColType="Title" S="col" Align="Left">小计：</Col>
+                <Col C="8" RS="1" CS="1" ColType="Subtotal" S="col" DataCol="hanshuijine" Align="Left" GatherType="Sum"></Col>
+                <Col C="9" RS="1" CS="1" ColType="Title" S="col" Align="Left"></Col>
+            </Row>
+            <Row R="4" RowType="Footer"  S="">
+                <Col C="1" RS="1" CS="7" ColType="Title" S="col" Align="Left">总计：</Col>
+                <Col C="8" RS="1" CS="1" ColType="Total" S="col" DataCol="hanshuijine" Align="Left" GatherType="Sum"></Col>
+                <Col C="9" RS="1" CS="1" ColType="Title" S="col" Align="Left"></Col>
+            </Row>
+        </PrintBlock>
+        <PrintBlock  Area="Footer" Rows="1" Cols="30,30,30,30,30,30,30,30" S="s3">
+            <Row R="1" S="">
+                <Col C="1" RS="1" CS="2" ColType="Title" S="col" Align="Left">谢谢光临</Col>
+                <Col C="3" RS="1" CS="2" ColType="Title" S="col" Align="Left">谢谢光临</Col>
+                <Col C="5" RS="1" CS="2" ColType="Title" S="col" Align="Left">谢谢光临</Col>
+                <Col C="7" RS="1" CS="2" ColType="Title" S="col" Align="Left">谢谢光临</Col>
+            </Row>
+        </PrintBlock>
+    </PrintBody>
+</Print>

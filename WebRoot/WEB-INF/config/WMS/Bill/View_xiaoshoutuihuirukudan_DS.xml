@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+	<DataTable Key="xiaoshoutuihuirukudan" Caption="销售退回入库单叙事薄"
+		DefaultFilter="" Pagging="20"
+		TableName="SQLQuery::select * | from xyy_erp_bill_xiaoshoutuihuirukudan where 1 = 1@danjubianhao @kehubianhao  @kehumingcheng @yewuyuan @status @sjdjbh  ORDER BY createTime DESC"
+		DataSource="" Head="false">
+		<Parameters>
+			<Parameter Key="danjubianhao" Type="String">
+				<Where>
+                <![CDATA[
+					m.if(danjubianhao==null | danjubianhao=="" ,""," and danjubianhao like '%"+danjubianhao+"%'")
+	            ]]>
+				</Where>
+			</Parameter>
+			<Parameter Key="kehubianhao" Type="String">
+				<Where>
+                <![CDATA[
+					m.if(kehubianhao==null | kehubianhao=="" ,""," and kehubianhao like '%"+kehubianhao+"%'")
+                ]]>
+				</Where>
+			</Parameter>
+			<Parameter Key="kehumingcheng" Type="String">
+				<Where>
+                <![CDATA[
+					m.if(kehumingcheng==null | kehumingcheng=="" ,""," and kehumingcheng like '%"+kehumingcheng+"%'")
+                ]]>
+				</Where>
+			</Parameter>
+			<Parameter Key="yewuyuan" Type="String">
+				<Where>
+                <![CDATA[
+					m.if(yewuyuan==null | yewuyuan=="" ,""," and yewuyuan like '%"+yewuyuan+"%'")
+                ]]>
+				</Where>
+			</Parameter>
+			<Parameter Key="sjdjbh" Type="String">
+				<Where>
+                 <![CDATA[
+                m.if(sjdjbh==null | sjdjbh=="" ,""," and sjdjbh like '%"+sjdjbh+"%'")
+            ]]>
+				</Where>
+			</Parameter>
+			<Parameter Key="status" Type="Integer">
+				<Where>
+                <![CDATA[
+                	m.if(status==null," "," and status="+status+"")
+				]]>
+				</Where>
+			</Parameter>
+		</Parameters>
+	</DataTable>
+</DataSet>

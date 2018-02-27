@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="peisongxianlu_view" Caption="配送线路叙事薄" DefaultFilter="" Pagging="10"
+               TableName="SQLQuery::select * | from xyy_wms_dic_peisongxianlu where 1=1 and status != -1 and shifouhuodong =1 @xianlubianhao @xianlumingcheng @orgId ORDER BY createTime DESC" DataSource="" Head="false">
+        <Parameters> 
+            <Parameter Key="xianlubianhao" Type="String">
+                <Where>
+                <![CDATA[
+					m.if(xianlubianhao==null | xianlubianhao==" " ," "," and xianlubianhao like '%"+xianlubianhao+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="xianlumingcheng" Type="String" >
+                <Where>
+                <![CDATA[
+					m.if(xianlumingcheng==null | xianlumingcheng==" " ," "," and xianlumingcheng like '%"+xianlumingcheng+"%'")
+                ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="orgId" Type="String" >
+                <Where>
+                    <![CDATA[
+					m.if(orgId==null | orgId==" " ," "," and orgId like '%"+orgId+"%'")
+                ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

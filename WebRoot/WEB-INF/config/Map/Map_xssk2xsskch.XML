@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Map Key="xssk2xsskch" Caption="销售收款2销售收款冲红"
+    SrcDataObjectKey="xiaoshoushoukuandan"
+    SrcDataType="Bill"  
+    TgtDataObjectKey="xiaoshoushoukuanchonghong"
+    TgtDataType="Bill"  
+    MaxPushValue="100"
+     MinPushValue="0">
+    <TargetTableCollection>
+     
+    <TargetTable Key="xiaoshoushoukuanchonghong" SrcTableKey="xiaoshoushoukuandan">
+            <Field FieldKey="yuandanbianhao">
+                <![CDATA[
+                     =danjubianhao
+              ]]>
+            </Field>
+            <Field FieldKey="khbh">
+                <![CDATA[
+                     =kehubianhao
+              ]]>
+            </Field>
+			<Field FieldKey="khmc">
+                <![CDATA[
+                     =kehumingcheng
+              ]]>
+            </Field>
+            <Field FieldKey="yewuyuan">
+                <![CDATA[
+                     =yewuyuan
+              ]]>
+            </Field>
+            <Field FieldKey="jszje">
+                <![CDATA[
+                     =0-jszje
+              ]]>
+            </Field>
+        </TargetTable>
+        
+        <TargetTable Key="xiaoshoushoukuanchonghong_details" SrcTableKey="xiaoshoushoukuandan_details1">
+            <Field FieldKey="zffsbh">
+                <![CDATA[
+                     =zffsbh
+              ]]>
+            </Field>
+            <Field FieldKey="zffsmc">
+                <![CDATA[
+                     =zffsmc
+              ]]>
+            </Field>
+			<Field FieldKey="jiesuanjine">
+                <![CDATA[
+                     =0-jiesuanjine
+              ]]>
+            </Field>
+        </TargetTable>
+        
+    </TargetTableCollection>
+    
+    <FeedBackCollection>
+        
+        <FeedbackObject TableKey="xiaoshoushoukuanchonghong" BillStatus="20">
+           <FeedbackTableCollection>
+              <FeedbackTable Key="xsskch" TableKey="xyy_erp_bill_xiaoshoushoukuandan">
+                <FeedbackField FieldKey="shifouchonghong"  FeedFieldKey=""  OpSign="Assign">
+                    <![CDATA[
+                        1
+                    ]]>
+                </FeedbackField>
+            </FeedbackTable>               
+           </FeedbackTableCollection>
+        </FeedbackObject>
+    </FeedBackCollection>
+    
+</Map>

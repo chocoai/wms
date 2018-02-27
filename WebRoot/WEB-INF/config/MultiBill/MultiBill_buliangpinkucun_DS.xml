@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="buliangpinkucun" Caption="不良品库存" DefaultFilter="" Pagging="10" PermissionType="CommType"
+               TableName="SQLQuery::
+               SELECT s.*,c.cangkumingcheng,k.shuliang
+                | 
+               FROM
+					xyy_erp_dic_shangpinjigoukucun k,
+					xyy_erp_dic_shangpinjibenxinxi s,
+					xyy_erp_dic_cangkuxinxi c
+				WHERE
+					k.shangpinID = s.ID
+				AND c.orgID = k.orgID
+				AND k.kucunzhuangtai = 2
+               
+               " DataSource="" Head="false">
+        <Parameters>
+            <!--<Parameter Key="danjubianhao" Type="String">
+                <DefaultValue></DefaultValue>
+                <Where>
+                    <![CDATA[
+					m.if(danjubianhao==null | danjubianhao=="" ," "," and danjubianhao like '%"+danjubianhao+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="buliangpinleixing" Type="String" >
+                <DefaultValue></DefaultValue>
+                <Where>
+                    <![CDATA[
+					m.if(buliangpinleixing==null | buliangpinleixing=="" ,""," and buliangpinleixing = "+huoshangmingcheng+"")
+                ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="huoshangmingcheng" Type="String" >
+                <Where>
+                    <![CDATA[
+					m.if(huoshangmingcheng==null | huoshangmingcheng=="" ," "," and huoshangmingcheng like '%"+huoshangmingcheng+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="status" Type="Integer" >
+                <Where>
+                    <![CDATA[
+                	m.if(status==null ,""," and status="+status+"")
+				]]>
+                </Where>
+            </Parameter>-->
+        </Parameters>
+    </DataTable>
+</DataSet>

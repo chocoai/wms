@@ -1,0 +1,23 @@
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="syzjb" BillType="Bill" Caption="损溢开票中间表" DefaultFilter="" TableName="Table::INT_WMS_BSBSSC_BILL" DataSource="" Head="true">
+        <!--
+             单据编号	varchar	规则：YBM+年月日时分秒+3位随机码, 例如：YBM20160426112240764
+        -->
+        <Field FieldKey="djbh" FieldName="单据编号" FieldType="Varchar" Comment="单据编号"/>
+        <Field FieldKey="rq" FieldName="日期" FieldType="Date" Comment="日期"/>
+        <Field FieldKey="bmid" FieldName="" FieldType="Varchar" Comment=""/>
+        <Field FieldKey="ywy" FieldName="" FieldType="Varchar" Comment=""/>
+        <Field FieldKey="yzid" FieldName="" FieldType="Varchar" Comment=""/>
+        <Field FieldKey="dj_sort" FieldName="" FieldType="Varchar" Comment=""/>
+        <Field FieldKey="spid" FieldName="商品id" FieldType="Varchar" Comment="商品id"/>
+        <Field FieldKey="pyshl" FieldName="盘溢数量" FieldType="Decimal" Comment="盘溢数量"/>
+        <Field FieldKey="psshl" FieldName="盘损数量" FieldType="Decimal" Comment="盘损数量"/>
+        <Field FieldKey="ph" FieldName="批号"  FieldType="Varchar" Comment="批号"/>
+        <Field FieldKey="yxqz" FieldName="有效期至" FieldType="Date" Comment="有效期至"/>
+        <Field FieldKey="rq_sc" FieldName="生产日期" FieldType="Date" Comment="生产日期"/>
+        <Field FieldKey="kczt" FieldName="库存状态" FieldType="Int" Comment="库存状态"/>
+        <Field FieldKey="kfbh" FieldName="" FieldType="Varchar" Comment=""/>
+        <Field FieldKey="lastmodifytime" FieldName="最后修改时间" FieldType="Date" Comment="最后修改时间" />
+        <Field FieldKey="is_zx" FieldName="是否迁移" FieldType="Int" Comment="是否迁移"/>
+    </DataTable>
+</DataSet>

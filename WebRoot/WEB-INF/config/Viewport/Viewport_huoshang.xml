@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BillViewMeta Key="toolbox2" Caption="货商" Version="">
+	<Parameters>
+		<Parameter Key="t1" Type="String" Scope="Global">
+			<DefaultValue></DefaultValue>
+			<Where></Where>
+		</Parameter>
+	</Parameters>
+	<BillBody UserAgent="web">
+		<BillBodyMeta>
+			<BillUIPanel Layout="flex" Key="dictionary_tools" Caption="货商"  S="">
+			     <BillUIGridPanel Key="huoshang_grid">
+                    <BillUIRowPanel>
+                        <BillUIColPanel Width="8">
+                            <BillUIWidget Caption="供应商" Key="cancel"
+                                EnabledWhen="True"   ParameterKey="gys"
+                                DataTableKey="huoshang_view"
+                                WidgetType="BillUIString">
+                            </BillUIWidget>
+                        </BillUIColPanel>
+                        <BillUIColPanel Width="2">
+                            <BillUIWidget Caption="查询" Key="search"
+                                EnabledWhen="True"
+                                Icon="glyphicon glyphicon-send" WidgetType="BillUIButton">
+                                <Triggers>
+                                    <Trigger Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                        	this.search("huoshang_view");
+                                 			]]>
+                                    </Trigger>
+                                </Triggers>
+                            </BillUIWidget>
+                            
+                        </BillUIColPanel>
+                    </BillUIRowPanel>	
+			         <BillUIRowPanel>
+						 <BillUIColPanel Width="12">
+							 <BillUIPanel Layout="flex" Key="dictionary_tools">
+								 <!--
+								 	操作模式：
+								 		View|Edit
+								 		View==>多选：checkbox
+								 		      单选:单击行方式
+								 		 RowId===>行标识，通过行行标识来
+
+								 -->
+								 <BillUIGrid Key="grid0" OptMode="View"   RowId="" DataTableKey="huoshang_view">
+								 <GridHeads>
+									 <GridHead Col="gysbh" Caption="单位编号" enableEdit="True"
+											   Width="150px">
+										 <BillUIWidget Key="gysbh" WidgetType="BillUIString"/>
+									 </GridHead>
+									 <GridHead Col="gysmc" Caption="单位名称" enableEdit="True"
+											   Width="180px">
+										 <BillUIWidget Key="gysmc" WidgetType="BillUIString"/>
+									 </GridHead>
+									 <GridHead Col="qiyeleixing" Caption="企业类别" enableEdit="True"
+											   Width="120px">
+										 <BillUIWidget Key="qiyeleixing" WidgetType="BillUIInteger">
+										 <Formatters>
+											 <Formatter>
+												 <![CDATA[
+													   [{'type':'qiyeleixing'}]
+												   ]]>
+											 </Formatter>
+										 </Formatters>
+										 </BillUIWidget>
+									 </GridHead>
+
+									 <!--<GridHead Col="lianxiren" Caption="联系人" enableEdit="True"-->
+											   <!--Width="160px">-->
+										 <!--<BillUIWidget Key="lianxiren" WidgetType="BillUIString"/>-->
+									 <!--</GridHead>-->
+									 <!--<GridHead Col="dianhua" Caption="电话" enableEdit="True"-->
+											   <!--Width="120px">-->
+										 <!--<BillUIWidget Key="dianhua" WidgetType="BillUIString"/>-->
+									 <!--</GridHead>-->
+									 <GridHead Col="kaihuyinhang" Caption="开户银行" enableEdit="True"
+											   Width="120px">
+										 <BillUIWidget Key="kaihuyinhang" WidgetType="BillUIString"/>
+									 </GridHead>
+									 <GridHead Col="yinhangzhanghao" Caption="银行账号" enableEdit="True"
+											   Width="120px">
+										 <BillUIWidget Key="yinhangzhanghao" WidgetType="BillUIString"/>
+									 </GridHead>
+									 <GridHead Col="shuihao" Caption="税号" enableEdit="True"
+											   Width="120px">
+										 <BillUIWidget Key="shuihao" WidgetType="BillUIString"/>
+									 </GridHead>
+									 <GridHead Col="yingyezhizhao" Caption="营业执照" enableEdit="True"
+											   Width="120px">
+										 <BillUIWidget Key="yingyezhizhao" WidgetType="BillUIString"/>
+									 </GridHead>
+									 <!--<GridHead Col="cangkudizhi" Caption="仓库地址" enableEdit="True"-->
+											   <!--Width="120px">-->
+										 <!--<BillUIWidget Key="cangkudizhi" WidgetType="BillUIString"/>-->
+									 <!--</GridHead>-->
+								 </GridHeads>
+							 </BillUIGrid>
+							 </BillUIPanel>
+
+						 </BillUIColPanel>
+			         </BillUIRowPanel>
+			         
+			     </BillUIGridPanel>
+             </BillUIPanel>
+		</BillBodyMeta>
+	</BillBody>
+	
+</BillViewMeta>

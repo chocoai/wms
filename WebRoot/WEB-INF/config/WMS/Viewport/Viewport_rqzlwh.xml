@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BillViewMeta Key="rqzlwh" Caption="工具栏" Version="">
+
+	<BillBody UserAgent="web">
+		<BillBodyMeta>
+			<BillUIPanel Layout="flex" Key="rqzlwh_tools" Caption="工具栏"
+				RowGap="7" ColGap="10" ColWidth="repeat(8,auto) 1fr" S="">
+				<BillUIGridPanel Key="rqzlwh_grid">
+					<BillUIRowPanel>
+						<BillUIColPanel Width="4">
+							<BillUIWidget Caption="容器编号" Key="rongqibianhao"
+								EnabledWhen="True" ParameterKey="rongqibianhao" DataTableKey="rqzlwh_view"
+								WidgetType="BillUIString">
+							</BillUIWidget>
+						</BillUIColPanel>
+						<BillUIColPanel Width="2">
+							<BillUIWidget Caption="查询" Key="search" EnabledWhen="True"
+								Icon="glyphicon glyphicon-send" WidgetType="BillUIButton">
+								<Triggers>
+									<Trigger Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                        	this.search("rqzlwh_view");
+                                 			]]>
+									</Trigger>
+								</Triggers>
+							</BillUIWidget>
+
+						</BillUIColPanel>
+					</BillUIRowPanel>
+					<BillUIRowPanel>
+						<BillUIColPanel Width="12">
+							<BillUIPanel Layout="flex" Key="dictionary_tools">
+								<BillUIGrid Key="grid0" OptMode="View" RowId=""
+									DataTableKey="rqzlwh_view">
+									<GridHeads>
+										<GridHead Col="rongqibianhao" Caption="容器编号"
+											enableEdit="True" Width="160px">
+											<BillUIWidget Key="rongqibianhao" WidgetType="BillUIString" />
+										</GridHead>
+										<GridHead Col="rongqileixing" Caption="容器类型"
+											enableEdit="True" Width="160px">
+											<BillUIWidget Key="rongqileixing" WidgetType="BillUIString">
+												<Formatters>
+                                        			<Formatter>
+			                                            <![CDATA[
+			                                                [{'type':'rongqileixing'}]
+			                                            ]]>
+                                        			</Formatter>
+                                    			</Formatters>
+											</BillUIWidget>
+										</GridHead>
+									</GridHeads>
+								</BillUIGrid>
+							</BillUIPanel>
+						</BillUIColPanel>
+					</BillUIRowPanel>
+				</BillUIGridPanel>
+			</BillUIPanel>
+		</BillBodyMeta>
+	</BillBody>
+
+</BillViewMeta>

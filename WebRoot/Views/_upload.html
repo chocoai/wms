@@ -1,0 +1,56 @@
+<!--文件上传控件-->
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary"  ng-click="openUploadModel($event);$event.stopPropagation();">
+    <span ng-if="!parseExcel">
+        <span ng-if="files_arr.length==0">暂无附件</span>
+        <span ng-if="files_arr.length>0">管理{{files_arr.length}}个附件</span>
+    </span>
+    <span ng-if="parseExcel">
+        导入附件
+    </span>
+</button>
+
+<!-- Modal -->
+<div class="modal" id="model-{{tid}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" ng-click="stopEvent($event)">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel" style="display: inline-block;">
+                    {{attachInfo.title}}
+                </h4>
+                <span  ng-if="parseExcel">
+                    <a href="/templet/{{attachInfo.tmpUrl}}" target="_blank">下载模板</a>
+                </span>
+            </div>
+            <div class="modal-body" >
+                <table class="table table-bordered" id="{{tid}}">
+                    <tr ng-if="disabled==false">
+                        <td><input id="{{fid}}" type="file" multiple></td>
+                        <td><input type="button"  class="btn btn-primary btn-sm" value="{{attachInfo.btnName}}" ng-click="test();" style="margin: 0 5px;"/></td>
+                    </tr>
+                    <tr ng-repeat="item in files_arr"  ng-if="!parseExcel">
+                        <td align='center'>
+                            <a href='{{url}}{{item.filePath}}' target='_blank'>{{item.fileName}}</a></td>
+                        <td ng-if="disabled==false"><button type='button' ng-click='delfiles(item);' class='btn btn-danger btn-sm' >删除</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!---->
+
+<div class="modal modal-loading modal-no-btn" tabindex="-1" id="{{modalLoading}}">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <span class="icon-spinner icon-spin"></span>
+                正在上传文件...
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="shangpinziliao" Caption="商品资料维护" DefaultFilter="" Pagging="20" PermissionType="CommType"
+               TableName="SQLQuery::select * | from xyy_wms_dic_shangpinziliao where 1 = 1 @shangpinmingcheng @shangpinbianhao @shengchanchangjia @shenpizhuangtai order by createTime desc"
+               DataSource="" Head="false">
+
+        <Parameters>
+            <Parameter Key="shangpinbianhao" Type="String">
+                <Where>
+                    <![CDATA[
+                        m.if(shangpinbianhao==null | shangpinbianhao=="" ,""," and shangpinbianhao like '%"+shangpinbianhao+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="shangpinmingcheng" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(shangpinmingcheng==null | shangpinmingcheng=="" ,""," and shangpinmingcheng like '%"+shangpinmingcheng+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="shengchanchangjia" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(shengchanchangjia==null | shengchanchangjia=="" ,""," and shengchanchangjia like '%"+shengchanchangjia+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="shenpizhuangtai" Type="Integer">
+                <Where>
+                    <![CDATA[
+					m.if(shenpizhuangtai==null | shenpizhuangtai=="" ,""," and shenpizhuangtai = "+shenpizhuangtai+"")
+	            ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

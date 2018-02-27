@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0"> 
+    <DataTable Key="shangpinyuekucun" Caption="" DefaultFilter="" Pagging="15"
+               TableName="SQLQuery::SELECT * | FROM xyy_erp_dic_shangpinyuekucun where 1=1 @shangpinbianhao  @shangpinmingcheng @yuefen" DataSource="" Head="false">
+        <Parameters>
+            <Parameter Key="shangpinbianhao" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(shangpinbianhao==null | shangpinbianhao=="" ,""," and shangpinbianhao like '%"+shangpinbianhao+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+
+            <Parameter Key="shangpinmingcheng" Type="String" >
+                <Where>
+                    <![CDATA[
+					m.if(shangpinmingcheng==null  | shangpinmingcheng=="" ,""," and shangpinmingcheng like '%"+shangpinmingcheng+"%'")
+                ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="yuefen" Type="Integer" >
+                <Where>
+                    <![CDATA[
+                	m.if(yuefen==null | yuefen=="",""," and yuefen="+yuefen+"")
+				]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="renyuan_view" Caption="人员名称" DefaultFilter="" PermissionType="CommType" Pagging="6" 
+        TableName="SQLQuery::
+    SELECT
+	v.id,
+	v.realName,
+	d.deptName
+	|
+	FROM
+	tb_sys_dept_user_relation r,
+	tb_sys_dept d,
+	(
+		SELECT
+			u.id,
+			u.realName
+		FROM
+			tb_sys_user u
+		WHERE
+			u.id IN (
+				SELECT
+					o.userId
+				FROM
+					tb_sys_org_user_relation o
+				WHERE
+				1=1
+				@orgId
+			)
+	) v
+WHERE
+	v.id = r.userId
+AND d.id = r.deptId
+@realName @deptName"  DataSource="" Head="false">
+        <Parameters> 
+            <Parameter Key="deptName" Type="String">
+                <Where>
+                <![CDATA[
+					m.if(deptName==null | deptName=="" ,""," and d.deptName like '%"+deptName+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+
+            <Parameter Key="realName" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(realName==null | realName=="" ,""," and v.realName like '%"+realName+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="orgId" Type="String">
+                <Where>
+                    <![CDATA[
+					m.if(orgId==null | orgId=="" ,""," and o.orgId = '"+orgId+"'")
+	            ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

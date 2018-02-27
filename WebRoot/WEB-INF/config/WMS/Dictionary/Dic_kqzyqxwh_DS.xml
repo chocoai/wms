@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="kqzyqxwh" BillType="Dictionary" Caption="库区作业权限维护" DefaultFilter="" TableName="Table::xyy_wms_dic_kqzyqxwh" DataSource="" Head="true">
+        <Field FieldKey="zhiyuanmingcheng" FieldName="职员名称" FieldType="Varchar" Comment="职员名称"/>
+        <Field FieldKey="gonghao" FieldName="工号" FieldType="Varchar" Comment="工号"/>
+         <Field FieldKey="kuqumingcheng" FieldName="库区名称" FieldType="Varchar" Comment="库区名称"/>
+        <Field FieldKey="kuqubianhao" FieldName="库区编号" FieldType="Varchar" Comment="库区编号"/>
+        <Field FieldKey="cangkumingcheng" FieldName="仓库名称" FieldType="Varchar" Comment="仓库名称"/>
+        <Field FieldKey="zuoyeshunxu" FieldName="作业顺序" FieldType="Int" Comment="作业顺序"/>
+        <Field FieldKey="shangjia" FieldName="上架" FieldType="Int" Comment="是否有上架权限：1有，2无"/>
+        <Field FieldKey="jianhuo" FieldName="拣货" FieldType="Int" Comment="是否有拣货权限：1有，2无"/>
+        <Field FieldKey="buhuo" FieldName="补货" FieldType="Int" Comment="是否有补货权限：1有，2无"/>
+        <Field FieldKey="pandian" FieldName="盘点" FieldType="Int" Comment="是否有盘点权限：1有，2无"/>
+    </DataTable>
+</DataSet>

@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="formDesign">
+<head>
+    <meta charset="UTF-8">
+    <title>转换规则设计器</title>
+    <link rel="stylesheet" href="lib/css/bootstrap.css">
+    <link rel="stylesheet" href="lib/css/formDesign.css">
+    <script src="lib/js/jquery.min.js"></script>
+    <script src="lib/js/bootstrap.min.js"></script>
+
+    <script src="lib/js/angular.min.js"></script>
+    <script src="lib/js/canvasExtends.js"></script>
+    <script src="lib/js/formDesign.js"></script>
+    <script src="lib/js/formDesignCtrl.js"></script>
+    <script src="Shared/Filter.js"></script>
+    <script type="text/javascript" src="lib/js/custom.js"></script>
+    <style>
+    .tab-content {overflow:auto;}
+    </style>
+</head>
+<body>
+
+
+<div class="grail" ng-controller="designCtrl">
+    <div class="grail_main" ng-dblclick="dblClick()">
+        <div id="mycanvas"></div>
+    </div>
+
+    <div class="grail_aside">
+
+        <div class="clearfix">
+            <blockquote class="pull-left">转换规则设计器</blockquote>
+            <em class="pull-right" style="margin: 20px;cursor: pointer;">
+                <i class="glyphicon glyphicon-chevron-up" ng-if="toolhide==1" ng-click="settoolhide(0)"></i>
+                <i class="glyphicon glyphicon-chevron-down" ng-if="toolhide==0" ng-click="settoolhide(1)"></i>
+            </em>
+
+        </div>
+        <div class="tools" ng-if="toolhide==1">
+
+            <button class="btn btn-warning" ng-click="saveTranInfo()" style="margin-left:5px;">保存</button>
+            <!--<input type="range" ng-model="scale.range" min="0.5" max="3.0" step="0.01" value="1.0" ng-change="setSize()" />-->
+            <blockquote>工具</blockquote>
+            <span onclick="workflow.setOperatorMode(1);"
+                  ng-click="setSelectType()"> <i>&#xe608;</i> <em>选择</em>
+				</span>
+            <!--<span onclick="workflow.setOperatorMode(2);" ng-click="toolType=1">-->
+            <span ng-click="setNode('BILL')"> <i>&#xe617;</i> <em>单据</em></span>
+            <span ng-click="setNode('DIC')"> <i>&#xe617;</i> <em>字典</em></span> 
+            <span ng-click="setNode('MULTIBIBLL')"> <i>&#xe617;</i> <em>多样式表单</em></span>
+            <span onclick="workflow.setOperatorMode(11);" ng-click="toolType=2">
+					<i>&#xe63a;</i> <em>连线</em>
+				</span> <span  ng-click="delLine()"> <i>&#xe662;</i>
+					<em>删除</em>
+				</span>
+
+        </div>
+        <!---->
+        <div class="tools" ng-if="toolhide==1">
+            <blockquote>属性</blockquote>
+            <div ng-if="toolType==1">
+                <div class="form-horizontal">
+                    <div class="row">
+                        <label for="inputText" class="col-sm-3 control-label">内容</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="inputText"
+                                   placeholder="输入内容" maxlength="20" ng-model="shapeStyle.text">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label for="inputBorderColor" class="col-sm-3 control-label">边框颜色</label>
+                        <div class="col-sm-8">
+                            <input type="color" class="form-control" id="inputBorderColor"
+                                   placeholder="边框颜色" ng-model="shapeStyle.strokeStyle">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label for="inputBGC" class="col-sm-3 control-label">背景色</label>
+                        <div class="col-sm-8">
+                            <input type="color" class="form-control" id="inputBGC"
+                                   placeholder="背景色" ng-model="shapeStyle.fillStyle">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label for="inputFontColor" class="col-sm-3 control-label">字体颜色</label>
+                        <div class="col-sm-8">
+                            <input type="color" class="form-control" id="inputFontColor"
+                                   placeholder="字体颜色" ng-model="shapeStyle.fontColor">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label for="inputFontColor" class="col-sm-3 control-label">&nbsp;</label>
+                        <div class="col-sm-8">
+                            <button class="btn-success btn" ng-click="render()">确定</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--线style-->
+            <div ng-if="toolType==2">
+                <div class="form-horizontal">
+                    <div class="row">
+                        <label for="inputText2" class="col-sm-3 control-label">内容</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="inputText2"
+                                   placeholder="输入内容" maxlength="20" ng-model="lineStyle.text">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <label for="inputLineWidth" class="col-sm-3 control-label">线宽</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="inputLineWidth"
+                                   placeholder="输入线宽度" maxlength="1" ng-model="lineStyle.width">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <label for="inputLineStyle" class="col-sm-3 control-label">线类型</label>
+                        <div class="col-sm-8">
+                            <select name="" id="inputLineStyle" class="form-control"
+                                    ng-model="lineStyle.type">
+                                <option value="1">折线</option>
+                                <option value="2">贝斯曲线</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <label for="inputLineColor" class="col-sm-3 control-label">线颜色</label>
+                        <div class="col-sm-8">
+                            <input type="color" class="form-control" id="inputLineColor"
+                                   placeholder="线颜色" ng-model="lineStyle.strokeColor">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <label for="inputLineFontColor" class="col-sm-3 control-label">线字体颜色</label>
+                        <div class="col-sm-8">
+                            <input type="color" class="form-control" id="inputLineFontColor"
+                                   placeholder="线字体颜色" ng-model="lineStyle.fontColor">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <label for="inputLineFontColor" class="col-sm-3 control-label"></label>
+                        <div class="col-sm-8">
+                            <button class="btn btn-success" ng-click="render()">确定</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!---->
+        </div>
+    </div>
+
+
+    <!--弹出框-->
+    <!--选择单据begin-->
+    <div class="modal fade bs-example-modal-sm" tabindex="-1"
+         role="dialog" id="setNodeModal" aria-labelledby="mySmallModalLabel">
+        <div class="modal-dialog " role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    选择单据
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <!--选择单据体-->
+                <div class="modal-body">
+                    <div class="form-group clearfix">
+                        <label class="col-sm-2 control-label">请选择：</label>
+                        <div class="col-sm-8">
+
+                        </div>
+                    </div>
+                    <div class="form-group clearfix">
+                        <label class="col-sm-4 control-label"><input type="text" class="form-control"
+                                                                     ng-model="currNode.filter" placeholder="过滤"
+                                                                     alt="过滤"></label>
+
+                        <div class="col-sm-8">
+
+                            <select name="" class="form-control"
+                                    ng-model="currNode.testSelect"
+                                    ng-options="b.name for b in bills | filter:currNode.filter">
+                            </select>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success btn-sm"
+                            ng-click="getNodeName()">确定
+                    </button>
+                    <button type="button" class="btn btn-default btn-sm"
+                            data-dismiss="modal">取消
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--选择单据模态框end-->
+    <!--转换规则设置begin-->
+    <div class="modal fade bs-example-modal-sm" tabindex="-1"
+         role="dialog" id="setRuleModal" aria-labelledby="mySmallModalLabel">
+        <div class="modal-dialog modal-lg " role="document">
+            <form name="form" role="form">
+                <div class="modal-content">
+                    <div class="modal-header clearfix">
+                        {{currRule.title}}转换规则设置
+
+                        <div class="pull-right">
+                            <button type="button" class="btn btn-success btn-sm"
+                                    ng-click="setRule()" ng-disabled="form.$invalid">保存
+                            </button>
+                            <button class="btn btn-sm btn-info" ng-click="dataFilter()">数据过滤设置</button>
+                            <button type="button" class="btn btn-default btn-sm"
+                                    data-dismiss="modal">取消
+                            </button>
+
+                            <!--<button type="button" class="close" data-dismiss="modal"-->
+                                    <!--aria-label="Close">-->
+                                <!--<span aria-hidden="true">×</span>-->
+                            <!--</button>-->
+                        </div>
+
+                    </div>
+                    <!--设置规则主体内容-->
+                    <div class="modal-body">
+                        <!--<div class="btn-group">
+
+                       <button class="btn btn-sm btn-default">修改</button>
+                       <button class="btn btn-sm btn-default" ng-click="copyRule()">复制转换规则</button>
+                       <button class="btn btn-sm btn-default" ng-click="pasteRule()">粘贴转换规则</button>
+
+                           <button class="btn btn-sm btn-primary" ng-click="changeState(1)">启用</button>
+                         <button class="btn btn-sm btn-danger" ng-click="changeState(0)">禁用</button>
+
+                       <button class="btn btn-sm btn-info" ng-click="ruleFilter()">规则过滤</button>
+
+
+                            <button class="btn btn-sm btn-info">源单属性设置</button>
+                        </div>-->
+                        <!---->
+                        <!--控制属性-->
+                        <div class="clearfix optionControl">
+                            <div class="form-horizontal col-sm-4">
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">编码</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="code" name="code"
+                                               ensure-Unique="code"
+                                               ng-model="billEdge.code" placeholder="编码唯一，不能为空" required/>
+                                        <span class="error" ng-show="form.code.$error.unique"
+                                              style="color:red">编码已存在</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">名称</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" ng-model="billEdge.name"
+                                               placeholder="规则名称不能为空" required/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">状态</label>
+                                    <div class="col-sm-8">
+                                        <select class="form-control" name="" ng-model="curState.state"
+                                                ng-options="m.value as m.name for m in billEdgeCtrlStateArr">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">多次生成控制</label>
+                                    <div class="col-sm-8">
+                                        <select class="form-control" name=""
+                                                ng-model="billEdgeController.multiConvertCtrl.ctrType"
+                                                ng-options="m.value as m.name for m in multiConvertCtrlArr">
+                                            <!--<option value="1">1</option>-->
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!---->
+                            <!--<div class="col-sm-3"></div>-->
+                            <fieldset class="col-sm-2">
+                                <legend>保存选项</legend>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="optionsRadios"
+                                               ng-model="billEdgeController.autoSaveController.ctrType" value="NoSave"
+                                               >
+                                        不保存单据
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="optionsRadios"
+                                               ng-model="billEdgeController.autoSaveController.ctrType"
+                                               value="AutoSave" ng-checked="true">
+                                        暂存单据
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="optionsRadios"
+                                               ng-model="billEdgeController.autoSaveController.ctrType"
+                                               value="AutoSaveAndSubmit">
+                                        提交单据
+                                    </label>
+                                </div>
+                            </fieldset>
+
+                            <!---->
+                            <fieldset class="col-sm-2">
+                                <legend>显示选项</legend>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="showOptionsRadios"
+                                               ng-model="billEdgeController.displayController.ctrType" value="NoGo"
+                                               >
+                                        不显示目标单
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="showOptionsRadios"
+                                               ng-model="billEdgeController.displayController.ctrType" value="GoEditor" ng-checked="true">
+                                        显示编辑界面
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="showOptionsRadios"
+                                               ng-model="billEdgeController.displayController.ctrType" value="GoList">
+                                        显示列表界面
+                                    </label>
+                                </div>
+                            </fieldset>
+                            <!---->
+                            <fieldset class="col-sm-3">
+                                <legend>回写规则选项</legend>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="writeBackOptionsRadios"
+                                               ng-model="billEdgeController.backWriteController.ctrType" value="Save"
+                                               >
+                                        保存时执行回写
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="writeBackOptionsRadios"
+                                               ng-model="billEdgeController.backWriteController.ctrType" value="Submit">
+                                        提交时执行回写
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="writeBackOptionsRadios"
+                                               ng-model="billEdgeController.backWriteController.ctrType"
+                                               value="SaveAndSubmit" ng-checked="true">
+                                             保存或提交时执行回写
+                                    </label>
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div>
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab"
+                                                                          data-toggle="tab">转换设置</a></li>
+                                <li role="presentation"><a href="#profile" aria-controls="profile" role="tab"
+                                                           data-toggle="tab" >分组合并规则</a></li>
+                                <li role="presentation"><a href="#messages" aria-controls="messages" role="tab"
+                                                           data-toggle="tab" ng-click="messagesload()">反写规则</a></li>
+                                <li role="presentation"><a href="#billEdgeHook" aria-controls="billEdgeHook" role="tab" data-toggle="tab" ng-click="hookload()">Hook配置</a></li>
+                            </ul>
+
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane active" id="home">
+                                    <!-- Nav tabs -->
+                                    <ul class="nav nav-tabs" role="tablist">
+                                        <li role="presentation" class="active"><a href="#head"
+                                                                                  aria-controls="head" role="tab"
+                                                                                  data-toggle="tab">单据头</a></li>
+                                        <li role="presentation"><a href="#body"
+                                                                   aria-controls="body" role="tab"
+                                                                   data-toggle="tab">单据体</a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div role="tabpanel" class="tab-pane active " id="head">
+                                            <div id="addGroup">
+                                                <button class="btn btn-primary pull-right" type="button"
+                                                        ng-click="addGroup()">添加明细分组
+                                                </button>
+                                            </div>
+                                            <table class="table table-hover table-bordered ">
+                                                <tr ng-repeat="field in billTransformEdge.billHeadTransformEdge">
+                                                    <td width="200px">{{field.fieldName}}</td>
+                                                    <td width="800px"><input type="text" ng-model="field.data"/></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div role="tabpanel" class="tab-pane clearfix " id="body">
+                                            <!-- Nav tabs -->
+                                            <div class="pull-right">
+                                                <button class="btn btn-primary" type="button" ng-click="addRow()">新增映射
+                                                </button>
+                                                <button class="btn btn-danger" type="button" ng-click="delRow()">删除映射
+                                                </button>
+
+                                            </div>
+                                            <div>
+                                                <ul class="nav nav-tabs " role="tablist">
+                                                    <li role="presentation" ng-repeat="bodyTable in bodyList"
+                                                        ng-click="getTabKey(bodyTable.key)"
+                                                        ng-class="{'active':$index==0}"><a ng-href="#{{bodyTable.key}}"
+                                                                                           aria-controls="{{bodyTable.key}}"
+                                                                                           role="tab" data-toggle="tab">{{bodyTable.caption}}</a>
+                                                    </li>
+                                                </ul>
+                                                <div class="tab-content">
+                                                    <div role="tabpanel" class="tab-pane bodyTable  "
+                                                         ng-class="{'active':$index==0}"
+                                                         ng-repeat="bodyTable in bodyList" id="{{bodyTable.key}}"
+                                                         index="{{$index}}" style="overflow:auto;">
+                                                        <table class="table table-hover table-bordered ">
+                                                            <tr>
+                                                                <th>源单据明细Key</th>
+                                                                <th ng-repeat="field in bodyTable.fields">
+                                                                    {{field.fieldName}}
+                                                                </th>
+                                                            </tr>
+                                                            <tr ng-repeat="billDtlEdge in billTransformEdge.billBodyTransformEdge[$index].billDtlEdges"
+                                                                ng-click="selRow(billDtlEdge,$index)">
+                                                                <td><select ng-model="billDtlEdge.sourceDltKey" ng-options="body.key as body.caption for body in dtlList">
+                                                                </select></td>
+                                                                <td ng-repeat="field in billDtlEdge.targetBillFields">
+                                                                    <input type="text" style="width:100px"
+                                                                           ng-model="field.data"/></td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                               	<!--  合并分组  【开始】 -->
+		                        <div role="tabpanel" class="tab-pane" id="profile">
+									    <div class="panel-body">
+									        <ul class="nav nav-tabs" role="tablist">
+									            <li role="presentation" class="active"><a href="#groupJoinHead" aria-controls="home" role="tab" data-toggle="tab">单据头</a></li>
+									            <li role="presentation"><a href="#groupJoinBody" aria-controls="profile" role="tab" data-toggle="tab">单据体</a></li>
+									        </ul>
+									
+									        <div class="tab-content">
+								                <!--  合并分组———单据头  【开始】 -->
+									            <div role="tabpanel" class="tab-pane active" id="groupJoinHead">
+							                        <div class="panel panel-default" >
+													    <div class="panel-body">
+													        <ul class="nav nav-tabs" role="tablist">
+													            <li role="presentation" class="active"><a href="#headGroupRule" aria-controls="home" role="tab" data-toggle="tab">分组规则</a></li>
+													            <li role="presentation"><a href="#headJoinRule" aria-controls="profile" role="tab" data-toggle="tab">合并分组</a></li>
+													        </ul>
+													        <div class="tab-content">
+													            <div role="tabpanel" class="tab-pane active" id="headGroupRule">
+													            	<div class="pull-right">
+																			<input ng-model="billGroupJoinEdge.billHeadGroupJoinEdge.groupFileds.checked" ng-checked="billGroupJoinEdge.billHeadGroupJoinEdge.groupFileds.checked"  type="checkbox" id="headGroupType"/>是否公式分组
+													            	</div>
+													            	<input ng-show="billGroupJoinEdge.billHeadGroupJoinEdge.groupFileds.checked" ng-model="billGroupJoinEdge.billHeadGroupJoinEdge.groupFileds.formulaExp" type="text" class="form-control" id="formulaHeadGroupTypeValue" style="width: 300px;">
+													                <table ng-hide="billGroupJoinEdge.billHeadGroupJoinEdge.groupFileds.checked" id="formulaHeadGroupTypeTable" class="table table-striped table-bordered  table-condensed">
+													                    <tr>
+													                    	<th>分组合并属性</th>
+													                    	<th>分组合并</th>
+													                    </tr>
+													                    <tbody>															  
+																			<tr ng-repeat="row in billGroupJoinEdge.billHeadGroupJoinEdge.groupFieldsList">
+																			
+																				<td>
+																					{{row.fieldName}}
+																				</td>
+																				<td>
+																					<input ng-model="row.checked" ng-checked="row.checked"  type="checkbox" name="groupJoin"/>
+																				</td>
+																			</tr>
+													                    </tbody>
+													                </table>
+													            </div>
+													            
+													            <div role="tabpanel" class="tab-pane" id="headJoinRule">
+													                <table class="table table-striped table-bordered  table-condensed">
+													                    <tr>
+													                    	<th>分组合并属性</th>
+													                    	<th>合并规则</th>
+													                    	<th>分组合并</th>
+													                    </tr>
+													                    <tbody>
+																			<tr ng-repeat="row in billGroupJoinEdge.billHeadGroupJoinEdge.joinFieldsList">
+																				<td>
+																					{{row.fieldName}}
+																				</td>
+																				<td>
+																					<input ng-model="row.keys" type="text" class="form-control" style="width: 300px;">
+																				</td>
+																				<td>
+																					<input ng-model="row.checked" ng-checked="row.checked" type="checkbox" name="groupJoin" style="margin-top: 10px;"/>
+																				</td>
+																			</tr>
+													                    </tbody>
+													                </table>
+													            </div>
+													            
+													        </div>
+													    </div>
+													</div>
+									            </div>
+												<!--  合并分组———单据头  【结束】 -->
+												
+												
+												<!--  合并分组———单据体  【开始】 -->
+									            <div role="tabpanel" class="tab-pane" id="groupJoinBody">
+												   <div role="tabpanel" class="tab-pane" id="bodyJoinRule">
+										            	<ul class="nav nav-tabs" role="tablist" >										            	
+												            <li role="presentation" ng-repeat="row in billGroupJoinEdge.billBodyGroupJoinEdge.targetSubBillGroupJoinEdges" ng-class="{'active':$index==0}"><a ng-href="#body_{{row.key}}" aria-controls="body_{{row.key}}" role="tab" data-toggle="tab">{{row.caption}}</a></li>
+												        </ul>
+												        <div class="tab-content" >
+												            <div id="body_{{row.key}}" role="tabpanel" class="tab-pane" ng-repeat="row in billGroupJoinEdge.billBodyGroupJoinEdge.targetSubBillGroupJoinEdges" index="{{$index}}" ng-class="{'active':$index==0}" >
+												            	<div class="panel-body">
+															        <ul class="nav nav-tabs" role="tablist">
+															            <li role="presentation" class="active"><a href="#bodyGroupRule_{{row.key}}" aria-controls="home" role="tab" data-toggle="tab">分组规则</a></li>
+															            <li role="presentation"><a href="#bodyJoinRule_{{row.key}}" aria-controls="profile" role="tab" data-toggle="tab">合并规则</a></li>
+															        </ul>
+															
+															        <div class="tab-content">
+															            <div role="tabpanel" class="tab-pane active" id="bodyGroupRule_{{row.key}}">
+															                <div class="pull-right">
+																				<input ng-model="billGroupJoinEdge.billBodyGroupJoinEdge.targetSubBillGroupJoinEdges[$index].checked" ng-checked="billGroupJoinEdge.billBodyGroupJoinEdge.targetSubBillGroupJoinEdges[$index].checked" type="checkbox" id="headGroupType_{{row.key}}"/>是否公式分组
+													            			</div>
+													                        <input ng-show="billGroupJoinEdge.billBodyGroupJoinEdge.targetSubBillGroupJoinEdges[$index].checked" ng-model="billGroupJoinEdge.billBodyGroupJoinEdge.targetSubBillGroupJoinEdges[$index].formulaExp" type="text" class="form-control" style="width: 300px;">
+													            			
+															                <table ng-hide="billGroupJoinEdge.billBodyGroupJoinEdge.targetSubBillGroupJoinEdges[$index].checked" id="formulaHeadGroupTypeTable_{{row.key}}" class="table table-striped table-bordered  table-condensed">
+															                    <tr>
+															                    	<th>分组合并属性</th>
+															                    	<th>分组合并</th>
+															                    </tr>
+																				<tr ng-repeat="fields in billGroupJoinEdge.billBodyGroupJoinEdge.targetSubBillGroupJoinEdges[$index].groupFiledsList">
+																					<td>
+																							{{fields.fieldName}}
+																						
+																					</td>
+																					<td>
+																						<input ng-model="fields.checked" ng-checked="fields.checked" type="checkbox" name="groupJoin"/>
+																					</td>
+																				</tr>
+															                 </table>
+															            </div>
+															            <div role="tabpanel" class="tab-pane" id="bodyJoinRule_{{row.key}}">
+															                <table class="table table-striped table-bordered  table-condensed">
+															                    <tr>
+															                    	<th>分组合并属性</th>
+															                    	<th>合并规则</th>
+															                    	<th>分组合并</th>
+															                    </tr>
+															                    <tbody>
+																					<tr ng-repeat="fields in billGroupJoinEdge.billBodyGroupJoinEdge.targetSubBillGroupJoinEdges[$index].joinFiledsList">
+																						<td>
+																							{{fields.fieldName}}
+																						</td>
+																						<td>
+																							<input type="text" class="form-control" ng-model="fields.keys" style="width: 300px;">
+																						</td>
+																						<td>
+																							<input ng-model="fields.checked" ng-checked="fields.checked"  type="checkbox" name="groupJoin" style="margin-top: 10px;"/>
+																						</td>
+																					</tr>
+															                    </tbody>
+															                </table>
+															            </div>
+															        </div>
+															    </div>
+												            </div>
+												         </div>
+										            </div>
+									            </div>
+												<!--  合并分组———单据体  【结束】 -->
+												
+												
+												
+												
+									        </div>
+									    </div>
+		                        </div>
+		                        <!--  合并分组  【结束】 -->
+		                        
+		                        
+                             
+                             
+                             
+                                <div role="tabpanel" class="tab-pane" id="messages">
+                                    <div ng-include="'Views/_backwrite.html'"></div>
+                                </div>
+                                <!-- Hook配置 -->
+                                <div role="tabpanel" class="tab-pane" id="billEdgeHook">
+                                    <div ng-include="'Views/_billEdgeHook.html'"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 规则过滤 -->
+    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" id="ruleFilterModal"
+         aria-labelledby="mySmallModalLabel">
+        <div class="modal-dialog " role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    规则过滤
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group clearfix">
+                        <label class="col-sm-3 control-label">单据规则过滤公式</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control"
+                                   ng-model="ruleFilterEdge.ruleHeadFilterEdge.filter.formula"/>
+                        </div>
+                    </div>
+                    <!--<div class="form-group clearfix">
+                        <label  class="col-sm-3 control-label">原单据key</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control"  ng-model="ruleFilterEdge.ruleBodyFilterEdge.filter[0].sourceKey"/>
+                        </div>
+                        <label  class="col-sm-3 control-label">单据体规则过滤公式</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control"  ng-model="ruleFilterEdge.ruleBodyFilterEdge.filter[0].formula"/>
+                        </div>
+                    </div>-->
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success btn-sm" ng-click="confirmRule()">确定</button>
+                    <button type="button" class="btn btn-default btn-sm" ng-click="quRule()" data-dismiss="modal">取消
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 数据过滤 -->
+    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" id="dataFilterModal"
+         aria-labelledby="mySmallModalLabel">
+        <div class="modal-dialog " role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    数据过滤
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group clearfix">
+                        <label class="col-sm-3 control-label">单据头过滤公式</label>
+                        <div class="col-sm-9">
+                            <input type="text"  class="form-control" ng-model="dataFilterEdge.sourceBillHeadFilterEdge.filter.formula"/>
+                        </div>
+                    </div>
+                    <div class="form-group clearfix">
+                        <!--<label  class="col-sm-3 control-label">原单据key</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control"  ng-model="dataFilterEdge.sourceBillBodyFilterEdge.filter[0].sourceKey"/>
+                        </div>-->
+                        <label  class="col-sm-3 control-label">源单据体分录</label>
+						<div class="col-sm-9">
+							<select ng-model="selectedDtl" ng-options="body as body.caption for body in dtlList" ng-change="selectDtl()" >
+							</select>
+						</div>
+                    </div>
+					<div class="form-group clearfix" ng-repeat="filter in dataFilterEdge.sourceBillBodyFilterEdge.filter">
+						<label  class="col-sm-3 control-label">{{filter.caption}}</label>
+						<div class="col-sm-9" >
+							<input type="text"  class="form-control" ng-model="filter.formula"/>
+						</div>
+					</div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success btn-sm" ng-click="confirmData()">确定</button>
+                    <!--<button type="button" class="btn btn-default btn-sm" ng-click="quData()" data-dismiss="modal">取消</button>-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 明细分组弹窗 -->
+    <div class="modal fade bs-example-modal-sm" tabindex="-2" role="dialog" id="TransformHead"
+         aria-labelledby="mySmallModalLabel">
+        <div class="modal-dialog " role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    添加明细分组
+                </div>
+                <div class="modal-body">
+                    <div class="form-group clearfix">
+                        <label class="col-sm-3 control-label">选择明细分录</label>
+                        <div class="col-sm-9">
+                            <select ng-model="selectedGroup" ng-options="body as body.caption for body in bodyList">
+                            </select>
+                        </div>
+                        <label class="col-sm-3 control-label">选择明细分录类型</label>
+                        <div class="col-sm-9">
+                            <select ng-model="selectedGroupType">
+                            	<option value="group">自然分组</option>
+                            	<option value="formulaGroup">条件分组</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success btn-sm" ng-click="setGroup()">确定</button>
+                    <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    workflow.mount(document.getElementById('mycanvas'), "myworkflow", 2000, 1800);
+    workflow.render();
+    NProgress.start();
+    $.get("/billdesign/fetchResultForBillEdge", function (result) {
+        workflow.shapes = result;
+        workflow.__restore();
+        workflow.render();
+        workflow.setOperatorMode(1);
+        NProgress.done();
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="kehu_view" Caption="客户名称" DefaultFilter="" Pagging="10"  PermissionType="CommType"
+               TableName="SQLQuery::select * | from xyy_erp_dic_kehujibenxinxi where 1=1  @tingshou @kehu @dongjie @shifouhuodong @status order by createTime desc"  DataSource="" Head="false" Singleton="" OrderBy="">
+        <Parameters>
+            <Parameter Key="tingshou" Type="Integer">
+                <Where>
+                    <![CDATA[
+					m.if(tingshou==null ,""," and tingshou = "+tingshou+"")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="kehu" Type="String">
+                <Where>
+             <![CDATA[
+					m.if(kehu==null | kehu=="" ,""," and mixCondition like '%"+kehu+"%'")
+	            ]]> 
+                </Where>
+            </Parameter>
+            <Parameter Key="dongjie" Type="Integer">
+                <Where>
+                    <![CDATA[
+					m.if(dongjie==null ,""," and dongjie = "+dongjie+"")
+	            ]]>
+                </Where>
+            </Parameter>
+
+            <Parameter Key="shifouhuodong" Type="Integer">
+                <Where>
+                    <![CDATA[
+					m.if(shifouhuodong==null ,""," and shifouhuodong = "+shifouhuodong+"")
+	            ]]>
+                </Where>
+            </Parameter>
+            <Parameter Key="status" Type="Integer">
+                <Where>
+                    <![CDATA[
+					m.if(status==null ,""," and status = "+status+"")
+	            ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

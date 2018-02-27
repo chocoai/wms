@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BillFormMeta Key="jihuowei" Version="1.0.0" BillType="Dics"
+              Caption="集货位资料维护">
+    <BillBody>
+        <BillBodyMeta UserAgent="web">
+            <BillUIPanel Layout="flex" FlexDirection="column" Width="100%"
+                         Key="mainContainer" Caption="业务订单" S="">
+
+                <BillUIPanel Layout="flex" Key="toolbox" Caption="工具栏">
+
+                    <BillUIWidget Key="save" Caption="保存" EnabledWhen="True"
+                                  Icon="glyphicon glyphicon-floppy-disk" WidgetType="BillUIButton">
+                        <Triggers>
+                            <Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+                                	 	setStatus(40);
+                               		var v1 = getHeadValue("tihuofangshi");
+                               		var v2 = getHeadValue("yewuleixing");
+                               		var v3 = getHeadValue("jihuoweileixing");
+                               			if(v1 == 0 || v2 == 0|| v3 == 0){
+                               				alert("必填项不能为空");
+                               				return;
+                               			}else{
+                                       @$this.save();
+                               			}
+                     			]]>
+                            </Trigger>
+                        </Triggers>
+                    </BillUIWidget>
+                    <!-- <BillUIWidget Key="cancel" Caption="重置" EnabledWhen="True" Icon="glyphicon
+                        glyphicon-send" WidgetType="BillUIButton"> <Triggers> <Trigger Type="javascript/angular"
+                        Runat="client"> <![CDATA[ @jihuoweibianhao.setValue(""); @cangkubianhao.setValue("");
+                        @qiyong.setValue(""); @jihuoweimiaoshu.setValue(""); @xiangdao.setValue("");
+                        @pai.setValue(""); @ceng.setValue(""); @lie.setValue(""); @chang.setValue("");
+                        @kuan.setValue(""); @gao.setValue(""); @X.setValue(""); @Y.setValue("");
+                        @Z.setValue(""); @jihuoweileixing.setValue(""); @yewuleixing.setValue("");
+                        @tihuofangshi.setValue(""); @chengzairongqi.setValue(""); @peisongxianlu.setValue("");
+                        @chengyunshang.setValue(""); @xianlubianhao.setValue(""); ]]> </Trigger>
+                        </Triggers> </BillUIWidget> -->
+                    <BillUIWidget Key="goback" Caption="返回" EnabledWhen="True"
+                                  Icon="glyphicon glyphicon-align-left" WidgetType="BillUIButton" S="btn btn-danger">
+                        <Triggers>
+                            <Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+                                        @$this.$reBack();
+	                            ]]>
+                            </Trigger>
+                        </Triggers>
+                    </BillUIWidget>
+
+
+                </BillUIPanel>
+
+                <BillUIPanel Layout="flex" Key="mainContainer_head"
+                             Caption="基础信息" S="panel panel-success publicPanel">
+                    <BillUIGridPanel Key="jichuxinxi">
+                        <BillUIRowPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="cangkubianhao" Caption="仓库编号"
+                                              Required="required" Disable="true" EnabledWhen="True"
+                                              WidgetType="BillUIPopupWindow" ViewSize="lg"
+                                              DataTableColumn="cangkubianhao"
+                                              DataTableKey="cangkuziliao" Src="cangku">
+                                    <Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                                var t=@cangkuID.getValue();
+                                                t.then(function(data){
+                                                if(data)
+                                                {
+                                                	var cangkuxinxin = callRemoteMethod('/wmsCangku/route/cangku',{cangkuID:data}, true, 'POST');
+                                            	    @cangkubianhao.setValue(cangkuxinxin.cangkubianhao);
+									                 }
+                                                })
+	                                        ]]>
+                                    </Init>
+                                    <Triggers>
+                                        <Trigger>
+                                            <![CDATA[
+                                                    var cangku=this.rows[0];     
+                                                    this.setValue(cangku.cangkubianhao);
+                                                    @cangkuID.setValue(cangku.ID);
+                                                    
+                                                ]]>
+                                        </Trigger>
+                                    </Triggers>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="jihuoweibianhao" Caption="集货位编号"
+                                              DataTableKey="jihuowei" DataTableColumn="jihuoweibianhao"
+                                              Required="required" EnabledWhen="True" WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="qiyong" Caption="是否启用"
+                                              DataTableKey="jihuowei" DataTableColumn="qiyong" EnabledWhen="True"
+                                              Required="required" Icon="glyphicon glyphicon-send"
+                                              Src="bill/selectSrc?type=bool"
+                                              WidgetType="BillUISelect">
+                                    <Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+				                                         this.loadDataSource();
+				                                 ]]>
+                                    </Init>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <!-- <BillUIColPanel Width="3">
+                                <BillUIWidget Key="shunxuhao" Caption="顺序号"
+                                              Required="required" DataTableKey="jihuowei" DataTableColumn="shunxuhao"
+                                              EnabledWhen="True" WidgetType="BillUIString">
+                                    <CheckRules>
+                                        <CheckRule>
+                                            <![CDATA[
+												              {"type":"builtin","rule":/^(0|[1-9][0-9]*)$/,"msg":"请填写数字类型"}
+												        ]]>
+                                        </CheckRule>
+                                    </CheckRules>
+                                </BillUIWidget>
+                            </BillUIColPanel> -->
+                        </BillUIRowPanel>
+                        <BillUIRowPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="xiangdao" Caption="巷道"
+                                              DataTableKey="jihuowei" DataTableColumn="xiangdao" Required="required"
+                                              EnabledWhen="True" WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="pai" Caption="排" DataTableKey="jihuowei"
+                                              DataTableColumn="pai" Required="required" EnabledWhen="True"
+                                              WidgetType="BillUIString">
+                                    <CheckRules>
+                                        <CheckRule>
+                                            <![CDATA[
+												             {"type":"builtin","rule":/^[0-9]*$/,"msg":"请填写数字类型"}
+												        ]]>
+                                        </CheckRule>
+                                    </CheckRules>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="ceng" Caption="层" DataTableKey="jihuowei"
+                                              DataTableColumn="ceng" Required="required" EnabledWhen="True"
+                                              WidgetType="BillUIString">
+                                    <CheckRules>
+                                        <CheckRule>
+                                            <![CDATA[
+												             {"type":"builtin","rule":/^[0-9]*$/,"msg":"请填写数字类型"}
+												        ]]>
+                                        </CheckRule>
+                                    </CheckRules>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="lie" Caption="列" DataTableKey="jihuowei"
+                                              DataTableColumn="lie" Required="required" EnabledWhen="True"
+                                              WidgetType="BillUIString">
+                                    <CheckRules>
+                                        <CheckRule>
+                                            <![CDATA[
+												             {"type":"builtin","rule":/^[0-9]*$/,"msg":"请填写数字类型"}
+												        ]]>
+                                        </CheckRule>
+                                    </CheckRules>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                        </BillUIRowPanel>
+                        <BillUIRowPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="chang" Caption="长（cm）"
+                                              DataTableKey="jihuowei" DataTableColumn="chang" Required="required"
+                                              EnabledWhen="True" WidgetType="BillUIString">
+                                    <CheckRules>
+                                        <CheckRule>
+                                            <![CDATA[
+											{"type":"builtin","rule":/^\d+(\.\d{2})?$/,"msg":"请填写整数或保留两位小数"}
+												        ]]>
+                                        </CheckRule>
+                                    </CheckRules>
+                                    <Triggers>
+                                        <Trigger Type="javascript/angular" Runat="client">
+                                            <![CDATA[
+                                                var chang = @chang.getValue();
+                                                var kuan = @kuan.getValue();
+                                                var gao = @gao.getValue();
+                                                Promise.all([chang,kuan,gao]).then(function (results) {
+                                                   @tiji.setValue(results[0]*results[1]*results[2]);
+                                                }).catch(function(r){
+                                                });
+				                            ]]>
+                                        </Trigger>
+                                    </Triggers>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="kuan" Caption="宽（cm）"
+                                              DataTableKey="jihuowei" DataTableColumn="kuan" Required="required"
+                                              EnabledWhen="True" WidgetType="BillUIString">
+                                    <CheckRules>
+                                        <CheckRule>
+                                            <![CDATA[
+											{"type":"builtin","rule":/^\d+(\.\d{2})?$/,"msg":"请填写整数或保留两位小数"}
+												        ]]>
+                                        </CheckRule>
+                                    </CheckRules>
+                                    <Triggers>
+                                        <Trigger Type="javascript/angular" Runat="client">
+                                            <![CDATA[
+                                                var chang = @chang.getValue();
+                                                var kuan = @kuan.getValue();
+                                                var gao = @gao.getValue();
+                                                Promise.all([chang,kuan,gao]).then(function (results) {
+                                                   @tiji.setValue(results[0]*results[1]*results[2]);
+                                                }).catch(function(r){
+                                                });
+				                            ]]>
+                                        </Trigger>
+                                    </Triggers>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="gao" Caption="高（cm）"
+                                              DataTableKey="jihuowei" DataTableColumn="gao" Required="required"
+                                              EnabledWhen="True" WidgetType="BillUIString">
+                                    <CheckRules>
+                                        <CheckRule>
+                                            <![CDATA[
+											{"type":"builtin","rule":/^\d+(\.\d{2})?$/,"msg":"请填写整数或保留两位小数"}
+												        ]]>
+                                        </CheckRule>
+                                    </CheckRules>
+                                    <Triggers>
+                                        <Trigger Type="javascript/angular" Runat="client">
+                                            <![CDATA[
+                                                var chang = @chang.getValue();
+                                                var kuan = @kuan.getValue();
+                                                var gao = @gao.getValue();
+                                                Promise.all([chang,kuan,gao]).then(function (results) {
+                                                   @tiji.setValue(results[0]*results[1]*results[2]);
+                                                }).catch(function(r){
+                                                });
+				                            ]]>
+                                        </Trigger>
+                                    </Triggers>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="tiji" Caption="体积（cm³）"
+                                              DataTableKey="jihuowei" DataTableColumn="tiji" Required="required"
+                                              EnabledWhen="True" Disable="true" WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                        </BillUIRowPanel>
+                        <BillUIRowPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="X" Caption="X坐标" DataTableKey="jihuowei"
+                                              DataTableColumn="X" EnabledWhen="True" WidgetType="BillUIString">
+                                    <CheckRules>
+                                        <CheckRule>
+                                            <![CDATA[
+											{"type":"builtin","rule":/^\d*(\.\d{1,2})?$/,"msg":"请填写两位小数以内的数字类型"}
+												        ]]>
+                                        </CheckRule>
+                                    </CheckRules>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="Y" Caption="Y坐标" DataTableKey="jihuowei"
+                                              DataTableColumn="Y" EnabledWhen="True" WidgetType="BillUIString">
+                                    <CheckRules>
+                                        <CheckRule>
+                                            <![CDATA[
+											{"type":"builtin","rule":/^\d*(\.\d{1,2})?$/,"msg":"请填写两位小数以内的数字类型"}
+												        ]]>
+                                        </CheckRule>
+                                    </CheckRules>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="Z" Caption="Z坐标" DataTableKey="jihuowei"
+                                              DataTableColumn="Z" EnabledWhen="True" WidgetType="BillUIString">
+                                    <CheckRules>
+                                        <CheckRule>
+                                            <![CDATA[
+											{"type":"builtin","rule":/^\d*(\.\d{1,2})?$/,"msg":"请填写两位小数以内的数字类型"}
+												        ]]>
+                                        </CheckRule>
+                                    </CheckRules>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="0">
+                                <BillUIWidget Key="cangkuID" Caption=""
+                                              DataTableKey="jihuowei" DataTableColumn="cangkuID" Disable="true"
+                                              EnabledWhen="True" WidgetType="BillUIString" ViewSize="lg">
+                                    <Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                            	this.setHide();
+	                                        ]]>
+                                    </Init>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                        </BillUIRowPanel>
+                        <BillUIRowPanel>
+                            <BillUIColPanel Width="6">
+                                <BillUIWidget Key="jihuoweimiaoshu" Caption="集货位描述"
+                                              DataTableKey="jihuowei" DataTableColumn="jihuoweimiaoshu"
+                                              EnabledWhen="True" WidgetType="BillUITextArea">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                        </BillUIRowPanel>
+                    </BillUIGridPanel>
+                </BillUIPanel>
+
+                <BillUIPanel Layout="flex" Key="mainContainer_shuxing"
+                             Caption="属性" S="panel panel-success publicPanel" RowGap="5" ColGap="10"
+                             ColWidth="300px 300px 300px  300px 1fr 1fr">
+                    <BillUIGridPanel Key="shuxing">
+                        <BillUIRowPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="jihuoweileixing" Caption="集货位类型"
+                                              DataTableKey="jihuowei" DataTableColumn="jihuoweileixing"
+                                              Required="required" EnabledWhen="True" WidgetType="BillUISelect"
+                                              Src="bill/selectSrc?type=jihuoweileixing">
+                                    <Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+				                                         this.loadDataSource();
+				                                 ]]>
+                                    </Init>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="yewuleixing" Caption="业务类型"
+                                              DataTableKey="jihuowei" DataTableColumn="yewuleixing" Required="required"
+                                              EnabledWhen="True" WidgetType="BillUISelect"
+                                              Src="bill/selectSrc?type=jihuoweiyewuleixing">
+                                    <Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+				                                         this.loadDataSource();
+				                                 ]]>
+                                    </Init>
+
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="tihuofangshi" Caption="提货方式"
+                                              DataTableKey="jihuowei" DataTableColumn="tihuofangshi"
+                                              Required="required" EnabledWhen="True" WidgetType="BillUISelect"
+                                              Src="bill/selectSrc?type=tihuofangshi">
+                                    <Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+			                                         this.loadDataSource();
+			                                 ]]>
+                                    </Init>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="chengzairongqi" Caption="承载容器"
+                                              DataTableKey="jihuowei" DataTableColumn="chengzairongqi"
+                                              EnabledWhen="True" WidgetType="BillUISelect"
+                                              Src="bill/selectSrc?type=chengzairongqi">
+                                     <Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+				                                         this.loadDataSource();
+				                                 ]]>
+                                    </Init>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="xianlumingcheng" DataTableColumn="xianlumingcheng"
+                                              Caption="配送线路" Disable="true" EnabledWhen="True"  Required="required"
+                                              WidgetType="BillUIPopupWindow"
+                                              ViewSize="lg" DataTableKey="peisongxianlu" Src="peisongxianlu">
+                                    <Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                                var t=@luxianid.getValue();
+                                                t.then(function(data){
+                                                if(data)
+                                                {
+                                                	var peisongxianlu = callRemoteMethod('/wmsXianlu/route/xianlu',{luxianid:data}, true, 'POST');
+                                            	    @xianlumingcheng.setValue(peisongxianlu.xianlumingcheng);
+									                 } 
+                                                })
+	                                        ]]>
+                                    </Init>
+                                    <Triggers>
+                                        <Trigger>
+                                            <![CDATA[
+                                                    var peisongxianlu=this.rows[0];
+                                                    this.setValue(peisongxianlu.xianlumingcheng);
+                                                    @luxianid.setValue(peisongxianlu.ID);
+                                                ]]>
+                                        </Trigger>  
+                                    </Triggers>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+
+
+                            <BillUIColPanel Width="3">
+                                <BillUIWidget Key="chengyunshang" Caption="承运商"
+                                              DataTableKey="jihuowei" DataTableColumn="chengyunshang"
+                                              EnabledWhen="True" WidgetType="BillUIString">
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                            <BillUIColPanel Width="0">
+                                <BillUIWidget Key="luxianid" Caption=""
+                                              DataTableKey="jihuowei" DataTableColumn="luxianid" Disable="true"
+                                              EnabledWhen="True" WidgetType="BillUIString" ViewSize="lg">
+                                    <Init Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                            	this.setHide();
+	                                        ]]>
+                                    </Init>
+                                </BillUIWidget>
+                            </BillUIColPanel>
+                        </BillUIRowPanel>
+
+
+                    </BillUIGridPanel>
+                </BillUIPanel>
+
+            </BillUIPanel>
+        </BillBodyMeta>
+    </BillBody>
+
+    <BillHeadMeta>
+        <BillStatusCollection>
+            <Status Default="true" Code="1">录入</Status>
+            <Status Code="20">已提交</Status>
+        </BillStatusCollection>
+        <BillEventCollection>
+            <Event Type="PostSave" Processor="com.xyy.wms.handler.biz.DicJiHuoWeiPostHandler"/> 
+            <Event Type="PreSave" Processor="com.xyy.wms.handler.biz.DicJiHuoQuHandler"/>
+        </BillEventCollection>
+    </BillHeadMeta>
+
+</BillFormMeta>
+

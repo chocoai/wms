@@ -1,0 +1,133 @@
+<div ng-controller="myApp.systemManagement.module">
+	<div class="row">
+		<div class="col-sm-4">
+			<!--模块树-->
+			<div class="panel panel-default">
+				<div class="panel-heading clearfix">
+					<div class="pull-left">模块管理</div>
+					<div class="pull-right btn-group">
+						<button id="moduleBtn" class="btn btn-success btn-sm"
+							ng-click="addModule()">新增</button>
+					</div>
+				</div>
+				<div class="panel-body">
+					<img src="/lib/images/1_open.png">
+					<treecontrol class="tree-classic" tree-model="dataForTheTree"
+						options="treeOptions" expanded-nodes="expandedNodes"
+						selected-node="selected" on-selection="buttonClick(node)">
+					{{node.name}} </treecontrol>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-8">
+			<!--模块管理-->
+			<div class="panel panel-default">
+				<div class="panel-heading clearfix">
+					<div class="pull-left">模块编辑</div>
+				</div>
+				<div class="panel-body">
+					<table class="table table-hover table-bordered table-striped table-condensed">
+						<thead>
+						<tr>
+							<th style="width: 10%">模块名称</th>
+							<th style="width: 10%">子系统</th>
+							<th style="width: 10%">父模块</th>
+							<th style="width: 10%">状态</th>
+							<th style="width: 10%">备注</th>
+							<th style="width: 10%">操作</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr ng-repeat="mrow in mrows">
+							<td>{{mrow.name}}</td>
+							<td>
+								<label ng-repeat="s in systemList">
+									<p ng-if="s.id==mrow.systemId">{{s.name}}</p>
+								</label>
+							</td>
+
+							<td>
+								<label ng-repeat="s in parentList">
+									<p ng-if="s.id==mrow.parentId">{{s.name}}</p>
+								</label>
+							</td>
+							<td>
+								<label ng-if="mrow.state==1" style="color: green;">正常</label>
+								<p ng-if="mrow.state==0" style="color: red;">禁用</p>
+							</td>
+							<td>
+								<p ng-show="mrow.remark.length>15" title="{{mrow.remark}}">{{mrow.remark.substring(1,15)}}......</p>
+								<p ng-show="mrow.remark.length<15" >{{mrow.remark}}</p>
+							</td>
+							<td>
+								<div class="btn-group"  ng-if="mrow.parentId!=null">
+									<button class="btn btn-sm btn-primary" ng-click="editModule(mrow.id)">编辑</button>
+								</div>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+					<div paging  page-info="pageInfo"  load="load()"/>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="myModalLabel">编辑模块</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal" role="form" name="newform">
+						<div class="form-group">
+							<label class="col-sm-2 control-label">模块名称</label>
+							<div class="col-sm-4">
+								<input type="text" class="form-control"
+									ng-model="newModule.name" required>
+							</div>
+							<label class="col-sm-2 control-label">状态</label>
+							<div class="col-sm-4">
+								<select class="form-control" ng-model="newModule.state"
+									ng-options="s.value as s.name for s in stateList" required>
+								</select>
+							</div>
+
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">子系统</label>
+							<div class="col-sm-4">
+								<select class="form-control" ng-model="newModule.systemId"
+									ng-options="sys.id as sys.name for sys in systemList" required></select>
+							</div>
+							<label class="col-sm-2 control-label">父模块</label>
+							<div class="col-sm-4">
+								<select class="form-control" ng-model="newModule.parentId"
+									ng-disabled="newModule.systemId==null"
+									ng-options="module.id as module.name for module in moduleList"
+									required></select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">排序</label>
+							<div class="col-sm-4">
+								<input type="number" class="form-control"
+									ng-model="newModule.sortNo" required>
+							</div>
+							<label class="col-sm-2 control-label">备注</label>
+							<div class="col-sm-4">
+								<input type="text" class="form-control"
+									ng-model="newModule.remark">
+							</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary " ng-click="saveModule()"  ng-disabled="newform.$invalid">保存</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="fuhequjibenxinxi" Caption="复核区基本信息" DefaultFilter="" Pagging="20" 
+               TableName="SQLQuery::SELECT t.*,t1.cangkumingchen ckmc |  FROM
+	xyy_wms_dic_fuhequjibenxinxi t left join xyy_wms_dic_cangkuziliao t1 on t.cangkuID=t1.ID where 1=1 and t.status!=-1 @cangkuID @fhqbh @fhwbh @huadaohao @zuhao @shifouqiyong order by fhqbh asc, fhwbh asc" DataSource="" Head="false">
+        <Parameters>
+            <Parameter Key="cangkuID" Type="String">
+                <Where>
+                    <![CDATA[
+                        m.if(cangkuID==null | cangkuID=="" ,""," and t.cangkuID='"+cangkuID+"'")
+	            ]]>
+                </Where>
+            </Parameter>
+            
+            
+             <Parameter Key="fhqbh" Type="String">
+                <Where>
+                    <![CDATA[
+                        m.if(fhqbh==null | fhqbh=="" ,""," and t.fhqbh like '%"+fhqbh+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            
+               <Parameter Key="fhwbh" Type="String">
+                <Where>
+                    <![CDATA[
+                        m.if(fhwbh==null | fhwbh=="" ,""," and t.fhwbh like '%"+fhwbh+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+            
+            <Parameter Key="huadaohao" Type="Integer">
+                <Where>
+                    <![CDATA[
+                      m.if(huadaohao==null| huadaohao=="" ,""," and t.huadaohao="+huadaohao+"")
+	            ]]>
+                </Where>
+            </Parameter>
+            
+             <Parameter Key="zuhao" Type="Integer">
+                <Where>
+                    <![CDATA[
+                         m.if(zuhao==null| zuhao=="" ,""," and t.zuhao="+zuhao+"")
+	            ]]>
+                </Where>
+            </Parameter>
+            
+             <Parameter Key="shifouqiyong" Type="Integer">
+                <Where>
+                    <![CDATA[
+                        m.if(shifouqiyong==null| shifouqiyong=="" ,""," and t.shifouqiyong="+shifouqiyong+"")
+	            ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

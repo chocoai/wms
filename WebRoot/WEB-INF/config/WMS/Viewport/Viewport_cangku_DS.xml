@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0.0">
+    <DataTable Key="cangkuziliao_view" Caption="仓库资料叙事薄" DefaultFilter="" Pagging="10"
+               TableName="SQLQuery::select * | from xyy_wms_dic_cangkuziliao where 1=1 and status != -1 and qiyong = 1  @cangkubianhao    ORDER BY createTime DESC" PermissionType="CommType" DataSource="" Head="false">
+        <Parameters>
+            <Parameter Key="cangkubianhao" Type="String">
+                <Where>
+                <![CDATA[
+					m.if(cangkubianhao==null | cangkubianhao=="" ," "," and cangkubianhao like '%"+cangkubianhao+"%'")
+	            ]]>
+                </Where>
+            </Parameter>
+        </Parameters>
+    </DataTable>
+</DataSet>

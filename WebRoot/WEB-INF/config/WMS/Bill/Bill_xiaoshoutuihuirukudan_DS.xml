@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSet DataSource="" Version="1.0">
+	<DataTable Key="xiaoshoutuihuirukudan" BillType="Bill"
+		Caption="销售退回入库单" DefaultFilter=""
+		TableName="Table::xyy_erp_bill_xiaoshoutuihuirukudan" DataSource=""
+		Head="true">
+		<!-- 单据编号 varchar 规则：YBM+年月日时分秒+3位随机码, 例如：YBM20160426112240764 -->
+
+		<Field FieldKey="danjubianhao" FieldName="单据编号" FieldType="Varchar"
+			Bound="50" Comment="单据编号" />
+		<Field FieldKey="kaipiaoriqi" FieldName="开票日期" FieldType="TimeStamp"
+			Comment="开票日期" />
+		<Field FieldKey="kaipiaoyuan" FieldName="开票员" FieldType="Varchar"
+			Comment="开票员" />
+		<Field FieldKey="yewuyuan" FieldName="业务员" FieldType="Varchar"
+			Comment="业务员" />
+
+		<Field FieldKey="kehubianhao" FieldName="客户编号" FieldType="Varchar"
+			Comment="客户编号" />
+		<Field FieldKey="kehumingcheng" FieldName="客户名称" FieldType="Varchar"
+			Comment="客户名称" />
+		<Field FieldKey="yxsdh" FieldName="销售单据编号" FieldType="Varchar"
+			Comment="销售单据编号" />
+		<Field FieldKey="ydsdh" FieldName="电商单据编号" FieldType="Varchar"
+			Comment="电商单据编号" />
+		<Field FieldKey="sjdjbh" FieldName="上级单据编号" FieldType="Varchar"
+			Comment="上级单据编号" />
+
+		<Field FieldKey="jiesuanfangshi" FieldName="结算方式" FieldType="Int"
+			DefaultValue="0" Comment="结算方式" />
+		<Field FieldKey="hanshuijine" FieldName="含税金额" FieldType="Decimal"
+			DefaultValue="0.0" Bound="14,2" Comment="含税金额" />
+		<Field FieldKey="jine" FieldName="金额" FieldType="Decimal"
+			DefaultValue="0.0" Bound="14,2" Comment="金额" />
+		<Field FieldKey="shuie" FieldName="税额" FieldType="Decimal"
+			DefaultValue="0.0" Bound="14,2" Comment="税额" />
+		<Field FieldKey="chengbenjine" FieldName="成本金额" FieldType="Decimal"
+			DefaultValue="0.0" Bound="14,2" Comment="成本金额" />
+		<Field FieldKey="maoli" FieldName="毛利" FieldType="Decimal"
+			DefaultValue="0.0" Bound="14,2" Comment="毛利" />
+
+		<Field FieldKey="beizhu" FieldName="备注" FieldType="Varchar"
+			Comment="备注" />
+
+	</DataTable>
+
+
+
+	<DataTable Key="xiaoshoutuihuirukudan_details" BillType="Bill"
+		Caption="销售退回入库单明细" DefaultFilter="BillID"
+		TableName="Table::xyy_erp_bill_xiaoshoutuihuirukudan_details"
+		DataSource="" Head="false">
+		<Field FieldKey="goodsid" FieldName="商品ID" FieldType="Varchar"
+			Comment="商品ID" Bound="20" />
+		<Field FieldKey="danjubianhao" FieldName="单据编号" FieldType="Varchar"
+			Bound="50" Comment="单据编号" />
+		<Field FieldKey="shangpinbianhao" FieldName="商品编号" FieldType="Varchar"
+			Comment="商品编号" />
+		<Field FieldKey="shangpinmingcheng" FieldName="商品名称" FieldType="Varchar"
+			Comment="商品名称" />
+		<Field FieldKey="guige" FieldName="规格" FieldType="Varchar"
+			Comment="规格" />
+		<Field FieldKey="danwei" FieldName="单位" FieldType="Int" Comment="单位" />
+		<Field FieldKey="shengchanchangjia" FieldName="生产厂家" FieldType="Varchar"
+			Comment="生产厂家" />
+		<Field FieldKey="shuliang" FieldName="数量" FieldType="Decimal"
+			Bound="14,2" Comment="数量" />
+		<Field FieldKey="yanshoupingding" FieldName="验收评定" FieldType="Varchar"
+			Comment="验收评定：1合格..." />
+		<Field FieldKey="hanshuijia" FieldName="含税价" Bound="14,3"
+			FieldType="Decimal" DefaultValue="0" Comment="含税价" />
+		<Field FieldKey="hanshuijine" FieldName="含税金额" Bound="14,2"
+			FieldType="Decimal" DefaultValue="0" Comment="含税金额" />
+		<Field FieldKey="danjia" FieldName="单价" Bound="14,6" FieldType="Decimal"
+			DefaultValue="0.0" Comment="单价" />
+		<Field FieldKey="jine" FieldName="金额" Bound="14,2" FieldType="Decimal"
+			DefaultValue="0.0" Comment="金额" />
+		<Field FieldKey="shuilv" FieldName="税率" FieldType="Decimal"
+			DefaultValue="17" Bound="14,2" Comment="税率" />
+		<Field FieldKey="shuie" FieldName="税额" Bound="14,2" FieldType="Decimal"
+			DefaultValue="0.0" Comment="税额" />
+		<Field FieldKey="chengbendanjia" FieldName="成本单价" Bound="14,6"
+			FieldType="Decimal" DefaultValue="0" Comment="成本单价" />
+		<Field FieldKey="chengbenjine" FieldName="成本金额" Bound="14,2"
+			FieldType="Decimal" DefaultValue="0" Comment="成本金额" />
+		<Field FieldKey="maoli" FieldName="毛利" Bound="14,2" FieldType="Decimal"
+			DefaultValue="0" Comment="毛利：（含税价-成本单价）*数量" />
+		<Field FieldKey="pihaoId" FieldName="批号Id" FieldType="Varchar"
+			Comment="批号Id" />
+		<Field FieldKey="pihao" FieldName="批号" FieldType="Varchar"
+			Comment="批号" />
+		<Field FieldKey="shengchanriqi" FieldName="生产日期" FieldType="Date"
+			Comment="生产日期" />
+		<Field FieldKey="youxiaoqizhi" FieldName="有效期至" FieldType="Date"
+			Comment="有效期至" />
+		<Field FieldKey="pizhunwenhao" FieldName="批准文号" FieldType="Varchar"
+			Comment="批准文号" />
+		<Field FieldKey="chandi" FieldName="产地" FieldType="Varchar"
+			Comment="产地" />
+		<Field FieldKey="tuihuoyuanyin" FieldName="退回原因" FieldType="Varchar"
+			Comment="退回原因" />
+		<Field FieldKey="beizhu" FieldName="备注" FieldType="Varchar"
+			Comment="备注" />
+	</DataTable>
+</DataSet>

@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BillFormMeta Key="bcgzwh" Version="1.0.0" BillType="Bills"
+	Caption="波次计划维护叙事薄">
+	<BillBody>
+		<BillBodyMeta UserAgent="web">
+			<BillUIPanel Layout="flex" FlexDirection="column" Width="100%"
+				Key="mainContainer" Caption="波次计划维护叙事薄" S="">
+				<BillUIPanel Layout="flex" Key="toolbox" Caption="工具栏">
+
+					<!-- 增删查改的相应的引入src,viewport主要是定义一些相应的公共属性的界面 -->
+					<!-- <BillUIWidget Key="box" WidgetType="BillUIView" Src="toolbillsboxCG"> 
+						</BillUIWidget> -->
+
+					<BillUIWidget Key="add" Caption="新增" Left="1" Top="1"
+						Width="1" Height="1" EnabledWhen="True" Icon="glyphicon glyphicon-plus-sign"
+						WidgetType="BillUIButton">
+						<Triggers>
+							<Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+										@$this.add();
+						        ]]>
+							</Trigger>
+						</Triggers>
+					</BillUIWidget>
+
+					<BillUIWidget Key="edit" Caption="编辑" Left="2" Top="1"
+						Width="1" Height="1" EnabledWhen="True" Icon="glyphicon glyphicon-edit"
+						WidgetType="BillUIButton">
+						<Triggers>
+							<Trigger Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                            @$this.edit();
+	                            ]]>
+							</Trigger>
+						</Triggers>
+					</BillUIWidget>
+
+
+					<BillUIWidget Key="del" Caption="删除" EnabledWhen="True"
+						Icon="glyphicon glyphicon-trash" WidgetType="BillUIButton" S="btn btn-danger">
+						<Triggers>
+							<Trigger Type="javascript/angular" Runat="client">
+                                 <![CDATA[
+									 var sos = getSos('bcgzwh');
+									 if(sos.length==0){
+							            alert("请选择需要删除记录");
+							            return;
+							         }else{
+							             for(var i=0;i<sos.length;i++){
+							                 if(sos[i].status!=1){
+							                     alert("【该状态】的单据可以删除！ ");
+							                     return;
+							                 }
+							             }
+							         }
+							         @$this.delete();
+                      		]]>
+							</Trigger>
+						</Triggers>
+					</BillUIWidget>
+
+
+					<BillUIWidget Key="print" Caption="刷新" EnabledWhen="True"
+						Icon="glyphicon glyphicon-repeat" WidgetType="BillUIButton">
+						<Triggers>
+							<Trigger Type="javascript/angular" Runat="client">
+                                <![CDATA[
+										 @$this.__load("bcgzwh");
+	                            ]]>
+							</Trigger>
+						</Triggers>
+					</BillUIWidget>
+
+
+					<BillUIWidget Key="downloadExcel" Caption="导出"
+						EnabledWhen="True" Icon="glyphicon glyphicon-floppy-saved"
+						WidgetType="BillUIButton" FileName="波次计划维护">
+						<!-- 导出的功能,主要用ExportSheets标签 -->
+						<ExportSheets>
+							<ExportSheet SheetName="波次计划维护" TitleName=""
+								DataTableKey="bcgzwh">
+								<ExportColumns>
+									<ExportColumn Caption="规则编号" DataTableColumn="guizebianhao"
+										Width="100" />
+									<ExportColumn Caption="规则描述" DataTableColumn="guizemiaoshu"
+										Width="150" />
+									<ExportColumn Caption="仓库编号" DataTableColumn="cangkubianhao"
+										width="100" />
+								</ExportColumns>
+							</ExportSheet>
+						</ExportSheets>
+						<Triggers>
+							<Trigger Type="javascript/angular" Runat="client">
+                                        <![CDATA[
+                                         @$this.downloadExcel();
+	                                  ]]>
+							</Trigger>
+						</Triggers>
+					</BillUIWidget>
+
+				</BillUIPanel>
+
+
+				<BillUIPanel Layout="flex" Key="bills_tools" Caption="查询面板"
+					S="panel panel-default publicPanel">
+					<BillUIGridPanel Device="sm" key="boxtool">
+						<BillUIRowPanel>
+							<BillUIColPanel Width="3">
+								<BillUIWidget Key="guizebianhao" ParameterKey="guizebianhao"
+									DataTableKey="bcgzwh" Caption="规则编号" EnabledWhen="True"
+									Icon="glyphicon glyphicon-send" WidgetType="BillUIString">
+								</BillUIWidget>
+							</BillUIColPanel>
+
+
+							<BillUIColPanel Width="3">
+								<BillUIWidget Caption="查询" Key="search"
+									EnabledWhen="True" Icon="glyphicon glyphicon-send" WidgetType="BillUIButton">
+									<Triggers>
+										<Trigger Type="javascript/angular" Runat="client">
+                                            <![CDATA[
+                                    @$this.__load("bcgzwh");
+	                            ]]>
+										</Trigger>
+									</Triggers>
+								</BillUIWidget>
+
+								<BillUIWidget Caption="重置" Key="cancel"
+									EnabledWhen="True" Icon="glyphicon glyphicon-send" WidgetType="BillUIButton">
+									<Triggers>
+										<Trigger Type="javascript/angular" Runat="client">
+                                            <![CDATA[
+			                                      @guizebianhao.setValue("");
+			                                      @$this.__load();
+			 	                            ]]>
+										</Trigger>
+									</Triggers>
+								</BillUIWidget>
+							</BillUIColPanel>
+						</BillUIRowPanel>
+					</BillUIGridPanel>
+				</BillUIPanel>
+
+				<BillUIPanel Layout="flex" Key="bills_tabs" Caption="查询展示列">
+					<BillUIGrid Key="grid0" SelectMode="Multi" OptMode="View"
+						DataTableKey="bcgzwh">
+						<RowCheckRule>
+                            <![CDATA[
+                                        this.status<10,success,warning
+                                    ]]>
+						</RowCheckRule>
+						<DoubleClickHandlers>
+							<DoubleClickHandler>
+                                <![CDATA[
+                                    var shangpin=this.row;
+                                    window.location.href='/bill/view/bill?billKey=bcgzwh&BillID='+shangpin.BillID+'&allDisabled=true';
+
+                                ]]>
+							</DoubleClickHandler>
+						</DoubleClickHandlers>
+
+						<GridHeads>
+							<GridHead Col="guizebianhao" Caption="规则编号" enableEdit="True"
+								Width="180px">
+								<BillUIWidget Key="guizebianhao" WidgetType="BillUIString" />
+							</GridHead>
+							<GridHead Col="guizemiaoshu" Caption="规则描述" enableEdit="True"
+								Width="180px">
+								<BillUIWidget Key="guizemiaoshu" WidgetType="BillUIString" />
+							</GridHead>
+							<GridHead Col="cangkubianhao" Caption="仓库编号" enableEdit="True"
+								Width="180px">
+								<BillUIWidget Key="cangkubianhao" WidgetType="BillUIString" />
+							</GridHead>
+						</GridHeads>
+					</BillUIGrid>
+				</BillUIPanel>
+			</BillUIPanel>
+		</BillBodyMeta>
+	</BillBody>
+	<BillHeadMeta>
+		<!-- <RuleKeys> <RuleKey Type="PULL" PullType="DETAILS"> bcgzwh_quehuodengjidan_qhdjd 
+			</RuleKey> <RuleKey Type="PULL" PullType="DETAILS"> caigouxuqiufenxi_bcgzwh_XQFX001 
+			</RuleKey> </RuleKeys> -->
+	</BillHeadMeta>
+</BillFormMeta>
+
